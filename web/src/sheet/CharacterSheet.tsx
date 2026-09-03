@@ -3,7 +3,7 @@ import { createPortal } from "react-dom";
 import { FilledTextField, FilledSelect, SelectOption, TextButton, IconButton, Switch } from "../components/md";
 import { loadCategory, loadRelations } from "../data/loaders";
 import type { Entry } from "../data/types";
-import { type AbilityKey, type Character, ABILITY_LABELS, deriveStats, parseClassStats, parseRaceAbilities, racialBonus, applyAbilityBonus, parseTrainedSkillCount, parseClassSkills, parseBuiltinTrainedSkills, cleanDisplayName, setPowerSlot, clearPowerSlot, setFeatSlot, clearFeatSlot, setEquipmentSlot, clearEquipmentSlot, EQUIPMENT_SLOTS, buyPointsUsed, BUY_POINTS, DEFENSE_BONUS_SOURCES, parseRaceDefenses, baseClassName, SKILL_TABLE, ARMOR_PENALTY_SKILLS, armorPenaltyFor, zhName, type DefenseKey, type DefenseBonusSource, type SpeedMods, type InitMods, type SkillMods, type PowerSlots, grantedPowerCategory, grantedPowerSlot, type SlotLevel, ENCOUNTER_SLOT_LEVELS, DAILY_SLOT_LEVELS, UTILITY_SLOT_LEVELS, PARAGON_SLOT_LEVELS, LEGENDARY_SLOT_LEVEL, type ClassStats, type RaceDefenseBonus, type DerivedStats, setRitualSlot, clearRitualSlot } from "./character";
+import { type AbilityKey, type Character, ABILITY_LABELS, deriveStats, isHeavyArmor, parseClassStats, parseRaceAbilities, racialBonus, applyAbilityBonus, parseTrainedSkillCount, parseClassSkills, parseBuiltinTrainedSkills, cleanDisplayName, setPowerSlot, clearPowerSlot, setFeatSlot, clearFeatSlot, setEquipmentSlot, clearEquipmentSlot, EQUIPMENT_SLOTS, buyPointsUsed, BUY_POINTS, DEFENSE_BONUS_SOURCES, parseRaceDefenses, baseClassName, SKILL_TABLE, ARMOR_PENALTY_SKILLS, armorPenaltyFor, zhName, type DefenseKey, type DefenseBonusSource, type SpeedMods, type InitMods, type SkillMods, type PowerSlots, grantedPowerCategory, grantedPowerSlot, type SlotLevel, ENCOUNTER_SLOT_LEVELS, DAILY_SLOT_LEVELS, UTILITY_SLOT_LEVELS, PARAGON_SLOT_LEVELS, LEGENDARY_SLOT_LEVEL, type ClassStats, type RaceDefenseBonus, type DerivedStats, setRitualSlot, clearRitualSlot } from "./character";
 import { LEVELS, levelFromXp, xpForLevel } from "./leveling";
 import PowerSlotPicker from "./PowerSlotPicker";
 import FeatSlotPicker from "./FeatSlotPicker";
@@ -21,12 +21,13 @@ import { stripWiki } from "../lib/text";
 import { hybridTalentGroups, resolveHybridOption, isHybridTalentFeat, mergedClassTraitText, originalFeatureInfo, type HybridTalentGroup } from "../lib/hybrid";
 import { wikiToHtml, classTraitHtml, classFeaturesHtml, classSummary, raceTraitHtml, raceBodyHtml, splitRaceLore, splitClassLore, splitAuxPowers, parseSubraceInfo, parseFeatureSections, parseClassFeatureOptions, parseReplacementPairs, tokenizeWikiBody, parseRaceTraitLines, type FeatureSection } from "../lib/wikirender";
 import { BASE_WEAPONS, BASE_ARMORS, BASE_IMPLEMENTS, BASE_SHIELDS, findBaseItem, baseItemId, traitsText, type BaseWeapon, type BaseImplement } from "../lib/baseitems";
-import { priceForLevel, itemLevels } from "../lib/levelprices";
+import { priceForLevel, itemLevels, enhancementBonusForLevel } from "../lib/levelprices";
 import { POWER_CATEGORIES, POWER_COLORS, ITEM_COLOR, FEAT_COLOR } from "../lib/colors";
 import PickerModal from "./PickerModal";
 import ClassPickerModal from "./ClassPickerModal";
 import SheetDialog from "../components/SheetDialog";
 import RitualPicker, { ritualMarketPrice } from "./RitualPicker";
+import { themeStarting, themeStartingPowers, themeExtraPowers, themeOptionalPowers, tierLevel, splitThemeSections, THEME_MECH_START, type ThemeSection } from "./theme";
 // 灵能点推导：与速览页共用（速览页长休需按同一规则恢复灵能点）
 import { psionicPowerPoints, hybridPowerPoints } from "./powerpoints";
 // 防御推导（装备/职业特性自动加值、AC 属性替换）：与速览页共用同一实现
@@ -659,7 +660,7 @@ function EquipGroupSlots(props: {
                       <button type="button" className="sg-step" disabled={!hasMore || tier <= 1} title="降低增强" onClick={() => props.onEnhance?.(i, Math.max(1, tier - 1))}>−</button>
                       <span className="enhance-info">
                         <span className="enhance-sub">附魔：L{lv}{hasMore ? " · " + priceForLevel(lv).toLocaleString("zh-CN") + " gp" : ""}</span>
-                        <span className="enhance-main">增强+{tier}</span>
+                        <span className="enhance-main">增强+{enhancementBonusForLevel(lv)}</span>
                       </span>
                       <button type="button" className="sg-step" disabled={!hasMore || tier >= levels.length} title="提高增强" onClick={() => props.onEnhance?.(i, Math.min(levels.length, tier + 1))}>+</button>
                     </div>
@@ -3878,6 +3879,100 @@ function FeatureSectionList({ sections, detail, fields, powerOf, panelIds, onAdd
   );
 }
 
+// 主题威能的逐项行（额外特性 5/10级 威能与可选威能共用）：按小节最低等级门限控制「加入/移除」。
+// 无法解析的引用降级显示为「未收录」，不进入威能面板。
+function ThemePowerRows(props: {
+  powers: { title: string; ref: string; power: Entry | undefined }[];
+  mode: string;
+  level: number;
+  panelIds: Set<string>;
+  onToggle: (power: Entry) => void;
+}) {
+  return (
+    <>
+      {props.powers.map((o, i) => {
+        if (!o.power) return (
+          <div key={i} className="theme-power-line unresolved" title={`「${o.ref}」不在威能库中，无法加入威能面板。`}>{o.title}：{o.ref}（未收录）</div>
+        );
+        const pw: Entry = o.power;
+        const inPanel = props.panelIds.has(pw.id);
+        const unlocked = props.level >= tierLevel(o.title);
+        return (
+          <div key={o.ref} className="theme-power-line">
+            <SmartHover className="theme-power-name" popClass="compact-pop" title={pw.name} pop={<EntryCard entry={pw} />}>
+              <span className="cr-dot" style={{ background: pw.usage === "at-will" ? POWER_COLORS.atWill : pw.usage === "encounter" ? POWER_COLORS.encounter : pw.usage === "daily" ? POWER_COLORS.daily : POWER_COLORS.utility }} />
+              <span className="cr-sub">{o.title}：</span>
+              <span className="cr-name">{pw.name}{pw.nameEn ? " " + pw.nameEn : ""}</span>
+              <span className="cr-sub">L{pw.level}{pw.usageZh ? " · " + pw.usageZh : ""}</span>
+            </SmartHover>
+            {props.mode === "edit" && (unlocked ? (
+              <button type="button" className="sg-step" title={inPanel ? "从威能面板移除" : "加入威能面板"} onClick={() => props.onToggle(pw)}>{inPanel ? "移除" : "加入"}</button>
+            ) : (
+              <span className="theme-lock-badge" title={`需 ${tierLevel(o.title)} 级`}>需 {tierLevel(o.title)} 级</span>
+            ))}
+          </div>
+        );
+      })}
+    </>
+  );
+}
+
+// 主题正文章节渲染：参照职业能力面板的处理方式——
+// 位于「起始特性」之前的 lore 章节（扮演/创建及子节）及 intro 折叠展示（fold=true）；
+// 从「起始特性」起的机制章节（起始/额外/可选威能及子节）直接平铺展开（fold=false），
+// 便于玩家直接阅读功效；具体威能交互仍由下方「起始威能/额外威能/可选威能」列表承担。
+function ThemeChapters(props: {
+  sections: ThemeSection[];
+  fields: Record<string, string>;
+  lookup: (target: string) => Entry | undefined;
+  fold: boolean; // 本层是否用折叠框（机制层 false → 直接展开；lore 层 true → 折叠）
+}) {
+  if (!props.fold) {
+    // 机制章节：平铺展示（标题 + 正文），不套折叠框
+    return (
+      <>
+        {props.sections.map((sec, i) => (
+          <div key={i} className="theme-flat">
+            {sec.title && (
+              <div className="theme-flat-title">
+                <span className="theme-flat-level">{sec.title}</span>
+              </div>
+            )}
+            {sec.body.replace(/^\s*$/gm, "").trim().length > 0 && (
+              <div className="class-features"><WikiBody body={sec.body} fields={props.fields} lookup={props.lookup} /></div>
+            )}
+            {sec.subs.length > 0 && <ThemeChapters sections={sec.subs} fields={props.fields} lookup={props.lookup} fold={false} />}
+          </div>
+        ))}
+      </>
+    );
+  }
+  return (
+    <>
+      {props.sections.map((sec, i) => {
+        const title = sec.title ?? "主题简介";
+        const hasBody = sec.body.replace(/^\s*$/gm, "").trim().length > 0;
+        return (
+          <details key={i} className={`theme-fold${sec.title ? "" : " theme-fold-intro"}`} open={false}>
+            <summary>
+              <span className="theme-fold-title">{title}</span>
+              <span className="material-symbols-outlined theme-fold-ic">expand_more</span>
+            </summary>
+            <div className="theme-fold-body">
+              {hasBody && (
+                <div className="class-features">
+                  <WikiBody body={sec.body} fields={props.fields} lookup={props.lookup} />
+                </div>
+              )}
+              {sec.subs.length > 0 && <ThemeChapters sections={sec.subs} fields={props.fields} lookup={props.lookup} fold />}
+            </div>
+          </details>
+        );
+      })}
+    </>
+  );
+}
+
 function ModInputs(props: {
   sources: { key: string; label: string }[];
   mods: Record<string, number>;
@@ -4029,11 +4124,12 @@ function DefenseDetailDialog(props: {
   cls?: ClassStats;
   raceDefs?: RaceDefenseBonus;
   acKey?: AbilityKey;
+  heavyArmor?: boolean;
   className?: string;
   raceName?: string;
   onClose: () => void;
 }) {
-  const { stats, acMods, fortMods, refMods, willMods, classDefSources, cls, raceDefs, acKey, className, raceName, onClose } = props;
+  const { stats, acMods, fortMods, refMods, willMods, classDefSources, cls, raceDefs, acKey, heavyArmor, className, raceName, onClose } = props;
   const abilityLabel = (k: AbilityKey) => ABILITY_LABELS[k].zh;
   // 每一项防御的明细行：[标签, 数值文本]；数值为 0 的加值行不展示
   type Row = { label: string; value: string; auto?: boolean };
@@ -4056,12 +4152,13 @@ function DefenseDetailDialog(props: {
     }
     return rows;
   };
-  // AC 属性调整文本：实际生效的 acKey（如力量/体质/感知）或默认 敏捷/智力 取高
+  // AC 属性调整文本：实际生效的 acKey（如力量/体质/感知）或默认 敏捷/智力 取高；重甲不加属性调整
   const acAbilityText = (() => {
+    if (heavyArmor) return "重甲（无属性调整）";
     if (acKey) return abilityLabel(acKey) + " " + fmtMod(stats.mods[acKey]) + "（取代 敏捷/智力）";
     return "敏捷/智力 取高 " + fmtMod(Math.max(stats.mods.dex, stats.mods.int));
   })();
-  const acAbilityVal = acKey ? Math.max(stats.mods[acKey], stats.mods.dex, stats.mods.int) : Math.max(stats.mods.dex, stats.mods.int);
+  const acAbilityVal = heavyArmor ? 0 : (acKey ? Math.max(stats.mods[acKey], stats.mods.dex, stats.mods.int) : Math.max(stats.mods.dex, stats.mods.int));
   const acRows = baseRows("ac", acMods, acAbilityText, acAbilityVal, 0, 0);
   const fortAbility = (() => {
     const v = Math.max(stats.mods.str, stats.mods.con);
@@ -4245,15 +4342,16 @@ function SpeedDetailDialog(props: {
   baseSpeed: string;
   speedMods: SpeedMods;
   primalSpeed: number;
+  armorSpeed: number;
   onClose: () => void;
 }) {
-  const { display, baseSpeed, speedMods, primalSpeed, onClose } = props;
+  const { display, baseSpeed, speedMods, primalSpeed, armorSpeed, onClose } = props;
   type Row = { label: string; value: string; auto?: boolean };
   const sm = speedMods;
   const rows: Row[] = [{ label: "种族基础速度", value: baseSpeed + " 格", auto: true }];
   if (sm.power !== 0) rows.push({ label: "威能", value: "+" + sm.power });
   if (sm.feat !== 0) rows.push({ label: "专长", value: "+" + sm.feat });
-  if (sm.armor !== 0) rows.push({ label: "防具", value: "-" + sm.armor });
+  if (armorSpeed < 0) rows.push({ label: "防具减值（重甲）", value: String(armorSpeed), auto: true });
   if (sm.item !== 0) rows.push({ label: "物品", value: "+" + sm.item });
   if (sm.other !== 0) rows.push({ label: "其他", value: "+" + sm.other });
   if (primalSpeed !== 0) rows.push({ label: "原力掠食者", value: "+" + primalSpeed });
@@ -4333,6 +4431,44 @@ const NINE_ALIGNMENTS = [
   "中立善良", "绝对中立", "中立邪恶",
   "混乱善良", "混乱中立", "混乱邪恶",
 ];
+
+// 技能详情弹窗：逐项展示每项技能的构成（属性调整 + ½等级 + 受训/技能多才 + 种族 + 护甲减值 + 其他），风格仿照「防御」详情弹窗
+function SkillDetailDialog(props: {
+  blocks: { label: string; trained: boolean; value: number; rows: { label: string; value: string }[] }[];
+  onClose: () => void;
+}) {
+  const { blocks, onClose } = props;
+  return createPortal(
+    <div className="picker-overlay" onClick={onClose}>
+      <div className="picker-dialog def-detail-dialog" onClick={(e) => e.stopPropagation()}>
+        <div className="picker-head">
+          <span className="picker-title">技能计算详情</span>
+          <div className="picker-head-btns">
+            <button type="button" className="crop-btn" onClick={onClose}>关闭</button>
+          </div>
+        </div>
+        <div className="def-detail-grid">
+          {blocks.map((b) => (
+            <div key={b.label} className="def-detail-block">
+              <div className="def-detail-title">
+                {b.label}{b.trained ? <span className="skill-detail-trained">受训</span> : ""} <span className="def-detail-total">{b.value}</span>
+              </div>
+              <div className="def-detail-rows">
+                {b.rows.map((r, i) => (
+                  <div key={i} className="def-detail-row auto">
+                    <span className="ddr-label">{r.label}</span>
+                    <span className="ddr-value">{r.value}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>,
+    document.body
+  );
+}
 
 function AlignmentField(props: { value?: string; mode: "edit" | "render"; onClick: () => void }) {
   if (props.mode === "render") {
@@ -4458,8 +4594,9 @@ export default function CharacterSheet({
   const [magicSchools, setMagicSchools] = useState<Entry[]>([]);
   const [domains, setDomains] = useState<Entry[]>([]);
   const [virtues, setVirtues] = useState<Entry[]>([]);
+  const [themes, setThemes] = useState<Entry[]>([]);
   const [relations, setRelations] = useState<{ powerByGrantedBy: Record<string, string[]> }>({ powerByGrantedBy: {} });
-  const [picker, setPicker] = useState<null | "class" | "race" | "paragon" | "epic">(null);
+  const [picker, setPicker] = useState<null | "class" | "race" | "paragon" | "epic" | "theme">(null);
   const [slotPicker, setSlotPicker] = useState<null | { kind: "power"; cat: keyof PowerSlots; index: number } | { kind: "feat"; index: number }>(null);
   const [featChoicePicker, setFeatChoicePicker] = useState<null | { index: number; featName: string; label: string; options: FeatOption[]; weaponPool?: BaseWeapon[]; categories?: string[]; implementPool?: BaseImplement[]; implTier?: "basic" | "superior"; hybridGroups?: HybridTalentGroup[] }>(null);
   // 替换型专长（如「威能替换你的N级辅助威能」）：选择后弹面板询问将新威能填入哪个格子。
@@ -4485,6 +4622,7 @@ export default function CharacterSheet({
   const [lifeDetailOpen, setLifeDetailOpen] = useState(false);
   const [speedDetailOpen, setSpeedDetailOpen] = useState(false);
   const [initDetailOpen, setInitDetailOpen] = useState(false);
+  const [skillDetailOpen, setSkillDetailOpen] = useState(false);
   const [slotMode, setSlotMode] = useState<null | "mark" | "swap">(null);
   const [swapPicker, setSwapPicker] = useState<null | { kind: "power"; cat: keyof PowerSlots; index: number } | { kind: "equip"; ekind: "fixed" | "other" | "consumable" | "wondrous"; index: number }>(null);
   const [basePicker, setBasePicker] = useState<null | { kind: "weapon" | "armor" | "shield"; index: number }>(null);
@@ -4513,6 +4651,7 @@ export default function CharacterSheet({
     void loadCategory("magic-school").then(setMagicSchools).catch(console.error);
     void loadCategory("domain").then(setDomains).catch(console.error);
     void loadCategory("virtue").then(setVirtues).catch(console.error);
+    void loadCategory("theme").then(setThemes).catch(console.error);
     void loadRelations().then(setRelations).catch(console.error);
   }, []);
 
@@ -4708,6 +4847,7 @@ export default function CharacterSheet({
   const effectiveAbilities = useMemo(() => applyAbilityBonus(char.abilities, bonus), [char.abilities, bonus]);
   const raceDefs = useMemo(() => parseRaceDefenses(raceEntry?.sourceText ?? ""), [raceEntry]);
   const featMap = useMemo(() => new Map(feats.map((f) => [f.id, f])), [feats]);
+  const itemMap = useMemo(() => new Map(items.map((i) => [i.id, i])), [items]);
   // —— 混职天赋 Hybrid Talent：已选选项授予的擅长 ——
   // 混职天赋已选选项授予的擅长 token（防具/盾牌/武器），合并进防具/盾牌/武器擅长判定
   const hybridProf = useMemo(
@@ -4719,8 +4859,8 @@ export default function CharacterSheet({
   // 防御推导（装备自动加值 + 职业特性自动加值 + AC 属性替换 + 原力掠食者速度）：
   // 与速览页共用 defense.ts 的同一份实现，保证两页防御数字始终一致
   const defense = useMemo(
-    () => deriveDefenses(char, { classEntry, classEntry2, classes, featMap }),
-    [char, classEntry, classEntry2, classes, featMap]
+    () => deriveDefenses(char, { classEntry, classEntry2, classes, featMap, itemMap }),
+    [char, classEntry, classEntry2, classes, featMap, itemMap]
   );
   const { acMods, fortMods, refMods, willMods, classDefSources, statDefenseMods, primalPredatorSpeed } = defense;
   // 实际生效的 AC 属性键（供防御详情展示「AC 属性调整」用的是哪个属性）
@@ -4738,11 +4878,15 @@ export default function CharacterSheet({
   const bloodiedTotal = Math.floor(maxHpTotal / 2);
   const surgeValueTotal = Math.floor(maxHpTotal / 4) + surgeValueBonus;
   const surgesTotal = stats.surges + surgeBonus;
-  const speedTotal = char.speedMods.power + char.speedMods.feat - char.speedMods.armor + char.speedMods.item + char.speedMods.other + primalPredatorSpeed;
+  // 重甲速度减值按所穿护甲自动计入（链/鳞/板及重甲变体为 -1），无需手动填写
+  const equippedArmorBase = char.baseItems?.[5] ? findBaseItem(char.baseItems[5]) : undefined;
+  const equippedArmorSpeedPen = equippedArmorBase?.kind === "armor" && equippedArmorBase.armor ? equippedArmorBase.armor.speed : 0;
+  const speedTotal = char.speedMods.power + char.speedMods.feat + char.speedMods.item + char.speedMods.other + primalPredatorSpeed + equippedArmorSpeedPen;
   const speedNum = parseInt(raceEntry?.speed ?? "", 10);
   const speedDisplay = Number.isNaN(speedNum) ? (raceEntry?.speed ?? "—") : speedNum + speedTotal + " 格";
 
   const powerMap = useMemo(() => new Map(powers.map((p) => [p.id, p])), [powers]);
+  const themeMap = useMemo(() => new Map(themes.map((t) => [t.id, t])), [themes]);
   const ritualMap = useMemo(() => new Map(rituals.map((r) => [r.id, r])), [rituals]);
   const creatureMap = useMemo(() => new Map(creatures.map((c) => [c.id, c])), [creatures]);
   const viceMap = useMemo(() => new Map(vices.map((v) => [v.id, v])), [vices]);
@@ -4750,6 +4894,44 @@ export default function CharacterSheet({
   const magicSchoolMap = useMemo(() => new Map(magicSchools.map((s) => [s.id, s])), [magicSchools]);
   const domainMap = useMemo(() => new Map(domains.map((d) => [d.id, d])), [domains]);
   const virtueMap = useMemo(() => new Map(virtues.map((v) => [v.id, v])), [virtues]);
+  // 所选主题条目
+  const themeEntry = useMemo(() => (char.themeId ? themeMap.get(char.themeId) : undefined), [themeMap, char.themeId]);
+  // 主题威能引用 → 威能条目：先精确匹配 id；查不到则按中文前缀兜底（id 英文名可能与正文引用的不同）
+  const resolveThemeRef = useMemo(
+    () => (ref: string) => {
+      const hit = powerMap.get(ref);
+      if (hit) return hit;
+      // id 是「中文 英文」双语：英文名仅在库中幂等存在同名条目时兜底匹配，避免中文前缀相同的不同威能被误配
+      // （如主题引用的「灵活移动 Stick and Move」不应命中中文同为「灵活移动」的「灵活移动 Shifty Maneuver」）
+      const split = ref.trim().split(/\s+/);
+      const cn = split[0];
+      const en = split.slice(1).join(" ").toLowerCase();
+      if (!cn) return undefined;
+      if (en) {
+        const enHit = powers.find((p) => p.nameEn?.toLowerCase() === en);
+        if (enHit) return enHit;
+        return undefined;
+      }
+      return powers.find((p) => p.id.startsWith(cn + " ")) ?? powerMap.get(cn) ?? undefined;
+    },
+    [powerMap, powers]
+  );
+  // 起始特性威能（含未收录引用，供展示）与可解析的起始威能
+  const themeStartingRefs = useMemo(
+    () => (themeEntry ? themeStarting(themeEntry, resolveThemeRef) : []),
+    [themeEntry, resolveThemeRef]
+  );
+  const themeStartEntry = themeStartingRefs.filter((s) => s.power).map((s) => s.power);
+  // 额外特性（5级/10级）授予的威能（排除与起始重复的增强引用）
+  const themeExtraP = useMemo(
+    () => (themeEntry ? themeExtraPowers(themeEntry, resolveThemeRef) : []),
+    [themeEntry, resolveThemeRef]
+  );
+  // 可选威能小节（2/6/10级等备选威能，一节可含多个）
+  const themeOptPowers = useMemo(
+    () => (themeEntry ? themeOptionalPowers(themeEntry, resolveThemeRef) : []),
+    [themeEntry, resolveThemeRef]
+  );
   // 职业赠送专长条目/名称（不占用常规专长槽位，但参与擅长/攻击伤害等专长相关计算）
   const grantedFeatEntries = useMemo(
     () => (char.classGrantedFeatIds ?? []).map((id) => featMap.get(id)).filter((x): x is Entry => !!x),
@@ -4944,7 +5126,6 @@ export default function CharacterSheet({
     if (defItems.length) groups.push({ cat: "防具", items: defItems });
     return [{ source: "混职天赋", groups }];
   }, [hybridProf]);
-  const itemMap = useMemo(() => new Map(items.map((i) => [i.id, i])), [items]);
   const swapList = swapPicker
     ? (() => {
         const reserve = swapPicker.kind === "power" ? char.spellbook : char.backpack;
@@ -4991,7 +5172,7 @@ export default function CharacterSheet({
       if (!levels.length) return;
       const tier = Math.min(char.equipmentEnhance[idx] ?? 1, levels.length);
       const lv = levels[tier - 1];
-      list.push({ label: e.name + " +" + tier, cost: priceForLevel(lv) });
+      list.push({ label: e.name + " +" + enhancementBonusForLevel(lv), cost: priceForLevel(lv) });
     });
     for (const a of char.adventureItems) {
       if (a.name && a.cost > 0) list.push({ label: a.name, cost: a.cost });
@@ -5050,6 +5231,27 @@ export default function CharacterSheet({
   );
   const levelInfo = useMemo(() => (char.level >= 1 ? LEVELS[char.level - 1] : undefined), [char.level]);
   const isBoostLevel = levelInfo?.abilityBoost === "两个 +1";
+  // 技能详情弹窗的构成数据（与技能面板 total 计算口径一致）
+  const skillDetailBlocks = useMemo(
+    () => SKILL_TABLE.map((s) => {
+      const trained = trainedSet.has(s.name);
+      const sm = char.skillMods[s.name] ?? { race: 0, other: 0, armor: 0 };
+      const hasArmor = ARMOR_PENALTY_SKILLS.has(s.name);
+      const skillVersatility = hasSkillVersatility && !trained ? 1 : 0;
+      const armorPen = hasArmor ? Math.abs(armorPenaltyFor(equippedArmorName)) : 0;
+      const abilityVal = stats.mods[s.ability];
+      const rows: { label: string; value: string }[] = [{ label: "属性调整（" + ABILITY_LABELS[s.ability].zh + "）", value: fmtMod(abilityVal) }];
+      if (stats.halfLevel !== 0) rows.push({ label: "½等级", value: "+" + stats.halfLevel });
+      if (trained) rows.push({ label: "受训", value: "+5" });
+      else if (skillVersatility) rows.push({ label: "技能多才", value: "+1" });
+      if (sm.race !== 0) rows.push({ label: "种族", value: fmtMod(sm.race) });
+      if (armorPen !== 0) rows.push({ label: "护甲减值", value: fmtMod(-armorPen) });
+      if (sm.other !== 0) rows.push({ label: "其他", value: fmtMod(sm.other) });
+      const total = abilityVal + stats.halfLevel + (trained ? 5 : 0) + skillVersatility + sm.race + sm.other - armorPen;
+      return { label: s.name, trained, value: total, rows };
+    }),
+    [trainedSet, hasSkillVersatility, equippedArmorName, stats, char.skillMods]
+  );
   const raceTrait = useMemo(() => (raceEntry ? raceTraitHtml(raceEntry.sourceText) : undefined), [raceEntry]);
   const raceBody = useMemo(() => (raceEntry ? raceBodyHtml(raceEntry.sourceText) : undefined), [raceEntry]);
   const raceLoreSections = useMemo(() => (raceBody ? splitRaceLore(raceBody) : []), [raceBody]);
@@ -5196,6 +5398,52 @@ export default function CharacterSheet({
     } else {
       onAddPowers([power]);
       setChar((p) => ({ ...p, raceGrantedPowerIds: Array.from(new Set([...(p.raceGrantedPowerIds ?? []), power.id])) }));
+    }
+  };
+  // 主题（Theme）威能联动：选择/更换主题时移除旧主题已加入面板的威能，并自动加入新主题「起始特性」赠送的
+  // 单一威能（若起始特性为多个择一或不可解析，则不自动加，交由用户在面板点选）。
+  const applyTheme = (themeId: string) => {
+    const entry = themeMap.get(themeId);
+    const start = entry ? themeStartingPowers(entry, resolveThemeRef) : [];
+    const auto = start.length === 1 ? start : [];
+    setChar((p) => {
+      const gone = new Set(p.themeGrantedPowerIds ?? []);
+      const slots = { ...p.powerSlots };
+      for (const c of SLOT_CATS) slots[c.key] = slots[c.key].map((id) => (id && gone.has(id) ? "" : id));
+      const used = new Set<string>();
+      for (const c of SLOT_CATS) for (const id of slots[c.key]) if (id) used.add(id);
+      for (const pw of auto) {
+        if (used.has(pw.id)) continue;
+        const cat = grantedPowerSlot(pw.usage, pw.powerKind, pw.name);
+        if (!cat) continue;
+        const arr = [...slots[cat]];
+        const idx = arr.findIndex((x) => !x);
+        if (idx >= 0) arr[idx] = pw.id;
+        else arr.push(pw.id);
+        slots[cat] = arr;
+        used.add(pw.id);
+      }
+      return { ...p, powerSlots: slots, themeId, themeGrantedPowerIds: auto.map((x) => x.id) };
+    });
+  };
+  // 清除主题：移除该主题已加入面板的全部威能
+  const clearTheme = () => {
+    setChar((p) => {
+      const gone = new Set(p.themeGrantedPowerIds ?? []);
+      const slots = { ...p.powerSlots };
+      for (const c of SLOT_CATS) slots[c.key] = slots[c.key].map((id) => (id && gone.has(id) ? "" : id));
+      return { ...p, powerSlots: slots, themeId: undefined, themeGrantedPowerIds: [] };
+    });
+  };
+  // 主题可选威能（及多选起始威能）：参照种族辅助威能，点选加入面板、再次点选择移除
+  const toggleThemePower = (power: Entry) => {
+    if (!power) return;
+    if (panelIds.has(power.id)) {
+      onRemoveClassPowers([power.id]);
+      setChar((p) => ({ ...p, themeGrantedPowerIds: (p.themeGrantedPowerIds ?? []).filter((id) => id !== power.id) }));
+    } else {
+      onAddPowers([power]);
+      setChar((p) => ({ ...p, themeGrantedPowerIds: Array.from(new Set([...(p.themeGrantedPowerIds ?? []), power.id])) }));
     }
   };
   // 选择/更换种族时：自动填充技能种族加值、语言槽，自动加入种族授予威能（特性内 [[...]] 威能，
@@ -5450,10 +5698,8 @@ export default function CharacterSheet({
   }
 
   function setSpeedMod(k: keyof SpeedMods, v: string) {
-    // 盔甲减值为负向加值：只填数字，计入时取负
-    const raw = k === "armor" ? v.replace(/[^0-9]/g, "") : v;
-    const n = parseInt(raw, 10);
-    const val = Number.isNaN(n) ? 0 : k === "armor" ? Math.max(0, Math.min(50, n)) : Math.max(-20, Math.min(50, n));
+    const n = parseInt(v, 10);
+    const val = Number.isNaN(n) ? 0 : Math.max(-20, Math.min(50, n));
     setChar((p) => ({ ...p, speedMods: { ...p.speedMods, [k]: val } }));
   }
 
@@ -5846,12 +6092,10 @@ export default function CharacterSheet({
                 sources={[
                   { key: "power", label: "威能" },
                   { key: "feat", label: "专长" },
-                  { key: "armor", label: "防具" },
                   { key: "item", label: "物品" },
                   { key: "other", label: "其他" },
                 ]}
                 mods={char.speedMods}
-                neg={new Set(["armor"])}
                 onChange={(k, v) => setSpeedMod(k as keyof SpeedMods, v)}
               />
             ) : (
@@ -5886,7 +6130,7 @@ export default function CharacterSheet({
       </div>
           </>
   );
-  // 装备槽位增强加值：槽位无魔法物品或无可增强档位时返回 0（档位默认 1，即 4E 增强加值）
+  // 装备槽位增强加值：槽位无魔法物品或无可增强档位时返回 0；否则取所选增强档位对应等级的真实验证加值（档位默认 1）
   const enhanceOf = (slot: number): number => {
     const id = char.equipmentSlots[slot];
     if (!id) return 0;
@@ -5894,7 +6138,8 @@ export default function CharacterSheet({
     if (!e) return 0;
     const levels = itemLevels(e.itemLevel);
     if (!levels.length) return 0;
-    return Math.min(char.equipmentEnhance[slot] ?? 1, levels.length);
+    const tier = Math.min(char.equipmentEnhance[slot] ?? 1, levels.length);
+    return enhancementBonusForLevel(levels[tier - 1]);
   };
   // 伤害骰：取自所选槽位（主手/副手）基础武器的伤害骰；无基础武器/非武器则空
   const diceOf = (slot: number): string => {
@@ -6388,6 +6633,7 @@ export default function CharacterSheet({
 <section className="block">
         <div className="block-head">
           <h3 className="block-title">技能（{effectiveTrained.length}）</h3>
+          <button type="button" className="def-detail-btn" onClick={() => setSkillDetailOpen(true)} title="查看每项技能的加值构成">查看详情</button>
           <button type="button" className="mode-chip" onClick={() => setSkillDetail((p) => !p)}>
             <span className="material-symbols-outlined mode-chip-ic">{skillDetail ? "density_small" : "density_large"}</span>
             {skillDetail ? "简洁" : "详细"}
@@ -6409,6 +6655,9 @@ export default function CharacterSheet({
                   <span className="skill-total">{fmtMod(total)}</span>
                   <span className="skill-ability">{ABILITY_LABELS[s.ability].zh}</span>
                   <span className="skill-mods" onClick={(e) => e.stopPropagation()}>
+                    {hasArmor && (
+                      <label className="skill-mod" title="护甲减值（由已装备护甲自动计算）"><span>护甲</span><span className="skill-mod-minus">−</span><span className={"skill-mod-armor" + (armorPenaltyFor(equippedArmorName) !== 0 ? " pen" : "")}>{Math.abs(armorPenaltyFor(equippedArmorName))}</span></label>
+                    )}
                     <label className="skill-mod" title="种族加值"><span>种族</span><input type="number" min={-20} max={50} value={sm.race} onChange={(e) => setSkillMod(s.name, "race", e.target.value)} /></label>
                     <label className="skill-mod" title="其他加值"><span>其他</span><input type="number" min={-20} max={50} value={sm.other} onChange={(e) => setSkillMod(s.name, "other", e.target.value)} /></label>
                   </span>
@@ -6861,6 +7110,80 @@ export default function CharacterSheet({
           </div>
         )}
       </section>
+      <section className="block theme-block">
+        <div className="block-head">
+          <h3 className="block-title">主题</h3>
+          {themeEntry && <span className="theme-source">[{themeEntry.source}]</span>}
+          {mode === "edit" && (
+            <>
+              <button type="button" className="mode-chip" onClick={() => setPicker("theme")}>{themeEntry ? "更换主题" : "选择主题"}</button>
+              {themeEntry && <button type="button" className="mode-chip" onClick={clearTheme}>清除</button>}
+            </>
+          )}
+        </div>
+        {!themeEntry ? (
+          <p className="hint">未选择主题。选择一个主题可获得其起始特性与专属威能。</p>
+        ) : (
+          <div className="theme-body">
+            {(() => {
+              // 主题正文按标题层级切分为章节树。参照职业面板：
+              // 「主题简介」（无标题引言）与机制章节（起始特性起，含子节）直接平铺；
+              // 其余 lore（扮演/创建及子节）默认折叠。威能交互由下方三个列表统一呈现。
+              const themeSections = splitThemeSections(themeEntry.sourceText);
+              const mechIdx = themeSections.findIndex((s) => s.title === THEME_MECH_START);
+              const intro = themeSections.length > 0 && !themeSections[0].title ? [themeSections[0]] : [];
+              const loreRest = intro.length ? themeSections.slice(1, mechIdx === -1 ? themeSections.length : mechIdx) : themeSections.slice(0, mechIdx === -1 ? themeSections.length : mechIdx);
+              const mech = mechIdx === -1 ? [] : themeSections.slice(mechIdx);
+              return (
+                <>
+                  {intro.length > 0 && <ThemeChapters sections={intro} fields={themeEntry.fields} lookup={wikiLookup} fold={false} />}
+                  {loreRest.length > 0 && <ThemeChapters sections={loreRest} fields={themeEntry.fields} lookup={wikiLookup} fold />}
+                  {mech.length > 0 && <ThemeChapters sections={mech} fields={themeEntry.fields} lookup={wikiLookup} fold={false} />}
+                </>
+              );
+            })()}
+            {themeStartingRefs.length > 0 && (
+              <div className="theme-power-group">
+                <div className="theme-power-head">起始特性威能</div>
+                {themeStartingRefs.map((s, i) => {
+                  if (!s.power) return (
+                    <div key={i} className="theme-power-line unresolved" title="该威能不在威能库中，无法加入威能面板。">{s.ref}（未收录）</div>
+                  );
+                  const pw: Entry = s.power;
+                  const inPanel = panelIds.has(pw.id);
+                  const auto = themeStartEntry.length === 1;
+                  return (
+                    <div key={pw.id} className="theme-power-line">
+                      <SmartHover className="theme-power-name" popClass="compact-pop" title={pw.name} pop={<EntryCard entry={pw} />}>
+                        <span className="cr-dot" style={{ background: pw.usage === "at-will" ? POWER_COLORS.atWill : pw.usage === "encounter" ? POWER_COLORS.encounter : pw.usage === "daily" ? POWER_COLORS.daily : POWER_COLORS.utility }} />
+                        <span className="cr-name">{pw.name}{pw.nameEn ? " " + pw.nameEn : ""}</span>
+                        <span className="cr-sub">L{pw.level}{pw.usageZh ? " · " + pw.usageZh : ""}</span>
+                      </SmartHover>
+                      {mode === "edit" && (auto ? (
+                        <span className="theme-auto-badge" title="起始特性赠送，已自动加入威能面板">已自动加入</span>
+                      ) : (
+                        <button type="button" className="sg-step" title={inPanel ? "从威能面板移除" : "加入威能面板"} onClick={() => toggleThemePower(pw)}>{inPanel ? "移除" : "加入"}</button>
+                      ))}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+            {themeExtraP.length > 0 && (
+              <div className="theme-power-group">
+                <div className="theme-power-head">额外特性威能（5/10级）</div>
+                <ThemePowerRows powers={themeExtraP} mode={mode} level={char.level} panelIds={panelIds} onToggle={toggleThemePower} />
+              </div>
+            )}
+            {themeOptPowers.length > 0 && (
+              <div className="theme-power-group">
+                <div className="theme-power-head">可选威能（可替代职业/种族威能）</div>
+                <ThemePowerRows powers={themeOptPowers} mode={mode} level={char.level} panelIds={panelIds} onToggle={toggleThemePower} />
+              </div>
+            )}
+          </div>
+        )}
+      </section>
     </>
   );
   const featsCol = (
@@ -7066,6 +7389,17 @@ return (
           restrict={{ level: char.level, raceNames: restrictNames.raceNames, classNames: restrictNames.classNames, myNames: restrictNames.myNames }}
         />
       )}
+      {picker === "theme" && (
+        <PickerModal
+          title="选择主题"
+          entries={themes}
+          selectedId={char.themeId}
+          onSelect={(id) => { applyTheme(id); setPicker(null); }}
+          onClear={() => { clearTheme(); setPicker(null); }}
+          onClose={() => setPicker(null)}
+          renderSub={(e) => "来源 " + e.source}
+        />
+      )}
 
       {slotPicker?.kind === "power" && (
         <PowerSlotPicker
@@ -7209,6 +7543,7 @@ return (
           cls={cls}
           raceDefs={raceDefs}
           acKey={activeAcKey}
+          heavyArmor={isHeavyArmor(char)}
           className={classEntry ? cleanDisplayName(classEntry.name) : undefined}
           raceName={raceEntry ? cleanDisplayName(raceEntry.name) : undefined}
           onClose={() => setDefDetailOpen(false)}
@@ -7249,6 +7584,7 @@ return (
           baseSpeed={raceEntry?.speed ?? "—"}
           speedMods={char.speedMods}
           primalSpeed={primalPredatorSpeed}
+          armorSpeed={equippedArmorSpeedPen}
           onClose={() => setSpeedDetailOpen(false)}
         />
       )}
@@ -7259,6 +7595,12 @@ return (
           other={char.initMods.other}
           total={stats.initiative + char.initMods.other}
           onClose={() => setInitDetailOpen(false)}
+        />
+      )}
+      {skillDetailOpen && (
+        <SkillDetailDialog
+          blocks={skillDetailBlocks}
+          onClose={() => setSkillDetailOpen(false)}
         />
       )}
       {alignmentOpen && (

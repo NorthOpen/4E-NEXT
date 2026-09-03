@@ -18,3 +18,13 @@ export function itemLevels(itemLevel?: string): number[] {
   if (!itemLevel) return [];
   return String(itemLevel).split(/\s+/).map((s) => parseInt(s, 10)).filter((n) => !Number.isNaN(n) && n >= 1 && n <= 30);
 }
+
+// 魔法物品增强加值按物品等级区间推导（万律书：例如 14 级版本是 +3、29 级版本是 +6）
+export function enhancementBonusForLevel(level: number): number {
+  if (level <= 5) return 1;
+  if (level <= 10) return 2;
+  if (level <= 15) return 3;
+  if (level <= 20) return 4;
+  if (level <= 25) return 5;
+  return 6;
+}

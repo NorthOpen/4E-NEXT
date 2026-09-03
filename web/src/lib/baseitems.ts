@@ -18,6 +18,8 @@ export interface BaseArmor {
   category: string;
   masterwork: boolean;
   minEnhance: number;
+  check: number; // 护甲检定减值（基于力量/敏捷/体质的技能检定）
+  speed: number; // 护甲速度减值
   special: string;
   price: number;
 }

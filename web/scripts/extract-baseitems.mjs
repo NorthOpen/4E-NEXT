@@ -27,6 +27,12 @@ function parseProf(s) {
   return m ? parseInt(m[1], 10) : 0;
 }
 
+// 检定/速度减值：解析 "-N"；"—"/空则为 0
+function parseSorP(s) {
+  const m = String(s).match(/(-\d+)/);
+  return m ? parseInt(m[1], 10) : 0;
+}
+
 function parseTables(html) {
   const out = [];
   const tableRe = /<table[^>]*>([\s\S]*?)<\/table>/g;
@@ -96,9 +102,11 @@ for (const t of parseTables(arm.text)) {
     rows.push(...g.rows);
     for (const r of rows) {
       const acM = String(r[1]).match(/\+(\d+)/);
-      // 新表（9列：特性在 r[6]）与旧表（8列：特殊在 r[7]）列序不同
+      // 新表（9列：检定 r[2]/速度 r[3]/特性 r[6]）与旧表（8列：检定 r[3]/速度 r[4]/特殊 r[7]）列序不同
       const special = String(r.length >= 9 ? r[6] : r[7] || "").trim();
       const enhM = String(r[2]).match(/\+(\d+)/);
+      const check = parseSorP(r.length >= 9 ? r[2] : r[3]);
+      const speed = parseSorP(r.length >= 9 ? r[3] : r[4]);
       // 新表（9列：价格在 r[4]）与旧表（8列：价格在 r[5]）列序不同
       const priceM = String((r.length >= 9 ? r[4] : r[5]) || "").match(/\d+/);
       armors.push({
@@ -107,6 +115,8 @@ for (const t of parseTables(arm.text)) {
         category: cat,
         masterwork: !!enhM,
         minEnhance: enhM ? parseInt(enhM[1], 10) : 0,
+        check,
+        speed,
         special,
         price: priceM ? parseInt(priceM[0], 10) : 0,
       });
@@ -137,7 +147,7 @@ const lines = [
   "];",
   "",
   "export const BASE_ARMORS: BaseArmor[] = [",
-  ...armors.map((a) => "  { name: " + JSON.stringify(a.name) + ", ac: " + a.ac + ", category: " + JSON.stringify(a.category) + ", masterwork: " + !!a.masterwork + ", minEnhance: " + (a.minEnhance ?? 0) + ", special: " + JSON.stringify(a.special ?? "") + ", price: " + (a.price ?? 0) + " },"),
+  ...armors.map((a) => "  { name: " + JSON.stringify(a.name) + ", ac: " + a.ac + ", category: " + JSON.stringify(a.category) + ", masterwork: " + !!a.masterwork + ", minEnhance: " + (a.minEnhance ?? 0) + ", check: " + (a.check ?? 0) + ", speed: " + (a.speed ?? 0) + ", special: " + JSON.stringify(a.special ?? "") + ", price: " + (a.price ?? 0) + " },"),
   "];",
   "",
   "// 武器特性完整定义（来源：wiki「武器」页）",

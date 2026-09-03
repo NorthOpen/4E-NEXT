@@ -3,6 +3,7 @@
 import type { Entry } from "../data/types";
 import type { AbilityKey, Character, DefenseBonusSource, DefenseKey } from "./character";
 import { findBaseItem } from "../lib/baseitems";
+import { itemLevels, enhancementBonusForLevel } from "../lib/levelprices";
 import { hybridTalentGroups, hybridTalentProfTokens, isHybridTalentFeat, resolveHybridOption } from "../lib/hybrid";
 
 /** 推导所需的词条上下文（人物页与速览页各自加载后传入）。 */
@@ -11,6 +12,7 @@ export interface DefenseCtx {
   classEntry2?: Entry;
   classes: Entry[];                 // 混职天赋需要在全部职业里找选项来源
   featMap: Map<string, Entry>;      // 已选专长（混职天赋判定）
+  itemMap?: Map<string, Entry>;      // 魔法物品（自动把「增强：」指向的防御计入对应防御加值）
 }
 
 export interface DefenseSource {
@@ -66,6 +68,47 @@ export function autoDefenseBonuses(c: Character): Record<DefenseKey, Partial<Rec
   return out;
 }
 
+// 解析物品正文「增强：」标注的增强适用目标（如 AC / 强韧、反射和意志 / 攻击骰和伤害骰）
+function enhanceTargetOf(e: Entry): string {
+  const text = String(e.details ?? "")
+    .replace(/<<[^>]*>>/g, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, " ")
+    .replace(/\s+/g, " ");
+  const m = text.match(/增强\s*[：:]\s*(.{0,20}?)(?=\s*(?:特性|威能|重击|特效|辅助威能|攻击威能|辅助|诅咒|$))/);
+  return m ? m[1].trim().replace(/[。，、；;]+$/, "") : "";
+}
+
+// 魔法物品提供的防御增强加值：遍历装备槽位，按「增强：」指向的防御，把该物品的增强加值计入对应防御。
+// 加值取该装备档位对应等级的增强加值；「增强：+N…」的固定增强则直接取 N。
+export function magicDefenseEnhance(c: Character, itemMap: Map<string, Entry>): Partial<Record<DefenseKey, number>> {
+  const out: Partial<Record<DefenseKey, number>> = {};
+  (c.equipmentSlots ?? []).forEach((id, slot) => {
+    if (!id) return;
+    const e = itemMap.get(id);
+    if (!e) return;
+    const target = enhanceTargetOf(e);
+    if (!target) return;
+    let value = 0;
+    const fixed = /^[+\+]?\s*(\d+)/.exec(target);
+    if (fixed) {
+      value = parseInt(fixed[1], 10);
+    } else {
+      const levels = itemLevels(e.itemLevel);
+      if (!levels.length) return;
+      const tier = Math.min(c.equipmentEnhance?.[slot] ?? 1, levels.length);
+      value = enhancementBonusForLevel(levels[tier - 1]);
+    }
+    if (value <= 0) return;
+    if (target.includes("AC")) out.ac = (out.ac ?? 0) + value;
+    if (target.includes("强韧")) out.fort = (out.fort ?? 0) + value;
+    if (target.includes("反射")) out.ref = (out.ref ?? 0) + value;
+    if (target.includes("意志")) out.will = (out.will ?? 0) + value;
+  });
+  return out;
+}
+
 // 合并手动加值与装备自动加值：防具/盾牌来源以装备为准（装备决定），其余保留手动录入值
 export function mergeDefenseMods(
   _k: DefenseKey,
@@ -74,7 +117,7 @@ export function mergeDefenseMods(
 ): Record<DefenseBonusSource, number> {
   return {
     feat: manual.feat ?? 0,
-    enhance: manual.enhance ?? 0,
+    enhance: auto.enhance ?? manual.enhance ?? 0,
     armor: auto.armor ?? manual.armor ?? 0,
     shield: auto.shield ?? manual.shield ?? 0,
     other: manual.other ?? 0,
@@ -275,6 +318,11 @@ export function deriveDefenses(char: Character, ctx: DefenseCtx): DefenseDerived
   const classDefSources = classDefenseSources(char, ctx);
   const total = (def: DefenseKey) => (classDefSources[def] ?? []).reduce((s, x) => s + x.value, 0);
   const autoDef = autoDefenseBonuses(char);
+  // 魔法物品（护甲→AC、颈部物品→强韧/反射/意志）提供的增强加值自动计入对应防御的「增强」来源
+  const mEnh = ctx.itemMap ? magicDefenseEnhance(char, ctx.itemMap) : {};
+  (Object.keys(mEnh) as DefenseKey[]).forEach((k) => {
+    autoDef[k].enhance = mEnh[k];
+  });
   const acMods = { ...mergeDefenseMods("ac", char.defenseMods.ac, autoDef.ac), other: char.defenseMods.ac.other ?? 0 };
   const fortMods = { ...mergeDefenseMods("fort", char.defenseMods.fort, autoDef.fort), other: char.defenseMods.fort.other ?? 0 };
   const refMods = { ...mergeDefenseMods("ref", char.defenseMods.ref, autoDef.ref), other: char.defenseMods.ref.other ?? 0 };

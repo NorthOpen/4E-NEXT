@@ -145,6 +145,9 @@ body {
 .skill-mod { display: inline-flex; align-items: center; gap: 2px; font-size: 10px; color: var(--md-sys-color-on-surface-variant); }
 .skill-mod input { width: 30px; padding: 2px 3px; border: 1px solid var(--md-sys-color-outline-variant); border-radius: var(--md-sys-shape-corner-extra-small); background: var(--md-sys-color-surface-container); color: var(--md-sys-color-on-surface); font-size: 11px; text-align: center; font-family: inherit; -moz-appearance: textfield; }
 .skill-mod input::-webkit-outer-spin-button, .skill-mod input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.skill-mod-minus { color: var(--md-sys-color-on-surface-variant); }
+.skill-mod-armor { display: inline-flex; align-items: center; justify-content: center; width: 30px; padding: 2px 0; border: 1px dashed var(--md-sys-color-outline-variant); border-radius: var(--md-sys-shape-corner-extra-small); background: var(--md-sys-color-surface-container); color: var(--md-sys-color-on-surface); font-size: 11px; text-align: center; box-sizing: border-box; }
+.skill-mod-armor.pen { color: var(--md-sys-color-error); border-color: var(--md-sys-color-error); }
 
 /* 技能简略模式：只显示技能名 + 数值；与详细表同采用按列排列（先填满第一列，再排第二列）*/
 .skill-compact { display: grid; grid-auto-flow: column; grid-template-rows: repeat(9, auto); grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2px 10px; }
@@ -485,6 +488,7 @@ md-filled-text-field, md-filled-select { min-width: 0; }
 .layout-double .skill-mods { flex-wrap: nowrap; gap: 2px; }
 .layout-double .skill-mod { white-space: nowrap; gap: 1px; }
 .layout-double .skill-mod input { width: 28px; box-sizing: border-box; }
+.layout-double .skill-mod-armor { width: 28px; box-sizing: border-box; }
 
 /* 语言 / 行动点 */
 .layout-double .lang-ap-row { gap: 10px; }
@@ -740,6 +744,8 @@ md-filled-text-field, md-filled-select { min-width: 0; }
 .ddr-value { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
 /* 属性详情弹窗：调整值徽标（标题右侧，主色小字） */
 .attr-detail-mod { font-size: 12px; font-weight: 700; color: var(--md-sys-color-primary); }
+/* 技能详情弹窗：受训徽标（技能名右侧） */
+.skill-detail-trained { font-size: 11px; font-weight: 700; color: var(--md-sys-color-primary); }
 /* 属性面板操作行（第二行）：左侧放购点开关，右侧放「查看详情」 */
 .ability-actions-row { display: flex; align-items: center; gap: 8px; margin: 4px 0 2px; }
 .ability-actions-left { display: inline-flex; align-items: center; gap: 8px; }
@@ -1277,6 +1283,38 @@ md-filled-text-field, md-filled-select { min-width: 0; }
 .ritual-row-hover .picker-row { width: 100%; box-sizing: border-box; }
 .ritual-pop.wiki-ref-pop { width: 540px; max-width: calc(100vw - 120px); }
 .adv-cost { font-size: 12px; color: var(--md-sys-color-on-surface-variant); }
+
+/* ===== 主题（Theme）面板 ===== */
+.theme-block .block-head .theme-source { margin-left: 8px; font-size: 12px; color: var(--md-sys-color-on-surface-variant); }
+.theme-block .block-head .mode-chip { margin-left: 8px; }
+.theme-body { display: flex; flex-direction: column; gap: 10px; }
+.theme-power-group { display: flex; flex-direction: column; gap: 6px; padding: 8px 10px; border: 1px solid var(--md-sys-color-outline-variant); border-radius: var(--md-sys-shape-corner-small); background: var(--md-sys-color-surface-container-low); }
+.theme-power-head { font-size: 12.5px; font-weight: var(--fw-subheading, 600); color: var(--md-sys-color-primary); }
+.theme-power-line { display: flex; align-items: center; gap: 8px; min-height: 26px; }
+.theme-power-line .sg-step { margin-left: auto; min-width: 48px; }
+.theme-power-name { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; flex: 1; min-width: 0; }
+.theme-power-name .cr-name { color: var(--md-sys-color-primary); }
+.theme-auto-badge { margin-left: auto; font-size: 12px; color: var(--md-sys-color-on-surface-variant); border: 1px solid var(--md-sys-color-outline-variant); border-radius: 999px; padding: 1px 8px; }
+.theme-lock-badge { margin-left: auto; font-size: 12px; color: var(--md-sys-color-on-surface-variant); opacity: .7; border: 1px solid var(--md-sys-color-outline-variant); border-radius: 999px; padding: 1px 8px; cursor: default; }
+.theme-power-line.unresolved { font-size: 12px; color: var(--md-sys-color-error); font-style: italic; opacity: .9; }
+/* 主题正文章节折叠：lore、机制章节均默认收起，威能交互由下方列表承担 */
+.theme-fold { border: 1px solid var(--md-sys-color-outline-variant); border-radius: var(--md-sys-shape-corner-small); background: var(--md-sys-color-surface-container-low); }
+.theme-fold-intro > summary .theme-fold-title { font-style: italic; opacity: .9; }
+.theme-fold > summary { display: flex; align-items: center; gap: 8px; padding: 7px 12px; cursor: pointer; list-style: none; font-size: 13px; font-weight: 600; color: var(--md-sys-color-primary); user-select: none; }
+.theme-fold > summary::-webkit-details-marker { display: none; }
+.theme-fold > summary:hover { background: var(--md-sys-color-surface-container-highest); }
+.theme-fold-ic { margin-left: auto; font-size: 18px; color: var(--md-sys-color-on-surface-variant); transition: transform .15s ease; }
+.theme-fold[open] > summary .theme-fold-ic { transform: rotate(180deg); }
+.theme-fold > .theme-fold-body { display: flex; flex-direction: column; gap: 6px; padding: 4px 12px 10px; }
+.theme-fold > .theme-fold-body > .class-features { padding: 0; }
+/* 折叠块内嵌的子折叠块：弱化边框与缩进 */
+.theme-fold .theme-fold { margin: 2px 0; border-color: var(--md-sys-color-outline-variant); background: transparent; }
+/* 机制章节平铺（参照职业能力面板）：直接展开章节标题与正文 */
+.theme-flat { display: flex; flex-direction: column; gap: 3px; }
+.theme-flat + .theme-flat { margin-top: 8px; }
+.theme-flat-title { display: flex; align-items: center; }
+.theme-flat-level { font-size: 13.5px; font-weight: var(--fw-subheading, 600); color: var(--md-sys-color-primary); }
+.theme-flat .class-features { padding: 0; }
 
 /* ===== 人物创建 ===== */
 .bg-field { margin-bottom: 12px; }
@@ -2236,8 +2274,20 @@ html[data-font="serif"] {
   .equip-layout:not(.base-dialog-layout) .equip-groups > #equip-g-戒指,
   .equip-layout:not(.base-dialog-layout) .equip-groups > #equip-g-冒险装备 { grid-column: auto; }
   .card-grid { grid-template-columns: minmax(0, 1fr); }
+  /* 金钱面板：手机端由 4 列收为 2 列，输入+按钮竖排占满 */
+  .money-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .money-add { flex-direction: column; align-items: stretch; }
+  .money-add .money-input { width: 100%; box-sizing: border-box; }
+  .money-add .sf-chip { justify-content: center; width: 100%; }
+  /* 技能面板：塌缩为真正的单列（消除 column 自动流造成的隐式多列） */
   .skill-table,
-  .skill-compact { grid-template-columns: minmax(0, 1fr); }
+  .skill-compact {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: repeat(9, auto);
+    grid-auto-flow: row;
+  }
+  .skill-table .skill-item:nth-child(n+9),
+  .skill-compact .skill-compact-row:nth-child(n+9) { grid-column: auto; }
   .lang-ap-row { grid-template-columns: minmax(0, 1fr); }
   .split { grid-template-columns: minmax(0, 1fr); }
   .layout-top-row { grid-template-columns: minmax(0, 1fr); }
@@ -2249,10 +2299,11 @@ html[data-font="serif"] {
   .combat-table.damage .ct-head,
   .combat-table.damage .ct-row { min-width: 540px; }
 
-  /* 装备/职业弹窗内左右布局纵向堆叠 */
-  .equip-layout { flex-direction: column; gap: 10px; }
-  .equip-nav { position: static; flex-direction: row; flex-wrap: wrap; width: 100%; max-height: none; }
-  .base-dialog-layout .equip-nav { width: 100%; min-width: 0; }
+  /* 装备面板：保持左侧吸顶竖排小圆钮（手机端不改作顶部大横条） */
+  .equip-layout { flex-direction: row; align-items: flex-start; gap: 8px; }
+  .equip-nav { position: sticky; top: 8px; flex: none; width: 30px; flex-direction: column; flex-wrap: nowrap; gap: 3px; max-height: none; }
+  /* 装备选择弹窗内导航保持普通列表（不受上方竖排影响） */
+  .base-dialog-layout .equip-nav { position: static; flex-direction: row; flex-wrap: wrap; width: 100%; min-width: 0; max-height: none; }
   .class-layout { grid-template-columns: minmax(0, 1fr); }
   .base-dialog .class-layout { grid-template-rows: none; }
 

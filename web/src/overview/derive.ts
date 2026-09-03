@@ -9,6 +9,7 @@ import {
   armorPenaltyFor,
   cleanDisplayName,
   deriveStats,
+  isHeavyArmor,
   parseClassStats,
   parseRaceDefenses,
   racialBonus,
@@ -24,7 +25,7 @@ import {
 import { collectProficiencyTokens, isProficient } from "../sheet/proficiency";
 import { deriveDefenses } from "../sheet/defense";
 import { findBaseItem } from "../lib/baseitems";
-import { itemLevels } from "../lib/levelprices";
+import { itemLevels, enhancementBonusForLevel } from "../lib/levelprices";
 
 export interface GlanceAttackLine {
   label: string;   // 这一对攻击/伤害的自定义名称（人物页填写，未填则为空）
@@ -142,7 +143,7 @@ export function useGlance(char: Character): GlanceData {
       : undefined;
     // 防御：与人物页共用 defense.ts（装备自动加值 + 职业特性加值 + AC 属性替换）
     const raceDefs = parseRaceDefenses(raceEntry?.sourceText ?? "");
-    const defense = deriveDefenses(char, { classEntry, classEntry2, classes, featMap });
+    const defense = deriveDefenses(char, { classEntry, classEntry2, classes, featMap, itemMap });
     const stats = deriveStats(
       { ...char, abilities, defenseMods: defense.statDefenseMods },
       cls ?? EMPTY_CLASS,
@@ -168,7 +169,9 @@ export function useGlance(char: Character): GlanceData {
       parts: [
         { label: "基础", value: 10 },
         { label: "½等级", value: stats.halfLevel },
-        { label: ABILITY_LABELS[ability].zh, value: stats.mods[ability] },
+        ...(key === "ac" && isHeavyArmor(char)
+          ? []
+          : [{ label: ABILITY_LABELS[ability].zh, value: stats.mods[ability] }]),
         ...(classBonus ? [{ label: "职业", value: classBonus }] : []),
         ...(raceBonus ? [{ label: "种族", value: raceBonus }] : []),
         ...(modSum(key) ? [{ label: "装备与其他", value: modSum(key) }] : []),
@@ -196,7 +199,8 @@ export function useGlance(char: Character): GlanceData {
       if (!e) return 0;
       const levels = itemLevels(e.itemLevel);
       if (!levels.length) return 0;
-      return Math.min(char.equipmentEnhance[slot] ?? 1, levels.length);
+      const tier = Math.min(char.equipmentEnhance[slot] ?? 1, levels.length);
+      return enhancementBonusForLevel(levels[tier - 1]);
     };
     const diceOf = (slot: number): string => {
       const baseId = char.baseItems[slot];

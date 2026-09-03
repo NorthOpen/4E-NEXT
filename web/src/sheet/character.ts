@@ -1,3 +1,5 @@
+import { findBaseItem, BASE_ARMORS } from "../lib/baseitems";
+
 export type AbilityKey = "str" | "con" | "dex" | "int" | "wis" | "cha";
 
 // 4E 标准技能表（名称 → 关联属性）
@@ -24,23 +26,13 @@ export const SKILL_TABLE: { name: string; ability: AbilityKey }[] = [
 // 受盔甲减值影响的技能
 export const ARMOR_PENALTY_SKILLS = new Set(["运动", "坚韧", "杂技", "隐秘", "盗术"]);
 
-// 基础护甲减值（4E 规则按甲种：布 0 / 皮 -1 / 革 -1 / 链 -1 / 鳞 -2 / 板 -2）
-const ARMOR_PENALTY: [RegExp, number][] = [
-  [/^布甲|布制|吉斯布|念织布|精织布|巨灵布|念纹布|星织布/, 0],
-  [/^皮甲|卓尔皮|蛇皮皮|精制皮|咒缚皮|剑翅皮|星制皮/, -1],
-  [/^革甲|大地革|精怪革|黑暗革|伏形革|虚空革|长者革/, -1],
-  [/^链甲|精工链|交织链|晶钢链|熔锻链|密织链|深狱链|灵锻链|镶钢链|板条链/, -1],
-  [/^鳞甲|龙兽鳞|飞龙鳞|风暴鳞|古龙鳞|纳迦鳞|泰坦鳞|长者鳞/, -2],
-  [/^板甲|霜火板|叠层板|吉斯板|幽灵板|战争板|军团板|末日板|神铸板|钉板|全身板/, -2],
-];
-
-/** 由基础护甲名推导护甲减值（未装备或未知甲种时返回 0）。 */
+// 基础护甲的「检定」/「速度」减值来自护甲表同名列（基于力量/敏捷/体质的技能检定；速度由重甲给出），
+// 由名称精确匹配 BASE_ARMORS 数据（未装备或未知甲种时返回 0）。
+/** 由基础护甲名推导护甲检定减值（技能面板用）。 */
 export function armorPenaltyFor(name: string | undefined): number {
   if (!name) return 0;
-  for (const [re, pen] of ARMOR_PENALTY) {
-    if (re.test(name)) return pen;
-  }
-  return 0;
+  const a = BASE_ARMORS.find((x) => x.name === name);
+  return a ? a.check : 0;
 }
 
 export type SkillMods = Record<string, { race: number; other: number; armor: number }>;
@@ -81,7 +73,7 @@ function normDefenseMods(m: DefenseMods): DefenseMods {
   return out;
 }
 function normSpeedMods(m: SpeedMods): SpeedMods {
-  return { power: m.power ?? 0, feat: m.feat ?? 0, armor: m.armor ?? 0, item: m.item ?? 0, other: m.other ?? 0 };
+  return { power: m.power ?? 0, feat: m.feat ?? 0, item: m.item ?? 0, other: m.other ?? 0 };
 }
 function normInitMods(m: InitMods): InitMods {
   return { other: m.other ?? 0 };
@@ -248,6 +240,9 @@ export interface Character {
   ritualSlotOverride?: number; // 仪式槽位数覆盖（undefined = 随等级）
   classGrantedRitualIds: string[]; // 职业赠送仪式 id（不占用常规仪式槽位，更换职业时据此清除）
   classGrantedRitualSources: Record<string, string>; // 赠送仪式 id → 来源职业特性名
+  // 主题（Theme）：所选主题 id 与已加入威能面板的威能 id（起始特性赠送 + 被点选的可选威能；更换/清除主题时据此移除）
+  themeId?: string;
+  themeGrantedPowerIds: string[];
   // 专长槽位下标 → 该专长赠送的威能 id（选择专长自动加入威能面板；清空/更换专长时据此移除）
   featGrantedPowerIds: Record<number, string[]>;
   languages: string[];
@@ -361,6 +356,8 @@ export function defaultCharacter(): Character {
     ritualSlots: [],
     classGrantedRitualIds: [],
     classGrantedRitualSources: {},
+    themeId: undefined,
+    themeGrantedPowerIds: [],
     featGrantedPowerIds: {},
     languages: [""],
     actionPoints: 1,
@@ -664,7 +661,6 @@ export function parseRaceDefenses(text: string): RaceDefenseBonus {
 export type SpeedMods = {
   power: number;
   feat: number;
-  armor: number;
   item: number;
   other: number;
 };
@@ -674,7 +670,7 @@ export type InitMods = {
 };
 
 export function emptySpeedMods(): SpeedMods {
-  return { power: 0, feat: 0, armor: 0, item: 0, other: 0 };
+  return { power: 0, feat: 0, item: 0, other: 0 };
 }
 
 export function emptyInitMods(): InitMods {
@@ -761,6 +757,12 @@ export interface DerivedStats {
   passivePerception: number;
 }
 
+// 是否穿着重甲（链甲/鳞甲/板甲）：穿着重甲不能将属性调整值加到 AC 上，除非有特殊效果让其这么做。
+export function isHeavyArmor(c: Character): boolean {
+  const armorBase = c.baseItems?.[5] ? findBaseItem(c.baseItems[5]) : undefined;
+  return armorBase?.kind === "armor" && armorBase.armor?.category === "重甲";
+}
+
 export function deriveStats(c: Character, cls?: ClassStats, raceDefs?: RaceDefenseBonus, acKey?: AbilityKey): DerivedStats {
   const halfLevel = Math.floor(c.level / 2);
   const mod = abilityModifier;
@@ -781,8 +783,9 @@ export function deriveStats(c: Character, cls?: ClassStats, raceDefs?: RaceDefen
   };
   // 生命上限 = 职业起始 HP + 体质值 + 每级增加 HP ×（等级 − 1）
   const maxHp = cb.baseHp + c.abilities.con + cb.hpPerLevel * Math.max(0, c.level - 1);
-  // AC 属性调整：默认取敏捷/智力较高者；守护者之力（守望者）可改用体质/感知
-  const acMod = acKey ? Math.max(mods[acKey], mods.dex, mods.int) : Math.max(mods.dex, mods.int);
+  // AC 属性调整：默认取敏捷/智力较高者；守护者之力（守望者）等可改用其他属性。
+  // 穿着重甲时属性调整值不计入 AC（万律书·护甲类型-重甲），除非有特殊效果允许。
+  const acMod = isHeavyArmor(c) ? 0 : (acKey ? Math.max(mods[acKey], mods.dex, mods.int) : Math.max(mods.dex, mods.int));
   return {
     mods,
     halfLevel,
