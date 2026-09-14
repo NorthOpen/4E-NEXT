@@ -135,15 +135,19 @@ export default function PanelLayoutEditor({ defaultMode = "double" }: { defaultM
         <span className="ple-name">{meta.label}</span>
         <span className="ple-actions">
           {slot === "top" ? (
-            // 顶部区是双栏横排：重排用左右移（前面/后面），不用上下移
-            <>
-              <button type="button" className="ple-btn" disabled={index === 0} title="左移" aria-label={`${meta.label}左移`} onClick={() => setSheetLayout(nudgeSheetPanel(cfg, id, slot, -1))}>
-                <span className="material-symbols-outlined">keyboard_arrow_left</span>
-              </button>
-              <button type="button" className="ple-btn" disabled={index === total - 1} title="右移" aria-label={`${meta.label}右移`} onClick={() => setSheetLayout(nudgeSheetPanel(cfg, id, slot, 1))}>
-                <span className="material-symbols-outlined">keyboard_arrow_right</span>
-              </button>
-            </>
+            // 顶部区是双栏横排：重排用左右移（前面/后面），不用上下移。
+            // 锚板块（角色信息/角色数值）固定在顶部区最前、顺序不可调，因此不显示任何操控按钮；
+            // 命中/伤害仍可左右重排（在锚板块之后）。
+            topOnlyPanel(id) ? null : (
+              <>
+                <button type="button" className="ple-btn" disabled={index === 0} title="左移" aria-label={`${meta.label}左移`} onClick={() => setSheetLayout(nudgeSheetPanel(cfg, id, slot, -1))}>
+                  <span className="material-symbols-outlined">keyboard_arrow_left</span>
+                </button>
+                <button type="button" className="ple-btn" disabled={index === total - 1} title="右移" aria-label={`${meta.label}右移`} onClick={() => setSheetLayout(nudgeSheetPanel(cfg, id, slot, 1))}>
+                  <span className="material-symbols-outlined">keyboard_arrow_right</span>
+                </button>
+              </>
+            )
           ) : (
             <>
               <button type="button" className="ple-btn" disabled={index === 0} title="上移" aria-label={`${meta.label}上移`} onClick={() => setSheetLayout(nudgeSheetPanel(cfg, id, slot, -1))}>

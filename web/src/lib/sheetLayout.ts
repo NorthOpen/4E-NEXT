@@ -260,8 +260,9 @@ function listOf(cfg: SheetLayoutConfig, slot: SheetLayoutSlot): SheetPanelId[] {
 }
 
 /**
- * 只在「要放入的那个列表」里摘掉该板块——单栏与双栏是两套独立摆放。
- * 若两边都摘，另一边会因缺项被归一化补到末尾：调双栏会顺手把单栏（手机端）的顺序搅乱。
+ * 从目标所在的「栏位体系」里摘掉该板块——单栏与双栏是两套独立摆放。
+ * 单栏体系只动 single；双栏体系则从 top/left/right 全部摘掉（归一化保证一个板块只出现在其中一处，
+ * 摘掉全部等效于摘掉它当前的所在栏），不会顺手把单栏（手机端）的顺序搅乱。
  */
 function without(cfg: SheetLayoutConfig, id: SheetPanelId, to: SheetLayoutSlot): SheetLayoutConfig {
   if (to === "single") {
@@ -270,9 +271,14 @@ function without(cfg: SheetLayoutConfig, id: SheetPanelId, to: SheetLayoutSlot):
       double: { top: [...cfg.double.top], left: [...cfg.double.left], right: [...cfg.double.right] },
     };
   }
-  const double = { top: [...cfg.double.top], left: [...cfg.double.left], right: [...cfg.double.right] };
-  double[to] = double[to].filter((x) => x !== id);
-  return { single: [...cfg.single], double };
+  return {
+    single: [...cfg.single],
+    double: {
+      top: cfg.double.top.filter((x) => x !== id),
+      left: cfg.double.left.filter((x) => x !== id),
+      right: cfg.double.right.filter((x) => x !== id),
+    },
+  };
 }
 
 /** 板块当前在哪：单栏 / 双栏的哪个区域 */
