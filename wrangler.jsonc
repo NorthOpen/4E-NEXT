@@ -1,0 +1,7 @@
+{
+  // 仅用于 Wrangler 直传 / CI 部署：npx wrangler pages deploy 时无需再传参数
+  // （Git 集成方式在 Cloudflare 面板里配置，同样读这里的输出目录）
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "4e-next",
+  "pages_build_output_dir": "web/dist"
+}

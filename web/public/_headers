@@ -1,0 +1,10 @@
+# Cloudflare Pages 响应头规则（构建时被 Vite 从 web/public/ 复制到 web/dist/ 根目录）
+
+# Vite 产出的静态资源文件名带内容哈希，可以放心长缓存
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# 卡表数据文件名不含哈希（如 categories/power.json），不能 immutable，
+# 否则换数据后老用户会一直拿到旧卡表；用"一天新鲜 + 后台续期"折中
+/data/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
