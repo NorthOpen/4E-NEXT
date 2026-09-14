@@ -3848,9 +3848,10 @@ function ClassFeatureBlock({ entry, detail, level, choices, onChoose, lookup, cl
 }
 
 // 典范/天命特性段列表：详细=特性块+完整威能卡；简洁=特性标题+威能compact行（威能仅供查看，不做管理）
-function FeatureSectionList({ sections, detail, fields, powerOf, panelIds, onAddPowers }: { sections: FeatureSection[]; detail: boolean; fields: Record<string, string>; powerOf: (id: string) => Entry | undefined; panelIds: Set<string>; onAddPowers: (powers: Entry[]) => void }) {
-  // 自动加入：选定典范/天命后其授予威能自动进面板（无需手动按钮）；待 powerMap 加载完成后亦会触发补入
-  const missing = sections.filter((s) => s.powerRef).map((s) => powerOf(s.powerRef!)).filter((p): p is Entry => !!p && !panelIds.has(p.id));
+function FeatureSectionList({ sections, detail, fields, powerOf, panelIds, onAddPowers, level }: { sections: FeatureSection[]; detail: boolean; fields: Record<string, string>; powerOf: (id: string) => Entry | undefined; panelIds: Set<string>; onAddPowers: (powers: Entry[]) => void; level: number }) {
+  // 自动加入：选定典范/天命后其授予威能自动进面板（无需手动按钮）；待 powerMap 加载完成后亦会触发补入。
+  // 仅加入当前等级已达标的小节威能（如典范 20 级每日威能在 20 级前不自动加入，避免提前拿到并无法移除）。
+  const missing = sections.filter((s) => s.powerRef && featureReachable(s.title, level)).map((s) => powerOf(s.powerRef!)).filter((p): p is Entry => !!p && !panelIds.has(p.id));
   const missingKey = missing.map((p) => p.id).sort().join("|");
   const prevMissing = useRef(missingKey);
   useEffect(() => {
@@ -6394,12 +6395,10 @@ export default function CharacterSheet({
     () => collectFeatSources([...char.featSlots.map((id) => featMap.get(id)), ...grantedFeatEntries], "伤害骰", char.level),
     [char.featSlots, featMap, char.level, grantedFeatEntries]
   );
-  // 攻击/伤害：数据面板下方并排（攻击在左、伤害在右），单栏与双栏均通栏展示
-  const combatRow = (
-    <div className="combat-row">
-      <CombatPanels char={char} setChar={setChar} mods={stats.mods} halfLevel={stats.halfLevel} enhanceOf={enhanceOf} diceOf={diceOf} profOf={profOf} mode={mode} classAttackSources={classAttackSources} featAttackSources={featAttackSources} featDamageSources={featDamageSources} />
-    </div>
-  );
+  // 命中/伤害：两个独立板块（可分别在左/右栏移动），共享同一份 combatMods
+  const combatProps = { char, setChar, mods: stats.mods, halfLevel: stats.halfLevel, enhanceOf, diceOf, profOf, mode, classAttackSources, featAttackSources, featDamageSources } as const;
+  const hitCol = <CombatPanels part="attack" {...combatProps} />;
+  const damageCol = <CombatPanels part="damage" {...combatProps} />;
   // 职业特性「选择一个」选项：记录所选值（键 = "职业ID::特性标题"；多选型如戏法存字符串数组）
   const setClassFeatureChoice = (key: string, label: string | string[]) => {
     const next = { ...char.classFeatureChoices };
@@ -6465,8 +6464,8 @@ export default function CharacterSheet({
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [feats, powers]);
-  const raceClassCol = (
-    <><section className="block">
+  const raceCol = (
+    <section className="block">
         <div className="block-head">
           <h3 className="block-title">种族特性</h3>
           <div className="race-head-actions">
@@ -6745,8 +6744,10 @@ export default function CharacterSheet({
           </>
         ) : <p className="hint">请先选择种族。</p>}
       </section>
-
-      <section className="block">
+    );
+    const classCol = (
+      <>
+        <section className="block">
         <div className="block-head">
           <h3 className="block-title">{char.hybrid ? "混职职业能力" : "职业能力"}</h3>
           <div className="block-head-actions">
@@ -6800,6 +6801,9 @@ export default function CharacterSheet({
       )}
 
       
+      </>);
+      const paragonCol = (
+        <>
       {char.level >= 11 && (
         <section className="block">
           <div className="block-head">
@@ -6815,7 +6819,7 @@ export default function CharacterSheet({
                 <>
                   {pathParse.hasTitle && <div className="pf-entry-title">{cleanDisplayName(paragonPathEntry.name)}</div>}
                   {pathDetail && pathParse.intro && <div className="pf-intro" dangerouslySetInnerHTML={{ __html: wikiToHtml(pathParse.intro, paragonPathEntry.fields) }} />}
-                  <FeatureSectionList sections={pathSections} detail={pathDetail} fields={paragonPathEntry.fields} powerOf={(id) => powerMap.get(id)} panelIds={panelIds} onAddPowers={onAddPowers} />
+                  <FeatureSectionList sections={pathSections} detail={pathDetail} fields={paragonPathEntry.fields} powerOf={(id) => powerMap.get(id)} panelIds={panelIds} onAddPowers={onAddPowers} level={char.level} />
                 </>
               ) : (
                 <pre className="feature-text">{stripWiki(paragonPathEntry.sourceText)}</pre>
@@ -6824,6 +6828,9 @@ export default function CharacterSheet({
           ) : <p className="hint">请先选择典范之道。</p>}
         </section>
       )}
+      </>);
+      const epicCol = (
+        <>
       {char.level >= 21 && (
         <section className="block">
           <div className="block-head">
@@ -6839,7 +6846,7 @@ export default function CharacterSheet({
                 <>
                   {destinyParse.hasTitle && <div className="pf-entry-title">{cleanDisplayName(epicDestinyEntry.name)}</div>}
                   {destinyDetail && destinyParse.intro && <div className="pf-intro" dangerouslySetInnerHTML={{ __html: wikiToHtml(destinyParse.intro, epicDestinyEntry.fields) }} />}
-                  <FeatureSectionList sections={destinyParse.sections} detail={destinyDetail} fields={epicDestinyEntry.fields} powerOf={(id) => powerMap.get(id)} panelIds={panelIds} onAddPowers={onAddPowers} />
+                  <FeatureSectionList sections={destinyParse.sections} detail={destinyDetail} fields={epicDestinyEntry.fields} powerOf={(id) => powerMap.get(id)} panelIds={panelIds} onAddPowers={onAddPowers} level={char.level} />
                 </>
               ) : (
                 <pre className="feature-text">{stripWiki(epicDestinyEntry.sourceText)}</pre>
@@ -7530,11 +7537,15 @@ export default function CharacterSheet({
   const panelNodes: Record<SheetPanelId, ReactNode> = {
     info: topCol,
     stats: leftTop,
-    combat: combatRow,
+    hit: hitCol,
+    damage: damageCol,
     powers: powersCol,
     feats: featsCol,
     skills: skillsCol,
-    raceClass: raceClassCol,
+    race: raceCol,
+    class: classCol,
+    paragon: paragonCol,
+    epic: epicCol,
     equipment: equipmentCol,
     money: moneyCol,
     rituals: ritualsCol,
@@ -7549,7 +7560,7 @@ return (
           {sheetLayout.double.top.length > 0 && (
             <div className="layout-top-row">
               {sheetLayout.double.top.map((id) => (
-                // 顶部区自身两列并排；「战斗数值」这类通栏板块占满整行
+                // 顶部区自身两列并排（顶部组合固定为 角色信息 | 角色数值，不可调整）
                 <div key={id} className={panelMeta(id).wide ? "lt-cell lt-cell-wide" : "lt-cell"}>
                   {panelNodes[id]}
                 </div>

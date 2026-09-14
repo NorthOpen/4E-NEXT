@@ -11,15 +11,36 @@ import { safeSetItem } from "./storage";
 export type SheetPanelId =
   | "info"
   | "stats"
-  | "combat"
+  | "hit"
+  | "damage"
   | "powers"
   | "feats"
   | "skills"
-  | "raceClass"
+  | "race"
+  | "class"
+  | "paragon"
+  | "epic"
   | "equipment"
   | "money"
   | "rituals"
   | "theme";
+
+/** 顶部区锚板块（角色信息、角色数值）：只能放在顶部区，且永远排在顶部区最前，不能搬到左/右栏。 */
+export const TOP_PANEL_IDS: SheetPanelId[] = ["info", "stats"];
+const TOP_PANEL_SET = new Set<SheetPanelId>(TOP_PANEL_IDS);
+
+/** 允许放进双栏顶部区的板块：锚板块之外，命中/伤害也可放在顶部区（排在锚板块之后）。 */
+const TOP_ALLOWED_SET = new Set<SheetPanelId>([...TOP_PANEL_IDS, "hit", "damage"]);
+
+/** 该板块是否属于顶部区锚板块（true 则只能放在顶部区）。 */
+export function topOnlyPanel(id: SheetPanelId): boolean {
+  return TOP_PANEL_SET.has(id);
+}
+
+/** 该板块是否允许放进顶部区（锚板块 + 命中 + 伤害）。 */
+export function topAllowedPanel(id: SheetPanelId): boolean {
+  return TOP_ALLOWED_SET.has(id);
+}
 
 export interface SheetPanelMeta {
   id: SheetPanelId;
@@ -35,12 +56,16 @@ export interface SheetPanelMeta {
 
 export const SHEET_PANELS: SheetPanelMeta[] = [
   { id: "info", label: "角色信息", icon: "person", hint: "立绘、姓名、种族、职阶、阵营与语言" },
-  { id: "stats", label: "属性与状态", icon: "monitoring", hint: "先攻、六项属性、感知、抵御、移动力、生命" },
-  { id: "combat", label: "战斗数值", icon: "swords", hint: "攻击表与伤害表", wide: true },
+  { id: "stats", label: "角色数值", icon: "monitoring", hint: "先攻、六项属性、感知、抵御、移动力、生命" },
+  { id: "hit", label: "命中", icon: "swords", hint: "攻击表" },
+  { id: "damage", label: "伤害", icon: "bolt", hint: "伤害表" },
   { id: "powers", label: "威能", icon: "bolt", hint: "随意 / 遭遇 / 每日 / 辅助 / 种族威能槽位" },
   { id: "feats", label: "专长", icon: "star", hint: "专长槽位与奖励专长" },
   { id: "skills", label: "技能", icon: "checklist", hint: "技能加值与受训标记" },
-  { id: "raceClass", label: "种族与职业", icon: "menu_book", hint: "种族特性、职业能力、典范与天命特性" },
+  { id: "race", label: "种族", icon: "groups", hint: "种族特性与亚种" },
+  { id: "class", label: "职业", icon: "school", hint: "职业能力与职业威能" },
+  { id: "paragon", label: "典范之道", icon: "military_tech", hint: "典范特性（11 级解锁）" },
+  { id: "epic", label: "传奇天命", icon: "auto_awesome", hint: "天命特性（21 级解锁）" },
   { id: "equipment", label: "装备", icon: "shield", hint: "武器、护甲、法器、奇物与冒险装备" },
   { id: "money", label: "金钱", icon: "payments", hint: "收入、花销与余额" },
   { id: "rituals", label: "仪式", icon: "auto_stories", hint: "仪式魔法与武术奥义" },
@@ -70,12 +95,12 @@ export interface SheetLayoutConfig {
   double: Record<SheetLayoutZone, SheetPanelId[]>;
 }
 
-/** 默认摆放 = 原本写死的版面：顶部「角色信息 | 属性与状态」+ 通栏战斗数值，左栏威能/专长/技能/种族职业，右栏装备/金钱/仪式/主题 */
+/** 默认摆放：顶部「角色信息 | 角色数值 | 命中 | 伤害」（命中/伤害在锚板块之下），左栏威能/专长/技能/种族/职业/典范/天命，右栏装备/金钱/仪式/主题 */
 export const DEFAULT_SHEET_LAYOUT: SheetLayoutConfig = {
-  single: ["info", "stats", "combat", "raceClass", "skills", "powers", "feats", "equipment", "money", "rituals", "theme"],
+  single: ["info", "stats", "hit", "damage", "race", "class", "paragon", "epic", "skills", "powers", "feats", "equipment", "money", "rituals", "theme"],
   double: {
-    top: ["info", "stats", "combat"],
-    left: ["powers", "feats", "skills", "raceClass"],
+    top: ["info", "stats", "hit", "damage"],
+    left: ["powers", "feats", "skills", "race", "class", "paragon", "epic"],
     right: ["equipment", "money", "rituals", "theme"],
   },
 };
@@ -115,15 +140,39 @@ export function normalizeSheetLayout(raw: unknown): SheetLayoutConfig {
   const single = takeIds(src.single, seenSingle);
   single.push(...SHEET_PANEL_IDS.filter((id) => !seenSingle.has(id)));
 
+  // 双栏与单栏是两套独立摆放，去重集合必须分开算，否则「单栏先吃掉全部 id」会把双栏清空。
+  // 双栏额外遵守顶部区约束：
+  //   · 锚板块（角色信息、角色数值）只能待在顶部区，且永远排在顶部区最前；
+  //   · 命中/伤害可待在顶部区（排在锚板块之后），也可搬到左/右栏；
+  //   · 其余板块不能进入顶部区。
+  // 缓存里摆错位置的板块会被纠正：左/右栏里混入的锚板块收回顶部，顶部区里混入的普通板块挪去左栏。
   const seenDouble = new Set<SheetPanelId>();
-  const double: Record<SheetLayoutZone, SheetPanelId[]> = {
-    top: takeIds(dbl.top, seenDouble),
-    left: takeIds(dbl.left, seenDouble),
-    right: takeIds(dbl.right, seenDouble),
+  const top: SheetPanelId[] = [];
+  const left: SheetPanelId[] = [];
+  const right: SheetPanelId[] = [];
+  // 顶部区先处理：锚板块固定在最前（顺序 info→stats），随后只接纳允许进顶部的板块（命中/伤害）；
+  // 顶部区里混入的普通板块（如损坏缓存中的 powers）挪到左栏末尾。
+  const rawTop = takeIds(dbl.top, seenDouble);
+  const topExtras: SheetPanelId[] = [];
+  const topToSide: SheetPanelId[] = [];
+  for (const v of rawTop) {
+    if (TOP_PANEL_SET.has(v)) continue;
+    (topAllowedPanel(v) ? topExtras : topToSide).push(v);
+  }
+  for (const id of TOP_PANEL_IDS) if (rawTop.includes(id)) top.push(id);
+  top.push(...topExtras);
+  left.push(...topToSide);
+  // 左/右栏：锚板块即使出现在这里也收回顶部；其余板块按原顺序入对应栏。
+  const place = (raw: unknown, side: SheetPanelId[]) => {
+    for (const v of takeIds(raw, seenDouble)) (TOP_PANEL_SET.has(v) ? top : side).push(v);
   };
-  double.left.push(...SHEET_PANEL_IDS.filter((id) => !seenDouble.has(id)));
+  place(dbl.left, left);
+  place(dbl.right, right);
+  // 保证每个板块恰好出现一次：顶部区锚板块缺项补回顶部最前，其余缺项补到左栏末尾。
+  for (const id of TOP_PANEL_IDS) if (!seenDouble.has(id)) { top.unshift(id); seenDouble.add(id); }
+  for (const id of SHEET_PANEL_IDS) if (!seenDouble.has(id)) left.push(id);
 
-  return { single, double };
+  return { single, double: { top, left, right } };
 }
 
 /** 从本地缓存读摆放（没有存档或存档损坏时回落到默认摆放）。 */

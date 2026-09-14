@@ -13,10 +13,11 @@ import {
   panelMeta,
   resetSheetLayout,
   setSheetLayout,
+  topAllowedPanel,
+  topOnlyPanel,
   useSheetLayout,
   type SheetLayoutConfig,
   type SheetLayoutSlot,
-  type SheetLayoutZone,
   type SheetPanelId,
 } from "../lib/sheetLayout";
 
@@ -51,8 +52,20 @@ export default function PanelLayoutEditor({ defaultMode = "double" }: { defaultM
     setOverId(null);
   }
 
+  /** 板块能否放进某容器：
+   *  - 顶部区锚板块（角色信息/角色数值）：只能待在顶部区，不能搬到左/右栏；
+   *  - 命中/伤害：可放顶部区（锚板块之后），也可搬到左/右栏；
+   *  - 其余板块：不能进入顶部区，只能在左/右栏间移动。
+   *  单栏均为单列列表，不受顶部区约束。 */
+  function canDrop(id: SheetPanelId, slot: SheetLayoutSlot): boolean {
+    if (slot === "single") return true;
+    if (slot === "top") return topAllowedPanel(id);
+    return !topOnlyPanel(id);
+  }
+
   function move(id: SheetPanelId, to: SheetLayoutSlot, targetId: SheetPanelId | null, after: boolean) {
     if (targetId === id) return clearDrag();
+    if (!canDrop(id, to)) return clearDrag();
     setSheetLayout(moveSheetPanel(cfg, id, to, targetId, after));
     clearDrag();
   }
@@ -65,9 +78,19 @@ export default function PanelLayoutEditor({ defaultMode = "double" }: { defaultM
 
   function renderRow(id: SheetPanelId, slot: SheetLayoutSlot, index: number, total: number) {
     const meta = panelMeta(id);
-    const zoneIdx = slot === "single" ? -1 : DOUBLE_ZONES.indexOf(slot);
-    const prevZone: SheetLayoutZone | null = zoneIdx > 0 ? DOUBLE_ZONES[zoneIdx - 1] : null;
-    const nextZone: SheetLayoutZone | null = zoneIdx >= 0 && zoneIdx < DOUBLE_ZONES.length - 1 ? DOUBLE_ZONES[zoneIdx + 1] : null;
+    // 可换的栏位：
+    //  - 锚板块（顶部区）：不能离开顶部，无可换栏；
+    //  - 命中/伤害：可在 顶部区 ⇄ 左/右栏 间移动；
+    //  - 其余左/右栏板块：只能在左右两栏间移动（不能进入顶部区）。
+    const zoneMoves: { to: SheetLayoutSlot; icon: string; label: string }[] = [];
+    if (slot === "left") {
+      if (topAllowedPanel(id)) zoneMoves.push({ to: "top", icon: "expand_less", label: "顶部区" });
+      zoneMoves.push({ to: "right", icon: "chevron_right", label: "右栏" });
+    } else if (slot === "right") {
+      zoneMoves.push({ to: "left", icon: "chevron_left", label: "左栏" });
+      if (topAllowedPanel(id)) zoneMoves.push({ to: "top", icon: "expand_less", label: "顶部区" });
+    }
+    // interior reordering: top 区内的拖动仍用上/下移（锚板块固定在前，命中/伤害在其后）
     const dragging = dragId === id;
     return (
       <div
@@ -94,6 +117,7 @@ export default function PanelLayoutEditor({ defaultMode = "double" }: { defaultM
         onDragEnd={clearDrag}
         onDragOver={(e) => {
           if (!dragId || dragId === id) return;
+          if (!canDrop(dragId, slot)) return;
           e.preventDefault();
           e.stopPropagation();
           setOverSlot(slot);
@@ -110,22 +134,31 @@ export default function PanelLayoutEditor({ defaultMode = "double" }: { defaultM
         <span className="material-symbols-outlined ple-ic">{meta.icon}</span>
         <span className="ple-name">{meta.label}</span>
         <span className="ple-actions">
-          <button type="button" className="ple-btn" disabled={index === 0} title="上移" aria-label={`${meta.label}上移`} onClick={() => setSheetLayout(nudgeSheetPanel(cfg, id, slot, -1))}>
-            <span className="material-symbols-outlined">keyboard_arrow_up</span>
-          </button>
-          <button type="button" className="ple-btn" disabled={index === total - 1} title="下移" aria-label={`${meta.label}下移`} onClick={() => setSheetLayout(nudgeSheetPanel(cfg, id, slot, 1))}>
-            <span className="material-symbols-outlined">keyboard_arrow_down</span>
-          </button>
-          {prevZone && (
-            <button type="button" className="ple-btn" title={"移到" + SLOT_LABEL[prevZone]} aria-label={`${meta.label}移到${SLOT_LABEL[prevZone]}`} onClick={() => move(id, prevZone, null, false)}>
-              <span className="material-symbols-outlined">chevron_left</span>
-            </button>
+          {slot === "top" ? (
+            // 顶部区是双栏横排：重排用左右移（前面/后面），不用上下移
+            <>
+              <button type="button" className="ple-btn" disabled={index === 0} title="左移" aria-label={`${meta.label}左移`} onClick={() => setSheetLayout(nudgeSheetPanel(cfg, id, slot, -1))}>
+                <span className="material-symbols-outlined">keyboard_arrow_left</span>
+              </button>
+              <button type="button" className="ple-btn" disabled={index === total - 1} title="右移" aria-label={`${meta.label}右移`} onClick={() => setSheetLayout(nudgeSheetPanel(cfg, id, slot, 1))}>
+                <span className="material-symbols-outlined">keyboard_arrow_right</span>
+              </button>
+            </>
+          ) : (
+            <>
+              <button type="button" className="ple-btn" disabled={index === 0} title="上移" aria-label={`${meta.label}上移`} onClick={() => setSheetLayout(nudgeSheetPanel(cfg, id, slot, -1))}>
+                <span className="material-symbols-outlined">keyboard_arrow_up</span>
+              </button>
+              <button type="button" className="ple-btn" disabled={index === total - 1} title="下移" aria-label={`${meta.label}下移`} onClick={() => setSheetLayout(nudgeSheetPanel(cfg, id, slot, 1))}>
+                <span className="material-symbols-outlined">keyboard_arrow_down</span>
+              </button>
+            </>
           )}
-          {nextZone && (
-            <button type="button" className="ple-btn" title={"移到" + SLOT_LABEL[nextZone]} aria-label={`${meta.label}移到${SLOT_LABEL[nextZone]}`} onClick={() => move(id, nextZone, null, false)}>
-              <span className="material-symbols-outlined">chevron_right</span>
+          {zoneMoves.map((zm) => (
+            <button key={zm.to} type="button" className="ple-btn" title={"移到" + zm.label} aria-label={`${meta.label}移到${zm.label}`} onClick={() => move(id, zm.to, null, false)}>
+              <span className="material-symbols-outlined">{zm.icon}</span>
             </button>
-          )}
+          ))}
         </span>
       </div>
     );
@@ -144,6 +177,7 @@ export default function PanelLayoutEditor({ defaultMode = "double" }: { defaultM
         }
         onDragOver={(e) => {
           if (!dragId) return;
+          if (!canDrop(dragId, slot)) return;
           e.preventDefault();
           setOverSlot(slot);
           setOverId(null);

@@ -2445,7 +2445,6 @@ html[data-font="serif"] {
 
 .ple-board { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; }
 .ple-board-double { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-.ple-zone-top { grid-column: 1 / -1; grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
 .ple-zone {
   display: grid;
@@ -2463,6 +2462,10 @@ html[data-font="serif"] {
 .ple-zone-name { font-size: 12px; font-weight: var(--fw-label); color: var(--md-sys-color-on-surface-variant); }
 .ple-zone-hint { font-size: 11px; color: var(--md-sys-color-on-surface-variant); opacity: .8; }
 .ple-empty { color: var(--md-sys-color-on-surface-variant); font-size: 12px; padding: 8px 4px; text-align: center; }
+
+/* 顶部区与车卡页一致：角色信息 | 角色数值 双栏并排，战斗数值（通栏）在底部。
+   放这里（.ple-zone 之后）以覆盖 .ple-zone 的单列 grid-template-columns。 */
+.ple-zone-top { grid-column: 1 / -1; grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
 .ple-row {
   display: flex;
