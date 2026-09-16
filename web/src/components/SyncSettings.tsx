@@ -96,16 +96,7 @@ export default function SyncSettings() {
   return (
     <section className="block">
       <h3 className="block-title">数据与同步</h3>
-      <p className="hint">
-        用你自己的 WebDAV 网盘在多台设备之间同步<b>人物卡</b>与<b>私设资源包</b>。
-        外观设置与板块布局属于本机偏好，不会同步。
-      </p>
-      <p className="hint">
-        <b>开始之前请先确认一件事：</b>网页直连 WebDAV 需要服务端主动放行跨域（CORS）。
-        能自己改服务端配置的（自建 Nextcloud、群晖、Cloudreve、MinIO 等）可以用；
-        <b>坚果云等公共网盘不返回跨域许可，网页无法直连</b>——这是服务端行为，纯前端没有绕过的办法。
-        点「测试连接」会明确告诉你卡在哪一环，别跳过这一步。
-      </p>
+      <p className="hint">使用WebDAV在多台设备之间同步人物卡与私设资源包。</p>
 
       <div className="settings-row">
         <span className="field-label">启用同步</span>
@@ -173,17 +164,6 @@ export default function SyncSettings() {
       </p>
 
       {msg && <p className={"d4e-sync-msg " + msg.kind}>{msg.text}</p>}
-
-      <p className="hint">
-        <b>关于密码：</b>它只保存在本机浏览器里，不会上传到别处；但请务必使用服务端提供的
-        <b>应用专用密码</b>，不要填账号登录密码——应用密码可以随时单独吊销，泄露面小得多。
-      </p>
-      <p className="hint">
-        <b>连接失败多半是跨域：</b>浏览器对 WebDAV 用的 PUT / MKCOL 会先发跨域预检，
-        服务端需要放行 GET / PUT / MKCOL（PROPFIND 仅用于本测试，同步不依赖它），
-        以及 <code>Authorization</code>、<code>Content-Type</code>、<code>If-Match</code> 等请求头。
-        另外本站是 HTTPS，WebDAV 地址也必须是 <code>https://</code>，否则会被浏览器按「混合内容」拦掉。
-      </p>
     </section>
   );
 }

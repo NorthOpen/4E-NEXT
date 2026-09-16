@@ -4743,7 +4743,7 @@ export default function CharacterSheet({
   /** 导出进行中：强制铺开全部板块，否则导出的图 / PDF 只含当前分组 */
   forceAllPanels?: boolean;
 }) {
-  // 板块摆放（「设置 → 车卡页面板块」可拖动调整）：配置变化时本组件自动重渲染
+  // 板块摆放（「设置 → 自定义页面板块」可拖动调整）：配置变化时本组件自动重渲染
   const sheetLayout = useSheetLayout();
 
   // 手机端分组切换：一屏只渲染当前分组的板块，解决 15 个板块整页长滚动。
@@ -7587,7 +7587,7 @@ export default function CharacterSheet({
       </section>
     </>
   );
-  // 板块节点表：顺序与栏位由「设置 → 车卡页面板块」决定（lib/sheetLayout），此处只做 id → 节点映射
+  // 板块节点表：顺序与栏位由「设置 → 自定义页面板块」决定（lib/sheetLayout），此处只做 id → 节点映射
   const panelNodes: Record<SheetPanelId, ReactNode> = {
     info: topCol,
     stats: leftTop,

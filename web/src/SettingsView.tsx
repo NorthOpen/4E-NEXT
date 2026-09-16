@@ -153,7 +153,7 @@ export default function SettingsView({ layout }: { layout: "single" | "double" }
       </section>
 
       <section className="block">
-        <h3 className="block-title">车卡页面板块</h3>
+        <h3 className="block-title">自定义页面板块</h3>
         <p className="hint">人物页由下列板块组成。按住板块拖动即可调整它们的先后顺序与所在栏位。</p>
         <PanelLayoutEditor defaultMode={layout} />
       </section>

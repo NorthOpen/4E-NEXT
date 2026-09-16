@@ -468,7 +468,7 @@ function Shell() {
             </button>
             <button type="button" className="mob-more-item" onClick={() => { setMobileMore(false); setView("settings"); }}>
               <span className="material-symbols-outlined mob-more-ic">settings</span>
-              <span className="mob-more-text"><span className="mob-more-label">设置</span><span className="mob-more-sub">主题、字体与车卡页面板块</span></span>
+              <span className="mob-more-text"><span className="mob-more-label">设置</span><span className="mob-more-sub">主题、字体与自定义页面板块</span></span>
               <span className="material-symbols-outlined mob-more-arrow">chevron_right</span>
             </button>
           </div>
