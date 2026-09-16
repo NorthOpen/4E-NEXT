@@ -1,3 +1,4 @@
+import { platform } from "@platform";
 import type { BgMode, FontMode } from "../ThemeProvider";
 import { NORD_PRESETS, type SeedMode } from "../theme";
 import { dataUrlSizeBytes, compressDataUrlToBudget } from "./image";
@@ -40,7 +41,7 @@ const SETTINGS_DEFAULTS: Settings = {
 export function loadSettings(): Settings {
   const out: Settings = { ...SETTINGS_DEFAULTS };
   try {
-    const raw = localStorage.getItem(SETTINGS_KEY);
+    const raw = platform.storage.getItem(SETTINGS_KEY);
     if (raw) {
       const s = JSON.parse(raw) as Partial<Settings>;
       if (typeof s.seedMode === "string") out.seedMode = s.seedMode as SeedMode;
@@ -67,7 +68,7 @@ export function saveSettings(s: Settings): boolean {
 /** 读取背景缓存的路径标记（IndexedDB 缓存键或回退 data URL）。 */
 export function loadBgCacheMarker(): string | null {
   try {
-    return localStorage.getItem(BG_CACHE_MARK_KEY);
+    return platform.storage.getItem(BG_CACHE_MARK_KEY);
   } catch {
     return null;
   }
@@ -77,7 +78,7 @@ export function loadBgCacheMarker(): string | null {
 export function saveBgCacheMarker(path: string | null): void {
   if (path === null) {
     try {
-      localStorage.removeItem(BG_CACHE_MARK_KEY);
+      platform.storage.removeItem(BG_CACHE_MARK_KEY);
     } catch {
       /* 删除失败不影响使用 */
     }

@@ -1,5 +1,7 @@
 packages:
   - web
+  - desktop
 allowBuilds:
   core-js: true
   esbuild: false
+  electron: true

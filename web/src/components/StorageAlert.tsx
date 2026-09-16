@@ -1,7 +1,9 @@
+import { platform } from "@platform";
 import { useEffect, useRef, useState } from "react";
 import {
   clearLastStorageFailure,
   fmtBytes,
+  STORAGE_LABEL,
   subscribeStorageFailure,
   takeLastStorageFailure,
   type StorageFailure,
@@ -39,7 +41,9 @@ interface Alerted {
 /** 「现在该做什么」：按失败原因和数据类型给不同的下一步。 */
 function tipOf(f: StorageFailure): string {
   if (f.reason !== "quota") {
-    return "先把当前人物卡导出成文件留底，再退出无痕模式，或在浏览器设置里允许本站保存数据。";
+    return platform.kind === "desktop"
+      ? "先把当前人物卡导出成文件留底，再检查磁盘剩余空间，以及数据文件是否被其他程序占用。"
+      : "先把当前人物卡导出成文件留底，再退出无痕模式，或在浏览器设置里允许本站保存数据。";
   }
   return f.scope === "homebrew"
     ? "先导出这个资源包留底，再删掉暂时用不到的包腾出空间。"
@@ -98,7 +102,7 @@ export default function StorageAlert(props: {
       <SheetDialog
         open
         headline="没有保存成功"
-        sub={quota ? "浏览器存储空间已满" : "浏览器不允许保存数据"}
+        sub={quota ? "存储空间已满" : platform.kind === "desktop" ? "本地数据文件写入失败" : "浏览器不允许保存数据"}
         headColor="var(--md-sys-color-error-container)"
         headFg="var(--md-sys-color-on-error-container)"
         extraClass="sheet-dialog-store"
@@ -121,7 +125,7 @@ export default function StorageAlert(props: {
       >
         <div className="d4e-store-dlg">
           <p className="d4e-store-lead">
-            {failure.label}这次没能写入浏览器。你现在看到的内容还在，但刷新或关闭页面后就会丢失。
+            {failure.label}这次没能写入{STORAGE_LABEL}。你现在看到的内容还在，但刷新或关闭页面后就会丢失。
           </p>
 
           {quota && (
@@ -129,7 +133,7 @@ export default function StorageAlert(props: {
               <div className="d4e-store-gauge-head">
                 <span className="d4e-store-gauge-label">
                   <span className="material-symbols-outlined">database</span>
-                  浏览器存储占用
+                  {STORAGE_LABEL}占用
                 </span>
                 <span className="d4e-store-gauge-val">
                   <b>{fmtBytes(failure.usage.used)}</b>
@@ -152,6 +156,8 @@ export default function StorageAlert(props: {
             <span className="material-symbols-outlined">warning</span>
             <span>{tipOf(failure)}</span>
           </p>
+
+          {failure.detail && <p className="d4e-store-note">{failure.detail}</p>}
 
           {times > 1 && <p className="d4e-store-note">已连续 {times} 次没有保存成功。</p>}
         </div>

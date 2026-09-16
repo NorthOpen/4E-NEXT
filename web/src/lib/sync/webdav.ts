@@ -7,6 +7,7 @@
 //   2. fetch 在「CORS 被拦」与「网络不可达」时都抛同一个 TypeError，无法区分，
 //      所以提示文案要同时覆盖这两种可能。
 
+import { platform, type HttpResponse } from "@platform";
 import { SYNC_FILE, SyncError, type SyncConfig } from "./types";
 
 const TIMEOUT_MS = 30000;
@@ -74,29 +75,33 @@ interface DavInit {
   method?: string;
 }
 
-async function dav(cfg: SyncConfig, url: string, method: string, init: DavInit = {}): Promise<Response> {
+async function dav(cfg: SyncConfig, url: string, method: string, init: DavInit = {}): Promise<HttpResponse> {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), TIMEOUT_MS);
   try {
-    return await fetch(url, {
+    // 平台接缝：网页端 = fetch（受 CORS 约束）；桌面端 = 主进程直连（不受 CORS 约束，
+    // 因此 README 里那段「请自行配置跨域」对桌面端用户不再成立）。
+    // 两端都强制不带 cookie，只用 Basic 认证，避免与服务器上的网页登录态互相干扰。
+    return await platform.http(url, {
       method,
       headers: {
         Authorization: basicAuth(cfg.username, cfg.password),
         ...(init.headers ?? {}),
       },
       body: init.body,
-      // 用 Basic 认证，不带 cookie：避免与服务器上的网页登录态互相干扰
-      credentials: "omit",
       signal: controller.signal,
+      timeoutMs: TIMEOUT_MS,
     });
   } catch (e) {
     if ((e as Error).name === "AbortError") {
       throw new SyncError("network", "请求超时（" + TIMEOUT_MS / 1000 + " 秒）。服务器没有响应，请检查网络或地址。");
     }
     throw new SyncError(
-      "cors",
-      "无法连接服务器。可能是：（1）服务器未放行浏览器跨域请求（CORS 缺少 PUT/PROPFIND/MKCOL 与 Authorization 头）；" +
-        "（2）地址写错；（3）网络不可达。地址：" + url,
+      platform.kind === "desktop" ? "network" : "cors",
+      platform.kind === "desktop"
+        ? "无法连接服务器。桌面端不受浏览器跨域限制，所以更可能是：地址写错、服务器没有响应、端口/协议不对，或证书不被信任。地址：" + url
+        : "无法连接服务器。可能是：（1）服务器未放行浏览器跨域请求（CORS 缺少 PUT/PROPFIND/MKCOL 与 Authorization 头）；" +
+          "（2）地址写错；（3）网络不可达。地址：" + url,
     );
   } finally {
     clearTimeout(timer);
@@ -158,7 +163,7 @@ async function probeReachable(url: string): Promise<boolean> {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), 15000);
   try {
-    await fetch(url, { method: "GET", mode: "no-cors", credentials: "omit", cache: "no-store", signal: controller.signal });
+    await platform.http(url, { method: "GET", noCors: true, cache: "no-store", signal: controller.signal, timeoutMs: 15000 });
     return true;
   } catch {
     return false;
@@ -172,12 +177,12 @@ async function probeAuthedGet(cfg: SyncConfig, url: string): Promise<number | nu
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), 15000);
   try {
-    const res = await fetch(url, {
+    const res = await platform.http(url, {
       method: "GET",
       headers: { Authorization: basicAuth(cfg.username, cfg.password) },
-      credentials: "omit",
       cache: "no-store",
       signal: controller.signal,
+      timeoutMs: 15000,
     });
     return res.status;
   } catch {
@@ -189,6 +194,18 @@ async function probeAuthedGet(cfg: SyncConfig, url: string): Promise<number | nu
 
 /** 跨域/网络失败后的分诊：说清到底是哪一环，而不是把三种可能一起抛给用户。 */
 async function diagnoseBlocked(cfg: SyncConfig, dir: string): Promise<never> {
+  // 桌面端没有跨域这回事：连不上就是真的连不上，别把 CORS 的排查建议甩给用户。
+  if (platform.kind === "desktop") {
+    if (!(await probeReachable(dir))) {
+      throw new SyncError("network", "网络不通：地址可能拼错了，或服务器当前无法访问。地址：" + dir);
+    }
+    const fileStatus = await probeAuthedGet(cfg, syncFileUrl(cfg));
+    if (fileStatus === 401 || fileStatus === 403) throw authError(fileStatus);
+    throw new SyncError(
+      "server",
+      "服务器有响应，但没能完成这次请求。请检查应用密码的授权范围，以及远端路径 " + dir + " 是否存在。",
+    );
+  }
   if (!(await probeReachable(dir))) {
     throw new SyncError(
       "network",

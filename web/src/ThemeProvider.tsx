@@ -1,3 +1,4 @@
+import { platform } from "@platform";
 import { createContext, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { seedHexToTheme, themeToCssVars, applyCssVars, imageToSeedHex, type SeedMode } from "./theme";
 import { downscaleImage } from "./lib/image";
@@ -152,17 +153,20 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   }
 
   // 字体切换：html[data-font] 驱动 CSS 变量。
-  // 547（无衬线体）的 result.css 自带全局 body 字体规则，切回衬线体时必须移除，
-  // 否则其规则会持续把 body/卡片字体覆盖为无衬线体。
+  // 网页端：无衬线体是第二张 CDN 样式表，它自带全局 body 字体规则，
+  //   切回衬线体时必须移除，否则其规则会持续把 body/卡片字体覆盖为无衬线体。
+  // 桌面端：两支字体都随产物内置，platform.fonts.sansStylesheet 为 null，这里什么也不插。
   useEffect(() => {
     document.documentElement.dataset.font = fontMode;
-    const existing = document.querySelector('link[href*="zeoseven.com/547"]');
-    if (fontMode === "sans") {
+    const existing = document.querySelector('link[data-4enext-font="sans"]');
+    const extra = platform.fonts.sansStylesheet;
+    if (fontMode === "sans" && extra) {
       if (!existing) {
         const link = document.createElement("link");
         link.rel = "stylesheet";
-        link.href = "https://fontsapi.zeoseven.com/547/main/result.css";
-        link.crossOrigin = "anonymous";
+        link.href = extra.href;
+        if (extra.crossOrigin) link.crossOrigin = "anonymous";
+        link.dataset["4enextFont"] = "sans";
         document.head.appendChild(link);
       }
     } else if (existing) {
@@ -190,12 +194,12 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
         }
         // 旧版（4enext.bgCustom.v1 直接存 data URL）一次性迁移到缓存
         if (!url) {
-          const legacy = localStorage.getItem("4enext.bgCustom.v1");
+          const legacy = platform.storage.getItem("4enext.bgCustom.v1");
           if (legacy) {
             url = legacy;
             void cachePutImage(BG_CACHE_KEY, legacy).catch(() => {});
             saveBgCacheMarker(BG_CACHE_KEY);
-            try { localStorage.removeItem("4enext.bgCustom.v1"); } catch { /* 忽略 */ }
+            try { platform.storage.removeItem("4enext.bgCustom.v1"); } catch { /* 忽略 */ }
           }
         }
         if (!cancelled && url) setBgCustom(url);

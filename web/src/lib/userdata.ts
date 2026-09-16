@@ -1,3 +1,4 @@
+import { platform } from "@platform";
 import type { Entry } from "../data/types";
 import { safeSetItem, uid } from "./storage";
 
@@ -92,7 +93,7 @@ function savePools(pools: HomebrewPool[]): boolean {
 function loadLegacy(): HomebrewPool[] {
   const pools: HomebrewPool[] = [];
   try {
-    const raw = localStorage.getItem(LEGACY_KEY);
+    const raw = platform.storage.getItem(LEGACY_KEY);
     if (raw) {
       const arr = JSON.parse(raw);
       if (Array.isArray(arr)) {
@@ -101,7 +102,7 @@ function loadLegacy(): HomebrewPool[] {
           pools.push(newPool("个人池", ents));
           savePools(pools);
           try {
-            localStorage.removeItem(LEGACY_KEY);
+            platform.storage.removeItem(LEGACY_KEY);
           } catch {
             /* 忽略 */
           }
@@ -117,7 +118,7 @@ function loadLegacy(): HomebrewPool[] {
 /** 读取全部包（含禁用）。不存在则返回 []（并尝试迁移旧扁平数据）。 */
 export function loadPools(): HomebrewPool[] {
   try {
-    const raw = localStorage.getItem(POOLS_KEY);
+    const raw = platform.storage.getItem(POOLS_KEY);
     if (raw) {
       const arr = JSON.parse(raw);
       if (Array.isArray(arr)) return arr.filter(isPool);

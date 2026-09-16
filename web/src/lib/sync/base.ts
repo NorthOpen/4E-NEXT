@@ -3,6 +3,7 @@
 // base 是「本机上次见到远端是什么样」的快照。有了它才能区分
 // 「这一侧改过了」和「只是还没同步」——否则每次同步都会把两边都判成改动。
 
+import { platform } from "@platform";
 import { safeSetItem } from "../storage";
 import type { BaseMap, Tombstones } from "./types";
 
@@ -21,7 +22,7 @@ const EMPTY_STATE: SyncState = { lastSyncAt: 0, lastSummary: "" };
 
 export function loadBase(): BaseMap {
   try {
-    const raw = localStorage.getItem(BASE_KEY);
+    const raw = platform.storage.getItem(BASE_KEY);
     if (!raw) return {};
     const v = JSON.parse(raw);
     return v && typeof v === "object" && !Array.isArray(v) ? (v as BaseMap) : {};
@@ -36,7 +37,7 @@ export function saveBase(b: BaseMap): void {
 
 export function loadTombstones(): Tombstones {
   try {
-    const raw = localStorage.getItem(TOMB_KEY);
+    const raw = platform.storage.getItem(TOMB_KEY);
     if (!raw) return {};
     const v = JSON.parse(raw);
     return v && typeof v === "object" && !Array.isArray(v) ? (v as Tombstones) : {};
@@ -51,7 +52,7 @@ export function saveTombstones(t: Tombstones): void {
 
 export function loadSyncState(): SyncState {
   try {
-    const raw = localStorage.getItem(STATE_KEY);
+    const raw = platform.storage.getItem(STATE_KEY);
     if (!raw) return { ...EMPTY_STATE };
     const s = JSON.parse(raw) as Partial<SyncState>;
     return {
@@ -70,8 +71,8 @@ export function saveSyncState(s: SyncState): void {
 /** 忘记本机的同步基线（用于「下次同步当作首次」这类排障操作）。 */
 export function clearSyncBase(): void {
   try {
-    localStorage.removeItem(BASE_KEY);
-    localStorage.removeItem(TOMB_KEY);
+    platform.storage.removeItem(BASE_KEY);
+    platform.storage.removeItem(TOMB_KEY);
   } catch {
     /* 忽略 */
   }

@@ -4,6 +4,7 @@
 // 用户拖动调整后的顺序存在 localStorage（4enext.sheetLayout.v1），刷新、重开浏览器后仍然生效。
 // 顺序变化通过 useSyncExternalStore 广播：设置页改完，车卡页（若已挂载）立刻跟着变。
 
+import { platform } from "@platform";
 import { useSyncExternalStore } from "react";
 import { safeSetItem } from "./storage";
 
@@ -218,7 +219,7 @@ export function normalizeSheetLayout(raw: unknown): SheetLayoutConfig {
 /** 从本地缓存读摆放（没有存档或存档损坏时回落到默认摆放）。 */
 export function loadSheetLayout(): SheetLayoutConfig {
   try {
-    const raw = localStorage.getItem(SHEET_LAYOUT_KEY);
+    const raw = platform.storage.getItem(SHEET_LAYOUT_KEY);
     if (!raw) return defaultLayout();
     return normalizeSheetLayout(JSON.parse(raw));
   } catch {
@@ -264,7 +265,7 @@ export function setSheetLayout(next: SheetLayoutConfig): SheetLayoutConfig {
 export function resetSheetLayout(): SheetLayoutConfig {
   current = defaultLayout();
   try {
-    localStorage.removeItem(SHEET_LAYOUT_KEY);
+    platform.storage.removeItem(SHEET_LAYOUT_KEY);
   } catch {
     /* 删除失败不影响本次使用 */
   }

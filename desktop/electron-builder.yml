@@ -1,0 +1,44 @@
+# 桌面版打包配置。
+# 产物结构与网页端解耦：renderer/ 由 `pnpm --filter 4enext-web build:desktop` 生成，不进版本库。
+appId: ltd.banque.4enext
+productName: 4E NEXT
+copyright: Copyright © 4E NEXT contributors · MPL-2.0
+
+directories:
+  output: release
+  buildResources: build
+
+files:
+  - main/**/*
+  - preload/**/*
+  - renderer/**/*
+  - package.json
+
+asar: true
+
+win:
+  # Electron 自带 55 种语言包，每个约 0.9MB。本应用界面只有中文（英文作为 Chromium 的兜底回退），
+  # 其余 53 种纯属白占体积——装完省约 46MB。
+  electronLanguages:
+    - zh-CN
+    - en-US
+  target:
+    - target: nsis
+      arch:
+        - x64
+  icon: build/icon.png
+  artifactName: 4E-NEXT-${version}-setup.${ext}
+
+nsis:
+  oneClick: false
+  perMachine: false
+  allowElevation: true
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: 4E NEXT
+  # 卸载时保留用户数据（人物卡/私设都在里面），避免升级或重装丢卡
+  deleteAppDataOnUninstall: false
+
+# 测试版：只出 Windows x64 安装包
+publish: null

@@ -1,12 +1,22 @@
+import { platform } from "@platform";
 import { toCanvas, toJpeg, toPng } from "html-to-image";
 
 export type ExportFormat = "png" | "jpg" | "pdf";
 
-function triggerDownload(dataUrl: string, filename: string) {
-  const a = document.createElement("a");
-  a.href = dataUrl;
-  a.download = filename;
-  a.click();
+/** data URL → Blob。桌面端要把字节交给系统保存对话框，不能再靠 a[download]。 */
+function dataUrlToBlob(dataUrl: string): Blob {
+  const comma = dataUrl.indexOf(",");
+  const head = dataUrl.slice(0, comma);
+  const body = dataUrl.slice(comma + 1);
+  const mime = /data:([^;,]+)/.exec(head)?.[1] ?? "application/octet-stream";
+  const binary = atob(body);
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+  return new Blob([bytes], { type: mime });
+}
+
+function triggerDownload(dataUrl: string, filename: string): Promise<unknown> {
+  return platform.files.saveBlob(filename, dataUrlToBlob(dataUrl));
 }
 
 function sliceBand(source: HTMLCanvasElement, y: number, h: number): HTMLCanvasElement {
@@ -26,7 +36,7 @@ function sliceBand(source: HTMLCanvasElement, y: number, h: number): HTMLCanvasE
  * 面板能整块放下则整块放置（当前页放不下则换页）；
  * 面板高于一页时递归拆分为其子元素逐段放置，避免在卡片中间截断。
  */
-async function buildPdf(node: HTMLElement, opts: { pixelRatio: number }, filename: string): Promise<void> {
+async function buildPdf(node: HTMLElement, opts: { pixelRatio: number }): Promise<Blob> {
   const canvas = await toCanvas(node, opts);
   const ratio = opts.pixelRatio;
   const sheet = node.querySelector<HTMLElement>(".sheet");
@@ -98,7 +108,7 @@ async function buildPdf(node: HTMLElement, opts: { pixelRatio: number }, filenam
     placeElement(panels[i], gapMm);
   }
 
-  pdf.save(filename + ".pdf");
+  return pdf.output("blob");
 }
 
 /**
@@ -129,16 +139,17 @@ export async function exportCharacterCard(
   if (backgroundColor) opts.backgroundColor = backgroundColor;
 
   if (format === "pdf") {
-    await buildPdf(node, opts, filename);
+    const blob = await buildPdf(node, opts);
+    await platform.files.saveBlob(filename + ".pdf", blob);
     return;
   }
 
   if (format === "jpg") {
     const dataUrl = await toJpeg(node, { ...opts, quality: 0.92 });
-    triggerDownload(dataUrl, filename + ".jpg");
+    await triggerDownload(dataUrl, filename + ".jpg");
     return;
   }
 
   const dataUrl = await toPng(node, opts);
-  triggerDownload(dataUrl, filename + ".png");
+  await triggerDownload(dataUrl, filename + ".png");
 }

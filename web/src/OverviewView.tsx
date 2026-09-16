@@ -2,6 +2,7 @@
 // 版式上不再是一堆独立卡片，而是一块完整的 MD3 surface（顶部状态条 + 分隔线网格分区），
 // 上半区数值追踪（生命 / 攻击伤害 / 防御 / 属性），下半区资源追踪（威能 / 专长 / 装备）。
 // 所有改动直接写回人物卡，与人物页实时同步。
+import { platform } from "@platform";
 import { useMemo, useState, type Dispatch, type SetStateAction } from "react";
 import { createPortal } from "react-dom";
 import { emptyGlance, type Character, type PowerSlots } from "./sheet/character";
@@ -30,7 +31,7 @@ export default function OverviewView({ layout, char, setChar }: Props) {
   const [rest, setRest] = useState<null | "short" | "long">(null);
   const [restSurges, setRestSurges] = useState(0);
   // 点数字时是直接掷骰还是复制骰子指令（记住上次选择）
-  const [rollMode, setRollMode] = useState<"roll" | "cmd">(() => (localStorage.getItem("4enext-glance-roll") === "cmd" ? "cmd" : "roll"));
+  const [rollMode, setRollMode] = useState<"roll" | "cmd">(() => (platform.storage.getItem("4enext-glance-roll") === "cmd" ? "cmd" : "roll"));
   const [roll, setRoll] = useState<RollResult | null>(null);
 
   function switchMode(m: "roll" | "cmd") {

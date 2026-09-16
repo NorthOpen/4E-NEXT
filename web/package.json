@@ -6,8 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "node scripts/copy-data.mjs && tsc --noEmit && vite build",
+    "build:desktop": "node scripts/copy-data.mjs && tsc --noEmit && tsc -p tsconfig.desktop.json --noEmit && node scripts/build-desktop.mjs",
     "preview": "vite preview",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsc --noEmit && tsc -p tsconfig.desktop.json --noEmit",
     "copy-data": "node scripts/copy-data.mjs"
   },
   "dependencies": {

@@ -18,11 +18,25 @@
 | 动态取色 | @material/material-color-utilities 0.3.0                          |
 | 头像裁切 | react-easy-crop 5                                                 |
 | 图片转换 | html-to-image + jspdf                                             |
-| 字体     | Chiron Sung HK VF + Chiron Sans HK VF + Material Symbols Outlined |
+| 字体     | Chiron Sung HK VF + Chiron Hei HK VF + Material Symbols Outlined（桌面版内置同源分片，离线可用） |
+| 桌面端   | Electron 44 + electron-builder（外壳内嵌网页端构建产物）          |
 
 ## 本地开发
 
 如您希望在本地部署并开发，克隆本仓库至本地后使用 `pnpm --filter 4enext-web dev`，在本地浏览器构建即可。
+
+## 桌面版（离线）
+
+除网页版外，本项目提供 Electron 桌面离线版。它与网页版共用同一份源码，只替换和环境打交道的四件事：
+存储位置、另存为、网络请求、证书处理——因此**不需要配置 WebDAV 跨域**，也不受浏览器 5MB 配额限制。
+
+```bash
+pnpm --filter 4enext-web build:desktop   # 构建渲染产物
+pnpm --filter 4enext-desktop smoke       # 外壳自检
+pnpm --filter 4enext-desktop dist        # 打包安装程序
+```
+
+架构说明与已知限制见 [desktop/README.md](desktop/README.md)。
 
 ## WebDAV
 
@@ -30,7 +44,8 @@
 
 以下为配置范例：
 
-1. 在服务端放行跨域。以 Nextcloud 为例，较新版本可在 `config.php` 中配置允许的域
+1. 在服务端放行跨域（**仅网页版需要**；桌面版由主进程直接请求，不受跨域限制）。
+   以 Nextcloud 为例，较新版本可在 `config.php` 中配置允许的域
    （见 Nextcloud 文档中 DAV 的 CORS 相关配置）；群晖、Cloudreve 等请在各自的 Web 服务器配置里放行
    `GET` / `PUT` / `MKCOL` / `PROPFIND` 方法与 `Authorization`、`Content-Type`、`If-Match` 请求头。
 

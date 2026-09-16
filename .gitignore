@@ -15,3 +15,16 @@ out/categories/_audit.json
 .dsh-vision-router/
 # npm cache (local)
 .npm-cache/
+# pnpm 元数据缓存（本地）
+.pnpm-cache/
+
+# Electron / electron-builder 下载缓存（本地）
+.electron-cache/
+.electron-builder-cache/
+
+# 桌面版内置字体（由 desktop/scripts/fetch-fonts.mjs 抓取，不入库）
+desktop/assets/fonts/
+
+# 桌面端派生产物（由 web 构建生成，不入库）
+desktop/renderer/
+desktop/release/

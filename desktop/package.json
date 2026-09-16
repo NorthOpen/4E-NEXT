@@ -1,0 +1,25 @@
+{
+  "name": "4enext-desktop",
+  "version": "0.2.3-beta.4",
+  "private": true,
+  "description": "4E NEXT 桌面离线版（Electron 外壳，内嵌网页端构建产物）",
+  "author": "4E NEXT contributors",
+  "license": "MPL-2.0",
+  "main": "main/main.js",
+  "scripts": {
+    "start": "electron .",
+    "smoke": "electron . --smoke",
+    "renderer": "node ../web/scripts/build-desktop.mjs",
+    "fetch-electron": "node scripts/fetch-electron.mjs",
+    "fetch-fonts": "node scripts/fetch-fonts.mjs",
+    "make-icon": "node scripts/make-icon.mjs",
+    "clean": "node scripts/clean.mjs",
+    "pack:portable": "electron-builder --win --dir --config electron-builder.yml && node scripts/pack-portable.mjs",
+    "pack": "electron-builder --win --dir --config electron-builder.yml",
+    "dist": "electron-builder --win --config electron-builder.yml"
+  },
+  "devDependencies": {
+    "electron": "^44.4.1",
+    "electron-builder": "^26.15.3"
+  }
+}

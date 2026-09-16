@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { fmtBytes, type StorageBreakdown, type StorageGroupKey } from "../lib/storage";
+import { fmtBytes, STORAGE_HINT, STORAGE_LABEL, type StorageBreakdown, type StorageGroupKey } from "../lib/storage";
 import { poolSizeBytes, type HomebrewPool } from "../lib/userdata";
 
 // 浏览器缓存（localStorage）占用板块：与页面标题同占整行宽度。
@@ -30,7 +30,7 @@ export default function CachePanel({ usage, pools }: { usage: StorageBreakdown; 
       <div className="hb-cache-head">
         <span className="hb-cache-title">
           <span className="material-symbols-outlined">database</span>
-          浏览器缓存占用
+          {STORAGE_LABEL}占用
         </span>
         <span className="hb-cache-figure">
           <b>{fmtBytes(usage.used)}</b>
@@ -79,12 +79,12 @@ export default function CachePanel({ usage, pools }: { usage: StorageBreakdown; 
       </div>
 
       <p className="hint hb-cache-foot">
-        共 {usage.keys} 个存储项，浏览器缓存上限约 5 MB。
-        {level === "ok"
-          ? "资源包会随浏览器缓存保存，清理站点数据前请先导出备份。"
-          : level === "warn"
-            ? " 用量偏高：建议导出并删除暂时用不到的资源包。"
-            : " 用量告急：新条目可能保存失败，请立即导出并清理资源包。"}
+        共 {usage.keys} 个存储项。{STORAGE_HINT}
+        {level === "warn"
+          ? " 用量偏高：建议导出并删除暂时用不到的资源包。"
+          : level === "danger"
+            ? " 用量告急：新条目可能保存失败，请立即导出并清理资源包。"
+            : ""}
       </p>
     </section>
   );

@@ -1,3 +1,4 @@
+import { platform } from "@platform";
 import { useEffect, useRef, useState } from "react";
 import { ThemeProvider, useTheme } from "./ThemeProvider";
 import CharacterSheet from "./sheet/CharacterSheet";
@@ -55,7 +56,7 @@ function Shell() {
   const [view, setView] = useState<View>("sheet");
   const isMobile = useIsMobile();
   // 手机端强制单栏：不再提供双栏选项
-  const [layoutRaw, setLayoutRaw] = useState<Layout>(() => (localStorage.getItem("4enext-layout") !== "single" ? "double" : "single"));
+  const [layoutRaw, setLayoutRaw] = useState<Layout>(() => (platform.storage.getItem("4enext-layout") !== "single" ? "double" : "single"));
   const layout: Layout = isMobile ? "single" : layoutRaw;
   const [mode, setMode] = useState<"edit" | "render">("edit");
   // 手机端「更多」底部面板（承载底栏放不下的入口）
@@ -139,15 +140,15 @@ function Shell() {
     if (portraitMigrated.current) return;
     portraitMigrated.current = true;
     try {
-      const oldOrig = localStorage.getItem("4enext.portraitOriginal.v1");
-      const oldCrop = localStorage.getItem("4enext.portraitCropped.v1");
+      const oldOrig = platform.storage.getItem("4enext.portraitOriginal.v1");
+      const oldCrop = platform.storage.getItem("4enext.portraitCropped.v1");
       if (oldOrig) {
         const c = cards.find((x) => x.id === activeId);
         if (c && !c.char.portraitOriginal) {
           void applyPortrait(oldOrig, oldCrop ?? null);
         }
-        localStorage.removeItem("4enext.portraitOriginal.v1");
-        localStorage.removeItem("4enext.portraitCropped.v1");
+        platform.storage.removeItem("4enext.portraitOriginal.v1");
+        platform.storage.removeItem("4enext.portraitCropped.v1");
       }
     } catch {
       /* 忽略 */
@@ -278,13 +279,8 @@ function Shell() {
         background: char.creation ?? {},
       },
     };
-    const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = (char.name || "角色").replace(/[\\/:*?"<>|]/g, "_") + ".json";
-    a.click();
-    URL.revokeObjectURL(url);
+    const filename = (char.name || "角色").replace(/[\\/:*?"<>|]/g, "_") + ".json";
+    void platform.files.saveText(filename, JSON.stringify(data, null, 2));
   }
 
   // 导入存档：解析并覆盖当前卡片（校验格式）

@@ -1,3 +1,4 @@
+import { platform } from "@platform";
 import type { Character } from "../sheet/character";
 
 export interface SavedCard {
@@ -16,7 +17,7 @@ export function uid(): string {
 
 export function loadCards(): SavedCard[] {
   try {
-    const raw = localStorage.getItem(CARDS_KEY);
+    const raw = platform.storage.getItem(CARDS_KEY);
     if (!raw) return [];
     const parsed = JSON.parse(raw);
     if (!Array.isArray(parsed)) return [];
@@ -37,7 +38,7 @@ export function saveCards(cards: SavedCard[]): boolean {
 
 export function loadActiveId(): string | undefined {
   try {
-    return localStorage.getItem(ACTIVE_KEY) ?? undefined;
+    return platform.storage.getItem(ACTIVE_KEY) ?? undefined;
   } catch {
     return undefined;
   }
@@ -48,8 +49,8 @@ export function saveActiveId(id: string): boolean {
   return safeSetItem(ACTIVE_KEY, id);
 }
 
-// localStorage 容量估算：按 UTF-16 码元统计（含 key + value），近似各浏览器配额口径。
-const LS_MAX = 5 * 1024 * 1024; // 通用上限约 5MB
+// 容量口径由平台实现给出：网页端 = 浏览器约 5MB 配额；桌面端 = 本地数据文件的磁盘容量估值。
+// 两端的统计口径一致（UTF-16 码元，含 key + value），所以这里的百分比仍然可比。
 
 export interface StorageUsage {
   used: number;   // 已用字节（UTF-16 码元数）
@@ -59,21 +60,14 @@ export interface StorageUsage {
 }
 
 export function localStorageUsage(): StorageUsage {
-  let used = 0;
-  let keys = 0;
-  try {
-    for (let i = 0; i < localStorage.length; i++) {
-      const k = localStorage.key(i);
-      if (!k) continue;
-      const v = localStorage.getItem(k) ?? "";
-      used += k.length + v.length;
-      keys++;
-    }
-  } catch {
-    /* ignore */
-  }
-  return { used, total: LS_MAX, percent: Math.min(100, (used / LS_MAX) * 100), keys };
+  const { used, total, keys } = platform.storage.usage();
+  return { used, total, percent: total > 0 ? Math.min(100, (used / total) * 100) : 0, keys };
 }
+
+/** 存储位置的用户可读名称（网页端「浏览器缓存」/ 桌面端「本地数据文件」）。 */
+export const STORAGE_LABEL: string = platform.storage.label;
+/** 存储位置的一句话说明，用于设置页与私设页。 */
+export const STORAGE_HINT: string = platform.storage.hint;
 
 export function fmtBytes(n: number): string {
   if (n < 1024) return n + " B";
@@ -125,10 +119,8 @@ export function localStorageBreakdown(): StorageBreakdown {
   let used = 0;
   let keys = 0;
   try {
-    for (let i = 0; i < localStorage.length; i++) {
-      const k = localStorage.key(i);
-      if (!k) continue;
-      const v = localStorage.getItem(k) ?? "";
+    for (const k of platform.storage.keys()) {
+      const v = platform.storage.getItem(k) ?? "";
       const size = k.length + v.length;
       used += size;
       keys++;
@@ -145,7 +137,8 @@ export function localStorageBreakdown(): StorageBreakdown {
     bytes: totals[key].bytes,
     keys: totals[key].keys,
   }));
-  return { used, total: LS_MAX, percent: Math.min(100, (used / LS_MAX) * 100), keys, groups };
+  const total = platform.storage.usage().total;
+  return { used, total, percent: total > 0 ? Math.min(100, (used / total) * 100) : 0, keys, groups };
 }
 
 // ===== 写入护栏：localStorage 写满 / 被禁用时不再静默吞掉，改为向订阅者广播 =====
@@ -170,6 +163,8 @@ export interface StorageFailure {
   /** 失败当时的整体占用 */
   usage: StorageUsage;
   at: number;
+  /** 平台补充的说明（桌面端磁盘写失败时由主进程给出） */
+  detail?: string;
 }
 
 type FailureListener = (f: StorageFailure) => void;
@@ -208,31 +203,48 @@ export function isQuotaExceeded(err: unknown): boolean {
  */
 export function safeSetItem(key: string, value: string, scope?: StorageGroupKey): boolean {
   try {
-    localStorage.setItem(key, value);
+    platform.storage.setItem(key, value);
     usageCache = null; // 写入成功，占用已变化
     return true;
   } catch (err) {
-    const g = scope ?? groupOf(key);
-    const failure: StorageFailure = {
-      key,
-      scope: g,
-      label: GROUP_LABELS[g],
-      reason: isQuotaExceeded(err) ? "quota" : "unavailable",
-      bytes: key.length + value.length,
-      usage: cachedUsage(),
-      at: Date.now(),
-    };
-    lastFailure = failure;
-    for (const fn of failureListeners) {
-      try {
-        fn(failure);
-      } catch {
-        // 单个订阅者出错不影响其他订阅者
-      }
-    }
+    recordFailure(key, scope ?? groupOf(key), isQuotaExceeded(err) ? "quota" : "unavailable", key.length + value.length);
     return false;
   }
 }
+
+/** 记录并广播一次写入失败。同步失败（网页端配额写满）与异步失败（桌面端写盘出错）共用这条路径。 */
+function recordFailure(
+  key: string,
+  scope: StorageGroupKey,
+  reason: StorageFailureReason,
+  bytes: number,
+  detail?: string,
+): void {
+  const failure: StorageFailure = {
+    key,
+    scope,
+    label: GROUP_LABELS[scope],
+    reason,
+    bytes,
+    usage: cachedUsage(),
+    at: Date.now(),
+    detail,
+  };
+  lastFailure = failure;
+  for (const fn of failureListeners) {
+    try {
+      fn(failure);
+    } catch {
+      // 单个订阅者出错不影响其他订阅者
+    }
+  }
+}
+
+// 桌面端的数据落盘由主进程异步完成，磁盘写失败晚于 setItem 返回。
+// 这类失败同样不许静默——接到后走上面同一条广播路径（见 components/StorageAlert）。
+platform.storage.onWriteError?.((message) => {
+  recordFailure("(数据文件)", "other", "unavailable", 0, message);
+});
 
 /** 订阅写入失败；返回取消订阅函数。 */
 export function subscribeStorageFailure(fn: FailureListener): () => void {

@@ -3,6 +3,7 @@
 // 注意：密码就存在浏览器 localStorage 里——这是纯前端方案的固有代价。
 // 因此界面上必须明说「只用应用专用密码、可随时吊销」，绝不能引导用户填账号登录密码。
 
+import { platform } from "@platform";
 import { safeSetItem, uid } from "../storage";
 import { DEFAULT_SYNC_CONFIG, type SyncConfig } from "./types";
 
@@ -13,7 +14,7 @@ const DEVICE_KEY = "4enext.deviceId.v1";
 export function loadSyncConfig(): SyncConfig {
   const out: SyncConfig = { ...DEFAULT_SYNC_CONFIG };
   try {
-    const raw = localStorage.getItem(CONFIG_KEY);
+    const raw = platform.storage.getItem(CONFIG_KEY);
     if (!raw) return out;
     const s = JSON.parse(raw) as Partial<SyncConfig>;
     if (typeof s.url === "string") out.url = s.url;
@@ -42,7 +43,7 @@ export function isConfigured(c: SyncConfig): boolean {
  */
 export function deviceId(): string {
   try {
-    const raw = localStorage.getItem(DEVICE_KEY);
+    const raw = platform.storage.getItem(DEVICE_KEY);
     if (raw) return raw;
   } catch {
     /* 读不到就现生成一个 */

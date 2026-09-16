@@ -1,3 +1,4 @@
+import { platform } from "@platform";
 import { Fragment, useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import { FilledTextField, FilledSelect, SelectOption, TextButton, IconButton, FilledTonalButton, Switch, Tabs, PrimaryTab } from "../components/md";
@@ -4751,7 +4752,7 @@ export default function CharacterSheet({
   const groupedMobile = mobile && !forceAllPanels;
   const [panelGroupId, setPanelGroupId] = useState<string>(() => {
     try {
-      return localStorage.getItem(MOBILE_GROUP_KEY) ?? "";
+      return platform.storage.getItem(MOBILE_GROUP_KEY) ?? "";
     } catch {
       return "";
     }
@@ -4764,7 +4765,7 @@ export default function CharacterSheet({
   const pickPanelGroup = (id: string) => {
     setPanelGroupId(id);
     try {
-      localStorage.setItem(MOBILE_GROUP_KEY, id);
+      platform.storage.setItem(MOBILE_GROUP_KEY, id);
     } catch {
       /* 存不进就只在本次会话生效，不影响切换 */
     }

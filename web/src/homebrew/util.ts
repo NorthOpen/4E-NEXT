@@ -1,14 +1,10 @@
 // 私设页共用小工具
 
-/** 触发浏览器下载一个文本文件（.d4e 资源包 / JSON）。 */
+import { platform } from "@platform";
+
+/** 另存一个文本文件（.d4e 资源包 / JSON）。网页端走浏览器下载，桌面端走系统保存对话框。 */
 export function downloadText(filename: string, text: string): void {
-  const blob = new Blob([text], { type: "application/json" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = filename;
-  a.click();
-  URL.revokeObjectURL(url);
+  void platform.files.saveText(filename, text);
 }
 
 /** 友好日期（无效值回退为「—」）。 */

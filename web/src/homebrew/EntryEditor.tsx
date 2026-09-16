@@ -1,3 +1,4 @@
+import { platform } from "@platform";
 import { useEffect, useMemo, useRef, useState, type ChangeEvent } from "react";
 import type { CSSProperties } from "react";
 import { HexColorPicker } from "react-colorful";
@@ -18,7 +19,7 @@ const DRAFT_KEY = "4enext.homebrewDraft.v1";
 
 function loadDraft(): Record<string, string> {
   try {
-    const raw = localStorage.getItem(DRAFT_KEY);
+    const raw = platform.storage.getItem(DRAFT_KEY);
     return raw ? (JSON.parse(raw) as Record<string, string>) : {};
   } catch {
     return {};
@@ -26,14 +27,14 @@ function loadDraft(): Record<string, string> {
 }
 function saveDraft(form: Record<string, string>) {
   try {
-    localStorage.setItem(DRAFT_KEY, JSON.stringify(form));
+    platform.storage.setItem(DRAFT_KEY, JSON.stringify(form));
   } catch {
     /* 忽略 */
   }
 }
 function clearDraft() {
   try {
-    localStorage.removeItem(DRAFT_KEY);
+    platform.storage.removeItem(DRAFT_KEY);
   } catch {
     /* 忽略 */
   }
@@ -1361,16 +1362,7 @@ export default function EntryEditor({
       setErr("请先选择类型并填写名称，再导出。");
       return;
     }
-    const blob = new Blob([JSON.stringify(previewEntry, null, 2)], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `${previewEntry.name || "条目"}.json`;
-    document.body.appendChild(a);
-    a.click();
-    // 延迟释放，避免个别浏览器在下载前就撤销导致中断
-    window.setTimeout(() => URL.revokeObjectURL(url), 1000);
-    document.body.removeChild(a);
+    void platform.files.saveText(`${previewEntry.name || "条目"}.json`, JSON.stringify(previewEntry, null, 2));
   }
 
   /** 从 JSON 单文件导入并填充当前表单 */
