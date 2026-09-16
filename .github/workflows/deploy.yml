@@ -33,7 +33,7 @@ jobs:
       # 守卫：desktop/ 一旦被加回 pnpm workspace，下面那行 --frozen-lockfile 会因为锁文件不同步而
       # 直接失败（ERR_PNPM_OUTDATED_LOCKFILE），网页端部署整条挂掉，且报错埋在安装步骤里不好定位。
       # 判定逻辑在 scripts/verify-workspace.mjs，本地也可以先跑一遍：pnpm verify:workspace
-      - name: Guard: desktop not in pnpm workspace
+      - name: "Guard: desktop not in pnpm workspace"
         run: node scripts/verify-workspace.mjs
 
       - name: Install dependencies
