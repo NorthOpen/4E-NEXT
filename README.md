@@ -32,8 +32,8 @@
 
 ```bash
 pnpm --filter 4enext-web build:desktop   # 构建渲染产物
-pnpm --filter 4enext-desktop smoke       # 外壳自检
-pnpm --filter 4enext-desktop dist        # 打包安装程序
+npm --prefix desktop run smoke       # 外壳自检
+npm --prefix desktop run dist        # 打包安装程序
 ```
 
 架构说明与已知限制见 [desktop/README.md](desktop/README.md)。

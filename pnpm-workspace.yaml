@@ -1,7 +1,11 @@
 packages:
+  # 只放 web。desktop/ 刻意【不】进 workspace，两个原因：
+  #   1. 它依赖 electron（约 100MB 二进制）。加进来后，网页端的 CI 每次安装都要顺带下载 Electron。
+  #   2. 更要命的是 workspace 一旦变化，pnpm-lock.yaml 就必须同步更新；
+  #      而 CI 跑的是 `pnpm install --frozen-lockfile`，锁文件与 package.json 对不上会直接
+  #      以 ERR_PNPM_OUTDATED_LOCKFILE 失败——网页端部署会整条挂掉（2026-09-16 真的挂过一次）。
+  # desktop 用自己目录下的 npm install，见 desktop/README.md。
   - web
-  - desktop
 allowBuilds:
   core-js: true
   esbuild: false
-  electron: true

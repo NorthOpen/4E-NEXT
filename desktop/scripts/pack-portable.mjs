@@ -5,7 +5,7 @@
 // 并不会换掉里面的图标——任务栏和资源管理器里看到的仍是 Electron 默认图标。
 // electron-builder 打包时会用 rcedit 改写 exe 资源（图标、版本号），这一步不能省。
 //
-// 用法：pnpm --filter 4enext-desktop pack:portable
+// 用法：npm --prefix desktop run pack:portable
 //   （等价于先 electron-builder --win --dir，再跑本脚本）
 
 import { cpSync, existsSync, mkdirSync, readFileSync, rmSync, statSync, writeFileSync, readdirSync } from "node:fs";

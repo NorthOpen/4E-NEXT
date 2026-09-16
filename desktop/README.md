@@ -29,6 +29,24 @@ desktop/                 外壳：不含任何 UI 代码
 **关键约束**：`desktop/` 里没有应用源码。想改界面就必须改 `web/`，改了会立刻体现在网页端构建里——
 用目录结构堵死「桌面端悄悄分叉」。
 
+## 依赖安装：desktop 不进 pnpm workspace
+
+`desktop/` **刻意不是 pnpm workspace 成员**（`pnpm-workspace.yaml` 里只有 web）。原因是它依赖
+electron（约 100MB 二进制）+ electron-builder，加进 workspace 会有两个后果：
+
+1. 网页端的 CI（`deploy.yml` 里的 `pnpm install --frozen-lockfile`）每次都要顺带下载 Electron；
+2. workspace 一变，`pnpm-lock.yaml` 就必须同步更新，否则 CI 会以
+   `ERR_PNPM_OUTDATED_LOCKFILE` 直接失败，**网页端部署整条挂掉**。
+
+所以桌面端用自己的 npm 装依赖：
+
+```bash
+npm --prefix desktop install
+```
+
+外壳没有任何运行时依赖（主进程只用 electron 与 Node 内置模块），只有两个 devDependencies，
+`desktop/package-lock.json` 已入库，安装结果可复现。
+
 ## 平台接缝
 
 两端只在这些地方不同，全部收在 `web/src/platform/`：
@@ -53,8 +71,8 @@ desktop/                 外壳：不含任何 UI 代码
 桌面版不能依赖网络，所以把**同一套分片**整包封进产物——字形与网页版完全一致。
 
 ```bash
-pnpm --filter 4enext-desktop fetch-fonts            # → desktop/assets/fonts/（1055 个分片，64.7 MB）
-pnpm --filter 4enext-desktop fetch-fonts -- --force # 重新拉 CSS 并重新下载全部分片
+npm --prefix desktop run fetch-fonts            # → desktop/assets/fonts/（1055 个分片，64.7 MB）
+npm --prefix desktop run fetch-fonts -- --force # 重新拉 CSS 并重新下载全部分片
 ```
 
 脚本做四件事：
@@ -80,7 +98,7 @@ pnpm --filter 4enext-desktop fetch-fonts -- --force # 重新拉 CSS 并重新下
 `web/public/favicon.svg` 的 fill），与网页版视觉一致。
 
 ```bash
-pnpm --filter 4enext-desktop make-icon
+npm --prefix desktop run make-icon
 ```
 
 制作分两步，原因是一个容易踩的坑：**无头 Chrome 截图不保留透明通道**——页面背景透明的区域会被
@@ -107,21 +125,21 @@ pnpm --filter 4enext-desktop make-icon
 
 ```bash
 # 0) 一次性：取 Electron 运行时 + 抓内置字体
-pnpm --filter 4enext-desktop fetch-electron
-pnpm --filter 4enext-desktop fetch-fonts
+npm --prefix desktop run fetch-electron
+npm --prefix desktop run fetch-fonts
 
 # 1) 桌面端渲染产物 -> desktop/renderer/
 pnpm --filter 4enext-web build:desktop
 
 # 2) 直接运行外壳（开发调试；菜单「视图 → 开发者工具」）
-pnpm --filter 4enext-desktop start
+npm --prefix desktop run start
 
 # 3) 外壳冒烟自检：在真实 Electron 环境里跑一遍关键能力并打印 PASS/FAIL
-pnpm --filter 4enext-desktop smoke
+npm --prefix desktop run smoke
 
 # 4) 出包
-pnpm --filter 4enext-desktop dist            # 安装程序 + release/win-unpacked
-pnpm --filter 4enext-desktop pack:portable   # 免安装便携版（含 zip）
+npm --prefix desktop run dist            # 安装程序 + release/win-unpacked
+npm --prefix desktop run pack:portable   # 免安装便携版（含 zip）
 ```
 
 网页端构建完全不受影响：`pnpm --filter 4enext-web build` 仍然只产出 `web/dist`。
@@ -196,8 +214,8 @@ Vulkan 的软件回退，删掉会让无独显或虚拟机环境黑屏。
 ## 清理
 
 ```bash
-pnpm --filter 4enext-desktop clean           # 清 release/（约 800MB+，最有价值）
-pnpm --filter 4enext-desktop clean -- --all  # 连 renderer/ 一起清（需重新 build:desktop）
+npm --prefix desktop run clean           # 清 release/（约 800MB+，最有价值）
+npm --prefix desktop run clean -- --all  # 连 renderer/ 一起清（需重新 build:desktop）
 ```
 
 ## 发布流程
@@ -216,8 +234,8 @@ git push origin "4E-NEXT-Desktop-V0.2.3B-beta.4"
 
 # 3) 出包（产出安装程序、便携版 zip 与 SHA256SUMS.txt）
 pnpm --filter 4enext-web build:desktop
-pnpm --filter 4enext-desktop dist
-pnpm --filter 4enext-desktop pack:portable
+npm --prefix desktop run dist
+npm --prefix desktop run pack:portable
 
 # 4) 创建 Release 并上传附件（不依赖 gh CLI）
 export GITHUB_TOKEN=xxx        # classic PAT 的 repo scope 即可
