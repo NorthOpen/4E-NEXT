@@ -1071,3 +1071,11 @@ md-dialog.sheet-dialog.sheet-dialog-store { max-width: min(520px, calc(100% - 48
   display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
 }
 .hb-creature-act-freq md-filled-text-field { flex: 1 1 160px; }
+
+/* ===== ⑧ 设置页：单栏时的板块间距 =====
+   间距原先只写在双栏选择器下（.settings.double / .settings.double .settings-col），
+   于是只要不是双栏——手机端强制单栏、电脑端手动切到单栏——各板块就完全没有间距、
+   边框直接贴在一起。这里把间距提到通用规则上，两种布局共用同一套 16px 节奏。
+   注意 .settings.double 特异性更高，双栏仍由它自己接管 display: grid。 */
+.settings { display: flex; flex-direction: column; gap: 16px; }
+.settings-col { display: flex; flex-direction: column; gap: 16px; min-width: 0; }

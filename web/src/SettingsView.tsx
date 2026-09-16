@@ -164,6 +164,7 @@ export default function SettingsView({ layout }: { layout: "single" | "double" }
         <div className="settings-row">
           <span className="field-label">数据支持</span>
           <a className="settings-link" href="https://4e-wiki.netlify.app/" target="_blank" rel="noreferrer">4e Wiki（现任维护者：风之守护）</a>
+          <a className="settings-link" href="https://4e-rules.netlify.app/" target="_blank" rel="noreferrer">4e万律（现任维护者：风之守护）</a>
         </div>
         <div className="settings-row">
           <span className="field-label">特别感谢</span>
@@ -184,6 +185,10 @@ export default function SettingsView({ layout }: { layout: "single" | "double" }
         <div className="settings-row">
           <span className="field-label">贡献者</span>
           <span className="label">灵霜</span>
+        </div>
+        <div className="settings-row">
+          <span className="field-label">当前版本</span>
+          <span className="label">{__APP_VERSION__}B</span>
         </div>
       </section>
 

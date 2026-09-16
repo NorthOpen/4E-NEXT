@@ -16,9 +16,23 @@ import { FilledButton, OutlinedButton, TextButton } from "./components/md";
 import SheetDialog from "./components/SheetDialog";
 import StorageAlert from "./components/StorageAlert";
 import Logo from "./components/Logo";
+import { useIsMobile } from "./lib/media";
 
 type View = "sheet" | "background" | "reserve" | "overview" | "draw" | "search" | "learn" | "homebrew" | "settings";
 type Layout = "single" | "double";
+
+// 手机端底部导航（MD3 NavigationBar）：只放建卡/跑团最常用的 4 个顶级目标。
+// MD3 规定 NavigationBar 容纳 3–5 项，其余入口（存档 / 抽卡 / 私设 / 词条 / 规则 / 设置）
+// 收进「更多」底部面板，避免把底栏塞成密集图标条。
+const MOBILE_NAV: { view: View; icon: string; label: string }[] = [
+  { view: "sheet", icon: "person", label: "人物" },
+  { view: "overview", icon: "overview", label: "速览" },
+  { view: "background", icon: "book", label: "背景" },
+  { view: "reserve", icon: "inventory_2", label: "储备" },
+];
+
+/** 这些页面由「更多」面板承载：命中时把底栏的「更多」标为选中，用户才知道自己在哪 */
+const MOBILE_MORE_VIEWS: View[] = ["search", "learn", "homebrew", "settings"];
 
 // S 曲线羽化：多段渐停近似缓动，底部渐隐更自然
 function featherMask(feather: number): string {
@@ -38,19 +52,15 @@ function featherMask(feather: number): string {
 function Shell() {
   const { bgImage, bgBlur, bgFeather, portraitOriginal, portraitCropped, applyPortrait, clearPortrait } = useTheme();
   const [view, setView] = useState<View>("sheet");
-  const [isMobile, setIsMobile] = useState<boolean>(() => typeof window !== "undefined" && window.matchMedia("(max-width: 768px)").matches);
+  const isMobile = useIsMobile();
   // 手机端强制单栏：不再提供双栏选项
   const [layoutRaw, setLayoutRaw] = useState<Layout>(() => (localStorage.getItem("kcc-layout") !== "single" ? "double" : "single"));
   const layout: Layout = isMobile ? "single" : layoutRaw;
   const [mode, setMode] = useState<"edit" | "render">("edit");
+  // 手机端「更多」底部面板（承载底栏放不下的入口）
+  const [mobileMore, setMobileMore] = useState(false);
 
-  // 监听手机端断点变化（横竖屏切换 / 窗口缩放）
-  useEffect(() => {
-    const mq = window.matchMedia("(max-width: 768px)");
-    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
-    mq.addEventListener("change", handler);
-    return () => mq.removeEventListener("change", handler);
-  }, []);
+  // 手机端断点由 useIsMobile 统一监听（横竖屏切换 / 窗口缩放）
   const [cards, setCards] = useState<SavedCard[]>(() => {
     const loaded = loadCards().map((card) => ({ ...card, char: migrateCharacter(card.char) }));
     if (loaded.length > 0) return loaded;
@@ -351,7 +361,7 @@ function Shell() {
         <div className="view-anim" key={view}>
           {view === "sheet" && (
             <div ref={captureRef}>
-              <CharacterSheet layout={layout} mode={mode} char={char} setChar={setChar} />
+              <CharacterSheet layout={layout} mode={mode} char={char} setChar={setChar} mobile={isMobile} forceAllPanels={exporting} />
             </div>
           )}
           {view === "reserve" && <ReserveView layout={layout} char={char} setChar={setChar} />}
@@ -364,6 +374,76 @@ function Shell() {
           {view === "settings" && <SettingsView layout={layout} />}
         </div>
       </main>
+      {/* 手机端底部导航（MD3 NavigationBar）：取代桌面端的左侧导航轨，落在拇指可达区 */}
+      {isMobile && (
+        <nav className="mob-nav" aria-label="主导航">
+          {MOBILE_NAV.map((d) => (
+            <button
+              key={d.view}
+              type="button"
+              className={"mob-nav-item" + (view === d.view ? " on" : "")}
+              aria-current={view === d.view ? "page" : undefined}
+              onClick={() => setView(d.view)}
+            >
+              <span className="mob-nav-ind"><span className="material-symbols-outlined">{d.icon}</span></span>
+              <span className="mob-nav-label">{d.label}</span>
+            </button>
+          ))}
+          <button
+            type="button"
+            className={"mob-nav-item" + (MOBILE_MORE_VIEWS.includes(view) ? " on" : "")}
+            aria-current={MOBILE_MORE_VIEWS.includes(view) ? "page" : undefined}
+            onClick={() => setMobileMore(true)}
+          >
+            <span className="mob-nav-ind"><span className="material-symbols-outlined">more_horiz</span></span>
+            <span className="mob-nav-label">更多</span>
+          </button>
+        </nav>
+      )}
+      {/* 「更多」底部面板：底栏放不下的入口，以及从左侧导轨搬来的「编辑 / 渲染」切换 */}
+      {mobileMore && (
+        <SheetDialog open headline="更多" onClose={() => setMobileMore(false)}>
+          <div className="mob-more">
+            <div className="mob-more-row">
+              <span className="mob-more-row-label">编辑 / 渲染</span>
+              <div className="md3-seg" role="radiogroup" aria-label="编辑或渲染模式">
+                <button type="button" role="radio" aria-checked={mode === "edit"} className={"md3-seg-btn" + (mode === "edit" ? " on" : "")} onClick={() => setMode("edit")}>编辑</button>
+                <button type="button" role="radio" aria-checked={mode === "render"} className={"md3-seg-btn" + (mode === "render" ? " on" : "")} onClick={() => setMode("render")}>渲染</button>
+              </div>
+            </div>
+            <button type="button" className="mob-more-item" onClick={() => { setMobileMore(false); setCardOpen(true); }}>
+              <span className="material-symbols-outlined mob-more-ic">folder</span>
+              <span className="mob-more-text"><span className="mob-more-label">存档</span><span className="mob-more-sub">切换、重命名、导入导出人物卡</span></span>
+              <span className="material-symbols-outlined mob-more-arrow">chevron_right</span>
+            </button>
+            <button type="button" className="mob-more-item" onClick={() => { setMobileMore(false); setDrawOpen(true); }}>
+              <span className="material-symbols-outlined mob-more-ic">casino</span>
+              <span className="mob-more-text"><span className="mob-more-label">抽卡</span><span className="mob-more-sub">随机快速建卡</span></span>
+              <span className="material-symbols-outlined mob-more-arrow">chevron_right</span>
+            </button>
+            <button type="button" className="mob-more-item" onClick={() => { setMobileMore(false); setView("homebrew"); }}>
+              <span className="material-symbols-outlined mob-more-ic">extension</span>
+              <span className="mob-more-text"><span className="mob-more-label">私设</span><span className="mob-more-sub">自定义资源包</span></span>
+              <span className="material-symbols-outlined mob-more-arrow">chevron_right</span>
+            </button>
+            <button type="button" className="mob-more-item" onClick={() => { setMobileMore(false); setView("search"); }}>
+              <span className="material-symbols-outlined mob-more-ic">search</span>
+              <span className="mob-more-text"><span className="mob-more-label">词条</span><span className="mob-more-sub">按名称检索规则词条</span></span>
+              <span className="material-symbols-outlined mob-more-arrow">chevron_right</span>
+            </button>
+            <button type="button" className="mob-more-item" onClick={() => { setMobileMore(false); setView("learn"); }}>
+              <span className="material-symbols-outlined mob-more-ic">school</span>
+              <span className="mob-more-text"><span className="mob-more-label">规则</span><span className="mob-more-sub">万律速查</span></span>
+              <span className="material-symbols-outlined mob-more-arrow">chevron_right</span>
+            </button>
+            <button type="button" className="mob-more-item" onClick={() => { setMobileMore(false); setView("settings"); }}>
+              <span className="material-symbols-outlined mob-more-ic">settings</span>
+              <span className="mob-more-text"><span className="mob-more-label">设置</span><span className="mob-more-sub">主题、字体与车卡页面板块</span></span>
+              <span className="material-symbols-outlined mob-more-arrow">chevron_right</span>
+            </button>
+          </div>
+        </SheetDialog>
+      )}
       {cardOpen && (
         <SheetDialog xwide extraClass="sheet-dialog-save" open headline="存档" onClose={() => setCardOpen(false)} actions={
           <>

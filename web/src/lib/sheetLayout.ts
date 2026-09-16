@@ -74,6 +74,46 @@ export const SHEET_PANELS: SheetPanelMeta[] = [
 
 export const SHEET_PANEL_IDS: SheetPanelId[] = SHEET_PANELS.map((p) => p.id);
 
+// ===== 手机端板块分组（车卡页顶部胶囊切换） =====
+//
+// 桌面端双栏能同时铺开好几个板块，手机上一屏只放得下一个；15 个板块整页铺下来要滚很久。
+// 所以手机端按「建卡时的心智阶段」把板块归成 5 组，顶部胶囊切换、一屏只看一组：
+//   · 分组本身固定（不参与设置页拖动），避免手机上再学一套排版概念；
+//   · 组内顺序仍跟随 single —— 用户在设置页拖出来的先后，手机端组内照样生效；
+//   · 5 组并集必须覆盖 SHEET_PANEL_IDS 全部条目，漏掉的板块在手机上会彻底看不见。
+
+export interface SheetPanelGroup {
+  id: string;
+  /** 胶囊上的短标签；手机宽度下要排得下 5 个，控制在 2 个字 */
+  label: string;
+  icon: string;
+  /** 该组包含的板块 */
+  panels: SheetPanelId[];
+}
+
+export const SHEET_PANEL_GROUPS: SheetPanelGroup[] = [
+  { id: "base", label: "人物", icon: "person", panels: ["info", "stats"] },
+  { id: "combat", label: "战斗", icon: "swords", panels: ["hit", "damage"] },
+  { id: "ability", label: "能力", icon: "bolt", panels: ["powers", "feats", "skills"] },
+  { id: "origin", label: "出身", icon: "school", panels: ["race", "class", "paragon", "epic", "theme"] },
+  { id: "items", label: "物品", icon: "shield", panels: ["equipment", "money", "rituals"] },
+];
+
+/** 取一组内的板块，并保持设置页里排出来的 single 顺序（组内自定义顺序不丢失）。 */
+export function panelsInGroup(group: SheetPanelGroup, single: SheetPanelId[]): SheetPanelId[] {
+  const inGroup = new Set(group.panels);
+  return single.filter((id) => inGroup.has(id));
+}
+
+/**
+ * 默认展开哪一组：跟随 single 的首个板块——用户把「装备」拖到最前，手机端就默认打开「物品」组。
+ * single 为空（缓存异常）时回落到第一组。
+ */
+export function defaultPanelGroup(single: SheetPanelId[]): SheetPanelGroup {
+  const first = single[0];
+  return SHEET_PANEL_GROUPS.find((g) => first && g.panels.includes(first)) ?? SHEET_PANEL_GROUPS[0];
+}
+
 const PANEL_BY_ID: Record<string, SheetPanelMeta> = Object.fromEntries(SHEET_PANELS.map((p) => [p.id, p]));
 
 /** 取板块元信息（id 已在类型上受限，运行时兜底返回第一项，不会崩） */

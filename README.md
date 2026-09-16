@@ -24,16 +24,7 @@
 
 ## 本地开发
 
-如您希望在本地部署并开发，克隆本仓库至本地后使用 `pnpm --filter dnd4e-kcc-web build`，在本地浏览器构建即可。
-
-数据管线（TiddlyWiki 单文件 HTML → 规范化 JSON）按需运行：
-
-```bash
-pnpm all      # 主维基：data/4e Wiki.htm → out/canonical、out/categories、out/index
-pnpm rules    # 万律书：4e-rules.html（需自行放入仓库根目录，仓库不分发）→ out/rules/rules.json
-```
-
-`web` 构建时由 `web/scripts/copy-data.mjs` 把 `out/` 的产物同步到 `web/public/data/`。
+如您希望在本地部署并开发，克隆本仓库至本地后使用 `pnpm --filter dnd4e-kcc-web dev`，在本地浏览器构建即可。
 
 
 ## 开源许可

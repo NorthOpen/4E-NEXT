@@ -1,0 +1,295 @@
+/* ==========================================================================
+   手机端版面（≤ 768px）
+   --------------------------------------------------------------------------
+   桌面端用「左侧 Navigation Rail + 双栏」：一屏能同时铺开多个板块，横向空间也够。
+   手机上一屏只放得下一个板块，且竖屏宽度只有 360–430px，照搬桌面结构会又长又挤。
+   因此手机端换一套 MD3 结构：
+
+   · 导航：左侧竖导轨 → 底部 NavigationBar（MD3 标准位置，拇指可达，3–5 个顶级目标）
+   · 车卡页：15 个板块整页长滚动 → 顶部胶囊（segmented button）分组切换，一屏只看一组
+   · 余量：底部导航按 80dp 高度让出内容区，并适配 iPhone home indicator 安全区
+
+   只在 ≤768px 生效，桌面端版面完全不受影响。
+   本文件在 styles.css 之后导入，用于覆盖 styles.css 里原有的手机端规则。
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  /* 手机端不再需要左侧导航轨：入口改由底部导航 + 「更多」面板承载 */
+  .side-bar { display: none; }
+  /* styles.css 的手机端规则给左侧导轨留了 48px，这里必须清零，否则内容整体偏右 */
+  .app { padding-left: 0; }
+  /* 底部导航是 fixed，内容区让出它的高度，否则最后一个板块会被永久遮住 */
+  .content { padding: 10px 10px calc(84px + env(safe-area-inset-bottom, 0px)); }
+  /* 纵向节奏收紧：一屏少滚两下 */
+  .sheet { gap: 12px; }
+
+  /* ===== 角色信息板块 ===== */
+
+  /* 姓名独占整行。
+     .row-1 的基础规则是 2fr 1fr 1fr（桌面为后两列留位），但这一行实际只有「姓名」一个字段，
+     于是姓名只拿到 2/4 的宽度，比上面整行的「经验」短一截。单列化后两者等宽。 */
+  .info-row.row-1 { grid-template-columns: minmax(0, 1fr); }
+
+  /* 各信息行之间补间距。
+     .info-rows 原本只靠 justify-content: space-between 排布，本身没有 gap ——
+     桌面端顶栏是横排，立绘列撑出富余高度，space-between 才分得开；
+     手机端顶栏改纵向堆叠后，高度由内容决定、没有富余空间可分，各行就直接贴在一起。
+     姓名贴种族、体重贴下一行，都是这一个原因。 */
+  .info-rows { gap: 12px; }
+
+  /* 行动点 / 里程碑 / 灵能点：各占一行。
+     原本是 inline-flex 一字排开（gap 24px），三组「标签 + 加减步进器」合计约 620px，
+     手机上（可用宽度约 300px）根本放不下。 */
+  .resource-panel { display: flex; flex-direction: column; gap: 10px; width: 100%; flex-basis: 100%; }
+  .resource-item { display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%; }
+
+  /* 手机端不允许任何东西把页面撑宽。
+     一旦页面横向溢出，内容就能左右滑动，而底部导航是固定定位、始终贴着视口，
+     两者一错位，用户看到的就是「更多」被挤出了屏幕（其他页面不溢出，所以正常）。
+     这里用 clip 而不是 hidden/auto：clip 不创建滚动容器，
+     吸顶的标签页仍以视口为参照，不会因为这一条而失效。
+     顺带也收掉了背景图装饰层（.bg-layer 左右各外扩 50px）造成的横向溢出。 */
+  .app { overflow-x: clip; }
+}
+
+/* ===== MD3 NavigationBar（底部导航） =====
+   规格：容器 80dp、每项图标 24dp + 标签、选中态用 secondary-container 胶囊指示器。
+   元素只在 isMobile 时渲染，所以这里不加媒体查询。 */
+.mob-nav {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 120;
+  display: flex; align-items: stretch;
+  height: calc(80px + env(safe-area-inset-bottom, 0px));
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  box-sizing: border-box;
+  background: var(--md-sys-color-surface-container);
+  border-top: 1px solid var(--md-sys-color-outline-variant);
+}
+.mob-nav-item {
+  /* min-width:0 + overflow:hidden：条目只在自己的格子里收缩，
+     不允许把最后一项「更多」顶出屏幕（极窄屏 ≤340px 时会这样） */
+  flex: 1 1 0; min-width: 0; overflow: hidden;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+  padding: 12px 2px 16px;
+  border: none; background: transparent; cursor: pointer; font: inherit;
+  color: var(--md-sys-color-on-surface-variant);
+  transition: color var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-standard);
+}
+/* 选中指示器：未选中透明，选中铺 secondary-container 胶囊。
+   宽度按内容收缩并以所在格子为上限，所以条目再窄也不会溢出。 */
+.mob-nav-ind {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: max-content; min-width: 56px; max-width: 100%;
+  height: 32px; padding: 0 10px; box-sizing: border-box;
+  border-radius: var(--md-sys-shape-corner-full);
+  transition: background-color var(--md-sys-motion-duration-medium1) var(--md-sys-motion-easing-emphasized);
+}
+.mob-nav-ind .material-symbols-outlined { font-size: 24px; }
+.mob-nav-label { max-width: 100%; font-size: 11px; font-weight: var(--fw-label); line-height: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mob-nav-item.on { color: var(--md-sys-color-on-surface); }
+.mob-nav-item.on .mob-nav-ind {
+  background: var(--md-sys-color-secondary-container);
+  color: var(--md-sys-color-on-secondary-container);
+}
+.mob-nav-item:active .mob-nav-ind { background: color-mix(in srgb, var(--md-sys-color-on-surface) 12%, transparent); }
+.mob-nav-item.on:active .mob-nav-ind {
+  background: color-mix(in srgb, var(--md-sys-color-on-secondary-container) 12%, var(--md-sys-color-secondary-container));
+}
+
+/* ===== 「更多」底部面板：底部导航放不下的入口 + 编辑/渲染切换 ===== */
+.mob-more { display: flex; flex-direction: column; }
+.mob-more-row {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 4px 8px 14px; margin-bottom: 4px;
+  border-bottom: 1px solid var(--md-sys-color-outline-variant);
+}
+.mob-more-row-label { font-size: 14px; color: var(--md-sys-color-on-surface); }
+/* MD3 list item：56dp 高，满足手指触控目标下限 */
+.mob-more-item {
+  display: flex; align-items: center; gap: 14px;
+  width: 100%; min-height: 56px; padding: 8px;
+  border: none; border-radius: var(--md-sys-shape-corner-medium);
+  background: transparent; color: var(--md-sys-color-on-surface);
+  font: inherit; text-align: left; cursor: pointer;
+}
+.mob-more-item:active { background: color-mix(in srgb, var(--md-sys-color-on-surface) 12%, transparent); }
+.mob-more-ic { flex: none; font-size: 24px; color: var(--md-sys-color-on-surface-variant); }
+.mob-more-text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.mob-more-label { font-size: 15px; }
+.mob-more-sub { font-size: 12px; color: var(--md-sys-color-on-surface-variant); }
+.mob-more-arrow { flex: none; font-size: 20px; color: var(--md-sys-color-on-surface-variant); opacity: .6; }
+
+/* ===== 车卡页：MD3 Primary Tabs 分组切换（吸顶） =====
+   为什么用主标签页而不是分段按钮：MD3 里两者的分工是
+     · 分段按钮（segmented button）——「选值」：互斥选项、筛选、视图密度之类；
+     · 主标签页（primary tabs）——「切换同级视图」：同一层级下的若干面板。
+   这里切的正是同级板块面板，属于后者，所以改用 Tabs。
+   选中态由组件自带的 primary 色胶囊指示器表示，并带指示器滑动动画与左右方向键导航。
+   吸顶是为了滚到板块底部时仍能换组，不必先滚回顶部。 */
+.mob-tabsbar {
+  position: sticky; top: 0; z-index: 40;
+  margin: -6px -2px 0;
+  background: color-mix(in srgb, var(--md-sys-color-background) 94%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+/* 5 个标签按等宽铺满：中文标签都是 2 字，等宽最好读，也不必横向滚动 */
+.mob-tabsbar md-tabs { width: 100%; }
+.mob-tabsbar md-primary-tab {
+  flex: 1 1 0;
+  --md-primary-tab-container-height: 48px;
+  --md-primary-tab-label-text-size: 13px;
+}
+
+/* ===== 命中 / 伤害：手机端由横向滚动改为卡片流 =====
+   窄屏放不下 9 列（攻击）与 7 列（伤害），原先靠 overflow-x 横向滚动，
+   手机上拖横向滚动条很难受、也看不全。改为「一次攻击 = 一张卡」：
+   · 表头整行隐藏，列名改由每个数值格用 ::before 自带，读起来不必对照表头；
+   · 首格「名称」升为卡片标题，并作为攻击/伤害配对的识别锚点；
+   · 其余数值格排成两列，去掉原来的小方框，由整张卡承担容器与描边。
+   ⚠ :nth-child 的列名与 CombatPanel 的 ATTACK_HEAD / DAMAGE_HEAD 一一对应，
+     列顺序若有增删，这里必须同步改，否则标签会张冠李戴。 */
+@media (max-width: 768px) {
+  /* 取消原有的横向滚动容器，否则卡片流仍会被它裁切；
+     卡片间距一律交给 .combat-table 的 flex gap，卡片自身不再加 margin，避免双重间距 */
+  .combat-table { overflow-x: visible; gap: 10px; }
+  /* 表头隐藏：列名下沉到每格 */
+  .combat-table .ct-head { display: none; }
+
+  .combat-table.attack .ct-row,
+  .combat-table.damage .ct-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px 8px;
+    min-width: 0;
+    padding: 10px;
+    border: 1px solid var(--md-sys-color-outline-variant);
+    border-radius: var(--md-sys-shape-corner-medium);
+    background: var(--md-sys-color-surface-container-low);
+  }
+
+  /* 名称：整行标题，与下方数值格用一条分隔线隔开 */
+  .combat-table.attack .ct-row > .ct-cell:nth-child(1),
+  .combat-table.damage .ct-row > .ct-cell:nth-child(1) {
+    grid-column: 1 / -1;
+    align-items: flex-start;
+    padding: 0 0 8px;
+    border: none;
+    border-bottom: 1px solid var(--md-sys-color-outline-variant);
+    border-radius: 0;
+    background: transparent;
+  }
+  .combat-table.attack .ct-row > .ct-cell:nth-child(1) .ct-label-text,
+  .combat-table.damage .ct-row > .ct-cell:nth-child(1) .ct-label-text {
+    font-size: 14px;
+    font-weight: var(--fw-subheading);
+  }
+
+  /* 数值格：一律竖排（覆盖 .ct-pick 的横向排布），列名在上、数值在下 */
+  .combat-table.attack .ct-row > .ct-cell:nth-child(n+2),
+  .combat-table.damage .ct-row > .ct-cell:nth-child(n+2) {
+    flex-direction: column;
+    gap: 2px;
+    min-height: 46px;
+    padding: 6px 4px;
+    border-radius: var(--md-sys-shape-corner-small);
+  }
+  .combat-table.attack .ct-row > .ct-cell:nth-child(n+2)::before,
+  .combat-table.damage .ct-row > .ct-cell:nth-child(n+2)::before {
+    display: block;
+    font-size: 11px;
+    font-weight: var(--fw-label);
+    line-height: 1.2;
+    color: var(--md-sys-color-on-surface-variant);
+  }
+
+  /* 列名：与 ATTACK_HEAD 顺序一致 */
+  .combat-table.attack .ct-row > .ct-cell:nth-child(2)::before { content: "总加值"; }
+  .combat-table.attack .ct-row > .ct-cell:nth-child(3)::before { content: "½等级"; }
+  .combat-table.attack .ct-row > .ct-cell:nth-child(4)::before { content: "属性调整值"; }
+  .combat-table.attack .ct-row > .ct-cell:nth-child(5)::before { content: "职业加值"; }
+  .combat-table.attack .ct-row > .ct-cell:nth-child(6)::before { content: "熟练加值"; }
+  .combat-table.attack .ct-row > .ct-cell:nth-child(7)::before { content: "专长加值"; }
+  .combat-table.attack .ct-row > .ct-cell:nth-child(8)::before { content: "增强加值"; }
+  .combat-table.attack .ct-row > .ct-cell:nth-child(9)::before { content: "其他"; }
+
+  /* 列名：与 DAMAGE_HEAD 顺序一致 */
+  .combat-table.damage .ct-row > .ct-cell:nth-child(2)::before { content: "总加值"; }
+  .combat-table.damage .ct-row > .ct-cell:nth-child(3)::before { content: "伤害骰"; }
+  .combat-table.damage .ct-row > .ct-cell:nth-child(4)::before { content: "属性调整值"; }
+  .combat-table.damage .ct-row > .ct-cell:nth-child(5)::before { content: "专长加值"; }
+  .combat-table.damage .ct-row > .ct-cell:nth-child(6)::before { content: "增强加值"; }
+  .combat-table.damage .ct-row > .ct-cell:nth-child(7)::before { content: "其他"; }
+
+  /* 骰子指令行用 flex gap 跟随所属卡片，无需额外外边距。
+     但它是 nowrap 的 flex 行，长攻击名会把卡片（进而把整页）撑宽，所以允许内部换行 */
+  .combat-table .ct-dice-row { flex-wrap: wrap; }
+  .combat-table .ct-dice-row > span { min-width: 0; overflow-wrap: anywhere; }
+}
+
+/* ===== 设置页：手机端重新排布 =====
+   原有样式按桌面宽度写死：标签固定 110px、滑块固定 220px、分段按钮按桌面排。
+   手机上这些固定宽度会把控件挤出板块，这就是设置页「挤压」的来源。改为：
+   · 标签列收窄到 4.5em —— 仍能对齐，但不再抢走三分之一的行宽；
+   · 滑块改为弹性宽度，跟随剩余空间伸缩；
+   · 分段按钮收紧内边距并允许收缩（「预设/自选/跟随立绘/跟随背景」四项原本必然溢出）；
+   · 长链接、长文案允许在格内断行。 */
+@media (max-width: 768px) {
+  .settings { max-width: none; }
+  .settings-row { gap: 8px 10px; }
+  .settings-row .field-label { min-width: 4.5em; }
+  .settings-row md-slider { flex: 1 1 100px; width: auto; min-width: 0; }
+  /* 放不下时允许横向滚动：.md3-seg 原本是 overflow:hidden，
+     万一仍超出宽度会把选项直接裁掉、变得点不到，滚动比裁掉好 */
+  .settings-row .md3-seg { max-width: 100%; overflow-x: auto; overflow-y: hidden; scrollbar-width: none; }
+  .settings-row .md3-seg::-webkit-scrollbar { display: none; }
+  .settings-row .md3-seg-btn { min-width: 0; padding: 0 10px; font-size: 12px; }
+  .settings-link, .settings-row .label { min-width: 0; overflow-wrap: anywhere; }
+  /* 选色器改为跟随视口，避免 224px 固定尺寸在小屏上溢出 */
+  .color-picker-pop { max-width: 100%; box-sizing: border-box; }
+  .color-picker-pop .react-colorful { width: 100%; max-width: 224px; height: auto; aspect-ratio: 1 / 1; }
+}
+
+/* ===== 弹窗（存档 / 各类选择框）：手机端重新排布 =====
+   · 弹窗外边距由 48px 收到 20px —— md-dialog 内容槽自带 24px 内边距，
+     边距每省 1px 都会变成内容的可用宽度（360px 视口下净增 28px）；
+   · 存档卡片行原本是「名称 …… 保存 / 重命名 / 删除」横向一行。
+     三个 .crop-btn 各带 20px 左右内边距、合计约 220px，而它们在 .card-row-btns 里
+     是 flex:none（不收缩），于是手机上存档名被压到只剩十几像素 —— 这就是存档页的「挤压」。
+     改为行内换行：名称占满一行，按钮组另起一行三等分。 */
+@media (max-width: 768px) {
+  /* .sheet-dialog-save 是 (0,3,1) 特异性，高于下面的选择器，必须单独列出才能覆盖 */
+  md-dialog.sheet-dialog,
+  md-dialog.sheet-dialog-xw,
+  md-dialog.sheet-dialog.sheet-dialog-save { max-width: calc(100% - 20px); }
+
+  .card-row { flex-wrap: wrap; gap: 10px; }
+  .card-row-main { flex: 1 1 100%; }
+  .card-row-btns { flex: 1 1 100%; }
+  /* 三个按钮等分整行：触控目标更大，也不再和存档名抢宽度 */
+  .card-row-btns .crop-btn { flex: 1 1 0; min-width: 0; padding: 8px 6px; font-size: 13px; }
+
+  /* 存档名与更新时间改为上下两行，长名字不再和时间挤在同一行 */
+  .card-row-name { flex-direction: column; align-items: flex-start; gap: 2px; }
+  .preset-name, .preset-label { max-width: 100%; overflow-wrap: anywhere; }
+
+  /* 导出面板与格式按钮内边距收紧 */
+  .dialog-save-export { padding: 12px; }
+  .export-format-btn { padding: 0 8px; }
+}
+
+/* ===== 系统性审计第 2 轮：其余无手机覆盖的定宽 / 多列隐患 =====
+   逐条来源见 CLAUDE 的 CSS 扫描：这些规则在 360px 视口下会超出可用宽度。 */
+@media (max-width: 768px) {
+  /* .crop-btn 左右各 20px 内边距：它是存档页挤压的元凶，
+     存档区已单独处理，这里把立绘裁切弹窗等其他用到它的地方一起收紧 */
+  .crop-btn { padding: 8px 14px; }
+
+  /* 260px 的 min-width 在 320px 屏上会超出弹窗内容宽度（弹窗 = min(94vw,…) 再去掉 24px 内边距） */
+  .def-detail-cols.def-detail-cols-1 > .def-detail-col { min-width: 0; }
+  .hb-levelsection-ref { min-width: 0; }
+
+  /* 私设编辑器：专长预设三列在手机上每列仅约 96px，专长名会被压断，收成两列 */
+  .hb-feat-presets { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+  /* 阵营选择：三列在窄屏每列约 90px，「守序善良」这类四字阵营名已到临界，收成两列 */
+  .align-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}

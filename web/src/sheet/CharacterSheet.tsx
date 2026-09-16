@@ -1,6 +1,6 @@
 import { Fragment, useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { createPortal } from "react-dom";
-import { FilledTextField, FilledSelect, SelectOption, TextButton, IconButton, FilledTonalButton, Switch } from "../components/md";
+import { FilledTextField, FilledSelect, SelectOption, TextButton, IconButton, FilledTonalButton, Switch, Tabs, PrimaryTab } from "../components/md";
 import { loadCategory, loadRelations } from "../data/loaders";
 import type { Entry } from "../data/types";
 import { type AbilityKey, type Character, ABILITY_LABELS, deriveStats, isHeavyArmor, parseClassStats, parseRaceAbilities, racialBonus, applyAbilityBonus, parseTrainedSkillCount, parseClassSkills, parseBuiltinTrainedSkills, cleanDisplayName, setPowerSlot, clearPowerSlot, setFeatSlot, clearFeatSlot, setEquipmentSlot, clearEquipmentSlot, EQUIPMENT_SLOTS, buyPointsUsed, BUY_POINTS, DEFENSE_BONUS_SOURCES, parseRaceDefenses, baseClassName, SKILL_TABLE, ARMOR_PENALTY_SKILLS, armorPenaltyFor, zhName, type DefenseKey, type DefenseBonusSource, type SpeedMods, type SkillMods, type PowerSlots, grantedPowerCategory, grantedPowerSlot, type SlotLevel, ENCOUNTER_SLOT_LEVELS, DAILY_SLOT_LEVELS, UTILITY_SLOT_LEVELS, PARAGON_SLOT_LEVELS, LEGENDARY_SLOT_LEVEL, type ClassStats, type RaceDefenseBonus, type DerivedStats, setRitualSlot, clearRitualSlot, customSum, emptyCustomBonuses, type CustomBonuses, type CustomEntry } from "./character";
@@ -18,7 +18,7 @@ import { collectProficiencyTokens, collectProficiencySources, isProficient, feat
 import { SmartHover } from "./SmartHover";
 import { collectClassSources, collectFeatSources } from "./combat-source";
 import { stripWiki } from "../lib/text";
-import { panelMeta, useSheetLayout, type SheetPanelId } from "../lib/sheetLayout";
+import { panelMeta, useSheetLayout, panelsInGroup, defaultPanelGroup, SHEET_PANEL_GROUPS, type SheetPanelId } from "../lib/sheetLayout";
 import { hybridTalentGroups, resolveHybridOption, isHybridTalentFeat, mergedClassTraitText, originalFeatureInfo, type HybridTalentGroup } from "../lib/hybrid";
 import { wikiToHtml, classTraitHtml, classFeaturesHtml, classSummary, raceTraitHtml, raceBodyHtml, splitRaceLore, splitClassLore, splitAuxPowers, parseSubraceInfo, parseFeatureSections, parseClassFeatureOptions, parseReplacementPairs, tokenizeWikiBody, parseRaceTraitLines, type FeatureSection } from "../lib/wikirender";
 import { BASE_WEAPONS, BASE_ARMORS, BASE_IMPLEMENTS, BASE_SHIELDS, findBaseItem, baseItemId, traitsText, type BaseWeapon, type BaseImplement } from "../lib/baseitems";
@@ -4723,19 +4723,73 @@ function HybridAbilityBlock({ entry, entry2, detail }: { entry: Entry; entry2: E
   );
 }
 
+/** 手机端当前展开的板块分组（顶部胶囊的选择）：本地记住，重开仍停在那一组 */
+const MOBILE_GROUP_KEY = "kcc.sheetMobileGroup";
+
 export default function CharacterSheet({
   layout = "single",
   mode,
   char,
   setChar,
+  mobile = false,
+  forceAllPanels = false,
 }: {
   layout: "single" | "double";
   mode: "edit" | "render";
   char: Character;
   setChar: React.Dispatch<React.SetStateAction<Character>>;
+  /** 手机端：板块改为「顶部胶囊分组 + 一屏一组」，不再整页长滚动 */
+  mobile?: boolean;
+  /** 导出进行中：强制铺开全部板块，否则导出的图 / PDF 只含当前分组 */
+  forceAllPanels?: boolean;
 }) {
   // 板块摆放（「设置 → 车卡页面板块」可拖动调整）：配置变化时本组件自动重渲染
   const sheetLayout = useSheetLayout();
+
+  // 手机端分组切换：一屏只渲染当前分组的板块，解决 15 个板块整页长滚动。
+  // 导出时必须铺开全部板块（forceAllPanels），否则导出的图 / PDF 只含当前那一组。
+  const groupedMobile = mobile && !forceAllPanels;
+  const [panelGroupId, setPanelGroupId] = useState<string>(() => {
+    try {
+      return localStorage.getItem(MOBILE_GROUP_KEY) ?? "";
+    } catch {
+      return "";
+    }
+  });
+  const activeGroup = groupedMobile
+    ? SHEET_PANEL_GROUPS.find((g) => g.id === panelGroupId) ?? defaultPanelGroup(sheetLayout.single)
+    : null;
+  // 单独取出 id 给胶囊比较用：回调里比较字符串，省得依赖闭包的类型收窄
+  const activeGroupId = activeGroup ? activeGroup.id : "";
+  const pickPanelGroup = (id: string) => {
+    setPanelGroupId(id);
+    try {
+      localStorage.setItem(MOBILE_GROUP_KEY, id);
+    } catch {
+      /* 存不进就只在本次会话生效，不影响切换 */
+    }
+  };
+  // 组内顺序沿用设置页拖出来的 single 顺序
+  const singlePanelIds = activeGroup ? panelsInGroup(activeGroup, sheetLayout.single) : sheetLayout.single;
+
+  // md-tabs 自己持有选中态，挂载后要把记住的分组同步过去。
+  // 注意：程序化设置 activeTabIndex 同样会冒泡 change，所以必须先比对当前值，
+  // 否则同步 → change → 同步 会来回触发。
+  const tabsBarRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!groupedMobile || !activeGroup) return;
+    const el = tabsBarRef.current?.querySelector("md-tabs") as (HTMLElement & { activeTabIndex?: number }) | null;
+    if (!el) return;
+    const idx = SHEET_PANEL_GROUPS.findIndex((g) => g.id === activeGroupId);
+    if (idx >= 0 && el.activeTabIndex !== idx) el.activeTabIndex = idx;
+  }, [groupedMobile, activeGroup, activeGroupId]);
+
+  // 标签页切换：md-tabs 已完成选中态与指示器动画，这里只把结果同步回分组状态
+  const onTabsChange = (e: Event) => {
+    const el = e.target as HTMLElement & { activeTabIndex?: number };
+    const g = typeof el.activeTabIndex === "number" ? SHEET_PANEL_GROUPS[el.activeTabIndex] : undefined;
+    if (g) pickPanelGroup(g.id);
+  };
   const [races, setRaces] = useState<Entry[]>([]);
   // 种族选择弹窗展示顺序：按出处系列分组排序（不影响数据存储与逻辑查找）
   const sortedRaces = useMemo(() => sortRaces(races), [races]);
@@ -7572,7 +7626,23 @@ return (
           <div className="col-right">{sheetLayout.double.right.map(panelNode)}</div>
         </div>
       ) : (
-        <>{sheetLayout.single.map(panelNode)}</>
+        <>
+          {/* 手机端：MD3 Primary Tabs 分组切换（选中项由 primary 色胶囊指示器标出）。
+              吸顶是为了滚到板块底部时仍能换组，不必先滚回顶部 */}
+          {activeGroup && (
+            <div className="mob-tabsbar" ref={tabsBarRef}>
+              <Tabs aria-label="车卡页面板块分组" onChange={onTabsChange}>
+                {SHEET_PANEL_GROUPS.map((g) => (
+                  <PrimaryTab key={g.id}>{g.label}</PrimaryTab>
+                ))}
+              </Tabs>
+            </div>
+          )}
+          {/* display:contents 让这层不生成盒子，板块仍直接参与 .sheet 的 flex 间距 */}
+          <div role="tabpanel" aria-label={activeGroup ? activeGroup.label : undefined} style={{ display: "contents" }}>
+            {singlePanelIds.map(panelNode)}
+          </div>
+        </>
       )}
 
       {picker === "class" && (
