@@ -15,7 +15,8 @@
     "rules": "tsc && node dist/cli.js rules",
     "sync": "tsc && node dist/cli.js sync",
     "commit": "tsc && node dist/cli.js commit",
-    "pipeline": "tsc && node dist/cli.js all"
+    "pipeline": "tsc && node dist/cli.js all",
+    "verify:workspace": "node scripts/verify-workspace.mjs"
   },
   "dependencies": {
     "cheerio": "^1.0.0",
