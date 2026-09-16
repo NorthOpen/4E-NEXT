@@ -22,7 +22,7 @@ import {
 
 type Busy = null | "test" | "sync";
 interface Msg {
-  kind: "ok" | "err";
+  kind: "ok" | "warn" | "err";
   text: string;
 }
 
@@ -55,8 +55,8 @@ export default function SyncSettings() {
     setBusy("test");
     setMsg(null);
     try {
-      const note = await testConnection(cfg);
-      setMsg({ kind: "ok", text: note });
+      const report = await testConnection(cfg);
+      setMsg({ kind: report.level === "ok" ? "ok" : "warn", text: report.text });
     } catch (e) {
       setMsg({ kind: "err", text: describeError(e) });
     } finally {
@@ -97,8 +97,13 @@ export default function SyncSettings() {
     <section className="block">
       <h3 className="block-title">数据与同步</h3>
       <p className="hint">
-        用你自己的 WebDAV 网盘（坚果云、Nextcloud、群晖等）在多台设备之间同步<b>人物卡</b>与<b>私设资源包</b>。
+        用你自己的 WebDAV 网盘在多台设备之间同步<b>人物卡</b>与<b>私设资源包</b>。
         外观设置与板块布局属于本机偏好，不会同步。
+      </p>
+      <p className="hint">
+        <b>开始之前请先确认一件事：</b>网页直连 WebDAV 需要服务端主动放行跨域（CORS），
+        而<b>多数公共网盘并不提供这个开关</b>——能自己改服务端配置的（自建 Nextcloud、群晖、Cloudreve、MinIO 等）才比较稳。
+        点「测试连接」会明确告诉你卡在哪一环，别跳过这一步。
       </p>
 
       <div className="settings-row">
@@ -110,7 +115,7 @@ export default function SyncSettings() {
       <div className="d4e-sync-field">
         <FilledTextField
           label="WebDAV 地址"
-          placeholder="https://dav.jianguoyun.com/dav/"
+          placeholder="https://你的域名/dav/"
           value={cfg.url}
           onInput={(e) => patch({ url: (e.target as HTMLInputElement).value ?? "" })}
         />
@@ -166,7 +171,7 @@ export default function SyncSettings() {
         {state.lastSummary ? "（" + state.lastSummary + "）" : ""}
       </p>
 
-      {msg && <p className={msg.kind === "err" ? "d4e-sync-msg err" : "d4e-sync-msg ok"}>{msg.text}</p>}
+      {msg && <p className={"d4e-sync-msg " + msg.kind}>{msg.text}</p>}
 
       <p className="hint">
         <b>关于密码：</b>它只保存在本机浏览器里，不会上传到别处；但请务必使用网盘提供的
@@ -175,7 +180,8 @@ export default function SyncSettings() {
       <p className="hint">
         <b>连接失败多半是跨域：</b>浏览器对 WebDAV 用的 PUT / PROPFIND 会先发跨域预检，
         服务端需要放行这些方法与 <code>Authorization</code>、<code>Content-Type</code>、<code>If-Match</code> 等请求头。
-        自建 Nextcloud / 群晖通常可在服务端配置；部分公共网盘不开放跨域，这种情况下只能改用自建服务。
+        服务端需要放行 GET / PUT / MKCOL（PROPFIND 仅用于本测试，同步不依赖它），
+        以及 <code>Authorization</code>、<code>Content-Type</code>、<code>If-Match</code> 等请求头。
         另外本站是 HTTPS，WebDAV 地址也必须是 <code>https://</code>，否则会被浏览器按「混合内容」拦掉。
       </p>
     </section>

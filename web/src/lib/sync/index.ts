@@ -121,6 +121,7 @@ export async function syncNow(): Promise<SyncOutcome> {
 export { loadSyncConfig, saveSyncConfig, isConfigured, deviceId } from "./config";
 export { loadSyncState, clearSyncBase } from "./base";
 export { testConnection } from "./webdav";
+export type { ConnectionReport } from "./webdav";
 export { dirUrl, syncFileUrl } from "./webdav";
 export type { SyncConfig, SyncOutcome, ConflictInfo, SyncErrorKind } from "./types";
 export { SyncError } from "./types";

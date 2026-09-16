@@ -942,7 +942,7 @@ md-dialog.sheet-dialog.sheet-dialog-store { max-width: min(520px, calc(100% - 48
 }
 .ct-label-input::placeholder { color: var(--md-sys-color-on-surface-variant); opacity: .7; }
 
-/* ===== ⑧ 数据与同步（WebDAV） =====
+/* ===== ⑨ 数据与同步（WebDAV） =====
    配置项要占满整行：md-filled-text-field 默认是 inline 宽度，
    在设置页的窄栏里会被压成一小截，字段多了完全没法核对。 */
 .d4e-sync-field { margin-top: 12px; }
@@ -956,6 +956,10 @@ md-dialog.sheet-dialog.sheet-dialog-store { max-width: min(520px, calc(100% - 48
 .d4e-sync-msg.ok {
   background: var(--md-sys-color-secondary-container);
   color: var(--md-sys-color-on-secondary-container);
+}
+.d4e-sync-msg.warn {
+  background: var(--md-sys-color-tertiary-container);
+  color: var(--md-sys-color-on-tertiary-container);
 }
 .d4e-sync-msg.err {
   background: var(--md-sys-color-error-container);
