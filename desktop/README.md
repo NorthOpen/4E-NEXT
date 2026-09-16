@@ -202,33 +202,60 @@ pnpm --filter 4enext-desktop clean -- --all  # 连 renderer/ 一起清（需重�
 
 ## 发布流程
 
-```bash
-# 1) 提交并打 tag（版本号与 desktop/package.json 一致，前面加 v）
-git add -A && git commit -m "feat(desktop): 桌面离线版 0.2.3-beta.4"
-git tag -a v0.2.3-beta.4 -m "4E NEXT 桌面版 0.2.3-beta.4"
-git push origin main && git push origin v0.2.3-beta.4
+以 0.2.3-beta.4 为例，tag 用 `4E-NEXT-Desktop-V0.2.3B-beta.4`。
 
-# 2) 出包（会产出安装程序、便携版 zip 与 SHA256SUMS.txt）
+```bash
+# 1) 提交
+git add -A
+git commit -m "feat: V0.2.3B"
+
+# 2) 打 tag —— git 不允许 tag 名带空格，用连字符
+git tag -a "4E-NEXT-Desktop-V0.2.3B-beta.4" -m "4E NEXT 桌面版 0.2.3-beta.4（测试版）"
+git push origin main
+git push origin "4E-NEXT-Desktop-V0.2.3B-beta.4"
+
+# 3) 出包（产出安装程序、便携版 zip 与 SHA256SUMS.txt）
 pnpm --filter 4enext-web build:desktop
 pnpm --filter 4enext-desktop dist
 pnpm --filter 4enext-desktop pack:portable
 
-# 3) 创建 Release（需要 gh CLI）
-gh release create v0.2.3-beta.4 \
+# 4) 创建 Release 并上传附件（不依赖 gh CLI）
+export GITHUB_TOKEN=xxx        # classic PAT 的 repo scope 即可
+node desktop/scripts/create-release.mjs \
+  --tag "4E-NEXT-Desktop-V0.2.3B-beta.4" \
   --title "4E NEXT 桌面版 0.2.3-beta.4（测试版）" \
   --notes-file desktop/RELEASE-NOTES.md \
-  --prerelease \
-  desktop/release/4E-NEXT-0.2.3-beta.4-setup.exe \
-  desktop/release/4E-NEXT-0.2.3-beta.4-win-x64-portable.zip \
-  desktop/release/SHA256SUMS.txt
+  --prerelease
 ```
 
-没有 `gh` 时在网页操作：**Releases → Draft a new release → 选择 tag `v0.2.3-beta.4`**，
-标题填 `4E NEXT 桌面版 0.2.3-beta.4（测试版）`，正文直接粘贴 `desktop/RELEASE-NOTES.md`，
-**勾选 “Set as a pre-release”**（beta 不该顶掉 stable 的 Latest 标记），再拖入两个安装包与 `SHA256SUMS.txt`。
+`create-release.mjs` 会自动发现 `desktop/release/` 下的 `*.exe` / `*.zip` 与 `SHA256SUMS.txt` 并上传，
+并且**复用已存在的同名 Release、跳过已传过的附件**——所以大文件传一半断了，直接重跑就能续传。
 
-> 建议只传 `setup.exe`、`portable.zip`、`SHA256SUMS.txt` 三个文件。
-> `win-unpacked/` 是 432MB 的未打包目录，单文件上限虽然够（GitHub 每个附件 2GB），但没有分发价值。
+也可以分批传，避免单次调用太久：
+
+```bash
+node desktop/scripts/create-release.mjs --tag "<tag>" --skip-upload                  # 只建 Release
+node desktop/scripts/create-release.mjs --tag "<tag>" --assets "desktop/release/xxx.zip"   # 单独传一个附件
+```
+
+装了 `gh` 的话，等价写法：
+
+```bash
+gh release create "4E-NEXT-Desktop-V0.2.3B-beta.4" \
+  --title "4E NEXT 桌面版 0.2.3-beta.4（测试版）" \
+  --notes-file desktop/RELEASE-NOTES.md --prerelease \
+  desktop/release/*.exe desktop/release/*.zip desktop/release/SHA256SUMS.txt
+```
+
+**几条踩过的坑**：
+
+- **tag 名不能带空格**，git 会直接拒绝（`is not a valid tag name`）。要可读就用连字符。
+- **务必带 `--prerelease`**：beta 若被标成 Latest，会顶掉 stable 版本的默认下载。
+- **只传 `setup.exe`、`portable.zip`、`SHA256SUMS.txt`**。`win-unpacked/` 是 432MB 的未打包目录，
+  GitHub 单附件上限虽然够（2GB），但没有分发价值。
+- token 用 classic PAT 时 scope 选 `repo`；fine-grained token 需要 `Contents: Read and write`。
+- 附件文件名按版本号推导**不可靠**（tag 里是 `V0.2.3B-beta.4`，产物却是 `0.2.3-beta.4`），
+  所以脚本用目录扫描而不是拼字符串。
 
 ## 已知限制（测试版）
 
