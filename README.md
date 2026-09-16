@@ -6,9 +6,7 @@
 
 ## 快速开始
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/02fba75f-ac05-4484-8853-621daf442067/deploy-status)](https://app.netlify.com/projects/4e-next/deploys)
-
-点击访问[在线版本](https://4e-next.netlify.app/)
+点击访问[在线版本](https://4e-next.banque.ltd/)
 
 ## 技术栈
 
