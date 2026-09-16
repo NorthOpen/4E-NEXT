@@ -4724,7 +4724,7 @@ function HybridAbilityBlock({ entry, entry2, detail }: { entry: Entry; entry2: E
 }
 
 /** 手机端当前展开的板块分组（顶部胶囊的选择）：本地记住，重开仍停在那一组 */
-const MOBILE_GROUP_KEY = "kcc.sheetMobileGroup";
+const MOBILE_GROUP_KEY = "4enext.sheetMobileGroup";
 
 export default function CharacterSheet({
   layout = "single",

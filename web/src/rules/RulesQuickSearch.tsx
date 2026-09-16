@@ -156,7 +156,7 @@ export default function RulesQuickSearch() {
         <p className="rules-note rules-error">
           {error}
           <br />
-          请在仓库根目录先执行 pnpm rules 生成万律词条数据，再运行 pnpm --filter dnd4e-kcc-web copy-data。
+          请在仓库根目录先执行 pnpm rules 生成万律词条数据，再运行 pnpm --filter 4enext-web copy-data。
         </p>
       )}
       {!payload && !error && <p className="rules-note">正在载入万律书…</p>}

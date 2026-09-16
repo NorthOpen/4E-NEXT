@@ -7,8 +7,8 @@ export interface SavedCard {
   updatedAt: number;
 }
 
-const CARDS_KEY = "kcc.cards.v1";
-const ACTIVE_KEY = "kcc.activeCard.v1";
+const CARDS_KEY = "4enext.cards.v1";
+const ACTIVE_KEY = "4enext.activeCard.v1";
 
 export function uid(): string {
   return Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
@@ -104,11 +104,13 @@ const GROUP_LABELS: Record<StorageGroupKey, string> = {
 };
 
 function groupOf(key: string): StorageGroupKey {
-  if (key.startsWith("kcc.homebrew") || key === "kcc.userEntries.v1") return "homebrew";
-  if (key === "kcc.cards.v1" || key === "kcc.activeCard.v1") return "cards";
-  if (key === "kcc.settings.v1" || key === "kcc.sheetLayout.v1" || key.startsWith("kcc.bg") || key.startsWith("kcc.portrait") || key === "kcc-layout" || key === "kcc-bg") {
+  if (key.startsWith("4enext.homebrew") || key === "4enext.userEntries.v1") return "homebrew";
+  if (key === "4enext.cards.v1" || key === "4enext.activeCard.v1") return "cards";
+  if (key === "4enext.settings.v1" || key === "4enext.sheetLayout.v1" || key.startsWith("4enext.bg") || key.startsWith("4enext.portrait") || key === "4enext-layout" || key === "4enext-bg") {
     return "appearance";
   }
+  // 同步配置（WebDAV 地址/账号/应用密码）与同步基线同属「设置」一类
+  if (key.startsWith("4enext.webdav") || key.startsWith("4enext.sync") || key === "4enext.deviceId.v1") return "appearance";
   return "other";
 }
 

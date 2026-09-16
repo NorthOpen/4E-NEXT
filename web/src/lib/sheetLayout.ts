@@ -1,7 +1,7 @@
 // 车卡页板块摆放（设置 → 车卡页面板块）
 //
 // 车卡页由若干「板块」拼成，本模块给出板块清单、默认摆放，以及读写本地缓存的入口。
-// 用户拖动调整后的顺序存在 localStorage（kcc.sheetLayout.v1），刷新、重开浏览器后仍然生效。
+// 用户拖动调整后的顺序存在 localStorage（4enext.sheetLayout.v1），刷新、重开浏览器后仍然生效。
 // 顺序变化通过 useSyncExternalStore 广播：设置页改完，车卡页（若已挂载）立刻跟着变。
 
 import { useSyncExternalStore } from "react";
@@ -145,7 +145,7 @@ export const DEFAULT_SHEET_LAYOUT: SheetLayoutConfig = {
   },
 };
 
-const SHEET_LAYOUT_KEY = "kcc.sheetLayout.v1";
+const SHEET_LAYOUT_KEY = "4enext.sheetLayout.v1";
 
 function defaultLayout(): SheetLayoutConfig {
   return { single: [...DEFAULT_SHEET_LAYOUT.single], double: { top: [...DEFAULT_SHEET_LAYOUT.double.top], left: [...DEFAULT_SHEET_LAYOUT.double.left], right: [...DEFAULT_SHEET_LAYOUT.double.right] } };

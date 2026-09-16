@@ -18,12 +18,12 @@ export interface Settings {
   fontMode: FontMode;
 }
 
-const SETTINGS_KEY = "kcc.settings.v1";
+const SETTINGS_KEY = "4enext.settings.v1";
 
 // 背景图缓存：图片字节存 IndexedDB（lib/imageCache），localStorage 只存「读取所需路径」——
 // 即缓存键（BG_CACHE_KEY）或回退用的 data URL。背景不随人物卡导出。
-export const BG_CACHE_KEY = "kcc-bg";            // IndexedDB 中的缓存键
-export const BG_CACHE_MARK_KEY = "kcc.bgCacheKey.v1"; // localStorage 中存的路径标记
+export const BG_CACHE_KEY = "4enext-bg";            // IndexedDB 中的缓存键
+export const BG_CACHE_MARK_KEY = "4enext.bgCacheKey.v1"; // localStorage 中存的路径标记
 
 const SETTINGS_DEFAULTS: Settings = {
   seedMode: "preset",

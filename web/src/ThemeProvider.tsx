@@ -188,14 +188,14 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
         } else if (marker.startsWith("data:")) {
           url = marker; // IndexedDB 失败时的回退：data URL 即路径
         }
-        // 旧版（kcc.bgCustom.v1 直接存 data URL）一次性迁移到缓存
+        // 旧版（4enext.bgCustom.v1 直接存 data URL）一次性迁移到缓存
         if (!url) {
-          const legacy = localStorage.getItem("kcc.bgCustom.v1");
+          const legacy = localStorage.getItem("4enext.bgCustom.v1");
           if (legacy) {
             url = legacy;
             void cachePutImage(BG_CACHE_KEY, legacy).catch(() => {});
             saveBgCacheMarker(BG_CACHE_KEY);
-            try { localStorage.removeItem("kcc.bgCustom.v1"); } catch { /* 忽略 */ }
+            try { localStorage.removeItem("4enext.bgCustom.v1"); } catch { /* 忽略 */ }
           }
         }
         if (!cancelled && url) setBgCustom(url);

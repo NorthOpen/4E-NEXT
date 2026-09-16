@@ -14,7 +14,7 @@ import { loadPools, uniqueEntryId, upsertEntryInPool, type HomebrewPool } from "
 // 三级页面：条目编辑器（整页编辑，不使用弹窗）。
 // 左侧表单 / 右侧实时预览；正文为 Markdown，配一排插入按钮，避免记语法。
 
-const DRAFT_KEY = "kcc.homebrewDraft.v1";
+const DRAFT_KEY = "4enext.homebrewDraft.v1";
 
 function loadDraft(): Record<string, string> {
   try {

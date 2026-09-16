@@ -39,7 +39,7 @@ jobs:
 
       # 前端构建：copy-data（out/ → web/public/data）+ tsc + vite build → web/dist/
       - name: Build web app
-        run: pnpm --filter dnd4e-kcc-web build
+        run: pnpm --filter 4enext-web build
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

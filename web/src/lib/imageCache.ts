@@ -2,7 +2,7 @@
 // localStorage 只保存「读取所需的路径（缓存键）」，图片字节存放在 IndexedDB，
 // 避免大图撑爆 localStorage 的 5MB 配额。
 
-const DB_NAME = "kcc-image-cache";
+const DB_NAME = "4enext-image-cache";
 const STORE = "images";
 const DB_VERSION = 1;
 

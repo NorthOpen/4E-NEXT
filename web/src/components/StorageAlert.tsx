@@ -119,41 +119,41 @@ export default function StorageAlert(props: {
           </>
         }
       >
-        <div className="kcc-store-dlg">
-          <p className="kcc-store-lead">
+        <div className="d4e-store-dlg">
+          <p className="d4e-store-lead">
             {failure.label}这次没能写入浏览器。你现在看到的内容还在，但刷新或关闭页面后就会丢失。
           </p>
 
           {quota && (
-            <div className="kcc-store-gauge">
-              <div className="kcc-store-gauge-head">
-                <span className="kcc-store-gauge-label">
+            <div className="d4e-store-gauge">
+              <div className="d4e-store-gauge-head">
+                <span className="d4e-store-gauge-label">
                   <span className="material-symbols-outlined">database</span>
                   浏览器存储占用
                 </span>
-                <span className="kcc-store-gauge-val">
+                <span className="d4e-store-gauge-val">
                   <b>{fmtBytes(failure.usage.used)}</b>
-                  <span className="kcc-store-gauge-total"> / {fmtBytes(failure.usage.total)}</span>
-                  <span className="kcc-store-gauge-pct">{failure.usage.percent.toFixed(1)}%</span>
+                  <span className="d4e-store-gauge-total"> / {fmtBytes(failure.usage.total)}</span>
+                  <span className="d4e-store-gauge-pct">{failure.usage.percent.toFixed(1)}%</span>
                 </span>
               </div>
               <div
-                className="kcc-store-gauge-bar"
+                className="d4e-store-gauge-bar"
                 role="img"
                 aria-label={"已使用 " + failure.usage.percent.toFixed(1) + "%"}
               >
-                <span className="kcc-store-gauge-fill" style={{ width: failure.usage.percent + "%" }} />
+                <span className="d4e-store-gauge-fill" style={{ width: failure.usage.percent + "%" }} />
               </div>
-              <p className="kcc-store-note">本次需要写入 {fmtBytes(failure.bytes)}，剩余空间放不下。</p>
+              <p className="d4e-store-note">本次需要写入 {fmtBytes(failure.bytes)}，剩余空间放不下。</p>
             </div>
           )}
 
-          <p className="kcc-store-tip">
+          <p className="d4e-store-tip">
             <span className="material-symbols-outlined">warning</span>
             <span>{tipOf(failure)}</span>
           </p>
 
-          {times > 1 && <p className="kcc-store-note">已连续 {times} 次没有保存成功。</p>}
+          {times > 1 && <p className="d4e-store-note">已连续 {times} 次没有保存成功。</p>}
         </div>
       </SheetDialog>
     );
@@ -161,16 +161,16 @@ export default function StorageAlert(props: {
 
   // ---- 形态 ②：MD3 Snackbar ----
   return (
-    <div className="kcc-snackbar" role="alert" aria-live="assertive">
-      <span className="kcc-snackbar-text">
+    <div className="d4e-snackbar" role="alert" aria-live="assertive">
+      <span className="d4e-snackbar-text">
         {failure.label}未保存成功，刷新后会丢失{times > 1 ? "（已连续 " + times + " 次）" : ""}
       </span>
       {props.onBackup && (
-        <TextButton className="kcc-snackbar-action" onClick={props.onBackup}>
+        <TextButton className="d4e-snackbar-action" onClick={props.onBackup}>
           导出备份
         </TextButton>
       )}
-      <IconButton className="kcc-snackbar-close" aria-label="关闭提示" title="关闭提示" onClick={dismiss}>
+      <IconButton className="d4e-snackbar-close" aria-label="关闭提示" title="关闭提示" onClick={dismiss}>
         <span className="material-symbols-outlined">close</span>
       </IconButton>
     </div>

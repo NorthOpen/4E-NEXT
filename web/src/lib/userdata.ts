@@ -38,9 +38,9 @@ export const POOL_ICONS: string[] = [
 ];
 export const DEFAULT_POOL_ICON = "extension";
 
-const POOLS_KEY = "kcc.homebrewPools.v1";
+const POOLS_KEY = "4enext.homebrewPools.v1";
 // 旧扁平存储（Phase C 早期版本），用于一次性迁移。
-const LEGACY_KEY = "kcc.userEntries.v1";
+const LEGACY_KEY = "4enext.userEntries.v1";
 
 function isEntryLike(e: unknown): e is Entry {
   if (!e || typeof e !== "object") return false;

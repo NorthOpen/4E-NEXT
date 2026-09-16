@@ -30,12 +30,12 @@ export default function OverviewView({ layout, char, setChar }: Props) {
   const [rest, setRest] = useState<null | "short" | "long">(null);
   const [restSurges, setRestSurges] = useState(0);
   // 点数字时是直接掷骰还是复制骰子指令（记住上次选择）
-  const [rollMode, setRollMode] = useState<"roll" | "cmd">(() => (localStorage.getItem("kcc-glance-roll") === "cmd" ? "cmd" : "roll"));
+  const [rollMode, setRollMode] = useState<"roll" | "cmd">(() => (localStorage.getItem("4enext-glance-roll") === "cmd" ? "cmd" : "roll"));
   const [roll, setRoll] = useState<RollResult | null>(null);
 
   function switchMode(m: "roll" | "cmd") {
     setRollMode(m);
-    safeSetItem("kcc-glance-roll", m);
+    safeSetItem("4enext-glance-roll", m);
   }
   const act: RollAct = {
     mode: rollMode,

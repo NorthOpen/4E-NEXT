@@ -1,6 +1,6 @@
 {
-  "name": "dnd4e-kcc-web",
-  "version": "0.2.2",
+  "name": "4enext-web",
+  "version": "0.2.3",
   "private": true,
   "type": "module",
   "scripts": {

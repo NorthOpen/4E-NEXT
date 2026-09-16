@@ -12,6 +12,7 @@ import DrawView from "./DrawView";
 import HomebrewView from "./HomebrewView";
 import { loadCards, saveCards, loadActiveId, saveActiveId, safeSetItem, uid, type SavedCard } from "./lib/storage";
 import { defaultCharacter, migrateCharacter, type Character } from "./sheet/character";
+import { SYNC_APPLIED_EVENT } from "./lib/sync";
 import { FilledButton, OutlinedButton, TextButton } from "./components/md";
 import SheetDialog from "./components/SheetDialog";
 import StorageAlert from "./components/StorageAlert";
@@ -54,7 +55,7 @@ function Shell() {
   const [view, setView] = useState<View>("sheet");
   const isMobile = useIsMobile();
   // 手机端强制单栏：不再提供双栏选项
-  const [layoutRaw, setLayoutRaw] = useState<Layout>(() => (localStorage.getItem("kcc-layout") !== "single" ? "double" : "single"));
+  const [layoutRaw, setLayoutRaw] = useState<Layout>(() => (localStorage.getItem("4enext-layout") !== "single" ? "double" : "single"));
   const layout: Layout = isMobile ? "single" : layoutRaw;
   const [mode, setMode] = useState<"edit" | "render">("edit");
   // 手机端「更多」底部面板（承载底栏放不下的入口）
@@ -79,8 +80,18 @@ function Shell() {
   const [renamingId, setRenamingId] = useState<string | null>(null);
   const [renameText, setRenameText] = useState("");
 
+  // 同步把远端数据合并进本机后，紧接着的这次 setChar 是「外部数据驱动」而不是用户编辑：
+  // 用它抑制一轮自动保存，否则会把 updatedAt 顶成「刚刚改过」，让下次同步平白多推一遍。
+  const skipAutoSave = useRef(false);
+  const activeIdRef = useRef(activeId);
+  activeIdRef.current = activeId;
+
   // 自动保存：char 变更防抖写回当前卡
   useEffect(() => {
+    if (skipAutoSave.current) {
+      skipAutoSave.current = false;
+      return;
+    }
     const t = setTimeout(() => {
       setCards((p) => {
         const next = p.map((c) => (c.id === activeId ? { ...c, char, updatedAt: Date.now() } : c));
@@ -90,6 +101,25 @@ function Shell() {
     }, 400);
     return () => clearTimeout(t);
   }, [char, activeId]);
+
+  // 同步发生在设置页，但作用范围是整个应用：合并写回本机后要重载卡片列表，
+  // 并把当前打开的那张卡换成最新内容——否则内存里的 char 还是旧的，
+  // 用户接着编辑就会把刚拉下来的改动覆盖掉。
+  useEffect(() => {
+    function onApplied() {
+      const loaded = loadCards().map((card) => ({ ...card, char: migrateCharacter(card.char) }));
+      setCards(loaded);
+      const keep = loaded.some((c) => c.id === activeIdRef.current) ? activeIdRef.current : loaded[0]?.id ?? "";
+      setActiveId(keep);
+      const active = loaded.find((c) => c.id === keep);
+      if (active) {
+        skipAutoSave.current = true;
+        setChar(active.char);
+      }
+    }
+    window.addEventListener(SYNC_APPLIED_EVENT, onApplied);
+    return () => window.removeEventListener(SYNC_APPLIED_EVENT, onApplied);
+  }, []);
 
   // 立绘跟随卡片：切换/新建/删除卡片时，把该卡的立绘同步进主题显示
   useEffect(() => {
@@ -103,21 +133,21 @@ function Shell() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeId]);
 
-  // 一次性迁移：旧版全局立绘（kcc.portraitOriginal.v1 等）迁移到当前卡片
+  // 一次性迁移：旧版全局立绘（4enext.portraitOriginal.v1 等）迁移到当前卡片
   const portraitMigrated = useRef(false);
   useEffect(() => {
     if (portraitMigrated.current) return;
     portraitMigrated.current = true;
     try {
-      const oldOrig = localStorage.getItem("kcc.portraitOriginal.v1");
-      const oldCrop = localStorage.getItem("kcc.portraitCropped.v1");
+      const oldOrig = localStorage.getItem("4enext.portraitOriginal.v1");
+      const oldCrop = localStorage.getItem("4enext.portraitCropped.v1");
       if (oldOrig) {
         const c = cards.find((x) => x.id === activeId);
         if (c && !c.char.portraitOriginal) {
           void applyPortrait(oldOrig, oldCrop ?? null);
         }
-        localStorage.removeItem("kcc.portraitOriginal.v1");
-        localStorage.removeItem("kcc.portraitCropped.v1");
+        localStorage.removeItem("4enext.portraitOriginal.v1");
+        localStorage.removeItem("4enext.portraitCropped.v1");
       }
     } catch {
       /* 忽略 */
@@ -155,7 +185,7 @@ function Shell() {
     const next: Layout = layoutRaw === "single" ? "double" : "single";
     setLayoutRaw(next);
     // 走统一写入口：存储被禁用时（无痕模式）原来这里会直接抛错，把整个点击处理打断
-    safeSetItem("kcc-layout", next);
+    safeSetItem("4enext-layout", next);
   }
 
   function switchCard(id: string) {
@@ -238,7 +268,7 @@ function Shell() {
   // 导出存档：单文件 JSON，包含 人物/储备/速览/背景 四页内容
   function exportSave() {
     const data = {
-      app: "dnd4e-kcc",
+      app: "4enext",
       format: 1,
       exportedAt: new Date().toISOString(),
       pages: {
@@ -264,7 +294,7 @@ function Shell() {
       try {
         const data = JSON.parse(String(reader.result));
         const c = data && (data.pages && data.pages.character) ? migrateCharacter(data.pages.character) : null;
-        if (!c || data.app !== "dnd4e-kcc") throw new Error("bad");
+        if (!c || data.app !== "4enext") throw new Error("bad");
         setChar(c);
         syncPortraitFromChar(c);
         setCards((p) => {
