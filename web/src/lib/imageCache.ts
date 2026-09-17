@@ -52,6 +52,31 @@ export async function cacheGetImage(key: string): Promise<string | null> {
   }
 }
 
+/**
+ * 清空整个图片缓存库（设置页「清除本机数据」调用）。
+ * 先把已打开的连接关掉再 deleteDatabase，否则浏览器会因为「还有连接在用」而阻塞删除。
+ * 删除失败不抛错：清缓存是尽力而为，调用方随后还会重新加载页面。
+ */
+export async function clearImageCache(): Promise<void> {
+  try {
+    const db = await dbPromise;
+    db?.close();
+  } catch {
+    /* 打开失败就没有连接需要关 */
+  }
+  dbPromise = null;
+  await new Promise<void>((resolve) => {
+    if (typeof indexedDB === "undefined") {
+      resolve();
+      return;
+    }
+    const req = indexedDB.deleteDatabase(DB_NAME);
+    req.onsuccess = () => resolve();
+    req.onerror = () => resolve();
+    req.onblocked = () => resolve();
+  });
+}
+
 /** 删除图片缓存。 */
 export async function cacheDeleteImage(key: string): Promise<void> {
   try {

@@ -1,6 +1,6 @@
 import { platform } from "@platform";
 import type { BgMode, FontMode } from "../ThemeProvider";
-import { NORD_PRESETS, type SeedMode } from "../theme";
+import { COLOR_VARIANTS, DEFAULT_VARIANT, NORD_PRESETS, type SeedMode, type VariantKey } from "../theme";
 import { dataUrlSizeBytes, compressDataUrlToBudget } from "./image";
 import { safeSetItem } from "./storage";
 
@@ -12,6 +12,7 @@ export interface Settings {
   seedMode: SeedMode;
   seedHex: string;
   presetHex: string;
+  variant: VariantKey;
   isDark: boolean;
   bgMode: BgMode;
   bgBlur: number;
@@ -30,6 +31,7 @@ const SETTINGS_DEFAULTS: Settings = {
   seedMode: "preset",
   seedHex: "#5e81ac",
   presetHex: "#5e81ac",
+  variant: DEFAULT_VARIANT,
   isDark: false,
   bgMode: "off",
   bgBlur: 2,
@@ -48,6 +50,8 @@ export function loadSettings(): Settings {
       if (typeof s.seedHex === "string") out.seedHex = s.seedHex;
       // 预设色已移除（如冰蓝/极夜/雪花）时回落默认，避免旧存档指向不存在的色板
       if (typeof s.presetHex === "string" && NORD_PRESETS.some((p) => p.color === s.presetHex)) out.presetHex = s.presetHex;
+      // 取色模式已移除（或旧存档没有该字段）时回落默认，避免指向不存在的方案
+      if (COLOR_VARIANTS.some((v) => v.key === s.variant)) out.variant = s.variant as VariantKey;
       if (typeof s.isDark === "boolean") out.isDark = s.isDark;
       if (typeof s.bgMode === "string") out.bgMode = s.bgMode as BgMode;
       if (typeof s.bgBlur === "number") out.bgBlur = s.bgBlur;

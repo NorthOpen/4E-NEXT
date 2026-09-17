@@ -1,6 +1,6 @@
 import { platform } from "@platform";
 import { createContext, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
-import { seedHexToTheme, themeToCssVars, applyCssVars, imageToSeedHex, type SeedMode } from "./theme";
+import { DEFAULT_VARIANT, applyCssVars, imageToSeedHex, schemeFromSeed, schemeToCssVars, type SeedMode, type VariantKey } from "./theme";
 import { downscaleImage } from "./lib/image";
 import { loadSettings, saveSettings, prepareImageForStore, BG_CACHE_KEY, loadBgCacheMarker, saveBgCacheMarker } from "./lib/settings";
 import { cachePutImage, cacheGetImage, cacheDeleteImage } from "./lib/imageCache";
@@ -15,10 +15,14 @@ interface ThemeContextValue {
   portraitHex: string;
   bgHex: string;
   isDark: boolean;
+  /** 当前生效的种子色（按 seedMode 从预设/自选/立绘/背景中选出） */
+  activeHex: string;
+  variant: VariantKey;
   setSeedMode: (m: SeedMode) => void;
   setSeedHex: (h: string) => void;
   setPresetHex: (h: string) => void;
   setDark: (d: boolean) => void;
+  setVariant: (v: VariantKey) => void;
   portraitOriginal: string | null;
   portraitCropped: string | null;
   setPortrait: (original: string, cropped: string) => Promise<void>;
@@ -63,6 +67,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const [portraitHex, setPortraitHex] = useState(DEFAULT_SEED);
   const [bgHex, setBgHex] = useState(DEFAULT_SEED);
   const [isDark, setDark] = useState(INITIAL_SETTINGS?.isDark ?? false);
+  const [variant, setVariant] = useState<VariantKey>(INITIAL_SETTINGS?.variant ?? DEFAULT_VARIANT);
   const [portraitOriginal, setPortraitOriginal] = useState<string | null>(null);
   const [portraitCropped, setPortraitCropped] = useState<string | null>(null);
   const [bgMode, setBgMode] = useState<BgMode>(INITIAL_SETTINGS?.bgMode ?? "off");
@@ -93,13 +98,13 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     return presetHex;
   }, [seedMode, seedHex, portraitHex, bgHex, presetHex]);
 
-  const theme = useMemo(() => seedHexToTheme(activeHex), [activeHex]);
+  const scheme = useMemo(() => schemeFromSeed(activeHex, isDark, variant), [activeHex, isDark, variant]);
 
   useEffect(() => {
-    applyCssVars(themeToCssVars(theme, isDark));
+    applyCssVars(schemeToCssVars(scheme));
     // 原生控件（color 选择器、滚动条等）随明暗切换
     document.documentElement.style.colorScheme = isDark ? "dark" : "light";
-  }, [theme, isDark]);
+  }, [scheme, isDark]);
 
   // 应用立绘到主题（不写本地存储；立绘随人物卡由 App 同步存档）
   const portraitVersion = useRef(0);
@@ -176,8 +181,8 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
   // 非图片设置变化时持久化
   useEffect(() => {
-    saveSettings({ seedMode, seedHex, presetHex, isDark, bgMode, bgBlur, bgFeather, fontMode });
-  }, [seedMode, seedHex, presetHex, isDark, bgMode, bgBlur, bgFeather, fontMode]);
+    saveSettings({ seedMode, seedHex, presetHex, variant, isDark, bgMode, bgBlur, bgFeather, fontMode });
+  }, [seedMode, seedHex, presetHex, variant, isDark, bgMode, bgBlur, bgFeather, fontMode]);
 
   // 挂载时从缓存恢复背景：localStorage 里只存路径（缓存键或回退 data URL）
   useEffect(() => {
@@ -212,8 +217,8 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const value: ThemeContextValue = {
-    seedMode, seedHex, presetHex, portraitHex, bgHex, isDark,
-    setSeedMode, setSeedHex, setPresetHex, setDark,
+    seedMode, seedHex, presetHex, portraitHex, bgHex, isDark, activeHex, variant,
+    setSeedMode, setSeedHex, setPresetHex, setDark, setVariant,
     portraitOriginal, portraitCropped, setPortrait, applyPortrait, clearPortrait,
     bgMode, bgCustom, setBgMode, setBgCustom: setBgCustomPersist, bgImage,
     bgBlur, bgFeather, setBgBlur, setBgFeather,

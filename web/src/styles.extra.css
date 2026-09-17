@@ -1110,3 +1110,36 @@ md-dialog.sheet-dialog.sheet-dialog-store { max-width: min(520px, calc(100% - 48
    注意 .settings.double 特异性更高，双栏仍由它自己接管 display: grid。 */
 .settings { display: flex; flex-direction: column; gap: 16px; }
 .settings-col { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+
+/* ===== ⑩ 取色模式：每个选项自带一枚实渲染的小色板 =====
+   色板取该模式自身的角色色（surface 作底、primary 与容器色作色块、onSurface 写 Aa），
+   四种模式在同一颗种子下并排对比即可分辨；换种子、跟随立绘/背景、切深浅模式时同步重算。
+   四种并排展示而不是收进下拉，是为了让用户在切换之前就看到差别。 */
+.settings-row.variant-row { align-items: flex-start; }
+.variant-grid {
+  flex: 1 1 100%;
+  display: grid; gap: 8px;
+  grid-template-columns: repeat(auto-fit, minmax(148px, 1fr));
+}
+.variant-card {
+  display: flex; flex-direction: column; gap: 3px;
+  padding: 8px; margin: 0; cursor: pointer; font: inherit; text-align: left;
+  color: var(--md-sys-color-on-surface); background: transparent;
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: var(--md-sys-shape-corner-medium);
+  transition: background-color var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-standard),
+              border-color var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-standard);
+}
+.variant-card:hover { background: color-mix(in srgb, var(--md-sys-color-on-surface) 8%, transparent); }
+.variant-card:active { background: color-mix(in srgb, var(--md-sys-color-on-surface) 12%, transparent); }
+.variant-card.on { border-color: var(--md-sys-color-primary); background: color-mix(in srgb, var(--md-sys-color-primary) 10%, transparent); }
+.variant-preview {
+  display: flex; align-items: center; gap: 4px;
+  padding: 6px 8px; margin-bottom: 3px;
+  border: 1px solid; /* 描边色由行内样式按该模式自身的 outline-variant 给出 */
+  border-radius: var(--md-sys-shape-corner-small);
+}
+.variant-preview i { display: block; width: 16px; height: 16px; border-radius: 5px; flex: none; }
+.variant-preview i.pill { width: 28px; border-radius: var(--md-sys-shape-corner-full); }
+.variant-preview .variant-aa { margin-left: auto; font-size: 12px; font-weight: var(--fw-label); }
+.variant-name { display: flex; align-items: center; gap: 4px; font-size: 13px; font-weight: var(--fw-label); }

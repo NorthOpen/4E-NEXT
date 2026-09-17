@@ -10,6 +10,8 @@ web/public/mock_*.d4e.json
 .DS_Store
 # 审计报告（派生产物，不入库）
 out/categories/_audit.json
+# 取色模式对比探针（本机工具，含写死的绝对路径与派生产物，不入库）
+out/color-variant-probe/
 
 # DSH vision-router artifacts (local tooling output)
 .dsh-vision-router/

@@ -876,6 +876,9 @@ md-filled-text-field, md-filled-select { min-width: 0; }
 .settings { max-width: 640px; }
 .settings-row { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
 .settings-row .field-label { min-width: 110px; }
+/* 值列不止一行时（致谢里成对列出的来源与日期），字段名要跟值列的第一行顶部对齐：
+   默认的 align-items: center 会把字段名压到整块值的垂直中线上，看起来像浮在半空。 */
+.settings-row-start { align-items: flex-start; }
 .settings-row md-slider { width: 220px; }
 .crop-controls md-slider { flex: 1; }
 
@@ -1430,6 +1433,10 @@ md-filled-text-field, md-filled-select { min-width: 0; }
 .bg-render li { margin: 3px 0; }
 .settings-link { color: var(--md-sys-color-primary); text-decoration: none; }
 .settings-link:hover { text-decoration: underline; }
+/* 值列：一项一行且互相对齐时套这一层。
+   .settings-row 是 flex + wrap，直接平铺多个子项的话，折下来的那一项会顶到容器最左边、
+   跟上面的字段名错开；套一层纵向 flex 才能让它们自己排齐。 */
+.settings-links { display: flex; flex-direction: column; align-items: flex-start; gap: 5px; min-width: 0; }
 
 /* 生命：当前值编辑 + 额外加值 */
 .hl-now { display: inline-flex; align-items: baseline; gap: 4px; }

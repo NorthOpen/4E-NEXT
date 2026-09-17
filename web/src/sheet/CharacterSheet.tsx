@@ -4686,14 +4686,14 @@ function TextField(props: { label: string; value: string; onChange: (v: string) 
 function PickField(props: { label: string; displayName?: string; disabled?: boolean; mode: "edit" | "render"; onClick: () => void }) {
   if (props.mode === "render") {
     return (
-      <button type="button" className="render-field render-click" onClick={props.onClick} disabled={props.disabled} title={props.label}>
+      <button type="button" className="render-field render-click" data-tour="pick-field" onClick={props.onClick} disabled={props.disabled} title={props.label}>
         <span className="render-name">{props.label}</span>
         {props.displayName ? <span className="render-value">{props.displayName}</span> : <span className="render-empty">−</span>}
       </button>
     );
   }
   return (
-    <button type="button" className="pick-field" onClick={props.onClick} disabled={props.disabled} title={props.label}>
+    <button type="button" className="pick-field" data-tour="pick-field" onClick={props.onClick} disabled={props.disabled} title={props.label}>
       <span className="pf-label">{props.label}</span>
       <span className={props.displayName ? "pf-value" : "pf-placeholder"}>{props.displayName ?? "请选择"}</span>
       <span className="material-symbols-outlined pf-icon">expand_more</span>
@@ -6202,7 +6202,8 @@ export default function CharacterSheet({
   );
 
   const topCol = (
-    <section className="block topbar">
+    // data-tour：教学模式的锚点，见 lib/tutorial.ts
+    <section className="block topbar" data-tour="panel-info">
         <div className="topbar-head">
           <span className="block-title">角色信息</span>
         </div>
@@ -7632,7 +7633,7 @@ return (
           {/* 手机端：MD3 Primary Tabs 分组切换（选中项由 primary 色胶囊指示器标出）。
               吸顶是为了滚到板块底部时仍能换组，不必先滚回顶部 */}
           {activeGroup && (
-            <div className="mob-tabsbar" ref={tabsBarRef}>
+            <div className="mob-tabsbar" data-tour="sheet-tabs" ref={tabsBarRef}>
               <Tabs aria-label="车卡页面板块分组" onChange={onTabsChange}>
                 {SHEET_PANEL_GROUPS.map((g) => (
                   <PrimaryTab key={g.id}>{g.label}</PrimaryTab>

@@ -1,7 +1,9 @@
-// 自定义弹层（.picker-overlay / .crop-overlay）打开期间锁定页面滚动，
+// 自定义弹层（.picker-overlay / .crop-overlay / .tour-root）打开期间锁定页面滚动，
 // 与原生 <dialog>.showModal() 的模态行为保持一致（md-dialog 由浏览器原生处理，无需此逻辑）。
 // 通过 MutationObserver 计数当前打开的弹层数量，最后一个关闭时恢复滚动。
-const OVERLAY_SELECTOR = ".picker-overlay, .crop-overlay";
+// 教学模式（.tour-root）也走这条路径：它同样要求「背后那一页不许动」，
+// 光斑位置按打开那一刻算好，背景一滚就对不上了。
+const OVERLAY_SELECTOR = ".picker-overlay, .crop-overlay, .tour-root";
 
 let locks = 0;
 

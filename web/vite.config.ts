@@ -1,12 +1,41 @@
 import { defineConfig, type Plugin } from "vite";
 import react from "@vitejs/plugin-react";
-import { cpSync, existsSync, rmSync } from "node:fs";
+import { cpSync, existsSync, readFileSync, rmSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 import pkg from "./package.json";
 
 const here = dirname(fileURLToPath(import.meta.url));
+
+/**
+ * 读一份产物的 generatedAt（管线各步写下的时间戳），路径相对 web/ 解析。
+ *
+ * 不读文件 mtime：mtime 每次 git checkout 都会变，读出来是个没有意义的「刚刚」。
+ * 读不到（本地没跑过管线 / 数据文件未生成）时返回空串，界面显示「未知」，构建照常进行。
+ */
+function generatedAtOf(relPath: string): string {
+  try {
+    const raw = readFileSync(resolve(here, relPath), "utf8");
+    const parsed = JSON.parse(raw) as { generatedAt?: unknown };
+    return typeof parsed.generatedAt === "string" ? parsed.generatedAt : "";
+  } catch {
+    return "";
+  }
+}
+
+/**
+ * 随包分发的 4e Wiki 数据是什么时候录入的（设置页「致谢」展示，用来判断该不该重跑管线）。
+ *
+ * 优先取 canonical 的 _meta.json：那是「把 data/ 里那份 wiki 快照解析成规范数据」的时刻，
+ * 也就是「这批内容是什么时候录进来的」。manifest.json 的戳是索引步写下的，
+ * 只跑 normalize 不跑 index 时会停在更早的一次 —— 实际出现过分叉（canonical 08-21 / manifest 08-19），
+ * 那种情况下 manifest 会少报几天。canonical 读不到时回落到 manifest。
+ */
+const WIKI_DATA_AT = generatedAtOf("../out/canonical/_meta.json") || generatedAtOf("public/data/manifest.json");
+
+/** 4e 万律数据（万律书单文件 TW5 词条化产物）的录入时间；万律没有 canonical 层，直接取产物自己的戳。 */
+const RULES_DATA_AT = generatedAtOf("public/data/rules.json");
 
 // 构建目标：web（默认，部署到网页端） / desktop（Electron 外壳内嵌）
 //
@@ -129,5 +158,8 @@ export default defineConfig(({ command }) => ({
     __APP_VERSION__: JSON.stringify(pkg.version),
     // 桌面端用来判断「字体是否已内置」：内置则不再动态插入字体 CDN 链接
     __DESKTOP_FONTS_BUNDLED__: JSON.stringify(bundledFonts),
+    // 设置页「致谢」展示的数据录入日期（见上面的 dataGeneratedAt）
+    __DATA_WIKI_AT__: JSON.stringify(WIKI_DATA_AT),
+    __DATA_RULES_AT__: JSON.stringify(RULES_DATA_AT),
   },
 }));

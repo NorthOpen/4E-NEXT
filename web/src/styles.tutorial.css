@@ -1,0 +1,337 @@
+/* ==========================================================================
+   教学模式（分步聚光灯） + 设置页「教学模式 / 本地数据」板块
+   --------------------------------------------------------------------------
+   三层结构：
+     · .tour-block —— 铺满视口的透明层，负责吃掉所有点击（用户点不到被遮住的东西）
+     · .tour-mask  —— 铺满视口的 SVG 遮罩，中间按高亮块挖一个圆角洞，真正压暗后方的是它
+     · .tour-hole  —— 洞口那圈描边，只画圈不压暗，位置尺寸跟着高亮块走
+
+   遮罩为什么不用「一个元素加超大 box-shadow 扩散」那套写法：
+   CSS 规定阴影外缘的圆角半径要跟着扩散距离一起放大，扩散一大半径就超过外框的一半，
+   外缘会退化成圆；高亮块又几乎总在屏幕一侧（左侧导航轨），圆心跟着偏，
+   屏幕对角那一片就压不到，大屏上会露出亮色。SVG 遮罩盖住的是实打实的矩形，没有这个问题。
+
+   配色一律走 MD3 语义色令牌，随动态取色与深浅模式自动适配，不写死任何色值。
+   本文件在 styles.css 之后、styles.mobile.css 之前导入（见 main.tsx）。
+   ========================================================================== */
+
+.tour-root {
+  position: fixed;
+  inset: 0;
+  z-index: 400;
+}
+
+/* ---- 拦截点击的透明层（不响应任何操作，只负责挡住下层页面） ---- */
+.tour-block {
+  position: fixed;
+  inset: 0;
+}
+
+/* ---- 全局遮罩 ----
+   没有 viewBox，SVG 用户坐标 = CSS 像素，<mask> 里的坐标可以直接用 getBoundingClientRect 的值；
+   <rect width="100%" height="100%"> 随 .tour-mask 的 inset:0 铺满视口。
+   mask 默认的遮罩区域是元素的包围盒上下左右各外扩 10%，恰好盖住整个视口还有余量。 */
+.tour-mask {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* 洞的位移做过渡，换步时光斑平滑滑过去。
+   SVG 几何属性（x/y/width/height）用 CSS 过渡在少数浏览器上不生效，
+   那种情况下只是直接跳到新位置，遮罩的覆盖范围不受影响。 */
+.tour-mask-hole {
+  transition:
+    x var(--md-sys-motion-duration-medium2) var(--md-sys-motion-easing-emphasized),
+    y var(--md-sys-motion-duration-medium2) var(--md-sys-motion-easing-emphasized),
+    width var(--md-sys-motion-duration-medium2) var(--md-sys-motion-easing-emphasized),
+    height var(--md-sys-motion-duration-medium2) var(--md-sys-motion-easing-emphasized);
+}
+
+/* ---- 洞口描边 ---- */
+/* pointer-events: none —— 点击由 .tour-block 接住，这里只负责画。
+   圆角半径与 TutorialGuide 里的 HOLE_RAD 保持一致，否则描边和洞口对不齐。 */
+.tour-hole {
+  position: fixed;
+  pointer-events: none;
+  border-radius: var(--md-sys-shape-corner-large);
+  outline: 2px solid var(--md-sys-color-primary);
+  outline-offset: 3px;
+  transition:
+    top var(--md-sys-motion-duration-medium2) var(--md-sys-motion-easing-emphasized),
+    left var(--md-sys-motion-duration-medium2) var(--md-sys-motion-easing-emphasized),
+    width var(--md-sys-motion-duration-medium2) var(--md-sys-motion-easing-emphasized),
+    height var(--md-sys-motion-duration-medium2) var(--md-sys-motion-easing-emphasized);
+}
+
+/* ---- 气泡 ---- */
+/* 尺寸与 components/TutorialGuide.tsx 里的 CARD_W 对应：定位要先知道卡片多大 */
+.tour-card {
+  position: fixed;
+  z-index: 2;
+  box-sizing: border-box;
+  width: 344px;
+  max-width: calc(100vw - 24px);
+  max-height: calc(100vh - 24px);
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--md-sys-shape-corner-extra-large);
+  background: var(--md-sys-color-surface-container-high);
+  color: var(--md-sys-color-on-surface);
+  box-shadow: var(--md-sys-elevation-shadow-level3);
+  /* 注意：这里不能设 overflow —— 贴在卡片外缘的箭头会被一起裁掉。
+     内容区溢出由 .tour-card-body 自己滚。 */
+  transition:
+    top var(--md-sys-motion-duration-medium2) var(--md-sys-motion-easing-emphasized),
+    left var(--md-sys-motion-duration-medium2) var(--md-sys-motion-easing-emphasized);
+}
+
+/* 首帧还没量出卡片尺寸，先不画，避免在屏幕左上角闪一下 */
+.tour-card.pending { visibility: hidden; }
+
+.tour-card.center {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.tour-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 18px 20px 10px;
+  border-radius: inherit;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/* ---- 指向目标的箭头 ---- */
+.tour-arrow {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: var(--md-sys-color-surface-container-high);
+  transform: rotate(45deg);
+}
+/* 类名说的是「卡片在目标的哪一侧」：卡片在右侧，箭头就贴卡片的左缘 */
+.tour-arrow-right { left: -6px; transform: translateY(-50%) rotate(45deg); }
+.tour-arrow-left { right: -6px; transform: translateY(-50%) rotate(45deg); }
+.tour-arrow-bottom { top: -6px; transform: translateX(-50%) rotate(45deg); }
+.tour-arrow-top { bottom: -6px; transform: translateX(-50%) rotate(45deg); }
+
+.tour-head {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.tour-count {
+  flex: none;
+  padding: 1px 8px;
+  border-radius: var(--md-sys-shape-corner-full);
+  background: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
+  font-size: 11.5px;
+  font-weight: var(--fw-label);
+  font-variant-numeric: tabular-nums;
+}
+.tour-title {
+  font-size: 16px;
+  font-weight: var(--fw-heading);
+  line-height: 1.4;
+}
+.tour-body {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.75;
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+/* 手机端补充说明：入口不在当前屏幕上时告诉用户它去哪了 */
+.tour-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: var(--md-sys-color-primary);
+}
+.tour-note .material-symbols-outlined { flex: none; font-size: 16px; line-height: 1.55; }
+
+.tour-dots {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.tour-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--md-sys-shape-corner-full);
+  background: var(--md-sys-color-outline-variant);
+  transition: background-color var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-standard);
+}
+.tour-dot.done { background: var(--md-sys-color-primary-container); }
+.tour-dot.on { background: var(--md-sys-color-primary); }
+
+.tour-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 2px;
+}
+.tour-spacer { flex: 1 1 auto; }
+.tour-primary { display: inline-flex; }
+
+/* 动效敏感的用户：关掉光斑与气泡的位移动画 */
+@media (prefers-reduced-motion: reduce) {
+  .tour-mask-hole,
+  .tour-hole,
+  .tour-card,
+  .tour-dot {
+    transition: none;
+  }
+}
+
+/* ==========================================================================
+   设置页「本地数据」板块
+   ========================================================================== */
+
+/* ---- 占用条：与私设页「浏览器缓存占用」同一套分组口径与配色，
+       但收得更紧 —— 设置页里它只是清除操作的前情提要，不该抢戏 ---- */
+.cacheset-meter {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  /* 下间距交给后面的 .cacheset-actions / .d4e-sync-msg 出，避免两者叠加成双倍空白 */
+  margin: 4px 0 0;
+  padding: 12px 14px;
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: var(--md-sys-shape-corner-medium);
+  background: var(--md-sys-color-surface-container);
+}
+.cacheset-meter-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 12.5px;
+  font-weight: var(--fw-label);
+  color: var(--md-sys-color-on-surface-variant);
+}
+.cacheset-meter-label { display: inline-flex; align-items: center; gap: 6px; }
+.cacheset-meter-label .material-symbols-outlined { font-size: 18px; }
+.cacheset-meter-val {
+  display: inline-flex;
+  align-items: center;
+  font-variant-numeric: tabular-nums;
+}
+.cacheset-meter-val b { font-weight: var(--fw-subheading); color: var(--md-sys-color-on-surface); }
+.cacheset-meter-total { color: var(--md-sys-color-on-surface-variant); }
+.cacheset-meter-pct {
+  margin-left: 6px;
+  padding: 1px 8px;
+  border-radius: var(--md-sys-shape-corner-full);
+  background: var(--md-sys-color-secondary-container);
+  color: var(--md-sys-color-on-secondary-container);
+  font-size: 11.5px;
+}
+
+.cacheset-bar {
+  display: flex;
+  gap: 1px;
+  height: 8px;
+  overflow: hidden;
+  border-radius: var(--md-sys-shape-corner-full);
+  background: var(--md-sys-color-surface-container-highest);
+}
+.cacheset-seg { display: block; height: 100%; }
+
+.cacheset-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 12px;
+  color: var(--md-sys-color-on-surface);
+}
+.cacheset-legend li { display: inline-flex; align-items: center; gap: 6px; }
+.cacheset-legend li.muted { color: var(--md-sys-color-on-surface-variant); opacity: 0.7; }
+.cacheset-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: var(--md-sys-shape-corner-full);
+  flex: none;
+}
+.cacheset-legend-val { color: var(--md-sys-color-on-surface-variant); font-variant-numeric: tabular-nums; }
+
+.cacheset-note {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--md-sys-color-on-surface-variant);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- 动作区：MD3 卡片底部的动作行，整体靠右下 ----
+   不给每个动作单独起行、配标签和说明：三个按钮的语气差别（文字按钮 / 填充按钮 /
+   错误色填充按钮）已经说明了轻重，再各配一行文字只会把卡片撑高、把重点冲淡。 */
+.cacheset-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+/* ---- 危险动作按钮：MD3 的 error 语义色，走按钮自身的令牌 ---- */
+.cacheset-danger {
+  --md-filled-tonal-button-container-color: var(--md-sys-color-error-container);
+  --md-filled-tonal-button-label-text-color: var(--md-sys-color-on-error-container);
+  --md-filled-tonal-button-hover-label-text-color: var(--md-sys-color-on-error-container);
+  --md-filled-tonal-button-focus-label-text-color: var(--md-sys-color-on-error-container);
+  --md-filled-tonal-button-pressed-label-text-color: var(--md-sys-color-on-error-container);
+  --md-filled-tonal-button-hover-state-layer-color: var(--md-sys-color-on-error-container);
+  --md-filled-tonal-button-pressed-state-layer-color: var(--md-sys-color-on-error-container);
+}
+
+/* ---- 清除确认对话框 ---- */
+.cacheset-confirm { display: flex; flex-direction: column; gap: 14px; }
+.cacheset-lead {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--md-sys-color-on-surface);
+}
+.cacheset-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding: 12px 14px 12px 32px;
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: var(--md-sys-shape-corner-medium);
+  background: var(--md-sys-color-surface-container);
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--md-sys-color-on-surface);
+}
+.cacheset-list b { font-weight: var(--fw-subheading); color: var(--md-sys-color-error); }
+
+.cacheset-warn,
+.cacheset-ok {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--md-sys-color-on-surface-variant);
+}
+.cacheset-warn .material-symbols-outlined { flex: none; font-size: 18px; line-height: 1.55; color: var(--md-sys-color-error); }
+.cacheset-ok { color: var(--md-sys-color-on-surface); }
+.cacheset-ok .material-symbols-outlined { flex: none; font-size: 18px; line-height: 1.55; color: var(--md-sys-color-primary); }

@@ -210,7 +210,8 @@ export default function PanelLayoutEditor({ defaultMode = "double" }: { defaultM
   }
 
   return (
-    <div className="ple">
+    // data-tour：教学模式的锚点，见 lib/tutorial.ts
+    <div className="ple" data-tour="panel-layout">
       <div className="ple-bar">
         <div className="md3-seg ple-tabs" role="radiogroup" aria-label="要调整的布局">
           {(["single", "double"] as Mode[]).map((m) => (

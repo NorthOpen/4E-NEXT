@@ -1,15 +1,28 @@
-import { useEffect, useRef, useState, type ChangeEvent } from "react";
+import { useEffect, useMemo, useRef, useState, type ChangeEvent } from "react";
 import { HexColorPicker } from "react-colorful";
 import { useTheme, type BgMode } from "./ThemeProvider";
 import { Switch, FilledButton, Slider } from "./components/md";
 import { readFileAsDataUrl } from "./lib/image";
-import { NORD_PRESETS, type SeedMode } from "./theme";
+import { COLOR_VARIANTS, NORD_PRESETS, variantPreviews, type SeedMode } from "./theme";
 import { shouldWarnOversize, prepareImageForStore, IMAGE_SIZE_HINT } from "./lib/settings";
 import PanelLayoutEditor from "./components/PanelLayoutEditor";
 import SyncSettings from "./components/SyncSettings";
+import StorageSettings from "./components/StorageSettings";
 
-export default function SettingsView({ layout }: { layout: "single" | "double" }) {
-  const { seedMode, seedHex, presetHex, isDark, setSeedMode, setSeedHex, setPresetHex, setDark, bgMode, setBgMode, setBgCustom, bgImage, bgBlur, bgFeather, setBgBlur, setBgFeather, fontMode, setFontMode } = useTheme();
+/**
+ * 数据录入时间：构建期注入的是 ISO 串，界面上只用到「哪一天」。
+ * 按本地时区换算 —— 跑管线的人看的是自己那天的日期，直接显示 UTC 会差一天。
+ */
+function fmtDataDate(iso: string): string {
+  if (!iso) return "未知";
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return "未知";
+  const p = (n: number) => String(n).padStart(2, "0");
+  return d.getFullYear() + "-" + p(d.getMonth() + 1) + "-" + p(d.getDate());
+}
+
+export default function SettingsView({ layout, onStartTutorial }: { layout: "single" | "double"; onStartTutorial: () => void }) {
+  const { seedMode, seedHex, presetHex, isDark, activeHex, variant, setSeedMode, setSeedHex, setPresetHex, setDark, setVariant, bgMode, setBgMode, setBgCustom, bgImage, bgBlur, bgFeather, setBgBlur, setBgFeather, fontMode, setFontMode } = useTheme();
   const bgFileRef = useRef<HTMLInputElement>(null);
   const [oversize, setOversize] = useState<File | null>(null);
   const [colorOpen, setColorOpen] = useState(false);
@@ -17,6 +30,9 @@ export default function SettingsView({ layout }: { layout: "single" | "double" }
 
   // 自选色变化（选色器/外部）时同步 HEX 输入框
   useEffect(() => setHexInput(seedHex), [seedHex]);
+
+  // 四种取色模式的实时小色板：用当前生效的种子与明暗现算，选之前就能看到效果
+  const previews = useMemo(() => variantPreviews(activeHex, isDark), [activeHex, isDark]);
 
   async function applyBg(f: File, compress: boolean) {
     const url = await readFileAsDataUrl(f);
@@ -104,6 +120,38 @@ export default function SettingsView({ layout }: { layout: "single" | "double" }
         )}
         {seedMode === "portrait" && <p className="hint">取色来自车卡页上传的立绘原图（非裁切版本）。</p>}
         {seedMode === "background" && !bgImage && <p className="hint">尚未设置背景图，将回退到默认色。请先在下方「背景」中开启。</p>}
+        <div className="settings-row variant-row">
+          <span className="field-label">取色模式</span>
+          <div className="variant-grid" role="radiogroup" aria-label="取色模式">
+            {COLOR_VARIANTS.map((v) => {
+              const c = previews[v.key];
+              const on = variant === v.key;
+              return (
+                <button
+                  key={v.key}
+                  type="button"
+                  role="radio"
+                  aria-checked={on}
+                  className={"variant-card" + (on ? " on" : "")}
+                  onClick={() => setVariant(v.key)}
+                >
+                  <span className="variant-preview" style={{ background: c.surface, borderColor: c.outlineVariant }}>
+                    <i className="pill" style={{ background: c.primary }} />
+                    <i style={{ background: c.primaryContainer }} />
+                    <i style={{ background: c.secondaryContainer }} />
+                    <i style={{ background: c.tertiary }} />
+                    <i style={{ background: c.tertiaryContainer }} />
+                    <span className="variant-aa" style={{ color: c.onSurface }}>Aa</span>
+                  </span>
+                  <span className="variant-name">
+                    {on && <span className="material-symbols-outlined md3-seg-check">check</span>}
+                    {v.label}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
       </section>
 
 
@@ -162,14 +210,29 @@ export default function SettingsView({ layout }: { layout: "single" | "double" }
       </div>
 
       <div className="settings-col">
+      {/* 教学模式与缓存占用放在右栏顶部：双栏时在右上，单栏时紧跟在「数据与同步」之后，
+          两种版式下的阅读顺序一致（功能设置在前，说明与版权在后）。 */}
+      <StorageSettings onStartTutorial={onStartTutorial} />
+
       <section className="block">
         <h3 className="block-title">致谢</h3>
-        <div className="settings-row">
+        <div className="settings-row settings-row-start">
           <span className="field-label">数据支持</span>
-          <a className="settings-link" href="https://4e-wiki.netlify.app/" target="_blank" rel="noreferrer">4e Wiki（现任维护者：风之守护）</a>
-          <a className="settings-link" href="https://4e-rules.netlify.app/" target="_blank" rel="noreferrer">4e万律（现任维护者：风之守护）</a>
+          {/* 两个来源各占一行、互相左对齐：并排时「（现任维护者：风之守护）」一长就会折行，
+              而 .settings-row 是 flex + wrap，折下来的那一截会顶到最左边、跟字段名错开 */}
+          <div className="settings-links">
+            <a className="settings-link" href="https://4e-wiki.netlify.app/" target="_blank" rel="noreferrer">4eWiki（现任维护者：风之守护）</a>
+            <a className="settings-link" href="https://4e-rules.netlify.app/" target="_blank" rel="noreferrer">4e万律（现任维护者：风之守护）</a>
+          </div>
         </div>
-        <div className="settings-row">
+        <div className="settings-row settings-row-start">
+          <span className="field-label">最后录入日期</span>
+          <div className="settings-links">
+            <span className="label">4eWiki：{fmtDataDate(__DATA_WIKI_AT__)}</span>
+            <span className="label">4e万律：{fmtDataDate(__DATA_RULES_AT__)}</span>
+          </div>
+        </div>
+        <div className="settings-row settings-row-start">
           <span className="field-label">特别感谢</span>
           <span className="label">所有历代的4E全书维护者、所有的4E中文译者</span>
         </div>
@@ -210,7 +273,7 @@ export default function SettingsView({ layout }: { layout: "single" | "double" }
       <section className="block">
         <h3 className="block-title">法律声明与版权信息</h3>
         <p className="hint">
-          4E NEXT的开发目标是制作一个基于网页的数据处理、自动计算与表格排版工具。4E NEXT不涉及对于龙与地下城四版规则内容与对海岸巫师威世智所持版权内容的二次分发。为了方便用户使用，项目内部封装了由中文译者提供，中文开发者维护的4e Wiki作为数据来源。
+          4E NEXT的开发目标是制作一个基于网页的数据处理、自动计算与表格排版工具。4E NEXT不涉及对于龙与地下城四版规则内容与对海岸巫师威世智所持版权内容的二次分发。为了方便用户使用，项目内部封装了由中文译者提供，中文开发者维护的4eWiki作为数据来源。
         </p>
         <p className="hint">
           《龙与地下城》（DUNGEONS &amp; DRAGONS）、DUNGEONS &amp; DRAGONS 兼容性标志、D&amp;D、《玩家手册》（PLAYER&rsquo;S HANDBOOK）、《地下城主指南》（DUNGEON MASTER&rsquo;S GUIDE）和《怪物图鉴》（MONSTER MANUAL）是 Wizards of the Coast, Inc. 在美国和其他国家的商标。

@@ -97,6 +97,18 @@ const GROUP_LABELS: Record<StorageGroupKey, string> = {
   other: "其他数据",
 };
 
+/**
+ * 分组的指示色。私设页的占用面板与设置页的占用条共用同一套，
+ * 两处指的是同一批数据，配色必须一致，否则用户会以为看到的是两回事。
+ * 全部走 MD3 语义色，随动态取色与深浅模式自动适配。
+ */
+export const STORAGE_GROUP_TONE: Record<StorageGroupKey, string> = {
+  homebrew: "var(--md-sys-color-primary)",
+  cards: "var(--md-sys-color-tertiary)",
+  appearance: "var(--md-sys-color-secondary)",
+  other: "var(--md-sys-color-outline)",
+};
+
 function groupOf(key: string): StorageGroupKey {
   if (key.startsWith("4enext.homebrew") || key === "4enext.userEntries.v1") return "homebrew";
   if (key === "4enext.cards.v1" || key === "4enext.activeCard.v1") return "cards";
@@ -265,4 +277,44 @@ export function takeLastStorageFailure(): StorageFailure | null {
 
 export function clearLastStorageFailure(): void {
   lastFailure = null;
+}
+
+// ===== 整体清除：设置页「清除本机数据」用 =====
+//
+// 前缀两套写法都有历史原因：绝大多数键是 4enext.xxx.v1，
+// 外观类另有 4enext-layout 这种短横线写法（见 App.tsx 的 toggleLayout）。
+// 统一按 "4enext" 前缀匹配，避免清除时漏掉任何一个。
+
+const APP_KEY_PREFIX = "4enext";
+
+/** 这个键是不是本应用写下的。 */
+export function isAppKey(key: string): boolean {
+  return key.startsWith(APP_KEY_PREFIX);
+}
+
+/** 本应用在存储里的全部键。返回的是快照数组，边遍历边删是安全的。 */
+export function appKeys(): string[] {
+  try {
+    return platform.storage.keys().filter(isAppKey);
+  } catch {
+    return [];
+  }
+}
+
+/**
+ * 清空本应用的全部本地数据，返回真正删掉的键数。
+ * 存储被禁用时删不动，返回 0 —— 调用方据此提示失败，不要假装清干净了。
+ */
+export function clearAllAppData(): number {
+  let removed = 0;
+  for (const k of appKeys()) {
+    try {
+      platform.storage.removeItem(k);
+      removed++;
+    } catch {
+      /* 单个键删不掉不中断其余的删除 */
+    }
+  }
+  usageCache = null;
+  return removed;
 }

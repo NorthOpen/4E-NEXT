@@ -1,16 +1,10 @@
 import { useMemo } from "react";
-import { fmtBytes, STORAGE_HINT, STORAGE_LABEL, type StorageBreakdown, type StorageGroupKey } from "../lib/storage";
+import { fmtBytes, STORAGE_GROUP_TONE, STORAGE_HINT, STORAGE_LABEL, type StorageBreakdown } from "../lib/storage";
 import { poolSizeBytes, type HomebrewPool } from "../lib/userdata";
 
 // 浏览器缓存（localStorage）占用板块：与页面标题同占整行宽度。
-// 取色全部来自 MD3 语义色，跟随全局动态取色。
-
-const GROUP_TONE: Record<StorageGroupKey, string> = {
-  homebrew: "var(--md-sys-color-primary)",
-  cards: "var(--md-sys-color-tertiary)",
-  appearance: "var(--md-sys-color-secondary)",
-  other: "var(--md-sys-color-outline)",
-};
+// 取色走 lib/storage 的 STORAGE_GROUP_TONE —— 设置页的占用条用的是同一套，
+// 两处指的是同一批数据，配色必须一致。
 
 export default function CachePanel({ usage, pools }: { usage: StorageBreakdown; pools: HomebrewPool[] }) {
   const topPools = useMemo(
@@ -45,7 +39,7 @@ export default function CachePanel({ usage, pools }: { usage: StorageBreakdown; 
             key={g.key}
             className="hb-cache-seg"
             title={g.label + "：" + fmtBytes(g.bytes)}
-            style={{ width: Math.max(0.8, (g.bytes / usage.total) * 100) + "%", background: GROUP_TONE[g.key] }}
+            style={{ width: Math.max(0.8, (g.bytes / usage.total) * 100) + "%", background: STORAGE_GROUP_TONE[g.key] }}
           />
         ))}
       </div>
@@ -54,7 +48,7 @@ export default function CachePanel({ usage, pools }: { usage: StorageBreakdown; 
         <ul className="hb-cache-legend">
           {usage.groups.map((g) => (
             <li key={g.key} className={g.bytes > 0 ? "" : "muted"}>
-              <span className="hb-cache-dot" style={{ background: GROUP_TONE[g.key] }} />
+              <span className="hb-cache-dot" style={{ background: STORAGE_GROUP_TONE[g.key] }} />
               <span className="hb-cache-legend-label">{g.label}</span>
               <span className="hb-cache-legend-val">{fmtBytes(g.bytes)}</span>
             </li>

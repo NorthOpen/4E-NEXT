@@ -18,9 +18,13 @@ import { FilledButton, OutlinedButton, TextButton } from "./components/md";
 import SheetDialog from "./components/SheetDialog";
 import StorageAlert from "./components/StorageAlert";
 import Logo from "./components/Logo";
+import TutorialGuide from "./components/TutorialGuide";
+import { markTutorialSeen, shouldAutoStartTutorial } from "./lib/tutorial";
 import { useIsMobile } from "./lib/media";
 
-type View = "sheet" | "background" | "reserve" | "overview" | "draw" | "search" | "learn" | "homebrew" | "settings";
+// 导出给 lib/tutorial —— 教学步骤要指明「这一步切到哪个页面」。
+// type 导入在编译期被抹掉，不会和 App 形成运行时循环依赖。
+export type View = "sheet" | "background" | "reserve" | "overview" | "draw" | "search" | "learn" | "homebrew" | "settings";
 type Layout = "single" | "double";
 
 // 手机端底部导航（MD3 NavigationBar）：只放建卡/跑团最常用的 4 个顶级目标。
@@ -61,6 +65,11 @@ function Shell() {
   const [mode, setMode] = useState<"edit" | "render">("edit");
   // 手机端「更多」底部面板（承载底栏放不下的入口）
   const [mobileMore, setMobileMore] = useState(false);
+  // 教学模式（聚光灯分步引导）。是否该自动播放由 lib/tutorial 判定，
+  // 判据在那边模块加载时就取好了快照 —— 必须早于下面 cards 的初始写入。
+  const [tourOpen, setTourOpen] = useState(false);
+  const viewRef = useRef(view);
+  viewRef.current = view;
 
   // 手机端断点由 useIsMobile 统一监听（横竖屏切换 / 窗口缩放）
   const [cards, setCards] = useState<SavedCard[]>(() => {
@@ -102,6 +111,17 @@ function Shell() {
     }, 400);
     return () => clearTimeout(t);
   }, [char, activeId]);
+
+  // 首次打开自动播放教学模式。延后一拍再开：首屏要把导航渲染出来，
+  // 教学的高亮块才量得到位置（找不到锚点时它会退化成居中卡片，但那样就白讲了）。
+  useEffect(() => {
+    if (!shouldAutoStartTutorial()) return;
+    const t = setTimeout(() => {
+      // 这 600ms 里用户要是已经自己点去别的页面了，就别再把他拽回教学
+      if (viewRef.current === "sheet") setTourOpen(true);
+    }, 600);
+    return () => clearTimeout(t);
+  }, []);
 
   // 同步发生在设置页，但作用范围是整个应用：合并写回本机后要重载卡片列表，
   // 并把当前打开的那张卡换成最新内容——否则内存里的 char 还是旧的，
@@ -180,6 +200,20 @@ function Shell() {
     } else {
       clearPortrait();
     }
+  }
+
+  // 教学模式：自动播放与设置页手动开启走同一条路径。
+  // 无论看完、跳过还是中途退出都会记下「已看过」—— 每次打开都弹一遍比少讲一次烦人得多。
+  // 结束时回到人物页，用户落地就能直接开始车卡。
+  function startTutorial() {
+    setView("sheet");
+    setTourOpen(true);
+  }
+
+  function closeTutorial() {
+    setTourOpen(false);
+    markTutorialSeen();
+    setView("sheet");
   }
 
   function toggleLayout() {
@@ -367,21 +401,21 @@ function Shell() {
           <div className="rail-version">v{__APP_VERSION__}B</div>
         </div>
         <div className="side-sep" />
-        <button type="button" className={view === "sheet" ? "side-btn active" : "side-btn"} title="人物" onClick={() => setView("sheet")}><span className="material-symbols-outlined">person</span><span className="sb-label">人物</span></button>
-        <button type="button" className={view === "background" ? "side-btn active" : "side-btn"} title="背景" onClick={() => setView("background")}><span className="material-symbols-outlined">book</span><span className="sb-label">背景</span></button>
-        <button type="button" className={view === "reserve" ? "side-btn active" : "side-btn"} title="储备" onClick={() => setView("reserve")}><span className="material-symbols-outlined">inventory_2</span><span className="sb-label">储备</span></button>
-        <button type="button" className={view === "overview" ? "side-btn active" : "side-btn"} title="速览" onClick={() => setView("overview")}><span className="material-symbols-outlined">overview</span><span className="sb-label">速览</span></button>
+        <button type="button" className={view === "sheet" ? "side-btn active" : "side-btn"} data-tour="nav-sheet" title="人物" onClick={() => setView("sheet")}><span className="material-symbols-outlined">person</span><span className="sb-label">人物</span></button>
+        <button type="button" className={view === "background" ? "side-btn active" : "side-btn"} data-tour="nav-background" title="背景" onClick={() => setView("background")}><span className="material-symbols-outlined">book</span><span className="sb-label">背景</span></button>
+        <button type="button" className={view === "reserve" ? "side-btn active" : "side-btn"} data-tour="nav-reserve" title="储备" onClick={() => setView("reserve")}><span className="material-symbols-outlined">inventory_2</span><span className="sb-label">储备</span></button>
+        <button type="button" className={view === "overview" ? "side-btn active" : "side-btn"} data-tour="nav-overview" title="速览" onClick={() => setView("overview")}><span className="material-symbols-outlined">overview</span><span className="sb-label">速览</span></button>
         <div className="side-sep" />
-        <button type="button" className="side-btn" title="存档" onClick={() => setCardOpen(true)}><span className="material-symbols-outlined">folder</span><span className="sb-label">存档</span></button>
-        <button type="button" className={view === "homebrew" ? "side-btn active" : "side-btn"} title="私设" onClick={() => setView("homebrew")}><span className="material-symbols-outlined">extension</span><span className="sb-label">私设</span></button>
-        <button type="button" className={"side-btn" + (view === "draw" ? " active" : "")} title="抽卡" onClick={() => setDrawOpen(true)}><span className="material-symbols-outlined">casino</span><span className="sb-label">抽卡</span></button>
-        <button type="button" className={view === "search" ? "side-btn active" : "side-btn"} title="词条" onClick={() => setView("search")}><span className="material-symbols-outlined">search</span><span className="sb-label">词条</span></button>
-        <button type="button" className={view === "learn" ? "side-btn active" : "side-btn"} title="规则" onClick={() => setView("learn")}><span className="material-symbols-outlined">school</span><span className="sb-label">规则</span></button>
-        <button type="button" className={view === "settings" ? "side-btn active" : "side-btn"} title="设置" onClick={() => setView("settings")}><span className="material-symbols-outlined">settings</span><span className="sb-label">设置</span></button>
+        <button type="button" className="side-btn" data-tour="nav-save" title="存档" onClick={() => setCardOpen(true)}><span className="material-symbols-outlined">folder</span><span className="sb-label">存档</span></button>
+        <button type="button" className={view === "homebrew" ? "side-btn active" : "side-btn"} data-tour="nav-homebrew" title="私设" onClick={() => setView("homebrew")}><span className="material-symbols-outlined">extension</span><span className="sb-label">私设</span></button>
+        <button type="button" className={"side-btn" + (view === "draw" ? " active" : "")} data-tour="nav-draw" title="抽卡" onClick={() => setDrawOpen(true)}><span className="material-symbols-outlined">casino</span><span className="sb-label">抽卡</span></button>
+        <button type="button" className={view === "search" ? "side-btn active" : "side-btn"} data-tour="nav-search" title="词条" onClick={() => setView("search")}><span className="material-symbols-outlined">search</span><span className="sb-label">词条</span></button>
+        <button type="button" className={view === "learn" ? "side-btn active" : "side-btn"} data-tour="nav-learn" title="规则" onClick={() => setView("learn")}><span className="material-symbols-outlined">school</span><span className="sb-label">规则</span></button>
+        <button type="button" className={view === "settings" ? "side-btn active" : "side-btn"} data-tour="nav-settings" title="设置" onClick={() => setView("settings")}><span className="material-symbols-outlined">settings</span><span className="sb-label">设置</span></button>
         <div className="rail-spacer" />
         <div className="side-sep" />
-        <button type="button" className="side-btn" title={mode === "edit" ? "切换到渲染模式" : "切换到编辑模式"} onClick={() => setMode((m) => (m === "edit" ? "render" : "edit"))}><span className="material-symbols-outlined">{mode === "edit" ? "edit" : "lock"}</span><span className="sb-label">{mode === "edit" ? "编辑" : "渲染"}</span></button>
-        <button type="button" className={"side-btn side-btn-layout" + (isMobile ? " hidden-mobile" : "")} title={layout === "single" ? "切换到双栏布局" : "切换到单栏布局"} onClick={toggleLayout} disabled={isMobile}><span className="material-symbols-outlined">{layout === "single" ? "view_module" : "view_agenda"}</span><span className="sb-label">{layout === "single" ? "双栏" : "单栏"}</span></button>
+        <button type="button" className="side-btn" data-tour="rail-mode" title={mode === "edit" ? "切换到渲染模式" : "切换到编辑模式"} onClick={() => setMode((m) => (m === "edit" ? "render" : "edit"))}><span className="material-symbols-outlined">{mode === "edit" ? "edit" : "lock"}</span><span className="sb-label">{mode === "edit" ? "编辑" : "渲染"}</span></button>
+        <button type="button" className={"side-btn side-btn-layout" + (isMobile ? " hidden-mobile" : "")} data-tour="layout-toggle" title={layout === "single" ? "切换到双栏布局" : "切换到单栏布局"} onClick={toggleLayout} disabled={isMobile}><span className="material-symbols-outlined">{layout === "single" ? "view_module" : "view_agenda"}</span><span className="sb-label">{layout === "single" ? "双栏" : "单栏"}</span></button>
       </nav>
       <main className="content">
         <div className="view-anim" key={view}>
@@ -397,7 +431,7 @@ function Shell() {
           {view === "search" && <SearchView />}
           {view === "learn" && <LearnView layout={layout} />}
           {view === "homebrew" && <HomebrewView layout={layout} />}
-          {view === "settings" && <SettingsView layout={layout} />}
+          {view === "settings" && <SettingsView layout={layout} onStartTutorial={startTutorial} />}
         </div>
       </main>
       {/* 手机端底部导航（MD3 NavigationBar）：取代桌面端的左侧导航轨，落在拇指可达区 */}
@@ -407,6 +441,7 @@ function Shell() {
             <button
               key={d.view}
               type="button"
+              data-tour={"mob-" + d.view}
               className={"mob-nav-item" + (view === d.view ? " on" : "")}
               aria-current={view === d.view ? "page" : undefined}
               onClick={() => setView(d.view)}
@@ -417,6 +452,7 @@ function Shell() {
           ))}
           <button
             type="button"
+            data-tour="mob-more"
             className={"mob-nav-item" + (MOBILE_MORE_VIEWS.includes(view) ? " on" : "")}
             aria-current={MOBILE_MORE_VIEWS.includes(view) ? "page" : undefined}
             onClick={() => setMobileMore(true)}
@@ -552,6 +588,8 @@ function Shell() {
       )}
       {/* 存储写满 / 被禁用时提示「没有保存成功」，并给出止损动作 */}
       <StorageAlert onBackup={exportSave} onInspect={() => setView("homebrew")} />
+      {/* 教学模式：首次打开自动播放，之后由设置页手动开启 */}
+      <TutorialGuide open={tourOpen} onClose={closeTutorial} onGoToView={setView} isMobile={isMobile} />
     </div>
   );
 }

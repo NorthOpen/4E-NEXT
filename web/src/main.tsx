@@ -10,6 +10,8 @@ import "./styles.extra.css";
 import "./styles.glance.css";
 // 万律速查样式（规则页词条检索与阅读）
 import "./styles.rules.css";
+// 教学模式（聚光灯分步引导）与设置页「本地数据」板块
+import "./styles.tutorial.css";
 // 手机端版面（底部导航 + 车卡页顶部胶囊分组）：必须最后导入，才能覆盖 styles.css 的手机端规则
 import "./styles.mobile.css";
 
