@@ -13,6 +13,19 @@ import "./styles.rules.css";
 // 手机端版面（底部导航 + 车卡页顶部胶囊分组）：必须最后导入，才能覆盖 styles.css 的手机端规则
 import "./styles.mobile.css";
 
+// 正文字体（Chiron Sung）：index.html 里用 rel="preload" 提前取，这里切成真正的样式表。
+// 为什么不在标签上写 onload="this.rel='stylesheet'"：那属于内联事件处理器，会被 CSP 的
+// script-src 'self' 拦掉（见 web/public/_headers 与 vite.config.ts 里注入的 meta CSP）。
+// 桌面端构建会剔除这条 link（字体已内置），查询落空即不做任何事。
+const fontPreload = document.querySelector<HTMLLinkElement>("link[data-font-preload]");
+if (fontPreload) {
+  const fontSheet = document.createElement("link");
+  fontSheet.rel = "stylesheet";
+  fontSheet.href = fontPreload.href;
+  fontSheet.crossOrigin = "anonymous";
+  document.head.appendChild(fontSheet);
+}
+
 initRipple();
 initOverlayLock();
 

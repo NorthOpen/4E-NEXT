@@ -1,4 +1,15 @@
-# Cloudflare Pages 响应头规则（构建时被 Vite 从 web/public/ 复制到 web/dist/ 根目录）
+# Cloudflare Pages / Netlify 响应头规则（构建时被 Vite 从 web/public/ 复制到 web/dist/ 根目录）
+#
+# 注意：GitHub Pages 不读这个文件，那边的同一份 CSP 由 vite.config.ts 注入 index.html 的 <meta> 兜底，
+#       桌面端由 app:// 协议的响应头下发（desktop/main/main.js，额外放行 app:）。
+#       三份要一致，改一处记得同步另两处。
+
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fontsapi.zeoseven.com; font-src 'self' data: https://fontsapi.zeoseven.com; img-src 'self' data: blob: https:; connect-src 'self' https: http:; media-src 'self' data: blob:; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: no-referrer
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), serial=(), hid=()
 
 # Vite 产出的静态资源文件名带内容哈希，可以放心长缓存
 /assets/*

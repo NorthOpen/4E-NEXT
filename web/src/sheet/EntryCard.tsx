@@ -3,6 +3,7 @@ import type { Entry } from "../data/types";
 import { POWER_COLORS, ITEM_COLOR, FEAT_COLOR } from "../lib/colors";
 import { CATEGORY_LABELS } from "../data/labels";
 import { tokenizeWikiBody, wikiToHtml } from "../lib/wikirender";
+import { safeHtml } from "../lib/sanitize";
 import { SmartHover } from "./SmartHover";
 import { equipFamilyOf, equipmentStatRows, MUNDANE_STAT_ROWS, isMundaneEntry, suitRowFor } from "../lib/homebrewSchema";
 
@@ -112,7 +113,7 @@ function PowerCard({ entry, frame, jump }: { entry: Entry; frame?: boolean; jump
       ) : hasBlocks ? (
         <div className="pc-details">{renderPowerBlocks(entry)}</div>
       ) : entry.details ? (
-        <div className="pc-details" dangerouslySetInnerHTML={{ __html: entry.details }} />
+        <div className="pc-details" dangerouslySetInnerHTML={safeHtml(entry.details)} />
       ) : null}
     </div>
   );
@@ -182,14 +183,14 @@ function ItemCard({ entry, frame, jump, lookup }: { entry: Entry; frame?: boolea
           ) : lookup ? (
             <div className="fc-content"><FeatRichText text={entry.power ?? ""} fields={entry.fields} lookup={lookup} /></div>
           ) : (
-            <div className="fc-content" dangerouslySetInnerHTML={{ __html: expandDetails(entry.power ?? "", entry) }} />
+            <div className="fc-content" dangerouslySetInnerHTML={safeHtml(expandDetails(entry.power ?? "", entry))} />
           )}
         </div>
       )}
       {frame && !entry.details ? (
         <Ghost label="正文详情" className="pc-details" target="sourceText" jump={jump} />
       ) : entry.details ? (
-        <div className="pc-details" dangerouslySetInnerHTML={{ __html: expandDetails(entry.details ?? "", entry) }} />
+        <div className="pc-details" dangerouslySetInnerHTML={safeHtml(expandDetails(entry.details ?? "", entry))} />
       ) : null}
     </div>
   );
@@ -210,8 +211,8 @@ function FeatRichText({ text, fields, lookup }: { text: string; fields: Record<s
             </SmartHover>
           );
         }
-        if (t.kind === "html") return <div key={i} className="wiki-html" dangerouslySetInnerHTML={{ __html: t.html }} />;
-        return <span key={i} dangerouslySetInnerHTML={{ __html: t.html }} />;
+        if (t.kind === "html") return <div key={i} className="wiki-html" dangerouslySetInnerHTML={safeHtml(t.html)} />;
+        return <span key={i} dangerouslySetInnerHTML={safeHtml(t.html)} />;
       })}
     </>
   );
@@ -227,7 +228,7 @@ function FeatBlock({ label, text, entry, lookup, frame, target, jump }: { label:
         ) : lookup ? (
           <FeatRichText text={text} fields={entry.fields} lookup={lookup} />
         ) : (
-          <span dangerouslySetInnerHTML={{ __html: expandDetails(text, entry) }} />
+          <span dangerouslySetInnerHTML={safeHtml(expandDetails(text, entry))} />
         )}
       </div>
     </div>
@@ -300,11 +301,11 @@ function GenericCard({ entry, frame, jump }: { entry: Entry; frame?: boolean; ju
         <div className="gc-flavor">{entry.flavorText}</div>
       ) : null}
       {entry.details ? (
-        <div className={"pc-details" + (entry.category === "creature" ? " gen-creature-card" : "")} dangerouslySetInnerHTML={{ __html: entry.details }} />
+        <div className={"pc-details" + (entry.category === "creature" ? " gen-creature-card" : "")} dangerouslySetInnerHTML={safeHtml(entry.details)} />
       ) : entry.sourceText ? (
         // sourceText 含不少原生 HTML（如生物 <div class=creature>…），需经 wikiToHtml 渲染，
         // 直接 stripWiki 会把 HTML 标签当成可见代码显示出来。
-        <div className="pc-details gen-creature-card" dangerouslySetInnerHTML={{ __html: wikiToHtml(entry.sourceText, f) }} />
+        <div className="pc-details gen-creature-card" dangerouslySetInnerHTML={safeHtml(wikiToHtml(entry.sourceText, f))} />
       ) : frame ? (
         <Ghost label="正文详情" className="pc-details" target="sourceText" jump={jump} />
       ) : null}

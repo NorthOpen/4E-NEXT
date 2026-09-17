@@ -19,6 +19,7 @@ import { collectProficiencyTokens, collectProficiencySources, isProficient, feat
 import { SmartHover } from "./SmartHover";
 import { collectClassSources, collectFeatSources } from "./combat-source";
 import { stripWiki } from "../lib/text";
+import { safeHtml } from "../lib/sanitize";
 import { panelMeta, useSheetLayout, panelsInGroup, defaultPanelGroup, SHEET_PANEL_GROUPS, type SheetPanelId } from "../lib/sheetLayout";
 import { hybridTalentGroups, resolveHybridOption, isHybridTalentFeat, mergedClassTraitText, originalFeatureInfo, type HybridTalentGroup } from "../lib/hybrid";
 import { wikiToHtml, classTraitHtml, classFeaturesHtml, classSummary, raceTraitHtml, raceBodyHtml, splitRaceLore, splitClassLore, splitAuxPowers, parseSubraceInfo, parseFeatureSections, parseClassFeatureOptions, parseReplacementPairs, tokenizeWikiBody, parseRaceTraitLines, type FeatureSection } from "../lib/wikirender";
@@ -721,8 +722,8 @@ function WikiBody({ body, fields, lookup, indent }: { body: string; fields: Reco
           if (!entry) return <span key={i} className="wiki-ref-plain">{t.alias}</span>;
           return <SmartHover key={i} className="wiki-ref" popClass="wiki-ref-pop" pop={<EntryCard entry={entry} />}>{t.alias}</SmartHover>;
         }
-        if (t.kind === "html") return <div key={i} className="wiki-html" dangerouslySetInnerHTML={{ __html: enBreak(t.html) }} />;
-        return <span key={i} dangerouslySetInnerHTML={{ __html: enBreak(t.html) }} />;
+        if (t.kind === "html") return <div key={i} className="wiki-html" dangerouslySetInnerHTML={safeHtml(enBreak(t.html))} />;
+        return <span key={i} dangerouslySetInnerHTML={safeHtml(enBreak(t.html))} />;
       })}
     </>
   );
@@ -960,7 +961,7 @@ function OptionOrSubChoice({ label, desc, innerKey, innerChosen, onChoose, field
           <summary>魔宠数据</summary>
           <div className="beast-sub-body">
             <div className="pf-body">
-              <div className="pf-rest gen-creature-card" dangerouslySetInnerHTML={{ __html: wikiToHtml(creature.sourceText, fields) }} />
+              <div className="pf-rest gen-creature-card" dangerouslySetInnerHTML={safeHtml(wikiToHtml(creature.sourceText, fields))} />
             </div>
           </div>
         </details>
@@ -1620,7 +1621,7 @@ function SummonedSteedData({ section, detail, fields, lookup }: {
       <summary>{cleanDisplayName(creature.name)}数据</summary>
       <div className="beast-sub-body">
         <div className="pf-body">
-          <div className="pf-rest gen-creature-card" dangerouslySetInnerHTML={{ __html: wikiToHtml(creature.sourceText, fields) }} />
+          <div className="pf-rest gen-creature-card" dangerouslySetInnerHTML={safeHtml(wikiToHtml(creature.sourceText, fields))} />
         </div>
       </div>
     </details>
@@ -1650,7 +1651,7 @@ function AnimalCompanionData({ creature, detail, fields }: {
       <summary>{cleanDisplayName(creature.name)}数据</summary>
       <div className="beast-sub-body">
         <div className="pf-body">
-          <div className="pf-rest gen-creature-card" dangerouslySetInnerHTML={{ __html: wikiToHtml(creature.sourceText, fields) }} />
+          <div className="pf-rest gen-creature-card" dangerouslySetInnerHTML={safeHtml(wikiToHtml(creature.sourceText, fields))} />
         </div>
       </div>
     </details>
@@ -1999,7 +2000,7 @@ function BeastCard({ label, detail }: { label: string; detail: string }) {
   return (
     <div className="beast-card">
       <div className="beast-card-title">{label}</div>
-      <div className="beast-card-body" dangerouslySetInnerHTML={{ __html: wikiToHtml(detail, {}).replace(/\n/g, "<br/>") }} />
+      <div className="beast-card-body" dangerouslySetInnerHTML={safeHtml(wikiToHtml(detail, {}).replace(/\n/g, "<br/>"))} />
     </div>
   );
 }
@@ -2052,7 +2053,7 @@ function BeastMasterBlock({ section, detail, fields, on, chosen, toggleKey, beas
             <div className="cls-feat-opt-wrap">
               <SmartHover className="cls-feat-opt" popClass="cls-option-pop" pop={b ? <BeastCard label={b.label} detail={b.detail} /> : undefined}>{chosen}</SmartHover>
             </div>
-            {b && <div className="beast-card-body compact-beast-card" dangerouslySetInnerHTML={{ __html: wikiToHtml(b.detail, {}).replace(/\n/g, "<br/>") }} />}
+            {b && <div className="beast-card-body compact-beast-card" dangerouslySetInnerHTML={safeHtml(wikiToHtml(b.detail, {}).replace(/\n/g, "<br/>"))} />}
           </>
         ) : (
           <div className="cls-feat-sub">未选择</div>
@@ -3461,7 +3462,7 @@ function ClassFeatureBlock({ entry, detail, level, choices, onChoose, lookup, cl
     return (
       <div className="class-detail">
         <div className="pf-entry-title">{cleanDisplayName(entry.name)}</div>
-        {trait && !featureOnly && <div className="class-trait" dangerouslySetInnerHTML={{ __html: wikiToHtml(splitTraitLabels(trait), entry.fields).replace(/\n{2,}/g, "\n").replace(/\n/g, "<br/>") }} />}
+        {trait && !featureOnly && <div className="class-trait" dangerouslySetInnerHTML={safeHtml(wikiToHtml(splitTraitLabels(trait), entry.fields).replace(/\n{2,}/g, "\n").replace(/\n/g, "<br/>"))} />}
         {!featureOnly && classLore.length > 0 && (
           <div className="race-lore cls-lore">
             {classLore.map((sec, i) => (
@@ -3538,7 +3539,7 @@ function ClassFeatureBlock({ entry, detail, level, choices, onChoose, lookup, cl
                 </button>
               ))}
             </div>
-            {exe.table && <div className="exe-table" dangerouslySetInnerHTML={{ __html: exe.table }} />}
+            {exe.table && <div className="exe-table" dangerouslySetInnerHTML={safeHtml(exe.table)} />}
           </div>
         )}
         {parsed && parsed.sections.length > 0 ? (
@@ -3731,7 +3732,7 @@ function ClassFeatureBlock({ entry, detail, level, choices, onChoose, lookup, cl
                   </button>
                 ))}
               </div>
-              {exe.table && <div className="exe-table" dangerouslySetInnerHTML={{ __html: exe.table }} />}
+              {exe.table && <div className="exe-table" dangerouslySetInnerHTML={safeHtml(exe.table)} />}
             </div>
           )}
           {(() => {
@@ -3875,7 +3876,7 @@ function FeatureSectionList({ sections, detail, fields, powerOf, panelIds, onAdd
           return (
             <div key={i} className="pf-item">
               <div className="pf-title">{s.title}</div>
-              {s.body && <div className="pf-body" dangerouslySetInnerHTML={{ __html: wikiToHtml(s.body, fields) }} />}
+              {s.body && <div className="pf-body" dangerouslySetInnerHTML={safeHtml(wikiToHtml(s.body, fields))} />}
             </div>
           );
         }
@@ -4707,7 +4708,7 @@ function HybridAbilityBlock({ entry, entry2, detail }: { entry: Entry; entry2: E
   if (!t) return null;
   if (detail) {
     return (
-      <div className="class-trait hybrid-merged" dangerouslySetInnerHTML={{ __html: wikiToHtml(splitTraitLabels(t), entry.fields).replace(/\n{2,}/g, "\n").replace(/\n/g, "<br/>") }} />
+      <div className="class-trait hybrid-merged" dangerouslySetInnerHTML={safeHtml(wikiToHtml(splitTraitLabels(t), entry.fields).replace(/\n{2,}/g, "\n").replace(/\n/g, "<br/>"))} />
     );
   }
   const allow = new Set(["职位", "威能来源", "防具擅长", "武器擅长"]);
@@ -6844,7 +6845,7 @@ export default function CharacterSheet({
                   <div key={e.id} className="hybrid-detail-col">
                     <div className="hybrid-detail-name">{cleanDisplayName(e.name)}</div>
                     {t ? (
-                      <div className="class-trait" dangerouslySetInnerHTML={{ __html: wikiToHtml(splitTraitLabels(t), e.fields).replace(/\n{2,}/g, "\n").replace(/\n/g, "<br/>") }} />
+                      <div className="class-trait" dangerouslySetInnerHTML={safeHtml(wikiToHtml(splitTraitLabels(t), e.fields).replace(/\n{2,}/g, "\n").replace(/\n/g, "<br/>"))} />
                     ) : <p className="hint">无 trait 数据。</p>}
                   </div>
                 );
@@ -6873,7 +6874,7 @@ export default function CharacterSheet({
               {pathParse.sections.length > 0 ? (
                 <>
                   {pathParse.hasTitle && <div className="pf-entry-title">{cleanDisplayName(paragonPathEntry.name)}</div>}
-                  {pathDetail && pathParse.intro && <div className="pf-intro" dangerouslySetInnerHTML={{ __html: wikiToHtml(pathParse.intro, paragonPathEntry.fields) }} />}
+                  {pathDetail && pathParse.intro && <div className="pf-intro" dangerouslySetInnerHTML={safeHtml(wikiToHtml(pathParse.intro, paragonPathEntry.fields))} />}
                   <FeatureSectionList sections={pathSections} detail={pathDetail} fields={paragonPathEntry.fields} powerOf={(id) => powerMap.get(id)} panelIds={panelIds} onAddPowers={onAddPowers} level={char.level} />
                 </>
               ) : (
@@ -6900,7 +6901,7 @@ export default function CharacterSheet({
               {destinyParse.sections.length > 0 ? (
                 <>
                   {destinyParse.hasTitle && <div className="pf-entry-title">{cleanDisplayName(epicDestinyEntry.name)}</div>}
-                  {destinyDetail && destinyParse.intro && <div className="pf-intro" dangerouslySetInnerHTML={{ __html: wikiToHtml(destinyParse.intro, epicDestinyEntry.fields) }} />}
+                  {destinyDetail && destinyParse.intro && <div className="pf-intro" dangerouslySetInnerHTML={safeHtml(wikiToHtml(destinyParse.intro, epicDestinyEntry.fields))} />}
                   <FeatureSectionList sections={destinyParse.sections} detail={destinyDetail} fields={epicDestinyEntry.fields} powerOf={(id) => powerMap.get(id)} panelIds={panelIds} onAddPowers={onAddPowers} level={char.level} />
                 </>
               ) : (

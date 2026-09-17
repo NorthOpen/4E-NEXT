@@ -41,11 +41,22 @@ function escapeAttr(s: string): string {
   return escapeText(s).replace(/"/g, "&quot;");
 }
 
-/** 去掉事件处理器 / javascript: 伪协议，其余属性原样保留（源数据是随包分发的自有内容） */
+/**
+ * 去掉事件处理器 / javascript: 伪协议，其余属性原样保留。
+ *
+ * 这里是**第二道**过滤：真正的边界在 lib/sanitize.ts（所有 dangerouslySetInnerHTML 都过它）。
+ * 之所以还留着，是因为本函数的输出会先经过几轮字符串替换，早一步清掉更省事。
+ *
+ * 两处细节都是真实踩过的坑：
+ *   · 第一个正则要求属性前有空白，但 HTML 解析器在「带引号的属性值」后面遇到非空白字符时
+ *     是**报错后继续解析**——`href="x"onclick="y"` 里 onclick 依然是有效属性，
+ *     所以分隔符必须是 \s / " / ' / / 四种之一（否则就漏了）。
+ *   · 保留分隔符本身（$1），别把引号一起吃掉，否则后面的标签会解析错乱。
+ */
 function sanitizeTag(tag: string): string {
   return tag
-    .replace(/\son[a-z]+\s*=\s*("[^"]*"|'[^']*'|[^\s>]+)/gi, "")
-    .replace(/(href|src)\s*=\s*(["']?)\s*javascript:[^"'>\s]*/gi, '$1="#"');
+    .replace(/([\s"'/])on[a-z]+\s*=\s*("[^"]*"|'[^']*'|[^\s>]+)/gi, "$1")
+    .replace(/(href|src)\s*=\s*(["']?)\s*(javascript|vbscript|data)\s*:[^"'>\s]*/gi, '$1="#"');
 }
 
 function stripTags(s: string): string {

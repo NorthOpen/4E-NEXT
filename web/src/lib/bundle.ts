@@ -123,7 +123,20 @@ export function validateEntry(e: unknown): string[] {
   if (typeof o.category !== "string" || !o.category.trim()) errors.push("缺少 category");
   if (!Array.isArray(o.tags)) errors.push("tags 不是数组");
   if (o.sourceText !== undefined && typeof o.sourceText !== "string") errors.push("sourceText 不是字符串");
-  if (o.fields !== undefined && (typeof o.fields !== "object" || o.fields === null)) errors.push("fields 不是对象");
+  // details / flavorText 是直接进 dangerouslySetInnerHTML 的字段：类型不对会让卡片渲染出乱码或整条崩掉。
+  // （内容本身的执行风险由 lib/sanitize.ts 在注入 DOM 那一刻统一拦掉，这里只管形状。）
+  if (o.details !== undefined && typeof o.details !== "string") errors.push("details 不是字符串");
+  if (o.flavorText !== undefined && typeof o.flavorText !== "string") errors.push("flavorText 不是字符串");
+  if (o.fields !== undefined && (typeof o.fields !== "object" || o.fields === null)) {
+    errors.push("fields 不是对象");
+  } else if (o.fields) {
+    for (const [k, v] of Object.entries(o.fields as Record<string, unknown>)) {
+      if (typeof v !== "string") {
+        errors.push("fields." + k + " 不是字符串");
+        break;
+      }
+    }
+  }
   return errors;
 }
 

@@ -6,7 +6,7 @@
 //     网络请求走主进程（因此不受 CORS 约束）、自签名证书改为询问用户。
 //   · 接缝约定见 web/src/platform/types.ts。
 
-const { app, BrowserWindow, Menu, dialog, ipcMain, net, protocol, session, shell } = require("electron");
+const { app, BrowserWindow, Menu, dialog, ipcMain, net, protocol, safeStorage, session, shell } = require("electron");
 const fs = require("node:fs");
 const path = require("node:path");
 const { pathToFileURL } = require("node:url");
@@ -14,6 +14,26 @@ const { pathToFileURL } = require("node:url");
 const RENDERER_DIR = path.join(__dirname, "..", "renderer");
 const PRELOAD = path.join(__dirname, "..", "preload", "preload.js");
 const APP_URL = "app://4enext/index.html";
+
+/**
+ * 内容安全策略（桌面端）。
+ * 与 web/public/_headers、vite.config.ts 里注入的 meta 是同一份，仅多了 app: 协议。
+ * script-src 'self' 是重点：词条正文里的内联事件处理器（onerror= 之类）即便混进 DOM 也不会执行，
+ * 这是渲染层 lib/sanitize.ts 之外的第二道防线。
+ */
+const CSP = [
+  "default-src 'self' app:",
+  "script-src 'self' app:",
+  "style-src 'self' 'unsafe-inline' https://fontsapi.zeoseven.com",
+  "font-src 'self' app: data: https://fontsapi.zeoseven.com",
+  "img-src 'self' app: data: blob: https:",
+  "connect-src 'self' app: https: http:",
+  "media-src 'self' app: data: blob:",
+  "object-src 'none'",
+  "base-uri 'self'",
+  "form-action 'none'",
+  "frame-ancestors 'none'",
+].join("; ");
 
 // 便携模式：可执行文件同目录放一个 portable.txt，数据就写在程序目录的 data/ 里。
 // 免安装绿色版（U 盘、解压即用）理应如此——卸载 = 删文件夹，不往系统里留东西。
@@ -65,6 +85,65 @@ let storeLoaded = false;
 let storeDirty = false;
 let storeTimer = null;
 
+// ---------------------------------------------------------------- 凭据落盘加密
+//
+// storage.json 里躺着一条敏感数据：WebDAV 应用密码（4enext.webdav.v1）。
+// 明文放在应用数据目录里，任何能读到这个文件的人（同机其它账户、备份、被云同步的 AppData）
+// 都能直接拿去用。这里用 Electron 的 safeStorage（Windows = DPAPI，macOS = 钥匙串，
+// Linux = libsecret）把它换成密文：
+//   · 落盘   password → passwordEnc（base64 密文）
+//   · 读盘   passwordEnc → password
+// 渲染进程拿到的仍是明文，存储接缝的契约不变，同步逻辑一行都不用改。
+// 代价：密文与当前系统账户绑定，把 storage.json（或绿色版整个目录）拷到另一台机器后
+//       密码需要去设置里重填一次——这是"不把凭据明文写盘"应付的代价。
+// safeStorage 不可用（部分 Linux 桌面没装 keyring）时自动退回明文，功能不受影响。
+
+const WEBDAV_KEY = "4enext.webdav.v1";
+
+function secretAvailable() {
+  try {
+    return safeStorage.isEncryptionAvailable();
+  } catch {
+    return false;
+  }
+}
+
+function decryptSecrets() {
+  if (!secretAvailable()) return;
+  const raw = store[WEBDAV_KEY];
+  if (typeof raw !== "string") return;
+  try {
+    const cfg = JSON.parse(raw);
+    if (cfg && typeof cfg.passwordEnc === "string" && !cfg.password) {
+      cfg.password = safeStorage.decryptString(Buffer.from(cfg.passwordEnc, "base64"));
+      delete cfg.passwordEnc;
+      store[WEBDAV_KEY] = JSON.stringify(cfg);
+    }
+  } catch {
+    // 解不开（换了机器 / 换了系统账户）就当没设过密码，让用户去设置里重填，别把文件写坏
+  }
+}
+
+/** 落盘前的序列化：把 WebDAV 密码换成密文，其余数据原样 */
+function serializedStore() {
+  if (!secretAvailable()) return JSON.stringify(store);
+  const out = { ...store };
+  const raw = out[WEBDAV_KEY];
+  if (typeof raw === "string") {
+    try {
+      const cfg = JSON.parse(raw);
+      if (cfg && typeof cfg.password === "string" && cfg.password) {
+        cfg.passwordEnc = safeStorage.encryptString(cfg.password).toString("base64");
+        delete cfg.password;
+        out[WEBDAV_KEY] = JSON.stringify(cfg);
+      }
+    } catch {
+      /* 解析不了就原样写出，交由渲染进程自己兜底 */
+    }
+  }
+  return JSON.stringify(out);
+}
+
 function loadStore() {
   if (storeLoaded) return;
   storeLoaded = true;
@@ -73,6 +152,7 @@ function loadStore() {
       const parsed = JSON.parse(fs.readFileSync(candidate, "utf8"));
       if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) {
         store = parsed;
+        decryptSecrets();
         return;
       }
     } catch {
@@ -92,7 +172,7 @@ function flushStore() {
   storeDirty = false;
   try {
     const tmp = storeFile + ".tmp";
-    fs.writeFileSync(tmp, JSON.stringify(store), "utf8");
+    fs.writeFileSync(tmp, serializedStore(), "utf8");
     fs.renameSync(tmp, storeFile);
   } catch (err) {
     // 不许静默：渲染进程会把它当成一次「保存失败」提示用户
@@ -128,7 +208,8 @@ function filtersFor(filename) {
 
 // ---------------------------------------------------------------- 网络请求（主进程直连，不受 CORS 约束）
 
-const trustedHosts = new Set();
+/** 主机名 → 已信任证书的指纹。只认指纹一致的证书，换证书必须重新确认 */
+const trustedHosts = new Map();
 
 async function davRequest(req) {
   const controller = new AbortController();
@@ -154,6 +235,77 @@ async function davRequest(req) {
   } finally {
     clearTimeout(timer);
   }
+}
+
+// ---------------------------------------------------------------- IPC 请求授权
+//
+// http:request 是「渲染进程让主进程代发请求」的通道，桌面端靠它绕开 CORS；
+// 但它同时也是一条 SSRF 通道：一旦渲染进程里跑起来注入的脚本（例如导入了带脚本的私设包），
+// 就能拿它去探测内网网段、路由器、本机服务。所以这里加两道闸：
+//   ① 只接受应用自身页面（app://）发来的请求；
+//   ② 目标 origin 必须是用户在设置里填的那台 WebDAV 服务器——设置页是逐键保存的，
+//      所以正常同步永远命中白名单，不会有任何打扰；其余地址（内网/本机/任意公网）
+//      一律弹窗询问，同一 origin 每次运行只问一次。
+
+/** 主进程自持的"已授权 origin"：取用户填的 WebDAV 地址 */
+function configuredOrigins() {
+  const out = new Set();
+  try {
+    loadStore();
+    const raw = store["4enext.webdav.v1"];
+    if (typeof raw === "string") {
+      const cfg = JSON.parse(raw);
+      const url = cfg && cfg.url;
+      if (typeof url === "string" && url.trim()) out.add(new URL(url.trim()).origin);
+    }
+  } catch {
+    /* 配置缺失或损坏 → 视为没有授权目标，走询问流程 */
+  }
+  return out;
+}
+
+/** 本次运行中用户点过「允许」的 origin */
+const allowedOrigins = new Set();
+
+function originAllowed(origin) {
+  if (configuredOrigins().has(origin)) return true;
+  if (allowedOrigins.has(origin)) return true;
+  const choice = dialog.showMessageBoxSync({
+    type: "warning",
+    title: "允许访问这个地址吗",
+    message: "4E NEXT 想要访问 " + origin + "。",
+    detail:
+      "这不是你在设置里填的 WebDAV 服务器。\n\n" +
+      "正常情况下同步只会访问你自己配置的那台服务器。出现这个提示，可能是：\n" +
+      "· 你正在测试一台新服务器（允许即可）；\n" +
+      "· 某个私设包/同步数据里带了脚本，正在借应用探测你的内网。\n\n" +
+      "不确定来源时请选择「取消」。允许后本次运行期间不再重复询问。",
+    buttons: ["取消", "允许"],
+    defaultId: 0,
+    cancelId: 0,
+    noLink: true,
+  });
+  if (choice === 1) {
+    allowedOrigins.add(origin);
+    return true;
+  }
+  return false;
+}
+
+/** 只信任应用自己的页面：app:// 的主框架 */
+function isAppFrame(event) {
+  try {
+    const frame = event.senderFrame;
+    if (frame && frame !== frame.top) return false;
+    const url = frame && frame.url ? frame.url : event.sender.getURL();
+    return typeof url === "string" && url.startsWith("app://");
+  } catch {
+    return false;
+  }
+}
+
+function blockedRequest(error) {
+  return { status: 0, ok: false, headers: {}, bodyText: "", error };
 }
 
 // ---------------------------------------------------------------- 窗口
@@ -336,7 +488,22 @@ function registerIpc() {
     }
   });
 
-  ipcMain.handle("http:request", async (_event, req) => davRequest(req));
+  ipcMain.handle("http:request", async (event, req) => {
+    if (!isAppFrame(event)) return blockedRequest("请求来源不是 4E NEXT 自身的页面，已拒绝。");
+    let url;
+    try {
+      url = new URL(String(req && req.url));
+    } catch {
+      return blockedRequest("请求地址无效。");
+    }
+    if (url.protocol !== "http:" && url.protocol !== "https:") {
+      return blockedRequest("只允许 http / https 请求。");
+    }
+    if (!originAllowed(url.origin)) {
+      return blockedRequest("已拒绝访问 " + url.origin + "（未获授权，可能是数据里带的脚本在探测内网）。");
+    }
+    return davRequest(req);
+  });
 }
 
 // ---------------------------------------------------------------- 生命周期
@@ -362,11 +529,26 @@ app.whenReady().then(async () => {
     let rel = decodeURIComponent(pathname);
     if (rel === "/" || rel === "") rel = "/index.html";
     const target = path.normalize(path.join(RENDERER_DIR, rel));
-    if (!target.startsWith(RENDERER_DIR)) {
+    // 必须以 RENDERER_DIR + 分隔符开头：只比前缀的话，同级的 renderer-xxx 目录也会被放行
+    if (target !== RENDERER_DIR && !target.startsWith(RENDERER_DIR + path.sep)) {
       return new Response("forbidden", { status: 403, headers: { "content-type": "text/plain" } });
     }
     try {
-      return await net.fetch(pathToFileURL(target).toString());
+      const res = await net.fetch(pathToFileURL(target).toString());
+      // 只有 HTML 需要挂安全响应头；其余是数据/字体/图片，挂了也没意义。
+      // 这份 CSP 与 web/public/_headers、vite.config.ts 注入的 meta 三份一致，
+      // 只多放行 app:（页面自身就跑在这个协议上）——改一处记得同步另两处。
+      if (/\.html?$/i.test(target)) {
+        return new Response(await res.text(), {
+          status: res.status,
+          headers: {
+            "content-type": "text/html; charset=utf-8",
+            "Content-Security-Policy": CSP,
+            "X-Content-Type-Options": "nosniff",
+          },
+        });
+      }
+      return res;
     } catch {
       return new Response("not found", { status: 404, headers: { "content-type": "text/plain" } });
     }
@@ -376,34 +558,53 @@ app.whenReady().then(async () => {
   // 桌面端把它变成一次明确的询问——自建 WebDAV（群晖 / Nextcloud）几乎都是自签名。
   session.defaultSession.setCertificateVerifyProc((request, callback) => {
     if (request.errorCode === 0) return callback(-3); // 交给 Chromium 默认校验
-    if (trustedHosts.has(request.hostname)) return callback(0);
+    const fingerprint =
+      request.certificate && request.certificate.fingerprint ? String(request.certificate.fingerprint) : "";
+    const known = trustedHosts.get(request.hostname);
+    // 关键：指纹一致才免问。只按主机名放行的做法，会让"本次运行内被换成另一张证书"悄悄通过，
+    // 而自建 WebDAV 的用户对"证书不受信任"这个弹窗早就见惯了，很容易点过去。
+    if (known !== undefined && known !== "" && known === fingerprint) return callback(0);
+    const changed = known !== undefined && known !== fingerprint;
     const choice = dialog.showMessageBoxSync({
       type: "warning",
       title: "证书不受信任",
       message: request.hostname + " 的安全证书无法验证。",
       detail:
         "自建的 WebDAV 服务器常用自签名证书。\n\n" +
+        (changed
+          ? "注意：这次的证书与本次运行中你先前信任的那张**不是同一张**，可能有人在中间替换。\n\n"
+          : "") +
         "只有在你确认这台服务器属于你或你信任的人时，才选择「信任并继续」。\n" +
-        "选择后本次运行期间不再对同一主机重复询问。",
+        "选择后本次运行期间，该主机只有出示同一张证书时才会免问。",
       buttons: ["取消", "信任并继续"],
       defaultId: 0,
       cancelId: 0,
       noLink: true,
     });
     if (choice === 1) {
-      trustedHosts.add(request.hostname);
+      trustedHosts.set(request.hostname, fingerprint);
       return callback(0);
     }
     return callback(-2);
   });
 
   // 兜底：万一有代码走了 <a download>，记住上次目录并让系统弹保存框
+  // 兜底路径（万一有代码走了 <a download>）：仍然弹系统保存框，不再按上次目录静默落盘。
+  // 静默落盘意味着一个被入侵的 WebDAV 服务端/私设包可以把文件直接写进你上次保存的位置。
   session.defaultSession.on("will-download", (_event, item) => {
     const filename = item.getFilename();
-    if (lastSaveDir) item.setSavePath(path.join(lastSaveDir, filename));
-    item.once("done", (_e, state) => {
-      if (state === "completed") lastSaveDir = path.dirname(item.getSavePath());
+    const baseDir = lastSaveDir || app.getPath("documents");
+    const picked = dialog.showSaveDialogSync({
+      title: "另存为",
+      defaultPath: path.join(baseDir, filename),
+      filters: filtersFor(filename),
     });
+    if (!picked) {
+      item.cancel();
+      return;
+    }
+    item.setSavePath(picked);
+    lastSaveDir = path.dirname(picked);
   });
 
   registerIpc();

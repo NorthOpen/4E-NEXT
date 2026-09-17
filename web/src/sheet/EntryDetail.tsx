@@ -1,6 +1,7 @@
 import type { Entry } from "../data/types";
 import { CATEGORY_LABELS } from "../data/labels";
 import { stripWiki } from "../lib/text";
+import { safeHtml } from "../lib/sanitize";
 
 const FIELD_LABELS: [string, string][] = [
   ["usageZh", "使用"], ["actionType", "动作"], ["keywords", "关键词"], ["range", "射程"], ["level", "等级"],
@@ -12,7 +13,7 @@ const FIELD_LABELS: [string, string][] = [
 ];
 
 function Val({ v }: { v: string }) {
-  if (v.includes("<")) return <dd className="entry-val" dangerouslySetInnerHTML={{ __html: v }} />;
+  if (v.includes("<")) return <dd className="entry-val" dangerouslySetInnerHTML={safeHtml(v)} />;
   return <dd className="entry-val">{v}</dd>;
 }
 
@@ -43,7 +44,7 @@ export default function EntryDetail({ entry }: { entry: Entry }) {
         </dl>
       )}
       {entry.details ? (
-        <div className="entry-details" dangerouslySetInnerHTML={{ __html: entry.details }} />
+        <div className="entry-details" dangerouslySetInnerHTML={safeHtml(entry.details)} />
       ) : (
         <pre className="entry-text">{stripWiki(entry.sourceText).slice(0, 2000)}</pre>
       )}

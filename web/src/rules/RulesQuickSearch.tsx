@@ -4,6 +4,7 @@ import SheetDialog from "../components/SheetDialog";
 import type { RuleEntry, RulesPayload } from "./types";
 import { buildDocs, highlightHtml, searchRules, suggestEntries, termsOf, type RuleDoc } from "./rulesSearch";
 import { renderRule, type RuleContext } from "./rulesWiki";
+import { safeHtml } from "../lib/sanitize";
 
 const DATA_URL = import.meta.env.BASE_URL + "data/rules.json";
 
@@ -217,7 +218,7 @@ export default function RulesQuickSearch() {
           {hits.map((h) => (
             <button key={h.entry.id} type="button" className="rules-result" onClick={() => openEntry(h.entry)}>
               <span className="rules-result-head">
-                <span className="rules-result-title" dangerouslySetInnerHTML={{ __html: highlightHtml(h.entry.title, terms) }} />
+                <span className="rules-result-title" dangerouslySetInnerHTML={safeHtml(highlightHtml(h.entry.title, terms))} />
                 <span className="rules-result-kind">{KIND_LABEL[h.entry.kind] ?? h.entry.kind}</span>
               </span>
               <span className="rules-result-path">
@@ -225,7 +226,7 @@ export default function RulesQuickSearch() {
                 {showEn(h.entry) ? " · " + h.entry.titleEn : ""}
               </span>
               {h.snippet && (
-                <span className="rules-result-snippet" dangerouslySetInnerHTML={{ __html: highlightHtml(h.snippet, terms) }} />
+                <span className="rules-result-snippet" dangerouslySetInnerHTML={safeHtml(highlightHtml(h.snippet, terms))} />
               )}
             </button>
           ))}
@@ -269,7 +270,7 @@ export default function RulesQuickSearch() {
                 <span key={t} className="rules-detail-tag">{t}</span>
               ))}
             </div>
-            <div className="rules-body" onClick={onDetailClick} dangerouslySetInnerHTML={{ __html: detailHtml }} />
+            <div className="rules-body" onClick={onDetailClick} dangerouslySetInnerHTML={safeHtml(detailHtml)} />
             {related.length > 0 && (
               <div className="rules-related">
                 <div className="rules-related-title">相关词条</div>

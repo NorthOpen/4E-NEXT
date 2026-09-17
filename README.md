@@ -12,31 +12,27 @@
 
 | 层       | 技术                                                              |
 | -------- | ----------------------------------------------------------------- |
-| 数据管线 | TypeScript（Node 26）+ zod                                        |
+| 数据管线 | TypeScript（Node 22+；CI 用 22，本地开发用 26）+ cheerio + zod    |
 | 前端     | React 19 + Vite 6 + TypeScript 5.7 + @vitejs/plugin-react         |
 | MD3 组件 | @material/web 2.5.0 + @lit/react 1.0.8                            |
 | 动态取色 | @material/material-color-utilities 0.3.0                          |
+| 取色控件 | react-colorful 5                                                  |
 | 头像裁切 | react-easy-crop 5                                                 |
 | 图片转换 | html-to-image + jspdf                                             |
 | 字体     | Chiron Sung HK VF + Chiron Hei HK VF + Material Symbols Outlined（桌面版内置同源分片，离线可用） |
 | 桌面端   | Electron 44 + electron-builder（外壳内嵌网页端构建产物）          |
+| 部署     | Cloudflare Pages（`wrangler.jsonc`）或 GitHub Pages（`.github/workflows/deploy.yml`） |
 
 ## 本地开发
 
 如您希望在本地部署并开发，克隆本仓库至本地后使用 `pnpm --filter 4enext-web dev`，在本地浏览器构建即可。
 
-## 桌面版（离线）
+## 桌面版
 
-除网页版外，本项目提供 Electron 桌面离线版。它与网页版共用同一份源码，只替换和环境打交道的四件事：
-存储位置、另存为、网络请求、证书处理——因此**不需要配置 WebDAV 跨域**，也不受浏览器 5MB 配额限制。
+除网页版外，项目提供封装后的setup与portable两种桌面版本。为在意缓存占用和希望使用独立应用的用户提供。
 
-```bash
-pnpm --filter 4enext-web build:desktop   # 构建渲染产物
-npm --prefix desktop run smoke       # 外壳自检
-npm --prefix desktop run dist        # 打包安装程序
-```
+点击下载[最新版本](https://github.com/NorthOpen/4E-NEXT/releases)
 
-架构说明与已知限制见 [desktop/README.md](desktop/README.md)。
 
 ## WebDAV
 

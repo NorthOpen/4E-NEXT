@@ -32,6 +32,13 @@ function describeError(e: unknown): string {
   return "同步出错：未知错误。";
 }
 
+/** 明文 http 且不是本机：Basic 认证会以近似明文的方式过网，值得当场提醒 */
+function isPlainHttp(url: string): boolean {
+  if (!/^http:\/\//i.test(url.trim())) return false;
+  const host = url.trim().replace(/^http:\/\//i, "").split("/")[0].split(":")[0].toLowerCase();
+  return host !== "localhost" && host !== "127.0.0.1" && host !== "::1" && host !== "[::1]";
+}
+
 function fmtTime(ms: number): string {
   if (!ms) return "尚未同步过";
   const d = new Date(ms);
@@ -112,6 +119,13 @@ export default function SyncSettings() {
           onInput={(e) => patch({ url: (e.target as HTMLInputElement).value ?? "" })}
         />
       </div>
+
+      {isPlainHttp(cfg.url) && (
+        <p className="d4e-sync-msg warn">
+          地址是 http:// 开头：用户名与应用密码会以 Base64（等同明文）在网络上传输，同一局域网内可被截获。
+          自建服务器请改用 https://；确实只能走 http 时，请只在完全可信的内网里使用。
+        </p>
+      )}
 
       <div className="d4e-sync-field">
         <FilledTextField

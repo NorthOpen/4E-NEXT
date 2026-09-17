@@ -3,9 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://fontsapi.zeoseven.com/546/main/result.css" onload="this.rel='stylesheet'" rel="preload" as="style" crossorigin />
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
-    <noscript><link rel="stylesheet" href="https://fontsapi.zeoseven.com/546/main/result.css" /></noscript>
+    <!--
+      正文字体的加载：先 rel="preload" 提前取，再由 src/main.tsx 切成样式表。
+      原先写的是 onload="this.rel='stylesheet'"——那是内联事件处理器，会被 CSP 的
+      script-src 'self' 直接拦掉，所以改成脚本侧切换（两段都在 CSP 允许范围内）。
+      桌面端构建会把这行整条剔除（字体已内置），main.tsx 里的查询自然落空，不会请求 CDN。
+    -->
+    <link data-font-preload href="https://fontsapi.zeoseven.com/546/main/result.css" rel="preload" as="style" crossorigin referrerpolicy="no-referrer" />
+    <noscript><link rel="stylesheet" href="https://fontsapi.zeoseven.com/546/main/result.css" referrerpolicy="no-referrer" /></noscript>
     <title>4E NEXT</title>
   </head>
   <body>

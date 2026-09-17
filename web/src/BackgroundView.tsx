@@ -1,4 +1,5 @@
 import { mdToHtml } from "./lib/markdown";
+import { safeHtml } from "./lib/sanitize";
 import { CREATION_FIELDS, type Character } from "./sheet/character";
 
 interface Props {
@@ -31,7 +32,7 @@ export default function BackgroundView({ mode, char, setChar }: Props) {
             char.creation[f.key].trim() ? (
               <div key={f.key} className="bg-field">
                 <div className="bg-label">{f.label}</div>
-                <div className="bg-render" dangerouslySetInnerHTML={{ __html: mdToHtml(char.creation[f.key]) }} />
+                <div className="bg-render" dangerouslySetInnerHTML={safeHtml(mdToHtml(char.creation[f.key]))} />
               </div>
             ) : null
           )

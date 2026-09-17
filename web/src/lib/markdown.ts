@@ -3,13 +3,30 @@
 // > 引用、--- 分割线、[文字](链接)、| 表格 |。输入统一转义，不解析原始 HTML。
 export function mdToHtml(src: string): string {
   const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+  /**
+   * 链接地址净化。
+   * 输入此刻已经过 esc()（& < > 已转义），所以这里只需处理引号与控制字符——
+   * 否则 `[字](x" onmouseover="…)` 会从 href 属性里逃逸出来变成事件处理器。
+   * 协议只放行 http/https/mailto，javascript:、data: 等一律不生成链接（退化为纯文本）。
+   */
+  const safeHref = (raw: string): string | null => {
+    const url = raw.trim().replace(/[\u0000-\u0020\u007f]+/g, "");
+    if (!url) return null;
+    if (/^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(url) && !/^(https?|mailto):/i.test(url)) return null;
+    return url.replace(/"/g, "%22").replace(/'/g, "%27");
+  };
+
   const inline = (s: string) =>
     esc(s)
       .replace(/\*\*([^*]+)\*\*/g, "<b>$1</b>")
       .replace(/\*([^*]+)\*/g, "<i>$1</i>")
       .replace(/~~([^~]+)~~/g, "<s>$1</s>")
       .replace(/`([^`]+)`/g, "<code>$1</code>")
-      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noreferrer">$1</a>');
+      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_m, label: string, url: string) => {
+        const href = safeHref(url);
+        return href ? `<a href="${href}" target="_blank" rel="noreferrer noopener">${label}</a>` : label;
+      });
 
   const isTableRow = (s: string) => /^\s*\|.*\|\s*$/.test(s);
   const isTableSplit = (s: string) => /^\s*\|(\s*:?-{2,}:?\s*\|)+\s*$/.test(s);
