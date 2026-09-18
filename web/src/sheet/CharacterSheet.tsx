@@ -6920,11 +6920,14 @@ export default function CharacterSheet({
 <section className="block">
         <div className="block-head">
           <h3 className="block-title">技能（{effectiveTrained.length}）</h3>
-          <button type="button" className="def-detail-btn" onClick={() => setSkillDetailOpen(true)} title="查看每项技能的加值构成">查看详情</button>
-          <button type="button" className="mode-chip" onClick={() => setSkillDetail((p) => !p)}>
-            <span className="material-symbols-outlined mode-chip-ic">{skillDetail ? "density_small" : "density_large"}</span>
-            {skillDetail ? "简洁" : "详细"}
-          </button>
+          {/* 与「命中/伤害」板块一致：动作按钮成组收进 block-head-actions，靠 8px 间距与标题行右端对齐 */}
+          <span className="block-head-actions">
+            <button type="button" className="def-detail-btn" onClick={() => setSkillDetailOpen(true)} title="查看每项技能的加值构成">查看详情</button>
+            <button type="button" className="mode-chip" onClick={() => setSkillDetail((p) => !p)}>
+              <span className="material-symbols-outlined mode-chip-ic">{skillDetail ? "density_small" : "density_large"}</span>
+              {skillDetail ? "简洁" : "详细"}
+            </button>
+          </span>
         </div>
         {skillDetail ? (
           <>
@@ -7214,7 +7217,7 @@ export default function CharacterSheet({
               <span className="sg-count">（{char.adventureItems.filter(Boolean).length}/{char.adventureItems.length}）</span>
               <button type="button" className="sg-step" title="减少槽位" onClick={() => setChar((p) => ({ ...p, adventureItems: p.adventureItems.slice(0, -1) }))}>−</button>
               <button type="button" className="sg-step" title="增加槽位" onClick={() => setChar((p) => ({ ...p, adventureItems: [...p.adventureItems, { name: "", cost: 0 }] }))}>+</button>
-              <FilledTonalButton className="sg-custom sg-custom-btn" aria-label="添加自定义冒险装备" title="添加自定义冒险装备（手动输入名称）" onClick={() => setChar((p) => ({ ...p, adventureItems: [...p.adventureItems, { name: "", cost: 0, custom: true }] }))}><span className="material-symbols-outlined md-mat" slot="icon">add</span>自定义</FilledTonalButton>
+              <FilledTonalButton className="sg-custom-btn" aria-label="添加自定义冒险装备" title="添加自定义冒险装备（手动输入名称）" onClick={() => setChar((p) => ({ ...p, adventureItems: [...p.adventureItems, { name: "", cost: 0, custom: true }] }))}><span className="material-symbols-outlined md-mat" slot="icon">add</span>自定义</FilledTonalButton>
             </div>
             <div className="adv-list">
               {char.adventureItems.map((a, i) => (

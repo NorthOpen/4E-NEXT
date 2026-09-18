@@ -87,6 +87,8 @@ export default function SettingsView({ layout, onStartTutorial }: { layout: "sin
         </div>
         {seedMode === "preset" && (
           <div className="settings-row">
+            {/* 与上方各行同样带 field-label：色板左缘才会跟「深浅模式」「取色种子」的控件对齐 */}
+            <span className="field-label">预设色板</span>
             <div className="swatch-row">
               {NORD_PRESETS.map((p) => (
                 <button key={p.color} type="button" className={presetHex === p.color ? "swatch active" : "swatch"} style={{ background: p.color }} title={p.name} onClick={() => setPresetHex(p.color)} />

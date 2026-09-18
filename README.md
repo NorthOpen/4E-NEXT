@@ -12,16 +12,15 @@
 
 | 层       | 技术                                                              |
 | -------- | ----------------------------------------------------------------- |
-| 数据管线 | TypeScript（Node 22+；CI 用 22，本地开发用 26）+ cheerio + zod    |
+| 数据管线 | TypeScript（Node 22+；CI 22，本地开发 26）+ cheerio + zod    |
 | 前端     | React 19 + Vite 6 + TypeScript 5.7 + @vitejs/plugin-react         |
 | MD3 组件 | @material/web 2.5.0 + @lit/react 1.0.8                            |
 | 动态取色 | @material/material-color-utilities 0.3.0                          |
 | 取色控件 | react-colorful 5                                                  |
 | 头像裁切 | react-easy-crop 5                                                 |
 | 图片转换 | html-to-image + jspdf                                             |
-| 字体     | Chiron Sung HK VF + Chiron Hei HK VF + Material Symbols Outlined（桌面版内置同源分片，离线可用） |
-| 桌面端   | Electron 44 + electron-builder（外壳内嵌网页端构建产物）          |
-| 部署     | Cloudflare Pages（`wrangler.jsonc`）或 GitHub Pages（`.github/workflows/deploy.yml`） |
+| 字体     | Chiron Sung HK VF + Chiron Hei HK VF + Material Symbols Outlined |
+| 桌面端   | Electron 44 + electron-builder |
 
 ## 本地开发
 
