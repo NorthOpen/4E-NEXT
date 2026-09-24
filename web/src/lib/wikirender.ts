@@ -51,6 +51,12 @@ export function raceTraitHtml(text: string): string | undefined {
   return lines.join("\n").trim();
 }
 
+// classTrait 块的自动头部槽行（由种族数据字段派生，不是可编辑特性）：
+// 车卡「简洁」模式据此剔除、编辑器反解时据此排除。
+export const RACE_HEADER_NAMES: ReadonlySet<string> = new Set([
+  "平均身高", "平均体重", "属性调整", "体型", "速度", "视觉", "语言", "技能奖励",
+]);
+
 // 解析 classTrait 里的 ''名称：''正文 条目（用于亚种替换交互，按名称定位可替换的种族特性）
 export interface RaceTraitLine {
   name: string;
@@ -66,10 +72,11 @@ export function parseRaceTraitLines(classTraitBody: string): RaceTraitLine[] {
   for (let i = 0; i < segs.length; i++) {
     const end = i + 1 < segs.length ? segs[i + 1].start : classTraitBody.length;
     const body = classTraitBody.slice(segs[i].end, end).replace(/^\s*$/gm, "").trim();
-    if (body) {
-      const replaces = body.match(/替代「([^」]+)」/)?.[1];
-      out.push({ name: segs[i].name, body, ...(replaces ? { replaces } : {}) });
-    }
+    // 只填了名称、正文尚空的行也要保留：否则编辑器里刚写下的特性行会在预览/车卡上凭空消失。
+    // 8 个自动头部槽行例外——它们由种族数据字段派生，无值时应整体缺席而不是渲染成空标题。
+    if (!body && (!segs[i].name || RACE_HEADER_NAMES.has(segs[i].name))) continue;
+    const replaces = body.match(/替代「([^」]+)」/)?.[1];
+    out.push({ name: segs[i].name, body, ...(replaces ? { replaces } : {}) });
   }
   return out;
 }
@@ -78,7 +85,13 @@ export function parseRaceTraitLines(classTraitBody: string): RaceTraitLine[] {
 export function raceBodyHtml(text: string): string | undefined {
   const m = text.match(/@@\.classTrait\s+"""[\s\S]*?"""/);
   if (!m || m.index === undefined) return undefined;
-  const rest = text.slice(m.index + m[0].length).trim();
+  const rest = text.slice(m.index + m[0].length)
+    // 剥离指令行（classTrait 的收尾 @@、@@.indent 等）：它们是排版指令不是正文，
+    // 若留给 splitRaceLore，会被当成首个「!! 」标题之前的引言，渲染出一个只有空白的「种族背景」折叠。
+    .replace(/^[ \t]*@@(?:\.\w+)?[ \t]*$/gm, "")
+    // 剥离独立的 {{威能名}} 转clusion 行：威能由条目列表/特性行承载，正文不重复展示。
+    .replace(/^[ \t]*\{\{[^}]+\}\}[ \t]*$/gm, "")
+    .trim();
   return rest.length > 0 ? rest : undefined;
 }
 
@@ -106,7 +119,9 @@ export function splitRaceLore(body: string): RaceLoreSection[] {
   for (let i = 0; i < heads.length; i++) {
     const end = i + 1 < heads.length ? heads[i + 1].index : body.length;
     const secBody = body.slice(heads[i].index, end).replace(/^!!\s+.+$/m, "").replace(/^\s*$/gm, "").trim();
-    if (secBody) out.push({ title: heads[i].title, body: secBody });
+    // 有标题即保留：只写了标题、正文还没填的小节也要出现在预览里（否则「角色扮演」这类
+    // 已选标题的块会整体消失，表现为「点了标题没反应」）。
+    if (secBody || heads[i].title) out.push({ title: heads[i].title, body: secBody });
   }
   return out;
 }

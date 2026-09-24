@@ -1255,7 +1255,7 @@ md-filled-text-field, md-filled-select { min-width: 0; }
 
 /* ---- 词条搜索 ---- */
 .cat-chips { display: flex; gap: 8px; overflow-x: auto; padding: 4px 0 8px; scrollbar-width: thin; }
-.chip { flex: none; height: 32px; padding: 0 12px; border-radius: var(--md-sys-shape-corner-small); border: 1px solid var(--md-sys-color-outline-variant); background: transparent; color: var(--md-sys-color-on-surface-variant); font-size: 14px; letter-spacing: 0.1px; cursor: pointer; font-family: inherit; }
+.chip { flex: none; height: 32px; padding: 0 12px; border-radius: var(--md-sys-shape-corner-full); border: 1px solid var(--md-sys-color-outline-variant); background: transparent; color: var(--md-sys-color-on-surface-variant); font-size: 14px; letter-spacing: 0.1px; cursor: pointer; font-family: inherit; }
 .chip:hover { background: var(--md-sys-color-surface-container-high); }
 .chip.active { background: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); border-color: transparent; }
 
@@ -2014,7 +2014,7 @@ md-dialog.sheet-dialog-xw .picker-cards {
 
 /* 职业特性正文中的 [[威能/专长]] 超链接：仅展示文本，悬停弹出卡片（参考简洁模式装备悬浮）。
    可悬停文本平时即带虚线下划线提示可交互，避免与「选择一个」的可点击选项按钮混淆。 */
-.wiki-ref { position: relative; text-decoration: underline dotted; text-underline-offset: 2px; text-decoration-thickness: 1.5px; text-decoration-color: color-mix(in srgb, var(--md-sys-color-primary) 55%, transparent); cursor: help; }
+.wiki-ref { position: relative; color: var(--md-sys-color-primary); text-decoration: underline dotted; text-underline-offset: 2px; text-decoration-thickness: 1.5px; text-decoration-color: color-mix(in srgb, var(--md-sys-color-primary) 55%, transparent); cursor: help; }
 .wiki-ref:hover { text-decoration-style: solid; text-decoration-color: var(--md-sys-color-primary); }
 /* z-index ≥ 400：需高于遮罩 .picker-overlay(300)，使选择威能/专长界面等弹窗内的 portal 悬浮预览不被背景盖住 */
 .wiki-ref-pop { display: none; position: absolute; top: calc(100% + 8px); left: 0; width: 400px; max-width: calc(100vw - 120px); z-index: 400; border-radius: var(--md-sys-shape-corner-medium); box-shadow: var(--md-sys-elevation-shadow-level3); pointer-events: none; }
