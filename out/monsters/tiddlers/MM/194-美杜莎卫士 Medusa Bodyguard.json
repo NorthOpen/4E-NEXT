@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>12级 护卫</span></div>\n<div class=bg-title><span>中型 自然界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 123；''重伤'' 61</span><span>''先攻'' +11</span></div>\n<div><span>''AC'' 28，''强韧'' 25，''反射'' 23，''意志'' 24</span><span>''侦查'' +15</span></div>\n<div><span>''抗力'' 10 毒素</span><span></span></div>\n<div><span>''速度'' 6</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}重剑（毒素，武器）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+17vs.AC<br>命中：2d10+4 伤害，以及 5 点持续毒素伤害（豁免终止）。效果：该卫士标记目标直到该卫士下回合结束。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}长弓（毒素，武器）✦随意</div>\n<div class=description>攻击：射程 30（一个生物）+17vs.AC<br>命中：1d10+9 伤害，以及 5 点持续毒素伤害（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}毒心凝视（魅惑，毒素，心灵）✦充能（当该卫士通过重剑命中时）</div>\n<div class=description>触发：一个被该卫士标记的敌人进行一次目标不包括它的攻击。<br>攻击（直觉打断）：近程冲击 5（范围内所有敌人）+15vs.意志（该攻击的目标必须包括触发的敌人）<br>命中：2d6+3 毒素和心灵伤害，且若目标是触发的敌人，则该目标震慑直到其回合结束。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 唬骗+14，隐秘+14</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 22（+12）</span><span>''敏捷'' 17（+9）</span><span>''感知'' 19（+10）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 19（+10）</span><span>''智力'' 12（+7）</span><span>''魅力'' 17（+9）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 通用语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 重剑，长弓</span></div></div>\n</div>",
+    "title": "美杜莎卫士 Medusa Bodyguard",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "12",
+    "role": "护卫",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物",
+    "xp": "700",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "3216"
+  }
+]

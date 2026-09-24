@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>2级 护卫</span></div>\n<div class=bg-title><span>中型 自然界 类人生物（鳞爪类）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 36；''重伤'' 18</span><span>''先攻'' +6</span></div>\n<div><span>''AC'' 17，''强韧'' 14，''反射'' 15，''意志'' 13</span><span>''侦查'' +7</span></div>\n<div><span>''速度'' 5（沼泽行者）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">滑行者勇气</div>\n<div class=description>在它邻接至少一个盟友时毒鳞滑行者的攻击骰获得+2 加值。</div>\n<div class=\"bold bg-power\">滑行者稳定</div>\n<div class=description>毒鳞滑行者不会被击倒且无视强制移动。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}矛（武器）✦随意</div>\n<div class=description>攻击：+8 vs. AC<br>命中：1d10+3 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}标枪（毒素，武器）✦遭遇</div>\n<div class=description>攻击：射程 10/20，+6 vs. AC<br>命中：1d6+3 毒素伤害，且该毒鳞滑行者对同一个目标进行第二攻击。<br>第二攻击：+4vs.强韧；2d6+3 毒素伤害。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 运动+8，隐秘+9</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 14（+3）</span><span>''敏捷'' 17（+4）</span><span>''感知'' 12（+2）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 12（+2）</span><span>''智力'' 8（+0）</span><span>''魅力'' 8（+0）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 龙语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 矛，2 把标枪</span></div></div>\n</div>",
+    "title": "毒鳞滑行者 Poisonscale Slitherer",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "2",
+    "role": "护卫",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物（鳞爪类）",
+    "xp": "125",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "8254"
+  }
+]

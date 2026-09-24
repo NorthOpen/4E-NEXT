@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>6级 护卫</span></div>\n<div class=bg-title><span>中型 星界 类人生物（活体构装）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 70；''重伤'' 35</span><span>''先攻'' +5</span></div>\n<div><span>''AC'' 22，''强韧'' 18，''反射'' 16，''意志'' 20</span><span>''侦查'' +5</span></div>\n<div><span>''抗力'' 5 心灵</span><span>''感官'' 心灵感应 5</span></div>\n<div><span>''速度'' 5</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}阔剑（武器）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+11vs.AC命中：1d10+9 伤害。<br>效果：目标被标记直到该魔晶人求战者下回合结束。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}弩（武器）✦随意</div>\n<div class=description>攻击：射程 15/30（一个生物）+11vs.AC命中：1d8+5 伤害。<br>效果：目标被标记直到该魔晶人求战者下回合结束。</div>\n<div class=\"bold font-size-h4 bg-category\">移动动作</div>\n<div class=\"bold bg-power\">碎晶群（瞬移）✦遭遇</div>\n<div class=description>效果：每个邻接该魔晶人求战者的敌人提供战斗优势直到该魔晶人求战者下回合结束。然后<br>该魔晶人求战者瞬移 2 格。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">灵能斥责（心灵）✦随意</div>\n<div class=description>触发：一个被该魔晶人求战者标记且在其 5 格内的敌人进行一次目标不包括该魔晶人求战者的攻击。<br>效果（直觉反应）：触发的敌人受到 5 点心灵伤害并晕眩直到其下回合结束。</div>\n<div class=\"bold bg-power\">狂怒精神✦随意</div>\n<div class=description>触发：该魔晶人求战者首次重伤。<br>效果（无动作）：该魔晶人求战者获得 10 点临时生命值。直到遭遇结束，该魔晶人求战者的攻击骰受到-2 减值且伤害骰获得+4 加值。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 交涉+8，洞察+10，威吓+8</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 17（+6）</span><span>''敏捷'' 10（+3）</span><span>''感知'' 14（+5）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 14（+5）</span><span>''智力'' 13（+4）</span><span>''魅力'' 11（+3）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 通用语，异怪语，心灵感应 5</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 板甲，阔剑，重弩，20 支矢</span></div></div>\n</div>",
+    "title": "魔晶人求战者 Shardmind Warseeker",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "6",
+    "role": "护卫",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "星界",
+    "creature-type": "类人生物（活体构装）",
+    "xp": "250",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "13734"
+  }
+]

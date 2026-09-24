@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>6级 强者 游击</span></div>\n<div class=bg-title><span>大型 自然界 魔法兽（龙）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 296；''重伤'' 148</span><span>''先攻'' +10</span></div>\n<div><span>''AC'' 20，''强韧'' 18，''反射'' 19，''意志'' 16</span><span>''侦查'' +10</span></div>\n<div><span>''抗力'' 15 强酸；''豁免'' +5；''行动点'' 2</span><span>''感官'' 黑暗视觉</span></div>\n<div><span>''速度'' 8，飞行 10（盘旋），长距飞行 15</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬（强酸）✦随意</div>\n<div class=description>攻击：该幼年赤铜龙在该攻击前和攻击后可以快步两格。触及 2，+11 vs. AC<br>命中：1d10+4 伤害以及 1d6<br>强酸伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}爪击✦随意</div>\n<div class=description>攻击：触及 2，+11 vs. AC<br>命中：1d8+4 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}双重攻击✦随意</div>\n<div class=description>该幼年赤铜龙进行两次爪击攻击然后快步两格。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}飞越攻击✦随意</div>\n<div class=description>该幼年赤铜龙飞行 10 格，并在该移动中的任一时点进行一次近战基本攻击。该幼年赤铜龙<br>移动离开攻击目标时不引发借机攻击。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}龙息（强酸）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：近程冲击 5，+7 vs. 反射<br>命中：1d10+4 强酸伤害，且目标迟缓（豁免终止）。<br>失手：一半伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}龙威（恐惧）✦遭遇</div>\n<div class=description>攻击：近程爆发 5，以敌人为目标，+7 vs. 意志<br>命中：目标震慑直到该幼年赤铜龙下回合结束。<br>后续效果：目标的攻击骰受到-2 减值（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}切翼步✦随意</div>\n<div class=description>触发：当一个敌人移动到一个可以使其夹击该幼年赤铜龙的空间时。<br>攻击：以触发的敌人为目标，+11 vs. AC<br>命中：1d8+3 伤害，且该幼年赤铜龙快步两格。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}重伤喷吐✦遭遇</div>\n<div class=description>触发：当首次重伤时。<br>龙息充能，且该幼年赤铜龙使用它。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 杂技+13，唬骗+9，洞察+10</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 16（+6）</span><span>''敏捷'' 20（+8）</span><span>''感知'' 14（+5）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 18（+7）</span><span>''智力'' 12（+4）</span><span>''魅力'' 12（+4）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 通用语，龙语</span></div></div>\n</div>",
+    "title": "幼年赤铜龙 Young Copper Dragon",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "6",
+    "role": "游击",
+    "specialty-role": "强者",
+    "size": "大型",
+    "origin": "自然界",
+    "creature-type": "魔法兽（龙）",
+    "xp": "1250",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "6266"
+  }
+]

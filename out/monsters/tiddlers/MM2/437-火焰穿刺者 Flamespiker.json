@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>5级 护卫</span></div>\n<div class=bg-title><span>中型 元素界 魔法兽（气系，土系，火系）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 66；''重伤'' 33</span><span>''先攻'' +6</span></div>\n<div><span>''AC'' 21，''强韧'' 18，''反射'' 16，''意志'' 16</span><span>''侦查'' +4</span></div>\n<div><span>''免疫'' 疾病，石化，毒素；''抗力'' 10 火焰</span><span></span></div>\n<div><span>''速度'' 8</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}石刺（火焰）✦随意</div>\n<div class=description>攻击：触及 2，+12 vs. AC<br>命中：1d8 伤害以及 1d6 火焰伤害，且目标获得 5 点火焰易伤并被标记直到该<br>火焰穿刺者下回合结束。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}穿刺矢✦随意</div>\n<div class=description>攻击：射程 5/10，+12 vs. AC<br>命中：1d10+5 伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}雷火突刺（火焰）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>触发：当该火焰穿刺者两格内的一个敌人快步时。<br>雷鸣<br>该火焰穿刺者对触发的敌人使用石刺。若命中，则该火焰穿刺者对同一个目标进行第二攻击。<br>第二攻击：+10vs.强韧；5 点雷鸣伤害，且目标震慑（豁免终止）。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 13（+3）</span><span>''敏捷'' 15（+4）</span><span>''感知'' 15（+4）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 18（+6）</span><span>''智力'' 6（+0）</span><span>''魅力'' 8（+1）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 荒神语</span></div></div>\n</div>",
+    "title": "火焰穿刺者 Flamespiker",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "5",
+    "role": "护卫",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "元素界",
+    "creature-type": "魔法兽（气系，土系，火系）",
+    "xp": "200",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "6857"
+  }
+]

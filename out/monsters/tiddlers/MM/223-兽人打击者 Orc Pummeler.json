@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>6级 控制</span></div>\n<div class=bg-title><span>中型 自然界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 76；''重伤'' 38</span><span>''先攻'' +5</span></div>\n<div><span>''AC'' 20，''强韧'' 20，''反射'' 17，''意志'' 16</span><span>''侦查'' +3</span></div>\n<div><span>''速度'' 6</span><span>''感官'' 昏暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}石槌（武器）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+11vs.AC<br>命中：2d6+7 伤害，且目标倒地。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}地震打击✦遭遇</div>\n<div class=description>攻击：近程爆发 2（范围内所有生物）+9vs.强韧<br>攻击：3d6+5 伤害，且目标晕眩直到该兽人下回合结束。效果：该兽人推动每个目标最多两格。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}截断打击✦充能 4,5,6{{$:/dnd/images/four}}{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>触发：一个敌人对该兽人进行一次借机攻击。<br>效果（自由动作）：该兽人对触发的敌人使用石槌攻击。</div>\n<div class=\"bold bg-power\">死亡狂暴✦遭遇</div>\n<div class=description>触发：该兽人生命值降到 0。<br>效果（自由动作）：该兽人进行一个标准动作。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 21（+8）</span><span>''敏捷'' 14（+5）</span><span>''感知'' 10（+3）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 20（+8）</span><span>''智力'' 8（+2）</span><span>''魅力'' 8（+2）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 通用语，巨人语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 鳞甲，石槌</span></div></div>\n</div>",
+    "title": "兽人打击者 Orc Pummeler",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "6",
+    "role": "控制",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物",
+    "xp": "250",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "3652"
+  }
+]

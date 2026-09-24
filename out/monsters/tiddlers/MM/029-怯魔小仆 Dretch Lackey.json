@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>12级 杂兵 蛮战</span></div>\n<div class=bg-title><span>小型 元素界 类人生物（恶魔）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 1；失手攻击无法伤害杂兵</span><span>''先攻'' +9</span></div>\n<div><span>''AC'' 24，''强韧'' 26，''反射'' 24，''意志'' 22</span><span>''侦查'' +8</span></div>\n<div><span>''速度'' 5</span><span>''感官'' 黑暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}恶心瘴气✦灵气 1</div>\n<div class=description>每当敌人在该灵气内进行标准动作或移动动作时，它受到 2 点伤害。多个恶心瘴气灵气叠加，<br>最多能造成 10 点伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}野蛮爪击✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+17vs.AC<br>命中：12 点伤害。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 20（+11）</span><span>''敏捷'' 17（+9）</span><span>''感知'' 12（+7）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 16（+9）</span><span>''智力'' 5（+3）</span><span>''魅力'' 7（+4）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 深渊语</span></div></div>\n</div>",
+    "title": "怯魔小仆 Dretch Lackey",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "12",
+    "role": "蛮战",
+    "specialty-role": "杂兵",
+    "size": "小型",
+    "origin": "元素界",
+    "creature-type": "类人生物（恶魔）",
+    "xp": "250",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "454"
+  }
+]

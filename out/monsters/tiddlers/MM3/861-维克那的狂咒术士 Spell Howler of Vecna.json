@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>18级 远程</span></div>\n<div class=bg-title><span>中型 自然界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 130；''重伤'' 65</span><span>''先攻'' +10</span></div>\n<div><span>''AC'' 30，''强韧'' 28，''反射'' 30，''意志'' 30</span><span>''侦查'' +11</span></div>\n<div><span>''速度'' 6</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}疯狂之触（心灵）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+21vs.意志<br>命中：2d8+12 心灵伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}力场之咒（力场）✦随意</div>\n<div class=description>攻击：射程 10（一个生物）+23vs.强韧<br>命中：2d10+15 力场伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}毁灭之咒（心灵）✦随意</div>\n<div class=description>前提：该维克那的狂咒术士必须受恐怖面貌影响。攻击：射程 10（一个生物）+23vs.意志<br>命中：2d8+6 心灵伤害，且目标晕眩直到该维克那的狂咒术士下回合结束。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}疯狂之咒（心灵）✦充能（若该威能失手）</div>\n<div class=description>攻击：近战 1（一个生物）+21vs.意志<br>命中：2d8+5 心灵伤害。该维克那的狂咒术士滑移目标 3 格，且目标以一个自由动作对一个由该维克那的狂咒术士选择的生物进行一次基本攻击。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}痛苦之咒（黯蚀）✦遭遇</div>\n<div class=description>攻击：射程 10（一个生物）+23vs.强韧命中：4d10+10 黯蚀伤害。<br>失手：一半伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}恐怖面貌（心灵）✦遭遇</div>\n<div class=description>触发：该维克那的狂咒术士首次重伤。<br>攻击（无动作）：近程爆发 2（爆发内所有敌人）+22vs.意志 命中：2d6+4 心灵伤害，且该维克那的狂咒术士推动目标 3 格。<br>效果：直到遭遇结束，该维克那的狂咒术士不能使用毁灭之咒和疯狂之触以外的任何威能。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 15（+11）</span><span>''敏捷'' 13（+10）</span><span>''感知'' 15（+11）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 16（+12）</span><span>''智力'' 22（+15）</span><span>''魅力'' 18（+13）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 通用语</span></div></div>\n</div>",
+    "title": "维克那的狂咒术士 Spell Howler of Vecna",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "18",
+    "role": "远程",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物",
+    "xp": "2000",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "13653"
+  }
+]

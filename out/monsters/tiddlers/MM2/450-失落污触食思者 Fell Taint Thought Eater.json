@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>2级 控制</span></div>\n<div class=bg-title><span>小型 异界 魔法兽</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 26；''重伤'' 13</span><span>''先攻'' +2</span></div>\n<div><span>''AC'' 14，''强韧'' 13，''反射'' 13，''意志'' 15</span><span>''侦查'' +6</span></div>\n<div><span>''抗力'' 虚体；''易伤'' 5 心灵</span><span></span></div>\n<div><span>''速度'' 1，飞行 6（盘旋）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}触须之拥（心灵）✦随意</div>\n<div class=description>攻击：+6 vs. 反射<br>命中：1d6+5 心灵伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}精神迷雾（心灵）✦随意</div>\n<div class=description>攻击：射程 10，+6 vs. 意志<br>命中：1d4+5 心灵伤害，且目标晕眩直到该失落污触食思者下回合结束。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}思维模糊（心灵，魅惑）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：近程冲击 5，以敌人为目标，+5 vs. 意志<br>命中：目标迟缓（豁免终止）。<br>首次豁免失败时：目标改迟缓为定身（豁免终止）。</div>\n<div class=\"bold bg-power\">失落污触进食（医疗）✦随意</div>\n<div class=description>以一个无助或昏迷的生物为目标；该失落污触食思者失去虚体及其飞行速度直到其下回合结<br>束，且它对目标进行一次致命一击。如果该失落污触食思者杀死了目标，则它生命值回满。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 11（+1）</span><span>''敏捷'' 12（+2）</span><span>''感知'' 10（+1）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 13（+2）</span><span>''智力'' 5（-1）</span><span>''魅力'' 16（+4）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n</div>",
+    "title": "失落污触食思者 Fell Taint Thought Eater",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "2",
+    "role": "控制",
+    "specialty-role": "",
+    "size": "小型",
+    "origin": "异界",
+    "creature-type": "魔法兽",
+    "xp": "125",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "6991"
+  }
+]

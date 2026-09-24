@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>26级 控制</span></div>\n<div class=bg-title><span>大型 魔法兽（鳞爪类）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 235；''重伤'' 117</span><span>''先攻'' +17</span></div>\n<div><span>''AC'' 39，''强韧'' 38，''反射'' 39，''意志'' 38</span><span>''侦查'' +15</span></div>\n<div><span>''抗力'' 15 毒素</span><span></span></div>\n<div><span>''速度'' 7，攀爬 7</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}击打✦随意</div>\n<div class=description>攻击：近战 3（一个生物）+31vs.AC<br>命中：3d10+10 伤害，且该泽希尔的盘绕者拉动目标 2 格并擒抱它。该泽希尔的盘绕者在同一时间内只能擒抱一个生物。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}碾碎盘绕✦随意</div>\n<div class=description>攻击：近战 3（一个被该泽希尔的盘绕者擒抱的生物）+31vs.强韧<br>命中：40 点伤害，且目标晕眩直到该泽希尔的盘绕者下回合结束。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}尾扫✦充能 4,5,6{{$:/dnd/images/four}}{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：近程爆发 3（爆发内所有敌人）+31vs.反射<br>命中：目标倒地。</div>\n<div class=\"italic bg-flavortext\">（译注：原文没有标注泽希尔的盘绕者的起源关键词，官方亦未勘误）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 22（+19）</span><span>''敏捷'' 19（+17）</span><span>''感知'' 15（+15）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 19（+17）</span><span>''智力'' 12（+14）</span><span>''魅力'' 10（+13）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 龙语</span></div></div>\n</div>",
+    "title": "泽希尔的盘绕者 Coil of Zehir",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "26",
+    "role": "控制",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "",
+    "creature-type": "魔法兽（鳞爪类）",
+    "xp": "9000",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "14692"
+  }
+]

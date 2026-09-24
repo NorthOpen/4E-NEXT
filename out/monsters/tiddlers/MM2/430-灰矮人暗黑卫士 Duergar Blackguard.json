@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>13级 精英 护卫</span></div>\n<div class=bg-title><span>中型 自然界 类人生物，矮人（魔鬼）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 260；''重伤'' 130</span><span>''先攻'' +8</span></div>\n<div><span>''AC'' 29，''强韧'' 27，''反射'' 25，''意志'' 25</span><span>''侦查'' +8</span></div>\n<div><span>''抗力'' 10 火焰，10 毒素；''豁免'' +2；''行动点'' 1</span><span>''感官'' 黑暗视觉</span></div>\n<div><span>''速度'' 5</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}凋零战锤（毒素，武器）✦随意</div>\n<div class=description>攻击：+20 vs. AC<br>命中：2d10+3 伤害，且该灰矮人暗黑卫士对目标进行第二该攻击。<br>第二攻击：+16vs.强韧；目标受到 5 点持续毒素伤害且攻击骰受到-2 减值（豁免终止两者）。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}暗炎标记（火焰，黯蚀）✦随意</div>\n<div class=description>近程爆发 10；以一个敌人为目标；直到该灰矮人暗黑卫士下回合结束，目标被标记且不能从任何隐蔽获得增益。此外，如果目标下回合结束时比它回合开始时距离该灰矮人暗黑卫士更远，或如果它在它下回合没有对该灰矮人暗黑卫士进行攻击骰，则它受到 10 点火焰和黯<br>蚀伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}尖刺爆发（毒素）✦充能 4,5,6{{$:/dnd/images/four}}{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：近程爆发 3，亿一个敌人为目标，+18 vs. AC<br>命中：1d8+4 伤害，且目标受到 5 点持续毒素伤害并<br>在攻击骰上受到-2 减值（豁免终止两者）。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">地狱步法✦随意</div>\n<div class=description>触发：当一个邻接该灰矮人暗黑卫士的敌人移动或快步离开该灰矮人暗黑卫士时。<br>该灰矮人暗黑卫士快步两格且必须在一个邻接触发的敌人的空间结束该快步。如果触发的敌人被该灰矮人暗黑卫士标记，则该灰矮人暗黑卫士在这之后以一个自由动作对该目标使用凋<br>零战锤。</div>\n<div class=\"italic bg-flavortext\">（从左往右：灰矮人碎肉者，灰矮人暗黑卫士，灰矮人地狱使者）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 地城+15，威吓+15，宗教+13</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 22（+12）</span><span>''敏捷'' 11（+6）</span><span>''感知'' 14（+8）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 18（+10）</span><span>''智力'' 19（+10）</span><span>''魅力'' 18（+10）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 通用语，异怪语，矮人语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 板甲，重盾，战锤</span></div></div>\n</div>",
+    "title": "灰矮人暗黑卫士 Duergar Blackguard",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "13",
+    "role": "护卫",
+    "specialty-role": "精英",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物，矮人（魔鬼）",
+    "xp": "1600",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "6763"
+  }
+]

@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>24级 护卫</span></div>\n<div class=bg-title><span>大型 自然界 类人生物（巨人），山岭巨人</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 225；''重伤'' 112</span><span>''先攻'' +17</span></div>\n<div><span>''AC'' 40，''强韧'' 37，''反射'' 32，''意志'' 35</span><span>''侦查'' +18</span></div>\n<div><span>''速度'' 8</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">石之诅咒</div>\n<div class=description>在重伤期间，该阴秘使徒拥有速度 4 和 10 点全伤害抗性。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}巨矛（武器）✦随意</div>\n<div class=description>攻击：近战 3（一个生物）+29vs.AC<br>命中：2d12+14 伤害，且目标被标记直到该阴秘使徒下回合结束。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}穿刺（武器）✦随意</div>\n<div class=description>攻击：近战 3（一个被该阴秘使徒标记的生物）+29vs.AC<br>命中：1d12+8 伤害，且目标进入该阴秘使徒的空间。目标定身且受到 10 点持续伤害（豁免终止）。目标在定身期间会自动随着该阴秘使徒移动，且每当该阴秘使徒的巨矛攻击命中时，这个被定身的目标便受到 10 点伤害并晕眩直到该阴秘使徒下回合结束。当一个被定身的生物对豁免掉该效果时，它快步到一个邻接该阴秘使徒的格子。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">石化</div>\n<div class=description>触发：该阴秘使徒的生命值降到 0。<br>效果（无动作）：该阴秘使徒永久地变成一座石像且视为障碍地形。如果一个生物在该情况 下仍被该阴秘使徒的穿刺定身，则该生物被困在该阴秘使徒的空间且变成受缚（豁免终止）。当一个被受缚的生物豁免时，它出现在由它选择的一个邻接该阴秘使徒的不被占据的空间。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 27（+20）</span><span>''敏捷'' 16（+15）</span><span>''感知'' 22（+18）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 25（+19）</span><span>''智力'' 10（+12）</span><span>''魅力'' 11（+12）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 巨人语，荒神语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 板甲，巨矛</span></div></div>\n</div>",
+    "title": "阴秘使徒 Chthonic Apostle",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "24",
+    "role": "护卫",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "自然界",
+    "creature-type": "类人生物（巨人），山岭巨人",
+    "xp": "6050",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "13507"
+  }
+]

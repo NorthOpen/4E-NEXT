@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>9级 护卫</span></div>\n<div class=bg-title><span>中型 自然界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 96；''重伤'' 48</span><span>''先攻'' +8</span></div>\n<div><span>''AC'' 25，''强韧'' 22，''反射'' 20，''意志'' 22</span><span>''侦查'' +7</span></div>\n<div><span>''速度'' 6</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">斗士之跃</div>\n<div class=description>哥利亚斯守护者跳跃时不引发借机攻击。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}重剑（武器）✦随意</div>\n<div class=description>攻击：+16 vs. AC<br>命中：1d10+7 伤害，且目标被标记直到该哥利亚斯守护者下回合结束。如果目标处于<br>倒地，则它不能站起直到该哥利亚斯下回合结束。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}公羊冲锋（武器）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：+14 vs. 强韧<br>命中：1d6+3 伤害，且目标被推动 2 格并倒地，且该哥利亚斯守护者快步 2 格并对目标进行一次重剑攻击。<br>特殊：当冲锋时，该哥利亚斯守护者可以使用该威能代替近战基本攻击。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">石之坚韧✦遭遇</div>\n<div class=description>该哥利亚斯守护者获得 5 点全伤害抗性直到其下回合结束。</div>\n<div class=\"italic bg-flavortext\">（哥利亚斯）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 运动+13，洞察+12，自然+12</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 19（+8）</span><span>''敏捷'' 14（+6）</span><span>''感知'' 16（+7）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 16（+7）</span><span>''智力'' 10（+4）</span><span>''魅力'' 10（+4）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 通用语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 鳞甲，轻盾，重剑</span></div></div>\n</div>",
+    "title": "哥利亚斯守护者 Goliath Guardian",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "9",
+    "role": "护卫",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物",
+    "xp": "400",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "7699"
+  }
+]

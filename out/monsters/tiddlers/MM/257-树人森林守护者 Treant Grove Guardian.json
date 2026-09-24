@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>18级 蛮战</span></div>\n<div class=bg-title><span>超大型 精界 魔法兽（植物）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 212；''重伤'' 106</span><span>''先攻'' +11</span></div>\n<div><span>''AC'' 30，''强韧'' 31，''反射'' 28，''意志'' 31</span><span>''侦查'' +15</span></div>\n<div><span>''速度'' 8（森林行者）</span><span>''感官'' 昏暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">木头躯体</div>\n<div class=description>当该树人受到火焰伤害时，它受到 5 点持续火焰伤害（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}挥扫✦随意</div>\n<div class=description>攻击：近战 3（1-2 个生物）+23vs.AC<br>命中：3d12+8 伤害，且目标倒地。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}树桩奔跺✦遭遇</div>\n<div class=description>效果：该树人移动最多其速度且在该移动中可以移动穿过敌人的空间。每当该树人在该移动<br>中首次进入一个敌人的空间时，它可以对该敌人使用挥扫。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 25（+16）</span><span>''敏捷'' 14（+11）</span><span>''感知'' 23（+15）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 22（+15）</span><span>''智力'' 14（+11）</span><span>''魅力'' 12（+10）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 精灵语</span></div></div>\n</div>",
+    "title": "树人森林守护者 Treant Grove Guardian",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "18",
+    "role": "蛮战",
+    "specialty-role": "",
+    "size": "超大型",
+    "origin": "精界",
+    "creature-type": "魔法兽（植物）",
+    "xp": "2000",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "4214"
+  }
+]

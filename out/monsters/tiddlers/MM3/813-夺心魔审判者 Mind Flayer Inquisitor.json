@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>20级 控制</span></div>\n<div class=bg-title><span>中型 异界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 190；''重伤'' 95</span><span>''先攻'' +15</span></div>\n<div><span>''AC'' 34，''强韧'' 31，''反射'' 33，''意志'' 33</span><span>''侦查'' +16</span></div>\n<div><span>''速度'' 7</span><span>''感官'' 黑暗视觉，心灵感应 10</span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}触手✦随意</div>\n<div class=description>前提：该夺心魔审判者必须没有擒抱生物。攻击：近战 1（一个生物）+23vs.反射<br>命中：3d6+13 伤害，且该夺心魔审判者擒抱目标。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}植入妄想（魅惑，心灵）✦随意</div>\n<div class=description>攻击：近战 1（一个被该夺心魔审判者擒抱的生物）+23vs.意志<br>命中：3d8+15 心灵伤害，且目标开始蒙受妄想（豁免终止）。在目标蒙受妄想期间，邻接它的盟友的攻击骰受到-2 减值以及所有防御受到-2 减值。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}精神冲击（心灵）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：近程冲击 5（冲击内所有敌人）+23vs.意志 命中：2d8+6 心灵伤害，且目标晕眩（豁免终止）。<br>失手：一半伤害。</div>\n<div class=\"bold bg-power\">自我为敌（魅惑）✦充能（当首次重伤时）</div>\n<div class=description>效果：区域 10 爆发 2 内的每个敌人以一个自由动作对其自身使用一个由该夺心魔审判者选<br>择的远程或近战随意攻击威能。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}强迫忏悔（魅惑）✦随意（一轮一次）</div>\n<div class=description>攻击：近程爆发 10（爆发内的一个生物）+23vs.意志<br>命中：目标晕眩，不能成为医疗威能的目标，且不会受提供豁免掷骰的威能的影响（豁免终止所有）。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">强制服从✦随意</div>\n<div class=description>触发：该夺心魔审判者看得见的一个敌人的一次豁免掷骰成功。<br>效果（直觉打断）：触发的敌人重新进行该豁免掷骰且受到-2 减值。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 唬骗+22，洞察+21</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 20（+15）</span><span>''敏捷'' 20（+15）</span><span>''感知'' 22（+16）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 22（+16）</span><span>''智力'' 24（+17）</span><span>''魅力'' 25（+17）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 异怪语，心灵感应 10</span></div></div>\n</div>",
+    "title": "夺心魔审判者 Mind Flayer Inquisitor",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "20",
+    "role": "控制",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "异界",
+    "creature-type": "类人生物",
+    "xp": "2800",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "12837"
+  }
+]

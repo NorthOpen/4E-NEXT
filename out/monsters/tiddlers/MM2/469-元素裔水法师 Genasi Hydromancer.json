@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>8级 控制</span></div>\n<div class=bg-title><span>中型 元素界 类人生物（水系）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 91；''重伤'' 45</span><span>''先攻'' +7</span></div>\n<div><span>''AC'' 22，''强韧'' 21，''反射'' 20，''意志'' 20</span><span>''侦查'' +5</span></div>\n<div><span>''豁免'' +2</span><span></span></div>\n<div><span>''速度'' 6，游泳 8</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}弯刀（武器）✦随意</div>\n<div class=description>攻击：+13 vs. AC<br>命中：2d8+4 伤害（重击则为 1d8+20 伤害）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}波动矢✦随意</div>\n<div class=description>攻击：射程 5，+13 vs. AC<br>命中：2d6+4 伤害，且该元素裔水法师滑移目标 3 格。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}回转旋涡✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：近程爆发 2，以敌人为目标，+12 vs. 反射<br>命中：2d8+6 伤害，且该元素裔水法师滑移目标 3 格。</div>\n<div class=\"bold font-size-h4 bg-category\">移动动作</div>\n<div class=\"bold bg-power\">激流✦遭遇</div>\n<div class=description>该元素裔水法师快步 6 格。在其移动中，该元素裔水法师可以移动穿过敌人占据的空间，移<br>动穿过液体，且无视困难地形和危险地形效果。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}淹没之触</div>\n<div class=description>触发：当目标成功豁免该攻击的持续伤害或是其生命值降到 0 或更低时充能。<br>攻击：+12 vs. 强韧<br>命中：目标晕眩并受到 10 点持续伤害（豁免终止两者）。</div>\n<div class=\"bold bg-power\">液体身躯</div>\n<div class=description>触发：当被敌人的攻击命中时。<br>该元素裔水法师只从触发的攻击受到一半伤害。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 杂技+12，神秘+10，隐秘+12</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 14（+6）</span><span>''敏捷'' 16（+7）</span><span>''感知'' 13（+5）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 19（+8）</span><span>''智力'' 13（+5）</span><span>''魅力'' 17（+7）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 通用语，荒神语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 袍子，弯刀</span></div></div>\n</div>",
+    "title": "元素裔水法师 Genasi Hydromancer",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "8",
+    "role": "控制",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "元素界",
+    "creature-type": "类人生物（水系）",
+    "xp": "350",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "7265"
+  }
+]

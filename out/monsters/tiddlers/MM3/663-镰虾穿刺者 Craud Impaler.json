@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>3级 游击</span></div>\n<div class=bg-title><span>中型 自然界 野兽（水生）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 51；''重伤'' 25</span><span>''先攻'' +7</span></div>\n<div><span>''AC'' 17，''强韧'' 15，''反射'' 15，''意志'' 13</span><span>''侦查'' +3</span></div>\n<div><span>''速度'' 6，游泳 6</span><span>''感官'' 黑暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">水生</div>\n<div class=description>该镰虾穿刺者可以在水下呼吸。在水中战斗时，它对非水生生物的攻击骰获得+2 加值。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}爪击✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+8vs.AC<br>命中：1d6+4 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}剪爪✦随意</div>\n<div class=description>效果：该镰虾穿刺者进行两次爪击攻击。若两次攻击都命中，则该镰虾穿刺者的穿刺威能充<br>能并以一个自由动作进行使用。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}穿刺✦遭遇</div>\n<div class=description>攻击：近战 2（一个生物）+10vs.AC<br>命中：1d4+4 伤害，以及 5 点持续伤害（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">撤退✦随意</div>\n<div class=description>触发：该镰虾穿刺者的一次攻击失手。<br>效果（自由动作）：该镰虾穿刺者快步 2 格。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 16（+4）</span><span>''敏捷'' 19（+5）</span><span>''感知'' 14（+3）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 19（+5）</span><span>''智力'' 3（-3）</span><span>''魅力'' 9（+0）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n</div>",
+    "title": "镰虾穿刺者 Craud Impaler",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "3",
+    "role": "游击",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "野兽（水生）",
+    "xp": "150",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "10133"
+  }
+]

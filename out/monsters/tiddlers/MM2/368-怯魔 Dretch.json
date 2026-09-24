@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>2级 蛮战</span></div>\n<div class=bg-title><span>小型 元素界 类人生物（恶魔）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 44；''重伤'' 22</span><span>''先攻'' +3</span></div>\n<div><span>''AC'' 14，''强韧'' 14，''反射'' 13，''意志'' 11</span><span>''侦查'' +1</span></div>\n<div><span>''抗力'' 10 可变（每遭遇一次）</span><span>''感官'' 黑暗视觉</span></div>\n<div><span>''速度'' 5</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}恶心瘴气</div>\n<div class=description>灵气 1：在该灵气内的敌人每当进行标准动作或移动动作的时候便受到 1 点伤害。多个恶心瘴气同时造成伤害时，累计到 5 点。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}野蛮爪击✦随意</div>\n<div class=description>攻击：+5 vs. AC<br>命中：2d6+2 伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}爪击狂暴✦遭遇</div>\n<div class=description>触发：首次重伤时。<br>该怯魔对一个或两个生物进行野蛮爪击攻击。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}恶毒死亡（毒素，结界）</div>\n<div class=description>触发：当该怯魔生命值降到 0 时。<br>近程爆发 1，爆发生成一个充满剧毒的以该怯魔为中心的结界持续直到本应是该怯魔下回合<br>开始的时候。任何进入或在该结界内开始回合的非恶魔生物受到 5 点毒素伤害。</div>\n<div class=\"italic bg-flavortext\">（怯魔） （啃咬魔）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 17（+4）</span><span>''敏捷'' 14（+3）</span><span>''感知'' 11（+1）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 14（+3）</span><span>''智力'' 5（-2）</span><span>''魅力'' 7（-1）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 深渊语</span></div></div>\n</div>",
+    "title": "怯魔 Dretch",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "2",
+    "role": "蛮战",
+    "specialty-role": "",
+    "size": "小型",
+    "origin": "元素界",
+    "creature-type": "类人生物（恶魔）",
+    "xp": "125",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "5792"
+  }
+]

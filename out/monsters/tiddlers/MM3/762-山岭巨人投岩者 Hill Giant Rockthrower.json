@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>12级 远程</span></div>\n<div class=bg-title><span>大型 自然界 类人生物（巨人）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 97；''重伤'' 48</span><span>''先攻'' +10</span></div>\n<div><span>''AC'' 24，''强韧'' 25，''反射'' 25，''意志'' 22</span><span>''侦查'' +9</span></div>\n<div><span>''速度'' 8</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}巨木棒（武器）✦随意</div>\n<div class=description>攻击：近战 2（一个生物）+17vs.AC<br>命中：2d10+4 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}砸翻在地（武器）✦随意</div>\n<div class=description>攻击：射程 10/20（一个生物）+17vs.反射<br>命中：2d8+7 伤害，且该山岭巨人投岩者推动目标 2 格并击倒它。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/area}}碎岩爆（武器）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：区域 10 爆发 1（爆发内所有生物）+17vs.强韧<br>命中：2d8+6 伤害，且目标晕眩（豁免终止）。</div>\n<div class=\"italic bg-flavortext\">（山岭巨人）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 运动+17</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 22（+12）</span><span>''敏捷'' 18（+10）</span><span>''感知'' 16（+9）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 19（+10）</span><span>''智力'' 9（+5）</span><span>''魅力'' 14（+8）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 巨人语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 革甲，巨木棒，10 块岩石</span></div></div>\n</div>",
+    "title": "山岭巨人投岩者 Hill Giant Rockthrower",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "12",
+    "role": "远程",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "自然界",
+    "creature-type": "类人生物（巨人）",
+    "xp": "700",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "11915"
+  }
+]

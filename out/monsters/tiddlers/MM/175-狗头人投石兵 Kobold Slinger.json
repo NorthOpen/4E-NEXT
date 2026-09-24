@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>1级 远程</span></div>\n<div class=bg-title><span>小型 自然界 类人生物（鳞爪类）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 24；''重伤'' 12</span><span>''先攻'' +3</span></div>\n<div><span>''AC'' 13，''强韧'' 12，''反射'' 14，''意志'' 12</span><span>''侦查'' +1</span></div>\n<div><span>''速度'' 6</span><span>''感官'' 黑暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}匕首（武器）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+8vs.AC<br>命中：1d4+3 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}投石索（武器）✦随意</div>\n<div class=description>攻击：射程 20（一个生物）+8vs.AC<br>命中：1d6+5 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}特殊射击（武器）✦随意（每遭遇三次）</div>\n<div class=description>攻击：射程 20（一个生物）+8vs.AC<br>命中：1d6+5 伤害，外加下列的一个效果（投一个 d6）： 1,2-恶臭弹：目标的攻击骰受到-2 减值（豁免终止）。<br>3,4-火焰弹（火焰）：目标受到 2 点持续火焰伤害（豁免终止）。<br>5,6-胶水弹：目标定身（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">狡诈✦随意</div>\n<div class=description>效果：该狗头人快步一格。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 隐秘+8</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 9（-1）</span><span>''敏捷'' 17（+3）</span><span>''感知'' 12（+1）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 12（+1）</span><span>''智力'' 9（-1）</span><span>''魅力'' 10（+0）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 通用语，龙语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 皮甲，匕首，投石索，20 发投石弹，3 发特殊弹</span></div></div>\n</div>",
+    "title": "狗头人投石兵 Kobold Slinger",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "1",
+    "role": "远程",
+    "specialty-role": "",
+    "size": "小型",
+    "origin": "自然界",
+    "creature-type": "类人生物（鳞爪类）",
+    "xp": "100",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "2906"
+  }
+]

@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>15级 头目 游击</span></div>\n<div class=bg-title><span>中型 暗影界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 144；''重伤'' 72</span><span>''先攻'' +16</span></div>\n<div><span>''AC'' 29，''强韧'' 27，''反射'' 29，''意志'' 27</span><span>''侦查'' +11</span></div>\n<div><span>''速度'' 7</span><span>''感官'' 昏暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}暗影纬纱</div>\n<div class=description>灵气 5：该灵气内的所有影灵盟友在进行一次近战攻击命中后可以以一个自由动作快步 1 格。</div>\n<div class=\"bold bg-power\">阴霾笼罩</div>\n<div class=description>一个生物在被阴霾笼罩期间，攻击骰受到-2 减值且从医疗效果只能获得一半增益。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}暗影链（武器）✦随意</div>\n<div class=description>攻击：触及 2，+20 vs. AC<br>命中：2d8+6 伤害，且目标被阴霾笼罩（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}暗影之舞（黯蚀）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>该影灵苦痛传递者快步 7 格，且在该移动中进行三次暗影链攻击，每次攻击对不同的目标进<br>行。该影灵苦痛传递者的第二和第三次攻击会造成一个额外伤害，该攻击之前每有一次攻击<br>命中该攻击便会造成 2d6 额外黯蚀伤害。被暗影笼罩且被攻击命中的生物将目盲（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">移动动作</div>\n<div class=\"bold bg-power\">影跃（瞬移）✦遭遇</div>\n<div class=description>该影灵苦痛传递者瞬移 3 格且变成虚体直到其下回合开始。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">暗影之赐✦遭遇</div>\n<div class=description>触发：当该影灵苦痛传递者 10 格内的一个盟友的攻击失手时。<br>触发的盟友重投该攻击骰。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 杂技+19，隐秘+19</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 20（+12）</span><span>''敏捷'' 24（+14）</span><span>''感知'' 18（+11）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 16（+10）</span><span>''智力'' 14（+9）</span><span>''魅力'' 11（+7）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 通用语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 皮甲，刺链</span></div></div>\n</div>",
+    "title": "影灵苦痛传递者 Shadar-Kai Painbearer",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "15",
+    "role": "游击",
+    "specialty-role": "头目",
+    "size": "中型",
+    "origin": "暗影界",
+    "creature-type": "类人生物",
+    "xp": "1200",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "8799"
+  }
+]

@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>22级 头目 控制</span></div>\n<div class=bg-title><span>中型 元素界 类人生物（恶魔）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 205；''重伤'' 102</span><span>''先攻'' +15</span></div>\n<div><span>''AC'' 36，''强韧'' 32，''反射'' 34，''意志'' 34</span><span>''侦查'' +21</span></div>\n<div><span>''速度'' 7，相位移动</span><span>''感官'' 盲视 5</span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}长剑（武器）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+27vs.AC<br>命中：3d8+10 伤害，且目标晕眩直到该欧特罗魔谋士下回合结束。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}燃炎射线（火焰）✦随意</div>\n<div class=description>攻击：射程 10（一个或两个生物）+25vs.反射<br>命中：3d6+7 火焰伤害。</div>\n<div class=\"bold bg-power\">恶魔霸权✦充能（当首次重伤时）</div>\n<div class=description>效果：所有邻接该欧特罗魔谋士的盟友以一个自由动作进行一次带有战斗优势的近战基本攻<br>击。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}催眠凝视（魅惑）✦充能 4,5,6{{$:/dnd/images/four}}{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：射程 5（一个生物）+25vs.意志命中：目标定身（豁免终止）。<br>效果：目标不能攻击该欧特罗魔谋士直到目标下回合结束。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}背叛凝视（魅惑）✦充能 6{{$:/dnd/images/six}}</div>\n<div class=description>攻击：射程 5（一个生物）+25vs.意志<br>命中：目标受控直到该欧特罗魔谋士下回合结束。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">可变抗性✦遭遇</div>\n<div class=description>触发：该欧特罗魔谋士受到强酸、寒冷、火焰、闪电或雷鸣伤害。<br>效果（自由动作）：该欧特罗魔谋士获得 20 点触发的伤害类型的抗性直到遭遇结束。</div>\n<div class=\"bold bg-power\">自我保护（幻术，瞬移）✦遭遇</div>\n<div class=description>触发：一个敌人使该欧特罗魔谋士重伤。<br>效果（直觉反应）：该欧特罗魔谋士瞬移，与它十格内能看见的一个盟友交换位置。该欧特罗魔谋士隐形直到其下回合结束，且若使该欧特罗魔谋士重伤的敌人在该盟友的触及范围内，则该盟友可以以一个自由动作对该敌人进行一次近战基本攻击。</div>\n<div class=\"italic bg-flavortext\">（欧特罗魔）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 神秘+22，唬骗+23，威吓+23，隐秘+20</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 13（+12）</span><span>''敏捷'' 18（+15）</span><span>''感知'' 20（+16）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 21（+16）</span><span>''智力'' 23（+17）</span><span>''魅力'' 25（+18）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 深渊语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 长剑</span></div></div>\n</div>",
+    "title": "欧特罗魔谋士 Ultrodemon Schemer",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "22",
+    "role": "控制",
+    "specialty-role": "头目",
+    "size": "中型",
+    "origin": "元素界",
+    "creature-type": "类人生物（恶魔）",
+    "xp": "4150",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "10409"
+  }
+]

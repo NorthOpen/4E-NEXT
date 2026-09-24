@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>14级 控制</span></div>\n<div class=bg-title><span>中型 元素界 类人生物（水生，水系）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 140；''重伤'' 70</span><span>''先攻'' +11</span></div>\n<div><span>''AC'' 28，''强韧'' 26，''反射'' 24，''意志'' 28</span><span>''侦查'' +8</span></div>\n<div><span>''免疫'' 疾病，毒素；''抗力'' 20 强酸</span><span></span></div>\n<div><span>''速度'' 6，游泳 6</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">水生</div>\n<div class=description>该亚空可以在水中呼吸。在水中战斗时，它对非水生生物的攻击骰获得+2 加值。</div>\n<div class=\"bold bg-power\">波涛冻结</div>\n<div class=description>每当该亚空受到寒冷伤害时，它迟缓直到其下回合结束。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}浪峰杖✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+19vs.AC<br>命中：2d10+10 伤害，且目标迟缓直到该亚空下回合结束。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}漩涡✦随意</div>\n<div class=description>攻击：近程爆发 3（范围内所有敌人）+17vs.强韧命中：4d6+7 伤害，且该亚空滑移目标最多 3 格。<br>失手：该亚空可滑移目标 1 格。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 14（+9）</span><span>''敏捷'' 18（+11）</span><span>''感知'' 13（+8）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 20（+12）</span><span>''智力'' 11（+7）</span><span>''魅力'' 22（+13）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 荒神语</span></div></div>\n</div>",
+    "title": "水亚空 Water Archon",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "14",
+    "role": "控制",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "元素界",
+    "creature-type": "类人生物（水生，水系）",
+    "xp": "1000",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "111"
+  }
+]

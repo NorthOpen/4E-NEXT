@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>12级 杂兵 游击</span></div>\n<div class=bg-title><span>中型 自然界 类人生物（水生）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 1；失手攻击无法伤害杂兵</span><span>''先攻'' +12</span></div>\n<div><span>''AC'' 26，''强韧'' 23，''反射'' 23，''意志'' 25</span><span>''侦查'' +7</span></div>\n<div><span>''速度'' 6，游泳 6</span><span>''感官'' 黑暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}散播疯狂✦灵气 1</div>\n<div class=description>在该灵气内的敌人获得 5 点心灵易伤。</div>\n<div class=\"bold bg-power\">水生</div>\n<div class=description>该寇涛鱼人疯子可以在水下呼吸。在水中战斗时，它的攻击骰对非水生生物获得+2 加值。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}爪击✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+17vs.AC<br>命中：10 点伤害，且该寇涛鱼人疯子快步 1 格。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}诡异尖叫（心灵）✦随意</div>\n<div class=description>攻击：近程冲击 3（冲击内所有敌人）+15vs.意志<br>命中：5 点心灵伤害。</div>\n<div class=\"italic bg-flavortext\">（寇涛鱼人）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 15（+8）</span><span>''敏捷'' 19（+10）</span><span>''感知'' 13（+7）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 19（+10）</span><span>''智力'' 1（+1）</span><span>''魅力'' 22（+12）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span></div></div>\n</div>",
+    "title": "寇涛鱼人疯子 Kuo-Toa Mad One",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "12",
+    "role": "游击",
+    "specialty-role": "杂兵",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物（水生）",
+    "xp": "175",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "12534"
+  }
+]

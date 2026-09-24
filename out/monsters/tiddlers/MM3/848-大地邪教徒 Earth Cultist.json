@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>8级 杂兵 控制</span></div>\n<div class=bg-title><span>中型 自然界 类人生物，人类</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 1；失手攻击无法伤害杂兵</span><span>''先攻'' +7</span></div>\n<div><span>''AC'' 22，''强韧'' 23，''反射'' 21，''意志'' 18</span><span>''侦查'' +3</span></div>\n<div><span>''速度'' 5</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}战锤（武器）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+11vs.AC<br>命中：8 点伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">石化源泉</div>\n<div class=description>触发：该大地邪教徒的生命值降到 0。<br>效果（无动作）：所有邻接该大地邪教徒的敌人迟缓（豁免终止）。首次豁免失败时：目标石化（豁免终止）。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 21（+9）</span><span>''敏捷'' 16（+7）</span><span>''感知'' 8（+3）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 16（+7）</span><span>''智力'' 10（+4）</span><span>''魅力'' 11（+4）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 通用语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 皮甲，战锤</span></div></div>\n</div>",
+    "title": "大地邪教徒 Earth Cultist",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "8",
+    "role": "控制",
+    "specialty-role": "杂兵",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物，人类",
+    "xp": "88",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "13451"
+  }
+]

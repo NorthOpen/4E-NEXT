@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>21级 强者 护卫</span></div>\n<div class=bg-title><span>超大型 自然界 魔法兽（龙）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 796；''重伤'' 398</span><span>''先攻'' +17</span></div>\n<div><span>''AC'' 37，''强韧'' 36，''反射'' 33，''意志'' 32</span><span>''侦查'' +19</span></div>\n<div><span>''抗力'' 25 雷鸣；''豁免'' +5；''行动点'' 2</span><span>''感官'' 黑暗视觉</span></div>\n<div><span>''速度'' 8，飞行 10（盘旋），长距飞行 15</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬✦随意</div>\n<div class=description>攻击：触及 2，+26 vs. 反射<br>命中：2d8+8 伤害，以及 10 点持续伤害（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}爪击✦随意</div>\n<div class=description>攻击：触及 2，+26 vs. 反射<br>命中：1d12+8 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}龙怒✦随意</div>\n<div class=description>该老年精金龙进行四次爪击攻击然后对一个不同的目标进行一次啮咬攻击。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}龙息（雷鸣）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：近程冲击 5，+24 vs. 强韧<br>命中：3d12+6 雷鸣伤害，且目标倒地。失手：一半伤害。<br>效果：在该老年精金龙下回合开始时，它发出雷鸣般的咆哮：近程爆发 3；无攻击骰；15<br>点雷鸣伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}龙威（恐惧）✦遭遇</div>\n<div class=description>攻击：近程爆发 10，以敌人为目标，+24 vs. 意志<br>命中：目标震慑直到该老年精金龙下回合结束。<br>后续效果：目标的攻击骰受到-2 减值（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}痛苦共振（雷鸣）✦充能 6{{$:/dnd/images/six}}</div>\n<div class=description>攻击：射程 20，+26 vs. 强韧<br>命中：目标受到 10 点持续雷鸣伤害并晕眩（豁免终止两者）。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}振翅✦随意</div>\n<div class=description>触发：当一个敌人进入或离开一个邻接的格子时。<br>攻击：触及 2，+26 vs. 强韧<br>命中：1d10+8 伤害，且目标倒地。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}重伤喷吐✦遭遇</div>\n<div class=description>触发：当首次重伤时。<br>龙息充能，且该老年精金龙使用它。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 洞察+15，威吓+13</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 26（+18）</span><span>''敏捷'' 21（+15）</span><span>''感知'' 18（+14）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 23（+16）</span><span>''智力'' 13（+11）</span><span>''魅力'' 14（+12）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 通用语，龙语</span></div></div>\n</div>",
+    "title": "老年精金龙 Elder Adamantine Dragon",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "21",
+    "role": "护卫",
+    "specialty-role": "强者",
+    "size": "超大型",
+    "origin": "自然界",
+    "creature-type": "魔法兽（龙）",
+    "xp": "16000",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "6224"
+  }
+]

@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>13级 远程</span></div>\n<div class=bg-title><span>大型 自然界 类人生物（土系，巨人）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 103；''重伤'' 51</span><span>''先攻'' +5</span></div>\n<div><span>''AC'' 27，''强韧'' 26，''反射'' 23，''意志'' 23</span><span>''侦查'' +12</span></div>\n<div><span>''速度'' 8</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}标枪（武器）✦随意</div>\n<div class=description>攻击：近战 2（一个生物）+18vs.AC<br>命中：2d8+7 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}标枪（武器）✦随意</div>\n<div class=description>攻击：射程 20（一个生物）+20vs.AC<br>命中：2d8+12 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}投岩（武器）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：射程 20（一个生物）+20vs.AC<br>命中：4d8+12 伤害，且该巨人可以推动目标一格并击倒它。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 21（+11）</span><span>''敏捷'' 8（+5）</span><span>''感知'' 12（+7）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 19（+10）</span><span>''智力'' 7（+4）</span><span>''魅力'' 9（+5）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 巨人语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 6 支标枪，4 块岩石</span></div></div>\n</div>",
+    "title": "山岭巨人猎手 Hill Giant Hunter",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "13",
+    "role": "远程",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "自然界",
+    "creature-type": "类人生物（土系，巨人）",
+    "xp": "800",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "2009"
+  }
+]

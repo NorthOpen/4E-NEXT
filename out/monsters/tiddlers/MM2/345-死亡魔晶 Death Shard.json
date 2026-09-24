@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>8级 远程</span></div>\n<div class=bg-title><span>中型 元素界 魔法兽</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 71；''重伤'' 35</span><span>''先攻'' +9</span></div>\n<div><span>''AC'' 20，''强韧'' 19，''反射'' 21，''意志'' 19</span><span>''侦查'' +7</span></div>\n<div><span>''免疫'' 疾病，毒素；''抗力'' 10 黯蚀，5 可变（每遭遇一次）</span><span>''感官'' 黑暗视觉</span></div>\n<div><span>''速度'' 3，飞行 3（盘旋）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}死亡暗影（黯蚀）</div>\n<div class=description>灵气 2：所有在该灵气内结束回合的敌人受到 4 点黯蚀伤害。迟缓的敌人则改为受到 6 点黯蚀伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}剃刀晶片✦随意</div>\n<div class=description>攻击：+13 vs. 反射<br>命中：1d10+4 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}死亡之矢（黯蚀）✦随意</div>\n<div class=description>攻击：射程 10，+13 vs. 强韧<br>命中：2d6+5 黯蚀伤害，且目标迟缓（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}重击破碎（黯蚀）✦遭遇</div>\n<div class=description>触发：当敌人对该死亡魔晶造成重击时。<br>攻击：近程爆发 2，以敌人为目标，+13 vs. 强韧<br>命中：1d8+5 黯蚀伤害，且目标虚弱直到其下回合结束。</div>\n<div class=\"bold bg-power\">死亡生命</div>\n<div class=description>触发：每当该死亡魔晶的抗性抵消伤害时。<br>该死亡魔晶的攻击造成 1d8 额外伤害直到其下回合结束。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 隐秘+14</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 14（+6）</span><span>''敏捷'' 20（+9）</span><span>''感知'' 16（+7）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 17（+7）</span><span>''智力'' 7（+2）</span><span>''魅力'' 14（+6）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 深渊语</span></div></div>\n</div>",
+    "title": "死亡魔晶 Death Shard",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "8",
+    "role": "远程",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "元素界",
+    "creature-type": "魔法兽",
+    "xp": "350",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "5453"
+  }
+]

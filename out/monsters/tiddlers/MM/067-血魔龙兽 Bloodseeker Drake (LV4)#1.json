@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>4级 护卫</span></div>\n<div class=bg-title><span>中型 自然界 野兽（鳞爪类）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 53；''重伤'' 26</span><span>''先攻'' +7</span></div>\n<div><span>''AC'' 20，''强韧'' 15，''反射'' 17，''意志'' 15</span><span>''侦查'' +7</span></div>\n<div><span>''速度'' 6</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+9vs.AC<br>命中：1d10+5 伤害，对重伤目标则为 1d10+10 伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}血狂✦随意</div>\n<div class=description>触发：一个邻接该龙兽的重伤敌人快步。<br>效果（借机动作）：该龙兽对触发的敌人使用啮咬。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 13（+3）</span><span>''敏捷'' 17（+5）</span><span>''感知'' 10（+2）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 13（+3）</span><span>''智力'' 2（-2）</span><span>''魅力'' 13（+3）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n</div>",
+    "title": "血魔龙兽 Bloodseeker Drake (LV4)#1",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "4",
+    "role": "护卫",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "野兽（鳞爪类）",
+    "xp": "175",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "1219"
+  }
+]

@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>4级 蛮战</span></div>\n<div class=bg-title><span>大型 自然界 活化生物（不死生物）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 70；''重伤'' 35</span><span>''先攻'' +1</span></div>\n<div><span>''AC'' 16，''强韧'' 18，''反射'' 14，''意志'' 14</span><span>''侦查'' +1</span></div>\n<div><span>''免疫'' 疾病，毒素</span><span>''感官'' 黑暗视觉</span></div>\n<div><span>''速度'' 4</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">僵尸虚弱</div>\n<div class=description>一次重击将使该僵尸的生命值自动降到 0。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}击打✦随意</div>\n<div class=description>攻击：近战 2（一个生物）+9vs.AC<br>命中：2d12+2 伤害，对倒地目标或被另一个生物擒抱的目标则为 2d12+7 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}僵尸猛撞✦随意</div>\n<div class=description>效果：该僵尸冲锋并进行下列攻击代替基本近战攻击。攻击：近战 2（一个生物）+7vs.强韧<br>命中：2d12+2 伤害，且该僵尸推动目标一格并击倒它。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">死亡饥饿✦遭遇</div>\n<div class=description>触发：该僵尸生命值降到 0，但不是因为重击。<br>效果（无动作）：投一个 d20。若为 15 或更高，则该僵尸改为减少到 1 点生命值。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 20（+7）</span><span>''敏捷'' 8（+1）</span><span>''感知'' 8（+1）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 20（+7）</span><span>''智力'' 1（-3）</span><span>''魅力'' 3（-2）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n</div>",
+    "title": "巨汉僵尸 Hulking Zombie",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "4",
+    "role": "蛮战",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "自然界",
+    "creature-type": "活化生物（不死生物）",
+    "xp": "175",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "4605"
+  }
+]

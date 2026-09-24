@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>14级 精英 远程</span></div>\n<div class=bg-title><span>大型 异界 魔法兽</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 222；''重伤'' 111</span><span>''先攻'' +12</span></div>\n<div><span>''AC'' 26，''强韧'' 26，''反射'' 26，''意志'' 27</span><span>''侦查'' +16</span></div>\n<div><span>''抗力'' 15 寒冷；''豁免'' +2；''行动点'' 1</span><span>''感官'' 黑暗视觉，全域视野</span></div>\n<div><span>''速度'' 飞行 4（盘旋）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬✦随意</div>\n<div class=description>攻击：+21 vs. AC<br>命中：2d6 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}眼魔射线（见正文）✦随意</div>\n<div class=description>攻击：该冰霜眼魔从下列眼魔射线中选择一种使用。使用眼魔射线不引发借机攻击。 1-急冻射线（寒冷）：射线 10，+19 vs. 反射<br>命中：2d8+7 寒冷伤害。<br>2-念动射线：射程 10；+19vs.强韧；该冰霜眼魔滑移目标 6 格。<br>3-寒冰射线（寒冷）：射程 10；+19vs.反射；1d8+6 寒冷伤害，且目标受到 5 点持续寒冷伤害并定身（豁免终止两者）。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}主眼✦随意</div>\n<div class=description>攻击：射程 8，+20 vs. 反射<br>命中：目标虚弱（豁免终止）。如果目标在该威能所造成的虚弱期间受到寒<br>冷伤害，则它定身直到不再虚弱。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}眼魔之眼✦随意</div>\n<div class=description>触发：当一个敌人在该冰霜眼魔 5 格内开始回合时。<br>该冰霜眼魔对触发的敌人使用一种眼魔射线。若该冰霜眼魔处于重伤，则这次眼魔射线命中<br>的生物获得 5 点寒冷易伤直到该冰霜眼魔下回合结束。</div>\n<div class=\"bold bg-power\">寒冰护甲✦遭遇</div>\n<div class=description>触发：首次重伤时。<br>该冰霜眼魔的 AC 和强韧提升 2 点直到遭遇结束。</div>\n<div class=\"italic bg-flavortext\">（冰霜眼魔）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 13（+8）</span><span>''敏捷'' 21（+12）</span><span>''感知'' 18（+11）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 21（+12）</span><span>''智力'' 12（+8）</span><span>''魅力'' 23（+13）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 异怪语</span></div></div>\n</div>",
+    "title": "冰霜眼魔 Beholder Eye of Frost",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "14",
+    "role": "远程",
+    "specialty-role": "精英",
+    "size": "大型",
+    "origin": "异界",
+    "creature-type": "魔法兽",
+    "xp": "2000",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "5248"
+  }
+]

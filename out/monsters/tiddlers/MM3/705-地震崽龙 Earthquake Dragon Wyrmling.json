@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>4级 护卫</span></div>\n<div class=bg-title><span>中型 元素界 魔法兽（地系，龙）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 58；''重伤'' 29</span><span>''先攻'' +7</span></div>\n<div><span>''AC'' 20，''强韧'' 17，''反射'' 17，''意志'' 15</span><span>''侦查'' +4</span></div>\n<div><span>''速度'' 6（大地行者），掘穴 2，飞行 2（笨拙）</span><span>''感官'' 黑暗视觉，震动感知 5</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}震地✦灵气 1</div>\n<div class=description>当任何敌人在该灵气内进行一次目标不包括该地震崽龙的攻击时，该敌人倒地并受到 5 点伤<br>害。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+9vs.AC<br>命中：1d8+4 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}爪击✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+11vs.AC<br>命中：1d6+2 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}崽龙怒✦随意</div>\n<div class=description>前提：该地震崽龙处于重伤。<br>效果：该地震崽龙进行一次啮咬攻击和一次爪击攻击。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">急突震动✦随意</div>\n<div class=description>触发：该地震崽龙被拉动、推动、滑移或击倒。<br>效果（自由动作）：所有在该地震崽龙灵气内的敌人倒地。</div>\n<div class=\"italic bg-flavortext\">（地震龙）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 16（+5）</span><span>''敏捷'' 17（+5）</span><span>''感知'' 15（+4）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 18（+6）</span><span>''智力'' 14（+4）</span><span>''魅力'' 12（+3）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 龙语，荒神语</span></div></div>\n</div>",
+    "title": "地震崽龙 Earthquake Dragon Wyrmling",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "4",
+    "role": "护卫",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "元素界",
+    "creature-type": "魔法兽（地系，龙）",
+    "xp": "175",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "10913"
+  }
+]

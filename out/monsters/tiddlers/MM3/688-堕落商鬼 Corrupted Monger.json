@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>26级 杂兵 远程</span></div>\n<div class=bg-title><span>中型 自然界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 1；失手攻击无法伤害杂兵</span><span>''先攻'' +20</span></div>\n<div><span>''AC'' 40，''强韧'' 37，''反射'' 38，''意志'' 39</span><span>''侦查'' +16</span></div>\n<div><span>''速度'' 6</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}贪婪之触（魅惑）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+28vs.意志<br>命中：12 点伤害，且该堕落商鬼滑移目标 5 格到一个邻接该堕落商鬼的盟友的格子。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}窃取魔法✦随意</div>\n<div class=description>攻击：射程 10（一个生物）+31vs.反射<br>命中：16 点伤害，且目标失去它的一个每日魔法物品的使用直到遭遇结束。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">垂死偷窃</div>\n<div class=description>触发：一个敌人的攻击使该堕落商鬼的生命值降到 0。<br>效果（无动作）：若触发的攻击时通过拥有任何遭遇或每日威能的魔法物品进行的，则这些威能被消耗。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 15（+15）</span><span>''敏捷'' 24（+20）</span><span>''感知'' 16（+16）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 24（+20）</span><span>''智力'' 17（+17）</span><span>''魅力'' 26（+21）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 通用语</span></div></div>\n</div>",
+    "title": "堕落商鬼 Corrupted Monger",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "26",
+    "role": "远程",
+    "specialty-role": "杂兵",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物",
+    "xp": "2250",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "10611"
+  }
+]

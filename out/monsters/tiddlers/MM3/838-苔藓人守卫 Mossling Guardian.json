@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>12级 杂兵 护卫</span></div>\n<div class=bg-title><span>中型 精界 类人生物（植物）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 1；失手攻击无法伤害杂兵</span><span>''先攻'' +11</span></div>\n<div><span>''AC'' 28，''强韧'' 25，''反射'' 22，''意志'' 23</span><span>''侦查'' +10</span></div>\n<div><span>''速度'' 6（森林行者）</span><span>''感官'' 盲视 10</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}忘记目的✦灵气 1</div>\n<div class=description>任何在该灵气内开始回合的敌人迟缓直到其下回合结束。</div>\n<div class=\"bold bg-power\">精神之主的奴隶</div>\n<div class=description>如果该苔藓人守卫是由失落苔藓精神之主生成的，则它紧接在其创造者的回合后行动。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}触须打击✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+17vs.AC<br>命中：10 点伤害，且该苔藓人守卫快步 1 格并滑移目标 1 格到它先前占据的空间。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}拟像攻击✦随意</div>\n<div class=description>效果：当该苔藓人守卫在遭遇中首次行动时，选择一个属于该苔藓人守卫看得见的一个敌人的随意近战攻击威能。如果该苔藓人守卫是由一个失落苔藓精神之主生成的，则选择一个属于该失落苔藓精神之主命中以生成该苔藓人守卫的敌人的随意近战攻击威能。<br>攻击：近战 1（一个生物）+17vs.AC<br>命中：目标如同被所选的攻击命中一样受到伤害和受到效果影响。该伤害骰使用威能被选的生物的属性调整值。该伤害不包括任何其所有者或该威能可能带有的任何对伤害骰的加值或减值。此外，该苔藓人守卫获得来自该威能的命中条目的任何增益，使用威能被选的生物的属性调整值但是不包括任何加值或减值。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 18（+10）</span><span>''敏捷'' 16（+9）</span><span>''感知'' 18（+10）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 22（+12）</span><span>''智力'' 3（+2）</span><span>''魅力'' 15（+8）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n</div>",
+    "title": "苔藓人守卫 Mossling Guardian",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "12",
+    "role": "护卫",
+    "specialty-role": "杂兵",
+    "size": "中型",
+    "origin": "精界",
+    "creature-type": "类人生物（植物）",
+    "xp": "175",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "13276"
+  }
+]

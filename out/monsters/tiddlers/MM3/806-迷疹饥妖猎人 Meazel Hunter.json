@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>12级 远程</span></div>\n<div class=bg-title><span>中型 自然界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 88；''重伤'' 44</span><span>''先攻'' +11</span></div>\n<div><span>''AC'' 24，''强韧'' 23，''反射'' 25，''意志'' 25</span><span>''侦查'' +14</span></div>\n<div><span>''免疫'' 疾病</span><span>''感官'' 黑暗视觉</span></div>\n<div><span>''速度'' 6，攀爬 6</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}巴尔泽布的悲惨诅咒✦灵气 1</div>\n<div class=description>任何在该灵气内开始回合的敌人受到巴尔泽布的诅咒的影响直到其下回合结束。一个生物在受到巴尔泽布的诅咒影响期间，其所有防御受到-2 减值且获得 5 点全伤害易伤。此外，任何邻接着被诅咒的生物开始回合的该生物的盟友也受到巴尔泽布的诅咒的影响直到其下回<br>合结束。多个巴尔泽布的诅咒不会叠加。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}矛（武器）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+17vs.AC<br>命中：2d8+5 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}长弓（毒素，武器）✦随意</div>\n<div class=description>攻击：射程 20/40（一个生物）+19vs.AC<br>命中：2d8+5 毒素伤害，且目标迟缓直到该迷疹饥妖猎人下回合结束。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}扰乱射击（武器）✦随意</div>\n<div class=description>前提：该迷疹饥妖猎人必须持用一件远程武器。攻击：射程 20/40（一个生物）+17vs.意志<br>命中：2d8+5 伤害，且目标提供战斗优势直到该迷疹饥妖猎人下回合结束。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}瘟疫感染射击（黯蚀，武器）✦遭遇</div>\n<div class=description>前提：该迷疹饥妖猎人必须持用一件远程武器。攻击：射程 20/40（一个生物）+17vs.强韧<br>命中：2d8+5 伤害，以及 10 点持续黯蚀伤害（豁免终止）。直到目标成功豁免，任何邻接<br>着目标开始回合的目标的盟友受到 10 点黯蚀伤害。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 隐秘+16</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 15（+8）</span><span>''敏捷'' 20（+11）</span><span>''感知'' 17（+9）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 10（+6）</span><span>''智力'' 11（+6）</span><span>''魅力'' 10（+6）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 通用语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 矛，长弓，40 支箭</span></div></div>\n</div>",
+    "title": "迷疹饥妖猎人 Meazel Hunter",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "12",
+    "role": "远程",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物",
+    "xp": "700",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "12716"
+  }
+]

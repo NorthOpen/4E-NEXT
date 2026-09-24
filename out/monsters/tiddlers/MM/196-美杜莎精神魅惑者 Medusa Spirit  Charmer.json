@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>13级 控制</span></div>\n<div class=bg-title><span>中型 自然界 类人生物，雌性</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 130；''重伤'' 65</span><span>''先攻'' +9</span></div>\n<div><span>''AC'' 27，''强韧'' 25，''反射'' 25，''意志'' 27</span><span>''侦查'' +14</span></div>\n<div><span>''免疫'' 石化；''抗力'' 10 毒素</span><span></span></div>\n<div><span>''速度'' 6</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}蛇发（毒素）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+18vs.AC<br>命中：2d6+6 毒素伤害，且目标的豁免受到-2 减值直到该美杜莎下回合结束。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}精神魅惑（魅惑，心灵）✦随意</div>\n<div class=description>攻击：近程冲击 5（范围内所有敌人）+16vs.意志<br>命中：1d6+6 心灵伤害，且目标在其下回合结束时必须接近该美杜莎两格或邻接该美杜莎，否则就受到 3d6 心灵伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/area}}化剑为蛇（恐惧，幻术）✦遭遇</div>\n<div class=description>攻击：区域 10 爆发 1（范围内所有敌人）+16vs.意志<br>命中：目标的武器和法器变形为蛇，且目标不能使用武器或法器威能（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}石化凝视✦随意</div>\n<div class=description>触发：一个敌人在该美杜莎两格内开始回合。<br>效果（借机动作）：近程冲击 2（范围内触发的敌人）+16vs.强韧命中：目标石化（豁免终止）。</div>\n<div class=\"bold bg-power\">目标石化直到以下任一条件被满足：</div>\n<div class=description>·使用一个适当的威能，如神圣净化（divine cleansing）。</div>\n<div class=\"bold bg-power\">（石化该生物的美杜莎自愿的亲吻（一个美杜莎这么做可能是为了获取情报或者是为了在重新把该被害者变回石头前享受其恐惧））</div>\n<div class=description>·造成该石化的美杜莎被杀且在一天之内将它的血涂到被害者石化的嘴唇上。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 唬骗+17，隐秘+14</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 14（+8）</span><span>''敏捷'' 16（+9）</span><span>''感知'' 17（+9）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 18（+10）</span><span>''智力'' 19（+10）</span><span>''魅力'' 22（+12）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 通用语</span></div></div>\n</div>",
+    "title": "美杜莎精神魅惑者 Medusa Spirit  Charmer",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "13",
+    "role": "控制",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物，雌性",
+    "xp": "800",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "3243"
+  }
+]

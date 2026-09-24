@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>13级 头目 护卫</span></div>\n<div class=bg-title><span>中型 星界 类人生物（魔鬼）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 131；''重伤'' 65</span><span>''先攻'' +10</span></div>\n<div><span>''AC'' 29，''强韧'' 25，''反射'' 23，''意志'' 23</span><span>''侦查'' +9</span></div>\n<div><span>''速度'' 5</span><span>''感官'' 黑暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}刃盾</div>\n<div class=description>灵气 3：所有在该灵气内的盟友 AC 获得+2 加值。</div>\n<div class=\"bold bg-power\">致命借机</div>\n<div class=description>复仇魔进行借机攻击时攻击骰获得+3 加值，且若借机攻击命中，它可以以一个自由动作快<br>步一格。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}威压打击（武器）✦随意</div>\n<div class=description>攻击：+20 vs. AC<br>命中：2d10+3 伤害，且该复仇魔 5 格内的一个盟友获得 8 点临时生命值。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}掠刃（武器）✦随意</div>\n<div class=description>攻击：以一个、两个或三个生物为目标，+18 vs. AC<br>命中：1d10+3 伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}血腥旋风（武器）✦遭遇</div>\n<div class=description>触发：首次重伤时。<br>攻击：近程爆发 1，+18 vs. 反射<br>命中：5 点伤害，且目标倒地。若有两个或以上的敌人被击倒，则该复<br>仇魔 5 格内的每个盟友获得 10 点临时生命值。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 交涉+15，坚韧+15，威吓+15</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 22（+12）</span><span>''敏捷'' 19（+10）</span><span>''感知'' 16（+9）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 19（+10）</span><span>''智力'' 14（+8）</span><span>''魅力'' 18（+10）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 天界语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 板甲，轻盾，重剑</span></div></div>\n</div>",
+    "title": "复仇魔 Erinyes",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "13",
+    "role": "护卫",
+    "specialty-role": "头目",
+    "size": "中型",
+    "origin": "星界",
+    "creature-type": "类人生物（魔鬼）",
+    "xp": "800",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "6022"
+  }
+]

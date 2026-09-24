@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>17级 蛮战</span></div>\n<div class=bg-title><span>大型 元素界 类人生物（火系，巨人）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 204；''重伤'' 102</span><span>''先攻'' +8</span></div>\n<div><span>''AC'' 29，''强韧'' 30，''反射'' 27，''意志'' 27</span><span>''侦查'' +10</span></div>\n<div><span>''抗力'' 15 火焰</span><span></span></div>\n<div><span>''速度'' 8</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}灼热巨锤（火焰，武器）✦随意</div>\n<div class=description>攻击：近战 2（一个生物）+22vs.AC<br>命中：5d8+9 火焰伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}当头一击（火焰，武器）✦随意</div>\n<div class=description>攻击：近战 2（一个生物）+22vs.AC<br>命中：4d8+14 火焰伤害，且目标倒地。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}毁灭热潮（火焰，武器）✦充能（若该威能对每个目标都失手）</div>\n<div class=description>前提：该巨人必须处于重伤。<br>攻击：近程爆发 2（范围内所有敌人）+22vs.AC<br>命中：6d8+9 火焰伤害，且该巨人推动目标最多两格。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 27（+16）</span><span>''敏捷'' 11（+8）</span><span>''感知'' 14（+10）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 24（+15）</span><span>''智力'' 8（+7）</span><span>''魅力'' 11（+8）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 巨人语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 巨锤</span></div></div>\n</div>",
+    "title": "火巨人火焰打击者 Fire Giant Flamecrusher",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "17",
+    "role": "蛮战",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "元素界",
+    "creature-type": "类人生物（火系，巨人）",
+    "xp": "1600",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "2097"
+  }
+]

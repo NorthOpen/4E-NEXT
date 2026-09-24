@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>8级 远程</span></div>\n<div class=bg-title><span>中型 自然界 类人生物（不死生物）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 67；''重伤'' 33</span><span>''先攻'' +4</span></div>\n<div><span>''AC'' 20，''强韧'' 17，''反射'' 20，''意志'' 21</span><span>''侦查'' +7</span></div>\n<div><span>''速度'' 6</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}强酸之触（强酸）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+9vs.反射<br>命中：2d6+9 强酸伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}强酸矢（强酸，法器）✦随意</div>\n<div class=description>攻击：射程 10（一个生物）+11vs.反射<br>命中：2d10+3 强酸伤害，且所有邻接目标的敌人受到 3 点强酸伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}强酸流（强酸，法器）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：射程 10（一个生物）+11vs.反射<br>命中：2d6+10 强酸伤害，且目标的 AC 受到-2 减值并受到 5 点持续强酸伤害（豁免终止两者）。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}否决之法珠（法器）✦遭遇</div>\n<div class=description>触发：一个敌人进行了一次成功的豁免掷骰。<br>攻击（直觉打断）：射程 10（一个生物）+13vs.意志命中：目标的这次豁免掷骰失败。</div>\n<div class=\"bold bg-power\">奥术之潮✦遭遇</div>\n<div class=description>触发：该绿法尸以一次法器攻击命中一个敌人。<br>效果（自由动作）：该攻击对该敌人造成最高值的伤害。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 神秘+13</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 10（+4）</span><span>''敏捷'' 11（+4）</span><span>''感知'' 17（+7）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 13（+5）</span><span>''智力'' 19（+8）</span><span>''魅力'' 10（+4）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 通用语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 法珠</span></div></div>\n</div>",
+    "title": "绿法尸 Green Arcanian",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "8",
+    "role": "远程",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物（不死生物）",
+    "xp": "350",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "9634"
+  }
+]

@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>12级 蛮战</span></div>\n<div class=bg-title><span>大型 自然界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 151；''重伤'' 75</span><span>''先攻'' +10</span></div>\n<div><span>''AC'' 24，''强韧'' 26，''反射'' 24，''意志'' 23</span><span>''侦查'' +9</span></div>\n<div><span>''速度'' 7</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">再生</div>\n<div class=description>每当该巨魔开始回合且至少拥有 1 点生命值时它恢复 5 点生命值。当该巨魔受到火焰或强酸<br>伤害时，它的再生在其下回合无效。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}爪击✦随意</div>\n<div class=description>攻击：近战 2（一个生物）+17vs.AC<br>命中：3d10+9 伤害。如果该攻击使目标重伤，则该巨魔恢复刃狂撕裂的使用权。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}刃狂撕裂✦遭遇</div>\n<div class=description>攻击：近战 2（一个生物）+17vs.AC<br>命中：4d10+5 伤害，以及 10 点持续伤害（豁免终止）。失手：一半伤害，以及 5 点持续伤害（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}死亡爆发✦遭遇</div>\n<div class=description>触发：该巨魔生命值降到 0。<br>攻击（无动作）：近程爆发 2（范围内所有生物）+15vs.反射命中：4d6+7 伤害。<br>效果：该巨魔被摧毁。</div>\n<div class=\"italic bg-flavortext\">（译注：刃狂巨魔被官方勘误过，这里按照的是勘误后的版本）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 23（+12）</span><span>''敏捷'' 18（+10）</span><span>''感知'' 16（+9）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 21（+11）</span><span>''智力'' 3（+2）</span><span>''魅力'' 8（+5）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 通用语，巨人语</span></div></div>\n</div>",
+    "title": "刃狂巨魔 Bladerager Troll (LV12)#1",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "12",
+    "role": "蛮战",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "自然界",
+    "creature-type": "类人生物",
+    "xp": "700",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "4332"
+  }
+]

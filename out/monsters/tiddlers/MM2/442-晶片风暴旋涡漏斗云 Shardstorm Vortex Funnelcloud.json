@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>13级 杂兵 游击</span></div>\n<div class=bg-title><span>中型 元素界 魔法兽（气系，土系）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 1；失手攻击无法伤害杂兵</span><span>''先攻'' +14</span></div>\n<div><span>''AC'' 27，''强韧'' 24，''反射'' 26，''意志'' 24</span><span>''侦查'' +10</span></div>\n<div><span>''免疫'' 疾病，毒素</span><span></span></div>\n<div><span>''速度'' 0，飞行 8（盘旋）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}喷砂</div>\n<div class=description>灵气 1：在该灵气内的敌人的所有防御受到-2 减值。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}磨砂击打✦随意</div>\n<div class=description>攻击：+16 vs. 强韧<br>命中：12 点伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">移动动作</div>\n<div class=\"bold bg-power\">旋涡步✦随意</div>\n<div class=description>该晶片风暴旋涡漏斗云快步 4 格。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 11（+6）</span><span>''敏捷'' 22（+12）</span><span>''感知'' 19（+10）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 19（+10）</span><span>''智力'' 5（+3）</span><span>''魅力'' 6（+4）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 荒神语</span></div></div>\n</div>",
+    "title": "晶片风暴旋涡漏斗云 Shardstorm Vortex Funnelcloud",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "13",
+    "role": "游击",
+    "specialty-role": "杂兵",
+    "size": "中型",
+    "origin": "元素界",
+    "creature-type": "魔法兽（气系，土系）",
+    "xp": "200",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "6907"
+  }
+]

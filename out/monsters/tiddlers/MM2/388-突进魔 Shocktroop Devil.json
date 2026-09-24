@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>16级 护卫</span></div>\n<div class=bg-title><span>大型 星界 类人生物（魔鬼）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 155；''重伤'' 77</span><span>''先攻'' +15</span></div>\n<div><span>''AC'' 33，''强韧'' 27，''反射'' 26，''意志'' 26</span><span>''侦查'' +9</span></div>\n<div><span>''速度'' 6，飞行 8</span><span>''感官'' 黑暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">阿斯莫蒂斯之盾</div>\n<div class=description>在非重伤状态下，突进魔对抗神术攻击威能的所有防御获得+2 加值。在重伤状态下，突进<br>魔对抗神术攻击威能的所有防御受到-2 减值。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}剑盾击（武器）✦随意</div>\n<div class=description>攻击：触及 2，+23 vs. AC<br>命中：2d8+6 伤害，且该突进魔进行第二攻击。<br>第二攻击：触及 2；+20vs.强韧；目标被推动两格并晕眩直到该突进魔下回合结束。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}突进攻击</div>\n<div class=description>触发：当该突进魔生命值全满时充能。<br>该突进魔进行三次剑盾击攻击，分别对不同的目标进行。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 22（+14）</span><span>''敏捷'' 20（+13）</span><span>''感知'' 13（+9）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 19（+12）</span><span>''智力'' 10（+8）</span><span>''魅力'' 20（+13）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 通用语，天界语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 板甲，重盾，长剑</span></div></div>\n</div>",
+    "title": "突进魔 Shocktroop Devil",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "16",
+    "role": "护卫",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "星界",
+    "creature-type": "类人生物（魔鬼）",
+    "xp": "1400",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "6062"
+  }
+]

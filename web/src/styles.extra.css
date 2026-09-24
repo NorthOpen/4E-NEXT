@@ -1194,3 +1194,738 @@ md-dialog.sheet-dialog.sheet-dialog-store { max-width: min(520px, calc(100% - 48
 .variant-preview i.pill { width: 28px; border-radius: var(--md-sys-shape-corner-full); }
 .variant-preview .variant-aa { margin-left: auto; font-size: 12px; font-weight: var(--fw-label); }
 .variant-name { display: flex; align-items: center; gap: 4px; font-size: 13px; font-weight: var(--fw-label); }
+
+/* ===== ⑪ 主持模式（怪物追踪 / 战场控制台） =====
+   主持是一种模式：进入后玩家侧导航让位，导轨只留模式标识与退出。
+
+   ── 组件语言：与速览页（styles.glance.css）共用同一套 ──
+   面板沿用速览的「一块 filled surface + 发丝分区」做法（.gl-shell / .gl-bar），
+   控件直接用速览的密度层：
+     · .gl-md-btn        MD3 按钮压到 HUD 密度（连带 .danger 的 error 容器色）
+     · .gl-num-field     md-outlined-text-field 压到 34px 的数值输入
+     · .gl-stepper + .gl-icon-btn + .gl-plain-num   数字的 ± 微调与直接输入
+     · .gl-state         重伤 / 倒地徽标（与速览的「重伤 / 濒死」同一套配色）
+     · .gl-hp-*          大数字 + 带重伤线的血条
+     · .gl-item-slot     小徽标 pill（等级 / 类型 / 状态）
+     · .md3-seg          快捷 −1/−5/−10、＋1/＋5/＋10
+   DM 看到的血条因此和玩家速览页上的血条是同一个东西，两个页面不会各自漂移。
+
+   ⚠ 本节对 gl-* 的覆盖一律带级联作用域（多带一个祖先类）：同特异度下
+   styles.glance.css 在本文件之后加载，裸类名会被它反压。
+
+   ── 这一页为什么长这样 ──
+   DM 在跑团中每几秒就要回答一次「谁还剩多少血、谁身上挂了什么、轮到他时这张卡写了什么」，
+   花在界面上的每一秒都是从牌桌上偷的：
+     1. 同时看得见所有人 —— 4E 一场遭遇常有 6~12 个单位（还夹着一堆 1 点血的杂兵），
+        每只怪铺一整张卡谁也看不全，所以默认「名册 + 详情」，点谁就管谁；
+     2. 数据一直在场上 —— 详情面板从不空着，选中的那一只永远完整渲染它的数据块；
+     3. 手比眼快 —— 扣血输入框、状态、改名都在面板上半截，不随卡片滚动。
+
+   破坏性操作（移除 / 清空 / 重置）都会弹一条 MD3 Snackbar（见 ③ 的 .d4e-snackbar），
+   给一次撤销机会 —— 手滑清空一整场是对 DM 最贵的失误。 */
+.side-btn-gm { color: var(--md-sys-color-primary); }
+
+/* 两个主持页的尺寸都由**设备视口**界定，但不吃满：面板高度 = 设备可视高度 − 页面自身占掉的高度
+   （--gm-chrome：.content 上下 40 + 本页上边距 18 + 下边距 16 + 顶栏约 66），
+   于是它几乎贴到底边，只在下方留下一道 16px 的安全空白；900px 上限保证超高的窗口
+   不会把控制台拉成一条长廊。dvh 是真机当下可见高度（手机地址栏收放时 vh 会偏大），
+   不认这条声明的浏览器退回 vh。 */
+.gm-view { --gm-chrome: 140px; display: flex; flex-direction: column; padding: 18px 20px 16px; max-width: 1600px; }
+/* 外壳就是 .gl-shell（圆角 xl + surface-container-low），但这里去掉它的 level1 阴影：
+   MD3 的 filled surface 本来就用色调表达层级，不靠投影；这块面板铺在页面背景（还可能叠着
+   一张背景图）上，深色投影会读成罩在背景上的一层灰。改用一条发丝描边把面板与背景分开。
+   选择器带 .gm-view 是为了压过 styles.glance.css 里的 .gl-shell（同特异度、它后加载）。 */
+.gm-view .gm-shell { overflow: hidden; box-shadow: none; border: 1px solid var(--md-sys-color-outline-variant); }
+.gm-h2 { margin: 0; }
+.gm-bar-acts { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+/* md-text-button 在速览的 .gl-md-btn 里没有覆盖，补齐，免得栏里三种按钮三种高度 */
+.gm-tbtn { --md-text-button-container-height: 34px; --md-text-button-label-text-size: 13px; }
+/* 清空是这一页唯一的不可逆动作（有撤销也要够显眼） */
+.gm-danger {
+  --md-text-button-label-text-color: var(--md-sys-color-error);
+  --md-text-button-hover-label-text-color: var(--md-sys-color-error);
+  --md-text-button-focus-label-text-color: var(--md-sys-color-error);
+  --md-text-button-pressed-label-text-color: var(--md-sys-color-error);
+  --md-text-button-hover-state-layer-color: var(--md-sys-color-error);
+  --md-text-button-focus-state-layer-color: var(--md-sys-color-error);
+  --md-text-button-pressed-state-layer-color: var(--md-sys-color-error);
+}
+
+/* --- 空场：告诉 DM 下一步点哪里，顺带把词条页那条入口讲清楚 --- */
+.gm-empty {
+  flex: 1 1 auto; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 10px; padding: 46px 24px 54px; text-align: center;
+}
+/* 图标给独立类名：写成 .gm-empty .material-symbols-outlined 会连带命中按钮里
+   slot="icon" 的那枚「+」—— 外层树的规则压得过组件自己的 ::slotted([slot=icon])，
+   于是 18px 的图标盒里塞进 40px 的字形，还会丢掉按钮的图标配色。 */
+.gm-empty-ic { flex: none; font-size: 40px; line-height: 1; color: var(--md-sys-color-on-surface-variant); }
+.gm-empty h3 { margin: 0; font-size: 16px; font-weight: var(--fw-heading); color: var(--md-sys-color-on-surface); }
+.gm-empty-tip { margin: 0; max-width: 46ch; font-size: 11.5px; line-height: 1.75; color: var(--md-sys-color-on-surface-variant); }
+
+/* --- 状态 / 筛选 pill ---
+   配方与速览的 .gl-chip 一致（全圆角 + 实底 + 同样的悬停色），
+   区别只有一处：这里需要明确的「已选」态 —— 选中用 secondary-container，
+   未选中的悬停只升一级容器色，否则悬停的 chip 会和选中的长得一样。 */
+.gm-pill {
+  position: relative;
+  display: inline-flex; align-items: center; gap: 6px; max-width: 100%;
+  padding: 5px 12px; border: 0; cursor: pointer; white-space: nowrap;
+  border-radius: var(--md-sys-shape-corner-full);
+  background: var(--md-sys-color-surface-container);
+  color: var(--md-sys-color-on-surface);
+  font: inherit; font-size: 13px; line-height: 1.3;
+  transition: background-color var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-standard),
+              color var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-standard);
+}
+.gm-pill:hover { background: var(--md-sys-color-surface-container-highest); }
+.gm-pill.on { background: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); font-weight: var(--fw-subheading); }
+.gm-pill.on:hover { background: color-mix(in srgb, var(--md-sys-color-on-secondary-container) 8%, var(--md-sys-color-secondary-container)); }
+.gm-pill:focus-visible { outline: 2px solid var(--md-sys-color-primary); outline-offset: 2px; }
+.gm-pill .material-symbols-outlined { font-size: 17px; }
+
+/* 已挂状态的悬浮速查：「震慑到底能不能动」这种问题悬停即答，不必翻书。
+   这里用浮层是安全的 —— 详情面板这条链路上没有任何 overflow 裁切
+   （名册行里同理的 chip 会被滚动容器裁掉，所以那边只用 title 提示）。 */
+.gm-tip {
+  position: absolute; bottom: calc(100% + 8px); left: 0; z-index: 5;
+  width: max-content; max-width: 280px;
+  padding: 8px 12px; border-radius: var(--md-sys-shape-corner-medium);
+  background: var(--md-sys-color-surface-container-high);
+  color: var(--md-sys-color-on-surface);
+  font-size: 12px; font-weight: var(--fw-body); line-height: 1.65;
+  white-space: normal; text-align: left;
+  box-shadow: var(--md-sys-elevation-shadow-level2);
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transition: opacity var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-standard);
+}
+.gm-tip-hint { display: block; margin-top: 3px; font-style: normal; font-size: 11px; color: var(--md-sys-color-on-surface-variant); }
+.gm-pill:hover .gm-tip, .gm-pill:focus-visible .gm-tip { opacity: 1; visibility: visible; }
+
+/* --- 名册 + 详情：一块面板里的两个分区，中间一条发丝线（速览 .gl-body 的做法） ---
+   整页不滚、两块各自滚，所以扣血输入框永远在视野里，不需要 sticky 之类的补丁。 ===== */
+.gc {
+  display: grid; gap: 0;
+  grid-template-columns: minmax(300px, 380px) minmax(0, 1fr);
+  height: min(calc(100vh - var(--gm-chrome)), 900px);
+  height: min(calc(100dvh - var(--gm-chrome)), 900px);
+}
+.gc.single { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(150px, 34%) minmax(0, 1fr); }
+
+.gc-roster {
+  display: flex; flex-direction: column; gap: 4px;
+  min-height: 0; overflow-y: auto; overscroll-behavior: contain;
+  padding: 8px;
+  border-right: 1px solid var(--md-sys-color-outline-variant);
+  scrollbar-width: thin;
+}
+.gc.single .gc-roster { border-right: 0; border-bottom: 1px solid var(--md-sys-color-outline-variant); }
+
+/* 名册一行：上排身份、下排实时状态。行本身沿用速览 .gl-item-row 的配方
+   （实底 surface-container + 中圆角 + 悬停换色），它是可选项，所以悬停用高一级容器色、
+   选中用 secondary-container，两者不会混淆。 */
+.gr {
+  flex: none; display: flex; flex-direction: column; gap: 6px; width: 100%;
+  box-sizing: border-box; padding: 7px 12px;
+  border: 0; border-radius: var(--md-sys-shape-corner-medium);
+  background: var(--md-sys-color-surface-container); color: var(--md-sys-color-on-surface);
+  font: inherit; font-size: 13px; text-align: left; cursor: pointer;
+  transition: background-color var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-standard),
+              color var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-standard);
+}
+.gr:hover { background: var(--md-sys-color-surface-container-highest); }
+.gr.on { background: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); }
+.gr.on:hover { background: color-mix(in srgb, var(--md-sys-color-on-secondary-container) 8%, var(--md-sys-color-secondary-container)); }
+.gr.dead { opacity: .55; }
+.gr.dead .gr-name { text-decoration: line-through; }
+.gr-top { display: flex; align-items: center; gap: 6px; min-width: 0; }
+.gr-name {
+  flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  font-size: 13.5px; font-weight: var(--fw-subheading);
+}
+/* 职能 · 图鉴：跟在名字后面的副信息，用速览的 .gl-chip-sub（11px + on-surface-variant） */
+.gr-meta { flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.gr.on .gr-meta { color: inherit; opacity: .85; }
+.gr-bot { display: flex; align-items: center; gap: 8px; min-width: 0; }
+/* 行内用速览的部件，只按行的密度收一收（选择器带 .gr，避免被后加载的 glance 反压） */
+.gr .gr-bar { flex: 1 1 auto; min-width: 30px; height: 6px; }
+.gr .gl-hp-fill { display: block; }
+.gr.hurt .gl-hp-fill { background: var(--md-sys-color-error); }
+.gr.dead .gl-hp-fill { background: var(--md-sys-color-outline); }
+.gr.on .gl-hp-bar { background: color-mix(in srgb, var(--md-sys-color-on-secondary-container) 16%, transparent); }
+.gr-hp { flex: none; font-size: 12px; font-weight: var(--fw-subheading); font-variant-numeric: tabular-nums; }
+.gr-hp em { font-style: normal; font-weight: var(--fw-body); opacity: .7; }
+.gr .gl-hp-temp { margin-left: 0; padding: 1px 8px; font-size: 11px; }
+.gr .gl-state { font-size: 11px; padding: 1px 8px; }
+.gr.on .gl-item-slot { background: color-mix(in srgb, var(--md-sys-color-on-secondary-container) 14%, transparent); color: inherit; }
+
+/* 详情面板：上半截控制台固定，下半截数据块自己滚 */
+.gc-detail { display: flex; flex-direction: column; min-height: 0; min-width: 0; }
+.gd { display: flex; flex-direction: column; flex: 1 1 auto; min-height: 0; }
+/* 速览的血色规则挂在 .z-vit.is-* 上，这里给同样的两种状态补一份（选择器带自己的作用域） */
+.gd.is-bloodied .gl-hp-fill, .bi.is-bloodied .gl-hp-fill { background: var(--md-sys-color-error); }
+.gd.is-dying .gl-hp-fill, .bi.is-dying .gl-hp-fill { background: var(--md-sys-color-outline); }
+.gd.is-bloodied .gl-hp-cur, .gd.is-dying .gl-hp-cur,
+.bi.is-bloodied .gl-hp-cur, .bi.is-dying .gl-hp-cur { color: var(--md-sys-color-error); }
+
+.gd-deck {
+  position: relative; flex: none;
+  display: flex; flex-direction: column; gap: 9px;
+  padding: 12px 16px 14px;
+  border-bottom: 1px solid var(--md-sys-color-outline-variant);
+}
+.gd-head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; min-width: 0; }
+/* 改名栏＝人物页「姓名」那个组件的体验（md-filled-text-field + 标签）。
+   按控制台的密度收一档，用的是 hb-stat-row 里那套官方间距 token —— 这是本仓库既有的压缩写法。 */
+.gm-name-field {
+  flex: 1 1 auto; min-width: 150px;
+  --md-filled-text-field-top-space: 6px;
+  --md-filled-text-field-bottom-space: 6px;
+  --md-filled-text-field-input-text-size: 14px;
+  --md-filled-text-field-label-text-size: 12px;
+}
+.gd-act { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.gd-conds { display: flex; flex-wrap: wrap; gap: 6px; }
+.gd-card { flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 12px 16px 16px; }
+
+/* --- 状态候选弹窗（ConditionPicker）---
+   候选原先是详情面板里的浮层：会盖住怪物卡、又容易被当成卡片的一部分。
+   收进二级弹窗后不挤占面板空间，可以连着勾好几个再关掉；每条候选直接带速查文本，
+   「震慑能不能动」在选的时候就把规则读完了。 */
+.cp { display: flex; flex-direction: column; gap: 14px; }
+.cp-group { display: flex; flex-direction: column; gap: 6px; }
+.cp-group-label {
+  margin: 0; font-size: 11px; letter-spacing: .08em;
+  font-weight: var(--fw-subheading); color: var(--md-sys-color-on-surface-variant);
+}
+.cp-items { display: flex; flex-direction: column; gap: 4px; }
+.cp-item {
+  display: flex; align-items: baseline; gap: 10px; width: 100%;
+  padding: 7px 12px; border: 0; cursor: pointer;
+  border-radius: var(--md-sys-shape-corner-medium);
+  background: var(--md-sys-color-surface-container);
+  color: var(--md-sys-color-on-surface);
+  font: inherit; text-align: left;
+  transition: background-color var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-standard);
+}
+.cp-item:hover { background: var(--md-sys-color-surface-container-highest); }
+.cp-item.on { background: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); }
+.cp-item-name {
+  flex: none; display: inline-flex; align-items: center; gap: 4px;
+  min-width: 76px; font-size: 13px; font-weight: var(--fw-subheading);
+}
+.cp-item-name .material-symbols-outlined { font-size: 16px; }
+.cp-item-desc { flex: 1 1 auto; min-width: 0; font-size: 11.5px; line-height: 1.6; color: var(--md-sys-color-on-surface-variant); }
+.cp-item.on .cp-item-desc { color: inherit; opacity: .88; }
+
+/* --- 卡片视图：同一块控制台 + 它自己的完整数据块 ---
+   刻意不给数据块再套容器：.gen-creature-card 自己就是一张完整卡片，
+   再包一层就成了卡中卡。控制带一律扁平，归属关系靠间距表达（行内 9px ≪ 卡间 20px）。 */
+.gm-board { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 16px; align-items: start; padding: 16px; }
+.gm-board.single { grid-template-columns: minmax(0, 1fr); }
+.bi { display: flex; flex-direction: column; gap: 9px; min-width: 0; }
+.bi-strip { position: relative; display: flex; flex-direction: column; gap: 9px; }
+/* 卡片视图里的生命数字比详情面板收一档，毕竟一屏要摆好几张 */
+.bi .gl-hp-cur { font-size: 26px; }
+/* 倒地只淡化数据块，控制台保持原样 —— 还得靠它把人救回来 */
+.bi .gen-creature-card { transition: opacity var(--md-sys-motion-duration-medium2) var(--md-sys-motion-easing-standard); }
+.bi.is-dying .gen-creature-card { opacity: .5; }
+
+/* --- 二级弹窗：添加怪物（MonsterPicker） --- */
+.mp { display: flex; flex-direction: column; gap: 12px; }
+.mp-top { display: flex; align-items: center; gap: 10px; }
+.mp-search { flex: 1 1 auto; min-width: 0; }
+.mp-search md-filled-text-field { width: 100%; }
+.mp-qty { flex: none; }
+/* .gl-plain-num 是给 <input> 写的，这里只补成可居中的块 */
+.mp-qty-num { display: inline-flex; align-items: center; justify-content: center; }
+/* 筛选区吸顶：结果最多列 60 条，滚动时仍能改筛选 */
+.mp-facets {
+  position: sticky; top: 0; z-index: 2;
+  display: flex; flex-direction: column; gap: 6px;
+  padding: 4px 0 8px;
+  background: var(--md-sys-color-surface-container-high);   /* 与 md-dialog 容器色一致 */
+  border-bottom: 1px solid var(--md-sys-color-outline-variant);
+}
+.mp-row { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 8px; align-items: start; }
+.mp-row-label { padding-top: 5px; font-size: 11.5px; font-weight: var(--fw-label); color: var(--md-sys-color-on-surface-variant); }
+.mp-row-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.mp-count { font-size: 12px; color: var(--md-sys-color-on-surface-variant); }
+.mp-count b { color: var(--md-sys-color-on-surface); }
+.mp-hint { margin: 0; font-size: 12.5px; color: var(--md-sys-color-on-surface-variant); }
+.mp-error { margin: 0; font-size: 12.5px; color: var(--md-sys-color-error); }
+.mp-list { display: flex; flex-direction: column; gap: 4px; }
+/* 结果行＝速览的 .gl-item-row 配方：实底 container + 中圆角，悬停换 secondary-container */
+.mp-item {
+  display: flex; align-items: center; gap: 8px; width: 100%;
+  padding: 7px 12px; border: 0; cursor: pointer;
+  border-radius: var(--md-sys-shape-corner-medium);
+  background: var(--md-sys-color-surface-container);
+  color: var(--md-sys-color-on-surface);
+  font: inherit; font-size: 13px; text-align: left;
+  transition: background-color var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-standard),
+              color var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-standard);
+}
+.mp-item:hover { background: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); }
+.mp-item-name {
+  flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  font-weight: var(--fw-subheading);
+}
+.mp-item .mp-meta { flex: 0 1 auto; min-width: 0; max-width: 56%; overflow: hidden; text-overflow: ellipsis; }
+.mp-item:hover .mp-meta { color: inherit; }
+.mp-item .gl-item-enh { margin-left: 0; }
+.mp-item:hover .gl-item-enh { color: inherit; }
+.mp-item .gl-item-enh.on { color: var(--md-sys-color-tertiary); }
+.mp-item:hover .gl-item-enh.on { color: inherit; }
+
+/* 词条页 · 怪物详情上方的「加入遭遇」：检索在词条、上场在主持，这一步把两边接起来 */
+.detail-actions { display: flex; justify-content: flex-end; margin-bottom: 10px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .gm-tip { transition: none; }
+}
+
+/* 窄屏：控制台退成上下堆叠（名册在上、详情在下），两块各自限高，页面本身仍可滚 */
+@media (max-width: 900px) {
+  /* 窄屏不再是两块并排的控制台：上下堆叠、页面自己滚。
+     这里 chrome 换成手机端那套：.content 上 10 + 底部导航让位 84 + 安全区 + 本页上边距 12 + 顶栏约 66。 */
+  .gm-view { --gm-chrome: 172px; }
+  .gc { grid-template-columns: minmax(0, 1fr); height: auto; }
+  .gc-roster { max-height: 46vh; max-height: 46dvh; }
+  .gc-detail { height: calc(100vh - var(--gm-chrome)); height: calc(100dvh - var(--gm-chrome)); min-height: 380px; }
+}
+@media (max-width: 640px) {
+  /* 底部导航的让位由 styles.mobile.css 的 .content 负责（84px + 安全区），
+     这里不再重复垫一层，否则手机底部会白留近 90px。 */
+  .gm-view { padding: 12px 12px 0; }
+  .gm-shell { border-radius: var(--md-sys-shape-corner-large); }
+  .gm-bar-acts { gap: 4px; }
+  .gm-board { padding: 12px; }
+  .mp-row { grid-template-columns: minmax(0, 1fr); }
+  .mp-row-label { padding-top: 0; }
+  .mp-top { flex-wrap: wrap; }
+  .mp-search { flex-basis: 100%; }
+}
+/* ===== ⑫ 导轨：Logo 与版本号固定，只有按钮区滚动 =====
+   .side-bar 原本整体 overflow-y:auto，页面变矮或按钮变多时品牌区会被一起卷走。
+   这里把滚动下移到 .rail-scroll，品牌区留在外面（flex 首项、不参与滚动）。 */
+.side-bar { overflow: hidden; }
+.rail-scroll {
+  flex: 1 1 auto; min-height: 0; width: 100%;
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  overflow-y: auto; overscroll-behavior: contain;
+  scrollbar-width: none;   /* Firefox / Chrome 121+：与 .side-bar 同一套写法，两条都要 */
+}
+.rail-scroll::-webkit-scrollbar { display: none; }
+/* ===== ⑬ 怪物卡（creature）：固定的身份标题色 + 跟随取色的容器层级 =====
+   机制与威能 / 物品 / 专长卡一致：标题栏吃一枚固定的「官方规则色」，
+   其余一律走 MD3 语义色，跟随全局动态取色与深浅模式。
+
+   两处底色刻意【不固定】（按「固定住的只有标题色」的要求），且小标题栏比文字底色只深一级：
+     · 内部小标题栏 → 浅色 surface-container-high / 深色 surface-container-low
+     · 卡片文字底色 → surface-container
+   小标题栏与文字底色的深浅关系靠 light-dark() 维持（见下方变量注释），
+   不用渐变——色阶差本来就是让色界显得平顺的那个量，想再强一点就把 high 换成 highest，
+   想更弱就换成 container，只需动这一个词。
+
+   数据有两个来源——管线渲染的怪物块 与 官方维基的 <div class=creature> 条目，
+   因此选择器只认结构类名（bg-title / bg-category / bg-power / description / ability），
+   不依赖任何具体文案。本段必须排在 styles.css 之后（styles.extra.css 正为此拆出）。 */
+.gen-creature-card {
+  --cr-title: #5a632a;                                        /* 身份标题色：固定，不随取色 */
+
+  /* 文字底色：跟随取色 */
+  --cr-body: var(--md-sys-color-surface-container);
+
+  /* 小标题栏：**始终比文字底色更暗，且只差一级 container**。
+     差一级是刻意的：不用渐变，靠缩小色阶差本身来让色界显得平顺；
+     再深一档（high → highest）就会重新变成一条硬边。
+     关系本身 MD3 没法用单个令牌表达 —— 浅色模式下编号越高越深，深色模式恰好相反，
+     所以用 light-dark() 各取一档：浅色取 high、深色取 low，两种模式下都更暗。
+     旧浏览器的退路见文件末尾的 @supports 块（自定义属性不做语法校验，
+     在这里写两行「先兜底后覆盖」是无效的：两行都会被接受，取用时才整条失效）。 */
+  --cr-subhead: light-dark(var(--md-sys-color-surface-container-high), var(--md-sys-color-surface-container-low));
+  --cr-line: var(--md-sys-color-outline-variant);
+  --cr-hair: color-mix(in srgb, var(--md-sys-color-outline-variant) 55%, transparent);
+}
+
+/* 卡片容器：MD3 圆角 + 描边 + 表面容器色；内边距交给各行，标题栏才能通栏 */
+.gen-creature-card .creature {
+  display: flex; flex-direction: column; gap: 0;
+  padding: 0;
+  border: 1px solid var(--cr-line);
+  border-radius: var(--md-sys-shape-corner-medium);
+  background: var(--cr-body);
+  color: var(--md-sys-color-on-surface);
+  overflow: hidden;
+  font-size: 12px;
+  line-height: 1.6;
+  font-variant-numeric: tabular-nums;
+}
+
+/* 名称标题栏：身份色实底 + on-color 白字（与 .pc-head / .ic-head 同构） */
+.gen-creature-card .creature > .bg-title.font-size-h4 {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 10px;
+  padding: 7px 12px;
+  background: var(--cr-title);
+  color: #fff;
+  font-size: 13.5px;
+  font-weight: var(--md-sys-typescale-title-medium-weight);
+  letter-spacing: .2px;
+  border-bottom: 0;   /* 旧规则给 .bg-title 留了一条分隔线，实底标题栏上不需要 */
+}
+.gen-creature-card .creature > .bg-title.font-size-h4 span:nth-child(2) {
+  flex: none;
+  font-size: 11px;
+  font-weight: var(--md-sys-typescale-label-large-weight);
+  color: rgba(255, 255, 255, .88);
+}
+
+/* 副标题行（体型 · 界域 · 类别 / XP）：小标题栏底色实底。
+   色阶只差一级，所以与上方的实底标题栏、下方的文字底色相接时都没有硬边，不需要渐变。 */
+.gen-creature-card .creature > .bg-title:not(.font-size-h4) {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 10px;
+  padding: 5px 12px;
+  background: var(--cr-subhead);
+  color: var(--md-sys-color-on-surface-variant);
+  font-size: 11.5px;
+}
+
+/* 两行标题的右栏（等级·职能 / XP）：字号与字重统一接管。
+   旧样式 .gen-creature-card .bg-title span:nth-child(2) 是直接命中 span 的，
+   只靠父级继承压不住，必须同层级显式覆盖。 */
+.gen-creature-card .creature > .bg-title span:nth-child(2) {
+  font-size: 11px;
+  font-weight: var(--md-sys-typescale-label-large-weight);
+}
+.gen-creature-card .creature > .bg-title:not(.font-size-h4) span:nth-child(2) {
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+/* 数据行（HP / AC / 免疫 / 速度…）：左值右值对齐，行间发丝线 */
+.gen-creature-card .creature > div:not([class]):not(:has(.ability)) {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+  padding: 5px 12px;
+  border-top: 1px solid var(--cr-hair);
+}
+/* 紧接小标题栏的那一行不再画发丝线：色阶差已足够区分，再叠一条线等于又切出一条硬边。
+   选择器要盖过上面那条数据行规则（同为直接子元素），所以把它的判据原样带上再置零。
+   只针对 .bg-title —— 段头后面接的一律是威能名而不是数据行（我们 927 条 + 官方 205 条实测都是 0 例），
+   给它也写一条只会是死代码。 */
+.gen-creature-card .creature > .bg-title + div:not([class]):not(:has(.ability)) { border-top: 0; }
+
+/* 右栏为空时不占位，左栏自然通栏 */
+.gen-creature-card .creature > div:not([class]):not(:has(.ability)) > span:last-child:empty { display: none; }
+
+/* 段头（特性 / 标准动作 / 移动动作 …）：小标题栏底色通栏条。
+   色阶只差一级，上下与文字底色的衔接本身就平；不再叠发丝线，否则等于又切一条硬边。 */
+.gen-creature-card .creature > .bg-category {
+  margin: 0;
+  padding: 5px 12px;
+  background: var(--cr-subhead);
+  color: var(--md-sys-color-on-surface);
+  font-size: 11.5px;
+  font-weight: var(--md-sys-typescale-title-small-weight);
+  letter-spacing: .3px;
+  border-top: 0;
+}
+
+/* 威能名与威能正文：同缩进，正文降一级对比 */
+.gen-creature-card .creature > .bg-power:not(:has(.ability)) {
+  padding: 5px 12px 0;
+  color: var(--md-sys-color-primary);
+  font-size: 12px;
+  font-weight: var(--md-sys-typescale-title-small-weight);
+}
+.gen-creature-card .creature > .description {
+  padding: 1px 12px 3px;
+  color: var(--md-sys-color-on-surface-variant);
+  font-size: 12px;
+}
+
+/* 译注：斜体弱化，与正文区分 */
+.gen-creature-card .creature > .bg-flavortext {
+  padding: 5px 12px;
+  border-top: 1px solid var(--cr-hair);
+  color: var(--md-sys-color-on-surface-variant);
+  font-size: 11.5px;
+  font-style: italic;
+}
+
+/* 能力值 / 技能 / 阵营 / 语言 / 装备：三列网格；外层容器不占内边距 */
+.gen-creature-card .creature > .bg-power:has(.ability),
+.gen-creature-card .creature > div:not([class]):has(.ability) { padding: 0; }
+.gen-creature-card .ability {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2px 10px;
+  padding: 5px 12px;
+  border-top: 1px solid var(--cr-hair);
+  font-size: 11.5px;
+  /* 外层容器是 .bg-power，旧规则给了 primary 色与 600 字重；能力行是数据不是威能名，显式拉回 */
+  color: var(--md-sys-color-on-surface);
+  font-weight: var(--md-sys-typescale-body-medium-weight);
+}
+/* 只有一项时（技能 / 装备）不铺满三列，避免右侧大片空白 */
+.gen-creature-card .ability:has(> span:only-child) { grid-template-columns: minmax(0, 1fr); }
+.gen-creature-card .ability > span { min-width: 0; overflow-wrap: anywhere; }
+.gen-creature-card .ability b {
+  color: var(--md-sys-color-on-surface-variant);
+  font-weight: var(--md-sys-typescale-label-medium-weight);
+  margin-right: 3px;
+}
+
+/* light-dark() 需要 color-scheme 支持（Chrome 123+ / Safari 17.5+ / Firefox 120+）。
+   不支持时下面的覆盖才真正生效 —— 退回浅色模式的取值，深色模式下「更暗」的关系会反过来，
+   但卡片本身仍完整可读。 */
+@supports not (color: light-dark(#000, #fff)) {
+  .gen-creature-card { --cr-subhead: var(--md-sys-color-surface-container-high); }
+}
+
+
+
+
+
+/* ===== ⑭ 主持模式 · 故事（白板） =====
+   一张可平移、可缩放的白板：方块（想法 / 事件 / 人物 / 线索）+ 带箭头的连线。
+   外壳、顶栏、按钮、Snackbar 全部复用 ⑪ 与速览那一套，这里只写白板本体。
+
+   坐标体系：屏幕 = 世界坐标 × k + 平移。连线画在同一个 transform 里的 SVG 上，
+   于是缩放时线宽与箭头跟着一起缩放 —— 这正是白板该有的手感。
+
+   方块底色用 surface-container-highest 而不是 surface：浅色模式下它比画布（container-low）
+   深一档、深色模式下浅一档，两种模式里都能从网格底上「浮」出来，不需要投影。 */
+.wb {
+  position: relative;
+  height: min(calc(100vh - var(--gm-chrome)), 900px);
+  height: min(calc(100dvh - var(--gm-chrome)), 900px);
+  overflow: hidden; touch-action: none; cursor: grab;
+  background-color: var(--md-sys-color-surface-container-low);
+  background-image: radial-gradient(circle, var(--md-sys-color-outline-variant) 1px, transparent 1px);
+}
+.wb.panning { cursor: grabbing; }
+.wb.linking { cursor: crosshair; }
+.wb-world { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
+
+/* 连线层：1px 画布 + overflow:visible —— 世界坐标可以是负数，也不占布局 */
+.wb-edges { position: absolute; left: 0; top: 0; width: 1px; height: 1px; overflow: visible; pointer-events: none; }
+.wb-edge { fill: none; stroke: var(--md-sys-color-outline); stroke-width: 2; pointer-events: stroke; cursor: pointer; }
+.wb-edge:hover { stroke: var(--md-sys-color-error); stroke-width: 3; }
+.wb-arrow { fill: var(--md-sys-color-outline); }
+/* 箭头形制：虚线那一档靠 dasharray（无箭头） */
+.wb-edge.dashed { stroke-dasharray: 7 5; }
+/* 箭头形制：每个按钮里就是这一档实际画出来的样子（44×18 的示意线段），不抽象成图标 */
+.wb-arrowset { display: inline-flex; align-items: center; gap: 4px; }
+.wb-style {
+  display: inline-grid; place-items: center; width: 56px; height: 32px; padding: 0;
+  box-sizing: border-box; cursor: pointer;
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: var(--md-sys-shape-corner-small);
+  background: transparent;
+}
+.wb-style:hover { background: var(--md-sys-color-surface-container); }
+.wb-style.on { border-color: transparent; background: var(--md-sys-color-primary-container); }
+.wb-style-prev { display: block; }
+.pv-line { stroke: var(--md-sys-color-on-surface-variant); stroke-width: 2; stroke-linecap: round; }
+.pv-line.dashed { stroke-dasharray: 5 4; }
+.pv-head { fill: var(--md-sys-color-on-surface-variant); }
+.wb-style.on .pv-line { stroke: var(--md-sys-color-on-primary-container); }
+.wb-style.on .pv-head { fill: var(--md-sys-color-on-primary-container); }
+
+/* 画笔墨色：红 / 黑 / 蓝三枚基础色 + 一枚自选（色盘从它上面弹出来） */
+.wb-ink { position: relative; display: inline-flex; align-items: center; gap: 5px; }
+.wb-ink-dot {
+  width: 26px; height: 26px; padding: 0; box-sizing: border-box; cursor: pointer;
+  border: 2px solid transparent; border-radius: var(--md-sys-shape-corner-full);
+  background: var(--md-sys-color-surface-container-highest);
+}
+.wb-ink-dot:hover { border-color: var(--md-sys-color-outline); }
+.wb-ink-dot.on { border-color: var(--md-sys-color-on-surface); }
+/* 基础色是固定色：深色画布上「黑」要翻成近白，否则等于没画 */
+.wb-ink-dot.ink-black { background: light-dark(#202124, #e8eaed); }
+.wb-ink-dot.ink-red { background: light-dark(#d93025, #f28b82); }
+.wb-ink-dot.ink-blue { background: light-dark(#1a73e8, #8ab4f8); }
+/* 自选色：还没选时显示一枚色环，选过就直接显示那个颜色（行内 background 覆盖） */
+.wb-ink-dot.custom { background: conic-gradient(#e5484d, #f5a524, #30a46c, #1a73e8, #8e4ec6, #e5484d); }
+.wb-ink-pop {
+  position: absolute; right: 0; top: calc(100% + 8px); z-index: 20;
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  padding: 12px; border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: var(--md-sys-shape-corner-medium);
+  background: var(--md-sys-color-surface-container);
+  box-shadow: var(--md-sys-elevation-shadow-level2);
+}
+.wb-ink-pop .react-colorful { width: 200px; height: 200px; }
+
+/* 自由笔迹：画在方块之下，线宽随缩放一起变（和连线同一套坐标）。
+   画笔模式下它不吃指针事件，否则落笔会变成「点一下就擦掉」。 */
+.wb-stroke {
+  fill: none;
+  stroke: var(--md-sys-color-on-surface-variant);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  pointer-events: stroke; cursor: pointer;
+}
+/* 三个基础墨色：light-dark 各取一档，跟着深浅模式走（见 data/story.ts 的说明） */
+.wb-stroke.ink-black { stroke: light-dark(#202124, #e8eaed); }
+.wb-stroke.ink-red { stroke: light-dark(#d93025, #f28b82); }
+.wb-stroke.ink-blue { stroke: light-dark(#1a73e8, #8ab4f8); }
+.wb-stroke:hover { stroke: var(--md-sys-color-error); }
+.wb.pen .wb-stroke, .wb-stroke.draft { pointer-events: none; }
+.wb.pen { cursor: crosshair; }
+
+.wb-node {
+  position: absolute; width: 220px; height: 152px; box-sizing: border-box;
+  display: flex; flex-direction: column;
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: var(--md-sys-shape-corner-medium);
+  background: var(--md-sys-color-surface-container-highest);
+  overflow: hidden; cursor: grab;
+}
+.wb-node.dragging { cursor: grabbing; }
+/* 连线模式下选中的起点：2px primary 描边，与「已选」语言一致 */
+.wb-node.sel { outline: 2px solid var(--md-sys-color-primary); outline-offset: 2px; }
+
+.wb-node-head {
+  flex: none; display: flex; align-items: center;
+  background: var(--k-bg, var(--md-sys-color-surface-container-highest));
+  color: var(--k-fg, var(--md-sys-color-on-surface-variant));
+}
+/* 方块配色：六个 MD3 语义色各给一对「容器色 / 前景色」。节点、编辑弹窗、色板圆点三处共用这一份映射 ——
+   自定义属性会继承，所以色板圆点直接吃 --k-bg，不用把颜色再写一遍。
+   DOM 上的 k-<类型> 只作为标记（类型预设已在数据层展开成 icon/color），颜色一律由这里的 c-* 决定。 */
+.wb-node.c-primary, .se.c-primary, .se-color.c-primary { --k-bg: var(--md-sys-color-primary-container); --k-fg: var(--md-sys-color-on-primary-container); }
+.wb-node.c-secondary, .se.c-secondary, .se-color.c-secondary { --k-bg: var(--md-sys-color-secondary-container); --k-fg: var(--md-sys-color-on-secondary-container); }
+.wb-node.c-tertiary, .se.c-tertiary, .se-color.c-tertiary { --k-bg: var(--md-sys-color-tertiary-container); --k-fg: var(--md-sys-color-on-tertiary-container); }
+.wb-node.c-error, .se.c-error, .se-color.c-error { --k-bg: var(--md-sys-color-error-container); --k-fg: var(--md-sys-color-on-error-container); }
+.wb-node.c-neutral, .se.c-neutral, .se-color.c-neutral { --k-bg: var(--md-sys-color-surface-container); --k-fg: var(--md-sys-color-on-surface-variant); }
+/* 名称栏：整条是一个按钮，点一下展开下拉栏（类型预设 / 删除，都用图标表示）。
+   名称不再是常驻输入框 —— 随手记的时候先跟光标打交道很碍事，那一下点击省给拖动；
+   改名字、颜色、图标走右侧那枚铅笔按钮的编辑弹窗。 */
+/* 名称栏是静态标签：可点的地方只有右侧两枚开关，其余整条都留给拖动 */
+.wb-node-name {
+  flex: 1 1 auto; min-width: 0;
+  display: flex; align-items: center; gap: 4px;
+  padding: 6px 4px 6px 10px;
+  font-size: 11.5px; font-weight: var(--fw-subheading);
+}
+.wb-node-name .material-symbols-outlined { flex: none; font-size: 15px; }
+.wb-node-nametext { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+/* 名称栏右侧的两枚小开关（锁定 / 编辑）。锁的状态由图标本身表达（lock ⇄ lock_open），
+   所以锁上后不换底色，只把不透明度提上来 —— 加底色会和「已选」的语言撞。 */
+.wb-node-act {
+  flex: none; display: inline-grid; place-items: center; width: 24px; height: 24px;
+  border: 0; border-radius: var(--md-sys-shape-corner-full);
+  background: transparent; color: inherit; opacity: .6; cursor: pointer;
+}
+.wb-node-act:hover { opacity: 1; background: color-mix(in srgb, currentColor 12%, transparent); }
+.wb-node-act.on { opacity: 1; }
+.wb-node-act .material-symbols-outlined { font-size: 16px; }
+.wb-node-head .wb-node-act:last-child { margin-right: 3px; }
+/* 右下角的拉伸把手：只有没锁定时才渲染 */
+.wb-node-resize { position: absolute; right: 0; bottom: 0; width: 18px; height: 18px; cursor: nwse-resize; }
+.wb-node-resize::after {
+  content: ""; position: absolute; right: 4px; bottom: 4px; width: 7px; height: 7px;
+  border-right: 2px solid var(--md-sys-color-outline);
+  border-bottom: 2px solid var(--md-sys-color-outline);
+}
+.wb-node-resize:hover::after { border-color: var(--md-sys-color-primary); }
+/* 锁定：不能拖、不能拉，名称栏上挂一枚锁 */
+.wb-node.locked { cursor: default; }
+
+/* 类型芯片（编辑弹窗里）：图标 + 名称，选中填 primary-container */
+.se-kind {
+  display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 12px;
+  box-sizing: border-box; border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: var(--md-sys-shape-corner-full);
+  background: transparent; color: var(--md-sys-color-on-surface);
+  font: inherit; font-size: 13px; cursor: pointer;
+}
+.se-kind:hover { background: var(--md-sys-color-surface-container); }
+.se-kind.active {
+  border-color: transparent;
+  background: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
+  font-weight: var(--fw-subheading);
+}
+.se-kind .material-symbols-outlined { font-size: 18px; }
+.wb-node-text {
+  flex: 1 1 auto; min-height: 0; resize: none; border: 0; background: transparent;
+  padding: 2px 10px 14px; outline: none;   /* 底部留出拉伸把手的位子 */
+  font: inherit; font-size: 12px; line-height: 1.6;
+  color: var(--md-sys-color-on-surface-variant);
+}
+.wb-node-text:focus { background: color-mix(in srgb, var(--md-sys-color-on-surface) 5%, transparent); }
+.wb-node-text::placeholder { color: var(--md-sys-color-on-surface-variant); opacity: .7; }
+
+/* 空板提示：铺满画布但不吃指针（除按钮外），所以还能直接拖一拖找找手感 */
+.wb-empty {
+  position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 8px; padding: 24px; text-align: center;
+  pointer-events: none;
+}
+.wb-empty > * { pointer-events: auto; }
+.wb-empty h3 { margin: 0; font-size: 16px; font-weight: var(--fw-heading); color: var(--md-sys-color-on-surface); }
+.wb-empty p { margin: 0; max-width: 44ch; font-size: 12.5px; line-height: 1.7; color: var(--md-sys-color-on-surface-variant); }
+
+/* 缩放控件：真正悬浮在画布内容之上，是这一页唯一该有投影的元素 */
+.wb-zoom {
+  position: absolute; right: 12px; bottom: 12px; z-index: 3;
+  display: flex; align-items: center; gap: 2px; padding: 2px 4px;
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: var(--md-sys-shape-corner-full);
+  background: var(--md-sys-color-surface-container-high);
+  box-shadow: var(--md-sys-elevation-shadow-level1);
+}
+.wb-zoom-num {
+  min-width: 44px; text-align: center;
+  font-size: 12px; font-weight: var(--fw-subheading); font-variant-numeric: tabular-nums;
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+/* 连线模式：与「已选」同一套语义，用 primary 实底表示「正在连线」 */
+.wb-linkbtn.on {
+  --md-filled-tonal-button-container-color: var(--md-sys-color-primary);
+  --md-filled-tonal-button-label-text-color: var(--md-sys-color-on-primary);
+  --md-filled-tonal-button-hover-label-text-color: var(--md-sys-color-on-primary);
+  --md-filled-tonal-button-focus-label-text-color: var(--md-sys-color-on-primary);
+  --md-filled-tonal-button-pressed-label-text-color: var(--md-sys-color-on-primary);
+  --md-filled-tonal-button-hover-state-layer-color: var(--md-sys-color-on-primary);
+  --md-filled-tonal-button-pressed-state-layer-color: var(--md-sys-color-on-primary);
+  --md-filled-tonal-button-icon-color: var(--md-sys-color-on-primary);
+  --md-filled-tonal-button-hover-icon-color: var(--md-sys-color-on-primary);
+  --md-filled-tonal-button-focus-icon-color: var(--md-sys-color-on-primary);
+  --md-filled-tonal-button-pressed-icon-color: var(--md-sys-color-on-primary);
+}
+
+/* --- 编辑方块弹窗（StoryNodeEditor）---
+   取值照私设（Homebrew）那边的选择器：颜色是一排 30px 的圆形色板（选中加一圈 primary 描边），
+   图标是 34×32 的芯片（选中填当前配色）。改动即时生效，弹窗背后的白板会跟着变。 */
+.se { display: flex; flex-direction: column; gap: 14px; }
+.se-name { width: 100%; }
+.se-field { display: flex; flex-direction: column; gap: 8px; }
+.se-label { font-size: 12px; font-weight: var(--fw-label); color: var(--md-sys-color-on-surface-variant); }
+.se-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.se-color {
+  flex: none; width: 30px; height: 30px; display: grid; place-items: center;
+  padding: 0; box-sizing: border-box; border: 0; border-radius: 50%;
+  background: transparent; cursor: pointer;
+}
+.se-color.active { box-shadow: 0 0 0 2px var(--md-sys-color-primary); }
+.se-swatch {
+  display: block; width: 20px; height: 20px; box-sizing: border-box; border-radius: 50%;
+  background: var(--k-bg, var(--md-sys-color-surface-container-highest));
+  border: 1px solid var(--md-sys-color-outline-variant);
+}
+.se-icon {
+  flex: none; width: 34px; height: 32px; display: grid; place-items: center;
+  padding: 0; box-sizing: border-box; border: 0; border-radius: var(--md-sys-shape-corner-small);
+  background: var(--md-sys-color-surface-container); color: var(--md-sys-color-on-surface-variant); cursor: pointer;
+}
+.se-icon:hover { background: var(--md-sys-color-surface-container-highest); }
+.se-icon.active { background: var(--k-bg); color: var(--k-fg); }
+.se-icon .material-symbols-outlined { font-size: 19px; }
+
+@media (max-width: 900px) {
+  /* chrome 由 ⑪ 的媒体查询换成手机端那套，这里跟着它走 */
+  .wb { height: calc(100vh - var(--gm-chrome)); height: calc(100dvh - var(--gm-chrome)); }
+  .wb-zoom { right: 8px; bottom: 8px; }
+}

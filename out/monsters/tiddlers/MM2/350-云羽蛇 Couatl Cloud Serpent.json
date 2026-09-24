@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>18级 远程</span></div>\n<div class=bg-title><span>大型 星界 魔法兽（鳞爪类）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 135；''重伤'' 67</span><span>''先攻'' +13</span></div>\n<div><span>''AC'' 30，''强韧'' 29，''反射'' 30，''意志'' 31</span><span>''侦查'' +21</span></div>\n<div><span>''速度'' 6，飞行 8（盘旋）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">光耀吸收（光耀）</div>\n<div class=description>若该云羽蛇受到光耀伤害，则其攻击造成 5 点额外光耀伤害直到其下回合结束。</div>\n<div class=\"bold bg-power\">扭曲自如</div>\n<div class=description>云羽蛇在其回合开始时能如同其回合结束时一样对定身和受缚状态进行豁免。此外，云羽蛇可以对那些不能豁免终止且正常情况下将在其回合结束时或某敌人回合结束时终止的定身<br>和受缚状态进行豁免。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬（毒素，光耀）✦随意</div>\n<div class=description>攻击：触及 2，+25 vs. AC<br>命中：1d6+4 毒素和光耀伤害，以及 10 点持续毒素和光耀伤害（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}天矢（闪电，光耀）✦随意</div>\n<div class=description>攻击：触及 20，+23 vs. 反射<br>命中：2d10+6 闪电和光耀伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/area}}蛇形电弧（闪电，光耀，首次重伤时充能）</div>\n<div class=description>攻击：区域 20 爆发 3，以敌人为目标，+23 vs. 反射<br>命中：2d8+6 闪电和光耀伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}飞速盘鞭✦随意</div>\n<div class=description>攻击：触及 2，+23 vs. 强韧<br>命中：目标被推动 2 格并倒地。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 神秘+20</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 19（+13）</span><span>''敏捷'' 18（+13）</span><span>''感知'' 24（+16）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 21（+14）</span><span>''智力'' 22（+15）</span><span>''魅力'' 20（+14）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 天界语</span></div></div>\n</div>",
+    "title": "云羽蛇 Couatl Cloud Serpent",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "18",
+    "role": "远程",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "星界",
+    "creature-type": "魔法兽（鳞爪类）",
+    "xp": "2000",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "5520"
+  }
+]

@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>22级 精英 蛮战</span></div>\n<div class=bg-title><span>超大型 精界 类人生物（巨人）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 514；''重伤'' 257</span><span>''先攻'' +15</span></div>\n<div><span>''AC'' 34，''强韧'' 36，''反射'' 32，''意志'' 33</span><span>''侦查'' +16</span></div>\n<div><span>''豁免'' +2；''行动点'' 1</span><span>''感官'' 真视 6</span></div>\n<div><span>''速度'' 8</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">废陋巨人残暴</div>\n<div class=description>当该废陋巨人屠夫对一个受其邪眼影响的目标造成重击时，它以一个自由动作对同一个目标<br>再进行一次弯刃大刀攻击。</div>\n<div class=\"bold bg-power\">废陋巨人屠宰</div>\n<div class=description>废陋巨人屠夫的弯刃大刀攻击对在该废陋巨人屠夫最近的回合开始以来被该废陋巨人屠夫<br>命中过的生物造成 2d12+11 额外伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}弯刃大刀（武器）✦随意</div>\n<div class=description>攻击：触及 3，+25 vs. AC<br>命中：4d4+14（重击时则为 12d4+24）伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}邪眼✦随意</div>\n<div class=description>攻击：射程 5，+23 vs. 意志<br>命中：目标受缚（豁免终止）。如果该废陋巨人屠夫对一个不同的目标使用<br>邪眼则该效果终止。</div>\n<div class=\"italic bg-flavortext\">（从上往下：废陋巨人图腾信者，废陋巨人障目者）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 27（+20）</span><span>''敏捷'' 19（+15）</span><span>''感知'' 10（+11）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 27（+20）</span><span>''智力'' 11（+11）</span><span>''魅力'' 20（+16）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 精灵语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 革甲，弯刃大刀</span></div></div>\n</div>",
+    "title": "废陋巨人屠夫 Fomorian Butcher",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "22",
+    "role": "蛮战",
+    "specialty-role": "精英",
+    "size": "超大型",
+    "origin": "精界",
+    "creature-type": "类人生物（巨人）",
+    "xp": "8300",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "7225"
+  }
+]

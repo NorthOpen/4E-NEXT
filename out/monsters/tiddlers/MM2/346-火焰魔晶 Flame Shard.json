@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>12级 远程</span></div>\n<div class=bg-title><span>中型 元素界 魔法兽</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 100；''重伤'' 50</span><span>''先攻'' +10</span></div>\n<div><span>''AC'' 24，''强韧'' 25，''反射'' 23，''意志'' 23</span><span>''侦查'' +8</span></div>\n<div><span>''免疫'' 疾病，毒素；''抗力'' 10 可变（每遭遇两次）</span><span>''感官'' 黑暗视觉</span></div>\n<div><span>''速度'' 4，飞行 4（盘旋）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}热浪（火焰）</div>\n<div class=description>灵气 2：所有在该灵气内结束回合的敌人受到 5 点火焰伤害且在其当前回合中对持续火焰伤害的豁免受到-2 减值。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}燃烧晶片（火焰）✦随意</div>\n<div class=description>攻击：+17 vs. 反射<br>命中：1d8+5 火焰伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/area}}火焰爆发（火焰）✦随意</div>\n<div class=description>攻击：区域 20 爆发 2，+17 vs. 反射<br>命中：1d8+5 火焰伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}火焰粉碎（火焰）</div>\n<div class=description>触发：当该火焰魔晶生命值降到 0 时。<br>攻击：近程爆发 2，+17 vs. 反射<br>命中：1d8+5 火焰伤害，且目标受到 5 点持续火焰伤害（豁免终止）。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 19（+10）</span><span>''敏捷'' 19（+10）</span><span>''感知'' 15（+8）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 22（+12）</span><span>''智力'' 7（+4）</span><span>''魅力'' 18（+10）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶力量 19（+10）</span><span style=flex-basis:auto>''语言'' 深渊语敏捷 19（+10）</span></div></div>\n</div>",
+    "title": "火焰魔晶 Flame Shard",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "12",
+    "role": "远程",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "元素界",
+    "creature-type": "魔法兽",
+    "xp": "700",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "5467"
+  }
+]

@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>8级 远程</span></div>\n<div class=bg-title><span>小型 精界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 71；''重伤'' 35</span><span>''先攻'' +7</span></div>\n<div><span>''AC'' 20，''强韧'' 19，''反射'' 19，''意志'' 21</span><span>''侦查'' +3</span></div>\n<div><span>''速度'' 5</span><span>''感官'' 昏暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">反射隐秘</div>\n<div class=description>该侏儒熵法师在遭遇开始时投先攻的时候如果拥有掩蔽或隐蔽，则它可以进行一次隐秘检定<br>来进入躲藏。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}强酸匕首（强酸，武器）✦随意</div>\n<div class=description>攻击：+15 vs. AC<br>命中：1d4 伤害以及 1d6+4 强酸伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}熵弧✦随意</div>\n<div class=description>攻击：射程 10，+13 vs. 反射<br>命中：2d8+4 伤害（重击时则为 2d8+20 伤害）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/area}}混沌耀斑✦遭遇</div>\n<div class=description>攻击：区域 15 爆发 1，+13 vs. 意志<br>命中：3d8+5 伤害，且目标目盲（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}原初呐喊（雷鸣）</div>\n<div class=description>触发：当首次重伤时充能。<br>攻击：近程冲击 3，+13 vs. 强韧<br>命中：2d10+4 雷鸣伤害，且目标耳聋且不能进行直觉动作或借机动作直<br>到该侏儒熵法师下回合结束。</div>\n<div class=\"bold bg-power\">消褪（幻术）✦遭遇</div>\n<div class=description>触发：当该侏儒熵法师受到伤害时。<br>该侏儒熵法师隐形直到它攻击命中或失手之后或直到它下回合结束。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 神秘+10，唬骗+14，隐秘+12</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 10（+4）</span><span>''敏捷'' 17（+7）</span><span>''感知'' 8（+3）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 17（+7）</span><span>''智力'' 12（+5）</span><span>''魅力'' 20（+9）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 通用语，精灵语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 匕首，袍子</span></div></div>\n</div>",
+    "title": "侏儒熵法师 Gnome Entropist (LV8)#2",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "8",
+    "role": "远程",
+    "specialty-role": "",
+    "size": "小型",
+    "origin": "精界",
+    "creature-type": "类人生物",
+    "xp": "350",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "7505"
+  }
+]

@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>15级 杂兵 蛮战</span></div>\n<div class=bg-title><span>小型 元素界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 1；失手攻击无法伤害杂兵</span><span>''先攻'' +11</span></div>\n<div><span>''AC'' 28，''强韧'' 28，''反射'' 25，''意志'' 27</span><span>''侦查'' +11</span></div>\n<div><span>''速度'' 6</span><span>''感官'' 昏暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">扰乱残暴</div>\n<div class=description>一个邻接该地妖地精喽啰的敌人从该地妖地精喽啰的盟友的攻击受到等值于邻接它的<br>地妖地精喽啰数量两倍的额外伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}木棒（武器）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+18vs.AC<br>命中：11 点伤害。</div>\n<div class=\"italic bg-flavortext\">（地妖地精）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 17（+10）</span><span>''敏捷'' 19（+11）</span><span>''感知'' 18（+11）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 23（+13）</span><span>''智力'' 6（+5）</span><span>''魅力'' 11（+7）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 通用语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 木棒</span></div></div>\n</div>",
+    "title": "地妖地精喽啰 Norker Grunt",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "15",
+    "role": "蛮战",
+    "specialty-role": "杂兵",
+    "size": "小型",
+    "origin": "元素界",
+    "creature-type": "类人生物",
+    "xp": "300",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "13137"
+  }
+]

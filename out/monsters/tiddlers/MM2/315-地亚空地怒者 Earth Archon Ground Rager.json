@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>14级 控制</span></div>\n<div class=bg-title><span>中型 元素界 类人生物（地系）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 143；''重伤'' 71</span><span>''先攻'' +9</span></div>\n<div><span>''AC'' 28，''强韧'' 27，''反射'' 25，''意志'' 26</span><span>''侦查'' +13</span></div>\n<div><span>''免疫'' 疾病，石化，毒素</span><span>''感官'' 震动感知 20</span></div>\n<div><span>''速度'' 6（大地行者）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}大地溶解</div>\n<div class=description>灵气 5；所有在该该灵气内结束回合且没有在其回合移动的不带有地系关键词的生物迟缓直到其下回合结束。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}击打✦随意</div>\n<div class=description>攻击：+19 vs. AC<br>命中：2d8+6 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}地怒（雷鸣）✦随意</div>\n<div class=description>攻击：射程 20，+17（对迟缓生物则为+20） vs. 反射<br>命中：1d8+6 雷鸣伤害，且目标定身（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}猛撞✦随意</div>\n<div class=description>攻击：+19 vs. AC<br>命中：1d10+6 伤害，且目标被推动 4 格并倒地。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/area}}大地喷发（雷鸣）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：区域 10 爆发 1，+18 vs. 反射<br>命中：2d8+6 雷鸣伤害，且目标倒地。<br>失手：一半伤害，且目标倒地。</div>\n<div class=\"italic bg-flavortext\">（从左往右：地亚空地震先锋，地亚空地怒者，地亚空行者）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 20（+12）</span><span>''敏捷'' 14（+9）</span><span>''感知'' 23（+13）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 23（+13）</span><span>''智力'' 19（+11）</span><span>''魅力'' 17（+10）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 荒神语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 链甲</span></div></div>\n</div>",
+    "title": "地亚空地怒者 Earth Archon Ground Rager",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "14",
+    "role": "控制",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "元素界",
+    "creature-type": "类人生物（地系）",
+    "xp": "1000",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "5044"
+  }
+]

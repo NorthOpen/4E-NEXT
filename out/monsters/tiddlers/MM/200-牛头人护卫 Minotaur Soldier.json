@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>8级 护卫</span></div>\n<div class=bg-title><span>中型 自然界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 89；''重伤'' 44</span><span>''先攻'' +8</span></div>\n<div><span>''AC'' 24，''强韧'' 22，''反射'' 19，''意志'' 19</span><span>''侦查'' +11</span></div>\n<div><span>''速度'' 6</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}战斧（武器）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+13vs.AC<br>命中：1d10+8 伤害，且该牛头人对同一个目标使用盾击。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}盾击✦随意（一轮一次）</div>\n<div class=description>前提：该牛头人必须使用一个盾。<br>攻击：近战 1（一个生物）+11vs.强韧命中：1d6 伤害，且目标倒地。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}角抵✦随意</div>\n<div class=description>触发：一个邻接该牛头人的敌人快步。<br>攻击（直觉打断）：近战 1（触发的敌人）+11vs.反射<br>命中：1d6+5 伤害，目标定身直到其下回合结束，且该牛头人滑移目标最多两格到一个邻接该牛头人的格子。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 20（+9）</span><span>''敏捷'' 14（+6）</span><span>''感知'' 14（+6）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 17（+7）</span><span>''智力'' 10（+4）</span><span>''魅力'' 13（+5）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 通用语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 重盾，战斧</span></div></div>\n</div>",
+    "title": "牛头人护卫 Minotaur Soldier",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "8",
+    "role": "护卫",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物",
+    "xp": "350",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "3309"
+  }
+]

@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>28级 伏击</span></div>\n<div class=bg-title><span>中型 自然界 类人生物，蛇人（鳞爪类）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 194；''重伤'' 97</span><span>''先攻'' +28</span></div>\n<div><span>''AC'' 41，''强韧'' 39，''反射'' 40，''意志'' 40</span><span>''侦查'' +26</span></div>\n<div><span>''抗力'' 15 毒素</span><span></span></div>\n<div><span>''速度'' 8</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}长剑（毒素，武器）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+33vs.AC<br>命中：2d8+9 伤害，且目标目盲直到该蛇人毒咒刺客下回合结束。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}死亡打击（毒素）✦随意</div>\n<div class=description>攻击：近战 1（一个看不见该蛇人毒咒刺客的生物）+33vs.AC<br>命中：4d8+18 伤害，且目标受到 15 点持续伤害且豁免掷骰受到-2 减值（豁免终止两者）。首次豁免失败时：该持续伤害增加 5 点，且这个对豁免掷骰的减值进一步恶化 1 点。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">泽希尔之盾✦随意</div>\n<div class=description>触发：一次远程或近战攻击命中该蛇人毒咒刺客。<br>效果（直觉反应）：触发的攻击亦命中由该蛇人毒咒刺客选择的一个邻接该蛇人毒咒刺客的目盲的敌人。</div>\n<div class=\"italic bg-flavortext\">（译注：蛇人毒咒刺客的长剑和死亡打击皆未造成毒素伤害，却都有毒素关键词，疑出错， （蛇人毒咒刺客）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 运动+23，唬骗+22</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 19（+18）</span><span>''敏捷'' 30（+24）</span><span>''感知'' 24（+21）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 20（+19）</span><span>''智力'' 19（+18）</span><span>''魅力'' 17（+17）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 通用语，龙语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 长剑</span></div></div>\n</div>",
+    "title": "蛇人毒咒刺客 Yuan-ti Malison Assassin",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "28",
+    "role": "伏击",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物，蛇人（鳞爪类）",
+    "xp": "13000",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "14766"
+  }
+]

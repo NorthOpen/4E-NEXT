@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>1级 蛮战</span></div>\n<div class=bg-title><span>小型 自然界 野兽</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 38；''重伤'' 19</span><span>''先攻'' +2</span></div>\n<div><span>''AC'' 13，''强韧'' 13，''反射'' 11，''意志'' 9</span><span>''侦查'' +5</span></div>\n<div><span>''速度'' 6，攀爬 3</span><span>''感官'' 昏暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬（疾病）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+6vs.AC<br>命中：1d10+5 伤害。在遭遇结束时，目标进行一次豁免。若失败，则目标患上凶暴鼠腐热症（阶段 1）。</div>\n<div class=\"bold bg-power\">凶暴鼠腐热症                 LV7 疾病（Dire Rat Filth Fever）</div>\n<div class=description>那些患上这种病的生物将交替承受寒冷和潮热的痛苦。<br>阶段 0：目标从该疾病痊愈。<br>阶段 1：在受阶段 1 影响期间，目标失去一个复原力。<br>阶段 2：在受阶段 2 影响期间，目标失去一个复原力。且目标的 AC、强韧和反射皆受到-2减值。<br>阶段 3：在受阶段 3 影响期间，目标失去所有复原力且不能恢复生命值。且目标的 AC、强韧和反射皆受到-2 减值。<br>检定：在每次长休息结束时，若目标处于阶段 1 或 2，则目标进行一次坚韧检定。<br>·7 或以下：该疾病的阶段增加 1。<br>·8-11：无变化。<br>·12 或以上：该疾病的阶段减少 1。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 隐秘+7</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 14（+2）</span><span>''敏捷'' 15（+2）</span><span>''感知'' 10（+0）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 18（+4）</span><span>''智力'' 2（-4）</span><span>''魅力'' 6（-2）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n</div>",
+    "title": "凶暴鼠 Dire Rat",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "1",
+    "role": "蛮战",
+    "specialty-role": "",
+    "size": "小型",
+    "origin": "自然界",
+    "creature-type": "野兽",
+    "xp": "100",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "4717"
+  }
+]

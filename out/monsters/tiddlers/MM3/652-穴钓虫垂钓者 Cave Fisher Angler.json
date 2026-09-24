@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>3级 伏击</span></div>\n<div class=bg-title><span>中型 自然界 野兽</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 37；''重伤'' 18</span><span>''先攻'' +7</span></div>\n<div><span>''AC'' 18，''强韧'' 16，''反射'' 15，''意志'' 14</span><span>''侦查'' +7</span></div>\n<div><span>''速度'' 6，攀爬 5（蛛行）</span><span>''感官'' 黑暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">狙击手</div>\n<div class=description>当该穴钓虫垂钓者在躲藏状态下进行远程攻击失手时，它仍然保持躲藏。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}螯击✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+8vs.AC<br>命中：1d10+6 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}勒丝✦随意</div>\n<div class=description>攻击：射程 5（一个生物）+7vs.反射<br>命中：1d6+4 伤害，且该穴钓虫垂钓者拉动目标 3 格。目标受缚（豁免终止）。该效果亦会在目标瞬移或者当目标或其他生物命中目标所在格子内的丝时终止。该丝使用该穴钓虫垂钓者的防御。对该丝发动的攻击不会对该穴钓虫垂钓者造成伤害或效果。同一时间内只能有一个生物因该攻击受缚。该穴钓虫垂钓者可以垂直拉动目标，且可以在空中结束拉动让目标悬挂在空中。<br>标准维持：目标受到 1d6+4 伤害，且该穴钓虫垂钓者拉动目标 3 格。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 隐秘+8</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 16（+4）</span><span>''敏捷'' 15（+3）</span><span>''感知'' 12（+2）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 13（+2）</span><span>''智力'' 2（-3）</span><span>''魅力'' 5（-2）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n</div>",
+    "title": "穴钓虫垂钓者 Cave Fisher Angler",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "3",
+    "role": "伏击",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "野兽",
+    "xp": "150",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "9956"
+  }
+]

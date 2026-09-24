@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>5级 杂兵 蛮战</span></div>\n<div class=bg-title><span>中型 自然界 类人生物（蜘蛛）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 1；失手攻击无法伤害杂兵</span><span>''先攻'' +4</span></div>\n<div><span>''AC'' 17，''强韧'' 17，''反射'' 17，''意志'' 16</span><span>''侦查'' +3</span></div>\n<div><span>''速度'' 6，攀爬 6（蛛行）</span><span>''感官'' 黑暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}匕首（武器）✦随意</div>\n<div class=description>效果：该蛛妖喽啰进行两次下述攻击。攻击：近战 1（一个生物）+10vs.AC<br>命中：4 点伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}飞投匕首（武器）✦随意</div>\n<div class=description>攻击：射程 5/10（一个生物）+10vs.AC<br>命中：5 点伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">移动动作</div>\n<div class=\"bold bg-power\">蛛丝✦遭遇</div>\n<div class=description>前提：该蛛妖喽啰处于攀爬。<br>效果：该蛛妖喽啰飞行 5 格。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">垂死尖叫</div>\n<div class=description>触发：该蛛妖喽啰的生命值降到 0。<br>效果（直觉打断）：所有邻接该蛛妖喽啰的敌人的所有防御受到-2 减值直到其下回合结束。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 15（+4）</span><span>''敏捷'' 14（+4）</span><span>''感知'' 12（+3）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 10（+2）</span><span>''智力'' 8（+1）</span><span>''魅力'' 9（+1）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 通用语，精灵语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 4 把匕首</span></div></div>\n</div>",
+    "title": "蛛妖喽啰 Chitine Grunt",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "5",
+    "role": "蛮战",
+    "specialty-role": "杂兵",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物（蜘蛛）",
+    "xp": "50",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "9999"
+  }
+]

@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>9级 游击</span></div>\n<div class=bg-title><span>中型 元素界 魔法兽（地系）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 102；''重伤'' 51</span><span>''先攻'' +8</span></div>\n<div><span>''AC'' 23，''强韧'' 24，''反射'' 19，''意志'' 20</span><span>''侦查'' +7</span></div>\n<div><span>''速度'' 5，掘穴 5</span><span>''感官'' 黑暗视觉，全域视野</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">大地滑行</div>\n<div class=description>索尔石怪可以像穿过松土一样掘穴穿过坚硬的石头。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}爪击✦随意</div>\n<div class=description>攻击：+14 vs. AC<br>命中：1d6+5 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}三重攻击✦随意</div>\n<div class=description>该索尔石怪进行三次爪击攻击，每次攻击对不同的目标进行。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}土胃✦随意</div>\n<div class=description>攻击：+14 vs. AC<br>命中：2d6+5 伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">潜地✦随意</div>\n<div class=description>该索尔石怪部分下沉到地底下且 AC 获得+2 加值直到它移动。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">撤退✦随意</div>\n<div class=description>触发：当该索尔石怪被一次近战攻击失手时。<br>该索尔石怪掘穴其速度的格数。</div>\n<div class=\"italic bg-flavortext\">（索尔石怪）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 20（+9）</span><span>''敏捷'' 15（+6）</span><span>''感知'' 17（+7）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 22（+10）</span><span>''智力'' 12（+5）</span><span>''魅力'' 12（+5）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 通用语，荒神语</span></div></div>\n</div>",
+    "title": "索尔石怪 Xorn",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "9",
+    "role": "游击",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "元素界",
+    "creature-type": "魔法兽（地系）",
+    "xp": "400",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "9469"
+  }
+]

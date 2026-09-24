@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>7级 精英 控制</span></div>\n<div class=bg-title><span>中型 自然界 类人生物，豺狼人</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 156；''重伤'' 78</span><span>''先攻'' +5</span></div>\n<div><span>''AC'' 21，''强韧'' 19，''反射'' 17，''意志'' 19</span><span>''侦查'' +8</span></div>\n<div><span>''豁免'' +2；''行动点'' 1</span><span>''感官'' 昏暗视觉</span></div>\n<div><span>''速度'' 7</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">联合攻击</div>\n<div class=description>该耶诺古的神选者的近战攻击对邻接两个或更多的豺狼人盟友的敌人造成 5 点额外伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}法杖（武器）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+12vs.AC<br>命中：2d8+4 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}毁灭之矢（法器，黯蚀，瞬移）✦随意</div>\n<div class=description>攻击：射程 5（一个生物）+10vs.强韧<br>命中：2d6+4 黯蚀伤害，且该耶诺古的神选者 10 格内的一个豺狼精魂瞬移到一个邻接目标的格子。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">呼唤死者✦遭遇</div>\n<div class=description>效果：四个豺狼精魂出现在该耶诺古的神选者 10 格内的不被占据的格子。每当其豺狼精魂<br>的生命值降到 0 时该耶诺古的神选者便受到 5 点伤害。该豺狼精魂在遭遇结束时消失。</div>\n<div class=\"bold bg-power\">豺狼精魂✦随意（一轮一次）</div>\n<div class=description>效果：一个豺狼精魂出现在该耶诺古的神选者 10 格内的一个不被占据的格子。当该豺狼精<br>魂的生命值降到 0 时该耶诺古的神选者便受到 5 点伤害。该豺狼精魂在遭遇结束时消失。</div>\n<div class=\"bold bg-power\">精魂打击✦随意（一轮一次）</div>\n<div class=description>效果：该耶诺古的神选者 10 格内的一个豺狼精魂可以以一个自由动作进行一次啮咬攻击，<br>该攻击骰带有+2 加值。</div>\n<div class=\"bold bg-power\">上前线（瞬移）✦随意（一轮一次）</div>\n<div class=description>效果：每个邻接该耶诺古的神选者的盟友可以瞬移 10 格。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 神秘+13，宗教+13</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 16（+6）</span><span>''敏捷'' 14（+5）</span><span>''感知'' 20（+8）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 14（+5）</span><span>''智力'' 20（+8）</span><span>''魅力'' 17（+6）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 深渊语，通用语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 革甲，法杖</span></div></div>\n</div>",
+    "title": "耶诺古的神选者 Chosen of Yeenoghu",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "7",
+    "role": "控制",
+    "specialty-role": "精英",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物，豺狼人",
+    "xp": "600",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "12031"
+  }
+]

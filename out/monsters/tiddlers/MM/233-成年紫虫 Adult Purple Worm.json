@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>14级 强者 蛮战</span></div>\n<div class=bg-title><span>超大型 自然界 野兽（盲目）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 560；''重伤'' 280</span><span>''先攻'' +12</span></div>\n<div><span>''AC'' 28，''强韧'' 28，''反射'' 26，''意志'' 24</span><span>''侦查'' +11</span></div>\n<div><span>''免疫'' 目盲，凝视效果；''豁免'' +5；''行动点'' 2</span><span>''感官'' 盲视 10，震动感知 10</span></div>\n<div><span>''速度'' 6，掘穴 6（坑道）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">笨重</div>\n<div class=description>该紫虫在震慑、晕眩或受控时可以进行直觉动作。</div>\n<div class=\"bold bg-power\">重伤狂暴</div>\n<div class=description>在重伤期间，该紫虫在它的每回合中获得一个额外的次要动作。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬✦随意</div>\n<div class=description>攻击：近战 3（一个生物）+19vs.AC<br>命中：4d8+8 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}生吞（强酸）✦随意</div>\n<div class=description>攻击：近战 3（一个生物）+17vs.强韧<br>命中：3d10+7 伤害，且目标被生吞（挣脱 DC21）。在被吞期间，目标不占据方格，且不对除了该紫虫和其他被该紫虫生吞的生物以外的生物拥有视线或效果线；此外，除了其他被该紫虫生吞的生物以外没人对目标拥有视线或效果线。如果该目标使用近程或区域攻击攻击该紫虫，则其他被该紫虫生吞的生物也成为该攻击的目标。在被吞期间，目标在其回合结束时受到 30 点强酸伤害。当该效果终止或该紫虫生命值降到 0 时，目标出现在一个由它选择的邻接该紫虫的不被占据的格子。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}猛摔✦随意</div>\n<div class=description>攻击：近战 3（一个生物）+17vs.强韧<br>命中：3d10+8 伤害，且该紫虫滑移目标最多 4 格。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}毒刺（毒素）✦随意</div>\n<div class=description>攻击：近战 3（一个生物）+19vs.AC<br>命中：2d8 伤害，以及 15 点持续毒素伤害（豁免终止）。</div>\n<div class=\"bold bg-power\">呕吐✦随意</div>\n<div class=description>效果：一个被该紫虫生吞的生物出现在一个由该紫虫选择的它 4 格内的格子。该生物不再被<br>生吞且受到 3d10+8 伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}猛拍✦随意</div>\n<div class=description>触发：一次攻击命中该紫虫。<br>攻击（直觉反应）：近战 3（一或两个生物）+17vs.反射命中：3d12+5 伤害，且该紫虫推动目标最多 6 格。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 25（+14）</span><span>''敏捷'' 20（+12）</span><span>''感知'' 19（+11）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 20（+12）</span><span>''智力'' 2（+3）</span><span>''魅力'' 4（+4）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n</div>",
+    "title": "成年紫虫 Adult Purple Worm",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "14",
+    "role": "蛮战",
+    "specialty-role": "强者",
+    "size": "超大型",
+    "origin": "自然界",
+    "creature-type": "野兽（盲目）",
+    "xp": "5000",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "3816"
+  }
+]

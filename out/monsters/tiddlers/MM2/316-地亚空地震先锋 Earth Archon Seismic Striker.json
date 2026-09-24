@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>16级 护卫</span></div>\n<div class=bg-title><span>中型 元素界 类人生物（地系）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 160；''重伤'' 80</span><span>''先攻'' +16</span></div>\n<div><span>''AC'' 32，''强韧'' 29，''反射'' 28，''意志'' 27</span><span>''侦查'' +13</span></div>\n<div><span>''免疫'' 疾病，石化，毒素</span><span>''感官'' 震动感知 20</span></div>\n<div><span>''速度'' 6（大地行者）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">大地冲击（雷鸣）</div>\n<div class=description>地亚空地震先锋的攻击对任何倒地敌人造成 1d8 额外雷鸣伤害。</div>\n<div class=\"bold bg-power\">战斗优越</div>\n<div class=description>地亚空地震先锋的借机攻击攻击骰获得+5 加值，且被其借机攻击命中的生物定身直到该地<br>亚空地震先锋下回合结束。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}战镐（雷鸣，武器）✦随意</div>\n<div class=description>攻击：+23 vs. AC<br>命中：2d8+7 伤害以及 1d8 雷鸣伤害（若重击则为 4d8+23 伤害以及 8 点雷鸣伤害）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}石标枪（武器）✦随意</div>\n<div class=description>攻击：射程 10/20，+23 vs. AC<br>命中：1d10+7 伤害，且该地亚空地震先锋标记目标直到该地亚空地震先锋<br>下回合结束。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}地震跺踏（雷鸣）✦充能 6{{$:/dnd/images/six}}</div>\n<div class=description>攻击：近程爆发 3，+21 vs. 强韧<br>命中：2d10+7 雷鸣伤害，且目标倒地。<br>失手：一半伤害，且目标倒地。</div>\n<div class=\"italic bg-flavortext\">（译注：地亚空地震先锋被官方勘误过，本译稿按照勘误后的版本）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 18（+12）</span><span>''敏捷'' 22（+14）</span><span>''感知'' 21（+13）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 24（+15）</span><span>''智力'' 15（+10）</span><span>''魅力'' 17（+11）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 荒神语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 板甲，重盾，战镐，5 把标枪</span></div></div>\n</div>",
+    "title": "地亚空地震先锋 Earth Archon Seismic Striker",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "16",
+    "role": "护卫",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "元素界",
+    "creature-type": "类人生物（地系）",
+    "xp": "1400",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "5057"
+  }
+]

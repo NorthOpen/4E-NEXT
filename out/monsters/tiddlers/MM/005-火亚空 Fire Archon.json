@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>13级 游击</span></div>\n<div class=bg-title><span>中型 元素界 类人生物（火系）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 130；''重伤'' 65</span><span>''先攻'' +14</span></div>\n<div><span>''AC'' 27，''强韧'' 25，''反射'' 26，''意志'' 23</span><span>''侦查'' +9</span></div>\n<div><span>''免疫'' 疾病，毒素；''抗力'' 20 火焰</span><span></span></div>\n<div><span>''速度'' 8</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">流体火焰</div>\n<div class=description>每当该亚空受到寒冷伤害时，它不能快步直到其下回合结束。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}烈焰弯刀（火焰）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+18vs.AC<br>命中：3d8+8 火焰伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">移动动作</div>\n<div class=\"bold bg-power\">闪烁步✦随意</div>\n<div class=description>效果：该亚空快步最多其速度一半。</div>\n<div class=\"bold bg-power\">火耀步（火焰）✦遭遇</div>\n<div class=description>效果：该亚空快步最多其速度。它快步通过的每个格子都充满元素火焰持续直到遭遇结束。<br>每当非火系生物进入或是在充满这些火焰的格子中开始回合时，该生物受到 10 火焰伤害。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 15（+8）</span><span>''敏捷'' 22（+12）</span><span>''感知'' 17（+9）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 18（+10）</span><span>''智力'' 16（+9）</span><span>''魅力'' 9（+5）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 荒神语</span></div></div>\n</div>",
+    "title": "火亚空 Fire Archon",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "13",
+    "role": "游击",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "元素界",
+    "creature-type": "类人生物（火系）",
+    "xp": "800",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "79"
+  }
+]

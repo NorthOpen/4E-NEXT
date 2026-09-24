@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>1级 护卫</span></div>\n<div class=bg-title><span>小型 异界 魔法兽</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 20；''重伤'' 10</span><span>''先攻'' +3</span></div>\n<div><span>''AC'' 15，''强韧'' 12，''反射'' 12，''意志'' 14</span><span>''侦查'' +8</span></div>\n<div><span>''抗力'' 虚体；''易伤'' 5 心灵</span><span></span></div>\n<div><span>''速度'' 1，飞行 6（盘旋）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}触须之拥（心灵）✦随意</div>\n<div class=description>攻击：+5 vs. 反射<br>命中：1d6+4 心灵伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}停滞触须（心灵）✦随意</div>\n<div class=description>攻击：+5 vs. 意志<br>命中：1d4+4 心灵伤害，且目标定身直到该失落污触鞭打者下回合结束。</div>\n<div class=\"bold bg-power\">失落污触进食（医疗）✦随意</div>\n<div class=description>以一个无助或昏迷的生物为目标；该失落污触鞭打者失去虚体及其飞行速度直到其下回合结<br>束，且它对目标进行一次致命一击。如果该失落污触鞭打者杀死了目标，则它生命值回满。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">流动触须✦随意</div>\n<div class=description>触发：当该失落污触鞭打者进行一次借机攻击时。<br>该失落污触鞭打者快步 1 格。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 11（+0）</span><span>''敏捷'' 12（+1）</span><span>''感知'' 16（+3）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 13（+1）</span><span>''智力'' 4（-3）</span><span>''魅力'' 10（+0）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n</div>",
+    "title": "失落污触鞭打者 Fell Taint Lasher",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "1",
+    "role": "护卫",
+    "specialty-role": "",
+    "size": "小型",
+    "origin": "异界",
+    "creature-type": "魔法兽",
+    "xp": "100",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "6968"
+  }
+]

@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>34级 强者 控制</span></div>\n<div class=bg-title><span>巨型 元素界 类人生物（水生，恶魔）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 1260；''重伤'' 630</span><span>''先攻'' +24</span></div>\n<div><span>''AC'' 48，''强韧'' 46，''反射'' 43，''意志'' 44</span><span>''侦查'' +28</span></div>\n<div><span>''抗力'' 30 可变（每遭遇三次）；''豁免'' +5；''行动点'' 2</span><span>''感官'' 黑暗视觉</span></div>\n<div><span>''速度'' 8，瞬移 10，游泳 8</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">双重动作</div>\n<div class=description>在战斗开始时，狄摩高根进行两次先攻检定。每次检定分别代表狄摩高根的两个头——阿穆尔和海斯拉蒂，且狄摩高根在这两个先攻序位都获得一个回合。狄摩高根在其每个回合都有一套独立完整的动作，且狄摩高根的直觉动作在每个回合都会恢复。狄摩高根的每个头都不<br>能使用以另一个头的名字命名的攻击威能。</div>\n<div class=\"bold bg-power\">双重大脑</div>\n<div class=description>狄摩高根的每个回合结束时，它自动豁免晕眩和震慑状态以及魅惑效果。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}触手打击✦随意</div>\n<div class=description>攻击：触及 5，+39 vs. AC<br>命中：3d8+8 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}分叉尾击（黯蚀）✦随意</div>\n<div class=description>攻击：近程冲击 5，+35 vs. 反射<br>命中：2d10+10 黯蚀伤害，且目标虚弱（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}触手冲击✦随意</div>\n<div class=description>攻击：近程冲击 5，+35 vs. 强韧<br>命中：2d8+8 伤害，以及 15 点持续伤害（豁免终止）。如果狄摩高根的<br>攻击对一个已经承受着持续伤害的生物造成持续伤害，则该持续伤害增加 5 点。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}绝对掌握（瞬移）✦随意</div>\n<div class=description>攻击：射程 50，+37 vs. 反射<br>命中：目标被瞬移到狄摩高根 5 格内的一个空间。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}狄摩高根的双重面貌（心灵）✦充能 6{{$:/dnd/images/six}}</div>\n<div class=description>攻击：近程冲击 10，以敌人为目标，+35 vs. 意志<br>命中：4d10+10 心灵伤害，且目标昏迷（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}阿穆尔的凝视（心灵，凝视）✦随意</div>\n<div class=description>攻击：近程冲击 5，以敌人为目标，+35 vs. 意志<br>命中：2d10+10 心灵伤害，且目标晕眩（豁免终止）。<br>若目标已经晕眩，则目标改为受控（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}海斯拉蒂的凝视（心灵，凝视）✦随意</div>\n<div class=description>攻击：近程冲击 5，+35 vs. 意志<br>命中：1d12+10 心灵伤害，且目标以一个自由动作对一个由狄摩高根选<br>择的目标使用一个由狄摩高根选择的随意攻击威能。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}深渊威压凝视✦随意</div>\n<div class=description>触发：当敌人在狄摩高根 10 格内开始回合时。<br>攻击：近程爆发 10，以触发的生物为目标，+37 vs. 意志<br>命中：目标晕眩直到其回合结束。</div>\n<div class=\"italic bg-flavortext\">（狄摩高根）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 神秘+27，运动+35，交涉+33，洞察+28</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 36（+30）</span><span>''敏捷'' 25（+24）</span><span>''感知'' 23（+23）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 35（+29）</span><span>''智力'' 30（+27）</span><span>''魅力'' 32（+28）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 深渊语，通用语</span></div></div>\n</div>",
+    "title": "狄摩高根 Demogorgon",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "34",
+    "role": "控制",
+    "specialty-role": "强者",
+    "size": "巨型",
+    "origin": "元素界",
+    "creature-type": "类人生物（水生，恶魔）",
+    "xp": "195000",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "5593"
+  }
+]

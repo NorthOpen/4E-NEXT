@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>5级 伏击</span></div>\n<div class=bg-title><span>中型 精界 类人生物（植物）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 50；''重伤'' 25</span><span>''先攻'' +10</span></div>\n<div><span>''AC'' 19，''强韧'' 16，''反射'' 18，''意志'' 17</span><span>''侦查'' +10</span></div>\n<div><span>''速度'' 8（森林行者）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}爪击✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+10vs.AC<br>命中：2d6+6 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}森之魅惑（魅惑）✦随意</div>\n<div class=description>攻击：射程 5（一个生物）+8vs.意志<br>命中：该树精拉动目标最多五格到一个邻接它的格子。目标被迷惑直到它不再邻接该树精或直到该树精再次使用此威能。被迷惑的生物定身且不能攻击该树精。当一个敌人的近战或远程攻击命中该树精时，它只对该树精造成一半伤害且对被迷惑的生物造成另一半伤害。如果该攻击者邻接被迷惑的生物，那么被迷惑的生物必须以一个自由动作对该攻击者进行一次近战基本攻击（由该树精选择）。</div>\n<div class=\"bold font-size-h4 bg-category\">移动动作</div>\n<div class=\"bold bg-power\">穿林（瞬移）✦随意</div>\n<div class=description>前提：该树精必须邻接一棵树或一个大型植物。<br>效果：该树精瞬移最多 8 格到一个邻接树或大型植物的格子。任何被该树精迷惑的生物随该树精一同瞬移到一个邻接它的格子。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">迷罩（幻术）✦随意</div>\n<div class=description>效果：该树精改变自身外形为一个中型类人生物（通常是一个美丽的精灵或雅灵）直到它再次使用迷罩或直到它生命值降到 0。其他生物可以通过一次 DC27 的洞察检定来识破该形态<br>是伪装的。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 12（+3）</span><span>''敏捷'' 19（+6）</span><span>''感知'' 16（+5）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 14（+4）</span><span>''智力'' 12（+3）</span><span>''魅力'' 13（+3）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 精灵语</span></div></div>\n</div>",
+    "title": "树精隐士 Dryad Recluse",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "5",
+    "role": "伏击",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "精界",
+    "creature-type": "类人生物（植物）",
+    "xp": "200",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "1312"
+  }
+]

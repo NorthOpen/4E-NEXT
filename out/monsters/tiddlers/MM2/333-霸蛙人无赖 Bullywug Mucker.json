@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>1级 蛮战</span></div>\n<div class=bg-title><span>中型 自然界 类人生物（水生）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 34；''重伤'' 17</span><span>''先攻'' +2</span></div>\n<div><span>''AC'' 12，''强韧'' 12，''反射'' 12，''意志'' 10</span><span>''侦查'' +0</span></div>\n<div><span>''速度'' 6（沼泽行者），游泳 4</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}腐烂恶臭（毒素）</div>\n<div class=description>灵气 2：所有在该灵气内花费复原力的敌人虚弱直到其下回合结束。</div>\n<div class=\"bold bg-power\">无赖</div>\n<div class=description>霸蛙人无赖攻击对倒地的目标造成 1d6 额外伤害。</div>\n<div class=\"bold bg-power\">自然释放（医疗）</div>\n<div class=description>任何对霸蛙人无赖造成重击的攻击者恢复 3 点生命值。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}矛（武器）✦随意</div>\n<div class=description>攻击：+4 vs. AC<br>命中：1d8+3 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}霸蛙人猛冲（只能在冲锋时代替近战基本攻击使用）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：+5 vs. 强韧<br>命中：2d6+4 伤害，且目标倒地。<br>失手：该霸蛙人无赖受到 3 点伤害并倒地。</div>\n<div class=\"italic bg-flavortext\">（从左往右：霸蛙人蛙鸣者，霸蛙人侦察兵，霸蛙人土老大，霸蛙人无赖）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 运动+8</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 16（+3）</span><span>''敏捷'' 14（+2）</span><span>''感知'' 10（+0）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 14（+2）</span><span>''智力'' 6（-2）</span><span>''魅力'' 8（-1）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 荒神语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 皮甲，矛</span></div></div>\n</div>",
+    "title": "霸蛙人无赖 Bullywug Mucker",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "1",
+    "role": "蛮战",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物（水生）",
+    "xp": "100",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "5295"
+  }
+]

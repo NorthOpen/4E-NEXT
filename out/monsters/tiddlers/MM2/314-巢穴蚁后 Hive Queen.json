@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>5级 精英（头目） 控制</span></div>\n<div class=bg-title><span>大型 自然界 野兽</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 132；''重伤'' 66</span><span>''先攻'' +6</span></div>\n<div><span>''AC'' 19，''强韧'' 19，''反射'' 16，''意志'' 17</span><span>''侦查'' +2</span></div>\n<div><span>''免疫'' 恐惧；''豁免'' +2；''行动点'' 1</span><span>''感官'' 昏暗视觉，震动感知 10</span></div>\n<div><span>''速度'' 6，攀爬 2</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}蚁后仪态</div>\n<div class=description>灵气 10；该灵气内的所有巨蚁的攻击骰和伤害骰获得+2 加值。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬✦随意</div>\n<div class=description>攻击：+10 vs. AC<br>命中：1d10+4 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}强酸云雾（强酸，结界）✦遭遇</div>\n<div class=description>近程爆发 4；爆发生成一个腐蚀性气体的结界持续直到遭遇结束。任何在该结界内开始回合的敌人受到 2*结界内巨蚁数量的强酸伤害。该结界将始终以该巢穴蚁后为中心随着其移动<br>而移动。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/area}}强酸冲击（强酸）✦充能 4,5,6{{$:/dnd/images/four}}{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：区域 10 爆发 3，以敌人为目标，+7 vs. 意志<br>命中：1d6+2 强酸伤害，且目标晕眩（豁免终止）。<br>失手：一半伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}踢踹✦随意</div>\n<div class=description>攻击：触及 2，+9 vs. 反射<br>命中：3 点伤害，且该巢穴蚁后推动目标 3 格。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}巢穴蚁后狂怒✦随意</div>\n<div class=description>触发：当该巢穴蚁后 10 格内的任何巨蚁生命值降到 0 时。<br>该巢穴蚁后快步两格并进行一次踢踹攻击。</div>\n<div class=\"bold bg-power\">战争呼唤✦遭遇</div>\n<div class=description>触发：首次重伤时。<br>四只新的巢穴工蚁出现并保护它们的皇后。每一只巢穴工蚁出现在该巢穴蚁后五格内的任意<br>一格，且在该巢穴蚁后的先攻序位行动。</div>\n<div class=\"italic bg-flavortext\">（巨蚁）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 13（+3）</span><span>''敏捷'' 12（+3）</span><span>''感知'' 11（+2）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 18（+6）</span><span>''智力'' 2（-2）</span><span>''魅力'' 15（+4）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n</div>",
+    "title": "巢穴蚁后 Hive Queen",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "5",
+    "role": "控制",
+    "specialty-role": "精英（头目）",
+    "size": "大型",
+    "origin": "自然界",
+    "creature-type": "野兽",
+    "xp": "400",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "5027"
+  }
+]

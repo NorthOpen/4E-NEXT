@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>3级 杂兵 远程</span></div>\n<div class=bg-title><span>中型 自然界 类人生物（鳞爪类），蜥蜴人</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 1；失手攻击无法伤害杂兵</span><span>''先攻'' +5</span></div>\n<div><span>''AC'' 17，''强韧'' 13，''反射'' 16，''意志'' 14</span><span>''侦查'' +3</span></div>\n<div><span>''速度'' 6（沼泽行者）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">狙击手</div>\n<div class=description>处于躲藏的毒麟吹针手在远程攻击失手时仍保持躲藏。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}爪击（武器）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+8vs.AC<br>命中：5 点伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}吹针筒（毒素，武器）✦随意</div>\n<div class=description>攻击：射程 10（一个生物）+10vs.AC<br>命中：5 点毒素伤害。若重击，则目标昏迷（豁免终止）。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 12（+2）</span><span>''敏捷'' 18（+5）</span><span>''感知'' 15（+3）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 11（+1）</span><span>''智力'' 7（-1）</span><span>''魅力'' 9（+0）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 龙语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 吹针筒，10 支毒针</span></div></div>\n</div>",
+    "title": "毒鳞吹针手 Poisonscale Needler",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "3",
+    "role": "远程",
+    "specialty-role": "杂兵",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物（鳞爪类），蜥蜴人",
+    "xp": "38",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "3007"
+  }
+]

@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>9级 杂兵 控制</span></div>\n<div class=bg-title><span>中型 元素界 魔法兽</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 1；失手攻击无法伤害杂兵</span><span>''先攻'' +7</span></div>\n<div><span>''AC'' 23，''强韧'' 22，''反射'' 22，''意志'' 21</span><span>''侦查'' +6</span></div>\n<div><span>''速度'' 8</span><span>''感官'' 黑暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">脊刺</div>\n<div class=description>每当一个邻接该嚎兽恐怖猎犬的生物的一次近战攻击对该嚎兽恐怖猎犬失手时，该生物受到<br>6 点伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+14vs.AC<br>命中：6 点伤害，且该嚎兽恐怖猎犬滑移目标 1 格。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}恐怖嚎叫（恐惧，心灵）✦遭遇</div>\n<div class=description>攻击：近程冲击 5（冲击内所有敌人）+12vs.意志<br>命中：4 点心灵伤害，且目标提供战斗优势直到其下回合结束。</div>\n<div class=\"italic bg-flavortext\">（嚎兽）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 15（+6）</span><span>''敏捷'' 17（+7）</span><span>''感知'' 14（+6）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 16（+7）</span><span>''智力'' 5（+1）</span><span>''魅力'' 12（+5）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 能理解深渊语</span></div></div>\n</div>",
+    "title": "嚎兽恐怖猎犬 Howler Dread Hound",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "9",
+    "role": "控制",
+    "specialty-role": "杂兵",
+    "size": "中型",
+    "origin": "元素界",
+    "creature-type": "魔法兽",
+    "xp": "100",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "12184"
+  }
+]

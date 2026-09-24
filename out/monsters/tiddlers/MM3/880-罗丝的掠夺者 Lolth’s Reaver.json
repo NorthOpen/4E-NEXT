@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>25级 蛮战</span></div>\n<div class=bg-title><span>大型 元素界 野兽（坐骑，蜘蛛）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 287；''重伤'' 143</span><span>''先攻'' +14</span></div>\n<div><span>''AC'' 37，''强韧'' 37，''反射'' 34，''意志'' 35</span><span>''侦查'' +19</span></div>\n<div><span>''速度'' 8，攀爬 6（蛛行）</span><span>''感官'' 震动感知 5</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">网鞍（坐骑）✦随意</div>\n<div class=description>在一个等级 25 或以上的友方骑手骑乘该罗丝的掠夺者的情况下，该骑手不会因强制移动而<br>从该罗丝的掠夺者上面掉下。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬（毒素）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+30vs.AC<br>命中：3d10+5 伤害，以及 20 点持续毒素伤害（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}紧缚蛛丝✦随意</div>\n<div class=description>攻击：射程 10（一个生物）+28vs.反射<br>命中：该罗丝的掠夺者拉动目标 5 格，且目标受缚（豁免终止）。<br>每次豁免失败时：该罗丝的掠夺者拉动目标 5 格。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}网跃✦遭遇</div>\n<div class=description>效果：该罗丝的掠夺者跳跃 8 格而不引发借机攻击。然后该罗丝的掠夺者进行下述攻击。攻击：近程冲击 3（冲击内所有敌人）+28vs.反射<br>命中：3d12+12 伤害，且目标倒地并不能站起（豁免终止）。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 28（+21）</span><span>''敏捷'' 15（+14）</span><span>''感知'' 25（+19）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 27（+20）</span><span>''智力'' 14（+14）</span><span>''魅力'' 14（+14）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 精灵语，深渊语</span></div></div>\n</div>",
+    "title": "罗丝的掠夺者 Lolth’s Reaver",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "25",
+    "role": "蛮战",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "元素界",
+    "creature-type": "野兽（坐骑，蜘蛛）",
+    "xp": "7000",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "13954"
+  }
+]

@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>26级 护卫</span></div>\n<div class=bg-title><span>大型 星界 活化生物（构装体）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 242；''重伤'' 121</span><span>''先攻'' +22</span></div>\n<div><span>''AC'' 41，''强韧'' 39，''反射'' 38，''意志'' 36</span><span>''侦查'' +17</span></div>\n<div><span>''抗力'' 15 力场</span><span></span></div>\n<div><span>''速度'' 6</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}恼人锁链✦灵气 5{{$:/dnd/images/five}}</div>\n<div class=description>任何在该灵气内开始回合的敌人被该穆尔塔尔之狱标记直到该敌人下回合开始。</div>\n<div class=\"bold bg-power\">神意代行者</div>\n<div class=description>该穆尔塔尔之狱无视虚体、隐蔽和掩蔽（但是不包括全隐蔽和超级掩蔽）。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}约束鞭打✦随意</div>\n<div class=description>攻击：近战 4（一个生物）+31vs.AC<br>命中：3d8+21 伤害。若目标在其下回合结束前发动了目标不包括该穆尔塔尔之狱的攻击，则该穆尔塔尔之狱以一个自由动作拉动目标 10 格到一个最近的格子。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}双重攻击✦随意</div>\n<div class=description>效果：该穆尔塔尔之狱进行两次约束鞭打攻击，每次攻击对不同的目标进行。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">反射缠绕✦随意</div>\n<div class=description>触发：一个敌人推动、拉动或滑移该穆尔塔尔之狱。<br>效果（直觉反应）：该穆尔塔尔之狱拉动触发的敌人 10 格到一个与该穆尔塔尔之狱邻接的格子。触发的敌人定身直到其下回合结束。</div>\n<div class=\"bold bg-power\">解放天启✦遭遇</div>\n<div class=description>触发：一个敌人对该穆尔塔尔之狱造成重击或该穆尔塔尔之狱首次重伤。<br>效果（无动作）：该穆尔塔尔之狱创造一个其自身的分身，该分身出现在最近的不被占据的格子。该分身拥有与该穆尔塔尔之狱相同的生命值，被视为与该穆尔塔尔之狱消耗掉了同样的威能，且在该穆尔塔尔之狱的下回合行动。该穆尔塔尔之狱身上的任何效果都不会带到分身身上。在该穆尔塔尔之狱下回合结束时，该分身消失。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 29（+22）</span><span>''敏捷'' 24（+20）</span><span>''感知'' 18（+17）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 26（+21）</span><span>''智力'' 11（+13）</span><span>''魅力'' 15（+15）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 天界语</span></div></div>\n</div>",
+    "title": "穆尔塔尔之狱 Prison of Mual-Tar",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "26",
+    "role": "护卫",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "星界",
+    "creature-type": "活化生物（构装体）",
+    "xp": "9000",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "9548"
+  }
+]

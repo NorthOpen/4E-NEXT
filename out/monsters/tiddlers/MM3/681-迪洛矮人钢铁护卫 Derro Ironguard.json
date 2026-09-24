@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>15级 护卫</span></div>\n<div class=bg-title><span>小型 自然界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 150；''重伤'' 75</span><span>''先攻'' +9</span></div>\n<div><span>''AC'' 31，''强韧'' 27，''反射'' 24，''意志'' 27</span><span>''侦查'' +5</span></div>\n<div><span>''速度'' 5</span><span>''感官'' 黑暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}矛（武器）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+20vs.AC<br>命中：3d8+10 伤害，对倒地的目标则为 3d8+15 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}钩刺（武器）✦随意</div>\n<div class=description>前提：该迪洛矮人钢铁护卫没有擒抱生物。攻击：近战 1（一个生物）+20vs.AC<br>命中：2d8+5 伤害（对倒地的目标则为 2d8+10 伤害），且目标被擒抱。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}破衡戳刺（武器）✦随意（一轮一次）</div>\n<div class=description>前提：该迪洛矮人钢铁护卫持用矛。<br>攻击：近战 1（一个被该迪洛矮人钢铁护卫擒抱的生物）+20vs.强韧命中：目标倒地。</div>\n<div class=\"bold font-size-h4 bg-category\">自由动作</div>\n<div class=\"bold bg-power\">疯狂之力✦遭遇</div>\n<div class=description>前提：该迪洛矮人钢铁护卫只能在其回合使用疯狂之力。<br>效果：投一个 d6 并将该结果作为一个威能加值加到该迪洛矮人钢铁护卫的攻击骰上直到其下回合结束。此外，该迪洛矮人钢铁护卫提供战斗优势直到其下回合结束。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 威吓+17，盗术+12</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 17（+10）</span><span>''敏捷'' 10（+7）</span><span>''感知'' 6（+5）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 22（+13）</span><span>''智力'' 15（+9）</span><span>''魅力'' 20（+12）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 通用语，异怪语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 鳞甲，矛</span></div></div>\n</div>",
+    "title": "迪洛矮人钢铁护卫 Derro Ironguard",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "15",
+    "role": "护卫",
+    "specialty-role": "",
+    "size": "小型",
+    "origin": "自然界",
+    "creature-type": "类人生物",
+    "xp": "1200",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "10497"
+  }
+]

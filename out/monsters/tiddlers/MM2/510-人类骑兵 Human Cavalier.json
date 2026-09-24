@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>7级 头目 护卫</span></div>\n<div class=bg-title><span>中型 自然界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 78；''重伤'' 39</span><span>''先攻'' +8</span></div>\n<div><span>''AC'' 23，''强韧'' 20，''反射'' 18，''意志'' 19</span><span>''侦查'' +9</span></div>\n<div><span>''速度'' 5</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">战斗敏锐</div>\n<div class=description>灵气 视线；所有在该灵气内的盟友的先攻获得+2 加值。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}阔剑（武器）✦随意</div>\n<div class=description>攻击：+14 vs. AC<br>命中：1d10+5 伤害，且目标被标记直到该人类骑兵下回合结束。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}骑枪（武器，只能在骑乘时使用）✦随意</div>\n<div class=description>攻击：+14 vs. AC<br>命中：1d10+5 伤害，且目标倒地。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}卓越反击（武器）✦随意</div>\n<div class=description>触发：当一个被该人类骑兵标记的敌人对一个邻接该人类骑兵的盟友进行一次近战攻击时。<br>攻击：以触发的敌人为目标，+13 vs. AC<br>命中：1d6+5 伤害。</div>\n<div class=\"bold bg-power\">紧急闪避✦遭遇</div>\n<div class=description>触发：当一个被该人类骑兵标记的敌人对一个邻接该人类骑兵的盟友进行一次近战攻击时。<br>触发的敌人的攻击目标改为该人类骑兵，该人类骑兵对抗该攻击的 AC 获得+3 加值。</div>\n<div class=\"italic bg-flavortext\">造妖可以与一个特定的区域或生物同调。同调一个造妖需要 1 分钟，且只能由该造妖的创造者或新主人（由其创造者任命）来做。该造妖在其守护任务中会获得某种力量和增益。 守护区域：一个区域最大每边长 5 格。 守护生物：一个生物，通常是造妖的创造者。 （石拳防御者和战弩手） （人类邪教徒）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 运动+12，交涉+11</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 19（+7）</span><span>''敏捷'' 13（+4）</span><span>''感知'' 12（+4）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 14（+5）</span><span>''智力'' 10（+3）</span><span>''魅力'' 16（+6）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 通用语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 重盾，板甲，阔剑，长矛</span></div></div>\n</div>",
+    "title": "人类骑兵 Human Cavalier",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "7",
+    "role": "护卫",
+    "specialty-role": "头目",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物",
+    "xp": "300",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "7865"
+  }
+]

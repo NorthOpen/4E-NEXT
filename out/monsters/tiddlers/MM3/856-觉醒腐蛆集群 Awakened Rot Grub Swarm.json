@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>10级 蛮战</span></div>\n<div class=bg-title><span>中型 自然界 野兽（集群）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 123；''重伤'' 61</span><span>''先攻'' +6</span></div>\n<div><span>''AC'' 21，''强韧'' 20，''反射'' 19，''意志'' 22</span><span>''侦查'' +5</span></div>\n<div><span>''抗力'' 来自近战和远程攻击的一般伤害；''易伤'' 来自近程或区域攻击的 10 点伤害</span><span>''感官'' 黑暗视觉，心灵感应 10</span></div>\n<div><span>''速度'' 5</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}集群攻击✦灵气 1</div>\n<div class=description>任何在该灵气内开始回合的敌人受到 10 点伤害以及每有一个额外的腐蛆集群邻接该敌人便<br>外加 2 点额外伤害。</div>\n<div class=\"bold bg-power\">集群</div>\n<div class=description>该觉醒腐蛆集群可以与其他生物占据同一个空间，且敌人可以移动进入其空间，这时视为困难地形。该觉醒腐蛆集群不能被近战或远程攻击拉动、推动或滑移。它可以挤过任何至少足<br>够组成它的单一个生物通过的开口。</div>\n<div class=\"bold bg-power\">笨拙攻击者</div>\n<div class=description>该觉醒腐蛆集群没有近战基本攻击。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}寄生啮咬✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+15vs.AC命中：10 点持续伤害（豁免终止）。<br>首次豁免失败时：15 点持续伤害（豁免终止）。<br>第二次豁免失败时：20 点持续伤害（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}精神震颤✦充能 4,5,6{{$:/dnd/images/four}}{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：近程爆发 2（爆发内所有敌人）+13vs.意志<br>命中：目标定身直到该觉醒腐蛆集群下回合结束。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}心灵感应引诱✦随意（一轮一次）</div>\n<div class=description>攻击：射程 5（一个生物）+13vs.意志<br>命中：该觉醒腐蛆集群拉动目标 4 格。</div>\n<div class=\"italic bg-flavortext\">（腐蛆集群和腐蛆僵尸）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 10（+5）</span><span>''敏捷'' 13（+6）</span><span>''感知'' 11（+5）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 13（+6）</span><span>''智力'' 8（+4）</span><span>''魅力'' 4（+2）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 异怪语，心灵感应 10</span></div></div>\n</div>",
+    "title": "觉醒腐蛆集群 Awakened Rot Grub Swarm",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "10",
+    "role": "蛮战",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "野兽（集群）",
+    "xp": "500",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "13571"
+  }
+]

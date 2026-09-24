@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>24级 护卫</span></div>\n<div class=bg-title><span>大型 元素界 类人生物（气系）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 222；''重伤'' 111</span><span>''先攻'' +21</span></div>\n<div><span>''AC'' 40，''强韧'' 38，''反射'' 36，''意志'' 36</span><span>''侦查'' +19</span></div>\n<div><span>''免疫'' 疾病，毒素；''抗力'' 15 闪电，15 雷鸣</span><span>''感官'' 盲视 10</span></div>\n<div><span>''速度'' 6，飞行 8（盘旋）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}弯刀（武器）✦随意</div>\n<div class=description>攻击：触及 2，+31 vs. AC<br>命中：3d10+3 伤害（重击则为 9d10+33 伤害），且目标被标记直到该风巨灵风<br>暴刀手下回合结束。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}旋风（寒冷，雷鸣）✦充能 6{{$:/dnd/images/six}}</div>\n<div class=description>攻击：射程 5，+27 vs. 反射<br>命中：4d12+8 寒冷和雷鸣伤害，且目标定身（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}召来✦随意</div>\n<div class=description>攻击：射程 5，+27 vs. 强韧<br>命中：该风巨灵风暴刀手拉动目标 5 格。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}旋风掌（闪电，雷鸣）</div>\n<div class=description>触发：当该风巨灵风暴刀手被重击命中时充能。<br>攻击：近程爆发 2，+29 vs. AC<br>命中：4d8+12 闪电和雷鸣伤害。</div>\n<div class=\"italic bg-flavortext\">（风巨灵暴风刀手）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 唬骗+22，洞察+24</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 28（+21）</span><span>''敏捷'' 25（+19）</span><span>''感知'' 25（+19）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 22（+18）</span><span>''智力'' 19（+16）</span><span>''魅力'' 20（+17）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 通用语，荒神语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 弯刀</span></div></div>\n</div>",
+    "title": "风巨灵风暴刀手 Djinn Stormsword",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "24",
+    "role": "护卫",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "元素界",
+    "creature-type": "类人生物（气系）",
+    "xp": "6050",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "6161"
+  }
+]

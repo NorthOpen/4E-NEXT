@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>15级 游击</span></div>\n<div class=bg-title><span>大型 自然界 魔法兽</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 148；''重伤'' 74</span><span>''先攻'' +13</span></div>\n<div><span>''AC'' 29，''强韧'' 28，''反射'' 26，''意志'' 25</span><span>''侦查'' +15</span></div>\n<div><span>''速度'' 5，掘穴 2（坑道）</span><span>''感官'' 黑暗视觉，震动感知 5</span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}爪击✦随意</div>\n<div class=description>攻击：近战 2（一个生物）+20vs.AC<br>命中：1d8+7 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}挟持奔跑✦随意</div>\n<div class=description>效果：该土巨怪对同一个目标使用两次爪击。如果至少一次攻击命中，则该土巨怪快步最多<br>5 格，拉动目标随它一同移动到一个邻接它的格子。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}阻碍凝视（心灵）✦随意（一轮一次）</div>\n<div class=description>攻击：近程冲击 5（范围内所有敌人）+18vs.意志<br>命中：直到目标下回合结束，每当它进入一个更接近该土巨怪的格子便受到 2d6 心灵伤害。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 22（+13）</span><span>''敏捷'' 18（+11）</span><span>''感知'' 16（+10）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 20（+12）</span><span>''智力'' 5（+4）</span><span>''魅力'' 11（+7）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n</div>",
+    "title": "土巨怪掘穴者 Umber Hulk Tunneler",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "15",
+    "role": "游击",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "自然界",
+    "creature-type": "魔法兽",
+    "xp": "1200",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "4378"
+  }
+]

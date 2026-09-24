@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>11级 游击</span></div>\n<div class=bg-title><span>中型 精界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 114；''重伤'' 57</span><span>''先攻'' +12</span></div>\n<div><span>''AC'' 25，''强韧'' 23，''反射'' 24，''意志'' 23</span><span>''侦查'' +6</span></div>\n<div><span>''豁免'' +5</span><span>''感官'' 昏暗视觉</span></div>\n<div><span>''速度'' 8</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}光辉刃（光耀，武器）✦随意</div>\n<div class=description>攻击：+16 vs. AC<br>命中：2d8+3 光耀伤害，且目标对该雅灵剑咏士的攻击骰受到-3 减值直到该雅灵剑咏士<br>下回合结束。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}削弱打击（武器）✦遭遇</div>\n<div class=description>攻击：该雅灵剑咏士在该攻击前和攻击后快步 3 格。+14 vs. 强韧<br>命中：目标虚弱并迟缓（豁免终止两者）。<br>失手：目标迟缓（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}光辉之舞（光耀，武器）✦随意</div>\n<div class=description>攻击：+16 vs. AC<br>命中：1d8+4 光耀伤害，且该雅灵剑咏士快步 3 格并对一个不同的目标使用光辉刃。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}双足飞龙打击（毒素，武器）✦遭遇</div>\n<div class=description>该雅灵剑咏士飞行 8 格且不引发借机攻击。在该移动中的任一时点，该雅灵剑咏士进行该攻<br>击：+14vs.强韧；1d8+4 伤害，以及 10 点持续毒素伤害（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">移动动作</div>\n<div class=\"bold bg-power\">妖精步舞（瞬移）✦遭遇</div>\n<div class=description>该雅灵奥术弓手瞬移 5 格。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">战斗快步（要求对一个邻接该雅灵剑咏士的目标拥有战斗优势）✦随意</div>\n<div class=description>该雅灵剑咏士快步 1 格到一个邻接该目标的空间。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 13（+6）</span><span>''敏捷'' 21（+10）</span><span>''感知'' 13（+6）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 18（+9）</span><span>''智力'' 15（+7）</span><span>''魅力'' 18（+9）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 通用语，精灵语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 链甲，长剑</span></div></div>\n</div>",
+    "title": "雅灵剑咏士 Eladrin Bladesinger",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "11",
+    "role": "游击",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "精界",
+    "creature-type": "类人生物",
+    "xp": "600",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "6807"
+  }
+]

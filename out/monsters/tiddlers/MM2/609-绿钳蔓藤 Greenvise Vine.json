@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>7级 护卫</span></div>\n<div class=bg-title><span>大型 自然界 野兽（植物）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 83；''重伤'' 41</span><span>''先攻'' +3</span></div>\n<div><span>''AC'' 23，''强韧'' 21，''反射'' 17，''意志'' 19</span><span>''侦查'' +5</span></div>\n<div><span>''速度'' 4（森林行者）</span><span>''感官'' 盲视 10</span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}蔓藤打击✦随意</div>\n<div class=description>攻击：+14 vs. AC<br>命中：1d10+6 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}蔓藤诱捕✦随意</div>\n<div class=description>攻击：触及 4，+10 vs. 反射<br>命中：1d10+6 伤害，且目标被擒抱。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">蔓藤拉拽✦随意</div>\n<div class=description>该绿钳蔓藤快步 1 格，拉动任何被它擒抱的生物到一个邻接它的空间。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}钳口啮咬</div>\n<div class=description>触发：当没有生物受该威能影响时充能。<br>攻击：以一个被该绿钳蔓藤擒抱的生物为目标，+10 vs. 强韧<br>命中：2d4 伤害，且目标受缚并受到 5 点持<br>续伤害（豁免终止两者）。</div>\n<div class=\"italic bg-flavortext\">（绿钳蔓藤）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 19（+7）</span><span>''敏捷'' 10（+3）</span><span>''感知'' 14（+5）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 19（+7）</span><span>''智力'' 2（-1）</span><span>''魅力'' 6（-1）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n</div>",
+    "title": "绿钳蔓藤 Greenvise Vine",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "7",
+    "role": "护卫",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "自然界",
+    "creature-type": "野兽（植物）",
+    "xp": "300",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "9261"
+  }
+]

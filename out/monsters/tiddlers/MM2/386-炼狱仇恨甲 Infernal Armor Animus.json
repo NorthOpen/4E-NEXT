@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>3级 杂兵 护卫</span></div>\n<div class=bg-title><span>中型 星界 活化生物（魔鬼，不死生物）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 1；失手攻击无法伤害杂兵</span><span>''先攻'' +5</span></div>\n<div><span>''AC'' 19，''强韧'' 16，''反射'' 15，''意志'' 14</span><span>''侦查'' +1</span></div>\n<div><span>''抗力'' 5 火焰</span><span>''感官'' 黑暗视觉</span></div>\n<div><span>''速度'' 6</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}嗜血</div>\n<div class=description>灵气 2：该灵气内的所有非杂兵魔鬼的伤害骰获得+1 加值。多个嗜血灵气的加值可以叠加。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}短剑（武器）✦随意</div>\n<div class=description>攻击：+8 vs. AC<br>命中：5 点伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">本体转移（医疗）</div>\n<div class=description>触发：当该炼狱仇恨甲生命值降到 0 时。<br>该炼狱仇恨甲 5 格内最近的一个非杂兵魔鬼恢复 15 点生命值。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 19（+5）</span><span>''敏捷'' 14（+3）</span><span>''感知'' 10（+1）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 15（+3）</span><span>''智力'' 8（+0）</span><span>''魅力'' 11（+1）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 重盾，短剑</span></div></div>\n</div>",
+    "title": "炼狱仇恨甲 Infernal Armor Animus",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "3",
+    "role": "护卫",
+    "specialty-role": "杂兵",
+    "size": "中型",
+    "origin": "星界",
+    "creature-type": "活化生物（魔鬼，不死生物）",
+    "xp": "38",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "6044"
+  }
+]

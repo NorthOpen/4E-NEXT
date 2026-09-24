@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>12级 精英 控制</span></div>\n<div class=bg-title><span>大型 元素界 魔法兽（寒系，龙）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 252；''重伤'' 126</span><span>''先攻'' +12</span></div>\n<div><span>''AC'' 26，''强韧'' 24，''反射'' 25，''意志'' 23</span><span>''侦查'' +11</span></div>\n<div><span>''豁免'' +2；''行动点'' 1</span><span>''感官'' 黑暗视觉</span></div>\n<div><span>''速度'' 8（冰雪行者），飞行 8（笨拙）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}急冻之风✦灵气 1</div>\n<div class=description>该成年雪暴龙滑移任何在该灵气内结束回合的敌人 1 格。</div>\n<div class=\"bold bg-power\">1</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬（寒冷）✦随意</div>\n<div class=description>攻击：近战 2（一个生物）+17vs.AC<br>命中：2d8+6 寒冷伤害，且目标定身直到该成年雪暴龙下回合结束。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}爪击（寒冷）✦随意</div>\n<div class=description>攻击：近战 2（一个生物）+17vs.AC<br>命中：3d6+10 寒冷伤害，且该成年雪暴龙滑移目标 2 格。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}双重攻击✦随意</div>\n<div class=description>效果：该成年雪暴龙进行一次啮咬攻击和一次爪击攻击或是进行两次爪击攻击。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}气流增幅（寒冷）✦充能（当急冻之风为灵气 1 的情况下任何回合开始时）</div>\n<div class=description>效果：急冻之风扩大为灵气 3。在该成年雪暴龙下回合开始时，急冻之风扩大为灵气 5。在其再下一个回合开始时，该成年雪暴龙进行下述攻击。<br>攻击（无动作）：近程爆发 5（爆发内所有敌人）+15vs.强韧 命中：3d8+6 寒冷伤害，且目标定身并目盲（豁免终止两者）。<br>效果：急冻之风灵气恢复为原来的状态和大小（灵气 1）。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}寒冷斥责（寒冷）✦充能（当首次重伤时）</div>\n<div class=description>触发：一个敌人的近战攻击对该成年雪暴龙造成伤害。<br>攻击（直觉反应）：近程冲击 5（冲击内所有敌人）+15vs.强韧命中：1d10+9 寒冷伤害，且目标迟缓（豁免终止）。</div>\n<div class=\"bold bg-power\">急突飓风✦随意</div>\n<div class=description>触发：该成年雪暴龙被寒冷攻击命中。<br>效果（自由动作）：该成年雪暴龙滑移其灵气内的每个敌人 1 格。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 19（+10）</span><span>''敏捷'' 23（+12）</span><span>''感知'' 20（+11）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 22（+12）</span><span>''智力'' 20（+11）</span><span>''魅力'' 17（+9）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 通用语，龙语，荒神语</span></div></div>\n</div>",
+    "title": "成年雪暴龙 Adult Blizzard Dragon",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "12",
+    "role": "控制",
+    "specialty-role": "精英",
+    "size": "大型",
+    "origin": "元素界",
+    "creature-type": "魔法兽（寒系，龙）",
+    "xp": "1400",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "10845"
+  }
+]

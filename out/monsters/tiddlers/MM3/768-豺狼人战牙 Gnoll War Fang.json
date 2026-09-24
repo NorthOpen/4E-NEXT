@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>6级 头目 护卫</span></div>\n<div class=bg-title><span>中型 自然界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 72；''重伤'' 36</span><span>''先攻'' +7</span></div>\n<div><span>''AC'' 22，''强韧'' 17，''反射'' 16，''意志'' 20</span><span>''侦查'' +5</span></div>\n<div><span>''速度'' 7</span><span>''感官'' 昏暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}战牙防御✦灵气 1</div>\n<div class=description>在该灵气内的盟友的 AC 获得+2 加值。</div>\n<div class=\"bold bg-power\">联合攻击</div>\n<div class=description>该豺狼人战牙的近战攻击对邻接两个或更多的豺狼人盟友的敌人造成 5 点额外伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}长剑（武器）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+13vs.AC<br>命中：1d8+6 伤害，在该豺狼人战牙处于重伤时则为 1d8+10 伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">恶魔挑战（火焰）✦随意（一轮一次）</div>\n<div class=description>效果：该豺狼人战牙标记 3 格内的一个敌人直到遭遇结束或直到该豺狼人战牙再次使用该威能。直到该标记终止，每当该被标记的敌人进行一次目标不包括该豺狼人战牙的攻击，该被<br>标记的敌人受到 10 点火焰伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">毫不留情✦随意</div>\n<div class=description>触发：一个敌人的一次近战攻击对该豺狼人战牙失手。<br>效果（直觉反应）：邻接触发的敌人的一个盟友可以以一个自由动作对该敌人进行一次近战基本攻击。</div>\n<div class=\"italic bg-flavortext\">（豺狼人战牙）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 威吓+12</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 19（+7）</span><span>''敏捷'' 14（+5）</span><span>''感知'' 15（+5）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 16（+6）</span><span>''智力'' 16（+6）</span><span>''魅力'' 18（+7）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 深渊语，通用语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 板甲，长剑</span></div></div>\n</div>",
+    "title": "豺狼人战牙 Gnoll War Fang",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "6",
+    "role": "护卫",
+    "specialty-role": "头目",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物",
+    "xp": "250",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "12012"
+  }
+]

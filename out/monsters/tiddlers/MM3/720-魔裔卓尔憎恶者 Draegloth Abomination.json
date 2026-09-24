@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>24级 伏击</span></div>\n<div class=bg-title><span>超大型 元素界 魔法兽（恶魔）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 175；''重伤'' 87</span><span>''先攻'' +23</span></div>\n<div><span>''AC'' 38，''强韧'' 37，''反射'' 35，''意志'' 33</span><span>''侦查'' +20</span></div>\n<div><span>''速度'' 8，攀爬 8（蛛行）</span><span>''感官'' 黑暗视觉，震动感知 10</span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}爪击✦随意</div>\n<div class=description>攻击：近战 3（一个生物）+29vs.AC<br>命中：2d10+10 伤害，对晕眩的生物则为 4d10+10 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}狂爪✦随意</div>\n<div class=description>效果：该魔裔卓尔憎恶者对两个不同的目标各进行一次爪击攻击。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}网缚（毒素）✦随意</div>\n<div class=description>攻击：射程 5（一个生物，当该魔裔卓尔憎恶者重伤时则为两个生物）+27vs.反射<br>命中：1d10+10 毒素伤害，且目标被捆缚（豁免终止）。在目标被捆缚期间，它晕眩，且该魔裔卓尔憎恶者在该魔裔卓尔憎恶者的回合可以以一个自由动作拉动目标到一个邻接它的格子。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}疯狂黑暗（心灵，结界）✦遭遇</div>\n<div class=description>攻击：近程爆发 2（爆发内所有生物）+27vs.意志<br>命中：目标迟缓并晕眩直到该魔裔卓尔憎恶者下回合结束。<br>效果：该爆发生成一个结界持续直到该魔裔卓尔憎恶者下回合结束。该结界阻挡该魔裔卓尔憎恶者以外所有生物的视线。该魔裔卓尔憎恶者以外的任何生物在该结界内时目盲。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">可变抗性✦每遭遇三次</div>\n<div class=description>触发：该魔裔卓尔憎恶者受到强酸、寒冷、火焰、闪电或雷鸣伤害。<br>效果（自由动作）：该魔裔卓尔憎恶者获得 20 点触发伤害类型的抗性直到遭遇结束或直到它再次使用可变抗性。</div>\n<div class=\"bold bg-power\">暗跃（瞬移）✦充能（当首次重伤时）</div>\n<div class=description>触发：一个敌人伤害该魔裔卓尔憎恶者。<br>效果（直觉反应）：疯狂黑暗充能，且该魔裔卓尔憎恶者使用它。然后该魔裔卓尔憎恶者瞬移 8 格。</div>\n<div class=\"italic bg-flavortext\">（魔裔卓尔）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 宗教+23，隐秘+24</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 27（+20）</span><span>''敏捷'' 24（+19）</span><span>''感知'' 17（+15）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 25（+19）</span><span>''智力'' 22（+18）</span><span>''魅力'' 19（+16）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 深渊语，精灵语</span></div></div>\n</div>",
+    "title": "魔裔卓尔憎恶者 Draegloth Abomination",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "24",
+    "role": "伏击",
+    "specialty-role": "",
+    "size": "超大型",
+    "origin": "元素界",
+    "creature-type": "魔法兽（恶魔）",
+    "xp": "6050",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "11219"
+  }
+]

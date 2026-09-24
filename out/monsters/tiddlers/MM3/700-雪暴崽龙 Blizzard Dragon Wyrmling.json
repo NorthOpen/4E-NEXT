@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>2级 控制</span></div>\n<div class=bg-title><span>中型 元素界 魔法兽（寒系，龙）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 38；''重伤'' 19</span><span>''先攻'' +3</span></div>\n<div><span>''AC'' 16，''强韧'' 14，''反射'' 15，''意志'' 13</span><span>''侦查'' +2</span></div>\n<div><span>''速度'' 6（冰雪行者），飞行 6（笨拙）</span><span>''感官'' 黑暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}急冻之风✦灵气 1</div>\n<div class=description>该雪暴崽龙滑移任何在该灵气内结束回合的敌人 1 格。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬（寒冷）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+7vs.AC<br>命中：1d8+2 寒冷伤害，且目标定身直到该雪暴崽龙下回合结束。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}爪击（寒冷）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+7vs.AC<br>命中：1d6+4 寒冷伤害，且该雪暴崽龙滑移目标 1 格。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}崽龙怒✦随意</div>\n<div class=description>前提：该雪暴崽龙处于重伤。<br>效果：该雪暴崽龙进行一次啮咬攻击和一次爪击攻击。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">急突飓风✦随意</div>\n<div class=description>触发：该雪暴崽龙被一次寒冷攻击命中。<br>效果（自由动作）：该雪暴崽龙滑移其灵气内的每个敌人 1 格。</div>\n<div class=\"italic bg-flavortext\">（雪暴龙）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 11（+1）</span><span>''敏捷'' 15（+3）</span><span>''感知'' 12（+2）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 14（+3）</span><span>''智力'' 12（+2）</span><span>''魅力'' 9（+0）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 龙语，荒神语</span></div></div>\n</div>",
+    "title": "雪暴崽龙 Blizzard Dragon Wyrmling",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "2",
+    "role": "控制",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "元素界",
+    "creature-type": "魔法兽（寒系，龙）",
+    "xp": "125",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "10805"
+  }
+]

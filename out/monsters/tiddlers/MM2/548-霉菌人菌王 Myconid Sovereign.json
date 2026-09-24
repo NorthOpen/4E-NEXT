@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>4级 头目 控制</span></div>\n<div class=bg-title><span>大型 精界 类人生物（植物）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 58；''重伤'' 29</span><span>''先攻'' +2</span></div>\n<div><span>''AC'' 18，''强韧'' 18，''反射'' 14，''意志'' 15</span><span>''侦查'' +0</span></div>\n<div><span>''速度'' 6</span><span>''感官'' 震动感知 10</span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}击打✦随意</div>\n<div class=description>攻击：+9 vs. AC<br>命中：2d6+3 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}孢子爆发（毒素）✦充能 4,5,6{{$:/dnd/images/four}}{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：近程冲击 3，以非植物生物为目标，+8 vs. 意志<br>命中：1d8+3 毒素伤害，且目标晕眩直到该霉菌人<br>菌王下回合结束。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}制控孢子✦随意</div>\n<div class=description>近程爆发 5；以爆发内一个植物盟友为目标；目标快步 1 格。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">菌落根✦随意</div>\n<div class=description>触发：当该霉菌人菌王在 5 格内有霉菌人盟友的情况下被攻击命中时。<br>该霉菌人菌王从该攻击只受到一半伤害，且该霉菌人盟友受到相等的伤害。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 7（+0）</span><span>''敏捷'' 11（+2）</span><span>''感知'' 8（+1）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 18（+6）</span><span>''智力'' 7（+0）</span><span>''魅力'' 12（+3）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n</div>",
+    "title": "霉菌人菌王 Myconid Sovereign",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "4",
+    "role": "控制",
+    "specialty-role": "头目",
+    "size": "大型",
+    "origin": "精界",
+    "creature-type": "类人生物（植物）",
+    "xp": "175",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "8453"
+  }
+]

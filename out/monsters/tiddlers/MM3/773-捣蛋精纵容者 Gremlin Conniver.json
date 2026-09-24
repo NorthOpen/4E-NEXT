@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>17级 控制</span></div>\n<div class=bg-title><span>小型 精界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 162；''重伤'' 81</span><span>''先攻'' +13</span></div>\n<div><span>''AC'' 31，''强韧'' 28，''反射'' 31，''意志'' 29</span><span>''侦查'' +18</span></div>\n<div><span>''速度'' 6</span><span>''感官'' 昏暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}爪击（瞬移）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+22vs.AC<br>命中：4d6+10 伤害，且该捣蛋精纵容者瞬移目标 5 格。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}纵容（魅惑）✦随意</div>\n<div class=description>攻击：射程 10（一个生物）+20vs.意志<br>命中：目标受控（豁免终止）。该捣蛋精纵容者同一时间内只能有一个受控的生物。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/area}}欺诈迷雾✦充能 6{{$:/dnd/images/six}}</div>\n<div class=description>攻击：区域 10 爆发 2（爆发内所有敌人）+20vs.意志命中：目标晕眩（豁免终止）。<br>失手：目标晕眩直到其下回合结束。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">捣蛋精战术✦随意</div>\n<div class=description>触发：一个邻接该捣蛋精纵容者的敌人的一次近战攻击失手。<br>效果（直觉反应）：该捣蛋精纵容者跟触发的敌人互换位置。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 唬骗+16，隐秘+18，盗术+18</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 15（+10）</span><span>''敏捷'' 21（+13）</span><span>''感知'' 20（+13）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 18（+12）</span><span>''智力'' 24（+15）</span><span>''魅力'' 17（+11）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 通用语，精灵语，地精语</span></div></div>\n</div>",
+    "title": "捣蛋精纵容者 Gremlin Conniver",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "17",
+    "role": "控制",
+    "specialty-role": "",
+    "size": "小型",
+    "origin": "精界",
+    "creature-type": "类人生物",
+    "xp": "1600",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "12102"
+  }
+]

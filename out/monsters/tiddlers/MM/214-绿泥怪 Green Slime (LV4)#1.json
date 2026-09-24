@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>4级 伏击</span></div>\n<div class=bg-title><span>中型 自然界 野兽（目盲，泥型怪）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 47；''重伤'' 23</span><span>''先攻'' +9</span></div>\n<div><span>''AC'' 18，''强韧'' 17，''反射'' 17，''意志'' 14</span><span>''侦查'' +2</span></div>\n<div><span>''免疫'' 目盲，凝视效果；''抗力'' 5 强酸；''易伤'' 5 火焰，5 光耀</span><span>''感官'' 盲视 10</span></div>\n<div><span>''速度'' 4，攀爬 4</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">泥型</div>\n<div class=description>在挤过时，泥型怪以完整的速度移动而不是半速，它的攻击骰不会受到-5 减值，且它不会<br>因挤过而提供战斗优势。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}击打（强酸）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+7vs.反射<br>命中：5 强酸伤害，以及 5 点持续强酸伤害（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}吞噬（强酸）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+7vs.反射<br>命中：1d6+3 强酸伤害，且该绿泥怪擒抱目标（挣脱 DC18）。直到该擒抱终止，目标受到 10 点持续强酸伤害。命中该绿泥怪的攻击对该绿泥怪造成一半伤害且对一个被该绿泥怪擒抱的生物造成一半伤害。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 隐秘+10</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 11（+2）</span><span>''敏捷'' 16（+5）</span><span>''感知'' 11（+2）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 17（+5）</span><span>''智力'' 1（-3）</span><span>''魅力'' 1（-3）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n</div>",
+    "title": "绿泥怪 Green Slime (LV4)#1",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "4",
+    "role": "伏击",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "野兽（目盲，泥型怪）",
+    "xp": "175",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "3518"
+  }
+]

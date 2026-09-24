@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>22级 精英 游击</span></div>\n<div class=bg-title><span>大型 精界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 404；''重伤'' 202</span><span>''先攻'' +22</span></div>\n<div><span>''AC'' 36，''强韧'' 33，''反射'' 35，''意志'' 34</span><span>''侦查'' +24</span></div>\n<div><span>''易伤'' 黯蚀（如果该费尔伯格荒野猎师受到黯蚀伤害，则它的再生在其下回合失效）；''豁免'' +2；''行动点'' 1</span><span>''感官'' 昏暗视觉</span></div>\n<div><span>''速度'' 8，飞行 8（笨拙）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">月之猎人</div>\n<div class=description>费尔伯格荒野猎人的攻击对受月火效果影响的生物造成 2d6 额外伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}猎矛（武器）✦随意</div>\n<div class=description>攻击：触及 2，+27 vs. AC<br>命中：2d10+7 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}投矛（武器）✦随意</div>\n<div class=description>攻击：射程 10/20，+27 vs. AC<br>命中：2d10+7 伤害。<br>效果：该费尔伯格荒野猎师的矛在进行该攻击后返回。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}双重攻击✦随意</div>\n<div class=description>该费尔伯格荒野猎师进行两次猎矛攻击。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}月火✦随意</div>\n<div class=description>攻击：射程 10，+25 vs. 意志<br>命中：直到该费尔伯格荒野猎师下回合结束，目标被标记，提供战斗优势<br>给该费尔伯格荒野猎师，且不能从隐形或隐蔽获得增益。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">致命打击</div>\n<div class=description>触发：当首次重伤时充能。<br>该费尔伯格荒野猎师对一个重伤的敌人进行一次猎矛攻击或一次投矛攻击。若命中，则该攻击视为重击且造成 6d6 额外伤害。如果该攻击使目标的生命值降到 0 或更低，则该费尔伯格<br>荒野猎师获得 1 个行动点。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 杂技+25，运动+2，自然+24，隐秘+25</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 24（+18）</span><span>''敏捷'' 28（+20）</span><span>''感知'' 26（+19）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 18（+15）</span><span>''智力'' 15（+13）</span><span>''魅力'' 18（+15）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 通用语，精灵语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 轻盾，雄鹿头盔，长矛</span></div></div>\n</div>",
+    "title": "费尔伯格荒野猎师 Firbolg Master of the Wild Hunt",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "22",
+    "role": "游击",
+    "specialty-role": "精英",
+    "size": "大型",
+    "origin": "精界",
+    "creature-type": "类人生物",
+    "xp": "8300",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "7156"
+  }
+]

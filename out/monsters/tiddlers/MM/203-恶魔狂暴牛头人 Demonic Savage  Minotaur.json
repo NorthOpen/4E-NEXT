@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>11级 蛮战</span></div>\n<div class=bg-title><span>大型 自然界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 140；''重伤'' 70</span><span>''先攻'' +8</span></div>\n<div><span>''AC'' 23，''强韧'' 25，''反射'' 22，''意志'' 20</span><span>''侦查'' +7</span></div>\n<div><span>''速度'' 8</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}爪击✦随意</div>\n<div class=description>攻击：近战 2（一或两个生物）+16vs.AC（若该牛头人只以一个生物为目标，则它可以对该生物进行两次该攻击）<br>命中：2d6+5 伤害，且若该牛头人擒抱的生物少于两个，则它擒抱目标（挣脱 DC19）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}穿刺✦随意</div>\n<div class=description>攻击：近战 1（一个被该牛头人擒抱的生物）+14vs.强韧<br>命中：5d8+13 伤害。目标倒地且不再被该牛头人擒抱。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}角袭✦随意</div>\n<div class=description>触发：该牛头人 10 格内的一个敌人以远程或区域攻击命中它。<br>效果（直觉反应）：该牛头人冲锋触发的敌人。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 22（+11）</span><span>''敏捷'' 16（+8）</span><span>''感知'' 15（+7）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 20（+10）</span><span>''智力'' 5（+2）</span><span>''魅力'' 7（+3）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 深渊语，通用语</span></div></div>\n</div>",
+    "title": "恶魔狂暴牛头人 Demonic Savage  Minotaur",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "11",
+    "role": "蛮战",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "自然界",
+    "creature-type": "类人生物",
+    "xp": "600",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "3356"
+  }
+]

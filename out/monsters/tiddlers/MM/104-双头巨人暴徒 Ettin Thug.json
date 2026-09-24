@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>8级 蛮战</span></div>\n<div class=bg-title><span>大型 自然界 类人生物（巨人）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 110；''重伤'' 55</span><span>''先攻'' +5</span></div>\n<div><span>''AC'' 20，''强韧'' 21，''反射'' 17，''意志'' 19</span><span>''侦查'' +11</span></div>\n<div><span>''速度'' 6</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">双重行动</div>\n<div class=description>该双头巨人进行两次先攻检定并在每一个结果获得一个完整的回合。该双头巨人每轮可以进<br>行两个直觉动作，但在其两个回合的回合与回合之间分别只能进行一个。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}扣击✦随意</div>\n<div class=description>攻击：近战 2（一个生物）+13vs.AC<br>命中：1d12+3 伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">移动动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}踢✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+11vs.强韧<br>命中：该双头巨人推动目标最多两格。然后该双头巨人移动最多其速度一半。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 20（+9）</span><span>''敏捷'' 12（+5）</span><span>''感知'' 15（+6）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 20（+9）</span><span>''智力'' 8（+3）</span><span>''魅力'' 9（+3）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 巨人语</span></div></div>\n</div>",
+    "title": "双头巨人暴徒 Ettin Thug",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "8",
+    "role": "蛮战",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "自然界",
+    "creature-type": "类人生物（巨人）",
+    "xp": "350",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "1800"
+  }
+]

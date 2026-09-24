@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>14级 精英 护卫</span></div>\n<div class=bg-title><span>大型 元素界 魔法兽（地系，龙）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 288；''重伤'' 144</span><span>''先攻'' +15</span></div>\n<div><span>''AC'' 30，''强韧'' 27，''反射'' 27，''意志'' 25</span><span>''侦查'' +12</span></div>\n<div><span>''豁免'' +2；''行动点'' 1</span><span>''感官'' 黑暗视觉，震动感知 10</span></div>\n<div><span>''速度'' 8（大地行者），掘穴 4，飞行 4（笨拙）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}震地✦灵气 1</div>\n<div class=description>当任何敌人在该灵气内进行一次目标不包括该成年地震龙的攻击时，该敌人倒地并受到 10<br>点伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬✦随意</div>\n<div class=description>攻击：近战 2（一个生物）+19vs.AC<br>命中：3d8+9 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}爪击✦随意</div>\n<div class=description>攻击：近战 2（一个生物）+21vs.AC<br>命中：3d6+6 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}双重攻击✦随意</div>\n<div class=description>效果：该成年地震龙进行一次啮咬攻击和一次爪击攻击或是进行两次爪击攻击。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}土胃✦充能 5，6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：近战 2（一个生物）+19vs.反射<br>命中：3d10+6 伤害，且目标受缚（豁免终止）。首次豁免失败时：目标改为石化（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}震颤增幅✦充能（当震地为灵气 1 的情况下任何回合开始时）</div>\n<div class=description>效果：震地扩大为灵气 3。在该成年地震龙下回合开始时，震地扩大为灵气 5。在其再下一个回合开始时，该成年地震龙进行下述攻击。<br>攻击（无动作）：近程爆发 5（爆发内所有敌人）+17vs.反射<br>命中：3d8+9 伤害，且目标倒地且不能站起（豁免终止）。效果：震地灵气恢复为原来的状态和大小（灵气 1）。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">急突震动✦随意</div>\n<div class=description>触发：该成年地震龙被拉动、推动、滑移或击倒。<br>效果（自由动作）：该成年地震龙灵气内的所有敌人倒地。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 22（+13）</span><span>''敏捷'' 23（+13）</span><span>''感知'' 21（+12）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 24（+14）</span><span>''智力'' 20（+12）</span><span>''魅力'' 18（+11）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 通用语，龙语，荒神语</span></div></div>\n</div>",
+    "title": "成年地震龙 Adult Earthquake Dragon",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "14",
+    "role": "护卫",
+    "specialty-role": "精英",
+    "size": "大型",
+    "origin": "元素界",
+    "creature-type": "魔法兽（地系，龙）",
+    "xp": "2000",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "10953"
+  }
+]

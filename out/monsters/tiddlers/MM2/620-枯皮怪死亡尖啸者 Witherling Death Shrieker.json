@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>5级 控制</span></div>\n<div class=bg-title><span>中型 自然界 活化生物（不死生物）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 65；''重伤'' 32</span><span>''先攻'' +5</span></div>\n<div><span>''AC'' 19，''强韧'' 17，''反射'' 17，''意志'' 16</span><span>''侦查'' +4</span></div>\n<div><span>''速度'' 6</span><span>''感官'' 昏暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">联合攻击</div>\n<div class=description>枯皮怪死亡尖啸者的近战攻击对任何有两个或以上的该枯皮怪死亡尖啸者的盟友邻接的敌<br>人造成 2 点额外伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}爪击✦随意</div>\n<div class=description>攻击：+10 vs. AC<br>命中：1d10+5 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}死亡尖啸（医疗）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：近程冲击 5，以敌人为目标，+9 vs. 强韧<br>命中：2d6+4 伤害，且所有邻接目标的不死生物盟友恢复<br>5 点生命值。一个不死生物盟友一轮只能通过该方式恢复一次生命值。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}雷鸣尖啸（雷鸣）✦随意</div>\n<div class=description>攻击：近程冲击 5，以敌人为目标，+9 vs. 强韧<br>命中：1d6+4 雷鸣伤害，且该枯皮怪死亡尖啸者推动目标<br>2 格。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 12（+3）</span><span>''敏捷'' 16（+5）</span><span>''感知'' 15（+4）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 17（+5）</span><span>''智力'' 11（+2）</span><span>''魅力'' 12（+3）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 深渊语，通用语</span></div></div>\n</div>",
+    "title": "枯皮怪死亡尖啸者 Witherling Death Shrieker",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "5",
+    "role": "控制",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "活化生物（不死生物）",
+    "xp": "200",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "9419"
+  }
+]

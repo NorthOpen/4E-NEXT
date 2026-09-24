@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>9级 杂兵 游击</span></div>\n<div class=bg-title><span>小型 自然界 活化生物（不死生物）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 1；失手攻击无法伤害杂兵</span><span>''先攻'' +10</span></div>\n<div><span>''AC'' 23，''强韧'' 21，''反射'' 22，''意志'' 20</span><span>''侦查'' +4</span></div>\n<div><span>''速度'' 8，攀爬 6</span><span>''感官'' 昏暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">战斗优势</div>\n<div class=description>枯皮怪喽啰的攻击对任何提供给它战斗优势的生物造成 2 点额外伤害。</div>\n<div class=\"bold bg-power\">联合攻击</div>\n<div class=description>枯皮怪喽啰的近战攻击对任何有两个或以上的该枯皮怪喽啰的盟友邻接的敌人造成 2 点额<br>外伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}爪击✦随意</div>\n<div class=description>攻击：+14 vs. AC<br>命中：9 点伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">移动动作</div>\n<div class=\"bold bg-power\">飞跃✦随意</div>\n<div class=description>该枯皮怪喽啰跳跃 4 格。在该跳跃中，它对抗借机攻击的 AC 获得+5 加值，且任何借机攻击<br>对该枯皮怪喽啰失手的敌人提供战斗优势给该枯皮怪喽啰直到该枯皮怪喽啰回合结束。</div>\n<div class=\"italic bg-flavortext\">（枯皮怪）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 11（+4）</span><span>''敏捷'' 19（+8）</span><span>''感知'' 11（+4）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 16（+7）</span><span>''智力'' 7（+2）</span><span>''魅力'' 12（+5）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 深渊语，通用语</span></div></div>\n</div>",
+    "title": "枯皮怪喽啰 Witherling Rabble",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "9",
+    "role": "游击",
+    "specialty-role": "杂兵",
+    "size": "小型",
+    "origin": "自然界",
+    "creature-type": "活化生物（不死生物）",
+    "xp": "100",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "9443"
+  }
+]

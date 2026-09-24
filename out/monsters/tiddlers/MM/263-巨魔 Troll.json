@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>9级 蛮战</span></div>\n<div class=bg-title><span>大型 自然界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 120；''重伤'' 60</span><span>''先攻'' +8</span></div>\n<div><span>''AC'' 21，''强韧'' 22，''反射'' 18，''意志'' 18</span><span>''侦查'' +6</span></div>\n<div><span>''速度'' 8</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">再生</div>\n<div class=description>每当该巨魔开始回合且至少拥有 1 点生命值时它恢复 5 点生命值。当该巨魔受到火焰或强酸<br>伤害时，它的再生在其下回合无效。</div>\n<div class=\"bold bg-power\">巨魔医疗（医疗）</div>\n<div class=description>每当一次不造成火焰或强酸伤害的攻击使该巨魔的生命值降到 0 时，该巨魔不会死亡而是陷<br>入昏迷直到其下回合开始，届时它将带有 15 点生命值复活。在该巨魔昏迷期间如果有一次攻击命中该巨魔并造成任何强酸或火焰伤害，则它不能以这种方式复活。</div>\n<div class=\"bold font-size-h4 bg-category\">基本近战</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}爪击✦随意</div>\n<div class=description>攻击：近战 2（一个生物）+14vs.AC<br>命中：3d6+7 伤害。如果该攻击使目标重伤，则该巨魔对它在使用一次爪击。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 22（+10）</span><span>''敏捷'' 18（+8）</span><span>''感知'' 14（+6）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 20（+9）</span><span>''智力'' 5（+1）</span><span>''魅力'' 9（+3）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 通用语，巨人语</span></div></div>\n</div>",
+    "title": "巨魔 Troll",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "9",
+    "role": "蛮战",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "自然界",
+    "creature-type": "类人生物",
+    "xp": "400",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "4304"
+  }
+]

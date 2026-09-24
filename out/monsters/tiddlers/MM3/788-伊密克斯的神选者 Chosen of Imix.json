@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>22级 头目 控制</span></div>\n<div class=bg-title><span>中型 元素界 类人生物，元素裔</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 207；''重伤'' 103</span><span>''先攻'' +15</span></div>\n<div><span>''AC'' 34，''强韧'' 33，''反射'' 32，''意志'' 36</span><span>''侦查'' +12</span></div>\n<div><span>''抗力'' 15 火焰</span><span></span></div>\n<div><span>''速度'' 6</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}内在火焰✦灵气 5{{$:/dnd/images/five}}</div>\n<div class=description>在该灵气内的盟友获得 10 点火焰抗性。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}匕首（武器）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+27vs.AC<br>命中：2d4+10 伤害，且目标获得 10 点火焰易伤直到该伊密克斯的神选者下回合结束。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}燃炎球（火焰）✦随意</div>\n<div class=description>攻击：射程 5（一个生物）+25vs.反射<br>命中：3d8+15 火焰伤害，且每个邻接目标的敌人受到 5 点火焰伤害。</div>\n<div class=\"bold bg-power\">火元素之仆（火焰）✦充能（当该伊密克斯的神选者开始回合时其 10 格内没有耀动火焰）</div>\n<div class=description>效果：该伊密克斯的神选者生成四个耀动火焰，在该伊密克斯的神选者重伤时则为六个，每个都在它 10 格内的一个不被占据的格子。这些耀动火焰不能进行动作。任何邻接着一个或<br>多个耀动火焰开始回合的生物受到 10 点火焰伤害。这些耀动火焰拥有等值于该伊密克斯的<br>神选者的防御值且每个都有 1 点生命值。失手攻击无法伤害耀动火焰。每个耀动火焰都会持<br>续直到遭遇结束或直到该伊密克斯的神选者在距离它超过 10 格的位置结束回合。以一个次<br>要动作，该伊密克斯的神选者可以移动每个耀动火焰最多 6 格。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}火焰狂怒（火焰）✦遭遇</div>\n<div class=description>效果：该伊密克斯的神选者使其 10 格内的一个耀动火焰的生命值降为 0 并以该耀动火焰为中心进行下述攻击。<br>攻击：近程爆发 1（爆发内所有敌人）+25vs.反射<br>命中：2d8+8 火焰伤害，且目标晕眩（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}重点需求✦随意</div>\n<div class=description>触发：一个敌人以快步以外的形式主动移动远离一个耀动火焰。 攻击（借机动作）：近程爆发 10（爆发内触发的敌人）+25vs.意志<br>命中：目标迟缓直到其下回合结束。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}火焰脉冲（火焰）✦遭遇</div>\n<div class=description>触发：一个敌人以一次近战攻击命中该伊密克斯的神选者。攻击（直觉反应）：近战 1（触发的敌人）+25vs.反射<br>命中：3d6+9 火焰伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}属于伊密克斯（火焰）</div>\n<div class=description>触发：该伊密克斯的神选者的生命值降到 0。<br>攻击（无动作）：近程爆发 3（爆发内所有敌人）+25vs.反射命中：2d8+9 火焰伤害，且目标晕眩（豁免终止）。</div>\n<div class=\"italic bg-flavortext\">（伊密克斯的神选者，火焰神殿卫士，爆炎球）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 神秘+18，威吓+25</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 14（+13）</span><span>''敏捷'' 18（+15）</span><span>''感知'' 12（+12）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 23（+17）</span><span>''智力'' 15（+13）</span><span>''魅力'' 28（+20）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 通用语，荒神语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 匕首</span></div></div>\n</div>",
+    "title": "伊密克斯的神选者 Chosen of Imix",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "22",
+    "role": "控制",
+    "specialty-role": "头目",
+    "size": "中型",
+    "origin": "元素界",
+    "creature-type": "类人生物，元素裔",
+    "xp": "4150",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "12345"
+  }
+]

@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>4级 游击</span></div>\n<div class=bg-title><span>中型 自然界 野兽</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 55；''重伤'' 27</span><span>''先攻'' +6</span></div>\n<div><span>''AC'' 18，''强韧'' 15，''反射'' 17，''意志'' 12</span><span>''侦查'' +2</span></div>\n<div><span>''速度'' 8，攀爬 8，飞行 8</span><span>''感官'' 昏暗视觉，震动感知 10</span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}强酸叮刺（强酸）</div>\n<div class=description>攻击：+9 vs. AC<br>命中：1d6+2 强酸伤害，以及 5 点持续强酸伤害（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}飞越攻击✦随意</div>\n<div class=description>该飞翅雄蚁飞行 8 格并在该移动中的任意时点进行一次强酸叮刺攻击。该飞翅雄蚁在该移动<br>中离开该攻击的目标时不引发借机攻击。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}飞翅撕裂（只能在重伤时使用）✦遭遇</div>\n<div class=description>攻击：近程冲击 2，+8 vs. AC<br>命中：3d6+4 伤害，且该飞翅雄蚁失去其飞行速度直到遭遇结束。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}翅蚁狂怒✦随意</div>\n<div class=description>触发：当该飞翅雄蚁 10 格内的任何巨蚁生命值降到 0 时。<br>该飞翅雄蚁快步 2 格并进行一次强酸叮刺攻击。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 14（+4）</span><span>''敏捷'' 18（+6）</span><span>''感知'' 11（+2）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 15（+4）</span><span>''智力'' 2（-2）</span><span>''魅力'' 4（-1）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n</div>",
+    "title": "飞翅雄蚁 Winged Drone",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "4",
+    "role": "游击",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "野兽",
+    "xp": "175",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "5016"
+  }
+]

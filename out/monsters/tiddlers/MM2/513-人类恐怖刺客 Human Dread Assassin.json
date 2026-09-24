@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>22级 伏击</span></div>\n<div class=bg-title><span>中型 自然界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 161；''重伤'' 80</span><span>''先攻'' +23</span></div>\n<div><span>''AC'' 36，''强韧'' 32，''反射'' 34，''意志'' 32</span><span>''侦查'' +22</span></div>\n<div><span>''速度'' 7</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}狂信徒弯刀（黯蚀，毒素，武器）✦随意</div>\n<div class=description>攻击：+26 vs. AC<br>命中：1d8+5 伤害（重击则为 2d8+13），以及 10 点毒素和黯蚀伤害（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">移动动作</div>\n<div class=\"bold bg-power\">狂热斗篷✦随意</div>\n<div class=description>该人类恐怖刺客获得隐蔽直到其下回合结束并快步 3 格。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">致命刀刃（只能在该人类恐怖刺客拥有掩蔽或隐蔽时使用）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>该人类恐怖刺客下一次攻击的目标提供战斗优势给它，且该人类恐怖刺客的这次攻击命中时<br>造成 5d6 额外伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">刺客决心✦遭遇</div>\n<div class=description>触发：当首次重伤时。<br>该人类恐怖刺客的致命刀刃充能。如果它已经充能，则该人类恐怖刺客恢复 20 点生命值。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 威吓+22，隐秘+24</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 17（+14）</span><span>''敏捷'' 26（+19）</span><span>''感知'' 13（+12）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 23（+17）</span><span>''智力'' 18（+15）</span><span>''魅力'' 22（+17）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 通用语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 弯刀</span></div></div>\n</div>",
+    "title": "人类恐怖刺客 Human Dread Assassin",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "22",
+    "role": "伏击",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物",
+    "xp": "4150",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "7907"
+  }
+]

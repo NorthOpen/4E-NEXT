@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>5级 杂兵 蛮战</span></div>\n<div class=bg-title><span>中型 自然界 类人生物，人类</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 1；失手攻击无法伤害杂兵</span><span>''先攻'' +3</span></div>\n<div><span>''AC'' 16，''强韧'' 17，''反射'' 16，''意志'' 15</span><span>''侦查'' +1</span></div>\n<div><span>''速度'' 6</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}木棒✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+10vs.AC<br>命中：6 点伤害，在该火焰之主的邪教徒邻接有任何盟友的情况下则为 10 点。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}引燃（火焰）✦遭遇</div>\n<div class=description>攻击：近战 1（一个生物）+8vs.反射<br>命中：15 点持续火焰伤害（豁免终止）。</div>\n<div class=\"italic bg-flavortext\">上古元素之眼是萨瑞兹顿（Tharizdun）为了欺骗荒神们和凡人们提供力量给他而设计的一个骗局。上古元素之眼的追随者们在毫不知情的情况下致力于从神狱中将囚神解放出来。包括伊密克斯（Imix）和欧雷莫奇（Ogrémoch）在内的一群荒神听命于上古元素之眼，他们没有意识到他们所服务的黑暗存在实际上是囚神。 在黎明之战中，诸神一个接一个地抓获并消灭了荒神。很少有荒神会联合起来对抗诸神。不过，有少数的一些荒神，包括伊密克斯（Imix）和欧雷莫奇（Ogrémoch），在一个名为上古元素之眼的存在的支持下设法暂时搁置了他们的分歧。这些荒神，作为元素亲王而闻名，他们相信上古元素之眼是最早的荒神。这个存在低语着有关毁灭诸神的黑暗承诺，所以元素亲王们力图解放它。尽管亲王们的努力失败了，不过他们临时的联盟使他们没有败在诸神的手中。伊密克斯（Imix）和联盟中的其他荒神设法逃到了元素混沌的远端，他们仍然在那里被放逐中。 从他的神狱中，萨瑞兹顿（Tharizdun）对主位面只能有很小的影响，他必须依靠他的仆人们来执行他的计划。因此，它开始着手让元素亲王们来传播黑暗神的势力并扩大他的力量。元素亲王们仍然相信上古元素之眼是一位远古的荒神。他们仍旧试图解放这个存在，不过他们的新仇旧恨又使他们无法达成完全合作。 元素亲王们对背叛的嗜好是他们在这个世界上所代表事物的反映。他们的追随者来自与四种传统的元素：气、地、火或水中的某一个结盟的不同派系。正如他们的元素主人那样， 每座神殿都孕育着偏执和背叛，不同的派系总要花费很多时间来跟其他派系搞内讧。 （伊密克斯） （译注：火焰之主的邪教徒的木棒攻击没有武器关键词，疑出错，但官方未勘误）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 15（+4）</span><span>''敏捷'' 13（+3）</span><span>''感知'' 8（+1）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 10（+2）</span><span>''智力'' 9（+1）</span><span>''魅力'' 10（+2）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 通用语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 木棒</span></div></div>\n</div>",
+    "title": "火焰之主的邪教徒 Fire Lord Cultist",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "5",
+    "role": "蛮战",
+    "specialty-role": "杂兵",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物，人类",
+    "xp": "50",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "12265"
+  }
+]

@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>15级 伏击</span></div>\n<div class=bg-title><span>小型 自然界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 116；''重伤'' 58</span><span>''先攻'' +17</span></div>\n<div><span>''AC'' 30，''强韧'' 27，''反射'' 28，''意志'' 26</span><span>''侦查'' +10</span></div>\n<div><span>''速度'' 6</span><span>''感官'' 黑暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">战斗优势</div>\n<div class=description>该迪洛矮人收割者对任何提供战斗优势给它的生物造成 2d6 额外伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}战镐（武器）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+20vs.AC<br>命中：3d8+10 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}收割（武器）✦随意</div>\n<div class=description>前提：该迪洛矮人收割者在其回合开始时对目标处于躲藏。攻击：近战 1（一个生物）+18vs.强韧<br>命中：目标昏迷（豁免终止）。</div>\n<div class=\"bold bg-power\">融身入影✦随意</div>\n<div class=description>效果：该迪洛矮人收割者移动其速度的格数。若他在结束该移动时拥有隐蔽，则它可以进行<br>一次隐秘检定来尝试进入躲藏。</div>\n<div class=\"bold bg-power\">阶下囚✦遭遇</div>\n<div class=description>前提：该迪洛矮人收割者持有脚镣。<br>效果：该迪洛矮人收割者铐住一个邻接它的处于无助的中型或更小的生物直到该生物对该迪洛矮人收割者的挣脱动作成功。在被铐住期间，该生物受缚。此外，每当它被近战攻击命中时它便会倒地。</div>\n<div class=\"bold font-size-h4 bg-category\">自由动作</div>\n<div class=\"bold bg-power\">疯狂之力✦遭遇</div>\n<div class=description>前提：该迪洛矮人收割者只能在其回合使用疯狂之力。<br>效果：投一个 d6 并将该结果作为一个威能加值加到该迪洛矮人收割者的攻击骰上直到其下回合结束。此外，该迪洛矮人收割者提供战斗优势直到其下回合结束。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 隐秘+18</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 10（+7）</span><span>''敏捷'' 22（+13）</span><span>''感知'' 6（+5）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 20（+12）</span><span>''智力'' 11（+7）</span><span>''魅力'' 17（+10）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 通用语，异怪语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 皮甲，战镐，一套脚镣</span></div></div>\n</div>",
+    "title": "迪洛矮人收割者 Derro Harvester",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "15",
+    "role": "伏击",
+    "specialty-role": "",
+    "size": "小型",
+    "origin": "自然界",
+    "creature-type": "类人生物",
+    "xp": "1200",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "10478"
+  }
+]

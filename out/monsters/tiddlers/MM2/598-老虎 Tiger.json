@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>6级 游击</span></div>\n<div class=bg-title><span>大型 自然界 野兽</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 73；''重伤'' 36</span><span>''先攻'' +9</span></div>\n<div><span>''AC'' 20，''强韧'' 19，''反射'' 19，''意志'' 17</span><span>''侦查'' +10</span></div>\n<div><span>''速度'' 8，攀爬 4</span><span>''感官'' 昏暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">皮毛模糊</div>\n<div class=description>老虎移动 2 格或以上时对抗借机攻击的 AC 获得+4 加值直到其下回合开始。</div>\n<div class=\"bold bg-power\">冲锋猛扑</div>\n<div class=description>当老虎冲锋时，其攻击造成 1d8 额外伤害，且该冲锋不会结束其回合。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬✦随意</div>\n<div class=description>攻击：+11 vs. AC<br>命中：1d6+4 伤害，以及 5 点持续伤害（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">气势汹汹✦遭遇</div>\n<div class=description>该老虎进行一个移动动作。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 杂技+12，隐秘+12</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 18（+7）</span><span>''敏捷'' 19（+7）</span><span>''感知'' 15（+5）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 17（+6）</span><span>''智力'' 2（-1）</span><span>''魅力'' 11（+3）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n</div>",
+    "title": "老虎 Tiger",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "6",
+    "role": "游击",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "自然界",
+    "creature-type": "野兽",
+    "xp": "250",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "9120"
+  }
+]

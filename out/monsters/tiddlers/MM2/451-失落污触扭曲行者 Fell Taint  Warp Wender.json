@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>4级 控制</span></div>\n<div class=bg-title><span>中型 异界 魔法兽</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 38；''重伤'' 19</span><span>''先攻'' +5</span></div>\n<div><span>''AC'' 18，''强韧'' 16，''反射'' 16，''意志'' 17</span><span>''侦查'' +10</span></div>\n<div><span>''抗力'' 虚体；''易伤'' 5 心灵</span><span></span></div>\n<div><span>''速度'' 1，飞行 6（盘旋）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}触须之拥（心灵）✦随意</div>\n<div class=description>攻击：+8 vs. 反射<br>命中：1d6+4 心灵伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}心灵易位（心灵，瞬移）✦随意</div>\n<div class=description>攻击：射程 10，+8 vs. 意志<br>命中：1d4+4 心灵伤害，且目标晕眩（豁免终止）。<br>首次豁免失败时：该失落污触扭曲行者与目标互换位置。</div>\n<div class=\"bold bg-power\">失落污触进食（医疗）✦随意</div>\n<div class=description>以一个无助或昏迷的生物为目标；该失落污触扭曲行者失去虚体及其飞行速度直到其下回合<br>结束，且它对目标进行一次致命一击。如果该失落污触扭曲行者杀死了目标，则它生命值回满。</div>\n<div class=\"italic bg-flavortext\">（失落污触）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 11（+2）</span><span>''敏捷'' 16（+5）</span><span>''感知'' 17（+5）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 15（+4）</span><span>''智力'' 6（+0）</span><span>''魅力'' 12（+3）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n</div>",
+    "title": "失落污触扭曲行者 Fell Taint  Warp Wender",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "4",
+    "role": "控制",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "异界",
+    "creature-type": "魔法兽",
+    "xp": "175",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "7003"
+  }
+]

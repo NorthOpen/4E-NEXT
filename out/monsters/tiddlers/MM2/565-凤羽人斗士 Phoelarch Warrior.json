@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>12级 精英 游击</span></div>\n<div class=bg-title><span>中型 自然界 类人生物（火系）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 114；''重伤'' 57</span><span>''先攻'' +14</span></div>\n<div><span>''AC'' 26，''强韧'' 23，''反射'' 25，''意志'' 25</span><span>''侦查'' +8</span></div>\n<div><span>''抗力'' 10 火焰；''易伤'' 5 寒冷</span><span></span></div>\n<div><span>''速度'' 7</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}凤凰高温（火焰）</div>\n<div class=description>灵气 1：所有进入该灵气或在其内开始回合的生物受到 5 点火焰伤害。</div>\n<div class=\"bold bg-power\">燃炎步（火焰）</div>\n<div class=description>任何通过借机攻击命中该凤羽人斗士的生物受到 3d6 火焰伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}燃炎弯刃大刀（火焰，武器）✦随意</div>\n<div class=description>攻击：+17 vs. AC<br>命中：2d4+6 火焰伤害（重击则为 4d4+14 火焰伤害）。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}浴火重生（火焰，结界）</div>\n<div class=description>触发：当该凤羽人斗士生命值降到 0 时。<br>攻击：近程爆发 2，+13 vs. 反射<br>命中：3d8+5 火焰伤害。<br>效果：爆发生成一个火焰的结界持续直到遭遇结束。所有进入该结界或在其内开始回合的生物受到 5 点火焰伤害。此外，当该凤羽人斗士原定的下回合到来时，一只凤羽鸟出现在该结界范围内。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 杂技+17，运动+12</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 13（+7）</span><span>''敏捷'' 23（+12）</span><span>''感知'' 14（+8）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 10（+6）</span><span>''智力'' 10（+6）</span><span>''魅力'' 18（+10）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 通用语，荒神语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 弯刃大刀</span></div></div>\n</div>",
+    "title": "凤羽人斗士 Phoelarch Warrior",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "12",
+    "role": "游击",
+    "specialty-role": "精英",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物（火系）",
+    "xp": "350",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "8660"
+  }
+]

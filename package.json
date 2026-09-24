@@ -1,6 +1,6 @@
 {
   "name": "4enext",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "private": true,
   "packageManager": "pnpm@11.21.0",
   "type": "module",
@@ -13,6 +13,9 @@
     "normalize": "tsc && node dist/cli.js normalize",
     "index": "tsc && node dist/cli.js index",
     "rules": "tsc && node dist/cli.js rules",
+    "monsters": "tsc && node dist/cli.js monsters",
+    "monsters:media": "tsc && node dist/cli.js monsters:media",
+    "monsters:tiddler": "tsc && node dist/cli.js monsters:tiddler",
     "sync": "tsc && node dist/cli.js sync",
     "commit": "tsc && node dist/cli.js commit",
     "pipeline": "tsc && node dist/cli.js all",

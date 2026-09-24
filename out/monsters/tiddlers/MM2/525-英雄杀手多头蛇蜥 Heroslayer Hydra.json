@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>20级 强者 蛮战</span></div>\n<div class=bg-title><span>超大型 自然界 野兽（鳞爪类）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 776；''重伤'' 388</span><span>''先攻'' +14</span></div>\n<div><span>''AC'' 32，''强韧'' 34，''反射'' 30，''意志'' 30</span><span>''侦查'' +19</span></div>\n<div><span>''豁免'' +5；''行动点'' 2</span><span>''感官'' 全域视野</span></div>\n<div><span>''速度'' 6</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">英雄杀手</div>\n<div class=description>在该英雄杀手多头蛇蜥被标记期间，它对标记它的生物的攻击骰获得+2 加值和伤害骰获得<br>+5 加值。</div>\n<div class=\"bold bg-power\">多头</div>\n<div class=description>每当该英雄杀手多头蛇蜥将进入晕眩或震慑时，它改为失去它下回合的多头蛇蜥狂怒中的一<br>次攻击。该英雄杀手多头蛇蜥可以被多次晕眩或震慑。</div>\n<div class=\"bold bg-power\">多头再生</div>\n<div class=description>当英雄杀手多头蛇蜥的生命值首次降到 582、388 和 194 时，一个头摧毁。一个头摧毁后的<br>该英雄杀手多头蛇蜥的下回合开始时，两个头从失去的头的位置长出，且该英雄杀手多头蛇蜥在多头蛇蜥狂怒中获得一次额外的啮咬攻击。</div>\n<div class=\"bold bg-power\">长距威胁</div>\n<div class=description>英雄杀手多头蛇蜥可以对其触及范围（3 格）内的敌人进行借机攻击。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬✦随意</div>\n<div class=description>攻击：触及 3，+25 vs. AC<br>命中：1d10+8 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}多头蛇蜥狂怒✦随意</div>\n<div class=description>该英雄杀手多头蛇蜥进行五次啮咬攻击，它每多生出一个头再多加一次攻击（参照多头再生）。在一轮中被超过一次的啮咬攻击命中的目标受到 10 点额外伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}暴怒</div>\n<div class=description>触发：当该英雄杀手多头蛇蜥被重击时充能。<br>该英雄杀手多头蛇蜥对其触及范围内的每个敌人进行一次啮咬攻击。若命中，则目标受到<br>10 点持续伤害（豁免终止）。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 23（+16）</span><span>''敏捷'' 19（+14）</span><span>''感知'' 18（+14）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 26（+18）</span><span>''智力'' 2（+6）</span><span>''魅力'' 9（+9）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span></div></div>\n</div>",
+    "title": "英雄杀手多头蛇蜥 Heroslayer Hydra",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "20",
+    "role": "蛮战",
+    "specialty-role": "强者",
+    "size": "超大型",
+    "origin": "自然界",
+    "creature-type": "野兽（鳞爪类）",
+    "xp": "14000",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "8075"
+  }
+]

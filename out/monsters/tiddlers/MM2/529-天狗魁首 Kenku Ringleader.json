@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>4级 头目 护卫</span></div>\n<div class=bg-title><span>中型 自然界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 54；''重伤'' 27</span><span>''先攻'' +8</span></div>\n<div><span>''AC'' 20，''强韧'' 16，''反射'' 16，''意志'' 15</span><span>''侦查'' +3</span></div>\n<div><span>''速度'' 6</span><span>''感官'' 昏暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">群体效应</div>\n<div class=description>天狗魁首在夹击时获得的加值是+3 而不是+2，且它在援助他人时提供的加值是+3 而不是+2。</div>\n<div class=\"bold bg-power\">模仿</div>\n<div class=description>天狗魁首可以模仿声响和声音。听者用洞察检定对抗该天狗魁首的唬骗检定成功可以觉察到<br>这个效果是伪装的。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}刺链（武器）✦随意</div>\n<div class=description>攻击：触及 2，+11 vs. AC<br>命中：2d4+5 伤害，且目标被标记直到该天狗魁首下回合结束。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}投石索（武器）✦随意</div>\n<div class=description>攻击：射程 10/20，+11 vs. AC<br>命中：1d6+5 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}压迫攻击（武器）✦随意</div>\n<div class=description>攻击：触及 2，以一个被该天狗魁首标记的敌人为目标，+11 vs. AC<br>命中：2d4+5 伤害，且目标倒地。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}群体反应✦充能 4,5,6{{$:/dnd/images/four}}{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>近程爆发 3；以天狗为目标；目标以一个自由动作快步 1 格。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 唬骗+10，威吓+10</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 13（+3）</span><span>''敏捷'' 18（+6）</span><span>''感知'' 12（+3）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 14（+4）</span><span>''智力'' 10（+2）</span><span>''魅力'' 16（+5）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 通用语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 皮甲，投石索，刺链</span></div></div>\n</div>",
+    "title": "天狗魁首 Kenku Ringleader",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "4",
+    "role": "护卫",
+    "specialty-role": "头目",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物",
+    "xp": "175",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "8143"
+  }
+]

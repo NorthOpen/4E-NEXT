@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>7级 控制</span></div>\n<div class=bg-title><span>大型 自然界 野兽（蜘蛛）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 82；''重伤'' 41</span><span>''先攻'' +6</span></div>\n<div><span>''AC'' 21，''强韧'' 20，''反射'' 19，''意志'' 19</span><span>''侦查'' +11</span></div>\n<div><span>''抗力'' 5 毒素</span><span>''感官'' 震动感知 10</span></div>\n<div><span>''速度'' 6，攀爬 6（蛛行）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">网行</div>\n<div class=description>该蜘蛛无视由网构成的困难地形。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬（毒素）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+12vs.AC<br>命中：1d8+6 伤害，以及 5 点持续毒素伤害，若目标定身、受缚、震慑或昏迷则为 10 点持续毒素伤害（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/area}}吐网✦随意</div>\n<div class=description>攻击：区域 5 爆发 1（范围内所有生物）+10vs.反射命中：目标受缚（豁免终止）。<br>效果：爆发内的格子是困难地形直到遭遇结束。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}死亡牵引✦随意</div>\n<div class=description>攻击：射程 5（一个生物）+10vs.强韧<br>命中：该蜘蛛拉动目标最多 4 格。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 运动+12，隐秘+11</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 19（+7）</span><span>''敏捷'' 16（+6）</span><span>''感知'' 17（+6）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 18（+7）</span><span>''智力'' 1（-2）</span><span>''魅力'' 9（-2）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n</div>",
+    "title": "网灭蜘蛛 Doomspinner Spider",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "7",
+    "role": "控制",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "自然界",
+    "creature-type": "野兽（蜘蛛）",
+    "xp": "300",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "4832"
+  }
+]

@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>18级 精英 控制</span></div>\n<div class=bg-title><span>大型 异界 魔法兽（不死生物）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 254；''重伤'' 127</span><span>''先攻'' +16</span></div>\n<div><span>''AC'' 30，''强韧'' 29，''反射'' 30，''意志'' 30</span><span>''侦查'' +17</span></div>\n<div><span>''免疫'' 疾病，毒素；''抗力'' 虚体；''易伤'' 10 光耀；''豁免'' +2；''行动点'' 1</span><span>''感官'' 黑暗视觉，全域视野</span></div>\n<div><span>''速度'' 0，飞行 6（盘旋），相位移动</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">全域视野</div>\n<div class=description>敌人不能通过夹击对该幽魂眼魔获得战斗优势。</div>\n<div class=\"bold bg-power\">1</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬（黯蚀）✦随意</div>\n<div class=description>攻击：近战（一个生物）+21vs.反射<br>命中：3d8+13 黯蚀伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}眼魔射线✦随意</div>\n<div class=description>效果：该幽魂眼魔使用下列眼魔射线中的一个，不会引发借机攻击。</div>\n<div class=\"bold bg-power\">1.阴寒射线（寒冷，黯蚀）</div>\n<div class=description>攻击：射程 10（一个生物）；+21vs.强韧<br>命中：4d8+8 寒冷和黯蚀伤害，且目标迟缓（豁免终止）。首次豁免失败时：目标改迟缓为定身（豁免终止）。</div>\n<div class=\"bold bg-power\">2.鬼上身射线（心灵）</div>\n<div class=description>攻击：射程 10（一个生物）+21vs.意志 命中：15 点持续心灵伤害（豁免终止）。<br>首次豁免失败时：除了持续伤害，目标还会晕眩（豁免终止两者）。<br>第二次豁免失败时：目标改晕眩为受控且继续受到持续伤害（豁免终止两者）。该幽魂眼魔除出游戏直到该效果终止。当该效果终止时，该幽魂眼魔出现在该目标 10 格内的一个不被占据的空间。该幽魂眼魔可以以一个自由动作终止该效果。</div>\n<div class=\"bold bg-power\">3.自杀射线（心灵）</div>\n<div class=description>攻击：射程 10（一个生物）+21vs.意志<br>命中：1d8+9 心灵伤害，且目标以一个自由动作对它自己进行一次近战基本攻击。如果目标没有持用近战武器，则它扔下持握的一件物品并以一个自由动作抽出一件近战武器然后进行该攻击。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}主眼（恐惧）✦随意（一轮一次）</div>\n<div class=description>攻击：射程 10（一个生物）+21vs.意志<br>命中：该幽魂眼魔滑移目标 5 格，且目标获得 5 点黯蚀易伤和 5 点心灵易伤直到该幽魂眼魔下回合开始。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}眼魔之眼✦随意</div>\n<div class=description>触发：该幽魂眼魔 5 格内的一个敌人开始回合。<br>效果（自由动作）：该幽魂眼魔对触发的敌人使用眼魔射线。通过投 d4 来决定它使用哪种射线，如果投到 4 则重投。</div>\n<div class=\"italic bg-flavortext\">（幽魂眼魔）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 12（+10）</span><span>''敏捷'' 25（+16）</span><span>''感知'' 16（+12）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 19（+13）</span><span>''智力'' 22（+15）</span><span>''魅力'' 25（+16）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 异怪语</span></div></div>\n</div>",
+    "title": "幽魂眼魔 Ghost Beholder",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "18",
+    "role": "控制",
+    "specialty-role": "精英",
+    "size": "大型",
+    "origin": "异界",
+    "creature-type": "魔法兽（不死生物）",
+    "xp": "4000",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "9826"
+  }
+]

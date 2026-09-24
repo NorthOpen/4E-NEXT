@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>15级 杂兵 游击</span></div>\n<div class=bg-title><span>小型 元素界 类人生物（恶魔） （若为脓包魔造出则为 0）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 1；失手攻击无法伤害杂兵</span><span>''先攻'' +14</span></div>\n<div><span>''AC'' 29，''强韧'' 28，''反射'' 28，''意志'' 25</span><span>''侦查'' +6</span></div>\n<div><span>''抗力'' 脓包衍体享有创造它的脓包魔所拥有的任何</span><span>''感官'' 黑暗视觉</span></div>\n<div><span>''速度'' 8</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}腐蚀粘液（强酸）✦随意</div>\n<div class=description>攻击：+20 vs. AC<br>命中：12 点强酸伤害<br>近距危险<br>脓包衍体对任何邻接的敌人拥有战斗优势。</div>\n<div class=\"italic bg-flavortext\">（脓包魔）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 13（+8）</span><span>''敏捷'' 20（+12）</span><span>''感知'' 8（+6）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 21（+12）</span><span>''智力'' 5（+4）</span><span>''魅力'' 15（+9）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 深渊语，通用语</span></div></div>\n</div>",
+    "title": "脓包衍体 Podspawn",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "15",
+    "role": "游击",
+    "specialty-role": "杂兵",
+    "size": "小型",
+    "origin": "元素界",
+    "creature-type": "类人生物（恶魔） （若为脓包魔造出则为 0）",
+    "xp": "300",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "5888"
+  }
+]

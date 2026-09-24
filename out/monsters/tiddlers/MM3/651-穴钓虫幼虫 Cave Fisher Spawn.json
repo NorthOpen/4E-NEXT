@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>2级 杂兵 蛮战</span></div>\n<div class=bg-title><span>小型 自然界 野兽</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 1；失手攻击无法伤害杂兵</span><span>''先攻'' +2</span></div>\n<div><span>''AC'' 15，''强韧'' 13，''反射'' 14，''意志'' 12</span><span>''侦查'' +0</span></div>\n<div><span>''速度'' 5，攀爬 4（蛛行）</span><span>''感官'' 黑暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}螯击✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+5vs.AC<br>命中：6 点伤害，对处于定身、受缚或无助的目标则为 9 点伤害。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 11（+1）</span><span>''敏捷'' 13（+2）</span><span>''感知'' 8（+0）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 11（+1）</span><span>''智力'' 2（-3）</span><span>''魅力'' 5（-2）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n</div>",
+    "title": "穴钓虫幼虫 Cave Fisher Spawn",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "2",
+    "role": "蛮战",
+    "specialty-role": "杂兵",
+    "size": "小型",
+    "origin": "自然界",
+    "creature-type": "野兽",
+    "xp": "31",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "9948"
+  }
+]

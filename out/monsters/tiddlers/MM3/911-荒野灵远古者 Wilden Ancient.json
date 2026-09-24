@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>4级 头目 远程</span></div>\n<div class=bg-title><span>中型 精界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 45；''重伤'' 22</span><span>''先攻'' +2</span></div>\n<div><span>''AC'' 16，''强韧'' 13，''反射'' 12，''意志'' 15</span><span>''侦查'' +11</span></div>\n<div><span>''速度'' 6</span><span>''感官'' 昏暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}矛（武器）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+9vs.AC<br>命中：1d8 伤害，且一个邻接目标的盟友可以以一个自由动作对目标进行一次攻击骰带有+4加值的近战基本攻击。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}虚幻蔓藤（法器）✦随意</div>\n<div class=description>攻击：射程 20（一个生物）+9vs.反射<br>命中：1d8+7 伤害，且该荒野灵远古者拉动目标 2 格。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/area}}震动大地（法器）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：区域 10 爆发 1（爆发内所有生物）+9vs.意志<br>命中：1d6+4 伤害，且目标定身（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/area}}闪电风暴（闪电，法器）✦遭遇</div>\n<div class=description>攻击：区域 20 爆发 1（爆发内所有敌人）+9vs.强韧命中：3d6+4 闪电伤害。<br>失手：一半伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">远古者之智慧✦随意（一轮一次）</div>\n<div class=description>效果：该荒野灵远古者 5 格内的一个盟友的攻击骰获得+2 威能加值直到该盟友下回合结束。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">远古者之航行（瞬移）✦遭遇</div>\n<div class=description>触发：该荒野灵远古者通过一次近程或区域攻击命中敌人。<br>效果（自由动作）：该荒野灵远古者瞬移 3 格。由该荒野灵远古者选择的一个被该攻击命中的敌人提供战斗优势直到该荒野灵远古者下回合结束。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 神秘+9，历史+9</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 12（+3）</span><span>''敏捷'' 10（+2）</span><span>''感知'' 19（+6）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 15（+4）</span><span>''智力'' 15（+4）</span><span>''魅力'' 14（+4）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 通用语，精灵语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 革甲，矛，图腾</span></div></div>\n</div>",
+    "title": "荒野灵远古者 Wilden Ancient",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "4",
+    "role": "远程",
+    "specialty-role": "头目",
+    "size": "中型",
+    "origin": "精界",
+    "creature-type": "类人生物",
+    "xp": "175",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "14556"
+  }
+]

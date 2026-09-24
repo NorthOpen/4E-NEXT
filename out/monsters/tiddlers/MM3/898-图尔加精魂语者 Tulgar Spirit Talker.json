@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>24级 控制</span></div>\n<div class=bg-title><span>中型 自然界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 225；''重伤'' 112</span><span>''先攻'' +18</span></div>\n<div><span>''AC'' 37，''强韧'' 35，''反射'' 37，''意志'' 37</span><span>''侦查'' +25</span></div>\n<div><span>''速度'' 7（森林行者）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}原力屏障✦灵气 2</div>\n<div class=description>在该灵气内的格子对没有相位移动或没有森林行者的生物来说是困难地形。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}矛（武器）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+29vs.AC<br>命中：4d8+14 伤害，且目标被该图尔加精魂语者 10 格内的一个盟友标记直到该图尔加精魂语者下回合结束。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}激发野性（心灵）✦随意</div>\n<div class=description>攻击：射程 10（一个生物）+27vs.意志<br>命中：4d10+10 心灵伤害。如果目标在其下回合中没有进行一次近战攻击，则它提供战斗优势直到其再下一个回合结束。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}遣退✦充能 4,5,6{{$:/dnd/images/four}}{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>特殊：选择该图尔加精魂语者 10 格内的一个咒法、一个召唤生物或是一个结界，然后进行下述攻击。<br>攻击：射程 10（所选效应的创造者）+29vs.意志。<br>命中：所选的效应终止。</div>\n<div class=\"bold bg-power\">召唤精魂斗士✦充能 6{{$:/dnd/images/six}}</div>\n<div class=description>效果：一个图尔加狂暴者出现在该图尔加精魂语者 5 格内。该图尔加狂暴者的先攻序位排在<br>该图尔加精魂语者后一位。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">死亡之拥（结界）</div>\n<div class=description>触发：该图尔加精魂语者的生命值降到 0。<br>效果（无动作）：该图尔加精魂语者最近的一个盟友获得 10 点临时生命值且攻击骰、伤害骰和所有防御获得+2 加值直到其下回合结束。<br>该图尔加精魂语者的死亡生成一个近程爆发 2 的结界持续直到遭遇结束。该结界对没有相<br>位移动或没有森林行者的生物来说是困难地形。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 22（+18）</span><span>''敏捷'' 23（+18）</span><span>''感知'' 27（+20）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 25（+19）</span><span>''智力'' 26（+20）</span><span>''魅力'' 28（+21）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 通用语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 矛</span></div></div>\n</div>",
+    "title": "图尔加精魂语者 Tulgar Spirit Talker",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "24",
+    "role": "控制",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物",
+    "xp": "6050",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "14298"
+  }
+]

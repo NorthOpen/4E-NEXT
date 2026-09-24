@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>34级 强者 护卫</span></div>\n<div class=bg-title><span>巨型 元素界 类人生物（地系，荒神）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 1244；''重伤'' 622</span><span>''先攻'' +24</span></div>\n<div><span>''AC'' 50，''强韧'' 48，''反射'' 45，''意志'' 47</span><span>''侦查'' +26</span></div>\n<div><span>''免疫'' 疾病，毒素，睡眠；''豁免'' +5；''行动点'' 3</span><span>''感官'' 黑暗视觉，震动感知 20</span></div>\n<div><span>''速度'' 8（大地行者），掘穴 8，攀爬 8</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}崎岖大地✦灵气 5{{$:/dnd/images/five}}</div>\n<div class=description>该灵气内的格子是困难地形。任何生物在其回合中首次进入该灵气内的一个格子时，它必须进行一次 DC32 的运动或杂技检定成功否则受到 20 点伤害。拥有大地行者的生物无视该灵气<br>的效果。</div>\n<div class=\"bold bg-power\">地缚</div>\n<div class=description>在站立于一个固体表面上时，欧雷莫奇无视强制移动且不能被击倒。</div>\n<div class=\"bold bg-power\">大地滑行</div>\n<div class=description>欧雷莫奇可以像相位移动一样穿过土壤和岩石。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}击打✦随意</div>\n<div class=description>攻击：近战 4（一个生物）+39vs.AC<br>命中：4d8+24 伤害，且每个邻接目标的敌人晕眩直到欧雷莫奇下回合结束。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}欧雷莫奇狂怒✦随意</div>\n<div class=description>效果：欧雷莫奇进行两次击打攻击，在其重伤期间则为三次。如果欧雷莫奇命中同一个目标超过一次，则他推动该目标 10 格且如果目标正受晶片困体影响的话则目标视为对晶片困体<br>的豁免掷骰失败了一次。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}大地暴扣✦随意</div>\n<div class=description>攻击：近程冲击 5（冲击内所有生物）+37vs.反射<br>命中：2d8+12 伤害，且目标倒地并晕眩（豁免终止）。失手：一半伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}大地震✦充能（当首次重伤时）</div>\n<div class=description>攻击：近程爆发 10（爆发内所有生物）+37vs.强韧<br>命中：5d8+12 伤害，且欧雷莫奇滑移目标 4 格并击倒它。此外，目标不能站起且晕眩（豁免终止两者）。<br>失手：一半伤害，且欧雷莫奇滑移目标 1 格并击倒它。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}大地粉碎✦随意（一轮一次）</div>\n<div class=description>前提：欧雷莫奇处于重伤。<br>目标：欧雷莫奇 10 格内的一个石化的生物<br>效果：该生物不再石化，且欧雷莫奇以该生物为中心并包含该生物进行下述攻击。攻击：近程爆发 3（爆发内所有生物）+37vs.强韧<br>命中：3d8+12 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}晶片困体✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：近程冲击 5（冲击内所有生物）+37vs.强韧<br>命中：目标定身（豁免终止）。<br>首次豁免失败时：目标震慑（豁免终止）。<br>第二次豁免失败时：目标石化（豁免终止；目标在该豁免掷骰受到-5 减值）。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}崎岖爆发✦随意</div>\n<div class=description>触发：一个敌人以一次近战攻击命中欧雷莫奇。<br>攻击（直觉反应）：近程爆发 3（爆发内所有敌人）+37vs.反射命中：2d8+12 伤害，且目标定身（豁免终止）。<br>后续效果：目标受到 10 点伤害。</div>\n<div class=\"bold bg-power\">不朽耐力✦随意</div>\n<div class=description>触发：欧雷莫奇受一个可以被豁免终止的效果影响。<br>效果（无动作）：欧雷莫奇对该效果进行一次豁免掷骰。</div>\n<div class=\"bold bg-power\">可变抗性✦每遭遇三次</div>\n<div class=description>触发：欧雷莫奇受到强酸、寒冷、火焰、闪电或雷鸣伤害。<br>效果（自由动作）：欧雷莫奇获得 20 点触发伤害类型的抗性直到遭遇结束或直到它再次使用可变抗性。</div>\n<div class=\"bold bg-power\">欧雷莫奇的邪教徒 OGRÉMOCH’S CULTISTS</div>\n<div class=\"italic bg-flavortext\">（欧雷莫奇）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 34（+29）</span><span>''敏捷'' 21（+22）</span><span>''感知'' 29（+26）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 31（+27）</span><span>''智力'' 24（+24）</span><span>''魅力'' 27（+25）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 荒神语</span></div></div>\n</div>",
+    "title": "欧雷莫奇 Ogrémoch",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "34",
+    "role": "护卫",
+    "specialty-role": "强者",
+    "size": "巨型",
+    "origin": "元素界",
+    "creature-type": "类人生物（地系，荒神）",
+    "xp": "195000",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "13415"
+  }
+]

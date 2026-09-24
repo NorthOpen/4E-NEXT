@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>13级 控制</span></div>\n<div class=bg-title><span>中型 元素界 魔法兽（气系）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 134；''重伤'' 67</span><span>''先攻'' +10</span></div>\n<div><span>''AC'' 27，''强韧'' 26，''反射'' 24，''意志'' 24</span><span>''侦查'' +10</span></div>\n<div><span>''免疫'' 疾病，毒素；''抗力'' 在非</span><span></span></div>\n<div><span>''速度'' 0，飞行 7（盘旋）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}空气刀✦随意</div>\n<div class=description>攻击：+16 vs. 反射<br>命中：2d8+5 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}吹风✦随意</div>\n<div class=description>攻击：射程 10，+16 vs. 反射<br>命中：2d10+3 伤害，且该暴风束滑移目标 1 格。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}翻腾上升气流✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：射程 10，+20 vs. 强韧<br>命中：目标上升 20 英尺（4 格）并受缚（豁免终止）。首次豁免失败时：目标再上升 20 英尺。<br>豁免成功时：目标坠落并受到坠落伤害，如果可能的话。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 15（+8）</span><span>''敏捷'' 19（+10）</span><span>''感知'' 19（+10）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 22（+12）</span><span>''智力'' 9（+5）</span><span>''魅力'' 14（+8）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 荒神语</span></div></div>\n</div>",
+    "title": "暴风束 Tempest Wisp",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "13",
+    "role": "控制",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "元素界",
+    "creature-type": "魔法兽（气系）",
+    "xp": "800",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "6934"
+  }
+]

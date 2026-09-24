@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>11级 游击</span></div>\n<div class=bg-title><span>中型 自然界 类人生物（不死生物）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 111；''重伤'' 55</span><span>''先攻'' +12</span></div>\n<div><span>''AC'' 25，''强韧'' 23，''反射'' 24，''意志'' 23</span><span>''侦查'' +14</span></div>\n<div><span>''免疫'' 疾病，毒素</span><span>''感官'' 黑暗视觉，真视 10</span></div>\n<div><span>''速度'' 8</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">机动突袭</div>\n<div class=description>若恐怖守卫刺客在结束一次移动时距离它开始该移动时的位置至少有 4 格，则其攻击骰获得<br>+2 加值直到其回合结束。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}力场刃（力场）✦随意</div>\n<div class=description>攻击：+16 vs. AC<br>命中：2d6+6 力场伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}恐怖刃（力场）✦遭遇</div>\n<div class=description>攻击：近程爆发 1，+16 vs. AC<br>命中：2d6+6 力场伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">雾遁✦随意</div>\n<div class=description>触发：当被一次近战攻击失手时。<br>该恐怖守卫刺客快步两格并获得虚体和相位移动能力直到其下回合结束。</div>\n<div class=\"italic bg-flavortext\">（恐怖守卫）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 隐秘+15</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 18（+9）</span><span>''敏捷'' 21（+10）</span><span>''感知'' 18（+9）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 15（+7）</span><span>''智力'' 16（+8）</span><span>''魅力'' 17（+8）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 通用语</span></div></div>\n</div>",
+    "title": "恐怖守卫刺客 Direguard Assassin",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "11",
+    "role": "游击",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物（不死生物）",
+    "xp": "600",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "6119"
+  }
+]

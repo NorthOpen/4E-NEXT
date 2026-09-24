@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>3级 游击</span></div>\n<div class=bg-title><span>中型 自然界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 48；''重伤'' 24</span><span>''先攻'' +5</span></div>\n<div><span>''AC'' 17，''强韧'' 17，''反射'' 15，''意志'' 15</span><span>''侦查'' +3</span></div>\n<div><span>''速度'' 6</span><span>''感官'' 昏暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">长距威胁</div>\n<div class=description>该大地精可以对其武器触及范围（两格）内的敌人进行借机攻击。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}长矛（武器）✦随意</div>\n<div class=description>攻击：近战 2（一个生物）+8vs.AC<br>命中：1d10+6 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}标枪（武器）✦随意</div>\n<div class=description>攻击：射程 20（一个生物）+8vs.AC<br>命中：2d6+4 伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">移动动作</div>\n<div class=\"bold bg-power\">方阵行军✦随意</div>\n<div class=description>效果：该大地精和每个邻接它的盟友可以以一个自由动作快步一个。这些盟友必须停在邻<br>接该大地精的位置。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">战术撤退✦随意</div>\n<div class=description>触发：一个敌人进入一个邻接该大地精的格子。<br>效果（直觉反应）：该大地精快步最多三格。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 19（+5）</span><span>''敏捷'' 15（+3）</span><span>''感知'' 14（+3）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 16（+4）</span><span>''智力'' 11（+1）</span><span>''魅力'' 10（+1）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 通用语，地精语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 链甲，长矛，6 把标枪</span></div></div>\n</div>",
+    "title": "大地精枪矛兵 Hobgoblin Spear Soldier",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "3",
+    "role": "游击",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物",
+    "xp": "150",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "2499"
+  }
+]

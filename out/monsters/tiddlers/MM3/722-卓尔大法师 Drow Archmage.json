@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>25级 远程</span></div>\n<div class=bg-title><span>中型 精界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 178；''重伤'' 89</span><span>''先攻'' +19</span></div>\n<div><span>''AC'' 37，''强韧'' 36，''反射'' 37，''意志'' 39</span><span>''侦查'' +14</span></div>\n<div><span>''速度'' 7</span><span>''感官'' 黑暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}匕首（武器）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+30vs.AC<br>命中：2d4+15 伤害，且目标的攻击骰受到-4 减值直到该卓尔大法师下回合结束。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}深渊矢（强酸，毒素）✦随意</div>\n<div class=description>攻击：射程 20（一个生物）+30vs.反射<br>命中：4d8+15 强酸和毒素伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}残忍放逐（瞬移）✦遭遇</div>\n<div class=description>攻击：近战 1（一个生物）+30vs.强韧<br>命中：该卓尔大法师瞬移目标 7 格，且目标晕眩（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}恶魔掌控（毒素）✦遭遇</div>\n<div class=description>攻击：射程 10（一个生物）+30vs.强韧<br>命中：目标定身并悬浮在 1 格高度（豁免终止两者）。在该效果持续期间，每当目标或其盟<br>友对恶魔、卓尔或蜘蛛造成伤害时，目标受到 10 点毒素伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">不洁献祭（黯蚀）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>效果：该卓尔大法师对一个邻接它的盟友造成 20 点伤害。此外，该卓尔大法师的一个遭遇<br>威能充能或是它在其下回合结束前的下一次远程攻击造成 10 点额外伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}暗炎✦遭遇</div>\n<div class=description>攻击：射程 10（一个生物）+30vs.反射<br>命中：目标提供战斗优势且不能从隐形或隐蔽获得增益直到该卓尔大法师下回合结束。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 神秘+23</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 13（+13）</span><span>''敏捷'' 25（+19）</span><span>''感知'' 14（+14）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 22（+18）</span><span>''智力'' 22（+18）</span><span>''魅力'' 28（+21）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 深渊语，通用语，精灵语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 匕首</span></div></div>\n</div>",
+    "title": "卓尔大法师 Drow Archmage",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "25",
+    "role": "远程",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "精界",
+    "creature-type": "类人生物",
+    "xp": "7000",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "11257"
+  }
+]

@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>6级 伏击</span></div>\n<div class=bg-title><span>大型 元素界 魔法兽（土系）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 56；''重伤'' 28</span><span>''先攻'' +10</span></div>\n<div><span>''AC'' 20，''强韧'' 18，''反射'' 17，''意志'' 17</span><span>''侦查'' +11</span></div>\n<div><span>''免疫'' 疾病，石化，毒素</span><span>''感官'' 黑暗视觉</span></div>\n<div><span>''速度'' 4</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">闭壳形态</div>\n<div class=description>吉阿尼德在关闭外壳时就像一块大石头。一个生物可以通过一次 DC28 的侦查检定来识破该<br>吉阿尼德是一个生物。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}触手✦随意</div>\n<div class=description>攻击：触及 2，+11 vs. AC<br>命中：2d6+4 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}擒拿捆缚✦随意</div>\n<div class=description>攻击：触及 2，+11 vs. AC<br>命中：1d6+4 伤害。<br>效果：该吉阿尼德对同一个目标再进行一次攻击。如果两次攻击都命中，则目标被擒抱。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}闭壳猛击✦随意</div>\n<div class=description>攻击：近程爆发 2，+9 vs. 强韧<br>命中：目标倒地。<br>效果：该吉阿尼德关闭其外壳。在该吉阿尼德关闭外壳期间，他的速度变成 0，它的所有防御获得+5 加值，且它不对任何被它擒抱以外的生物拥有效果线。该吉阿尼德滑移一个被它擒抱的生物到它的空间里。这个被擒抱的生物只对该吉阿尼德拥有视线和效果线。该吉阿尼德对这个被擒抱的生物不会获得它的防御所获得的那个加值。如果这个被擒抱的生物挣脱，它出现在一个邻接该吉阿尼德的空间。该吉阿尼德可以以一个次要动作打开其外壳。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 隐秘+11</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 19（+7）</span><span>''敏捷'' 16（+6）</span><span>''感知'' 17（+6）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 14（+5）</span><span>''智力'' 6（+1）</span><span>''魅力'' 9（+2）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 荒神语</span></div></div>\n</div>",
+    "title": "吉阿尼德 Geonid",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "6",
+    "role": "伏击",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "元素界",
+    "creature-type": "魔法兽（土系）",
+    "xp": "250",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "6867"
+  }
+]

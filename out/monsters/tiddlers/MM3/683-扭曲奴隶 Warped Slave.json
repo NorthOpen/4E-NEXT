@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>16级 蛮战</span></div>\n<div class=bg-title><span>大型 异界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 193；''重伤'' 96</span><span>''先攻'' +11</span></div>\n<div><span>''AC'' 28，''强韧'' 29，''反射'' 26，''意志'' 29</span><span>''侦查'' +7</span></div>\n<div><span>''速度'' 6（不能快步）</span><span>''感官'' 黑暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}精神粉碎（心灵）✦灵气 1</div>\n<div class=description>任何在该灵气内结束回合的敌人受到 5 点心灵伤害。每当一个迪洛矮人在该灵气内使用疯狂<br>之力时，该扭曲奴隶可以以一个自由动作使用触手。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+21vs.AC<br>命中：3d12+6 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}触手✦随意</div>\n<div class=description>攻击：近战 2（一个生物）+19vs.反射<br>命中：2d12+6 伤害，且该扭曲奴隶擒抱目标。然后该扭曲奴隶拉动目标 1 格。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}触手狂鞭✦随意</div>\n<div class=description>前提：该扭曲奴隶处于重伤。<br>攻击：近程爆发 2（爆发内所有敌人）+21vs.AC  命中：2d12+6 伤害，且该扭曲奴隶拉动目标 1 格。</div>\n<div class=\"bold bg-power\">魔鬼，堕落魔DEVIL,CORRUPTION</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 18（+12）</span><span>''敏捷'' 16（+11）</span><span>''感知'' 8（+7）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 23（+14）</span><span>''智力'' 4（+5）</span><span>''魅力'' 23（+14）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 通用语，异怪语</span></div></div>\n</div>",
+    "title": "扭曲奴隶 Warped Slave",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "16",
+    "role": "蛮战",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "异界",
+    "creature-type": "类人生物",
+    "xp": "1400",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "10529"
+  }
+]

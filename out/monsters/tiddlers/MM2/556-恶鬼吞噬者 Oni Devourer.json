@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>7级 护卫</span></div>\n<div class=bg-title><span>中型 自然界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 78；''重伤'' 39</span><span>''先攻'' +8</span></div>\n<div><span>''AC'' 23，''强韧'' 19，''反射'' 19，''意志'' 18</span><span>''侦查'' +3</span></div>\n<div><span>''速度'' 6，攀爬 4</span><span>''感官'' 黑暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}爪击✦随意</div>\n<div class=description>攻击：+14 vs. AC<br>命中：1d6+3 伤害，且目标迟缓（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}吞噬✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：+14 vs. AC<br>命中：2d6+3 伤害，且目标的豁免受到-5 减值（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}催眠瞪视（魅惑，凝视）✦遭遇</div>\n<div class=description>攻击：射程 10，+12 vs. 意志<br>命中：目标被拉动 5 格并晕眩（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">迷罩（幻术）✦随意</div>\n<div class=description>该恶鬼吞噬者可以伪装其物理形态为任意中型自然界类人生物。一个生物可以通过洞察检定<br>对抗该恶鬼吞噬者的唬骗检定成功来识破这是伪装的。</div>\n<div class=\"italic bg-flavortext\">（恶鬼吞噬者）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 唬骗+13，隐秘+11</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 17（+6）</span><span>''敏捷'' 17（+6）</span><span>''感知'' 11（+3）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 14（+5）</span><span>''智力'' 10（+3）</span><span>''魅力'' 14（+5）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 通用语，巨人语</span></div></div>\n</div>",
+    "title": "恶鬼吞噬者 Oni Devourer",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "7",
+    "role": "护卫",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物",
+    "xp": "300",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "8548"
+  }
+]

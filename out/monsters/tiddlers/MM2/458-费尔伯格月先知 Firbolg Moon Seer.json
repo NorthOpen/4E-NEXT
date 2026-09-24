@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>14级 控制</span></div>\n<div class=bg-title><span>大型 精界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 141；''重伤'' 70</span><span>''先攻'' +11</span></div>\n<div><span>''AC'' 28，''强韧'' 26，''反射'' 24，''意志'' 27</span><span>''侦查'' +18</span></div>\n<div><span>''易伤'' 黯蚀（如果该费尔伯格月先知受到黯蚀伤害，则它的再生在其下回合失效）；''豁免'' +2</span><span>''感官'' 昏暗视觉</span></div>\n<div><span>''速度'' 8</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}月亮硬头锤（光耀，武器）✦随意</div>\n<div class=description>攻击：触及 2，+18 vs. 反射<br>命中：1d10+7 光耀伤害，且目标目盲直到其下回合开始。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}乌鸦禁术（黯蚀，光耀）✦遭遇</div>\n<div class=description>攻击：射程 10，+18 vs. 强韧<br>命中：3d8+6 黯蚀伤害，对目标的攻击骰在投到 18-20 时便可造成重击，且重击将对目标造成 10 点额外黯蚀伤害（豁免终止两者）。<br>后续效果：对目标的攻击骰在投到 19-20 时便可造成重击（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}月击（魅惑，心灵）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：近程爆发 5，以一个受月火影响的敌人为目标，+18 vs. 意志<br>命中：2d8+6 心灵伤害，且目标受控<br>直到该费尔伯格月先知下回合结束。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}月火✦充能 4,5,6{{$:/dnd/images/four}}{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：射程 10，+18 vs. 意志<br>命中：直到该费尔伯格月先知下回合结束，目标提供给该费尔伯格月先知<br>战斗优势且不能从隐形或隐蔽获得增益。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}精神追猎</div>\n<div class=description>触发：当首次重伤时充能。<br>攻击：近程冲击 5，以敌人为目标，+17 vs. 反射<br>命中：2d6+6 伤害，且目标迟缓且不能瞬移（豁免终止两者）。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 神秘+14，运动+15，自然+18，宗教+14</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 17（+10）</span><span>''敏捷'' 18（+11）</span><span>''感知'' 23（+13）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 21（+12）</span><span>''智力'' 14（+9）</span><span>''魅力'' 15（+9）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 通用语，精灵语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 皮甲，硬头锤，月亮面具</span></div></div>\n</div>",
+    "title": "费尔伯格月先知 Firbolg Moon Seer",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "14",
+    "role": "控制",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "精界",
+    "creature-type": "类人生物",
+    "xp": "1000",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "7108"
+  }
+]

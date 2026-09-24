@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>8级 游击</span></div>\n<div class=bg-title><span>中型 自然界 类人生物（不死生物）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 86；''重伤'' 43</span><span>''先攻'' +9</span></div>\n<div><span>''AC'' 22，''强韧'' 20，''反射'' 19，''意志'' 17</span><span>''侦查'' +2</span></div>\n<div><span>''免疫'' 腐蛆寄生症</span><span></span></div>\n<div><span>''速度'' 6</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}击打✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+13vs.AC<br>命中：2d6+9 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}甩体击打✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+13vs.AC命中：2d6+9 伤害。<br>效果：在该攻击前或后，该腐蛆僵尸快步 1 格。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}腐蛆饥饿（疾病，黯蚀）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：近战 1（一个生物）+13vs.AC 命中：2d6+9 伤害以及 2d6 黯蚀伤害。<br>效果：如果目标处于重伤，则它暴露在腐蛆寄生症之下。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">尸体崩溃</div>\n<div class=description>触发：该腐蛆僵尸的生命值降到 0。<br>效果（无动作）：一个腐蛆集群出现在一个邻接该腐蛆僵尸的不被占据的格子。</div>\n<div class=\"bold bg-power\">腐蛆寄生症                  LV4 疾病（Rot Grub Infestation）</div>\n<div class=description>坚韧：改善 DC18，稳定 DC12，恶化 DC11 或以下<br>目标痊愈。  初始效果：目标失去一个复原力并获得 5点黯蚀易伤。  目标失去两个复原力，这两个复原力不能恢复直到他或她痊愈。目标的技能检定受到-4 减值直到  末期阶段：目标死亡并立即变成一个腐蛆僵尸。<br>他或她痊愈。</div>\n<div class=\"italic bg-flavortext\">（译注：疾病的具体规则详见《城主指南》P49）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 20（+9）</span><span>''敏捷'' 16（+7）</span><span>''感知'' 6（+2）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 14（+6）</span><span>''智力'' 4（+1）</span><span>''魅力'' 13（+5）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n</div>",
+    "title": "腐蛆僵尸 Rot Grub Zombie",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "8",
+    "role": "游击",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物（不死生物）",
+    "xp": "350",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "13553"
+  }
+]

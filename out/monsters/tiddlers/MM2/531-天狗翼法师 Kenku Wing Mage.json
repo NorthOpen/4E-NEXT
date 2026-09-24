@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>5级 远程</span></div>\n<div class=bg-title><span>中型 自然界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 50；''重伤'' 25</span><span>''先攻'' +3</span></div>\n<div><span>''AC'' 17，''强韧'' 15，''反射'' 17，''意志'' 18</span><span>''侦查'' +3</span></div>\n<div><span>''速度'' 6</span><span>''感官'' 昏暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">群体效应</div>\n<div class=description>天狗翼法师在夹击时获得的加值是+3 而不是+2，且它在援助他人时提供的加值是+3 而不是<br>+2。</div>\n<div class=\"bold bg-power\">模仿</div>\n<div class=description>天狗翼法师可以模仿声响和声音。听者用洞察检定对抗该天狗翼法师的唬骗检定成功可以觉<br>察到这个效果是伪装的。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}匕首（武器）✦随意</div>\n<div class=description>攻击：+9 vs. AC<br>命中：1d4+3 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}乌鸦杀手（力场，法器）✦随意</div>\n<div class=description>攻击：射程 20，+10 vs. 反射<br>命中：1d6+4 力场伤害，且目标提供战斗优势给该天狗翼法师（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}飓风冲击（力场，法器）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：近程冲击 3，+8 vs. 强韧<br>命中：1d6+6 力场伤害，且该天狗翼法师滑移目标 3 格。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/area}}死亡群体（力场，法器）✦遭遇</div>\n<div class=description>攻击：区域 20 爆发 1，+8 vs. 反射<br>命中：1d6+6 力场伤害，且目标晕眩（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">群体之翼（力场）✦遭遇</div>\n<div class=description>该天狗翼法师获得飞行速度 6（盘旋；高度限制 4）直到遭遇结束。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 隐秘+8</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 9（+1）</span><span>''敏捷'' 13（+3）</span><span>''感知'' 13（+3）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 14（+4）</span><span>''智力'' 18（+6）</span><span>''魅力'' 15（+4）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 通用语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 袍子，匕首，法珠</span></div></div>\n</div>",
+    "title": "天狗翼法师 Kenku Wing Mage",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "5",
+    "role": "远程",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物",
+    "xp": "200",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "8177"
+  }
+]

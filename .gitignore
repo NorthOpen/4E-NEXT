@@ -10,6 +10,11 @@ web/public/mock_*.d4e.json
 .DS_Store
 # 审计报告（派生产物，不入库）
 out/categories/_audit.json
+# 怪物手册管线的审计报告与内嵌插图导出（派生产物，不入库）
+out/monsters/audit/
+out/monsters/media/
+# 怪物手册源文件（42MB，非本项目版权、不随仓库分发；放回仓库根目录即可重新生成全部派生产物）
+/DnD4E-怪物手册*合订本*.xlsx
 # 取色模式对比探针（本机工具，含写死的绝对路径与派生产物，不入库）
 out/color-variant-probe/
 

@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>24级 杂兵 伏击</span></div>\n<div class=bg-title><span>中型 自然界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 1；失手攻击无法伤害杂兵</span><span>''先攻'' +22</span></div>\n<div><span>''AC'' 38，''强韧'' 36，''反射'' 36，''意志'' 37</span><span>''侦查'' +16</span></div>\n<div><span>''速度'' 6</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">集中淫</div>\n<div class=description>除非该堕落色鬼是攻击者最近敌人，否则该堕落色鬼不能成为攻击的目标。</div>\n<div class=\"bold bg-power\">标准攻击</div>\n<div class=\"bold bg-power\">欲望之触（魅惑）✦随意</div>\n<div class=description>攻击：近战 1/射程 10（一个生物）+27vs.意志<br>命中：16 点伤害。选择目标 5 格内的一个该堕落色鬼的盟友。直到目标下回合结束，目标被那盟友标记。此外，如果目标被任何生物标记，则那些标记终止。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">传播激情</div>\n<div class=description>触发：一个敌人使该堕落色鬼的生命值降到 0。<br>效果（无动作）：触发的敌人以一个自由动作移动其速度的格数到一个邻接其最近的敌人的格子。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 17（+15）</span><span>''敏捷'' 23（+18）</span><span>''感知'' 18（+16）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 25（+19）</span><span>''智力'' 14（+14）</span><span>''魅力'' 28（+21）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 通用语</span></div></div>\n</div>",
+    "title": "堕落色鬼 Corrupted Lecher",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "24",
+    "role": "伏击",
+    "specialty-role": "杂兵",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物",
+    "xp": "1513",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "10585"
+  }
+]

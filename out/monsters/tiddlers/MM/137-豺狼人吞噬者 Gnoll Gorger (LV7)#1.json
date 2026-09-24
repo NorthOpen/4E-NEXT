@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>7级 蛮战</span></div>\n<div class=bg-title><span>中型 自然界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 96；''重伤'' 48</span><span>''先攻'' +6</span></div>\n<div><span>''AC'' 19，''强韧'' 20，''反射'' 18，''意志'' 18</span><span>''侦查'' +3</span></div>\n<div><span>''速度'' 7</span><span>''感官'' 昏暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">联合攻击</div>\n<div class=description>该豺狼人的攻击对任何有两个或更多该豺狼人的盟友邻接的敌人造成 5 点额外伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+12vs.AC<br>命中：3d6+8 伤害，在该豺狼人重伤期间则为 3d6+10 伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">吞噬（医疗）✦随意（一轮一次）</div>\n<div class=description>效果：近战 1（一个盟友）。目标受到 5 点伤害，且该豺狼人恢复 5 点 HP。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 威吓+11，隐秘+11</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 20（+8）</span><span>''敏捷'' 17（+6）</span><span>''感知'' 11（+3）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 16（+6）</span><span>''智力'' 9（+2）</span><span>''魅力'' 17（+6）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 深渊语，通用语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 皮甲</span></div></div>\n</div>",
+    "title": "豺狼人吞噬者 Gnoll Gorger (LV7)#1",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "7",
+    "role": "蛮战",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物",
+    "xp": "300",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "2262"
+  }
+]

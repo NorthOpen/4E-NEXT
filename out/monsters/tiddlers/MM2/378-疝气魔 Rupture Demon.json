@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>5级 杂兵 护卫</span></div>\n<div class=bg-title><span>小型 元素界 魔法兽（恶魔）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 1；失手攻击无法伤害杂兵</span><span>''先攻'' +8</span></div>\n<div><span>''AC'' 20，''强韧'' 16，''反射'' 18，''意志'' 16</span><span>''侦查'' +4</span></div>\n<div><span>''速度'' 6，攀爬 3（蛛行）</span><span>''感官'' 昏暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}粘液喷吐✦随意</div>\n<div class=description>攻击：+12 vs. AC<br>命中：5 点伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}裹缚拥抱✦遭遇</div>\n<div class=description>无攻击骰；目标受缚（豁免终止），且该疝气魔生命值降为 0。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">恶魔感染（医疗）</div>\n<div class=description>触发：当该疝气魔的生命值降到 0 时。<br>该疝气魔爆炸成一团血淋淋的浓水且其触手寄附到其5 格内的一个LV10 或以下的恶魔身上。该恶魔恢复 5 点生命值且其近战攻击骰获得+2 加值直到遭遇结束，该加值可以跟其他的恶<br>魔感染威能的加值叠加（最大值+10）。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 15（+4）</span><span>''敏捷'' 18（+6）</span><span>''感知'' 15（+4）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 11（+2）</span><span>''智力'' 4（-1）</span><span>''魅力'' 4（-1）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 深渊语</span></div></div>\n</div>",
+    "title": "疝气魔 Rupture Demon",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "5",
+    "role": "护卫",
+    "specialty-role": "杂兵",
+    "size": "小型",
+    "origin": "元素界",
+    "creature-type": "魔法兽（恶魔）",
+    "xp": "50",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "5926"
+  }
+]

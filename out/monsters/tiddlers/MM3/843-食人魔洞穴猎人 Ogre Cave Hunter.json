@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>8级 伏击</span></div>\n<div class=bg-title><span>大型 自然界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 70；''重伤'' 35</span><span>''先攻'' +12</span></div>\n<div><span>''AC'' 22，''强韧'' 20，''反射'' 19，''意志'' 18</span><span>''侦查'' +4</span></div>\n<div><span>''速度'' 8</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}木棒（武器）✦随意</div>\n<div class=description>攻击：近战 2（一个生物）+13vs.AC<br>命中：2d8+7 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}碎颅击（武器）✦随意</div>\n<div class=description>攻击：近战 2（一个晕眩的生物）+13vs.AC<br>命中：4d8+7 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}旋挥暴砸（武器）✦随意</div>\n<div class=description>攻击：近战 2（一个生物）+13vs.AC<br>命中：1d8+3 伤害，且目标晕眩直到该食人魔洞穴猎人下回合结束。此外，该食人魔洞穴猎人滑移目标 5 格到该食人魔洞穴猎人 2 格内的一个格子。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">牺牲者之盾✦随意</div>\n<div class=description>前提：一个晕眩的敌人在该食人魔洞穴猎人 2 格内。 触发：该食人魔洞穴猎人被一次近战或远程攻击命中。<br>效果（直觉打断）：该食人魔洞穴猎人对抗该攻击的所有防御获得+4 加值。如果该攻击对该食人魔洞穴猎人失手，则那个晕眩的敌人如同被该攻击命中一样受到伤害。然后该食人魔<br>洞穴猎人滑移该敌人 4 格到其 2 格内的一个格子。</div>\n<div class=\"italic bg-flavortext\">在设计一个围绕着失落苔藓的遭遇时，你可能会担心当苔藓人使用其拟像攻击时必须去知道并使用 PC 们的随意威能的幕后工作。你可以通过让 PC 的玩家进行苔藓人的攻击和伤害骰以避免这项额外工作。这样做还可以让 PC 们更强烈地感觉到跟苔藓人战斗就像跟他们自己战斗一样。还有一个好主意便是选择一些比较简单易用且没有太多难以记录的效果的随意攻击威能。 失落苔藓遭遇的余波可以引发支线任务或旁支的旅行，食用了失落苔藓遗骸的 PC 们可以获得其他生物的模糊记忆。一个人物可能会回想起被该失落苔藓杀死的雅灵斥候所负责传递的重要情报，或者可能梦到妖精荒野的幽暗地域中废陋巨人地下室的深处。不管怎样，这样的幻象必须迅速执行。一旦队伍休息，这些记忆通常就会遗失，且像是那雅灵的接头人的相貌或怎样避开地下室的陷阱这样的直觉性的信息无法总是能清晰到足以记下地被回想起来。 失落苔藓的遗骸还可以作为一份宝藏的一部分。未加工的苔藓可以出售给炼金术师或药 剂师，也可以作为需要神秘或自然检定的仪式的材料使用。 （失落苔藓精神之主与苔藓人们）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 21（+9）</span><span>''敏捷'' 18（+8）</span><span>''感知'' 10（+4）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 16（+7）</span><span>''智力'' 8（+3）</span><span>''魅力'' 6（+2）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 巨人语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 革甲，木棒</span></div></div>\n</div>",
+    "title": "食人魔洞穴猎人 Ogre Cave Hunter",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "8",
+    "role": "伏击",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "自然界",
+    "creature-type": "类人生物",
+    "xp": "350",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "13359"
+  }
+]

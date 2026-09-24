@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>21级 护卫</span></div>\n<div class=bg-title><span>大型 精界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 200；''重伤'' 100</span><span>''先攻'' +18</span></div>\n<div><span>''AC'' 37，''强韧'' 34，''反射'' 32，''意志'' 32</span><span>''侦查'' +21</span></div>\n<div><span>''速度'' 8</span><span>''感官'' 真视 6</span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}长剑（武器）✦随意</div>\n<div class=description>攻击：触及 2，+28 vs. AC<br>命中：2d10+8 伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}邪眼（一轮一次）✦随意</div>\n<div class=description>射程 20；目标被标记直到遭遇结束或直到该独眼巨人妖精剑士对不同的目标使用邪眼。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}荒野步伐✦随意</div>\n<div class=description>触发：当被该独眼巨人妖精剑士的邪眼标记的生物进行一次目标不包括该独眼巨人妖精剑士的攻击时。<br>该独眼巨人妖精剑士瞬移 10 格到一个邻接触发的生物的空间并进行该攻击：+28vs.AC；<br>2d6+7 伤害。</div>\n<div class=\"italic bg-flavortext\">（独眼巨人）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 27（+18）</span><span>''敏捷'' 23（+16）</span><span>''感知'' 23（+16）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 24（+17）</span><span>''智力'' 12（+11）</span><span>''魅力'' 13（+11）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 精灵语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 链甲，长剑</span></div></div>\n</div>",
+    "title": "独眼巨人妖精剑士 Cyclops Feyblade",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "21",
+    "role": "护卫",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "精界",
+    "creature-type": "类人生物",
+    "xp": "3200",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "5568"
+  }
+]

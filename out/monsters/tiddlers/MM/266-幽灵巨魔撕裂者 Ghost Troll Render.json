@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>13级 蛮战</span></div>\n<div class=bg-title><span>大型 自然界 类人生物（不死生物）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 161；''重伤'' 80</span><span>''先攻'' +10</span></div>\n<div><span>''AC'' 25，''强韧'' 27，''反射'' 24，''意志'' 23</span><span>''侦查'' +14</span></div>\n<div><span>''免疫'' 疾病，毒素</span><span></span></div>\n<div><span>''速度'' 0，飞行 7（盘旋）；相位移动</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">虚体</div>\n<div class=description>该幽灵巨魔从所有攻击都只受到一半伤害，除了那些造成力场伤害的。当它受到强酸、火焰<br>或光耀伤害时，它失去该特性直到其下回合开始。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}精神爪击✦随意</div>\n<div class=description>攻击：近战 2（一个生物）+16vs.反射<br>命中：3d10+10 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}恐怖打击（心灵）✦充能（若该威能失手）</div>\n<div class=description>攻击：近战 2（一个重伤的生物）+16vs.意志<br>命中：5d6+12 心灵伤害，且目标迟缓（豁免终止）。<br>首次豁免失败时：目标昏迷代替迟缓（豁免终止）。若目标受到伤害，该效果终止。</div>\n<div class=\"italic bg-flavortext\">（译注：原文中幽灵巨魔的速度“0”这个数字没写出来，后文的缚灵幻影也是这种情况，</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 24（+13）</span><span>''敏捷'' 18（+10）</span><span>''感知'' 16（+9）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 21（+11）</span><span>''智力'' 5（+3）</span><span>''魅力'' 11（+6）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 巨人语</span></div></div>\n</div>",
+    "title": "幽灵巨魔撕裂者 Ghost Troll Render",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "13",
+    "role": "蛮战",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "自然界",
+    "creature-type": "类人生物（不死生物）",
+    "xp": "800",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "4348"
+  }
+]

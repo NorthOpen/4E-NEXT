@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>20级 精英 护卫</span></div>\n<div class=bg-title><span>大型 自然界 活化生物（构装体）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 386；''重伤'' 193</span><span>''先攻'' +14</span></div>\n<div><span>''AC'' 36，''强韧'' 36，''反射'' 30，''意志'' 28</span><span>''侦查'' +10</span></div>\n<div><span>''免疫'' 疾病，毒素，睡眠；''豁免'' +2；''行动点'' 1</span><span>''感官'' 黑暗视觉</span></div>\n<div><span>''速度'' 6（不能快步）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}毒烟（毒素）</div>\n<div class=description>灵气 2：在该铁魔像重伤期间，所有进入或在该灵气内开始回合的生物受到 5点毒素伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}铁刃✦随意</div>\n<div class=description>攻击：触及 2，+27 vs. AC<br>命中：2d10+3 伤害，且目标被标记（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}劈砍✦随意</div>\n<div class=description>该铁魔像进行两次铁刃攻击，每次攻击对不同的目标进行。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}喷烟（毒素）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：近程冲击 3，+25 vs. 强韧<br>命中：3d8+9 毒素伤害，以及 5 点持续毒素伤害（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}晕眩拳✦随意</div>\n<div class=description>触发：当该铁魔像触及范围内的一个被该铁魔像标记的生物移动或快步时。<br>攻击：触及 2，以触发的生物为目标，+25 vs. 强韧<br>命中：目标晕眩（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}死亡毒烟（毒素）</div>\n<div class=description>触发：当首次重伤以及该铁魔像生命值降到 0 时。<br>攻击：近程爆发 3，+25 vs. 强韧<br>命中：2d8+6 毒素伤害，以及 10 点持续毒素伤害（豁免终止）。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 27（+18）</span><span>''敏捷'' 15（+12）</span><span>''感知'' 11（+10）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 25（+17）</span><span>''智力'' 3（+6）</span><span>''魅力'' 3（+6）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 长剑</span></div></div>\n</div>",
+    "title": "铁魔像 Iron Golem (LV20)#2",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "20",
+    "role": "护卫",
+    "specialty-role": "精英",
+    "size": "大型",
+    "origin": "自然界",
+    "creature-type": "活化生物（构装体）",
+    "xp": "5600",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "7653"
+  }
+]

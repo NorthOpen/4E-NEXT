@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>28级 护卫</span></div>\n<div class=bg-title><span>超大型 元素界 类人生物（恶魔）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 258；''重伤'' 129</span><span>''先攻'' +19</span></div>\n<div><span>''AC'' 42，''强韧'' 42，''反射'' 37，''意志'' 40</span><span>''侦查'' +19</span></div>\n<div><span>''免疫'' 恐惧</span><span>''感官'' 盲视 5</span></div>\n<div><span>''速度'' 8，飞行 12（笨拙）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}恶毒气场（恐惧）✦灵气 2</div>\n<div class=description>该灵气内的敌人不能恢复生命值。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}克鲁瑞奇之斧（武器）✦随意</div>\n<div class=description>攻击：近战 3（一个生物）+33vs.AC<br>命中：3d8+13 伤害，在该克鲁瑞奇魔重伤期间则为 4d8+18 伤害，且目标被标记直到该克鲁瑞奇魔下回合结束。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}狂砍（武器）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：近程爆发 3（爆发内所有敌人）+33vs.AC<br>命中：3d8+13 伤害，在该克鲁瑞奇魔重伤期间则为 4d8+18 伤害，且目标被标记直到该克鲁瑞奇魔下回合结束。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}钳击✦随意</div>\n<div class=description>前提：该克鲁瑞奇魔没有擒抱生物。<br>触发：一个被该克鲁瑞奇魔标记的敌人移动。<br>攻击（直觉反应）：近战 2（触发的敌人）+31vs.反射命中：2d8+13 伤害，且目标被擒抱。<br>次要维持：该克鲁瑞奇魔维持该擒抱，且目标受到 2d8+13 伤害。</div>\n<div class=\"bold bg-power\">可变抗性✦每遭遇三次</div>\n<div class=description>触发：该克鲁瑞奇魔受到强酸、寒冷、火焰、闪电或雷鸣伤害。<br>效果（自由动作）：该克鲁瑞奇魔获得 30 点触发的伤害类型的抗性直到遭遇结束或直到该克鲁瑞奇魔再次使用可变抗性。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}渎神之语（黯蚀）✦遭遇</div>\n<div class=description>触发：该克鲁瑞奇魔首次重伤。<br>攻击（自由动作）：近程冲击 5（冲击内所有敌人）+31vs.意志命中：3d6+8 黯蚀伤害，且目标晕眩（豁免终止）。</div>\n<div class=\"bold bg-power\">恶魔，胃魔 DEMON,MAW</div>\n<div class=\"italic bg-flavortext\">（克鲁瑞奇魔）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 31（+24）</span><span>''敏捷'' 16（+17）</span><span>''感知'' 21（+19）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 26（+22）</span><span>''智力'' 21（+19）</span><span>''魅力'' 26（+22）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 深渊语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 巨斧</span></div></div>\n</div>",
+    "title": "克鲁瑞奇魔 Klurichir",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "28",
+    "role": "护卫",
+    "specialty-role": "",
+    "size": "超大型",
+    "origin": "元素界",
+    "creature-type": "类人生物（恶魔）",
+    "xp": "13000",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "10269"
+  }
+]

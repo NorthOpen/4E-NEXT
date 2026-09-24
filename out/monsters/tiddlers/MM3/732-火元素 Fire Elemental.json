@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>11级 游击</span></div>\n<div class=bg-title><span>中型 元素界 魔法兽（火系）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 107；''重伤'' 53</span><span>''先攻'' +14</span></div>\n<div><span>''AC'' 24，''强韧'' 22，''反射'' 24，''意志'' 23</span><span>''侦查'' +6</span></div>\n<div><span>''易伤'' 寒冷（参照冻结在地）</span><span></span></div>\n<div><span>''速度'' 10，飞行 6（笨拙）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">冻结在地</div>\n<div class=description>每当该火元素受到寒冷伤害时，它不能快步直到其下回合结束。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}击打（火焰）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+14vs.反射<br>命中：10 点持续火焰伤害（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">火焰闪现✦随意</div>\n<div class=description>效果：该火元素快步 2 格。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">沸腾之火（火焰）✦随意</div>\n<div class=description>触发：一次攻击命中该火元素。<br>效果（自由动作）：所有邻接该火元素的敌人受到 5 点火焰伤害。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 10（+5）</span><span>''敏捷'' 24（+12）</span><span>''感知'' 13（+6）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 11（+5）</span><span>''智力'' 5（+2）</span><span>''魅力'' 6（+3）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 能理解荒神语</span></div></div>\n</div>",
+    "title": "火元素 Fire Elemental",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "11",
+    "role": "游击",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "元素界",
+    "creature-type": "魔法兽（火系）",
+    "xp": "600",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "11419"
+  }
+]

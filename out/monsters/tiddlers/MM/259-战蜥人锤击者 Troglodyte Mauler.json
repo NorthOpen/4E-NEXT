@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>6级 护卫</span></div>\n<div class=bg-title><span>中型 自然界 类人生物（鳞爪类）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 74；''重伤'' 37</span><span>''先攻'' +6</span></div>\n<div><span>''AC'' 22，''强韧'' 20，''反射'' 17，''意志'' 18</span><span>''侦查'' +5</span></div>\n<div><span>''速度'' 5</span><span>''感官'' 黑暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}战蜥人恶臭✦灵气 1</div>\n<div class=description>活体敌人在该灵气内攻击骰受到-2 减值。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}巨木棒（武器）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+11vs.AC命中：4d4+4 伤害。<br>效果：该战蜥人标记目标直到该战蜥人下回合结束。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}爪击✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+11vs.AC<br>命中：2d4+9 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}标枪（武器）✦随意</div>\n<div class=description>攻击：射程 10（一个生物）+11vs.AC<br>命中：2d6+4 伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬✦随意（一轮一次）</div>\n<div class=description>攻击：近战 1（一个提供战斗优势给该战蜥人的生物）+9vs.强韧<br>命中：3d6+4 伤害。直到该战蜥人下回合结束，目标从医疗效果只能恢复常值一半的生命值。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 运动+12，坚韧+12</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 18（+7）</span><span>''敏捷'' 12（+4）</span><span>''感知'' 15（+15）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 18（+7）</span><span>''智力'' 6（+1）</span><span>''魅力'' 8（+2）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 龙语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 巨木棒，2 支标枪</span></div></div>\n</div>",
+    "title": "战蜥人锤击者 Troglodyte Mauler",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "6",
+    "role": "护卫",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物（鳞爪类）",
+    "xp": "250",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "4245"
+  }
+]

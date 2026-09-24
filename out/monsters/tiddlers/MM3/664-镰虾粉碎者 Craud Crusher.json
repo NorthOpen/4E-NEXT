@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>4级 蛮战</span></div>\n<div class=bg-title><span>中型 自然界 野兽（水生）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 70；''重伤'' 35</span><span>''先攻'' +5</span></div>\n<div><span>''AC'' 16，''强韧'' 17，''反射'' 16，''意志'' 15</span><span>''侦查'' +4</span></div>\n<div><span>''速度'' 5，游泳 6</span><span>''感官'' 黑暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">水生</div>\n<div class=description>该镰虾粉碎者可以在水下呼吸。在水中战斗时，它对非水生生物的攻击骰获得+2 加值。</div>\n<div class=\"bold bg-power\">赤潮</div>\n<div class=description>每当该镰虾粉碎者使一个目标的生命值降到 0 或以下时，该镰虾粉碎者在遭遇结束前的下一<br>次伤害骰获得+5 加值。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}爪击✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+9vs.AC<br>命中：1d12+2 伤害，且该镰虾粉碎者擒抱目标。该镰虾粉碎者同一时间内只能擒抱一个生物。<br>次要维持：该镰虾粉碎者维持擒抱，且被擒抱的生物受到 1d6+3 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}锤爪✦遭遇</div>\n<div class=description>攻击：近战 2（一个生物）+7vs.反射<br>命中：2d12+10 伤害，且该镰虾粉碎者推动目标一格并击倒它。</div>\n<div class=\"italic bg-flavortext\">（镰虾）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 17（+5）</span><span>''敏捷'' 16（+5）</span><span>''感知'' 14（+4）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 20（+7）</span><span>''智力'' 3（-2）</span><span>''魅力'' 9（+1）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n</div>",
+    "title": "镰虾粉碎者 Craud Crusher",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "4",
+    "role": "蛮战",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "野兽（水生）",
+    "xp": "175",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "10150"
+  }
+]

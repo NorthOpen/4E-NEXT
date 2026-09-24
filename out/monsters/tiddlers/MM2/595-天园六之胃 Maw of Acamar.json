@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>15级 控制</span></div>\n<div class=bg-title><span>大型 异界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 145；''重伤'' 77</span><span>''先攻'' +9</span></div>\n<div><span>''AC'' 29，''强韧'' 27，''反射'' 26，''意志'' 27</span><span>''侦查'' +11</span></div>\n<div><span>''速度'' 6</span><span>''感官'' 黑暗视觉，心灵感应 10</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}饥饿之星</div>\n<div class=description>灵气 5：该灵气内的生物移动远离该天园六之胃时每移动一格必须多花费 3 格额外的移动力。</div>\n<div class=\"bold bg-power\">生命毁灭者</div>\n<div class=description>当一个邻接该天园六之胃的敌人对持续伤害豁免成功时，该持续伤害改为减少 5 点而不是终<br>止。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}吞食之触✦随意</div>\n<div class=description>攻击：触及 2，+19 vs. 反射<br>命中：目标受到 15 点持续伤害（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}吞星✦随意</div>\n<div class=description>攻击：近程爆发 3，+19 vs. 强韧<br>命中：目标受到 10 点持续伤害（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}尸星引力✦随意</div>\n<div class=description>攻击：近程爆发 5，+19 vs. 强韧<br>命中：该天园六之胃拉动目标 3 格。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">生命吞食者✦随意</div>\n<div class=description>触发：当该天园六之胃 2 格内的一个生物花费复原力时。<br>吞食之触的触及和尸星引力以及吞星的爆发范围增加 2 直到该天园六之胃下回合结束。</div>\n<div class=\"italic bg-flavortext\">（天园六之胃）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 20（+12）</span><span>''敏捷'' 15（+9）</span><span>''感知'' 19（+11）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 17（+10）</span><span>''智力'' 11（+7）</span><span>''魅力'' 16（+10）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 心灵感应 10</span></div></div>\n</div>",
+    "title": "天园六之胃 Maw of Acamar",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "15",
+    "role": "控制",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "异界",
+    "creature-type": "类人生物",
+    "xp": "1200",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "9076"
+  }
+]

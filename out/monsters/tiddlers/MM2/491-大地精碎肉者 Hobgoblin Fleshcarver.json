@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>6级 精英 控制</span></div>\n<div class=bg-title><span>中型 自然界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 146；''重伤'' 73</span><span>''先攻'' +7</span></div>\n<div><span>''AC'' 20，''强韧'' 18，''反射'' 19，''意志'' 18</span><span>''侦查'' +4</span></div>\n<div><span>''豁免'' +2；''行动点'' 1</span><span>''感官'' 昏暗视觉</span></div>\n<div><span>''速度'' 6</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}碎肉者圈套</div>\n<div class=description>灵气 2：在该灵气内开始回合的敌人在该回合中首次移动时受到 5 点伤害。</div>\n<div class=\"bold bg-power\">方阵护卫</div>\n<div class=description>大地精碎肉者在至少有一个大地精盟友邻接它时 AC 获得+2 加值。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}大砍刀（武器）✦随意</div>\n<div class=description>攻击：触及 2，+11 vs. AC<br>命中：2d4+4 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}毒飞镖（毒素，武器）✦随意</div>\n<div class=description>攻击：射程 6/12，+11 vs. AC<br>命中：1d6+4 毒素伤害，且目标迟缓（豁免终止）。如果目标已经迟缓，则<br>它改为定身（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}大砍刀狂怒（武器）✦随意</div>\n<div class=description>攻击：近程爆发 2，以敌人为目标，+11 vs. AC<br>命中：3d4+4 伤害，且该大地精碎肉者滑移目标 2 格。<br>该滑移必须在该大地精碎肉者 3 格内结束。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}防御飞镖✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>触发：当该大地精碎肉者被一个敌人的近战攻击命中时。<br>该大地精碎肉者快步 2 格并对触发的敌人使用毒飞镖。</div>\n<div class=\"bold bg-power\">大地精恢复力✦遭遇</div>\n<div class=description>触发：当该大地精碎肉者受一个效果影响时。<br>该大地精碎肉者对触发的效果进行一次豁免。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 14（+5）</span><span>''敏捷'' 19（+7）</span><span>''感知'' 12（+4）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 17（+6）</span><span>''智力'' 12（+4）</span><span>''魅力'' 16（+6）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 通用语，地精语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 链甲，大砍刀，10 枚毒飞镖</span></div></div>\n</div>",
+    "title": "大地精碎肉者 Hobgoblin Fleshcarver",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "6",
+    "role": "控制",
+    "specialty-role": "精英",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物",
+    "xp": "500",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "7595"
+  }
+]

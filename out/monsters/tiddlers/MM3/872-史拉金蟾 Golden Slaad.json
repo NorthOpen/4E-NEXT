@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>20级 控制</span></div>\n<div class=bg-title><span>超大型 元素界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 193；''重伤'' 96</span><span>''先攻'' +15</span></div>\n<div><span>''AC'' 32，''强韧'' 33，''反射'' 30，''意志'' 29</span><span>''侦查'' +12</span></div>\n<div><span>''免疫'' 混沌噬菌体</span><span>''感官'' 昏暗视觉</span></div>\n<div><span>''速度'' 8，瞬移 6</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬✦随意</div>\n<div class=description>攻击：近战 3（一个生物）+25vs.AC<br>命中：2d10+13 伤害。如果该攻击掷骰是奇数，则该史拉金蟾滑移目标 3 格。如果该攻击掷骰是偶数，则目标晕眩直到该史拉金蟾下回合结束。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}混沌蛙鸣（疾病，心灵）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：近程爆发 5（爆发内所有敌人）+23vs.意志<br>命中：2d6+8 心灵伤害。为每个目标投一个 d6 来决定一个额外的效果。 1.目标往一个随机的方向（投一个 d8 来决定方向）瞬移 1d6 格。<br>2.目标以一个自由动作对邻接它的一个随机的生物进行一次近战基本攻击。<br>3.目标震慑直到其下回合结束。<br>4.目标迟缓（豁免终止）。<br>5.目标受到 10 点随机类型的伤害。投一个 d10：(1)强酸，(2)寒冷，(3)火焰，(4)力场， (5)闪电，(6)黯蚀，(7)毒素，(8)心灵，(9)光耀，(10)雷鸣。<br>6.目标暴露在混沌噬菌体之下。此外，如果目标正因该史拉金蟾的啮咬而晕眩，则它变成<br>晕眩（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">羊膜转化（变形）✦随意</div>\n<div class=description>触发：该史拉金蟾首次重伤。<br>效果（无动作）：该史拉金蟾瓦解为一滩粘液直到遭遇结束。在该形态下，该史拉金蟾不能瞬移且其速度降为 4。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}腐蚀伪足（强酸，医疗）✦随意</div>\n<div class=description>前提：该史拉金蟾必须受羊膜转化的影响。<br>触发：一个邻接该史拉金蟾的敌人移动或进行攻击。攻击（借机动作）：近战 1（触发的敌人）+25vs.AC命中：1d6+8 强酸伤害，且该史拉金蟾擒抱目标。<br>次要维持：该史拉金蟾维持其所有的擒抱，且每个被该史拉金蟾擒抱的生物受到 2d6+8 强酸<br>伤害。每有一个该史拉金蟾擒抱的生物该史拉金蟾便恢复 5 点生命值。</div>\n<div class=\"bold bg-power\">混沌噬菌体                          LV16 疾病（Chaos Phage）</div>\n<div class=description>坚韧：改善 DC25，稳定 DC20，恶化 DC19 或以下<br>目标痊愈。  初始效果：一个史拉蟾胚胎植入目标体内。  目标的意志受到-2 减值。在重伤期间，目标屈服于疯狂并攻击其最近的生  末期阶段：目标死亡，且一个 史 拉 蝌 蚪 （ slaad tadpole）从其头骨中钻出。<br>物。</div>\n<div class=\"italic bg-flavortext\">（译注：疾病的具体规则详见《城主指南》P49） （译注 2：史拉蝌蚪的数据见《怪物图鉴》）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 运动+23，威吓+19</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 26（+18）</span><span>''敏捷'' 20（+15）</span><span>''感知'' 15（+12）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 25（+17）</span><span>''智力'' 13（+11）</span><span>''魅力'' 18（+14）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 荒神语</span></div></div>\n</div>",
+    "title": "史拉金蟾 Golden Slaad",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "20",
+    "role": "控制",
+    "specialty-role": "",
+    "size": "超大型",
+    "origin": "元素界",
+    "creature-type": "类人生物",
+    "xp": "2800",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "13838"
+  }
+]

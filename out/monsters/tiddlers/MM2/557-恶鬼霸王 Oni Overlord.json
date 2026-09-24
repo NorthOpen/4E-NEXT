@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>12级 精英（头目） 蛮战</span></div>\n<div class=bg-title><span>大型 自然界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 296；''重伤'' 148</span><span>''先攻'' +7</span></div>\n<div><span>''AC'' 24，''强韧'' 25，''反射'' 24，''意志'' 26</span><span>''侦查'' +8</span></div>\n<div><span>''豁免'' +2；''行动点'' 1</span><span>''感官'' 黑暗视觉</span></div>\n<div><span>''速度'' 7，飞行 8（笨拙）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}恐怖首领（心灵）</div>\n<div class=description>灵气 5：所有在该灵气内的盟友的伤害骰获得+5 加值且如果在一次攻击中对所有目标都失手便会受到 5 点心灵伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}巨木棒（武器）✦随意</div>\n<div class=description>攻击：触及 2，+15 vs. AC<br>命中：4d4+6 伤害，且所有邻接目标的生物受到 5 点伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}霸王暴扣✦随意</div>\n<div class=description>该恶鬼霸王进行一次巨木棒攻击，快步 1 格，然后对一个不同的目标再进行一次巨木棒攻击。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">迷罩（幻术）✦随意</div>\n<div class=description>该恶鬼霸王可以伪装其物理形态为任意中型或大型的类人生物。一个生物可以通过洞察检定<br>对抗该恶鬼霸王的唬骗检定成功来识破这是伪装的。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}霸王冲击（黯蚀，毒素）</div>\n<div class=description>触发：当首次重伤时充能。<br>攻击：近程冲击 5，+16 vs. 强韧<br>命中：5d6+5 黯蚀和毒素伤害，且目标获得 5 点黯蚀易伤和 5 点毒素易<br>伤直到该恶鬼霸王下回合结束。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}粉碎意志（恐惧）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>触发：当该恶鬼霸王伤害一个敌人时。<br>攻击：近程爆发 5，以敌人为目标，+15 vs. 意志<br>命中：目标提供战斗优势给该恶鬼霸王直到该恶鬼霸王<br>下回合结束。</div>\n<div class=\"bold bg-power\">暴力奖励✦随意</div>\n<div class=description>触发：当该恶鬼霸王 10 格内的一个盟友伤害一个敌人时。<br>触发的盟友获得 5 点临时生命值。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 神秘+15，洞察+13，威吓+17</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 21（+11）</span><span>''敏捷'' 12（+7）</span><span>''感知'' 14（+8）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 18（+10）</span><span>''智力'' 18（+10）</span><span>''魅力'' 22（+12）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 通用语，巨人语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 革甲，巨木棒</span></div></div>\n</div>",
+    "title": "恶鬼霸王 Oni Overlord",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "12",
+    "role": "蛮战",
+    "specialty-role": "精英（头目）",
+    "size": "大型",
+    "origin": "自然界",
+    "creature-type": "类人生物",
+    "xp": "1400",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "8560"
+  }
+]

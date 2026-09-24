@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>8级 头目 控制</span></div>\n<div class=bg-title><span>中型 自然界 类人生物，人类</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 86；''重伤'' 43</span><span>''先攻'' +4</span></div>\n<div><span>''AC'' 22，''强韧'' 20，''反射'' 18，''意志'' 20</span><span>''侦查'' +5</span></div>\n<div><span>''速度'' 5</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}巨木棒（武器）✦随意</div>\n<div class=description>攻击：+13 vs. AC<br>命中：1d10+7 伤害，且该狄摩高根的圣狂战士推动目标一格。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}深渊矢✦随意</div>\n<div class=description>攻击：射程 10，+12 vs. 意志<br>命中：1d8+4 伤害，且该狄摩高根的圣狂战士滑移目标 2 格。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}放血者呼唤（心灵）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：近程爆发 3，以敌人为目标，+10 vs. 意志<br>命中：2d6+5 心灵伤害，且目标晕眩直到该狄摩高根的圣狂战士下回合结束。<br>效果：范围内所有盟友的攻击骰获得+2 加值直到其下回合结束。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">死亡狂怒（只能在重伤时使用）✦遭遇</div>\n<div class=description>直到遭遇结束，该狄摩高根的圣狂战士可以以一个标准动作进行两次巨木棒攻击，这两次攻<br>击的攻击骰皆受到-2 减值。该狄摩高根的圣狂战士不能使用深渊矢和放血者呼唤直到遭遇结束。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 交涉+12，宗教+11</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 17（+7）</span><span>''敏捷'' 11（+4）</span><span>''感知'' 12（+5）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 14（+6）</span><span>''智力'' 14（+6）</span><span>''魅力'' 17（+7）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 通用语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 革甲，巨木棒，狄摩高根的邪徽</span></div></div>\n</div>",
+    "title": "狄摩高根的圣狂战士 Berserker Prelate of Demogorgon",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "8",
+    "role": "控制",
+    "specialty-role": "头目",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物，人类",
+    "xp": "350",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "5706"
+  }
+]

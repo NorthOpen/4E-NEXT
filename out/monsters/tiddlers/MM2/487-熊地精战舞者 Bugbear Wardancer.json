@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>6级 游击</span></div>\n<div class=bg-title><span>中型 自然界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 70；''重伤'' 35</span><span>''先攻'' +9</span></div>\n<div><span>''AC'' 20，''强韧'' 18，''反射'' 19，''意志'' 18</span><span>''侦查'' +5</span></div>\n<div><span>''速度'' 7</span><span>''感官'' 昏暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">战斗优势</div>\n<div class=description>熊地精战舞者对任何提供战斗优势给它的生物造成 1d6 额外伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}连枷之舞（武器）✦随意</div>\n<div class=description>攻击：+9 vs. 强韧<br>命中：2d6+4 伤害，且目标被推动 2 格并倒地，且该熊地精战舞者快步 1 格。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}连枷屏障（武器）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>近程爆发 2；以敌人为目标；无攻击骰；5 点伤害，且该熊地精战舞者从武器攻击只受到<br>一半伤害直到其下回合结束。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}连枷攻势（武器）✦遭遇</div>\n<div class=description>攻击：近程爆发 2，+9 vs. 反射<br>命中：2d6 伤害，且目标被推动 2 格并倒地。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 16（+6）</span><span>''敏捷'' 19（+7）</span><span>''感知'' 14（+5）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 14（+5）</span><span>''智力'' 11（+3）</span><span>''魅力'' 16（+6）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 通用语，地精语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 革甲，重型连枷</span></div></div>\n</div>",
+    "title": "熊地精战舞者 Bugbear Wardancer",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "6",
+    "role": "游击",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物",
+    "xp": "250",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "7540"
+  }
+]

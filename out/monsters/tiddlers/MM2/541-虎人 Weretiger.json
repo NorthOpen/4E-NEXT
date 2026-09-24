@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>11级 精英 游击</span></div>\n<div class=bg-title><span>大型 自然界 类人生物（变形生物）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 172；''重伤'' 86</span><span>''先攻'' +9</span></div>\n<div><span>''AC'' 25，''强韧'' 23，''反射'' 22，''意志'' 22</span><span>''侦查'' +12</span></div>\n<div><span>''免疫'' 月怒症；''易伤'' 银器（如果该虎人受到来自银质武器的伤害，其再生在其下回合失效）；''豁免'' +2；''行动点'' 1</span><span>''感官'' 昏暗视觉</span></div>\n<div><span>''速度'' 6（老虎形态下为 8）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">月怒症                                LV11 疾病（Moon Rage）</div>\n<div class=description>坚韧：改善 DC21，稳定 DC16，恶化 DC15 或以下<br>目标痊愈。  初始效果：目标的攻击骰受到-2 减值，因为它的手开始长出毛和爪子。  目标获得能造成1d6 伤害的基于力量的爪击攻击。目标不再能持用武器或持握法器。只要目标还受该疾病感染该效果就会  末期阶段：目标被食肉本能所支配。当目标在战斗中攻击一个生物时；它不能再攻击其他生物直到那目标死亡或直到遭遇结束。<br>一直存在。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}拳匕（武器，只能在类人生物形态下使用）✦随意</div>\n<div class=description>攻击：+16 vs. AC<br>命中：2d6+6 伤害（重击则为 4d6+18）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬（疾病，只能在老虎形态下使用）✦随意</div>\n<div class=description>攻击：+16 vs. AC<br>命中：1d8+5 伤害，且目标暴露在月怒症之下（见下方）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}猫科狂怒✦随意</div>\n<div class=description>该虎人进行两次近战基本攻击。它在这两次攻击间快步 1 格。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}猛扑（只能在冲锋时使用）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：+16 vs. AC<br>命中：2d8+5 伤害，且目标被推动 1 格并倒地。然后该虎人快步进入目标空出的空间。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">改变形态（变形）✦随意</div>\n<div class=description>虎人可以改变其物理形态为一头凶暴虎或一个既定的类人生物。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}猛烈反冲✦随意</div>\n<div class=description>触发：当一次攻击对该虎人失手时。<br>该虎人进行一次近战基本攻击并快步 2 格。</div>\n<div class=\"italic bg-flavortext\">（译注：疾病的具体规则详见《城主指南》P49） （虎人）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 杂技+12，唬骗+11，隐秘+12</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 17（+8）</span><span>''敏捷'' 14（+7）</span><span>''感知'' 14（+7）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 15（+7）</span><span>''智力'' 12（+6）</span><span>''魅力'' 13（+6）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 通用语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 皮甲，2 把拳匕</span></div></div>\n</div>",
+    "title": "虎人 Weretiger",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "11",
+    "role": "游击",
+    "specialty-role": "精英",
+    "size": "大型",
+    "origin": "自然界",
+    "creature-type": "类人生物（变形生物）",
+    "xp": "1200",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "8328"
+  }
+]

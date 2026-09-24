@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>10级 杂兵 蛮战</span></div>\n<div class=bg-title><span>中型 精界 活化生物（构装体）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 1；失手攻击无法伤害杂兵</span><span>''先攻'' +7</span></div>\n<div><span>''AC'' 22，''强韧'' 22，''反射'' 21，''意志'' 21</span><span>''侦查'' +7</span></div>\n<div><span>''免疫'' 疾病，毒素，睡眠</span><span>''感官'' 昏暗视觉</span></div>\n<div><span>''速度'' 6</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}爪击✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+13vs.AC<br>命中：11 点伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">有毒稻草（毒素，结界）</div>\n<div class=description>触发：该稻草人蹒跚者的生命值降到 0。<br>效果（无动作）：该稻草人蹒跚者的死亡生成一个近程爆发 1 的结界持续直到遭遇结束。该<br>结界是轻度模糊的，且任何在该结界内结束回合的生物受到 10 点毒素伤害。</div>\n<div class=\"italic bg-flavortext\">（稻草人）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 18（+9）</span><span>''敏捷'' 14（+7）</span><span>''感知'' 15（+7）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 15（+7）</span><span>''智力'' 11（+5）</span><span>''魅力'' 10（+5）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 通用语</span></div></div>\n</div>",
+    "title": "稻草人蹒跚者 Scarecrow Shambler",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "10",
+    "role": "蛮战",
+    "specialty-role": "杂兵",
+    "size": "中型",
+    "origin": "精界",
+    "creature-type": "活化生物（构装体）",
+    "xp": "125",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "13593"
+  }
+]

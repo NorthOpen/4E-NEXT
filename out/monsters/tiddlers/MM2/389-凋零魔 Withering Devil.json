@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>14级 控制</span></div>\n<div class=bg-title><span>中型 星界 类人生物（魔鬼）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 138；''重伤'' 69</span><span>''先攻'' +8</span></div>\n<div><span>''AC'' 28，''强韧'' 24，''反射'' 25，''意志'' 26</span><span>''侦查'' +8</span></div>\n<div><span>''抗力'' 15 火焰</span><span>''感官'' 黑暗视觉</span></div>\n<div><span>''速度'' 6</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}衰竭灵气（魅惑）</div>\n<div class=description>灵气 3：在该灵气内的敌人虚弱。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}衰弱之杖（武器）✦随意</div>\n<div class=description>攻击：+19 vs. AC<br>命中：2d8+6 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}干枯射线（心灵）✦随意</div>\n<div class=description>攻击：射程 20，+18 vs. 反射<br>命中：2d8+6 心灵伤害，且目标定身直到该凋零魔下回合结束。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}冷漠凝视（魅惑，凝视）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：射程 10，+17 vs. 意志<br>命中：目标迟缓（豁免终止）。</div>\n<div class=\"italic bg-flavortext\">（从左往右：灾厄魔，凋零魔，刺链魔，刺客魔）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 唬骗+18，洞察+13</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 11（+7）</span><span>''敏捷'' 12（+8）</span><span>''感知'' 13（+8）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 18（+11）</span><span>''智力'' 20（+12）</span><span>''魅力'' 23（+13）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 通用语，天界语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 木杖</span></div></div>\n</div>",
+    "title": "凋零魔 Withering Devil",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "14",
+    "role": "控制",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "星界",
+    "creature-type": "类人生物（魔鬼）",
+    "xp": "1000",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "6073"
+  }
+]

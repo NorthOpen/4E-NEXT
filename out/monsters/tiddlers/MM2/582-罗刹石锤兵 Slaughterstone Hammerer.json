@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>25级 护卫</span></div>\n<div class=bg-title><span>大型 自然界 活化生物（构装体）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 233；''重伤'' 116</span><span>''先攻'' +14</span></div>\n<div><span>''AC'' 41，''强韧'' 40，''反射'' 35，''意志'' 35</span><span>''侦查'' +12</span></div>\n<div><span>''免疫'' 疾病，毒素，睡眠</span><span>''感官'' 黑暗视觉</span></div>\n<div><span>''速度'' 6</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}雷鸣步伐</div>\n<div class=description>灵气 2：所有在该灵气内开始回合的生物迟缓直到其下回合开始。</div>\n<div class=\"bold bg-power\">坑道战斗</div>\n<div class=description>罗刹石锤兵在挤过时攻击骰不会受到减值且在挤过时不会提供战斗优势。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}击打✦随意</div>\n<div class=description>攻击：触及 2，+32 vs. AC<br>命中：2d8+10 伤害，且目标倒地。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}锤击✦随意</div>\n<div class=description>攻击：触及 2，+28 vs. 强韧<br>命中：2d8+10 伤害，且目标晕眩（豁免终止）。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 28（+21）</span><span>''敏捷'' 11（+12）</span><span>''感知'' 10（+12）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 25（+19）</span><span>''智力'' 1（+7）</span><span>''魅力'' 3（+8）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n</div>",
+    "title": "罗刹石锤兵 Slaughterstone Hammerer",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "25",
+    "role": "护卫",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "自然界",
+    "creature-type": "活化生物（构装体）",
+    "xp": "7000",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "8904"
+  }
+]

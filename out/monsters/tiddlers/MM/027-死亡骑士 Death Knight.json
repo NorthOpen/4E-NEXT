@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>17级 精英 护卫</span></div>\n<div class=bg-title><span>中型 自然界 类人生物（不死生物）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 324；''重伤'' 162</span><span>''先攻'' +11</span></div>\n<div><span>''AC'' 33，''强韧'' 31，''反射'' 27，''意志'' 29</span><span>''侦查'' +8</span></div>\n<div><span>''免疫'' 疾病，毒素；''抗力'' 10 黯蚀；''易伤'' 10 光耀；''豁免'' +2；''行动点'' 1</span><span>''感官'' 黑暗视觉</span></div>\n<div><span>''速度'' 5</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}统帅亡灵✦灵气 10</div>\n<div class=description>等级 17 或更低的不死生物盟友在该灵气内时攻击骰获得+2 威能加值。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}灵魂之刃（黯蚀，武器）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+22vs.AC命中：3d8+12 黯蚀伤害。<br>效果：该死亡骑士标记目标直到该死亡骑士下回合结束。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}控位打击（黯蚀，武器）✦随意</div>\n<div class=description>前提：该死亡骑士必须持用灵魂之刃。攻击：近战 1（一或两个生物）+22vs.AC<br>命中：3d8+12 黯蚀伤害，且目标迟缓直到该死亡骑士下回合结束。<br>效果：该死亡骑士标记目标直到该死亡骑士下回合结束。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}邪炎（火焰，黯蚀）✦充能 5，6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：近程爆发 2（范围内所有活体生物）+20vs.反射命中：6d8+12 火焰和黯蚀伤害。<br>效果：范围内每个不死生物盟友的近战攻击造成 2d6 额外火焰伤害直到该死亡骑士下回合结<br>束。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}勇士挑战（黯蚀，武器）✦遭遇</div>\n<div class=description>前提：该死亡骑士必须持用灵魂之刃。<br>攻击：近战 1（一个或两个生物）+22vs.AC<br>命中：4d8+19 黯蚀伤害，且该死亡骑士推动目标最多 2 格。该死亡骑士标记目标两格内的所有敌人直到该死亡骑士下回合结束。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}战斗挑战✦随意</div>\n<div class=description>触发：一个邻接且被该死亡骑士标记的敌人快步或进行目标不包括它的攻击。<br>效果（借机动作）：该死亡骑士对触发的敌人使用灵魂之刃攻击。</div>\n<div class=\"bold bg-power\">愤怒✦随意</div>\n<div class=description>触发：该死亡骑士因一个效果而被标记、迟缓、定身、晕眩或震慑。<br>效果（借机动作）：该死亡骑士进行一次豁免以终止触发的效果，即使该效果正常情况下不能通过豁免终止。</div>\n<div class=\"italic bg-flavortext\">（译注：死亡骑士被官方勘误过，这里按照的是勘误后的版本）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 20（+13）</span><span>''敏捷'' 12（+19）</span><span>''感知'' 11（+8）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 18（+12）</span><span>''智力'' 13（+9）</span><span>''魅力'' 14（+10）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 通用语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 板甲，重盾，灵魂之刃</span></div></div>\n</div>",
+    "title": "死亡骑士 Death Knight",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "17",
+    "role": "护卫",
+    "specialty-role": "精英",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物（不死生物）",
+    "xp": "3200",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "406"
+  }
+]

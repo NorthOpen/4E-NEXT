@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>15级 游击</span></div>\n<div class=bg-title><span>小型 元素界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 150；''重伤'' 75</span><span>''先攻'' +14</span></div>\n<div><span>''AC'' 29，''强韧'' 27，''反射'' 25，''意志'' 26</span><span>''侦查'' +11</span></div>\n<div><span>''速度'' 6</span><span>''感官'' 昏暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">战斗优势</div>\n<div class=description>该地妖地精石行者的攻击对任何提供战斗优势给它的生物造成 5 点额外伤害。</div>\n<div class=\"bold bg-power\">灵敏反应</div>\n<div class=description>该地妖地精石行者对抗借机攻击的 AC 获得+4 加值。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}手斧（武器）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+20vs.AC<br>命中：3d6+13 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}手斧（武器）✦随意</div>\n<div class=description>攻击：射程 5/10（一个生物）+20vs.AC<br>命中：3d6+8 伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">移动动作</div>\n<div class=\"bold bg-power\">大地滑行✦随意</div>\n<div class=description>效果：该地妖地精石行者移动其速度的格数且可以像相位移动一样穿过土壤和岩石。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}元素斥责✦随意</div>\n<div class=description>触发：一个敌人以一次近战攻击命中该地妖地精石行者。攻击（直觉反应）：近战 1（触发的敌人）+20vs.AC<br>命中：1d8+2 伤害。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 17（+10）</span><span>''敏捷'' 20（+12）</span><span>''感知'' 19（+11）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 22（+13）</span><span>''智力'' 8（+6）</span><span>''魅力'' 11（+7）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 通用语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 3 把手斧</span></div></div>\n</div>",
+    "title": "地妖地精石行者 Norker Stone  Walker",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "15",
+    "role": "游击",
+    "specialty-role": "",
+    "size": "小型",
+    "origin": "元素界",
+    "creature-type": "类人生物",
+    "xp": "1200",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "13148"
+  }
+]

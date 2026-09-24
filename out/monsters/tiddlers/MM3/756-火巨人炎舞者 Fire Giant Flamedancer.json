@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>18级 游击</span></div>\n<div class=bg-title><span>大型 元素界 类人生物（巨人）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 174；''重伤'' 87</span><span>''先攻'' +17</span></div>\n<div><span>''AC'' 32，''强韧'' 31，''反射'' 29，''意志'' 27</span><span>''侦查'' +13</span></div>\n<div><span>''抗力'' 15 火焰</span><span></span></div>\n<div><span>''速度'' 8</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">灵敏反应</div>\n<div class=description>该火巨人炎舞者对抗借机攻击的 AC 获得+4 加值。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}螺旋矛（火焰，武器）✦随意</div>\n<div class=description>攻击：近战 2（一个生物）+23vs.AC<br>命中：2d8+8 火焰伤害，且该火巨人炎舞者快步 2 格。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}双重攻击✦随意</div>\n<div class=description>效果：该火巨人炎舞者进行两次螺旋矛攻击，每次攻击对不同的目标进行。</div>\n<div class=\"bold font-size-h4 bg-category\">移动动作</div>\n<div class=\"bold bg-power\">炎爆跃（火焰，瞬移）✦遭遇</div>\n<div class=description>效果：该火巨人炎舞者瞬移 8 格。所有在该瞬移开始时邻接该火巨人炎舞者的敌人受到 10<br>点持续火焰伤害（豁免终止）。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 运动+21，杂技+20</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 25（+16）</span><span>''敏捷'' 22（+15）</span><span>''感知'' 18（+13）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 22（+15）</span><span>''智力'' 12（+10）</span><span>''魅力'' 15（+11）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 巨人语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 革甲，矛</span></div></div>\n</div>",
+    "title": "火巨人炎舞者 Fire Giant Flamedancer",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "18",
+    "role": "游击",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "元素界",
+    "creature-type": "类人生物（巨人）",
+    "xp": "2000",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "11815"
+  }
+]

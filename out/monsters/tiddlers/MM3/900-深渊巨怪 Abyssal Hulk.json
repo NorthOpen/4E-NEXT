@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>15级 控制</span></div>\n<div class=bg-title><span>大型 元素界 魔法兽</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 152；''重伤'' 76</span><span>''先攻'' +9</span></div>\n<div><span>''AC'' 29，''强韧'' 28，''反射'' 26，''意志'' 27</span><span>''侦查'' +11</span></div>\n<div><span>''抗力'' 10 强酸</span><span>''感官'' 黑暗视觉，震动感知 5</span></div>\n<div><span>''速度'' 5，掘穴 2（坑道）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}爪击✦随意</div>\n<div class=description>攻击：近战 2（一个生物）+20vs.AC<br>命中：2d10+12 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}混乱凝视（魅惑，心灵）✦随意</div>\n<div class=description>攻击：近程冲击 3（冲击内所有敌人）+19vs.意志<br>命中：1d6+5 心灵伤害，且该深渊巨怪滑移目标 3 格。然后目标以一个自由动作对一个由该深渊巨怪选择的生物进行一次近战基本攻击。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}强酸喷吐（强酸）✦充能 6{{$:/dnd/images/six}}</div>\n<div class=description>攻击：近程冲击 3（冲击内所有敌人）+19vs.强韧<br>命中：10 点持续强酸伤害（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}意志粉碎凝视（恐惧）✦随意（一轮一次）</div>\n<div class=description>攻击：近程冲击 5（冲击内所有敌人）+19vs.意志<br>命中：该深渊巨怪滑移目标 3 格，且目标在该移动中的任何豁免掷骰受到-5 减值。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 29（+16）</span><span>''敏捷'' 15（+9）</span><span>''感知'' 18（+11）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 24（+14）</span><span>''智力'' 7（+5）</span><span>''魅力'' 13（+8）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 能理解异怪语</span></div></div>\n</div>",
+    "title": "深渊巨怪 Abyssal Hulk",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "15",
+    "role": "控制",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "元素界",
+    "creature-type": "魔法兽",
+    "xp": "1200",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "14334"
+  }
+]

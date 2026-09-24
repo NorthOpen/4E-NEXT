@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>13级 强者 游击</span></div>\n<div class=bg-title><span>大型 自然界 魔法兽（龙）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 528；''重伤'' 264</span><span>''先攻'' +15</span></div>\n<div><span>''AC'' 27，''强韧'' 25，''反射'' 27，''意志'' 23</span><span>''侦查'' +14</span></div>\n<div><span>''抗力'' 20 强酸；''豁免'' +5；''行动点'' 2</span><span>''感官'' 黑暗视觉</span></div>\n<div><span>''速度'' 9，飞行 12（盘旋），长距飞行 15</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">解放翅膀</div>\n<div class=description>成年赤铜龙在其回合开始时对定身、迟缓和受缚状态进行豁免如同其回合结束时一样。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬（强酸）✦随意</div>\n<div class=description>攻击：该成年赤铜龙在该攻击前和攻击后可以快步两格。触及 2，+18 vs. AC<br>命中：2d6+6 伤害以及 2d6<br>强酸伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}爪击✦随意</div>\n<div class=description>攻击：触及 2，+18 vs. AC<br>命中：1d10+6 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}双重攻击✦随意</div>\n<div class=description>该成年赤铜龙进行两次爪击攻击然后快步 3 格。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}飞越攻击✦随意</div>\n<div class=description>该成年赤铜龙飞行 14 格，并在该移动中的任一时点进行一次近战基本攻击。该成年赤铜龙<br>在该移动中离开攻击目标时不引发借机攻击。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}龙息（强酸）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：近程冲击 5，+14 vs. 反射<br>命中：2d10+6 强酸伤害，且目标迟缓（豁免终止）。<br>失手：一半伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}龙威（恐惧）✦遭遇</div>\n<div class=description>攻击：近程爆发 5，以敌人为目标，+14 vs. 意志<br>命中：目标震慑直到该成年赤铜龙下回合结束。<br>后续效果：目标的攻击骰受到-2 减值（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}切翼步✦随意</div>\n<div class=description>触发：当一个敌人移动到一个可以使其夹击该成年赤铜龙的空间时。<br>攻击：以触发的敌人为目标，+18 vs. AC<br>命中：1d10+6 伤害，且该成年赤铜龙快步两格。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}重伤喷吐✦遭遇</div>\n<div class=description>触发：当首次重伤时。<br>龙息充能，且该成年赤铜龙使用它。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 杂技+18，唬骗+14，洞察+14</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 18（+10）</span><span>''敏捷'' 24（+13）</span><span>''感知'' 16（+9）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 20（+11）</span><span>''智力'' 14（+8）</span><span>''魅力'' 16（+9）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 通用语，龙语</span></div></div>\n</div>",
+    "title": "成年赤铜龙 Adult Copper Dragon",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "13",
+    "role": "游击",
+    "specialty-role": "强者",
+    "size": "大型",
+    "origin": "自然界",
+    "creature-type": "魔法兽（龙）",
+    "xp": "4000",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "6285"
+  }
+]

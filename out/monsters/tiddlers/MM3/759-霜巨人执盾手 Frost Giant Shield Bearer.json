@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>18级 护卫</span></div>\n<div class=bg-title><span>大型 元素界 类人生物（寒系，巨人）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 174；''重伤'' 87</span><span>''先攻'' +17</span></div>\n<div><span>''AC'' 34，''强韧'' 32，''反射'' 31，''意志'' 28</span><span>''侦查'' +14</span></div>\n<div><span>''抗力'' 15 寒冷</span><span></span></div>\n<div><span>''速度'' 8（冰雪行者）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">协同进攻</div>\n<div class=description>当有其他的霜巨人执盾手邻接一个敌人时，该霜巨人执盾手对该敌人拥有战斗优势。</div>\n<div class=\"bold bg-power\">冰固足</div>\n<div class=description>当一个效果拉动、推动或滑移该霜巨人执盾手时，它比该效果指定的少移动 2 格。此外，要<br>倒地时该霜巨人执盾手可以进行一次豁免掷骰来避免。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}寒冰战斧（寒冷，武器）✦随意</div>\n<div class=description>攻击：近战 2（一个生物）+23vs.AC<br>命中：3d10+10 寒冷伤害，且目标被标记直到该霜巨人执盾手下回合结束。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}防护打击✦遭遇</div>\n<div class=description>效果：该霜巨人执盾手进行一次寒冰战斧攻击。若命中，则该攻击造成 10 点额外寒冷伤害，<br>且该霜巨人执盾手 10 格内的一个盟友获得 25 点临时生命值。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">严阵以待✦随意（一轮一次）</div>\n<div class=description>效果：选择该霜巨人执盾手 10 格内的一个没有被其标记的敌人。如果该敌人在该霜巨人执<br>盾手下回合结束之前移动到邻接该霜巨人执盾手的位置，该霜巨人执盾手可以以一个自由动作对该敌人进行一次寒冰战斧攻击。</div>\n<div class=\"italic bg-flavortext\">（霜巨人）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 运动+21，威吓+16</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 24（+16）</span><span>''敏捷'' 22（+15）</span><span>''感知'' 20（+14）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 22（+15）</span><span>''智力'' 15（+11）</span><span>''魅力'' 14（+11）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 巨人语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 革甲，重盾，战斧</span></div></div>\n</div>",
+    "title": "霜巨人执盾手 Frost Giant Shield Bearer",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "18",
+    "role": "护卫",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "元素界",
+    "creature-type": "类人生物（寒系，巨人）",
+    "xp": "2000",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "11860"
+  }
+]

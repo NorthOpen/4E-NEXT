@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>29级 精英 护卫</span></div>\n<div class=bg-title><span>大型 元素界 类人生物（恶魔）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 544；''重伤'' 272</span><span>''先攻'' +22</span></div>\n<div><span>''AC'' 45，''强韧'' 44，''反射'' 39，''意志'' 43</span><span>''侦查'' +26</span></div>\n<div><span>''免疫'' 恐惧；''豁免'' +2；''行动点'' 1</span><span>''感官'' 全域视野，盲视 5</span></div>\n<div><span>''速度'' 8</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}恶魔力场✦灵气 2</div>\n<div class=description>任何在该灵气内开始回合的敌人迟缓且不能瞬移直到其下回合开始。</div>\n<div class=\"bold bg-power\">全域视野</div>\n<div class=description>敌人不能通过夹击对该莫里迪乌斯魔获得战斗优势。</div>\n<div class=\"bold bg-power\">双重动作</div>\n<div class=description>该莫里迪乌斯魔投两次先攻骰并按照这两次结果获得两个回合。它在每个回合开始时恢复其<br>直觉动作的使用。</div>\n<div class=\"bold bg-power\">双重大脑</div>\n<div class=description>在其每回合结束时，该莫里迪乌斯魔自动豁免掉可以豁免终止的晕眩或震慑效果，以及可以<br>豁免终止的任何魅惑效果。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}战斧（武器）✦随意</div>\n<div class=description>攻击：近战 2（一个生物）+34vs.AC<br>命中：4d10+15 伤害，目标被标记直到其下回合结束。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}狼咬✦随意</div>\n<div class=description>攻击：近战 2（一个生物）+34vs.AC<br>命中：4d8+19 伤害，且该莫里迪乌斯魔滑移目标 6 格到一个邻接该莫里迪乌斯魔的格子。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}蛇咬（毒素）✦随意</div>\n<div class=description>攻击：近战 3（一个生物）+34vs.AC<br>命中：1d6+10 伤害，且目标提供战斗优势并受到 20 点持续毒素伤害（豁免终止两者）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}恐惧祷词（恐惧）✦遭遇</div>\n<div class=description>攻击：近程爆发 5（爆发内所有敌人）+32vs.意志命中：目标晕眩（豁免终止）。<br>失手：目标迟缓且攻击骰受到-2 减值（豁免终止两者）。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">可变抗性✦每遭遇三次</div>\n<div class=description>触发：该莫里迪乌斯魔受到强酸、寒冷、火焰、闪电或雷鸣伤害。<br>效果（自由动作）：该莫里迪乌斯魔获得 30 点触发的伤害类型的抗性直到遭遇结束或直到它再次使用可变抗性。</div>\n<div class=\"bold bg-power\">恶魔，判魂魔DEMON,NALFESHNEE</div>\n<div class=\"italic bg-flavortext\">（莫里迪乌斯魔）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 唬骗+28，历史+24，洞察+26，威吓+28</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 30（+24）</span><span>''敏捷'' 22（+20）</span><span>''感知'' 24（+21）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 32（+25）</span><span>''智力'' 21（+19）</span><span>''魅力'' 28（+23）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 深渊语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 战斧</span></div></div>\n</div>",
+    "title": "莫里迪乌斯魔 Molydeus",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "29",
+    "role": "护卫",
+    "specialty-role": "精英",
+    "size": "大型",
+    "origin": "元素界",
+    "creature-type": "类人生物（恶魔）",
+    "xp": "30000",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "10327"
+  }
+]

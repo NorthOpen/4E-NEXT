@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>6级 远程</span></div>\n<div class=bg-title><span>中型 自然界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 54；''重伤'' 27</span><span>''先攻'' +7</span></div>\n<div><span>''AC'' 20，''强韧'' 16，''反射'' 19，''意志'' 18</span><span>''侦查'' +6</span></div>\n<div><span>''速度'' 6</span><span>''感官'' 昏暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}弯刀（武器）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+11vs.AC<br>命中：1d8+8 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}闪电打击（闪电）✦随意</div>\n<div class=description>攻击：射程 30（一个生物）+11vs.反射<br>命中：1d10+8 闪电伤害，且目标五格内的一个敌人受到 5 点闪电伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/area}}复仇旋风（闪电，雷鸣，结界）✦充能（首次重伤时）</div>\n<div class=description>攻击：区域 10 爆发 1（范围内所有敌人）+11vs.强韧<br>命中：2d10+4 闪电和雷鸣伤害，且目标倒地。然后该兽人滑移目标最多两格。失手：一半伤害，且该兽人可以滑移目标一格。<br>效果：爆发生成一个结界持续直到该兽人下回合结束。任何在该结界内结束回合的敌人受到<br>10 点闪电和雷鸣伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">疾风步伐✦遭遇</div>\n<div class=description>触发：该兽人首次重伤。<br>效果（自由动作）：直到遭遇结束，该兽人获得飞行速度 8，但在每一次移动结束时都必须着陆否则坠落。</div>\n<div class=\"bold bg-power\">死亡狂暴✦遭遇</div>\n<div class=description>触发：该兽人生命值降到 0。<br>效果（自由动作）：该兽人进行一个标准动作。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 16（+6）</span><span>''敏捷'' 19（+7）</span><span>''感知'' 16（+6）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 12（+4）</span><span>''智力'' 8（+2）</span><span>''魅力'' 9（+2）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 通用语，巨人语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 革甲，弯刀</span></div></div>\n</div>",
+    "title": "兽人风暴萨满 Orc Storm Shaman",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "6",
+    "role": "远程",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物",
+    "xp": "250",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "3666"
+  }
+]

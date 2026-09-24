@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>1级 蛮战</span></div>\n<div class=bg-title><span>中型 自然界 野兽（水生）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 35；''重伤'' 17</span><span>''先攻'' +4</span></div>\n<div><span>''AC'' 13，''强韧'' 12，''反射'' 13，''意志'' 11</span><span>''侦查'' +2</span></div>\n<div><span>''速度'' 4，游泳 6</span><span>''感官'' 昏暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">水生</div>\n<div class=description>该棘皮蛙可以在水下呼吸。在水中战斗时，其攻击骰对非水生生物获得+2 加值。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+6vs.AC<br>命中：1d10+6 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}猛扑✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>效果：该棘皮蛙快步其速度的格数并进行下述攻击。攻击：近战 1（一个生物）+4vs.反射<br>命中：2d6+6 伤害，且目标倒地。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}舌捆✦随意</div>\n<div class=description>攻击：近战 3（一个生物）+4vs.反射<br>命中：该棘皮蛙拉动目标 2 格。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 16（+3）</span><span>''敏捷'' 18（+4）</span><span>''感知'' 14（+2）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 15（+2）</span><span>''智力'' 3（-4）</span><span>''魅力'' 9（-1）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n</div>",
+    "title": "棘皮蛙 Thornskin Frog",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "1",
+    "role": "蛮战",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "野兽（水生）",
+    "xp": "100",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "11642"
+  }
+]

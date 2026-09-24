@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>2级 游击</span></div>\n<div class=bg-title><span>小型 自然界 野兽（盲目，泥型怪）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 43；''重伤'' 21</span><span>''先攻'' +5</span></div>\n<div><span>''AC'' 15，''强韧'' 13，''反射'' 15，''意志'' 13</span><span>''侦查'' +2</span></div>\n<div><span>''免疫'' 凝视；''抗力'' 5 强酸</span><span>''感官'' 盲视 10，震动感知 10</span></div>\n<div><span>''速度'' 5，攀爬 3</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}恶臭</div>\n<div class=description>灵气 2：所有在该灵气内的生物的攻击骰受到-2 减值。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}融骨（强酸）✦随意</div>\n<div class=description>攻击：+5 vs. 强韧<br>命中：1d6+5 强酸伤害，且目标每次命中时强韧就受到-2 减值（可累计）（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">泥型✦随意</div>\n<div class=description>该灰泥怪快步 2 格。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 隐秘+12</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 11（+1）</span><span>''敏捷'' 15（+3）</span><span>''感知'' 11（+1）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 19（+5）</span><span>''智力'' 1（-4）</span><span>''魅力'' 1（-4）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n</div>",
+    "title": "灰泥怪 Gray Ooze",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "2",
+    "role": "游击",
+    "specialty-role": "",
+    "size": "小型",
+    "origin": "自然界",
+    "creature-type": "野兽（盲目，泥型怪）",
+    "xp": "125",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "8617"
+  }
+]

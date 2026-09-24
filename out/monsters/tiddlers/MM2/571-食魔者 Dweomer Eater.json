@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>11级 游击</span></div>\n<div class=bg-title><span>大型 自然界 野兽</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 110；''重伤'' 55</span><span>''先攻'' +13</span></div>\n<div><span>''AC'' 25，''强韧'' 20，''反射'' 25，''意志'' 23</span><span>''侦查'' +9</span></div>\n<div><span>''速度'' 8</span><span>''感官'' 昏暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">魔尘回收</div>\n<div class=description>食魔者会消化任何被它摧毁的物品。来自被食魔者摧毁的魔法物品的魔尘可以在该食魔者的<br>胃中回收。这些魔尘等价于该物品的市场价格（而不是价格的五分之一）。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬✦随意</div>\n<div class=description>攻击：+16 vs. AC<br>命中：2d6+6 伤害，且如果目标穿着魔法护甲，则该盔甲生锈直到遭遇结束。在该盔甲<br>生锈期间，该盔甲的增强加值受到-1 减值（可累计），最多累计到该护甲的增强加值减完。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}溶解物品（必击）✦充能 6{{$:/dnd/images/six}}</div>\n<div class=description>攻击：以一个穿着或持用一件等级 15 或以下的生锈魔法物品的生物为目标，+14 vs. 反射<br>命中：该生锈<br>魔法物品被摧毁。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">魔法消化✦随意</div>\n<div class=description>触发：当该食魔者被一次使用魔法法器或武器的攻击命中时。<br>用于触发的攻击的法器或武器生锈直到遭遇结束。在该法器或武器生锈期间，该法器或武器<br>的增强加值受到-1 减值（可累计），最多累计到该物品的增强加值减完。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 12（+6）</span><span>''敏捷'' 23（+11）</span><span>''感知'' 18（+9）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 14（+7）</span><span>''智力'' 2（+1）</span><span>''魅力'' 13（+6）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n</div>",
+    "title": "食魔者 Dweomer Eater",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "11",
+    "role": "游击",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "自然界",
+    "creature-type": "野兽",
+    "xp": "600",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "8734"
+  }
+]

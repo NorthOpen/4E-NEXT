@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>3级 远程</span></div>\n<div class=bg-title><span>中型 自然界 野兽</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 37；''重伤'' 18</span><span>''先攻'' +4</span></div>\n<div><span>''AC'' 15，''强韧'' 14，''反射'' 15，''意志'' 13</span><span>''侦查'' +2</span></div>\n<div><span>''速度'' 6，攀爬 5（蛛行）</span><span>''感官'' 黑暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">保护色</div>\n<div class=description>该穴钓虫穿刺者对抗远程和区域攻击的所有防御获得+2 加值。</div>\n<div class=\"bold bg-power\">狙击手</div>\n<div class=description>当该穴钓虫穿刺者在躲藏状态下进行远程攻击失手时，它仍然保持躲藏。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}螯击✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+8vs.AC<br>命中：1d10+3 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}丝刺✦随意</div>\n<div class=description>攻击：射程 10（一个生物）+8vs.反射<br>命中：1d10+4 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}丝捆✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：射程 10（一个生物）+8vs.反射<br>命中：目标定身并受到 5 点持续伤害（豁免终止两者）。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 隐秘+9</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 15（+3）</span><span>''敏捷'' 17（+4）</span><span>''感知'' 12（+2）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 13（+2）</span><span>''智力'' 2（-3）</span><span>''魅力'' 5（-2）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n</div>",
+    "title": "穴钓虫穿刺者 Cave Fisher Spiker",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "3",
+    "role": "远程",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "野兽",
+    "xp": "150",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "9968"
+  }
+]

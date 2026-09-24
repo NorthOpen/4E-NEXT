@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>12级 头目 控制</span></div>\n<div class=bg-title><span>中型 异界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 126；''重伤'' 63</span><span>''先攻'' +9</span></div>\n<div><span>''AC'' 26，''强韧'' 24，''反射'' 22，''意志'' 24</span><span>''侦查'' +9</span></div>\n<div><span>''速度'' 6，瞬移 3</span><span>''感官'' 黑暗视觉，心灵感应 10</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}低沉笛音✦灵气 3</div>\n<div class=description>在该灵气内的敌人获得 5 点心灵易伤。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+17vs.AC<br>命中：3d8+5 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}扭曲遣送（心灵，瞬移）✦随意</div>\n<div class=description>攻击：射程 10（一个生物）+15vs.意志<br>命中：2d8+5 心灵伤害，且目标 5 格内的一个该秽恶邪裔扭曲呼唤者的异界盟友瞬移到一个邻接目标的格子。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}扭曲驱逐（心灵，瞬移）✦随意</div>\n<div class=description>攻击：近战 1（一个敌人）+15vs.意志<br>命中：2d8+5 心灵伤害，且目标定身（豁免终止）。然后该秽恶邪裔扭曲呼唤者瞬移目标 2格。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/area}}精神扭曲场（心灵，结界）✦遭遇</div>\n<div class=description>攻击：区域 5 爆发 2（爆发内所有敌人）+15vs.意志命中：2d6+6 心灵伤害。<br>效果：爆发生成一个结界持续直到该秽恶邪裔扭曲呼唤者下回合结束。任何进入该结界或在其内结束回合的敌人受到 10 点心灵伤害。此外，任何在该结界内的敌人只能攻击其 3 格内<br>的目标。以一个移动动作，该秽恶邪裔扭曲呼唤者可以移动该结界最多 4 格。<br>次要维持：该结界继续存在。</div>\n<div class=\"italic bg-flavortext\">（秽恶邪裔扭曲呼唤者和嘲弄者）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 神秘+15</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 19（+10）</span><span>''敏捷'' 16（+9）</span><span>''感知'' 17（+9）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 22（+12）</span><span>''智力'' 18（+10）</span><span>''魅力'' 19（+10）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 异怪语，心灵感应 10</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 音乐笛</span></div></div>\n</div>",
+    "title": "秽恶邪裔扭曲呼唤者 Foulspawn Warpcaller",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "12",
+    "role": "控制",
+    "specialty-role": "头目",
+    "size": "中型",
+    "origin": "异界",
+    "creature-type": "类人生物",
+    "xp": "700",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "11623"
+  }
+]

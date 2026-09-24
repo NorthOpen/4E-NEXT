@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>11级 控制</span></div>\n<div class=bg-title><span>大型 自然界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 114；''重伤'' 57</span><span>''先攻'' +8</span></div>\n<div><span>''AC'' 25，''强韧'' 23，''反射'' 20，''意志'' 22</span><span>''侦查'' +8</span></div>\n<div><span>''速度'' 8</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}雷鸣法杖（雷鸣，武器）✦随意</div>\n<div class=description>攻击：近战 2（一个生物）+16vs.AC<br>命中：3d6+9 雷鸣伤害。目盲或耳聋的目标还会晕眩（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}雷鸣冲击（雷鸣）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：近程冲击 5（冲击内所有敌人）+14vs.强韧<br>命中：2d6+6 雷鸣伤害，且目标耳聋（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/area}}召唤闪电（闪电）✦充能（当首次重伤时）</div>\n<div class=description>攻击：区域 10 爆发 1（爆发内所有敌人）+14vs.反射<br>命中：3d8+6 闪电伤害，且目标目盲（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">暴雨倾盆✦随意</div>\n<div class=description>效果：该食人魔风暴萨满生成一个区域 10 爆发 3 的结界持续直到遭遇结束或直到该食人魔<br>风暴萨满再次使用该威能。任何在该结界内的敌人的攻击骰受到-2 减值且所有防御受到-2减值。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 23（+11）</span><span>''敏捷'' 16（+8）</span><span>''感知'' 16（+8）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 18（+9）</span><span>''智力'' 12（+6）</span><span>''魅力'' 11（+5）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 巨人语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 革甲，法杖</span></div></div>\n</div>",
+    "title": "食人魔风暴萨满 Ogre Storm Shaman",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "11",
+    "role": "控制",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "自然界",
+    "creature-type": "类人生物",
+    "xp": "600",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "13387"
+  }
+]

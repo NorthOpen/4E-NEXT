@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>17级 精英 蛮战</span></div>\n<div class=bg-title><span>大型 自然界 魔法兽</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 404；''重伤'' 202</span><span>''先攻'' +12</span></div>\n<div><span>''AC'' 29，''强韧'' 30，''反射'' 28，''意志'' 27</span><span>''侦查'' +16</span></div>\n<div><span>''豁免'' +2；''行动点'' 1</span><span>''感官'' 黑暗视觉，震动感知 5</span></div>\n<div><span>''速度'' 5，掘穴 2（坑道）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}爪击✦随意</div>\n<div class=description>前提：该深巨怪必须没有擒抱生物。攻击：近战 2（一个生物）+22vs.AC<br>命中：4d8+12 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}双重攻击✦随意</div>\n<div class=description>效果：该深巨怪使用两次爪击，若两次攻击都命中同一个目标，则该深巨怪擒抱目标（挣脱DC23）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}撕裂爪击✦随意</div>\n<div class=description>效果：近战 2（一个被该深巨怪擒抱的生物）。目标受到 60 点伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}疯狂凝视（魅惑）✦随意</div>\n<div class=description>攻击：近程冲击 5（范围内所有敌人）+20vs.意志<br>命中：目标在其下回合以一个标准动作对其最近的一个盟友进行一次基本攻击。若没有盟友在攻击范围内，则目标改为以一个标准动作对其最近的一个可以冲锋到的盟友冲锋。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 26（+16）</span><span>''敏捷'' 18（+12）</span><span>''感知'' 16（+11）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 22（+14）</span><span>''智力'' 5（+5）</span><span>''魅力'' 11（+8）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n</div>",
+    "title": "深巨怪 Deep Hulk",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "17",
+    "role": "蛮战",
+    "specialty-role": "精英",
+    "size": "大型",
+    "origin": "自然界",
+    "creature-type": "魔法兽",
+    "xp": "3200",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "4403"
+  }
+]

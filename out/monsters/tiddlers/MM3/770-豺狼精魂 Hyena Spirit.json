@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>7级 杂兵 护卫</span></div>\n<div class=bg-title><span>中型 暗影界 野兽（不死生物） （如果是由耶诺古的神选者生成则为 0）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 1；失手攻击无法伤害杂兵</span><span>''先攻'' +9</span></div>\n<div><span>''AC'' 21，''强韧'' 19，''反射'' 19，''意志'' 17</span><span>''侦查'' +5</span></div>\n<div><span>''速度'' 8</span><span>''感官'' 黑暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}幽灵颔咬✦灵气 1</div>\n<div class=description>任何在该灵气内开始回合的敌人迟缓直到其下回合结束。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+12vs.AC<br>命中：7 点伤害。</div>\n<div class=\"italic bg-flavortext\">（耶诺古的神选者与豺狼精魂）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 19（+7）</span><span>''敏捷'' 19（+7）</span><span>''感知'' 14（+5）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 14（+5）</span><span>''智力'' 2（-1）</span><span>''魅力'' 7（+1）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span></div></div>\n</div>",
+    "title": "豺狼精魂 Hyena Spirit",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "7",
+    "role": "护卫",
+    "specialty-role": "杂兵",
+    "size": "中型",
+    "origin": "暗影界",
+    "creature-type": "野兽（不死生物） （如果是由耶诺古的神选者生成则为 0）",
+    "xp": "75",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "12052"
+  }
+]

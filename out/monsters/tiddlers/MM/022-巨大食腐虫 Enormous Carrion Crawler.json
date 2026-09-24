@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>17级 精英 护卫</span></div>\n<div class=bg-title><span>超大型 异界 野兽</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 332；''重伤'' 166</span><span>''先攻'' +14</span></div>\n<div><span>''AC'' 33，''强韧'' 31，''反射'' 30，''意志'' 29</span><span>''侦查'' +11</span></div>\n<div><span>''豁免'' +2；''行动点'' 1</span><span>''感官'' 黑暗视觉</span></div>\n<div><span>''速度'' 6，攀爬 6（蛛行）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">长距威胁</div>\n<div class=description>该食腐虫可以对它 3 格以内的敌人进行借机攻击。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}触手（毒素）✦随意</div>\n<div class=description>攻击：近战 3（一个生物）+20vs.强韧<br>命中：2d6+8 伤害，该食腐虫可以拉动目标一格，且目标受到 10 点持续毒素伤害并迟缓（豁免终止两者）。<br>首次豁免失败时：目标定身代替迟缓（豁免终止）。<br>第二次豁免失败时：目标震慑代替定身（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+22vs.AC<br>命中：2d12+12 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}饥饿突袭✦随意</div>\n<div class=description>效果：该食腐虫使用两次触手或使用一次触手和一次啮咬。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}触手风暴（毒素）✦充能（首次重伤时）</div>\n<div class=description>攻击：近程冲击 3（范围内所有生物）+20vs.强韧<br>命中：2d10+5 伤害，且目标受到 10 点持续毒素伤害并迟缓（豁免终止两者）。首次豁免失败时：目标定身代替迟缓（豁免终止）。<br>第二次豁免失败时：目标震慑代替定身（豁免终止）。</div>\n<div class=\"italic bg-flavortext\">（译注：触手风暴威能的原文中攻击条目的“20vs.强韧”前面没有“+”号，虽官方未勘误</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 25（+15）</span><span>''敏捷'' 18（+12）</span><span>''感知'' 16（+11）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 22（+14）</span><span>''智力'' 4（+5）</span><span>''魅力'' 18（+12）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n</div>",
+    "title": "巨大食腐虫 Enormous Carrion Crawler",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "17",
+    "role": "护卫",
+    "specialty-role": "精英",
+    "size": "超大型",
+    "origin": "异界",
+    "creature-type": "野兽",
+    "xp": "3200",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "327"
+  }
+]

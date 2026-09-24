@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>5级 远程</span></div>\n<div class=bg-title><span>小型 元素界 魔法兽（恶魔）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 51；''重伤'' 25</span><span>''先攻'' +6</span></div>\n<div><span>''AC'' 17，''强韧'' 16，''反射'' 18，''意志'' 17</span><span>''侦查'' +5</span></div>\n<div><span>''抗力'' 10 可变（每遭遇一次）</span><span></span></div>\n<div><span>''速度'' 7</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬✦随意</div>\n<div class=description>攻击：+10 vs. AC<br>命中：1d4+4 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}集束打击（闪电）✦随意</div>\n<div class=description>攻击：射程 10，+10 vs. 反射<br>命中：2d6+4 闪电伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/area}}闪电爆发（闪电）✦随意</div>\n<div class=description>攻击：区域 10 爆发 2，+8 vs. 反射<br>命中：1d6+4 闪电伤害。爆发内每有一个生物再多造成 1 点额外闪电<br>伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}奥法电弧（闪电）✦随意</div>\n<div class=description>触发：当敌人移动到邻接该螺纹魔的位置时。<br>攻击：+10 vs. 反射<br>命中：1d6+4 闪电伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}重伤放电（闪电）✦遭遇</div>\n<div class=description>触发：首次重伤时。<br>攻击：近程爆发 1，+8 vs. 反射<br>命中：1d6+4 闪电伤害，且目标晕眩（豁免终止）。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 13（+3）</span><span>''敏捷'' 19（+6）</span><span>''感知'' 16（+5）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 15（+4）</span><span>''智力'' 5（-1）</span><span>''魅力'' 12（+3）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 深渊语</span></div></div>\n</div>",
+    "title": "螺纹魔 Runespiral Demon",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "5",
+    "role": "远程",
+    "specialty-role": "",
+    "size": "小型",
+    "origin": "元素界",
+    "creature-type": "魔法兽（恶魔）",
+    "xp": "200",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "5897"
+  }
+]

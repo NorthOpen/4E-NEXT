@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>15级 精英 蛮战</span></div>\n<div class=bg-title><span>大型 精界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 240；''重伤'' 120</span><span>''先攻'' +12</span></div>\n<div><span>''AC'' 27，''强韧'' 28，''反射'' 25，''意志'' 28</span><span>''侦查'' +18</span></div>\n<div><span>''易伤'' 黯蚀（如果该费尔伯格血熊受到黯蚀伤害，则它的再生在其下回合失效）；''豁免'' +2；''行动点'' 1</span><span>''感官'' 昏暗视觉</span></div>\n<div><span>''速度'' 8</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}击打✦随意</div>\n<div class=description>攻击：触及 2，+18 vs. AC<br>命中：2d8+9 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}爪击（只能在血熊形态下使用）✦随意</div>\n<div class=description>攻击：触及 2，+18 vs. AC<br>命中：2d12+9 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}双重攻击✦随意</div>\n<div class=description>该费尔伯格血熊进行两次近战基本攻击。如果该费尔伯格血熊的这两次攻击都命中，则它对一个目标进行第二攻击。<br>第二攻击：+17vs.强韧；目标被擒抱。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬（只能在血熊形态下使用）✦随意</div>\n<div class=description>攻击：+18 vs. AC<br>命中：3d12+9 伤害，且如果目标提供战斗优势给该费尔伯格血熊 ，则目标受到 10 点<br>持续伤害（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}月火✦充能 4,5,6{{$:/dnd/images/four}}{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：射程 10，+15 vs. 意志<br>命中：直到该费尔伯格血熊下回合结束，目标不能从隐形或隐蔽获得增益。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}血熊殴打</div>\n<div class=description>触发：当重伤时充能。<br>触及 2；以一个被该费尔伯格血熊擒抱的生物为目标；无攻击骰；4d10+9 伤害，且如果该费<br>尔伯格血熊处于血熊形态，则它以一个自由动作对目标进行一次啮咬攻击。</div>\n<div class=\"bold bg-power\">血熊形态（医疗，变形）✦遭遇</div>\n<div class=description>触发：当首次重伤时。<br>该费尔伯格血熊变成一个类人生物与熊的混合体的形态。它恢复它所有的生命值，获得 10点临时生命值，且获得啮咬和爪击攻击。当该费尔伯格血熊再次重伤时，它恢复它的通常形<br>态直到遭遇结束。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 运动+19，威吓+13，自然+18</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 24（+14）</span><span>''敏捷'' 20（+12）</span><span>''感知'' 22（+13）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 20（+12）</span><span>''智力'' 12（+8）</span><span>''魅力'' 13（+8）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 通用语，精灵语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 革甲，熊头盔</span></div></div>\n</div>",
+    "title": "费尔伯格血熊 Firbolg Bloodbear",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "15",
+    "role": "蛮战",
+    "specialty-role": "精英",
+    "size": "大型",
+    "origin": "精界",
+    "creature-type": "类人生物",
+    "xp": "2400",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "7122"
+  }
+]

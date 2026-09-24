@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>14级 蛮战</span></div>\n<div class=bg-title><span>大型 精界 类人生物（蜘蛛），卓尔</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 172；''重伤'' 86</span><span>''先攻'' +12</span></div>\n<div><span>''AC'' 26，''强韧'' 27，''反射'' 25，''意志'' 23</span><span>''侦查'' +15</span></div>\n<div><span>''速度'' 8，攀爬 8（蛛行）</span><span>''感官'' 黑暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}巨剑（武器）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+19vs.AC<br>命中：3d12+8 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}蛛网✦充能 4,5,6{{$:/dnd/images/four}}{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：射程 5（一个生物）+17vs.反射<br>命中：目标受缚直到它挣脱（DC21）或瞬移。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}迅咬（毒素）✦随意</div>\n<div class=description>攻击：近战 1（一个提供战斗优势给该蛛化精灵的生物）+17vs.反射<br>命中：1d4 伤害，以及 10 点持续毒素伤害（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}暗炎✦遭遇</div>\n<div class=description>攻击：射程 10（一个生物）+17vs.反射<br>命中：目标提供战斗优势且不能从隐形或隐蔽获得增益直到该蛛化精灵下回合结束。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 地城+15，隐秘+17</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 24（+14）</span><span>''敏捷'' 21（+12）</span><span>''感知'' 16（+10）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 22（+13）</span><span>''智力'' 13（+8）</span><span>''魅力'' 9（+6）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 精灵语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 皮甲，巨剑</span></div></div>\n</div>",
+    "title": "利齿蛛化精灵 Drider Fanglord",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "14",
+    "role": "蛮战",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "精界",
+    "creature-type": "类人生物（蜘蛛），卓尔",
+    "xp": "1000",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "1296"
+  }
+]

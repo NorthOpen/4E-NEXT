@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>26级 控制</span></div>\n<div class=bg-title><span>中型 异界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 241；''重伤'' 120</span><span>''先攻'' +22</span></div>\n<div><span>''AC'' 40，''强韧'' 37，''反射'' 39，''意志'' 38</span><span>''侦查'' +25</span></div>\n<div><span>''免疫'' 受控（任何威能命中而想控制该阿尔班之眷族的敌人改为受控于该阿尔班之眷族[</span><span>''感官'' 黑暗视觉</span></div>\n<div><span>''速度'' 8</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}蓝炎打击（寒冷，火焰）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+29vs.反射<br>命中：3d8+12 寒冷和火焰伤害，且目标晕眩直到其下回合结束。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}冲突之触（魅惑）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+29vs.意志<br>命中：2d10+5 心灵伤害，且目标以一个自由动作对一个由该阿尔班之眷族选择的生物进行一次近战或远程基本攻击。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}背叛的涟漪（魅惑，心灵）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：近程爆发 1（爆发内所有敌人）+29vs.意志<br>命中：3d10+5 心灵伤害，且目标受控（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">遥远之国映像✦随意</div>\n<div class=description>效果：选择一个该阿尔班之眷族看得见的生物。该阿尔班之眷族与该生物建立一个恐怖连接直到遭遇结束或直到该阿尔班之眷族再次使用该威能。每当该威能的目标快步时，该阿尔班<br>之眷族可以以一个自由动作快步等量的格数。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">灵能增幅（心灵）✦充能（当该阿尔班之眷族受到心灵伤害时）</div>\n<div class=description>触发：该阿尔班之眷族通过蓝炎打击或冲突之触命中。<br>效果（自由动作）：该攻击造成 3d10 额外心灵伤害。</div>\n<div class=\"italic bg-flavortext\">蜘蛛可以吐丝编织出厚实的网墙，尽管过程有点漫长且涉及到蜘蛛在战斗中这样做会怎样。你可以使用下列地形特征来表现蜘蛛巢穴中的蛛网。使用基于《地下城主指南》P42 里适用于遭遇等级的 DC。 整张的网：一个蜘蛛可能会编织出几乎隐形的粘性网墙来捕捉大意的入侵者。一次侦查检定（困难 DC）能让一个人物发现该网。一个进入该网的空间的生物受到一次攻击（遭遇等级+3vs.反射）。若命中，则该目标定身（豁免终止）。一次近程或区域火焰攻击能够毁灭该网，而一次近战火焰攻击则可以毁灭一格网。 杂乱的网：一个蜘蛛可能会编织出覆盖墙面或天花板的厚实的网来隐藏其存在。这些网提供全隐蔽，不过蜘蛛的震动感知允许它透过网“看”东西而不受到减值。蜘蛛使用这些网 来偷偷接近猎物或是从上方投放蛛网下去，使用杂技检定来避免倒地和受到伤害。 （阿尔班之眷族）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 唬骗+26，交涉+26，洞察+25</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 22（+19）</span><span>''敏捷'' 29（+22）</span><span>''感知'' 24（+20）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 25（+20）</span><span>''智力'' 26（+21）</span><span>''魅力'' 27（+21）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 通用语，异怪语</span></div></div>\n</div>",
+    "title": "阿尔班之眷族 Spawn of Ulban",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "26",
+    "role": "控制",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "异界",
+    "creature-type": "类人生物",
+    "xp": "9000",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "13971"
+  }
+]

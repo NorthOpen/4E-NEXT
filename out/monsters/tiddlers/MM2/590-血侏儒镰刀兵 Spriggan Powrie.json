@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>7级 游击</span></div>\n<div class=bg-title><span>小型 精界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 79；''重伤'' 39</span><span>''先攻'' +9</span></div>\n<div><span>''AC'' 21，''强韧'' 19，''反射'' 20，''意志'' 18</span><span>''侦查'' +9</span></div>\n<div><span>''速度'' 6</span><span>''感官'' 昏暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">滑血</div>\n<div class=description>血侏儒镰刀兵移动离开一个邻接重伤生物或是承受着持续伤害的生物的空间时不会引发借<br>机攻击。</div>\n<div class=\"bold bg-power\">战斗优势</div>\n<div class=description>当该血侏儒镰刀兵命中一个承受着持续伤害且提供战斗优势给该血侏儒镰刀兵的生物时，该<br>血侏儒镰刀兵的攻击将使该持续伤害增加 5 点。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}镰刀（武器）✦随意</div>\n<div class=description>攻击：+12 vs. AC<br>命中：1d6+3 伤害，以及 5 点持续伤害（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}去你的吧✦随意</div>\n<div class=description>攻击：以一个倒地的生物为目标，+12 vs. 强韧<br>命中：1d6+3 伤害，且该血侏儒镰刀兵推动目标 3 格。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}挑脚筋（武器）</div>\n<div class=description>触发：当首次重伤时充能。<br>攻击：+12 vs. AC<br>命中：1d6+3 伤害，且目标倒地并迟缓直到该血侏儒镰刀兵下回合结束，并受到 5 点持<br>续伤害（豁免终止）。</div>\n<div class=\"bold bg-power\">红帽子热情✦遭遇</div>\n<div class=description>触发：当该血侏儒镰刀兵使一个敌人重伤或使一个敌人的生命值降到 0 或以下时。<br>该血侏儒镰刀兵获得 1d8+2 临时生命值。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 运动+11，隐秘+14，盗术+12</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 16（+6）</span><span>''敏捷'' 18（+7）</span><span>''感知'' 12（+4）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 15（+5）</span><span>''智力'' 10（+3）</span><span>''魅力'' 15（+5）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 精灵语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 皮甲，2 把镰刀，铁靴子</span></div></div>\n</div>",
+    "title": "血侏儒镰刀兵 Spriggan Powrie",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "7",
+    "role": "游击",
+    "specialty-role": "",
+    "size": "小型",
+    "origin": "精界",
+    "creature-type": "类人生物",
+    "xp": "300",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "9009"
+  }
+]

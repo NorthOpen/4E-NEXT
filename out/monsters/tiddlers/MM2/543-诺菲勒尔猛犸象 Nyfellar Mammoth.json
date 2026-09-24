@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>17级 蛮战</span></div>\n<div class=bg-title><span>超大型 元素界 野兽（坐骑）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 202；''重伤'' 101</span><span>''先攻'' +6</span></div>\n<div><span>''AC'' 29，''强韧'' 33，''反射'' 24，''意志'' 28</span><span>''侦查'' +10</span></div>\n<div><span>''抗力'' 10 寒冷</span><span></span></div>\n<div><span>''速度'' 8（冰雪行者）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">烈风冲锋（坐骑，在被一个等级 17 或以上的骑手骑乘的时候）✦随意</div>\n<div class=description>当冲锋时；该诺菲勒尔猛犸象可以使用暴雪践踏或牙掀来代替近战基本攻击。在该诺菲勒尔<br>猛犸象攻击之后，它的骑手以一个自由动作进行一次近战基本攻击。</div>\n<div class=\"bold bg-power\">冰足</div>\n<div class=description>当一个效果拉动、推动或滑移该诺菲勒尔猛犸象时，该诺菲勒尔猛犸象比该效果指定的少移<br>动两格。被击倒时该诺菲勒尔猛犸象可以进行一次豁免来避免。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}牙抵✦随意</div>\n<div class=description>攻击：触及 2，+20 vs. AC<br>命中：2d10+10 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}跺踏（寒冷）✦随意</div>\n<div class=description>攻击：+18 vs. 强韧<br>命中：2d6+10 伤害以及 1d6 寒冷伤害，且目标倒地。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}牙掀✦充能 4,5,6{{$:/dnd/images/four}}{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：触及 2，+18 vs. 强韧<br>命中：1d10+5 伤害，且该诺菲勒尔猛犸象滑移目标 5 格。目标从最多 30 英<br>尺（6 格）高的位置坠落到该滑移终止的位置并受到坠落伤害，如果可以的话。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}暴雪践踏</div>\n<div class=description>触发：当该诺菲勒尔猛犸象首次重伤或当它受到寒冷伤害时充能。<br>该诺菲勒尔猛犸象移动 8 格且可以移动穿过敌人占据的空间，对这些穿过的每个敌人进行一<br>次跺踏攻击。</div>\n<div class=\"italic bg-flavortext\">（猛犸象）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 30（+18）</span><span>''敏捷'' 10（+8）</span><span>''感知'' 18（+12）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 22（+14）</span><span>''智力'' 2（+4）</span><span>''魅力'' 9（+7）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n</div>",
+    "title": "诺菲勒尔猛犸象 Nyfellar Mammoth",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "17",
+    "role": "蛮战",
+    "specialty-role": "",
+    "size": "超大型",
+    "origin": "元素界",
+    "creature-type": "野兽（坐骑）",
+    "xp": "1600",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "8379"
+  }
+]

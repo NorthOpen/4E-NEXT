@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>10级 蛮战</span></div>\n<div class=bg-title><span>大型 自然界 野兽（水生）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 128；''重伤'' 64</span><span>''先攻'' +8</span></div>\n<div><span>''AC'' 22，''强韧'' 23，''反射'' 21，''意志'' 22</span><span>''侦查'' +9</span></div>\n<div><span>''速度'' 1（笨拙），游泳 8</span><span>''感官'' 昏暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">生于水中</div>\n<div class=description>在水中时，撕肉鲨对任何没有游泳速度的生物的伤害骰获得+2 加值。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬✦随意</div>\n<div class=description>攻击：+13 vs. AC<br>命中：2d8+7 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}猛咬冲锋（只能在该撕肉鲨没有擒抱生物时使用）✦随意</div>\n<div class=description>攻击：该撕肉鲨冲锋且可以进行以下攻击代替近战基本攻击：+14 vs. AC<br>命中：2d8+7 伤害，且目标被擒<br>抱。当该擒抱终止时，目标受到 5 点持续伤害（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}撕肉齿✦随意</div>\n<div class=description>以一个被该撕肉鲨擒抱的生物为目标；无攻击骰；3d8+7 伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">进食狂怒✦随意</div>\n<div class=description>触发：当该撕肉鲨在一个重伤生物 5 格内开始回合时。<br>该撕肉鲨必须对邻接它的一个生物进行一次啮咬攻击。如果该撕肉鲨正擒抱一个生物，则该<br>擒抱终止。</div>\n<div class=\"italic bg-flavortext\">（鲨鱼）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 21（+10）</span><span>''敏捷'' 16（+8）</span><span>''感知'' 18（+9）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 18（+9）</span><span>''智力'' 2（+1）</span><span>''魅力'' 15（+7）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n</div>",
+    "title": "撕肉鲨 Fleshtearer Shark",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "10",
+    "role": "蛮战",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "自然界",
+    "creature-type": "野兽（水生）",
+    "xp": "500",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "8820"
+  }
+]

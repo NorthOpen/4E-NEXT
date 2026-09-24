@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>16级 伏击</span></div>\n<div class=bg-title><span>中型 元素界 类人生物（不死生物）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 118；''重伤'' 59</span><span>''先攻'' +17</span></div>\n<div><span>''AC'' 30，''强韧'' 29，''反射'' 28，''意志'' 26</span><span>''侦查'' +13</span></div>\n<div><span>''免疫'' 疾病，毒素；''抗力'' 10 黯蚀；''易伤'' 5 光耀</span><span>''感官'' 黑暗视觉</span></div>\n<div><span>''速度'' 8，攀爬 4</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}丧葬恶臭✦灵气 3</div>\n<div class=description>敌人在该灵气内时所有防御受到-2 减值。</div>\n<div class=\"bold bg-power\">顺拖</div>\n<div class=description>该食尸鬼在其回合移动时，它拉动任何被它擒抱的生物随它一同移动。该生物保持被擒抱，<br>且该移动不会引发该被擒抱生物的借机攻击。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}饥渴爪击✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+21vs.AC命中：2d8+3 伤害。<br>效果：若该食尸鬼擒抱的生物少于两个，则它擒抱目标（挣脱 DC22）。然后该食尸鬼快步最多其速度一半。直到该擒抱终止，任何命中该食尸鬼的近战或远程攻击对该食尸鬼造成一<br>半伤害且对目标造成一半伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}吞噬✦随意</div>\n<div class=description>攻击：近战 1（一个被该食尸鬼擒抱的生物）+21vs.AC<br>命中：3d10+5 伤害，且目标不再被该食尸鬼擒抱。此外，目标受到 10 点持续伤害（豁免终止）。<br>失手：一半伤害，且目标不再被该食尸鬼擒抱。此外，目标受到 5 点持续伤害（豁免终止）。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 隐秘+18</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 24（+15）</span><span>''敏捷'' 21（+13）</span><span>''感知'' 20（+13）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 16（+11）</span><span>''智力'' 11（+8）</span><span>''魅力'' 7（+6）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 深渊语</span></div></div>\n</div>",
+    "title": "深渊食尸鬼吞噬者 Abyssal Ghoul Devourer",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "16",
+    "role": "伏击",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "元素界",
+    "creature-type": "类人生物（不死生物）",
+    "xp": "1400",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "1969"
+  }
+]

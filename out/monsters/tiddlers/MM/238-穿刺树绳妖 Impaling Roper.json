@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>10级 伏击</span></div>\n<div class=bg-title><span>大型 元素界 魔法兽（土系）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 84；''重伤'' 42</span><span>''先攻'' +13</span></div>\n<div><span>''AC'' 24，''强韧'' 23，''反射'' 22，''意志'' 19</span><span>''侦查'' +9</span></div>\n<div><span>''速度'' 2，攀爬 2（蛛行）</span><span>''感官'' 黑暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}触手✦随意</div>\n<div class=description>攻击：近战 10（一个生物）+13vs.反射<br>命中：1d8+5 伤害。<br>效果：该树绳妖擒抱目标（挣脱 DC26）。直到该树绳妖下回合结束，该树绳妖获得对来自<br>该目标攻击的所有伤害的 20 点抗性。在目标被擒抱期间，任何生物可以对目标的格子攻击<br>触手。触手使用该树绳妖的防御值。对触手的攻击不会对该树绳妖造成伤害或其他效果，不<br>过若命中，则该擒抱终止。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}穿刺✦随意</div>\n<div class=description>攻击：近战 10（一个被该树绳妖擒抱的生物）+13vs.反射<br>效果：该树绳妖拉动目标最多 10 格到一个邻接它的格子。<br>命中：4d10+5 伤害，且擒抱终止。<br>失手：一半伤害，且擒抱终止。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 隐秘+14</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 21（+10）</span><span>''敏捷'' 18（+9）</span><span>''感知'' 18（+9）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 18（+9）</span><span>''智力'' 11（+5）</span><span>''魅力'' 6（+3）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 荒神语</span></div></div>\n</div>",
+    "title": "穿刺树绳妖 Impaling Roper",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "10",
+    "role": "伏击",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "元素界",
+    "creature-type": "魔法兽（土系）",
+    "xp": "500",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "3924"
+  }
+]

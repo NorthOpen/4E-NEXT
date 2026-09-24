@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>25级 杂兵 护卫</span></div>\n<div class=bg-title><span>中型 自然界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 1；失手攻击无法伤害杂兵</span><span>''先攻'' +16</span></div>\n<div><span>''AC'' 41，''强韧'' 38，''反射'' 37，''意志'' 36</span><span>''侦查'' +13</span></div>\n<div><span>''速度'' 6</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬✦随意</div>\n<div class=description>前提：该堕落贪吃鬼没有擒抱生物。<br>攻击：近战 1（一个生物）+30vs.意志命中：12 点伤害，且目标被擒抱。</div>\n<div class=\"bold bg-power\">咀嚼✦随意</div>\n<div class=description>效果：一个被该堕落贪吃鬼擒抱的生物受到 12 点伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">传播无度</div>\n<div class=description>触发：一个敌人使该堕落贪吃鬼的生命值降到 0。<br>效果（无动作）：如果触发的敌人在其下回合结束前没有恢复生命值，则它受到 16 点伤害。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 25（+19）</span><span>''敏捷'' 14（+14）</span><span>''感知'' 12（+13）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 28（+21）</span><span>''智力'' 16（+15）</span><span>''魅力'' 20（+17）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 通用语</span></div></div>\n</div>",
+    "title": "堕落贪吃鬼 Corrupted Glutton",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "25",
+    "role": "护卫",
+    "specialty-role": "杂兵",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物",
+    "xp": "1750",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "10599"
+  }
+]

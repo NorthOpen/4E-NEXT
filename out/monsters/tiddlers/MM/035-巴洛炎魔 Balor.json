@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>27级 精英 蛮战</span></div>\n<div class=bg-title><span>超大型 元素界 类人生物（恶魔）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 622；''重伤'' 311</span><span>''先攻'' +20</span></div>\n<div><span>''AC'' 40，''强韧'' 40，''反射'' 37，''意志'' 39</span><span>''侦查'' +27</span></div>\n<div><span>''抗力'' 20 火焰；''豁免'' +2；''行动点'' 1</span><span>''感官'' 黑暗视觉，盲视 6</span></div>\n<div><span>''速度'' 8，飞行 12（笨拙）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}火焰身躯（火焰）✦灵气 2（在该巴洛炎魔处于重伤时则为灵气 3）</div>\n<div class=description>任何在该灵气内开始回合的敌人受到 10 火焰伤害，在该巴洛炎魔重伤时则为 20 火焰伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}闪电剑（闪电，武器）✦随意</div>\n<div class=description>攻击：近战 3（一个生物）+32vs.AC<br>命中：6d10+11 闪电伤害，若该巴洛炎魔造成重击则为 3d10+71 闪电伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}火焰鞭（火焰）✦随意</div>\n<div class=description>攻击：近战 5（一个生物）+30vs.反射<br>命中：2d10+10 火焰伤害，以及 15 点持续火焰伤害（豁免终止）。该巴洛炎魔拉动目标最多五格到一个邻接它的格子。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}炎雷击✦随意</div>\n<div class=description>效果：该巴洛炎魔使用一次闪电剑和一次火焰鞭。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}枭首斩（闪电，武器）✦充能（首次重伤时）</div>\n<div class=description>攻击：近程冲击 3（范围内所有敌人）+32vs.AC（该攻击在投出 15-20 时可以造成重击）<br>命中：5d12+14 闪电伤害，若该巴洛炎魔造成重击则为 3d12+74 闪电伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}死亡爆发（火焰）✦遭遇</div>\n<div class=description>触发：该巴洛炎魔 HP 降为 0。<br>攻击（无动作）：近程爆发 10（范围内所有生物）+30vs.反射命中：6d10 火焰伤害。<br>失手：一半伤害。<br>效果：该巴洛炎魔被摧毁。</div>\n<div class=\"bold bg-power\">可变抗性✦每遭遇三次</div>\n<div class=description>触发：该巴洛炎魔受到强酸、寒冷、火焰、闪电或雷鸣伤害。<br>效果（自由动作）：该巴洛炎魔获得 20 点触发伤害类型的抗性直到遭遇结束或直到它再次使用可变抗性。</div>\n<div class=\"italic bg-flavortext\">（译注：巴洛炎魔被官方勘误过，这里按照的是勘误后的版本）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 唬骗+20，洞察+27，威吓+20</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 30（+23）</span><span>''敏捷'' 25（+20）</span><span>''感知'' 29（+22）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 31（+23）</span><span>''智力'' 12（+14）</span><span>''魅力'' 14（+15）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 深渊语，通用语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 闪电剑，火焰鞭</span></div></div>\n</div>",
+    "title": "巴洛炎魔 Balor",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "27",
+    "role": "蛮战",
+    "specialty-role": "精英",
+    "size": "超大型",
+    "origin": "元素界",
+    "creature-type": "类人生物（恶魔）",
+    "xp": "22000",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "551"
+  }
+]

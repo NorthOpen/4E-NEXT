@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>10级 精英 护卫</span></div>\n<div class=bg-title><span>大型 自然界 类人生物（巨人）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 222；''重伤'' 111</span><span>''先攻'' +8</span></div>\n<div><span>''AC'' 26，''强韧'' 24，''反射'' 20，''意志'' 20</span><span>''侦查'' +12</span></div>\n<div><span>''豁免'' +2；''行动点'' 1</span><span></span></div>\n<div><span>''速度'' 6</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">双重行动</div>\n<div class=description>该双头巨人进行两次先攻检定并在每一个检定结果获得一个完整的回合。该双头巨人每轮可<br>以进行两个直觉动作，但在其两个回合的回合与回合之间分别只能进行一个。</div>\n<div class=\"bold bg-power\">双重大脑</div>\n<div class=description>在它的每次回合结束时，该双头巨人身上的任何晕眩、震慑或魅惑效果自动终止。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}扣击✦随意</div>\n<div class=description>攻击：近战 2（一个生物）+15vs.AC<br>命中：1d12+12 伤害，且该双头巨人可以推动目标一格。效果：该双头巨人标记目标直到该双头巨人下回合结束。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}拍飞✦随意</div>\n<div class=description>触发：一个敌人进入一个夹击该双头巨人的格子。<br>攻击（直觉反应）：近战 2（一个夹击该双头巨人的生物）+13vs.强韧命中：该双头巨人推动目标最多三格。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 28（+14）</span><span>''敏捷'' 12（+6）</span><span>''感知'' 15（+7）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 23（+11）</span><span>''智力'' 8（+4）</span><span>''魅力'' 9（+4）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 巨人语</span></div></div>\n</div>",
+    "title": "双头巨人掠夺者 Ettin Marauder",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "10",
+    "role": "护卫",
+    "specialty-role": "精英",
+    "size": "大型",
+    "origin": "自然界",
+    "creature-type": "类人生物（巨人）",
+    "xp": "1000",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "1845"
+  }
+]

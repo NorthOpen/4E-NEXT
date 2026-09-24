@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>12级 蛮战</span></div>\n<div class=bg-title><span>中型 元素界 类人生物（土系）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 149；''重伤'' 74</span><span>''先攻'' +5</span></div>\n<div><span>''AC'' 25，''强韧'' 26，''反射'' 23，''意志'' 21</span><span>''侦查'' +9</span></div>\n<div><span>''免疫'' 疾病，石化，毒素</span><span>''感官'' 震动感知 5</span></div>\n<div><span>''速度'' 6（大地行者）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">大地行者</div>\n<div class=description>该亚空无视任何由瓦砾、凹凸不平的石头或是土构成的困难地形。</div>\n<div class=\"bold bg-power\">毁灭震颤</div>\n<div class=description>每当该亚空受到雷鸣伤害时，它迟缓直到其下回合结束。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}岩石战锤✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+17vs.AC<br>命中：4d8+7 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}雪崩冲击✦充能（首次重伤时）</div>\n<div class=description>效果：在攻击之前，该亚空可以移动最多其速度。攻击：近战 1（一个生物）+15vs.强韧<br>命中：4d12+9 伤害，且该亚空推动目标最多两格并击倒它。<br>失手：一半伤害，且目标倒地。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 23（+12）</span><span>''敏捷'' 9（+5）</span><span>''感知'' 16（+9）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 19（+10）</span><span>''智力'' 18（+10）</span><span>''魅力'' 11（+6）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 荒神语</span></div></div>\n</div>",
+    "title": "地亚空 Earth Archon",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "12",
+    "role": "蛮战",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "元素界",
+    "creature-type": "类人生物（土系）",
+    "xp": "700",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "64"
+  }
+]

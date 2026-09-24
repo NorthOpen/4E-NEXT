@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>7级 游击</span></div>\n<div class=bg-title><span>小型 元素界 野兽（寒系）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 80；''重伤'' 40</span><span>''先攻'' +9</span></div>\n<div><span>''AC'' 21，''强韧'' 19，''反射'' 20，''意志'' 19</span><span>''侦查'' +6</span></div>\n<div><span>''免疫'' 疾病，毒素；''抗力'' 10 寒冷</span><span></span></div>\n<div><span>''速度'' 2（笨拙），飞行 8</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">粉碎打击</div>\n<div class=description>霜鹰的近战攻击对迟缓的生物造成 2d6 额外寒冷伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}冰爪（寒冷）✦随意</div>\n<div class=description>攻击：+12 vs. AC<br>命中：1d6+5 伤害以及 1d6 寒冷伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}飞跃攻击✦随意</div>\n<div class=description>该霜鹰飞行 8 格并在该移动中的任一时点进行一次冰爪攻击。该霜鹰在移动离开该攻击目标<br>时不会引发借机攻击。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}寒冻尖啸（寒冷）✦随意</div>\n<div class=description>攻击：近程冲击 3，+10 vs. 强韧<br>命中：1d8+5 寒冷伤害，且目标迟缓（豁免终止）。</div>\n<div class=\"italic bg-flavortext\">（鹰）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 14（+5）</span><span>''敏捷'' 19（+7）</span><span>''感知'' 16（+6）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 16（+6）</span><span>''智力'' 2（-1）</span><span>''魅力'' 8（+2）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n</div>",
+    "title": "霜鹰 Frost Hawk",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "7",
+    "role": "游击",
+    "specialty-role": "",
+    "size": "小型",
+    "origin": "元素界",
+    "creature-type": "野兽（寒系）",
+    "xp": "300",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "7824"
+  }
+]

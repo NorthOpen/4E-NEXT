@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>14级 控制</span></div>\n<div class=bg-title><span>中型 暗影界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 138；''重伤'' 69</span><span>''先攻'' +10</span></div>\n<div><span>''AC'' 26，''强韧'' 25，''反射'' 28，''意志'' 28</span><span>''侦查'' +8</span></div>\n<div><span>''速度'' 7</span><span>''感官'' 昏暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">阴霾笼罩</div>\n<div class=description>一个生物在被阴霾笼罩期间，攻击骰受到-2 减值且从医疗效果只能获得一半增益。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}堕化黑炎（火焰，黯蚀）✦随意</div>\n<div class=description>攻击：+19 vs. AC<br>命中：1d10+6 火焰和黯蚀伤害，且目标被阴霾笼罩（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}暗影矢（黯蚀）✦随意</div>\n<div class=description>攻击：射程 10，+18 vs. 反射<br>命中：3d6+6 黯蚀伤害，且目标被阴霾笼罩（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}堕化灵魂（魅惑）✦随意</div>\n<div class=description>攻击：射程 10，以一个被阴霾笼罩的生物为目标，+18 vs. 意志<br>命中：目标受控（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/area}}暗影爆发（黯蚀）✦充能 6{{$:/dnd/images/six}}</div>\n<div class=description>攻击：区域 10 爆发 3，以敌人为目标，+16 vs. 反射<br>命中：1d10+6 黯蚀伤害，且目标被阴霾笼罩（豁免终止）。<br>失手：一半伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">移动动作</div>\n<div class=\"bold bg-power\">影跃（瞬移）✦遭遇</div>\n<div class=description>该影灵黑魂瞬移 3 格且变成虚体直到其下回合开始。</div>\n<div class=\"italic bg-flavortext\">对于 PC 来说，失去装备的威胁是比生命值归 0 的威胁更甚的。是故，锈蚀怪对于玩家来说比面对一头狂暴的红龙还要恐怖。一个失去其盔甲的角色将变得十分脆弱，而一个失去魔法武器的角色在接下来的遭遇中将无法再起作用。当一个锈蚀怪消化了一个 PC 的武器时，它将给这个 PC 的攻击和伤害骰带来严重的减值直到该 PC 可以找到一件合适的替代武器。一个因锈蚀怪而失去盔甲的 PC 的 AC 将急剧下降，除非能找到替代的盔甲。 能够从锈蚀怪或食魔者回收魔尘的可能性在一定程度上弥补了这个缺憾，但 PC 们还是需要找时间去休息并使用创造魔法物品仪式，而且他们甚至可能还需要“回城”去寻找取得替代物品的办法。但你又不想因为一场带有锈蚀怪的遭遇而强迫 PC 们停止冒险。那么当你在一场遭遇中加入锈蚀怪的时候，想办法让 PC 们携带一些可能不是很好的装备。例如，PC们在先前的遭遇中得到了一些他们通常不会使用的盔甲或武器，或者 PC 们或许能够使用附近的材料制作木棒或者其他的简易武器。 最后，PC 们应当有使用从锈蚀怪身上回收的魔尘恢复他们装备的机会。尽管一个 PC 可能失去了一件物品，但我们只是打算让它暂时失去，这就是为什么从锈蚀怪身上回收的魔尘等价于被摧毁物品的完整价格。PC 们会怎样处理损失问题便是锈蚀怪的有趣之处。然而要小心那些想用锈蚀怪来消化那些本来只能以五分之一的价格出售的物品以获利而滥用锈蚀怪能力的 PC。在这种情况下，你应该将生成的魔尘减少为五分之一的价值，把锈蚀怪变成 一个免费的分解魔法物品仪式。 （锈蚀怪） （从左往右：影灵苦痛传递者，影灵阴霾之主，影灵黎明杀手，影灵黑魂）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 神秘+19，隐秘+15</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 12（+8）</span><span>''敏捷'' 16（+10）</span><span>''感知'' 12（+8）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 18（+11）</span><span>''智力'' 24（+14）</span><span>''魅力'' 20（+12）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 通用语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 皮甲</span></div></div>\n</div>",
+    "title": "影灵黑魂 Shadar-Kai Blacksoul",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "14",
+    "role": "控制",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "暗影界",
+    "creature-type": "类人生物",
+    "xp": "1000",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "8750"
+  }
+]

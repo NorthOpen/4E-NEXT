@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>10级 蛮战</span></div>\n<div class=bg-title><span>中型 异界 魔法兽（集群）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 131；''重伤'' 65</span><span>''先攻'' +9</span></div>\n<div><span>''AC'' 23，''强韧'' 22，''反射'' 21，''意志'' 22</span><span>''侦查'' +8</span></div>\n<div><span>''免疫'' 晕眩；''抗力'' 近战和远程攻击的一半伤害；''易伤'' 近程和区域攻击的 10 点伤害</span><span>''感官'' 黑暗视觉</span></div>\n<div><span>''速度'' 6，攀爬 6（蛛行）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}集群攻击</div>\n<div class=description>灵气 1：在该灵气内开始回合的敌人受到 5 点毒素伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬（毒素）✦随意</div>\n<div class=description>攻击：+13 vs. AC<br>命中：2d6+4 伤害，以及 5 点持续毒素伤害（豁免终止）。<br>首次豁免失败时：目标迟缓（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}精神尖啸（心灵）</div>\n<div class=description>触发：当首次重伤以及该纽吉怪幼体集群生命值降到 0 时。<br>攻击：近程爆发 1，以敌人为目标，+11 vs. 意志<br>命中：2d6+2 心灵伤害，且目标晕眩（豁免终止）。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 18（+9）</span><span>''敏捷'' 19（+9）</span><span>''感知'' 17（+8）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 21（+10）</span><span>''智力'' 5（+2）</span><span>''魅力'' 21（+10）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 异怪语</span></div></div>\n</div>",
+    "title": "纽吉怪幼体集群 Neogi Spawn Swarm",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "10",
+    "role": "蛮战",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "异界",
+    "creature-type": "魔法兽（集群）",
+    "xp": "500",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "8487"
+  }
+]

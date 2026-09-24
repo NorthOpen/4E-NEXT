@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>19级 控制</span></div>\n<div class=bg-title><span>中型 精界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 179；''重伤'' 89</span><span>''先攻'' +11</span></div>\n<div><span>''AC'' 33，''强韧'' 29，''反射'' 31，''意志'' 32</span><span>''侦查'' +21</span></div>\n<div><span>''速度'' 6</span><span>''感官'' 昏暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}梦魇编织者（魅惑）✦灵气 3</div>\n<div class=description>任何在该灵气内开始回合的昏迷敌人站起且受控直到其下回合结束。该敌人保持昏迷但在其<br>回合中可以进行单一个的动作，由该梦鬼婆选择。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}狂想法杖（武器）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+24vs.AC<br>命中：2d6+10 伤害，且目标晕眩直到该梦鬼婆下回合结束。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}梦魇幻象（魅惑，法器，心灵）✦随意</div>\n<div class=description>攻击：射程 5（一个生物）+22vs.意志<br>命中：3d8+14 心灵伤害，且该梦鬼婆滑移目标 5 格。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}梦之尘（魅惑，睡眠）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：近程冲击 5（冲击内所有敌人）+22vs.意志命中：目标晕眩（豁免终止）。<br>首次豁免失败时：目标陷入昏迷（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}不可抗睡意（法器，睡眠）✦遭遇</div>\n<div class=description>攻击：近程冲击 5（冲击内所有敌人）+22vs.意志<br>命中：目标陷入昏迷（豁免终止）。该效果在目标被该梦鬼婆或其盟友攻击时也会终止。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 唬骗+18，交涉+18，洞察+21</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 10（+9）</span><span>''敏捷'' 14（+11）</span><span>''感知'' 24（+16）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 19（+13）</span><span>''智力'' 21（+14）</span><span>''魅力'' 19（+13）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 通用语，精灵语，天界语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 法杖</span></div></div>\n</div>",
+    "title": "梦鬼婆 Dream Hag",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "19",
+    "role": "控制",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "精界",
+    "creature-type": "类人生物",
+    "xp": "2400",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "12148"
+  }
+]

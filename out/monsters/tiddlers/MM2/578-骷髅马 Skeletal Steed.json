@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>3级 游击</span></div>\n<div class=bg-title><span>大型 自然界 活化生物（坐骑，不死生物）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 47；''重伤'' 23</span><span>''先攻'' +6</span></div>\n<div><span>''AC'' 17，''强韧'' 15，''反射'' 16，''意志'' 14</span><span>''侦查'' +2</span></div>\n<div><span>''免疫'' 疾病，毒素</span><span>''感官'' 黑暗视觉</span></div>\n<div><span>''速度'' 8</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}踢击✦随意</div>\n<div class=description>攻击：+8 vs. AC<br>命中：1d8+2 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}机动近战攻击✦随意</div>\n<div class=description>该骷髅马移动其速度的格数并在该移动中进行一次踢击攻击。该骷髅马在离开该攻击的目标<br>时不会引发借机攻击。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}死亡尖啸（恐惧）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：近程爆发 3，以敌人为目标，+6 vs. 意志<br>命中：目标的攻击骰受到-2 减值（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">死亡坐骑（坐骑）</div>\n<div class=description>触发：当被一个等级 3 或以上的友方骑手骑乘时。<br>当该骷髅马使用机动近战攻击时，该骑手在该移动中可以以一个自由动作进行一次近战基本攻击。该骑手可以选择放弃其基本攻击和该骷髅马的攻击而改为在该移动中使用一个该骑手<br>的近战攻击威能。</div>\n<div class=\"italic bg-flavortext\">（骷髅）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 12（+2）</span><span>''敏捷'' 17（+4）</span><span>''感知'' 13（+2）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 15（+3）</span><span>''智力'' 3（-3）</span><span>''魅力'' 3（-3）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n</div>",
+    "title": "骷髅马 Skeletal Steed",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "3",
+    "role": "游击",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "自然界",
+    "creature-type": "活化生物（坐骑，不死生物）",
+    "xp": "150",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "8846"
+  }
+]

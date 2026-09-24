@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>3级 护卫</span></div>\n<div class=bg-title><span>小型 自然界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 45；''重伤'' 22</span><span>''先攻'' +6</span></div>\n<div><span>''AC'' 19，''强韧'' 15，''反射'' 16，''意志'' 15</span><span>''侦查'' +3</span></div>\n<div><span>''速度'' 6</span><span>''感官'' 黑暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}战镐（武器）✦随意</div>\n<div class=description>攻击：+10 vs. AC<br>命中：1d8+5 伤害（重击则为 1d8+13），且目标被标记直到该罗丝神缚地精下回合结<br>束。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}钉刺殴打（毒素，武器）✦遭遇</div>\n<div class=description>攻击：+10 vs. AC<br>命中：1d8+5 毒素伤害（重击则为 1d8+13），且若目标承受着持续毒素伤害，则该毒素<br>伤害增加 5 点。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}罗丝神缚尖啸（雷鸣）✦遭遇</div>\n<div class=description>攻击：近程冲击 5，以卓尔、蜘蛛或地精以外的生物为目标，+8 vs. 强韧<br>命中：2d10 雷鸣伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">卓尔灵感</div>\n<div class=description>触发：当位于卓尔盟友 5 格内时。<br>该罗丝神缚地精的攻击骰和所有防御获得+2 加值。</div>\n<div class=\"bold bg-power\">卓尔守护者✦随意</div>\n<div class=description>触发：当一个邻接该罗丝神缚地精的卓尔盟友成为一次攻击的目标时。<br>触发的攻击的目标变成该罗丝神缚地精。</div>\n<div class=\"bold bg-power\">地精战术✦随意</div>\n<div class=description>触发：当该罗丝神缚地精被一次近战攻击失手时。<br>该罗丝神缚地精快步 1 格。</div>\n<div class=\"italic bg-flavortext\">（从左往右：地精马格奴比耶的侍僧，熊地精战舞者，罗丝神缚地精）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 14（+3）</span><span>''敏捷'' 17（+4）</span><span>''感知'' 14（+3）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 13（+2）</span><span>''智力'' 8（+0）</span><span>''魅力'' 9（+0）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 通用语，精灵语，地精语力量 14（+3）</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 皮甲，战镐</span></div></div>\n</div>",
+    "title": "罗丝神缚地精 Lolthbound Goblin",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "3",
+    "role": "护卫",
+    "specialty-role": "",
+    "size": "小型",
+    "origin": "自然界",
+    "creature-type": "类人生物",
+    "xp": "150",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "7565"
+  }
+]

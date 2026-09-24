@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>15级 远程</span></div>\n<div class=bg-title><span>中型 自然界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 110；''重伤'' 55</span><span>''先攻'' +12</span></div>\n<div><span>''AC'' 28，''强韧'' 24，''反射'' 26，''意志'' 25</span><span>''侦查'' +16</span></div>\n<div><span>''速度'' 6</span><span>''感官'' 昏暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}爪击✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+20vs.AC<br>命中：2d6+6 伤害，以及 5 点持续伤害（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}长弓（武器）✦随意</div>\n<div class=description>攻击：射程 20（一个生物）+22vs.AC（该罗刹妖进行两次攻击骰并使用任一结果）<br>命中：1d10+9 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}双重攻击✦随意</div>\n<div class=description>效果：该罗刹妖使用两次长弓攻击，每次攻击分别对不同的目标进行。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}幽魂箭（黯蚀，武器）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：射程 20（一个生物）+20vs.反射<br>命中：3d10+18 黯蚀伤害，且目标不能花费复原力（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">迷罩（幻术）✦随意</div>\n<div class=description>效果：该罗刹妖改变其自身的物理形态为一个中型类人生物直到它再次使用迷罩或直到它生<br>命值降到 0。其他生物可以进行一次 DC35 的洞察检定来识破该形态是幻术。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">幻术躲避（幻术）✦充能（首次重伤时）</div>\n<div class=description>触发：一个敌人对该罗刹妖进行一次远程攻击。<br>效果（直觉反应）：该罗刹妖隐形，且一个它的幻象出现在它的格子。该转变对目击者来说是无法察觉的，且该幻象持续直到该罗刹妖下回合开始或直到一个生物攻击该幻象。在该幻象出现之后，该罗刹妖快步最多其速度。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 17（+10）</span><span>''敏捷'' 20（+12）</span><span>''感知'' 18（+11）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 14（+9）</span><span>''智力'' 12（+8）</span><span>''魅力'' 14（+9）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 通用语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 长弓，20 支箭</span></div></div>\n</div>",
+    "title": "罗刹妖弓箭手 Rakshasa Archer",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "15",
+    "role": "远程",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物",
+    "xp": "1200",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "3886"
+  }
+]

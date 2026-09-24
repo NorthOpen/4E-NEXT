@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>8级 蛮战</span></div>\n<div class=bg-title><span>小型 精界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 106；''重伤'' 53</span><span>''先攻'' +6</span></div>\n<div><span>''AC'' 20，''强韧'' 21，''反射'' 19，''意志'' 20</span><span>''侦查'' +7</span></div>\n<div><span>''速度'' 6</span><span>''感官'' 昏暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}击打✦随意</div>\n<div class=description>攻击：+11 vs. AC<br>命中：2d6+5 伤害，在该血侏儒巨人之魂重伤期间则为 2d6+9 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}巨人之魂击打✦充能 4,5,6{{$:/dnd/images/four}}{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：触及 2，+13 vs. AC<br>命中：2d6+5 伤害，且目标倒地。在该血侏儒巨人之魂重伤期间伤害则改为 2d6+9。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}突袭击打✦遭遇</div>\n<div class=description>触发：当该血侏儒巨人之魂 2 格内的一个敌人攻击盟友时。<br>巨人之魂击打充能，且该血侏儒巨人之魂对触发的敌人使用它。</div>\n<div class=\"bold bg-power\">红帽子热情✦遭遇</div>\n<div class=description>触发：当该血侏儒巨人之魂使一个敌人重伤或使一个敌人的生命值降到 0 或以下时。<br>该血侏儒巨人之魂获得 1d10+3 临时生命值。</div>\n<div class=\"italic bg-flavortext\">（从左往右：血侏儒凋零者，血侏儒镰刀兵，血侏儒棘刺者，血侏儒巨人之魂）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 运动+14，威吓+10，隐秘+12</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 18（+8）</span><span>''敏捷'' 15（+6）</span><span>''感知'' 17（+7）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 16（+7）</span><span>''智力'' 10（+4）</span><span>''魅力'' 12（+5）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 精灵语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 革甲，铁靴子</span></div></div>\n</div>",
+    "title": "血侏儒巨人之魂 Spriggan Giantsoul",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "8",
+    "role": "蛮战",
+    "specialty-role": "",
+    "size": "小型",
+    "origin": "精界",
+    "creature-type": "类人生物",
+    "xp": "350",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "8996"
+  }
+]

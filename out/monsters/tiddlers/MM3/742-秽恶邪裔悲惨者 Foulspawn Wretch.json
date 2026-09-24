@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>7级 杂兵 游击</span></div>\n<div class=bg-title><span>小型 异界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 1；失手攻击无法伤害杂兵</span><span>''先攻'' +10</span></div>\n<div><span>''AC'' 21，''强韧'' 19，''反射'' 20，''意志'' 19</span><span>''侦查'' +5</span></div>\n<div><span>''速度'' 6，瞬移 2</span><span>''感官'' 昏暗视觉，心灵感应 10</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">无休低语</div>\n<div class=description>任何邻接两个或更多的秽恶邪裔悲惨者的敌人的意志受到-2 减值。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}爪击✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+12vs.AC<br>命中：2 点伤害，且该秽恶邪裔悲惨者 6 格内的一个盟友可以瞬移到一个邻接目标的格子。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">尖啸回荡（瞬移）</div>\n<div class=description>触发：该秽恶邪裔悲惨者的生命值降到 0。<br>效果（直觉打断）：该秽恶邪裔悲惨者瞬移其 6 格内的一个非杂兵盟友到该秽恶邪裔悲惨者占据的格子。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 14（+5）</span><span>''敏捷'' 20（+8）</span><span>''感知'' 14（+5）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 16（+6）</span><span>''智力'' 16（+6）</span><span>''魅力'' 17（+6）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 异怪语，心灵感应 10</span></div></div>\n</div>",
+    "title": "秽恶邪裔悲惨者 Foulspawn Wretch",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "7",
+    "role": "游击",
+    "specialty-role": "杂兵",
+    "size": "小型",
+    "origin": "异界",
+    "creature-type": "类人生物",
+    "xp": "75",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "11598"
+  }
+]

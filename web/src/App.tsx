@@ -11,6 +11,8 @@ import OverviewView from "./OverviewView";
 import BackgroundView from "./BackgroundView";
 import DrawView from "./DrawView";
 import HomebrewView from "./HomebrewView";
+import GmView from "./GmView";
+import StoryView from "./StoryView";
 import { loadCards, saveCards, loadActiveId, saveActiveId, safeSetItem, uid, type SavedCard } from "./lib/storage";
 import { defaultCharacter, migrateCharacter, type Character } from "./sheet/character";
 import { SYNC_APPLIED_EVENT } from "./lib/sync";
@@ -37,6 +39,22 @@ const MOBILE_NAV: { view: View; icon: string; label: string }[] = [
   { view: "reserve", icon: "inventory_2", label: "储备" },
 ];
 
+// 桌面导轨组 1：与手机底栏是同一批功能，只是顺序按导轨原样（人物 / 背景 / 储备 / 速览）。
+// data-tour 由 "nav-" + view 拼出，与教学引导依赖的锚点一一对应。
+const PLAYER_PRIMARY: { view: View; icon: string; label: string }[] = [
+  { view: "sheet", icon: "person", label: "人物" },
+  { view: "background", icon: "book", label: "背景" },
+  { view: "reserve", icon: "inventory_2", label: "储备" },
+  { view: "overview", icon: "overview", label: "速览" },
+];
+
+// 主持模式的主功能：**占据玩家侧那四个功能的位置**，切换模式时整组换掉。
+// 「怪物」是战斗时的追踪台，「故事」是团内线索/想法的白板；以后加先攻追踪等，往这里加一项即可。
+const GM_NAV: { view: string; icon: string; label: string }[] = [
+  { view: "monsters", icon: "menu_book", label: "怪物" },
+  { view: "story", icon: "account_tree", label: "故事" },
+];
+
 /** 这些页面由「更多」面板承载：命中时把底栏的「更多」标为选中，用户才知道自己在哪 */
 const MOBILE_MORE_VIEWS: View[] = ["search", "learn", "homebrew", "settings"];
 
@@ -58,10 +76,22 @@ function featherMask(feather: number): string {
 function Shell() {
   const { bgImage, bgBlur, bgFeather, portraitOriginal, portraitCropped, applyPortrait, clearPortrait } = useTheme();
   const [view, setView] = useState<View>("sheet");
+  // 应用级模式：player = 车卡器（现有全部功能），gm = 主持模式。
+  // 主持模式刻意不复用 view —— 进主持后绝大部分玩家功能都不适用，
+  // 导轨整体换成主持侧的内容，退出时才回到原来那套页面。
+  const [appMode, setAppMode] = useState<"player" | "gm">("player");
+  // 主持模式内的当前页（目前只有「怪物」）。用 string 而非字面量联合：
+  // GM_NAV 与 MOBILE_NAV 共用一个 map，联合类型会让比较处处需要断言。
+  const [gmPage, setGmPage] = useState("monsters");
   const isMobile = useIsMobile();
   // 手机端强制单栏：不再提供双栏选项
   const [layoutRaw, setLayoutRaw] = useState<Layout>(() => (platform.storage.getItem("4enext-layout") !== "single" ? "double" : "single"));
   const layout: Layout = isMobile ? "single" : layoutRaw;
+  // 主持模式只在桌面开放：手机端用不了（没有导轨、两块控制台也放不下），
+  // 所以一旦落到手机端就退回玩家侧，避免停在一个用不了的页面上。
+  useEffect(() => {
+    if (isMobile && appMode === "gm") setAppMode("player");
+  }, [isMobile, appMode]);
   const [mode, setMode] = useState<"edit" | "render">("edit");
   // 手机端「更多」底部面板（承载底栏放不下的入口）
   const [mobileMore, setMobileMore] = useState(false);
@@ -383,6 +413,15 @@ function Shell() {
     }
   }
 
+  /** 组 2 里的玩家页面入口：主持模式下点开会先切回玩家模式，否则页面会被主持页挡着看不见 */
+  function openPlayerPage(v: View) {
+    setAppMode("player");
+    setView(v);
+  }
+
+  /** 玩家侧页面的选中态：主持模式下组 2 的按钮不该显示为选中 */
+  const isActive = (v: View): boolean => appMode === "player" && view === v;
+
   const bgStyle = bgImage
     ? {
         backgroundImage: "url(" + bgImage + ")",
@@ -400,24 +439,44 @@ function Shell() {
           <div className="app-logo" title="4E NEXT"><Logo /></div>
           <div className="rail-version">v{__APP_VERSION__}B</div>
         </div>
+        {/* 只有这一块滚动：品牌区留在 .rail-scroll 外面，所以不会被卷走 */}
+        <div className="rail-scroll">
         <div className="side-sep" />
-        <button type="button" className={view === "sheet" ? "side-btn active" : "side-btn"} data-tour="nav-sheet" title="人物" onClick={() => setView("sheet")}><span className="material-symbols-outlined">person</span><span className="sb-label">人物</span></button>
-        <button type="button" className={view === "background" ? "side-btn active" : "side-btn"} data-tour="nav-background" title="背景" onClick={() => setView("background")}><span className="material-symbols-outlined">book</span><span className="sb-label">背景</span></button>
-        <button type="button" className={view === "reserve" ? "side-btn active" : "side-btn"} data-tour="nav-reserve" title="储备" onClick={() => setView("reserve")}><span className="material-symbols-outlined">inventory_2</span><span className="sb-label">储备</span></button>
-        <button type="button" className={view === "overview" ? "side-btn active" : "side-btn"} data-tour="nav-overview" title="速览" onClick={() => setView("overview")}><span className="material-symbols-outlined">overview</span><span className="sb-label">速览</span></button>
+        {/* 组 1：四个主功能 —— 随「玩家 / 主持」整组切换 */}
+        {appMode === "player"
+          ? PLAYER_PRIMARY.map((d) => (
+              <button key={d.view} type="button" className={isActive(d.view) ? "side-btn active" : "side-btn"} data-tour={"nav-" + d.view} title={d.label} onClick={() => setView(d.view)}><span className="material-symbols-outlined">{d.icon}</span><span className="sb-label">{d.label}</span></button>
+            ))
+          : GM_NAV.map((d) => (
+              <button key={d.view} type="button" className={gmPage === d.view ? "side-btn active" : "side-btn"} data-tour={"nav-" + d.view} title={d.label} onClick={() => setGmPage(d.view)}><span className="material-symbols-outlined">{d.icon}</span><span className="sb-label">{d.label}</span></button>
+            ))}
         <div className="side-sep" />
         <button type="button" className="side-btn" data-tour="nav-save" title="存档" onClick={() => setCardOpen(true)}><span className="material-symbols-outlined">folder</span><span className="sb-label">存档</span></button>
-        <button type="button" className={view === "homebrew" ? "side-btn active" : "side-btn"} data-tour="nav-homebrew" title="私设" onClick={() => setView("homebrew")}><span className="material-symbols-outlined">extension</span><span className="sb-label">私设</span></button>
-        <button type="button" className={"side-btn" + (view === "draw" ? " active" : "")} data-tour="nav-draw" title="抽卡" onClick={() => setDrawOpen(true)}><span className="material-symbols-outlined">casino</span><span className="sb-label">抽卡</span></button>
-        <button type="button" className={view === "search" ? "side-btn active" : "side-btn"} data-tour="nav-search" title="词条" onClick={() => setView("search")}><span className="material-symbols-outlined">search</span><span className="sb-label">词条</span></button>
-        <button type="button" className={view === "learn" ? "side-btn active" : "side-btn"} data-tour="nav-learn" title="规则" onClick={() => setView("learn")}><span className="material-symbols-outlined">school</span><span className="sb-label">规则</span></button>
-        <button type="button" className={view === "settings" ? "side-btn active" : "side-btn"} data-tour="nav-settings" title="设置" onClick={() => setView("settings")}><span className="material-symbols-outlined">settings</span><span className="sb-label">设置</span></button>
+        <button type="button" className={isActive("homebrew") ? "side-btn active" : "side-btn"} data-tour="nav-homebrew" title="私设" onClick={() => openPlayerPage("homebrew")}><span className="material-symbols-outlined">extension</span><span className="sb-label">私设</span></button>
+        <button type="button" className={"side-btn" + (appMode === "player" && view === "draw" ? " active" : "")} data-tour="nav-draw" title="抽卡" onClick={() => setDrawOpen(true)}><span className="material-symbols-outlined">casino</span><span className="sb-label">抽卡</span></button>
+        <button type="button" className={isActive("search") ? "side-btn active" : "side-btn"} data-tour="nav-search" title="词条" onClick={() => openPlayerPage("search")}><span className="material-symbols-outlined">search</span><span className="sb-label">词条</span></button>
+        <button type="button" className={isActive("learn") ? "side-btn active" : "side-btn"} data-tour="nav-learn" title="规则" onClick={() => openPlayerPage("learn")}><span className="material-symbols-outlined">school</span><span className="sb-label">规则</span></button>
+        <button type="button" className={isActive("settings") ? "side-btn active" : "side-btn"} data-tour="nav-settings" title="设置" onClick={() => openPlayerPage("settings")}><span className="material-symbols-outlined">settings</span><span className="sb-label">设置</span></button>
         <div className="rail-spacer" />
         <div className="side-sep" />
+        {/* 主持 / 玩家 切换：与下面的编辑 / 渲染同级，所以放在它上面。
+            标签显示「当前模式」（与编辑 / 渲染同一约定），主持模式下整颗高亮。 */}
+        <button type="button" className={"side-btn side-btn-gm" + (appMode === "gm" ? " active" : "")} data-tour="rail-gm" title={appMode === "gm" ? "当前：主持模式，点击切回玩家模式" : "当前：玩家模式，点击切换到主持模式"} aria-pressed={appMode === "gm"} onClick={() => setAppMode((m) => (m === "gm" ? "player" : "gm"))}><span className="material-symbols-outlined">{appMode === "gm" ? "castle" : "person"}</span><span className="sb-label">{appMode === "gm" ? "主持" : "玩家"}</span></button>
+        {/* 编辑 / 渲染只作用于人物卡，主持模式下收起 */}
+        {appMode === "player" && (
         <button type="button" className="side-btn" data-tour="rail-mode" title={mode === "edit" ? "切换到渲染模式" : "切换到编辑模式"} onClick={() => setMode((m) => (m === "edit" ? "render" : "edit"))}><span className="material-symbols-outlined">{mode === "edit" ? "edit" : "lock"}</span><span className="sb-label">{mode === "edit" ? "编辑" : "渲染"}</span></button>
+        )}
+        {/* 单栏 / 双栏两种模式都保留：主持页的怪物数据块网格同样按它排 */}
         <button type="button" className={"side-btn side-btn-layout" + (isMobile ? " hidden-mobile" : "")} data-tour="layout-toggle" title={layout === "single" ? "切换到双栏布局" : "切换到单栏布局"} onClick={toggleLayout} disabled={isMobile}><span className="material-symbols-outlined">{layout === "single" ? "view_module" : "view_agenda"}</span><span className="sb-label">{layout === "single" ? "双栏" : "单栏"}</span></button>
+        </div>
       </nav>
       <main className="content">
+        {appMode === "gm" ? (
+          <div className="view-anim" key={"gm-" + gmPage}>
+            {gmPage === "monsters" && <GmView layout={layout} />}
+            {gmPage === "story" && <StoryView />}
+          </div>
+        ) : (
         <div className="view-anim" key={view}>
           {view === "sheet" && (
             <div ref={captureRef}>
@@ -433,28 +492,33 @@ function Shell() {
           {view === "homebrew" && <HomebrewView layout={layout} />}
           {view === "settings" && <SettingsView layout={layout} onStartTutorial={startTutorial} />}
         </div>
+        )}
       </main>
       {/* 手机端底部导航（MD3 NavigationBar）：取代桌面端的左侧导航轨，落在拇指可达区 */}
       {isMobile && (
         <nav className="mob-nav" aria-label="主导航">
-          {MOBILE_NAV.map((d) => (
-            <button
-              key={d.view}
-              type="button"
-              data-tour={"mob-" + d.view}
-              className={"mob-nav-item" + (view === d.view ? " on" : "")}
-              aria-current={view === d.view ? "page" : undefined}
-              onClick={() => setView(d.view)}
-            >
-              <span className="mob-nav-ind"><span className="material-symbols-outlined">{d.icon}</span></span>
-              <span className="mob-nav-label">{d.label}</span>
-            </button>
-          ))}
+          {/* 与桌面导轨同一套逻辑：四个主功能随「玩家 / 主持」整组切换 */}
+          {(appMode === "gm" ? GM_NAV : MOBILE_NAV).map((d) => {
+            const on = appMode === "gm" ? gmPage === d.view : view === d.view;
+            return (
+              <button
+                key={d.view}
+                type="button"
+                data-tour={"mob-" + d.view}
+                className={"mob-nav-item" + (on ? " on" : "")}
+                aria-current={on ? "page" : undefined}
+                onClick={() => (appMode === "gm" ? setGmPage(d.view) : setView(d.view as View))}
+              >
+                <span className="mob-nav-ind"><span className="material-symbols-outlined">{d.icon}</span></span>
+                <span className="mob-nav-label">{d.label}</span>
+              </button>
+            );
+          })}
           <button
             type="button"
             data-tour="mob-more"
-            className={"mob-nav-item" + (MOBILE_MORE_VIEWS.includes(view) ? " on" : "")}
-            aria-current={MOBILE_MORE_VIEWS.includes(view) ? "page" : undefined}
+            className={"mob-nav-item" + (MOBILE_MORE_VIEWS.includes(view) && appMode === "player" ? " on" : "")}
+            aria-current={MOBILE_MORE_VIEWS.includes(view) && appMode === "player" ? "page" : undefined}
             onClick={() => setMobileMore(true)}
           >
             <span className="mob-nav-ind"><span className="material-symbols-outlined">more_horiz</span></span>
@@ -466,6 +530,18 @@ function Shell() {
       {mobileMore && (
         <SheetDialog open headline="更多" onClose={() => setMobileMore(false)}>
           <div className="mob-more">
+            {/* 主持模式只在桌面开放，所以手机端的「更多」里连切换入口都不给；
+                剩下的这一行是编辑 / 渲染（只作用于人物卡） */}
+            {!isMobile && (
+              <div className="mob-more-row">
+                <span className="mob-more-row-label">玩家 / 主持</span>
+                <div className="md3-seg" role="radiogroup" aria-label="玩家或主持模式">
+                  <button type="button" role="radio" aria-checked={appMode === "player"} className={"md3-seg-btn" + (appMode === "player" ? " on" : "")} onClick={() => setAppMode("player")}>玩家</button>
+                  <button type="button" role="radio" aria-checked={appMode === "gm"} className={"md3-seg-btn" + (appMode === "gm" ? " on" : "")} onClick={() => setAppMode("gm")}>主持</button>
+                </div>
+              </div>
+            )}
+            {appMode === "player" && (
             <div className="mob-more-row">
               <span className="mob-more-row-label">编辑 / 渲染</span>
               <div className="md3-seg" role="radiogroup" aria-label="编辑或渲染模式">
@@ -473,6 +549,7 @@ function Shell() {
                 <button type="button" role="radio" aria-checked={mode === "render"} className={"md3-seg-btn" + (mode === "render" ? " on" : "")} onClick={() => setMode("render")}>渲染</button>
               </div>
             </div>
+            )}
             <button type="button" className="mob-more-item" onClick={() => { setMobileMore(false); setCardOpen(true); }}>
               <span className="material-symbols-outlined mob-more-ic">folder</span>
               <span className="mob-more-text"><span className="mob-more-label">存档</span><span className="mob-more-sub">切换、重命名、导入导出人物卡</span></span>
@@ -483,22 +560,22 @@ function Shell() {
               <span className="mob-more-text"><span className="mob-more-label">抽卡</span><span className="mob-more-sub">随机快速建卡</span></span>
               <span className="material-symbols-outlined mob-more-arrow">chevron_right</span>
             </button>
-            <button type="button" className="mob-more-item" onClick={() => { setMobileMore(false); setView("homebrew"); }}>
+            <button type="button" className="mob-more-item" onClick={() => { setMobileMore(false); openPlayerPage("homebrew"); }}>
               <span className="material-symbols-outlined mob-more-ic">extension</span>
               <span className="mob-more-text"><span className="mob-more-label">私设</span><span className="mob-more-sub">自定义资源包</span></span>
               <span className="material-symbols-outlined mob-more-arrow">chevron_right</span>
             </button>
-            <button type="button" className="mob-more-item" onClick={() => { setMobileMore(false); setView("search"); }}>
+            <button type="button" className="mob-more-item" onClick={() => { setMobileMore(false); openPlayerPage("search"); }}>
               <span className="material-symbols-outlined mob-more-ic">search</span>
               <span className="mob-more-text"><span className="mob-more-label">词条</span><span className="mob-more-sub">按名称检索规则词条</span></span>
               <span className="material-symbols-outlined mob-more-arrow">chevron_right</span>
             </button>
-            <button type="button" className="mob-more-item" onClick={() => { setMobileMore(false); setView("learn"); }}>
+            <button type="button" className="mob-more-item" onClick={() => { setMobileMore(false); openPlayerPage("learn"); }}>
               <span className="material-symbols-outlined mob-more-ic">school</span>
               <span className="mob-more-text"><span className="mob-more-label">规则</span><span className="mob-more-sub">万律速查</span></span>
               <span className="material-symbols-outlined mob-more-arrow">chevron_right</span>
             </button>
-            <button type="button" className="mob-more-item" onClick={() => { setMobileMore(false); setView("settings"); }}>
+            <button type="button" className="mob-more-item" onClick={() => { setMobileMore(false); openPlayerPage("settings"); }}>
               <span className="material-symbols-outlined mob-more-ic">settings</span>
               <span className="mob-more-text"><span className="mob-more-label">设置</span><span className="mob-more-sub">主题、字体与自定义页面板块</span></span>
               <span className="material-symbols-outlined mob-more-arrow">chevron_right</span>

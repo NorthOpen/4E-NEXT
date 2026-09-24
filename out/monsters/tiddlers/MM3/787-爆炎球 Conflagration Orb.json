@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>20级 远程</span></div>\n<div class=bg-title><span>中型 元素界 活化生物（火系）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 143；''重伤'' 71</span><span>''先攻'' +17</span></div>\n<div><span>''AC'' 34，''强韧'' 30，''反射'' 35，''意志'' 34</span><span>''侦查'' +13</span></div>\n<div><span>''免疫'' 疾病；''抗力'' 20 火焰</span><span></span></div>\n<div><span>''速度'' 6，飞行 8（盘旋）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}螺旋火焰（火焰）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+23vs.反射<br>命中：2d6+6 火焰伤害，以及 10 点持续火焰伤害（豁免终止）。效果：该爆炎球快步 1 格。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}灼热矢（火焰）✦随意</div>\n<div class=description>攻击：射程 10（一个或两个生物）+25vs.反射<br>命中：3d6+8 火焰伤害，以及 10 点持续火焰伤害（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/area}}火焰风暴（火焰）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>效果：该爆炎球进行三次下述攻击，且每个爆发的效果区域都必须不与该攻击的其他爆发有重叠的格子。<br>攻击：区域 10 爆发 1（爆发内所有生物）+25vs.反射<br>命中：2d6+7 火焰伤害，且如果目标承受有持续火焰伤害，则该持续伤害增加 5 点。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}火焰波动（火焰，结界）✦充能（当首次重伤时）</div>\n<div class=description>攻击：近程爆发 3（爆发内所有生物）+23vs.反射 命中：3d6+7 火焰伤害，且该爆炎球推动目标 3 格。<br>效果：该爆发生成一个结界持续直到该爆炎球下回合结束。该结界视为轻度模糊，且任何进<br>入该结界或在其内结束回合的生物受到 10 点火焰伤害。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 19（+14）</span><span>''敏捷'' 25（+17）</span><span>''感知'' 17（+13）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 17（+13）</span><span>''智力'' 15（+12）</span><span>''魅力'' 22（+16）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 荒神语</span></div></div>\n</div>",
+    "title": "爆炎球 Conflagration Orb",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "20",
+    "role": "远程",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "元素界",
+    "creature-type": "活化生物（火系）",
+    "xp": "2800",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "12332"
+  }
+]

@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>12级 控制</span></div>\n<div class=bg-title><span>大型 元素界 魔法兽（气系，水系）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 123；''重伤'' 61</span><span>''先攻'' +11</span></div>\n<div><span>''AC'' 26，''强韧'' 24，''反射'' 25，''意志'' 24</span><span>''侦查'' +10</span></div>\n<div><span>''免疫'' 疾病，毒素；''抗力'' 15 闪电，15 雷鸣</span><span></span></div>\n<div><span>''速度'' 0，飞行 8（盘旋）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}强力之风</div>\n<div class=description>灵气 3：该风魔狂怒者滑移每个在该灵气内开始回合的生物一格。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}飞行碎屑✦随意</div>\n<div class=description>攻击：触及 2，+17 vs. AC<br>命中：2d8+5 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}雷击（闪电）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：射程 10，+16 vs. 反射<br>命中：3d8+5 闪电伤害，且目标晕眩直到该风魔狂怒者下回合结束。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}风暴爆发（瞬移，雷鸣）✦随意</div>\n<div class=description>攻击：近程爆发 2，+16 vs. 反射<br>命中：1d10+5 雷鸣伤害。<br>效果：该风魔狂怒者瞬移到邻接该爆发区域的任意空间。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 17（+9）</span><span>''敏捷'' 21（+11）</span><span>''感知'' 19（+10）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 19（+10）</span><span>''智力'' 6（+4）</span><span>''魅力'' 16（+9）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 荒神语</span></div></div>\n</div>",
+    "title": "风魔狂怒者 Windfiend Fury",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "12",
+    "role": "控制",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "元素界",
+    "creature-type": "魔法兽（气系，水系）",
+    "xp": "700",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "6943"
+  }
+]

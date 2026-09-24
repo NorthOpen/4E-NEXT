@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>8级 控制</span></div>\n<div class=bg-title><span>中型 精界 类人生物（植物）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 84；''重伤'' 42</span><span>''先攻'' +7</span></div>\n<div><span>''AC'' 22，''强韧'' 18，''反射'' 20，''意志'' 22</span><span>''侦查'' +14</span></div>\n<div><span>''速度'' 8（森林行者）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}多刺藤蔓✦随意</div>\n<div class=description>攻击：近战 2（一个生物）+13vs.AC命中：2d8+7 伤害。<br>效果：该树精可以滑移目标一格。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}诱骗绿影（魅惑）✦随意</div>\n<div class=description>攻击：射程 5（一个晕眩的生物）+11vs.意志<br>命中：该树精滑移目标最多目标的速度，且之后目标必须以一个自由动作对一个由该树精选择的生物进行一次基本攻击。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}催眠芳香（魅惑）✦充能 4,5,6{{$:/dnd/images/four}}{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：近程冲击 3（范围内所有敌人）+11vs.意志<br>命中：目标晕眩（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">移动动作</div>\n<div class=\"bold bg-power\">穿林（瞬移）✦随意</div>\n<div class=description>前提：该树精必须邻接一棵树或一个大型植物。<br>效果：该树精瞬移最多 8 格到一个邻接树或大型植物的格子。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">迷罩（幻术）✦随意</div>\n<div class=description>效果：该树精改变自身外形为一个中型类人生物（通常是一个美丽的精灵或雅灵）直到它再次使用迷罩或直到它生命值降到 0。其他生物可以通过一次 DC29 的洞察检定来识破该形态<br>是伪装的。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 11（+4）</span><span>''敏捷'' 17（+7）</span><span>''感知'' 20（+9）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 12（+5）</span><span>''智力'' 12（+5）</span><span>''魅力'' 16（+7）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 精灵语</span></div></div>\n</div>",
+    "title": "树精巫师 Dryad Witch",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "8",
+    "role": "控制",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "精界",
+    "creature-type": "类人生物（植物）",
+    "xp": "350",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "1343"
+  }
+]

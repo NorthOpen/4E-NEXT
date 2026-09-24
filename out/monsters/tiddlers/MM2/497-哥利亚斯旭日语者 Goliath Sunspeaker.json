@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>7级 远程</span></div>\n<div class=bg-title><span>中型 自然界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 64；''重伤'' 32</span><span>''先攻'' +5</span></div>\n<div><span>''AC'' 19，''强韧'' 19，''反射'' 18，''意志'' 20</span><span>''侦查'' +9</span></div>\n<div><span>''速度'' 6</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}旭日语者之手（光耀）✦随意</div>\n<div class=description>攻击：+12 vs. 反射<br>命中：1d8+3 光耀伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}日光球（法器，光耀）✦随意</div>\n<div class=description>攻击：射程 20，+12 vs. 反射<br>命中：2d8+3 光耀伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}旭日射线（火焰或光耀，法器）✦充能 4,5,6{{$:/dnd/images/four}}{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：射程 10，以一个或两个生物为目标，+12 vs. 反射<br>命中：1d8+3 火焰或光耀伤害，并对目标造成 5<br>点该类型的持续伤害（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/area}}旭日召来（法器，光耀）✦遭遇</div>\n<div class=description>攻击：区域 20 爆发 3，+11 vs. 反射<br>命中：2d6+3 光耀伤害。<br>失手：一半伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">移动动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}燃炎跃（火焰）✦遭遇</div>\n<div class=description>该哥利亚斯旭日语者跳跃 3 格然后用其剩余的速度进行步行。在该移动中，该哥利亚斯旭日语者的所有防御获得+4 加值。该哥利亚斯旭日语者开始移动的那一格喷出 2 格高的火焰。邻接着该火焰开始回合的生物受到 1d6+3 火焰伤害。进入该格子或在该格子内开始回合的生物受到 2d6+3 火焰伤害。该火焰阻挡视线并持续直到该哥利亚斯旭日语者下回合结束。<br>次要维持：该火焰继续存在。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">石之坚韧✦遭遇</div>\n<div class=description>该哥利亚斯旭日语者获得 5 点全伤害抗性直到其下回合结束。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 神秘+8，运动+10，洞察+9，自然+9</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 14（+5）</span><span>''敏捷'' 15（+5）</span><span>''感知'' 12（+4）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 16（+6）</span><span>''智力'' 10（+3）</span><span>''魅力'' 17（+6）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 通用语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 皮甲，法珠</span></div></div>\n</div>",
+    "title": "哥利亚斯旭日语者 Goliath Sunspeaker",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "7",
+    "role": "远程",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物",
+    "xp": "300",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "7683"
+  }
+]

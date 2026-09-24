@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>21级 游击</span></div>\n<div class=bg-title><span>中型 异界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 199；''重伤'' 99</span><span>''先攻'' +18</span></div>\n<div><span>''AC'' 35，''强韧'' 31，''反射'' 34，''意志'' 33</span><span>''侦查'' +16</span></div>\n<div><span>''抗力'' 10 心灵</span><span>''感官'' 黑暗视觉，心灵感应 10</span></div>\n<div><span>''速度'' 7</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">精神吸收</div>\n<div class=description>每当该夺心魔灾厄者在擒抱一个生物的情况下开始回合时，该夺心魔灾厄者可以进行一次豁<br>免掷骰或是一次额外的充能骰。它可以充能心灵袭击不过必须在充能骰投到 6。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}触手✦随意</div>\n<div class=description>前提：该夺心魔灾厄者必须没有擒抱生物。攻击：近战 1（一个生物）+24vs.反射<br>命中：2d8+5 伤害，且该夺心魔灾厄者擒抱目标。直到该擒抱终止，目标晕眩。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}精神冲击（心灵）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：近程冲击 5（冲击内所有敌人）+24vs.意志 命中：2d8+5 心灵伤害，且目标晕眩（豁免终止）。<br>失手：一半伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}心灵袭击（魅惑）✦遭遇</div>\n<div class=description>攻击：近战 1（一个被该夺心魔灾厄者擒抱的生物）+24vs.意志<br>命中：1d8+5 伤害，且目标受控（豁免终止；目标在该豁免掷骰受到-4 减值）。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">改变现实（瞬移）✦随意</div>\n<div class=description>效果：该夺心魔灾厄者瞬移一个邻接它的生物 2 格。</div>\n<div class=\"italic bg-flavortext\">（夺心魔）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 20（+15）</span><span>''敏捷'' 23（+16）</span><span>''感知'' 22（+16）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 23（+16）</span><span>''智力'' 26（+18）</span><span>''魅力'' 25（+17）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 异怪语，心灵感应 10</span></div></div>\n</div>",
+    "title": "夺心魔灾厄者 Mind Flayer Scourge",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "21",
+    "role": "游击",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "异界",
+    "creature-type": "类人生物",
+    "xp": "3200",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "12856"
+  }
+]

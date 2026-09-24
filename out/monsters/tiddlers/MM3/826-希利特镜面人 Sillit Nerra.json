@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>19级 控制</span></div>\n<div class=bg-title><span>中型 星界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 181；''重伤'' 90</span><span>''先攻'' +10</span></div>\n<div><span>''AC'' 31，''强韧'' 30，''反射'' 31，''意志'' 32</span><span>''侦查'' +11</span></div>\n<div><span>''速度'' 6</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}镜面门（瞬移）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+22vs.意志<br>命中：3d8+9 伤害，且该希利特镜面人瞬移目标到该希利特镜面人 10 格内的一个邻接该希利特镜面人的一个盟友的空间。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}扭曲镜像（瞬移）✦随意</div>\n<div class=description>攻击：射程 5（一个生物）+22vs.强韧<br>命中：2d10+16 伤害，且该希利特镜面人瞬移目标 3 格。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}捕获镜像✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：射程 10（一个生物）+22vs.意志<br>命中：目标除出游戏（豁免终止）。直到该效果终止，每当该希利特镜面人受到来自一个敌人的伤害时，目标受到 20 点伤害。当该效果终止时，目标出现在该希利特镜面人 5 格内的一个由该希利特镜面人选择的不被占据的格子。如果该希利特镜面人的生命值降到 0，则该效果终止。</div>\n<div class=\"bold font-size-h4 bg-category\">移动动作</div>\n<div class=\"bold bg-power\">镜面跃（瞬移）✦随意</div>\n<div class=description>效果：该希利特镜面人瞬移 5 格到一个邻接一面镜子或另一个镜面人的格子。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">镜像抓取（瞬移）✦随意</div>\n<div class=description>效果：该希利特镜面人 20 格内的一个它看得见的最重 20 磅的超小型或更小的无人掌管的物<br>件瞬移到该希利特镜面人的手中。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 神秘+20，唬骗+18，交涉+18，洞察+16</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 12（+10）</span><span>''敏捷'' 13（+10）</span><span>''感知'' 14（+11）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 21（+14）</span><span>''智力'' 22（+15）</span><span>''魅力'' 19（+13）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 天界语</span></div></div>\n</div>",
+    "title": "希利特镜面人 Sillit Nerra",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "19",
+    "role": "控制",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "星界",
+    "creature-type": "类人生物",
+    "xp": "2400",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "13070"
+  }
+]

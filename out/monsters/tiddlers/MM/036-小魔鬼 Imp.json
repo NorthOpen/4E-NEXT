@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>3级 伏击</span></div>\n<div class=bg-title><span>小型 星界 类人生物（魔鬼）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 40；''重伤'' 20</span><span>''先攻'' +8</span></div>\n<div><span>''AC'' 17，''强韧'' 13，''反射'' 17，''意志'' 15</span><span>''侦查'' +8</span></div>\n<div><span>''速度'' 4，飞行 6</span><span>''感官'' 黑暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+8vs.AC<br>命中：1d6+5 伤害。</div>\n<div class=\"bold bg-power\">消失（幻术）✦随意</div>\n<div class=description>效果：该小魔鬼隐形直到其下回合结束或直到它的一次攻击命中或失手。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}尾刺（毒素）✦充能（该小魔鬼使用消失时）</div>\n<div class=description>攻击：近战 1（一个生物）+8vs.AC<br>命中：2d8+3 伤害，且目标受到 10 点持续毒素伤害并在意志上受到-2 减值（豁免终止两者）。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 神秘+9，唬骗+9，隐秘+9</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 12（+2）</span><span>''敏捷'' 17（+4）</span><span>''感知'' 14（+3）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 16（+4）</span><span>''智力'' 16（+4）</span><span>''魅力'' 16（+4）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 通用语，天界语</span></div></div>\n</div>",
+    "title": "小魔鬼 Imp",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "3",
+    "role": "伏击",
+    "specialty-role": "",
+    "size": "小型",
+    "origin": "星界",
+    "creature-type": "类人生物（魔鬼）",
+    "xp": "150",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "576"
+  }
+]

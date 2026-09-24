@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>25级 头目 控制</span></div>\n<div class=bg-title><span>大型 元素界 类人生物（气系）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 236；''重伤'' 118</span><span>''先攻'' +17</span></div>\n<div><span>''AC'' 39，''强韧'' 38，''反射'' 36，''意志'' 36</span><span>''侦查'' +21</span></div>\n<div><span>''免疫'' 疾病，毒素；''抗力'' 15 雷鸣</span><span>''感官'' 盲视 10</span></div>\n<div><span>''速度'' 6，飞行 8（盘旋）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}风暴杖（武器）✦随意</div>\n<div class=description>攻击：触及 2，+30 vs. AC<br>命中：3d10+4 伤害，且该风巨灵天空领主可以选择快步两格或对风暴呐喊进行<br>一次额外的充能骰。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}神秘冰雹（心灵）✦随意</div>\n<div class=description>攻击：射程 20，+29 vs. 意志<br>命中：2d8+8 心灵伤害，且目标提供战斗优势给该风巨灵天空领主直到目标<br>以一个标准动作来清理其头上的冰雹。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}沙尘暴（心灵，结界）✦遭遇</div>\n<div class=description>攻击：近程爆发 5，+29 vs. 意志<br>命中：4d8+8 伤害。<br>效果：爆发生成一个沙尘漩涡的结界持续直到该风巨灵天空领主下回合结束。该结界内的所有盟友获得隐蔽。在该结界内开始回合的敌人晕眩直到其下回合开始。<br>次要维持：该结界持续。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}风暴呐喊（雷鸣）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：近程冲击 5，+29 vs. 意志<br>命中：3d10+10 雷鸣伤害，且目标被推动三格并倒地。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}元素制控✦随意</div>\n<div class=description>射程 10；无攻击骰；该风巨灵天空领主滑移目标一格。</div>\n<div class=\"italic bg-flavortext\">（风巨灵天空领主）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 交涉+24，洞察+21</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 23（+18）</span><span>''敏捷'' 20（+17）</span><span>''感知'' 18（+16）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 28（+21）</span><span>''智力'' 25（+19）</span><span>''魅力'' 25（+19）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 通用语，荒神语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 木杖</span></div></div>\n</div>",
+    "title": "风巨灵天空领主 Djinn Skylord",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "25",
+    "role": "控制",
+    "specialty-role": "头目",
+    "size": "大型",
+    "origin": "元素界",
+    "creature-type": "类人生物（气系）",
+    "xp": "7000",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "6174"
+  }
+]

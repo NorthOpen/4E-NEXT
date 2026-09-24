@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>22级 强者 蛮战</span></div>\n<div class=bg-title><span>超大型 元素界 野兽（鳞爪类）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 848；''重伤'' 424</span><span>''先攻'' +16</span></div>\n<div><span>''AC'' 34，''强韧'' 36，''反射'' 32，''意志'' 31</span><span>''侦查'' +20</span></div>\n<div><span>''抗力'' 20 可变（每遭遇两次）；''豁免'' +5；''行动点'' 2</span><span>''感官'' 全域视野</span></div>\n<div><span>''速度'' 7</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">混沌增生</div>\n<div class=description>混沌多头蛇蜥开始时拥有两个头。当该混沌多头蛇蜥的生命值首次降到 636,424 和 212 的时候，它长出一个额外的头。每当增加新头时投 d4 来决定这个新头会进行什么攻击：<br>1-粉碎之喉，2-精神啮咬，3-麻痹牙，4-毒牙。一个混沌多头蛇蜥可以通过该效果多次获得<br>同一种攻击。</div>\n<div class=\"bold bg-power\">多头</div>\n<div class=description>每当该混沌多头蛇蜥将进入晕眩或震慑时，它改为失去它下回合的多头蛇蜥狂怒中的一种随<br>机的攻击。该混沌多头蛇蜥可以被多次晕眩或震慑。</div>\n<div class=\"bold bg-power\">长距威胁</div>\n<div class=description>混沌多头蛇蜥可以对其触及范围（3 格）内的敌人进行借机攻击。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}霜炎啮咬（寒冷，火焰）✦随意</div>\n<div class=description>攻击：触及 3，+25 vs. AC<br>命中：3d8+5 寒冷和火焰伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}风暴啮咬（闪电，雷鸣）✦随意</div>\n<div class=description>攻击：触及 3，+25 vs. AC<br>命中：3d8+5 闪电和雷鸣伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}多头蛇蜥狂怒✦随意</div>\n<div class=description>该混沌多头蛇蜥进行一次风暴啮咬攻击，一次霜炎啮咬攻击，以及它每长出一个头再加一次<br>额外的攻击（参照混沌增生）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}粉碎之喉✦随意</div>\n<div class=description>攻击：触及 3，+25 vs. AC<br>命中：1d8+5 伤害，且目标迟缓并受到 10 点持续伤害（豁免终止两者）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}精神啮咬✦随意</div>\n<div class=description>攻击：触及 3，+25 vs. AC<br>命中：1d8+5 伤害，且目标晕眩（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}麻痹牙✦随意</div>\n<div class=description>攻击：触及 3，+25 vs. AC<br>命中：1d8+5 伤害，且目标定身并在所有防御受到-2 减值（豁免终止两者）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}毒牙（毒素）✦随意</div>\n<div class=description>攻击：触及 3，+25 vs. AC<br>命中：1d8+5 伤害，以及 10 点持续毒素伤害（豁免终止）。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 26（+19）</span><span>''敏捷'' 20（+16）</span><span>''感知'' 19（+15）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 28（+20）</span><span>''智力'' 2（+7）</span><span>''魅力'' 10（+11）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span></div></div>\n</div>",
+    "title": "混沌多头蛇蜥 Chaos Hydra",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "22",
+    "role": "蛮战",
+    "specialty-role": "强者",
+    "size": "超大型",
+    "origin": "元素界",
+    "creature-type": "野兽（鳞爪类）",
+    "xp": "20750",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "8092"
+  }
+]

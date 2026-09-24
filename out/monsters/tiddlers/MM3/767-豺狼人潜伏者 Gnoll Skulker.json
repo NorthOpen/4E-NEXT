@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>5级 伏击</span></div>\n<div class=bg-title><span>中型 自然界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 51；''重伤'' 25</span><span>''先攻'' +10</span></div>\n<div><span>''AC'' 19，''强韧'' 17，''反射'' 19，''意志'' 15</span><span>''侦查'' +4</span></div>\n<div><span>''速度'' 7</span><span>''感官'' 昏暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">卓越伪装</div>\n<div class=description>当该豺狼人潜伏者拥有掩蔽或隐蔽的时候便可进行一次隐秘检定来进入躲藏而不一定需要超级掩蔽和全隐蔽。如果该豺狼人潜伏者对一个或多个生物处于躲藏且移动到一个没有提供<br>任何掩蔽或隐蔽的格子，它仍然对这些生物保持躲藏直到其下回合开始。</div>\n<div class=\"bold bg-power\">突显重点</div>\n<div class=description>该豺狼人潜伏者的远程和近战攻击对不与该豺狼人潜伏者的盟友邻接的目标造成 5 点额外<br>伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}匕首（武器）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+10vs.AC<br>命中：2d4+8 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}短弓（武器）✦随意</div>\n<div class=description>攻击：射程 15/30（一个生物）+10vs.AC<br>命中：2d8+4 伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">打后跑✦随意</div>\n<div class=description>前提：该豺狼人潜伏者处于躲藏。<br>触发：该豺狼人潜伏者通过短弓命中。<br>效果（自由动作）：该豺狼人潜伏者快步 2 格。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 隐秘+11</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 18（+6）</span><span>''敏捷'' 19（+6）</span><span>''感知'' 15（+4）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 15（+4）</span><span>''智力'' 15（+4）</span><span>''魅力'' 14（+4）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 深渊语，通用语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 匕首，短弓，20 支箭</span></div></div>\n</div>",
+    "title": "豺狼人潜伏者 Gnoll Skulker",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "5",
+    "role": "伏击",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物",
+    "xp": "200",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "11995"
+  }
+]

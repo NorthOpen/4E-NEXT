@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>7级 游击</span></div>\n<div class=bg-title><span>大型 自然界 野兽（坐骑，鳞爪类）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 79；''重伤'' 39</span><span>''先攻'' +9</span></div>\n<div><span>''AC'' 21，''强韧'' 19，''反射'' 21，''意志'' 19</span><span>''侦查'' +3</span></div>\n<div><span>''速度'' 2（笨拙），飞行 8（盘旋）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">空袭（坐骑）</div>\n<div class=description>当该皮翼比蒙在有一个 LV7 或以上的友方骑手骑乘它的情况下使用飞越攻击时，它的骑手可<br>以进行一次基本近战攻击来代替该皮翼比蒙的啮咬攻击。</div>\n<div class=\"bold bg-power\">拖拽</div>\n<div class=description>当该皮翼比蒙移动时，它拖动任何被它擒抱的生物跟着它一起移动。此外，该生物依然被擒<br>抱，且该皮翼比蒙不引发这个被擒抱的生物的借机攻击。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+12vs.AC<br>命中：2d6+8 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}飞越攻击✦随意</div>\n<div class=description>效果：该皮翼比蒙飞行其速度的格数并在该移动中的任一时点进行一次啮咬攻击。该皮翼比<br>蒙在该移动中离开攻击目标时不会引发该目标的借机攻击。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}擒拿爪✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>前提：该皮翼比蒙必须处于飞行。<br>效果：该皮翼比蒙进行一次飞越攻击，且若该攻击命中，则该皮翼比蒙擒抱该攻击的目标。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 14（+5）</span><span>''敏捷'' 19（+7）</span><span>''感知'' 11（+3）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 15（+5）</span><span>''智力'' 2（-1）</span><span>''魅力'' 6（+1）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n</div>",
+    "title": "皮翼比蒙 Skinwing Behemoth",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "7",
+    "role": "游击",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "自然界",
+    "creature-type": "野兽（坐骑，鳞爪类）",
+    "xp": "300",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "9751"
+  }
+]

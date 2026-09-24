@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>15级 杂兵 游击</span></div>\n<div class=bg-title><span>中型 精界 类人生物（植物）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 1；失手攻击无法伤害杂兵</span><span>''先攻'' +16</span></div>\n<div><span>''AC'' 29，''强韧'' 28，''反射'' 28，''意志'' 26</span><span>''侦查'' +17</span></div>\n<div><span>''速度'' 8（森林行者）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}爪击✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+20vs.AC<br>命中：11 点伤害，若没有其他敌人邻接该树精则为 13 点伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}生命恩惠✦遭遇</div>\n<div class=description>触发：该树精生命值降到 0。<br>效果（无动作）：近程爆发 5（范围内一个盟友）。目标获得 5 点临时生命值。</div>\n<div class=\"bold bg-power\">树精，图片来自 4E 精华版《怪物库》</div>\n<div class=\"italic bg-flavortext\">（译注：繁枝树精被官方勘误过，这里按照的是勘误后的版本）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 21（+12）</span><span>''敏捷'' 24（+14）</span><span>''感知'' 21（+12）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 24（+14）</span><span>''智力'' 11（+7）</span><span>''魅力'' 17（+10）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 精灵语</span></div></div>\n</div>",
+    "title": "繁枝树精 Bough Dryad",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "15",
+    "role": "游击",
+    "specialty-role": "杂兵",
+    "size": "中型",
+    "origin": "精界",
+    "creature-type": "类人生物（植物）",
+    "xp": "300",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "1360"
+  }
+]

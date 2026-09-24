@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>18级 伏击</span></div>\n<div class=bg-title><span>中型 精界 类人生物（不死生物） （若为弥留者堕落咒术师所转化则为 0）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 91；''重伤'' 45</span><span>''先攻'' +17</span></div>\n<div><span>''AC'' 30，''强韧'' 28，''反射'' 32，''意志'' 30</span><span>''侦查'' +11</span></div>\n<div><span>''抗力'' 15 黯蚀，虚体；''易伤'' 10 光耀</span><span>''感官'' 黑暗视觉</span></div>\n<div><span>''速度'' 6，飞行 6（盘旋），相位移动</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}盘旋绝望</div>\n<div class=description>灵气 3：在该灵气内的敌人的伤害骰和豁免受到-2 减值。</div>\n<div class=\"bold bg-power\">战斗优势（黯蚀）</div>\n<div class=description>该妖精咒术师亡灵对任何提供战斗优势给它的目标造成 2d8 额外黯蚀伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}谦卑射线（黯蚀）✦随意</div>\n<div class=description>攻击：射程 5，+21 vs. 意志<br>命中：1d8+5 黯蚀伤害，以及 5 点持续黯蚀伤害，且目标进行豁免骰时必须<br>投两次，并取两个结果中较低的一个（豁免终止两者）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}颓废射线（黯蚀）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：射程 5，+21 vs. 意志<br>命中：2d8+6 黯蚀伤害，且目标提供战斗优势给该妖精咒术师亡灵（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">移动动作</div>\n<div class=\"bold bg-power\">妖精步舞（瞬移）✦遭遇</div>\n<div class=description>该妖精咒术师亡灵瞬移 5 格。</div>\n<div class=\"bold bg-power\">疯狂猛冲✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>该妖精咒术师亡灵快步 6 格。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 隐秘+20</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 13（+10）</span><span>''敏捷'' 22（+15）</span><span>''感知'' 22（+15）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 16（+12）</span><span>''智力'' 26（+17）</span><span>''魅力'' 20（+14）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 通用语，精灵语</span></div></div>\n</div>",
+    "title": "妖精咒术师亡灵 Fey-Incanter Vestige",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "18",
+    "role": "伏击",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "精界",
+    "creature-type": "类人生物（不死生物） （若为弥留者堕落咒术师所转化则为 0）",
+    "xp": "2000",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "7061"
+  }
+]

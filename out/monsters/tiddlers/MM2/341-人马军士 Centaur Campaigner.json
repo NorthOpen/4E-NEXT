@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>25级 头目 护卫</span></div>\n<div class=bg-title><span>大型 精界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 230；''重伤'' 115</span><span>''先攻'' +20</span></div>\n<div><span>''AC'' 42，''强韧'' 38，''反射'' 36，''意志'' 36</span><span>''侦查'' +20</span></div>\n<div><span>''速度'' 8</span><span>''感官'' 昏暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">轻蹄</div>\n<div class=description>该人马军士无视困难地形。</div>\n<div class=\"bold bg-power\">雷震骑兵</div>\n<div class=description>当人马军士邻接着超过一个的敌人时，其近战攻击造成 1d6 额外伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}长剑（雷鸣，武器）✦随意</div>\n<div class=description>攻击：+32 vs. AC<br>命中：2d8+8 伤害，冲锋时外加 2d8 雷鸣伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}铁蹄龙卷风（雷鸣，武器，首次重伤时充能）</div>\n<div class=description>攻击：近程爆发 1，以敌人为目标，+30 vs. AC<br>命中：3d8+8 伤害以及 1d6+4 雷鸣伤害，且目标倒地。<br>效果：该人马军士标记目标直到该人马军士下回合结束。</div>\n<div class=\"bold font-size-h4 bg-category\">自由动作</div>\n<div class=\"bold bg-power\">飞跃✦随意</div>\n<div class=description>该人马军士获得 8 飞行速度直到其回合结束。若该人马军士结束回合时不在陆地上，则它在<br>其回合结束时飘落到陆地而不受到坠落伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}快速踢踏✦随意</div>\n<div class=description>触发：当一个生物移动进入一个能使其夹击该人马军士的空间时。<br>攻击：以触发的生物为目标，+30 vs. AC<br>命中：1d6+8 伤害。</div>\n<div class=\"bold bg-power\">三雷轰（雷鸣）✦遭遇</div>\n<div class=description>触发：当该人马军士冲锋攻击命中时。<br>该人马军士 10 格内的两个盟友分别以一个自由动作进行一次冲锋攻击。每个盟友的攻击皆<br>造成 6 点额外雷鸣伤害。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 运动+23，威吓+23，自然+20</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 26（+20）</span><span>''敏捷'' 23（+18）</span><span>''感知'' 16（+15）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 22（+18）</span><span>''智力'' 12（+13）</span><span>''魅力'' 22（+18）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 通用语，精灵语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 皮甲，轻盾，长剑</span></div></div>\n</div>",
+    "title": "人马军士 Centaur Campaigner",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "25",
+    "role": "护卫",
+    "specialty-role": "头目",
+    "size": "大型",
+    "origin": "精界",
+    "creature-type": "类人生物",
+    "xp": "7000",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "5404"
+  }
+]

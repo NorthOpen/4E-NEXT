@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>4级 伏击</span></div>\n<div class=bg-title><span>中型 自然界 类人生物（不死生物）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 45；''重伤'' 22</span><span>''先攻'' +10</span></div>\n<div><span>''AC'' 18，''强韧'' 14，''反射'' 16，''意志'' 15</span><span>''侦查'' +9</span></div>\n<div><span>''免疫'' 疾病，毒素；''抗力'' 10 黯蚀；''易伤'' 5 光耀</span><span>''感官'' 黑暗视觉</span></div>\n<div><span>''速度'' 8</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">暗影潜伏</div>\n<div class=description>该食尸鬼猎肉者在拥有掩蔽或隐蔽时便可进行隐秘检定来进入躲藏，而不需要超级掩蔽或全<br>隐蔽。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}爪击✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+9vs.AC<br>命中：1d6+4 伤害，且目标定身（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}献祭准备✦随意</div>\n<div class=description>攻击：近战 1（一个该食尸鬼猎肉者在回合开始时对其处于躲藏的生物）+9vs.AC<br>命中：2d6+4 伤害，且该食尸鬼猎肉者击倒目标并擒抱它。目标对该擒抱的挣脱尝试受到-2减值且不能站起直到该擒抱终止。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}献给奥库斯（武器）✦随意</div>\n<div class=description>攻击：近战 1（一个被该食尸鬼猎肉者擒抱的生物）+9vs.AC<br>命中：2d8+9 伤害。</div>\n<div class=\"italic bg-flavortext\">（食尸鬼）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 杂技+11，隐秘+11</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 12（+3）</span><span>''敏捷'' 19（+6）</span><span>''感知'' 14（+4）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 15（+4）</span><span>''智力'' 10（+2）</span><span>''魅力'' 11（+2）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 通用语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 匕首</span></div></div>\n</div>",
+    "title": "食尸鬼猎肉者 Ghoul Flesh Seeker",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "4",
+    "role": "伏击",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物（不死生物）",
+    "xp": "175",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "11749"
+  }
+]

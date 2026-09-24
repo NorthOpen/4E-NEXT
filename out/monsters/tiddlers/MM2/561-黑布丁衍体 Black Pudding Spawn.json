@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>8级 杂兵 蛮战</span></div>\n<div class=bg-title><span>中型 自然界 野兽（盲目，泥型怪）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 1；失手攻击无法伤害杂兵</span><span>''先攻'' +6</span></div>\n<div><span>''AC'' 22，''强韧'' 24，''反射'' 22，''意志'' 20</span><span>''侦查'' +4</span></div>\n<div><span>''免疫'' 凝视；''抗力'' 15 强酸</span><span>''感官'' 盲视 10，震动感知 10</span></div>\n<div><span>''速度'' 4，攀爬 3</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">可变形体</div>\n<div class=description>黑布丁衍体无视困难地形且不会因移动引发借机攻击。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}击打（强酸）✦随意</div>\n<div class=description>攻击：+9 vs. 强韧<br>命中：10 点强酸伤害。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 15（+6）</span><span>''敏捷'' 14（+6）</span><span>''感知'' 11（+4）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 19（+8）</span><span>''智力'' 1（-1）</span><span>''魅力'' 1（-1）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n</div>",
+    "title": "黑布丁衍体 Black Pudding Spawn",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "8",
+    "role": "蛮战",
+    "specialty-role": "杂兵",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "野兽（盲目，泥型怪）",
+    "xp": "88",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "8609"
+  }
+]

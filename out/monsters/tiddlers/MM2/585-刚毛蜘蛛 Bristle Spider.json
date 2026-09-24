@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>15级 精英 伏击</span></div>\n<div class=bg-title><span>超大型 自然界 野兽（蜘蛛）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 232；''重伤'' 116</span><span>''先攻'' +18</span></div>\n<div><span>''AC'' 29，''强韧'' 27，''反射'' 29，''意志'' 23</span><span>''侦查'' +8</span></div>\n<div><span>''豁免'' +2；''行动点'' 1</span><span>''感官'' 震动感知 10</span></div>\n<div><span>''速度'' 8，攀爬 6（蛛行）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">网行者</div>\n<div class=description>刚毛蜘蛛无视蜘蛛网和蜘蛛集群的效果。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬（毒素）✦随意</div>\n<div class=description>攻击：触及 2，+20 vs. AC<br>命中：1d10+6 伤害，且目标迟缓并受到 10 点持续毒素伤害（豁免终止两者）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}强酸毒雾（强酸，毒素）✦随意</div>\n<div class=description>攻击：近程冲击 5，+18 vs. 反射<br>命中：2d8+6 强酸和毒素伤害，且目标迟缓并受到 10 点持续强酸和毒素<br>伤害（豁免终止两者）。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}刚毛冲击✦充能 4,5,6{{$:/dnd/images/four}}{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：近程冲击 5，+18 vs. 强韧<br>命中：目标目盲并晕眩直到该刚毛蜘蛛下回合开始。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 隐秘+17</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 20（+12）</span><span>''敏捷'' 24（+14）</span><span>''感知'' 13（+8）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 20（+12）</span><span>''智力'' 3（+3）</span><span>''魅力'' 6（+5）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n</div>",
+    "title": "刚毛蜘蛛 Bristle Spider",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "15",
+    "role": "伏击",
+    "specialty-role": "精英",
+    "size": "超大型",
+    "origin": "自然界",
+    "creature-type": "野兽（蜘蛛）",
+    "xp": "2400",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "8944"
+  }
+]

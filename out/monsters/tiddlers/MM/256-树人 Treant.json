@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>16级 精英 控制</span></div>\n<div class=bg-title><span>超大型 精界 魔法兽（植物）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 316；''重伤'' 158</span><span>''先攻'' +9</span></div>\n<div><span>''AC'' 30，''强韧'' 30，''反射'' 26，''意志'' 30</span><span>''侦查'' +15</span></div>\n<div><span>''豁免'' +2；''行动点'' 1</span><span>''感官'' 昏暗视觉</span></div>\n<div><span>''速度'' 8（森林行者）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}擒抱植根✦灵气 3</div>\n<div class=description>灵气内的格子对不飞行的敌人来说是困难地形。</div>\n<div class=\"bold bg-power\">木头躯体</div>\n<div class=description>当该树人受到火焰伤害时，它受到 5 点持续火焰伤害（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}挥击✦随意</div>\n<div class=description>攻击：近战 3（一个生物）+21vs.AC<br>命中：2d10+13 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/area}}唤醒森林（结界）✦随意</div>\n<div class=description>攻击：区域 10 爆发 3（范围内所有敌人）+21vs.AC命中：2d10+9 伤害。<br>效果：爆发生成一个困难地形结界持续直到遭遇结束或直到该树人再次使用此威能。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}震地跺踏✦充能（若该威能对每个目标都失手）</div>\n<div class=description>攻击：近程爆发 2（范围内所有生物）+19vs.强韧<br>命中：6d6+7 伤害，且目标倒地。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 24（+15）</span><span>''敏捷'' 12（+9）</span><span>''感知'' 25（+15）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 22（+14）</span><span>''智力'' 14（+10）</span><span>''魅力'' 12（+9）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 精灵语</span></div></div>\n</div>",
+    "title": "树人 Treant",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "16",
+    "role": "控制",
+    "specialty-role": "精英",
+    "size": "超大型",
+    "origin": "精界",
+    "creature-type": "魔法兽（植物）",
+    "xp": "2800",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "4198"
+  }
+]

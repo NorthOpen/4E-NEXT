@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>6级 远程</span></div>\n<div class=bg-title><span>中型 自然界 类人生物（活体构装）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 57；''重伤'' 28</span><span>''先攻'' +3</span></div>\n<div><span>''AC'' 19，''强韧'' 16，''反射'' 18，''意志'' 18</span><span>''侦查'' +5</span></div>\n<div><span>''豁免'' +2</span><span></span></div>\n<div><span>''速度'' 6</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}木杖（武器）✦随意</div>\n<div class=description>攻击：+10 vs. AC<br>命中：1d8+1 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}震荡杖（力场，法器）✦遭遇</div>\n<div class=description>攻击：+11 vs. 强韧<br>命中：2d6+4 力场伤害，且目标被推动 1 格并倒地。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}冲撞矢（力场，法器）✦遭遇</div>\n<div class=description>攻击：射程 10，+11 vs. 强韧<br>命中：1d6+4 力场伤害，且该机关人回响者对主目标 3 格内的一个或两个目标进行第二攻击。<br>第二攻击：+11vs.强韧；1d6+4 力场伤害，且该机关人回响者滑移目标 3 格接近主目标。<br>效果：在所有攻击结算之后，任何被攻击命中的目标如果与其他目标相邻则倒地。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}雷鸣球（法器，雷鸣）✦随意</div>\n<div class=description>攻击：射程 10，+11 vs. 反射<br>命中：2d6+4 雷鸣伤害，且该机关人回响者推动目标 2 格。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/area}}回响球（法器，雷鸣）✦遭遇</div>\n<div class=description>攻击：区域 10 爆发 3，+10 vs. 反射<br>命中：2d8+4 雷鸣伤害，且目标倒地。<br>失手：一半伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">机关人决心（医疗）✦遭遇</div>\n<div class=description>该机关人回响者获得 6 点临时生命值且可以对一个持续伤害效果进行一次豁免。如果它在重<br>伤时使用该威能，则它还会恢复 6 点生命值。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 神秘+12，自然+10</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 12（+4）</span><span>''敏捷'' 11（+3）</span><span>''感知'' 15（+5）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 15（+5）</span><span>''智力'' 18（+7）</span><span>''魅力'' 12（+4）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 通用语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 袍子，木杖</span></div></div>\n</div>",
+    "title": "机关人回响者 Warforged Resounder",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "6",
+    "role": "远程",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物（活体构装）",
+    "xp": "250",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "9275"
+  }
+]

@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>11级 头目 控制</span></div>\n<div class=bg-title><span>中型 精界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 115；''重伤'' 57</span><span>''先攻'' +7</span></div>\n<div><span>''AC'' 25，''强韧'' 23，''反射'' 23，''意志'' 24</span><span>''侦查'' +15</span></div>\n<div><span>''速度'' 6</span><span>''感官'' 昏暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}遵守契约✦灵气 5{{$:/dnd/images/five}}</div>\n<div class=description>任何在该灵气内近战攻击失手的盟友可以受到 5 点伤害来让该攻击骰获得+2 威能加值。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}强迫的法杖（魅惑，武器）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+16vs.AC<br>命中：1d6+5 伤害，目标以一个自由动作对一个由该契约鬼婆选择的生物进行一次近战基本攻击。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}强制同盟契约（魅惑）✦随意</div>\n<div class=description>攻击：射程 10（一个生物）+14vs.意志<br>命中：目标受控直到该契约鬼婆下回合结束。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}恼怒侵略契约（魅惑，心灵）✦充能（当没有生物受该威能影响时）</div>\n<div class=description>攻击：射程 10（一个生物）+14vs.意志<br>命中：目标受恼怒侵略契约影响直到遭遇结束或直到该契约鬼婆或其盟友攻击目标。在受该契约影响期间，目标在其每个回合中首次命中生物时受到 10 点心灵伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}共享痛苦契约（心灵）✦充能（如果该威能失手）</div>\n<div class=description>前提：该契约鬼婆处于重伤。<br>攻击：射程 10（一个生物）+14vs.强韧<br>命中：直到遭遇结束，当目标在该契约鬼婆 10 格内时，每当该契约鬼婆受到伤害时目标便<br>受到 10 点心灵伤害。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 神秘+14，唬骗+13，交涉+13，洞察+15</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 12（+6）</span><span>''敏捷'' 14（+7）</span><span>''感知'' 21（+10）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 19（+9）</span><span>''智力'' 19（+9）</span><span>''魅力'' 16（+8）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 通用语，精灵语，巨人语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 法杖</span></div></div>\n</div>",
+    "title": "契约鬼婆 Pact Hag",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "11",
+    "role": "控制",
+    "specialty-role": "头目",
+    "size": "中型",
+    "origin": "精界",
+    "creature-type": "类人生物",
+    "xp": "600",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "12132"
+  }
+]

@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>17级 强者 蛮战</span></div>\n<div class=bg-title><span>超大型 自然界 野兽（鳞爪类，水系）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 672；''重伤'' 336</span><span>''先攻'' +13</span></div>\n<div><span>''AC'' 31，''强韧'' 31，''反射'' 29，''意志'' 28</span><span>''侦查'' +17</span></div>\n<div><span>''抗力'' 10 毒素；''豁免'' +5</span><span>''感官'' 黑暗视觉，全域视野</span></div>\n<div><span>''速度'' 7，游泳 10</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">全域视野</div>\n<div class=description>敌人不能通过夹击对该多头蛇蜥获得战斗优势。</div>\n<div class=\"bold bg-power\">多头</div>\n<div class=description>在震慑或受控的情况下，该多头蛇蜥可以进行自由动作。</div>\n<div class=\"bold bg-power\">多头再生</div>\n<div class=description>该多头蛇蜥在遭遇开始时拥有四个头。当该多头蛇蜥的生命值首次低于 504、336 和 168 时，它的其中一个头被摧毁。每当一个头被摧毁时，该多头蛇蜥在其下回合开始时长出两个头，<br>除非它在此之前受到火焰或强酸伤害。</div>\n<div class=\"bold bg-power\">长距威胁</div>\n<div class=description>该多头蛇蜥可以对它 3 格内的敌人进行借机攻击。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬（毒素）✦随意</div>\n<div class=description>攻击：近战 3（一个生物）+22vs.AC<br>命中：3d12 伤害，以及 10 点持续毒素伤害，若该多头蛇蜥处于重伤则为 20 点持续毒素伤害（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}毒液喷射（毒素）✦随意</div>\n<div class=description>攻击：射程 10（一个生物）+20vs.反射（该攻击不会引发借机攻击）<br>命中：2d12+5 毒素伤害，且目标倒地。</div>\n<div class=\"bold bg-power\">多头狂怒✦随意</div>\n<div class=description>效果：该多头蛇蜥攻击等值于它当前头数的次数，每次攻击可以使用啮咬或毒液喷射。如果它只有两个头，则它在该攻击的伤害骰获得+5 加值。如果它只有一个头，则它在该攻击的<br>伤害骰获得+15 加值。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}猛咬✦随意</div>\n<div class=description>触发：一个敌人在该多头蛇蜥两格内结束回合。<br>效果（自由动作）：该多头蛇蜥对触发的敌人使用两次啮咬。</div>\n<div class=\"italic bg-flavortext\">（译注：关于多头蛇蜥有一个有趣的彩蛋，在 4E 原版的《怪物图鉴》中多头蛇蜥是没有多头再生的能力的，而且对于多头蛇蜥有着这样的描述：“民间流传的关于多头蛇蜥即使头被斩下也能再生的传说已经被证明是错误的了”，然而在精华版的《怪物库》中多头蛇蜥</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 隐秘+18</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 25（+15）</span><span>''敏捷'' 20（+13）</span><span>''感知'' 18（+12）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 24（+15）</span><span>''智力'' 2（+4）</span><span>''魅力'' 8（+7）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n</div>",
+    "title": "毒腹蛇蜥 Vemon-Maw Hydra",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "17",
+    "role": "蛮战",
+    "specialty-role": "强者",
+    "size": "超大型",
+    "origin": "自然界",
+    "creature-type": "野兽（鳞爪类，水系）",
+    "xp": "8000",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "2861"
+  }
+]

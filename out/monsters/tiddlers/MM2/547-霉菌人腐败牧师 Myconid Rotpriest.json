@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>3级 头目 蛮战</span></div>\n<div class=bg-title><span>中型 精界 类人生物（植物）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 48；''重伤'' 24</span><span>''先攻'' +2</span></div>\n<div><span>''AC'' 15，''强韧'' 16，''反射'' 13，''意志'' 16</span><span>''侦查'' +3</span></div>\n<div><span>''易伤'' 光耀（如果该霉菌人腐败牧师受到光耀伤害，它的再生失效直到其下回合结束）</span><span>''感官'' 震动感知 10</span></div>\n<div><span>''速度'' 5</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}菌柄杖（武器）✦随意</div>\n<div class=description>攻击：+6 vs. AC<br>命中：2d10+3 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}分解喷雾（黯蚀）✦随意</div>\n<div class=description>攻击：近程爆发 3，+6 vs. 强韧<br>命中：1d10+3 黯蚀伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}生命爆发（医疗）</div>\n<div class=description>触发：当该霉菌人腐败牧师的生命值降到 0 时。<br>近程爆发 1；以活体生物为目标；目标恢复 10 点生命值。</div>\n<div class=\"bold bg-power\">菌落根✦随意</div>\n<div class=description>触发：当该霉菌人腐败牧师在 5 格内有霉菌人盟友的情况下被攻击命中时。<br>该霉菌人腐败牧师从该攻击只受到一半伤害，且该霉菌人盟友受到相等的伤害。</div>\n<div class=\"bold bg-power\">菌落牺牲✦随意</div>\n<div class=description>触发：当一个霉菌人盟友使用菌落根对该霉菌人腐败牧师造成伤害时。<br>该霉菌人腐败牧师受到该盟友将受到的伤害，而该盟友不会受到伤害。</div>\n<div class=\"italic bg-flavortext\">神佣兵是达到宇宙平衡的神秘存在。它们是富有洞察力且谨慎的，不过它们也会犯错误。在契约之下，神佣兵会为其雇主的利益而行动。只有合乎逻辑地诉诸于神佣兵的信仰，证明一份契约是存在谎言的，或是提出更加重要的使命，才有可能使神佣兵放弃其任务。神佣兵可能会承担一个合乎其信仰的任务而不要求报酬。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 10（+1）</span><span>''敏捷'' 12（+2）</span><span>''感知'' 15（+3）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 18（+5）</span><span>''智力'' 10（+1）</span><span>''魅力'' 18（+5）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 木杖</span></div></div>\n</div>",
+    "title": "霉菌人腐败牧师 Myconid Rotpriest",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "3",
+    "role": "蛮战",
+    "specialty-role": "头目",
+    "size": "中型",
+    "origin": "精界",
+    "creature-type": "类人生物（植物）",
+    "xp": "150",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "8438"
+  }
+]

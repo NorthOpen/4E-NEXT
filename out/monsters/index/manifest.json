@@ -1,0 +1,1811 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-24T15:56:01.628Z",
+  "source": {
+    "file": "DnD4E-怪物手册1~3合订本（六巫翻译-灵霜整理）.xlsx",
+    "sha256": "f7b30c06e603e44a0f885dfbfdf05724679b252aaa5b1cf5367ec06bdbad34cc"
+  },
+  "total": 927,
+  "byBook": {
+    "MM2": 322,
+    "MM1": 304,
+    "MM3": 301
+  },
+  "byRank": {
+    "精英": 111,
+    "杂兵": 87,
+    "头目": 69,
+    "强者": 58,
+    "精英（头目）": 14,
+    "坐骑": 1,
+    "杂兵（头目）": 1
+  },
+  "byRole": {
+    "护卫": 186,
+    "游击": 185,
+    "蛮战": 182,
+    "控制": 168,
+    "远程": 112,
+    "伏击": 94
+  },
+  "byOrigin": {
+    "自然界": 474,
+    "元素界": 179,
+    "精界": 126,
+    "星界": 66,
+    "异界": 57,
+    "暗影界": 24
+  },
+  "byCreatureType": {
+    "类人生物": 242,
+    "野兽": 57,
+    "魔法兽": 53,
+    "类人生物（不死生物）": 32,
+    "魔法兽（龙）": 29,
+    "类人生物（鳞爪类）": 27,
+    "类人生物（巨人）": 25,
+    "类人生物（恶魔）": 24,
+    "野兽（鳞爪类）": 23,
+    "活化生物（不死生物）": 22,
+    "类人生物（魔鬼）": 19,
+    "活化生物（构装体）": 17,
+    "类人生物，人类": 15,
+    "类人生物（变形生物）": 14,
+    "类人生物（植物）": 13,
+    "类人生物（寒系，巨人）": 9,
+    "类人生物（水生）": 9,
+    "野兽（蜘蛛）": 9,
+    "类人生物（天使）": 8,
+    "类人生物，矮人": 8,
+    "野兽（盲目，泥型怪）": 8,
+    "野兽（水生）": 8,
+    "类人生物，矮人（魔鬼）": 8,
+    "类人生物（土系）": 7,
+    "类人生物（鳞爪类），蜥蜴人": 7,
+    "野兽（集群）": 7,
+    "类人生物（地系）": 7,
+    "类人生物（活体构装）": 7,
+    "类人生物（火系）": 6,
+    "魔法兽（气系）": 6,
+    "魔法兽（土系）": 6,
+    "类人生物（蜘蛛）": 6,
+    "魔法兽（火系）": 5,
+    "魔法兽（恶魔）": 5,
+    "类人生物（气系）": 5,
+    "魔法兽（气系，土系）": 5,
+    "魔法兽（地系）": 5,
+    "魔法兽（寒系，龙）": 5,
+    "魔法兽（地系，龙）": 5,
+    "魔法兽（火系，龙）": 5,
+    "类人生物（盲目）": 5,
+    "类人生物（水生，水系）": 4,
+    "野兽（坐骑，鳞爪类）": 4,
+    "魔法兽（水生，水系）": 4,
+    "类人生物（土系，巨人）": 4,
+    "魔法兽（植物）": 4,
+    "魔法兽（鳞爪类）": 4,
+    "野兽（植物）": 4,
+    "魔法兽（盲目）": 4,
+    "类人生物，牛头人": 4,
+    "类人生物（蜘蛛），卓尔": 3,
+    "野兽（坐骑）": 3,
+    "类人生物（气系，水系）": 3,
+    "类人生物（地系，巨人）": 3,
+    "类人生物（恶魔），兽人": 3,
+    "类人生物（魔鬼，变形生物）": 2,
+    "魔法兽（水生，龙）": 2,
+    "魔法兽（龙，不死生物）": 2,
+    "类人生物（火系，巨人）": 2,
+    "类人生物（火焰，巨人）": 2,
+    "类人生物，豺狼人": 2,
+    "野兽（鳞爪类，水系）": 2,
+    "类人生物（变形生物），人类": 2,
+    "类人生物，雌性": 2,
+    "野兽（盲目）": 2,
+    "野兽（蜘蛛，集群）": 2,
+    "魔法兽（坐骑）": 2,
+    "类人生物（水生，恶魔）": 2,
+    "活化生物（构装体，造妖）": 2,
+    "活化生物": 2,
+    "活化生物（构装体，火系）": 2,
+    "类人生物，黑暗小妖": 2,
+    "魔法兽（魔鬼）": 2,
+    "类人生物，元素裔": 2,
+    "类人生物（冰系）": 1,
+    "野兽（目盲，泥型怪）": 1,
+    "野兽（气系）": 1,
+    "野兽（寒冷）": 1,
+    "魔法兽（植物，不死生物）": 1,
+    "野兽（鳞爪类，集群）": 1,
+    "魔法兽（水生，恶魔）": 1,
+    "类人生物（恶魔，不死生物）": 1,
+    "魔法兽（恶魔，水系）": 1,
+    "类人生物（恶魔） （若为脓包魔造出则为 0）": 1,
+    "类人生物（恶魔，变形生物）": 1,
+    "活化生物（魔鬼，不死生物）": 1,
+    "类人生物，雅灵": 1,
+    "魔法兽（寒系，火系）": 1,
+    "魔法兽（气系，土系，火系）": 1,
+    "魔法兽（土系，水系）": 1,
+    "魔法兽（气系，水系）": 1,
+    "类人生物（不死生物） （若为弥留者骑士所转化则为 0）": 1,
+    "类人生物（不死生物） （若为弥留者堕落咒术师所转化则为 0）": 1,
+    "类人生物（气系，土系，火系，水系）": 1,
+    "类人生物（水系）": 1,
+    "类人生物（地精）": 1,
+    "野兽（寒系）": 1,
+    "魔法兽（集群）": 1,
+    "野兽（水生，盲目，泥型怪）": 1,
+    "活化生物（不死生物），牛头人": 1,
+    "活化生物（坐骑，不死生物）": 1,
+    "类人生物（集群）": 1,
+    "活化生物（活体构装）": 1,
+    "魔法兽（地系，寒系，坐骑）": 1,
+    "魔法兽（寒系）": 1,
+    "活化生物（寒系，构装体）": 1,
+    "魔法兽（不死生物）": 1,
+    "类人生物（魔鬼） X400": 1,
+    "类人生物，暗黑小妖": 1,
+    "类人生物（魔鬼，泥型怪）": 1,
+    "魔法兽（魔鬼，集群）": 1,
+    "类人生物（不死生物），食尸鬼": 1,
+    "野兽（魔鬼）": 1,
+    "野兽（不死生物） （如果是由耶诺古的神选者生成则为 0）": 1,
+    "类人生物（火系，荒神）": 1,
+    "类人生物，半精灵": 1,
+    "类人生物，龙裔": 1,
+    "活化生物（火系）": 1,
+    "魔法兽（水生）": 1,
+    "类人生物，卓尔（变形生物，神）": 1,
+    "魔法兽（变形生物，蜘蛛） XP-": 1,
+    "魔法兽（变形生物，蜘蛛）": 1,
+    "类人生物，卓尔": 1,
+    "类人生物，夺心魔": 1,
+    "类人生物（地系，荒神）": 1,
+    "类人生物，食人魔": 1,
+    "类人生物（巨人），山岭巨人": 1,
+    "野兽（坐骑，蜘蛛）": 1,
+    "类人生物，蛇人（鳞爪类）": 1
+  },
+  "byCreatureGroup": {
+    "人类": 31,
+    "恶魔": 30,
+    "元素生物": 30,
+    "魔鬼": 22,
+    "巨人": 22,
+    "金属龙": 20,
+    "地精": 16,
+    "灰矮人": 15,
+    "豺狼人": 15,
+    "灾难龙": 15,
+    "亚空": 13,
+    "卓尔": 12,
+    "蜥蜴人": 12,
+    "蜘蛛": 12,
+    "彩色龙": 11,
+    "眼魔": 10,
+    "龙兽": 10,
+    "食人魔": 10,
+    "泥型怪": 10,
+    "兽人": 10,
+    "蛇人": 10,
+    "石像鬼": 9,
+    "神使": 8,
+    "食尸鬼": 8,
+    "魔像": 8,
+    "牛头人": 8,
+    "巨灵": 7,
+    "雅灵": 7,
+    "山岭巨人": 7,
+    "侏儒": 7,
+    "夺心魔": 7,
+    "战蜥人": 7,
+    "巨魔": 7,
+    "土巨怪": 7,
+    "元素裔": 7,
+    "迪洛矮人": 7,
+    "凶暴兽": 6,
+    "独眼巨人": 6,
+    "鬼婆": 6,
+    "锈蚀怪": 6,
+    "骷髅": 6,
+    "费尔伯格人": 6,
+    "天狗": 6,
+    "星之眷族": 6,
+    "蛛妖": 6,
+    "堕落信徒": 6,
+    "镜面人": 6,
+    "失落苔藓": 6,
+    "巨蜥怪": 5,
+    "双头巨人": 5,
+    "多头蛇蜥": 5,
+    "枭熊": 5,
+    "僵尸": 5,
+    "人马": 5,
+    "废陋巨人": 5,
+    "仙女": 5,
+    "图尔加": 5,
+    "食腐虫": 4,
+    "树精": 4,
+    "精灵": 4,
+    "吉斯洋基人": 4,
+    "狗头人": 4,
+    "蝎尾狮": 4,
+    "木乃伊": 4,
+    "树人": 4,
+    "缚灵": 4,
+    "蛇": 4,
+    "巨蚁": 4,
+    "蟾蜍怪": 4,
+    "混沌魔晶": 4,
+    "失落污触": 4,
+    "妖精弥留者": 4,
+    "影灵": 4,
+    "史拉蟾": 4,
+    "血侏儒": 4,
+    "食肉蔓藤": 4,
+    "机关人": 4,
+    "冬狼": 4,
+    "枯皮怪": 4,
+    "天启魔咒": 4,
+    "穴钓虫": 4,
+    "恐怖斗士": 4,
+    "被遗忘者": 4,
+    "捣蛋精": 4,
+    "寇涛鱼人": 4,
+    "蓝侏儒": 4,
+    "位移兽": 3,
+    "变形怪": 3,
+    "龙裔": 3,
+    "矮人": 3,
+    "巫妖": 3,
+    "美杜莎": 3,
+    "食腐怪": 3,
+    "罗刹妖": 3,
+    "树绳妖": 3,
+    "蝙蝠": 3,
+    "吸血鬼": 3,
+    "青足龙蛇": 3,
+    "天族": 3,
+    "龙兽人": 3,
+    "半精灵": 3,
+    "半兽人": 3,
+    "兽化人": 3,
+    "神佣兵": 3,
+    "霉菌人": 3,
+    "纽吉怪": 3,
+    "诺斯克": 3,
+    "恶鬼": 3,
+    "凤羽人": 3,
+    "罗刹石构装体": 3,
+    "法尸": 3,
+    "邦德怪": 3,
+    "比蒙巨兽": 3,
+    "魔裔": 3,
+    "镰虾": 3,
+    "黑暗小妖": 3,
+    "秽恶邪裔": 3,
+    "青蛙": 3,
+    "四臂金刚": 3,
+    "嚎兽": 3,
+    "噬脑怪": 3,
+    "胡狼人": 3,
+    "迷疹饥妖": 3,
+    "拟形怪": 3,
+    "地妖地精": 3,
+    "稻草人": 3,
+    "维克那之秘": 3,
+    "暗影": 3,
+    "魔晶人": 3,
+    "潜伏人": 3,
+    "凯斯之衍体": 3,
+    "苏": 3,
+    "螳螂人": 3,
+    "亚巨人": 3,
+    "编织者": 3,
+    "野精灵": 3,
+    "耶提": 3,
+    "鲨蜥兽": 2,
+    "死亡骑士": 2,
+    "龙巫妖": 2,
+    "半身人": 2,
+    "紫虫": 2,
+    "提夫林": 2,
+    "掘地虫": 2,
+    "狼魔": 2,
+    "蜈蚣": 2,
+    "羽蛇": 2,
+    "恶魔领主": 2,
+    "恐怖守卫": 2,
+    "哥利亚斯": 2,
+    "鹰": 2,
+    "造妖": 2,
+    "骨面斑兽": 2,
+    "索尔石怪": 2,
+    "大猩猩": 2,
+    "件": 2,
+    "蛰伏伪怪": 2,
+    "胃魔": 2,
+    "荒神": 2,
+    "巨妖": 2,
+    "凌弱怪": 2,
+    "鹫妖": 2,
+    "腐蛆集群": 2,
+    "基顿魔": 1,
+    "奇鲁魔": 1,
+    "蛛化精灵": 1,
+    "蛇蜥": 1,
+    "鼠人": 1,
+    "还魂尸": 1,
+    "熊": 1,
+    "鳄鱼": 1,
+    "马": 1,
+    "鬣狗": 1,
+    "鼠": 1,
+    "鱼": 1,
+    "狼": 1,
+    "鸡蛇兽": 1,
+    "巨像": 1,
+    "暗幕魔兽": 1,
+    "狄摩高根": 1,
+    "灵褫兽": 1,
+    "幽魂": 1,
+    "灰袋兽": 1,
+    "猛犸象": 1,
+    "百足魔兽": 1,
+    "巡猎者": 1,
+    "鲨鱼": 1,
+    "狮身人面兽": 1,
+    "小妖精集群": 1,
+    "钢铁捕食者": 1,
+    "虎": 1,
+    "鬼火": 1,
+    "菘蓝树人": 1,
+    "猩猩": 1,
+    "豺狼": 1,
+    "神灵": 1,
+    "罗丝": 1
+  },
+  "byLevelBucket": {
+    "1-10": 435,
+    "11-20": 355,
+    "21-30": 131,
+    "31+": 6
+  },
+  "sections": [
+    {
+      "title": "天使ANGEL",
+      "book": "MM1",
+      "matched": true,
+      "count": 4
+    },
+    {
+      "title": "亚空ARCHON",
+      "book": "MM1",
+      "matched": true,
+      "count": 4
+    },
+    {
+      "title": "巨蜥怪 BASILISK",
+      "book": "MM1",
+      "matched": true,
+      "count": 5
+    },
+    {
+      "title": "眼魔BEHOLDER",
+      "book": "MM1",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "鲨蜥兽 BULETTE",
+      "book": "MM1",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "食腐虫 CARRION CRAWLER",
+      "book": "MM1",
+      "matched": true,
+      "count": 4
+    },
+    {
+      "title": "独眼巨人CYCLOPS",
+      "book": "MM1",
+      "matched": true,
+      "count": 4
+    },
+    {
+      "title": "死亡骑士DEATH KNIGHT",
+      "book": "MM1",
+      "matched": true,
+      "count": 2
+    },
+    {
+      "title": "恶魔DEMON",
+      "book": "MM1",
+      "matched": true,
+      "count": 7
+    },
+    {
+      "title": "魔鬼DEVIL",
+      "book": "MM1",
+      "matched": true,
+      "count": 7
+    },
+    {
+      "title": "位移兽 DISPLACER BEAST",
+      "book": "MM1",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "变形怪 DOPPELGANGER",
+      "book": "MM1",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "龙 DRAGON",
+      "book": "MM1",
+      "matched": true,
+      "count": 13
+    },
+    {
+      "title": "龙裔DRAGONBORN",
+      "book": "MM1",
+      "matched": true,
+      "count": 2
+    },
+    {
+      "title": "龙兽DRAKE",
+      "book": "MM1",
+      "matched": true,
+      "count": 6
+    },
+    {
+      "title": "蛛化精灵DRIDER",
+      "book": "MM1",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "树精DRYAD",
+      "book": "MM1",
+      "matched": true,
+      "count": 4
+    },
+    {
+      "title": "灰矮人 DUERGAR",
+      "book": "MM1",
+      "matched": true,
+      "count": 7
+    },
+    {
+      "title": "矮人DWARF",
+      "book": "MM1",
+      "matched": true,
+      "count": 2
+    },
+    {
+      "title": "火巨灵 EFREET",
+      "book": "MM1",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "元素生物ELEMENTAL",
+      "book": "MM1",
+      "matched": true,
+      "count": 4
+    },
+    {
+      "title": "精灵ELF",
+      "book": "MM1",
+      "matched": true,
+      "count": 11
+    },
+    {
+      "title": "双头巨人ETTIN",
+      "book": "MM1",
+      "matched": true,
+      "count": 4
+    },
+    {
+      "title": "石像鬼 GARGOYLE",
+      "book": "MM1",
+      "matched": true,
+      "count": 5
+    },
+    {
+      "title": "食尸鬼 GHOUL",
+      "book": "MM1",
+      "matched": true,
+      "count": 5
+    },
+    {
+      "title": "巨人GIANT",
+      "book": "MM1",
+      "matched": true,
+      "count": 11
+    },
+    {
+      "title": "吉斯洋基人 GITHYANKI",
+      "book": "MM1",
+      "matched": true,
+      "count": 4
+    },
+    {
+      "title": "豺狼人 GNOLL",
+      "book": "MM1",
+      "matched": true,
+      "count": 9
+    },
+    {
+      "title": "侏儒GNOME",
+      "book": "MM1",
+      "matched": true,
+      "count": 4
+    },
+    {
+      "title": "地精 GOBLIN",
+      "book": "MM1",
+      "matched": false,
+      "count": 11
+    },
+    {
+      "title": "魔像GOLEM",
+      "book": "MM1",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "鬼婆HAG",
+      "book": "MM1",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "半身人 HALFLING",
+      "book": "MM1",
+      "matched": true,
+      "count": 2
+    },
+    {
+      "title": "人类HUMAN",
+      "book": "MM1",
+      "matched": true,
+      "count": 6
+    },
+    {
+      "title": "多头蛇蜥HYDRA",
+      "book": "MM1",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "狗头人 KOBOLD",
+      "book": "MM1",
+      "matched": true,
+      "count": 4
+    },
+    {
+      "title": "巫妖LICH",
+      "book": "MM1",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "蜥蜴人 LIZARDFOLK",
+      "book": "MM1",
+      "matched": true,
+      "count": 7
+    },
+    {
+      "title": "兽化人 LYCANTHROPE",
+      "book": "MM1",
+      "matched": true,
+      "count": 2
+    },
+    {
+      "title": "蝎尾狮 MANTICORE",
+      "book": "MM1",
+      "matched": true,
+      "count": 4
+    },
+    {
+      "title": "美杜莎 MEDUSA",
+      "book": "MM1",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "夺心魔 MIND FLAYER",
+      "book": "MM1",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "牛头人 MINOTAUR",
+      "book": "MM1",
+      "matched": true,
+      "count": 4
+    },
+    {
+      "title": "木乃伊 MUMMY",
+      "book": "MM1",
+      "matched": true,
+      "count": 4
+    },
+    {
+      "title": "食人魔 OGRE",
+      "book": "MM1",
+      "matched": true,
+      "count": 5
+    },
+    {
+      "title": "泥型怪 OOZE",
+      "book": "MM1",
+      "matched": true,
+      "count": 5
+    },
+    {
+      "title": "兽人ORC",
+      "book": "MM1",
+      "matched": true,
+      "count": 7
+    },
+    {
+      "title": "食腐怪 OTYUGH",
+      "book": "MM1",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "枭熊OWLBEAR",
+      "book": "MM1",
+      "matched": true,
+      "count": 5
+    },
+    {
+      "title": "紫虫PURPLE WORM",
+      "book": "MM1",
+      "matched": true,
+      "count": 2
+    },
+    {
+      "title": "罗刹妖 RAKSHASA",
+      "book": "MM1",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "树绳妖 ROPER",
+      "book": "MM1",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "锈蚀怪 RUST MONSTER",
+      "book": "MM1",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "骷髅SKELETON",
+      "book": "MM1",
+      "matched": true,
+      "count": 4
+    },
+    {
+      "title": "蚊蝠STIRGE",
+      "book": "MM1",
+      "matched": true,
+      "count": 5
+    },
+    {
+      "title": "泰夫林 TIEFLING",
+      "book": "MM1",
+      "matched": true,
+      "count": 2
+    },
+    {
+      "title": "树人TREANT",
+      "book": "MM1",
+      "matched": true,
+      "count": 4
+    },
+    {
+      "title": "战蜥人 TROGLODYTE",
+      "book": "MM1",
+      "matched": true,
+      "count": 4
+    },
+    {
+      "title": "巨魔TROLL",
+      "book": "MM1",
+      "matched": true,
+      "count": 4
+    },
+    {
+      "title": "土巨怪 UMBER HULK",
+      "book": "MM1",
+      "matched": true,
+      "count": 4
+    },
+    {
+      "title": "吸血鬼 VAMPIRE",
+      "book": "MM1",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "缚灵WRAITH",
+      "book": "MM1",
+      "matched": true,
+      "count": 4
+    },
+    {
+      "title": "蛇人YUAN-TI",
+      "book": "MM1",
+      "matched": true,
+      "count": 4
+    },
+    {
+      "title": "僵尸ZOMBIE",
+      "book": "MM1",
+      "matched": true,
+      "count": 4
+    },
+    {
+      "title": "附录：动物 APPENDIX:ANIMALS",
+      "book": "MM1",
+      "matched": false,
+      "count": 0
+    },
+    {
+      "title": "熊 BEAR",
+      "book": "MM1",
+      "matched": false,
+      "count": 2
+    },
+    {
+      "title": "鳄鱼 CROCODILE",
+      "book": "MM1",
+      "matched": false,
+      "count": 1
+    },
+    {
+      "title": "马 HORSE",
+      "book": "MM1",
+      "matched": false,
+      "count": 1
+    },
+    {
+      "title": "鬣狗 HYENA",
+      "book": "MM1",
+      "matched": false,
+      "count": 1
+    },
+    {
+      "title": "老鼠 RAT",
+      "book": "MM1",
+      "matched": false,
+      "count": 2
+    },
+    {
+      "title": "鲨鱼 SHARK",
+      "book": "MM1",
+      "matched": false,
+      "count": 1
+    },
+    {
+      "title": "蛇 SNAKE",
+      "book": "MM1",
+      "matched": false,
+      "count": 4
+    },
+    {
+      "title": "蜘蛛 SPIDER",
+      "book": "MM1",
+      "matched": false,
+      "count": 4
+    },
+    {
+      "title": "狼 WOLF",
+      "book": "MM1",
+      "matched": false,
+      "count": 2
+    },
+    {
+      "title": "天使ANGEL",
+      "book": "MM2",
+      "matched": true,
+      "count": 4
+    },
+    {
+      "title": "天使长ARCHANGEL",
+      "book": "MM2",
+      "matched": false,
+      "count": 0
+    },
+    {
+      "title": "掘地虫 ANKHEG",
+      "book": "MM2",
+      "matched": true,
+      "count": 2
+    },
+    {
+      "title": "巨蚁ANT,GIANT",
+      "book": "MM2",
+      "matched": true,
+      "count": 5
+    },
+    {
+      "title": "亚空ARCHON",
+      "book": "MM2",
+      "matched": true,
+      "count": 9
+    },
+    {
+      "title": "狼魔BARGHEST",
+      "book": "MM2",
+      "matched": true,
+      "count": 2
+    },
+    {
+      "title": "青足龙蛇BEHIR",
+      "book": "MM2",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "眼魔BEHOLDER",
+      "book": "MM2",
+      "matched": true,
+      "count": 4
+    },
+    {
+      "title": "霸蛙人 BULLYWUG",
+      "book": "MM2",
+      "matched": true,
+      "count": 4
+    },
+    {
+      "title": "人马CENTAUR",
+      "book": "MM2",
+      "matched": true,
+      "count": 5
+    },
+    {
+      "title": "蜈蚣CENTIPEDE",
+      "book": "MM2",
+      "matched": true,
+      "count": 2
+    },
+    {
+      "title": "混沌魔晶CHAOS SHARD",
+      "book": "MM2",
+      "matched": true,
+      "count": 4
+    },
+    {
+      "title": "鸡蛇兽 COCKATRICE",
+      "book": "MM2",
+      "matched": true,
+      "count": 1
+    },
+    {
+      "title": "巨像COLOSSUS",
+      "book": "MM2",
+      "matched": true,
+      "count": 1
+    },
+    {
+      "title": "羽蛇COUATL",
+      "book": "MM2",
+      "matched": true,
+      "count": 2
+    },
+    {
+      "title": "在世界间穿梭CROSSING BETWEEN WORLDS",
+      "book": "MM2",
+      "matched": false,
+      "count": 0
+    },
+    {
+      "title": "独眼巨人CYCLOPS",
+      "book": "MM2",
+      "matched": true,
+      "count": 2
+    },
+    {
+      "title": "暗幕魔兽DARKMANTLE",
+      "book": "MM2",
+      "matched": true,
+      "count": 1
+    },
+    {
+      "title": "狄摩高根DEMOGORGON",
+      "book": "MM2",
+      "matched": true,
+      "count": 9
+    },
+    {
+      "title": "恶魔DEMON",
+      "book": "MM2",
+      "matched": true,
+      "count": 16
+    },
+    {
+      "title": "天族DEVA",
+      "book": "MM2",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "魔鬼DEVIL",
+      "book": "MM2",
+      "matched": true,
+      "count": 7
+    },
+    {
+      "title": "灵褫兽 DIMENSIONAL MARAUDER",
+      "book": "MM2",
+      "matched": true,
+      "count": 1
+    },
+    {
+      "title": "恐怖守卫DIREGUARD",
+      "book": "MM2",
+      "matched": true,
+      "count": 2
+    },
+    {
+      "title": "风巨灵 DJINN",
+      "book": "MM2",
+      "matched": true,
+      "count": 4
+    },
+    {
+      "title": "龙 DRAGON",
+      "book": "MM2",
+      "matched": true,
+      "count": 20
+    },
+    {
+      "title": "龙兽DRAKE",
+      "book": "MM2",
+      "matched": true,
+      "count": 4
+    },
+    {
+      "title": "龙兽人 DRAKKOTH",
+      "book": "MM2",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "灰矮人 DUERGAR",
+      "book": "MM2",
+      "matched": true,
+      "count": 8
+    },
+    {
+      "title": "雅灵ELADRIN",
+      "book": "MM2",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "元素生物ELEMENTAL",
+      "book": "MM2",
+      "matched": true,
+      "count": 13
+    },
+    {
+      "title": "失落污触FELL TAINT",
+      "book": "MM2",
+      "matched": true,
+      "count": 4
+    },
+    {
+      "title": "妖精弥留者 FEY LINGERER",
+      "book": "MM2",
+      "matched": true,
+      "count": 4
+    },
+    {
+      "title": "费尔伯格人 FIRBOLG",
+      "book": "MM2",
+      "matched": true,
+      "count": 6
+    },
+    {
+      "title": "废陋巨人FOMORIAN",
+      "book": "MM2",
+      "matched": true,
+      "count": 5
+    },
+    {
+      "title": "元素裔 GENASI",
+      "book": "MM2",
+      "matched": true,
+      "count": 5
+    },
+    {
+      "title": "幽魂军团兵 GHOST LEGIONNAIRE",
+      "book": "MM2",
+      "matched": true,
+      "count": 1
+    },
+    {
+      "title": "巨人GIANT",
+      "book": "MM2",
+      "matched": true,
+      "count": 8
+    },
+    {
+      "title": "豺狼人 GNOLL",
+      "book": "MM2",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "侏儒GNOME",
+      "book": "MM2",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "地精 GOBLIN",
+      "book": "MM2",
+      "matched": false,
+      "count": 5
+    },
+    {
+      "title": "魔像GOLEM",
+      "book": "MM2",
+      "matched": true,
+      "count": 5
+    },
+    {
+      "title": "哥利亚斯GOLIATH",
+      "book": "MM2",
+      "matched": true,
+      "count": 2
+    },
+    {
+      "title": "灰袋兽 GRAY RENDER",
+      "book": "MM2",
+      "matched": true,
+      "count": 1
+    },
+    {
+      "title": "半精灵 HALE-ELF",
+      "book": "MM2",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "半兽人 HALF-ORC",
+      "book": "MM2",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "鹰 HAWK",
+      "book": "MM2",
+      "matched": true,
+      "count": 2
+    },
+    {
+      "title": "造妖HOMUNCULUS",
+      "book": "MM2",
+      "matched": true,
+      "count": 2
+    },
+    {
+      "title": "守护GUARD",
+      "book": "MM2",
+      "matched": false,
+      "count": 0
+    },
+    {
+      "title": "人类HUMAN",
+      "book": "MM2",
+      "matched": true,
+      "count": 14
+    },
+    {
+      "title": "多头蛇蜥HYDRA",
+      "book": "MM2",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "天狗KENKU",
+      "book": "MM2",
+      "matched": true,
+      "count": 6
+    },
+    {
+      "title": "骨面斑兽KRENSHAR",
+      "book": "MM2",
+      "matched": true,
+      "count": 2
+    },
+    {
+      "title": "蜥蜴人 LIZARDFOLK",
+      "book": "MM2",
+      "matched": true,
+      "count": 5
+    },
+    {
+      "title": "兽化人 LYCANTHROPE",
+      "book": "MM2",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "猛犸象 MAMMOTH",
+      "book": "MM2",
+      "matched": true,
+      "count": 1
+    },
+    {
+      "title": "神佣兵 MARUT",
+      "book": "MM2",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "与神佣兵交涉BARGAINING WITH MARUTS",
+      "book": "MM2",
+      "matched": false,
+      "count": 0
+    },
+    {
+      "title": "霉菌人 MYCONID",
+      "book": "MM2",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "纽吉怪 NEOGI",
+      "book": "MM2",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "诺斯克 NOTHIC",
+      "book": "MM2",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "恶鬼ONI",
+      "book": "MM2",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "泥型怪 OOZE",
+      "book": "MM2",
+      "matched": true,
+      "count": 5
+    },
+    {
+      "title": "凤羽人 PHOELARCH",
+      "book": "MM2",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "百足魔兽REMORHAZ",
+      "book": "MM2",
+      "matched": true,
+      "count": 1
+    },
+    {
+      "title": "巡猎者 RETRIEVER",
+      "book": "MM2",
+      "matched": true,
+      "count": 1
+    },
+    {
+      "title": "锈蚀怪 RUST MONSTER",
+      "book": "MM2",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "对于使用锈蚀怪的指导A GUIDE TO USING RUST MONSTERS",
+      "book": "MM2",
+      "matched": false,
+      "count": 0
+    },
+    {
+      "title": "影灵SHADAR-KAI",
+      "book": "MM2",
+      "matched": true,
+      "count": 4
+    },
+    {
+      "title": "鲨鱼SHARK",
+      "book": "MM2",
+      "matched": true,
+      "count": 1
+    },
+    {
+      "title": "骷髅SKELETON",
+      "book": "MM2",
+      "matched": true,
+      "count": 2
+    },
+    {
+      "title": "史拉蟾 SLAAD",
+      "book": "MM2",
+      "matched": true,
+      "count": 2
+    },
+    {
+      "title": "史拉蟾衍生者SLAAD SPAWNER",
+      "book": "MM2",
+      "matched": false,
+      "count": 0
+    },
+    {
+      "title": "罗刹石构装体 SLAUGHTERSTONE CONSTRUCT",
+      "book": "MM2",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "狮身人面兽 SPHINX",
+      "book": "MM2",
+      "matched": true,
+      "count": 1
+    },
+    {
+      "title": "蜘蛛SPIDER",
+      "book": "MM2",
+      "matched": true,
+      "count": 4
+    },
+    {
+      "title": "血侏儒 SPRIGGAN",
+      "book": "MM2",
+      "matched": true,
+      "count": 4
+    },
+    {
+      "title": "小妖精集群 SPRITE SWARM",
+      "book": "MM2",
+      "matched": true,
+      "count": 1
+    },
+    {
+      "title": "星之眷族STAR SPAWN",
+      "book": "MM2",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "钢铁捕食者 STEEL PREDATOR",
+      "book": "MM2",
+      "matched": true,
+      "count": 1
+    },
+    {
+      "title": "老虎TIGER",
+      "book": "MM2",
+      "matched": true,
+      "count": 2
+    },
+    {
+      "title": "战蜥人 TROGLODYTE",
+      "book": "MM2",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "巨魔TROLL",
+      "book": "MM2",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "食肉蔓藤VINE,PREDATORY",
+      "book": "MM2",
+      "matched": true,
+      "count": 4
+    },
+    {
+      "title": "机关人 WARFORGED",
+      "book": "MM2",
+      "matched": true,
+      "count": 4
+    },
+    {
+      "title": "鬼火WILL-O’-WISP",
+      "book": "MM2",
+      "matched": true,
+      "count": 1
+    },
+    {
+      "title": "冬狼WINTER WOLF",
+      "book": "MM2",
+      "matched": true,
+      "count": 4
+    },
+    {
+      "title": "枯皮怪 WITHERLING",
+      "book": "MM2",
+      "matched": true,
+      "count": 4
+    },
+    {
+      "title": "菘蓝树人WOOD WOAD",
+      "book": "MM2",
+      "matched": true,
+      "count": 1
+    },
+    {
+      "title": "索尔石怪XORN",
+      "book": "MM2",
+      "matched": true,
+      "count": 2
+    },
+    {
+      "title": "猩猩APE",
+      "book": "MM3",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "天启魔咒APOCALYPSE SPELL",
+      "book": "MM3",
+      "matched": true,
+      "count": 5
+    },
+    {
+      "title": "法尸ARCANIAN",
+      "book": "MM3",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "邦德怪 BANDERHOBB",
+      "book": "MM3",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "比蒙巨兽BEHEMOTH",
+      "book": "MM3",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "眼魔BEHOLDER",
+      "book": "MM3",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "魔裔CAMBION",
+      "book": "MM3",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "件 CATOBLEPAS",
+      "book": "MM3",
+      "matched": true,
+      "count": 2
+    },
+    {
+      "title": "穴钓虫 CAVE FISHER",
+      "book": "MM3",
+      "matched": true,
+      "count": 4
+    },
+    {
+      "title": "蛛妖CHITINE",
+      "book": "MM3",
+      "matched": true,
+      "count": 6
+    },
+    {
+      "title": "蛰伏伪怪CLOAKER",
+      "book": "MM3",
+      "matched": true,
+      "count": 2
+    },
+    {
+      "title": "镰虾CRAUD",
+      "book": "MM3",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "黑暗小妖DARK ONE",
+      "book": "MM3",
+      "matched": true,
+      "count": 11
+    },
+    {
+      "title": "迪洛矮人DERRO",
+      "book": "MM3",
+      "matched": true,
+      "count": 9
+    },
+    {
+      "title": "堕落信徒CORRUPTED FOLLOWER",
+      "book": "MM3",
+      "matched": false,
+      "count": 29
+    },
+    {
+      "title": "恐怖斗士DREAD WARRIOR",
+      "book": "MM3",
+      "matched": true,
+      "count": 4
+    },
+    {
+      "title": "卓尔DROW",
+      "book": "MM3",
+      "matched": true,
+      "count": 6
+    },
+    {
+      "title": "元素生物ELEMENTAL",
+      "book": "MM3",
+      "matched": true,
+      "count": 12
+    },
+    {
+      "title": "被遗忘者FORSAKEN",
+      "book": "MM3",
+      "matched": true,
+      "count": 5
+    },
+    {
+      "title": "秽恶邪裔FOULSPAWN",
+      "book": "MM3",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "青蛙FROG",
+      "book": "MM3",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "石像鬼 GARGOYLE",
+      "book": "MM3",
+      "matched": true,
+      "count": 4
+    },
+    {
+      "title": "食尸鬼 GHOUL",
+      "book": "MM3",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "火巨人 GIANT,FIRE",
+      "book": "MM3",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "霜巨人 GIANT,FROST",
+      "book": "MM3",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "山岭巨人GIANT,HILL",
+      "book": "MM3",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "四臂金刚GIRALLON",
+      "book": "MM3",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "豺狼人 GNOLL",
+      "book": "MM3",
+      "matched": true,
+      "count": 4
+    },
+    {
+      "title": "捣蛋精 GREMLIN",
+      "book": "MM3",
+      "matched": true,
+      "count": 4
+    },
+    {
+      "title": "鬼婆HAG",
+      "book": "MM3",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "嚎兽HOWLER",
+      "book": "MM3",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "伊密克斯IMIX",
+      "book": "MM3",
+      "matched": true,
+      "count": 1
+    },
+    {
+      "title": "上古元素之眼THE ELDER ELEMENTAL EYE",
+      "book": "MM3",
+      "matched": false,
+      "count": 0
+    },
+    {
+      "title": "伊密克斯的邪教徒IMIX’S CULTISTS",
+      "book": "MM3",
+      "matched": true,
+      "count": 7
+    },
+    {
+      "title": "心智吞噬者 INTELLECT DEVOURER",
+      "book": "MM3",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "胡狼人 JACKALWERE",
+      "book": "MM3",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "巨妖KRAKEN",
+      "book": "MM3",
+      "matched": true,
+      "count": 2
+    },
+    {
+      "title": "寇涛鱼人KUO-TOA",
+      "book": "MM3",
+      "matched": true,
+      "count": 4
+    },
+    {
+      "title": "罗丝LOLTH",
+      "book": "MM3",
+      "matched": true,
+      "count": 2
+    },
+    {
+      "title": "神魂破散DISCORPORATION",
+      "book": "MM3",
+      "matched": false,
+      "count": 2
+    },
+    {
+      "title": "迷疹饥妖MEAZEL",
+      "book": "MM3",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "凌弱怪 MEENLOCK",
+      "book": "MM3",
+      "matched": true,
+      "count": 2
+    },
+    {
+      "title": "拟形怪 MIMIC",
+      "book": "MM3",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "夺心魔 MIND FLAYER",
+      "book": "MM3",
+      "matched": true,
+      "count": 4
+    },
+    {
+      "title": "牛头人 MINOTAUR",
+      "book": "MM3",
+      "matched": true,
+      "count": 4
+    },
+    {
+      "title": "鹫妖NAGPA",
+      "book": "MM3",
+      "matched": true,
+      "count": 2
+    },
+    {
+      "title": "镜面人 NERRA",
+      "book": "MM3",
+      "matched": true,
+      "count": 6
+    },
+    {
+      "title": "地妖地精 NORKER",
+      "book": "MM3",
+      "matched": false,
+      "count": 3
+    },
+    {
+      "title": "仙女NYMPH",
+      "book": "MM3",
+      "matched": true,
+      "count": 5
+    },
+    {
+      "title": "失落苔藓OBLIVION MOSS",
+      "book": "MM3",
+      "matched": true,
+      "count": 6
+    },
+    {
+      "title": "在你的游戏中使用失落苔藓USING OBLIVION MOSS IN YOUR GAME",
+      "book": "MM3",
+      "matched": false,
+      "count": 0
+    },
+    {
+      "title": "食人魔 OGRE",
+      "book": "MM3",
+      "matched": true,
+      "count": 11
+    },
+    {
+      "title": "腐蛆ROT GRUB",
+      "book": "MM3",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "稻草人 SCARECROW",
+      "book": "MM3",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "维克那之秘 SECRET OF VECNA",
+      "book": "MM3",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "暗影SHADOW",
+      "book": "MM3",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "魔晶人 SHARDMIND",
+      "book": "MM3",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "潜伏人 SKULK",
+      "book": "MM3",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "史拉蟾 SLAAD",
+      "book": "MM3",
+      "matched": true,
+      "count": 2
+    },
+    {
+      "title": "凯斯之衍体 SPAWN OF KYUSS",
+      "book": "MM3",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "蜘蛛SPIDER",
+      "book": "MM3",
+      "matched": true,
+      "count": 4
+    },
+    {
+      "title": "蛛网SPIDER WEBS",
+      "book": "MM3",
+      "matched": false,
+      "count": 0
+    },
+    {
+      "title": "星之眷族STAR SPAWN",
+      "book": "MM3",
+      "matched": true,
+      "count": 4
+    },
+    {
+      "title": "在你的游戏中使用阿拉巴 USING ALLABAR IN YOUR GAME",
+      "book": "MM3",
+      "matched": false,
+      "count": 0
+    },
+    {
+      "title": "苏兽SU MONSTER",
+      "book": "MM3",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "半魔兽人TANARUKK",
+      "book": "MM3",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "螳螂人 THRI-KREEN",
+      "book": "MM3",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "图尔加 TULGAR",
+      "book": "MM3",
+      "matched": true,
+      "count": 5
+    },
+    {
+      "title": "土巨怪 UMBER HULK",
+      "book": "MM3",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "亚巨人 VERBEEG",
+      "book": "MM3",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "编织者 WEAVER",
+      "book": "MM3",
+      "matched": true,
+      "count": 4
+    },
+    {
+      "title": "荒野灵 WILDEN",
+      "book": "MM3",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "蓝侏儒 XIVORT",
+      "book": "MM3",
+      "matched": true,
+      "count": 4
+    },
+    {
+      "title": "耶提YETI",
+      "book": "MM3",
+      "matched": true,
+      "count": 3
+    },
+    {
+      "title": "蛇人YUAN-TI",
+      "book": "MM3",
+      "matched": true,
+      "count": 8
+    }
+  ]
+}

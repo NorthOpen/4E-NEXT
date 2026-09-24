@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>1级 杂兵 远程</span></div>\n<div class=bg-title><span>小型 自然界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 1；失手攻击无法伤害杂兵</span><span>''先攻'' +3</span></div>\n<div><span>''AC'' 13，''强韧'' 12，''反射'' 14，''意志'' 12</span><span>''侦查'' +1</span></div>\n<div><span>''速度'' 6</span><span>''感官'' 昏暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">狙击手</div>\n<div class=description>若该地精在躲藏状态下远程攻击失手，它仍然保持躲藏。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}短剑（武器）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+8vs.AC<br>命中：4 点伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}短弓（武器）✦随意</div>\n<div class=description>攻击：射程 20（一个生物）+8vs.AC<br>命中：4 点伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">地精战术✦随意</div>\n<div class=description>触发：一次近战攻击对该地精失手。<br>效果（直觉反应）：该地精快步一格。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 隐秘+8，盗术+8</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 13（+1）</span><span>''敏捷'' 17（+3）</span><span>''感知'' 12（+1）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 13（+1）</span><span>''智力'' 8（-1）</span><span>''魅力'' 8（-1）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 通用语，地精语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 皮甲，短剑，短弓，20 支箭</span></div></div>\n</div>",
+    "title": "地精狙击手 Goblin Sniper",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "1",
+    "role": "远程",
+    "specialty-role": "杂兵",
+    "size": "小型",
+    "origin": "自然界",
+    "creature-type": "类人生物",
+    "xp": "25",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "2403"
+  }
+]

@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>12级 强者 蛮战</span></div>\n<div class=bg-title><span>大型 自然界 野兽（鳞爪类）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 496；''重伤'' 248</span><span>''先攻'' +9</span></div>\n<div><span>''AC'' 25，''强韧'' 26，''反射'' 23，''意志'' 22</span><span>''侦查'' +15</span></div>\n<div><span>''抗力'' 10 火焰；''豁免'' +5；''行动点'' 2</span><span>''感官'' 黑暗视觉，全域视野</span></div>\n<div><span>''速度'' 5</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">全域视野</div>\n<div class=description>敌人不能通过夹击对该多头蛇蜥获得战斗优势。</div>\n<div class=\"bold bg-power\">多头</div>\n<div class=description>在震慑或受控的情况下，该多头蛇蜥可以进行自由动作。</div>\n<div class=\"bold bg-power\">多头再生</div>\n<div class=description>该多头蛇蜥在遭遇开始时拥有四个头。当该多头蛇蜥的生命值首次低于 372、248 和 124 时，它的其中一个头被摧毁。每当一个头被摧毁时，该多头蛇蜥在其下回合开始时长出两个头，<br>除非它在此之前受到寒冷或强酸伤害。</div>\n<div class=\"bold bg-power\">长距威胁</div>\n<div class=description>该多头蛇蜥可以对它两格内的敌人进行借机攻击。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬✦随意</div>\n<div class=description>攻击：近战 2（一个生物）+17vs.AC<br>命中：3d12 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}火焰之吻（火焰）✦充能（当该多头蛇蜥失去一个头时）</div>\n<div class=description>攻击：近程冲击 3（范围内所有生物）+13vs.反射<br>命中：2d8+5 火焰伤害，以及 10 点持续火焰伤害（豁免终止）。该多头蛇蜥推动目标最多三格。</div>\n<div class=\"bold bg-power\">多头狂怒✦随意</div>\n<div class=description>效果：该多头蛇蜥攻击等值于它当前头数的次数，每次攻击可以使用啮咬或火焰之吻。如果它只有两个头，则它在该攻击的伤害骰获得+5 加值。如果它只有一个头，则它在该攻击的<br>伤害骰获得+15 加值。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}猛咬✦随意</div>\n<div class=description>触发：一个敌人在该多头蛇蜥两格内结束回合。<br>效果（自由动作）：该多头蛇蜥对触发的敌人使用两次啮咬。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 22（+12）</span><span>''敏捷'' 17（+9）</span><span>''感知'' 18（+10）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 20（+11）</span><span>''智力'' 2（+2）</span><span>''魅力'' 8（+5）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n</div>",
+    "title": "火吻多头蛇蜥 Flamekiss Hydra",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "12",
+    "role": "蛮战",
+    "specialty-role": "强者",
+    "size": "大型",
+    "origin": "自然界",
+    "creature-type": "野兽（鳞爪类）",
+    "xp": "3500",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "2835"
+  }
+]

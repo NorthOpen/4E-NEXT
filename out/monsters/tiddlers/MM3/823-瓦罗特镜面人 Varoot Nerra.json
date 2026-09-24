@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>16级 伏击</span></div>\n<div class=bg-title><span>中型 星界 类人生物（变形生物）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 116；''重伤'' 58</span><span>''先攻'' +17</span></div>\n<div><span>''AC'' 30，''强韧'' 27，''反射'' 30，''意志'' 28</span><span>''侦查'' +14</span></div>\n<div><span>''速度'' 6</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}晶片刃（武器）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+21vs.AC<br>命中：2d8+15 伤害。</div>\n<div class=\"bold bg-power\">镜像偷窃（变形）✦随意</div>\n<div class=description>效果：该瓦罗特镜面人变成其 10 格内的一个敌人的完美复制体。该效果持续直到遭遇结束或直到该瓦罗特镜面人攻击。该瓦罗特镜面人在该形态下邻接那个被复制的敌人的时候，每当那个被复制的敌人以外的生物对该瓦罗特镜面人进行一次近战或远程攻击时，投一个 d20。若结果为 10 或更高，则该攻击以那敌人为目标而不是该瓦罗特镜面人。<br>此外，该瓦罗特镜面人对被它复制的敌人的攻击骰获得+2 加值与伤害骰获得+5 加值。</div>\n<div class=\"bold font-size-h4 bg-category\">移动动作</div>\n<div class=\"bold bg-power\">镜面跃（瞬移）✦随意</div>\n<div class=description>效果：该瓦罗特镜面人瞬移 5 格到一个邻接一面镜子或另一个镜面人的格子。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">镜像抓取（瞬移）✦随意</div>\n<div class=description>效果：该瓦罗特镜面人 10 格内的一个它看得见的最重 20 磅的超小型或更小的无人掌管的物<br>件瞬移到该瓦罗特镜面人的手中。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 唬骗+20，交涉+20，洞察+14，盗术+18</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 20（+13）</span><span>''敏捷'' 21（+13）</span><span>''感知'' 13（+9）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 14（+10）</span><span>''智力'' 13（+9）</span><span>''魅力'' 24（+15）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 天界语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 长剑</span></div></div>\n</div>",
+    "title": "瓦罗特镜面人 Varoot Nerra",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "16",
+    "role": "伏击",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "星界",
+    "creature-type": "类人生物（变形生物）",
+    "xp": "1400",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "13024"
+  }
+]

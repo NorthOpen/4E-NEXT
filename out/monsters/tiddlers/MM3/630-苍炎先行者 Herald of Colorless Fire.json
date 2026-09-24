@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>27级 游击</span></div>\n<div class=bg-title><span>中型 自然界 活化生物（构装体，火系）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 244；''重伤'' 122</span><span>''先攻'' +25</span></div>\n<div><span>''AC'' 41，''强韧'' 37，''反射'' 40，''意志'' 37</span><span>''侦查'' +19</span></div>\n<div><span>''抗力'' 15 火焰</span><span></span></div>\n<div><span>''速度'' 8，飞行 6</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">冻结在地</div>\n<div class=description>每当该苍炎先行者受到寒冷伤害时，它不能使用闪烁火焰直到其下回合结束。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}火焰之拥（火焰，力场）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+32vs.AC<br>命中：3d10+19 火焰和力场伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}苍炎风暴（火焰，力场）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>效果：该苍炎先行者进行两次下述攻击，在这两次攻击之间快步其速度一半的格数。该苍炎先行者不能以同一个生物为这两次攻击的目标。<br>攻击：近程爆发 1（爆发内所有生物）+30vs.反射<br>命中：4d10+16 火焰和力场伤害，以及 15 点持续火焰伤害（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">闪烁火焰✦随意</div>\n<div class=description>效果：该苍炎先行者快步 4 格。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">解放天启✦遭遇</div>\n<div class=description>触发：一个敌人对该苍炎先行者造成重击或该苍炎先行者首次重伤。<br>效果（无动作）：该苍炎先行者创造一个其自身的分身，该分身出现在最近的不被占据的格子。该分身拥有与该苍炎先行者相同的生命值，被视为与该苍炎先行者消耗掉了同样的威能，且在该苍炎先行者的回合行动。该苍炎先行者身上的任何效果都不会带到分身身上。在该苍炎先行者下回合结束时，该分身消失。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 17（+16）</span><span>''敏捷'' 30（+23）</span><span>''感知'' 23（+19）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 20（+18）</span><span>''智力'' 15（+15）</span><span>''魅力'' 14（+15）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 荒神语</span></div></div>\n</div>",
+    "title": "苍炎先行者 Herald of Colorless Fire",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "27",
+    "role": "游击",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "活化生物（构装体，火系）",
+    "xp": "11000",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "9567"
+  }
+]

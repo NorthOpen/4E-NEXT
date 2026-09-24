@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>7级 头目 游击</span></div>\n<div class=bg-title><span>中型 元素界 类人生物（恶魔）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 79；''重伤'' 39</span><span>''先攻'' +9</span></div>\n<div><span>''AC'' 21，''强韧'' 18，''反射'' 20，''意志'' 19</span><span>''侦查'' +8</span></div>\n<div><span>''抗力'' 10 可变（每遭遇一次）</span><span>''感官'' 黑暗视觉</span></div>\n<div><span>''速度'' 7，瞬移 3</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}悲惨剧毒（医疗，毒素）</div>\n<div class=description>灵气 2：在该灵气内开始回合的敌人受到 5 点毒素伤害。在该血渗魔重伤期间，任何在该灵气内开始回合的恶魔恢复 5 点生命值。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}爪击（毒素）✦随意</div>\n<div class=description>攻击：+12 vs. AC<br>命中：2d4+5 伤害，以及 5 点持续毒素伤害（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}剧毒传送打击（瞬移）✦充能 4,5,6{{$:/dnd/images/four}}{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>该血渗魔瞬移五格并进行一次爪击攻击。若该攻击命中，则该血渗魔再瞬移五格。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}剧毒冲击（医疗，毒素）✦遭遇</div>\n<div class=description>攻击：近程冲击 5，以敌人为目标，+10 vs. 强韧<br>命中：1d4+5 毒素伤害<br>效果：范围内所有恶魔恢复 1d4+5 生命值。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 15（+5）</span><span>''敏捷'' 19（+7）</span><span>''感知'' 11（+3）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 15（+5）</span><span>''智力'' 11（+3）</span><span>''魅力'' 17（+6）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 深渊语，通用语</span></div></div>\n</div>",
+    "title": "血渗魔 Bloodseep Demon",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "7",
+    "role": "游击",
+    "specialty-role": "头目",
+    "size": "中型",
+    "origin": "元素界",
+    "creature-type": "类人生物（恶魔）",
+    "xp": "300",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "5782"
+  }
+]

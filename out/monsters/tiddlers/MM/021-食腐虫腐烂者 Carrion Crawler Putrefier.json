@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>15级 护卫</span></div>\n<div class=bg-title><span>大型 异界 野兽</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 148；''重伤'' 74</span><span>''先攻'' +13</span></div>\n<div><span>''AC'' 31，''强韧'' 28，''反射'' 26，''意志'' 25</span><span>''侦查'' +9</span></div>\n<div><span>''速度'' 6，攀爬 6（蛛行）</span><span>''感官'' 黑暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}剧毒恶臭（毒素）✦灵气 3</div>\n<div class=description>任何在该灵气内开始回合的敌人受到 5 毒素伤害且迟缓（豁免终止两者）。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}腐烂触手（黯蚀）✦随意</div>\n<div class=description>攻击：近战 3（一个生物）+18vs.强韧<br>命中：2d10+6 黯蚀伤害，该食腐虫可以拉动目标一格，且目标定身（豁免终止）。若目标已经被定身，则该定身替换为震慑且受到 10 点持续黯蚀伤害（豁免终止两者）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+20vs.AC<br>命中：2d12+10 伤害。</div>\n<div class=\"italic bg-flavortext\">（译注：剧毒恶臭灵气的毒素伤害并没有标明是持续伤害，而后面又写着“豁免终止两者”，</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 23（+13）</span><span>''敏捷'' 18（+11）</span><span>''感知'' 14（+9）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 20（+12）</span><span>''智力'' 2（+3）</span><span>''魅力'' 16（+10）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n</div>",
+    "title": "食腐虫腐烂者 Carrion Crawler Putrefier",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "15",
+    "role": "护卫",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "异界",
+    "creature-type": "野兽",
+    "xp": "1200",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "313"
+  }
+]

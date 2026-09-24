@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>7级 蛮战</span></div>\n<div class=bg-title><span>中型 自然界 类人生物，人类</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 94；''重伤'' 47</span><span>''先攻'' +3</span></div>\n<div><span>''AC'' 18，''强韧'' 19，''反射'' 17，''意志'' 18</span><span>''侦查'' +4</span></div>\n<div><span>''速度'' 5</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}巨斧（武器）✦随意</div>\n<div class=description>攻击：+10 vs. AC<br>命中：1d12+6 伤害（重击时为 1d12+18 伤害）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}标枪（武器）✦随意</div>\n<div class=description>攻击：射程 10/20，+10 vs. AC<br>命中：1d6+6 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}死亡狂怒（结界）✦遭遇</div>\n<div class=description>攻击：近程爆发 1，+10 vs. AC<br>命中：1d12+6 伤害。<br>爆发生成一个以该狄摩高根的狂信徒为中心的结界持续直到该狄摩高根的狂信徒下回合结束。当该狄摩高根的狂信徒移动的时候，该结界也跟着一起移动，时刻保持以它为中心。任何在该结界内开始回合的敌人受到 5 点伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}狂怒咆哮（心灵）✦遭遇</div>\n<div class=description>攻击：近程冲击 3，+8 vs. 意志<br>命中：1d8+4 心灵伤害，且目标定身直到该狄摩高根的狂信徒下回合结束。</div>\n<div class=\"italic bg-flavortext\">（从左往右：狄摩高根的狂信徒，深渊掠夺者，狄摩高根的圣狂战士）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 运动+11，威吓+8</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 17（+6）</span><span>''敏捷'' 11（+3）</span><span>''感知'' 13（+4）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 14（+5）</span><span>''智力'' 8（+2）</span><span>''魅力'' 10（+3）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 通用语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 链甲，巨斧，3 把标枪</span></div></div>\n</div>",
+    "title": "狄摩高根的狂信徒 Shrieking Cultist of Demogorgon",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "7",
+    "role": "蛮战",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物，人类",
+    "xp": "300",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "5732"
+  }
+]

@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>18级 蛮战</span></div>\n<div class=bg-title><span>大型 暗影界 魔法兽</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 211；''重伤'' 105</span><span>''先攻'' +17</span></div>\n<div><span>''AC'' 30，''强韧'' 29，''反射'' 32，''意志'' 30</span><span>''侦查'' +16</span></div>\n<div><span>''速度'' 6，游泳 6</span><span>''感官'' 黑暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+23vs.AC<br>命中：3d12+13 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}捆缚舌✦随意</div>\n<div class=description>攻击：射程 5（一个生物）+21vs.反射<br>命中：2d12+3 伤害，且该邦德怪劫持者拉动目标 4 格到一个邻接该邦德怪劫持者的格子并擒抱该生物。</div>\n<div class=\"bold bg-power\">近战·狼吞虎咽✦随意</div>\n<div class=description>前提：该邦德怪劫持者处于重伤。攻击：近战 1（一个生物）+23vs.AC<br>命中：4d12+7 伤害，且该邦德怪劫持者擒抱目标。若目标处于重伤，则该邦德怪劫持者的<br>吞咽充能并对该目标使用。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}吞咽✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：近战 1（一个被该邦德怪劫持者擒抱的重伤生物）+21vs.强韧<br>命中：目标被除出游戏。直到该效果终止，目标受到 10 点持续伤害。目标可以如常进行动<br>作且可以对该邦德怪劫持者进行近战和近程攻击。当该邦德怪劫持者的生命值降到 0 或当该邦德怪劫持者以一个自由动作终止该效果时该效果终止。当该效果终止时，目标出现在由其选择的一个邻接该邦德怪劫持者的不被占据的空间。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">暗影穿行（瞬移）✦遭遇</div>\n<div class=description>触发：该邦德怪劫持者首次重伤。<br>效果（无动作）：该邦德怪劫持者除出游戏直到其下回合开始。然后该邦德怪劫持者出现在原先的位置 10 格内的一个不被占据的空间。</div>\n<div class=\"italic bg-flavortext\">（邦德怪）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 运动+20，隐秘+22</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 22（+15）</span><span>''敏捷'' 27（+17）</span><span>''感知'' 25（+16）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 21（+14）</span><span>''智力'' 22（+15）</span><span>''魅力'' 12（+10）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 能理解地精语</span></div></div>\n</div>",
+    "title": "邦德怪劫持者 Banderhobb Abductor",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "18",
+    "role": "蛮战",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "暗影界",
+    "creature-type": "魔法兽",
+    "xp": "2000",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "9720"
+  }
+]

@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>28级 精英（头目） 护卫</span></div>\n<div class=bg-title><span>中型 精界 类人生物，卓尔</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 508；''重伤'' 254</span><span>''先攻'' +26</span></div>\n<div><span>''AC'' 44，''强韧'' 38，''反射'' 42，''意志'' 40</span><span>''侦查'' +20</span></div>\n<div><span>''豁免'' +2；''行动点'' 1</span><span>''感官'' 黑暗视觉</span></div>\n<div><span>''速度'' 7</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}蜘蛛神后的密使✦灵气 5{{$:/dnd/images/five}}</div>\n<div class=description>任何恶魔、卓尔或蜘蛛盟友在该灵气内时攻击骰获得+2 威能加值且可以以一个次要动作快<br>步 1 格。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}触手权杖（武器）✦随意</div>\n<div class=description>前提：艾卡芙拉必须持用触手权杖。<br>攻击：近战 3（一个生物）+33vs.AC命中：3d8+18 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}触手鞭（武器）✦随意</div>\n<div class=description>前提：艾卡芙拉必须持用触手权杖。<br>攻击：近战 3（一个、两个或三个生物）+33vs.AC<br>命中：3d8+18 伤害，且目标不能从毒素免疫或抗性获得增益直到遭遇结束。此外，目标迟缓（豁免终止）。<br>首次豁免失败时：目标改迟缓为定身（豁免终止）。<br>第二次豁免失败时：目标改定身为定身且虚弱（豁免终止两者）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}阴险报价（魅惑，心灵）✦充能（当首次重伤时）</div>\n<div class=description>攻击：射程 10（一个生物）+31vs.意志<br>命中：1d10+9 心灵伤害，且目标选择受到 30 点额外心灵伤害或是受控（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}迷人美貌（魅惑，心灵）✦随意（一轮一次）</div>\n<div class=description>攻击：近程爆发 5（爆发内所有敌人）+31vs.意志<br>命中：1d6+9 心灵伤害，且艾卡芙拉拉动目标 2 格。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}跪下（武器）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>前提：艾卡芙拉必须持用触手权杖。攻击：近战 3（一个生物）+33vs.意志<br>命中：目标倒地且不能站起（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">瞬间脱身（瞬移）✦随意</div>\n<div class=description>触发：艾卡芙拉被一次区域或近程攻击命中。<br>效果（直觉反应）：艾卡芙拉瞬移 6 格并获得隐蔽直到其下回合结束。</div>\n<div class=\"italic bg-flavortext\">（艾卡芙拉）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 唬骗+27，洞察+25，威吓+27，宗教+26</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 17（+17）</span><span>''敏捷'' 30（+24）</span><span>''感知'' 23（+20）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 22（+20）</span><span>''智力'' 25（+21）</span><span>''魅力'' 26（+22）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 深渊语，通用语，精灵语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 触手权杖</span></div></div>\n</div>",
+    "title": "艾卡芙拉，罗丝的主教 Eclavdra,Exarch of Lolth",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "28",
+    "role": "护卫",
+    "specialty-role": "精英（头目）",
+    "size": "中型",
+    "origin": "精界",
+    "creature-type": "类人生物，卓尔",
+    "xp": "26000",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "12678"
+  }
+]

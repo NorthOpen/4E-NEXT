@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>17级 精英 游击</span></div>\n<div class=bg-title><span>超大型 元素界 魔法兽（地系，寒系，坐骑）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 332；''重伤'' 166</span><span>''先攻'' +16</span></div>\n<div><span>''AC'' 31，''强韧'' 30，''反射'' 29，''意志'' 27</span><span>''侦查'' +12</span></div>\n<div><span>''抗力'' 20 寒冷；''豁免'' +2；''行动点'' 1</span><span>''感官'' 昏暗视觉</span></div>\n<div><span>''速度'' 8（冰雪行者）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬（寒冷）✦随意</div>\n<div class=description>攻击：触及 2，+22 vs. AC<br>命中：1d12+6 伤害以及 1d6 寒冷伤害，对倒地目标则为 2d12+6 伤害以及 1d6<br>寒冷伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}扑倒（寒冷，只能在冲锋时使用）✦随意</div>\n<div class=description>攻击：触及 2，+20 vs. AC<br>命中：2d12+6 伤害以及 1d6 寒冷伤害，且目标倒地。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}霜冻吐息（寒冷，结界）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：近程爆发 3，+20 vs. 强韧<br>命中：2d8+6 寒冷伤害。失手：一半伤害。<br>效果：爆发生成一个冰雪地形的结界持续直到该霜猎者下回合结束。该结界是困哪地形。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">拖拽（只能在邻接一个倒地敌人的时候使用）✦随意</div>\n<div class=description>该霜猎者快步 1 格并拉动它邻接的一个倒地目标 1 格。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}冰刺（坐骑）✦随意</div>\n<div class=description>触发：当一个敌人的近战攻击对该霜猎者或一个等级 17 或更高的友方骑手失手时。<br>该霜猎者身上的冰刺扩大：以触发的敌人为目标；+20vs.反射；1d12+6 伤害以及 1d6 寒冷<br>伤害。</div>\n<div class=\"italic bg-flavortext\">（冬狼）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 威吓+13</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 24（+15）</span><span>''敏捷'' 22（+14）</span><span>''感知'' 19（+12）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 22（+14）</span><span>''智力'' 10（+8）</span><span>''魅力'' 10（+8）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 通用语，巨人语</span></div></div>\n</div>",
+    "title": "霜猎者 Rime Hound",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "17",
+    "role": "游击",
+    "specialty-role": "精英",
+    "size": "超大型",
+    "origin": "元素界",
+    "creature-type": "魔法兽（地系，寒系，坐骑）",
+    "xp": "3200",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "9375"
+  }
+]

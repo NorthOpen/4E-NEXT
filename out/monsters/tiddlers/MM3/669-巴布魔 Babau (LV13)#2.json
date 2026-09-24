@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>13级 游击</span></div>\n<div class=bg-title><span>中型 元素界 类人生物（恶魔）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 127；''重伤'' 63</span><span>''先攻'' +13</span></div>\n<div><span>''AC'' 26，''强韧'' 23，''反射'' 25，''意志'' 24</span><span>''侦查'' +10</span></div>\n<div><span>''抗力'' 5 强酸</span><span>''感官'' 黑暗视觉</span></div>\n<div><span>''速度'' 7</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}护体粘液（强酸）✦灵气 1</div>\n<div class=description>任何在该灵气内以近战攻击命中该巴布魔的敌人受到 5 点强酸伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬（强酸）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+18vs.AC<br>命中：2d6+3 伤害。目标还会受到 5 点持续强酸伤害（豁免终止），在该巴布魔重伤期间则为 10 点持续强酸伤害（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}爪击✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+18vs.AC<br>命中：2d6+3 伤害，且该巴布魔快步一格。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}巴布魔优势✦随意</div>\n<div class=description>效果：该巴布魔对一个提供战斗优势给它的生物进行一次啮咬攻击和一次爪击攻击。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">凶残绑架（瞬移）✦充能（当巴布魔使一个敌人的生命值降到 0 或更低时）</div>\n<div class=description>效果：该巴布魔瞬移一个邻接它的生物 7 格然后瞬移到一个邻接该生物的格子。该生物提供<br>战斗优势给该巴布魔直到该巴布魔下回合结束。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">可变抗性✦每遭遇两次</div>\n<div class=description>触发：该巴布魔受到强酸、寒冷、火焰、闪电或雷鸣伤害。<br>效果（自由动作）：该巴布魔获得 20 点触发的伤害类型的抗性直到遭遇结束或直到它再次使用可变抗性。</div>\n<div class=\"bold bg-power\">恶魔，克鲁瑞奇魔DEMON,KLURICHIR</div>\n<div class=\"italic bg-flavortext\">（巴布魔）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 运动+14</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 17（+9）</span><span>''敏捷'' 21（+11）</span><span>''感知'' 19（+10）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 15（+8）</span><span>''智力'' 12（+7）</span><span>''魅力'' 14（+8）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 深渊语</span></div></div>\n</div>",
+    "title": "巴布魔 Babau (LV13)#2",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "13",
+    "role": "游击",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "元素界",
+    "creature-type": "类人生物（恶魔）",
+    "xp": "800",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "10246"
+  }
+]

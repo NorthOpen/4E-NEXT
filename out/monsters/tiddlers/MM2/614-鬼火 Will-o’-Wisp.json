@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>10级 伏击</span></div>\n<div class=bg-title><span>小型 精界 魔法兽</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 57；''重伤'' 28</span><span>''先攻'' +15</span></div>\n<div><span>''AC'' 22，''强韧'' 19，''反射'' 24，''意志'' 22</span><span>''侦查'' +11</span></div>\n<div><span>''抗力'' 虚体</span><span>''感官'' 昏暗视觉</span></div>\n<div><span>''速度'' 飞行 6（盘旋，高度限制 2）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}微光束（光耀）✦随意</div>\n<div class=description>攻击：触及 2，+13 vs. 反射<br>命中：2d6+6 光耀伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}精神干涸（医疗，心灵，只能在发光时使用）✦遭遇</div>\n<div class=description>攻击：触及 3，以一个重伤的生物为目标，+12 vs. 强韧<br>命中：2d8+3 心灵伤害，且目标虚弱（豁免终止）。<br>该鬼火恢复 14 点生命值。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}诱人光辉（只能在发光时使用）✦随意</div>\n<div class=description>攻击：近程爆发 20，以一个没有目盲的生物为目标，+13 vs. 意志<br>命中：目标被拉动 3 格并晕眩（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">自由动作</div>\n<div class=\"bold bg-power\">妖火✦随意</div>\n<div class=description>鬼火使其光照发光或者变暗。鬼火的光照等同于火把。鬼火必须发光才能攻击。在变暗期间，<br>鬼火拥有隐蔽且可以进行一个隐秘检定来进入躲藏。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">瞬间熄灭（瞬移）✦随意</div>\n<div class=description>触发：当该鬼火被一次攻击失手时。<br>该鬼火变暗且瞬移 5 格。</div>\n<div class=\"italic bg-flavortext\">（鬼火）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 隐秘+16</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 4（+2）</span><span>''敏捷'' 22（+11）</span><span>''感知'' 12（+6）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 13（+6）</span><span>''智力'' 8（+4）</span><span>''魅力'' 18（+9）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 精灵语</span></div></div>\n</div>",
+    "title": "鬼火 Will-o’-Wisp",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "10",
+    "role": "伏击",
+    "specialty-role": "",
+    "size": "小型",
+    "origin": "精界",
+    "creature-type": "魔法兽",
+    "xp": "500",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "9337"
+  }
+]

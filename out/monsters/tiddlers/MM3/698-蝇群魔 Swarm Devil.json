@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>18级 游击</span></div>\n<div class=bg-title><span>大型 星界 魔法兽（魔鬼，集群）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 174；''重伤'' 87</span><span>''先攻'' +18</span></div>\n<div><span>''AC'' 32，''强韧'' 30，''反射'' 31，''意志'' 29</span><span>''侦查'' +14</span></div>\n<div><span>''抗力'' 20 强酸，来自近战和远程攻击的一半伤害；''易伤'' 来自近程和区域攻击的 10 点伤害</span><span>''感官'' 黑暗视觉，心灵感应 10</span></div>\n<div><span>''速度'' 0，飞行 10（盘旋）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}集群攻击（强酸）✦灵气 1</div>\n<div class=description>任何在该灵气内开始回合的敌人受到 10 点强酸伤害并迟缓直到其下回合结束。</div>\n<div class=\"bold bg-power\">集群</div>\n<div class=description>该蝇群魔可以跟其他生物占据同一个空间，且敌人也可以进入该蝇群魔的空间，这视为困难地形。该蝇群魔不能被近战或远程攻击拉动、推动或滑移。它可以挤过任何足够至少一个组<br>成它的单体生物通过的开口。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}击打（强酸）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+21vs.反射<br>命中：10 点持续强酸伤害（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}酸性诅咒（心灵）✦随意</div>\n<div class=description>攻击：射程 10（一个承受着持续强酸伤害的生物）+21vs.意志<br>命中：3d8+13 心灵伤害，且目标的攻击骰受到-2 减值直到该蝇群魔下回合结束。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}苍蝇喷涌（强酸）✦充能（当首次重伤时）</div>\n<div class=description>攻击：近程冲击 3（冲击内所有敌人）+21vs.强韧<br>命中：目标受到 10 点持续强酸伤害并提供战斗优势（豁免终止两者）。</div>\n<div class=\"bold bg-power\">集群快步（强酸）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>效果：该蝇群魔快步其速度的格数且在该快步中可以移动穿过敌人的空间。每当该蝇群魔在<br>该移动中首次进入一个敌人的空间时，该敌人受到 15 点强酸伤害。</div>\n<div class=\"bold bg-power\">魔鬼，宰相魔DEVIL,VIZIER</div>\n<div class=\"italic bg-flavortext\">（蝇群魔）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 19（+13）</span><span>''敏捷'' 24（+16）</span><span>''感知'' 20（+14）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 22（+15）</span><span>''智力'' 17（+12）</span><span>''魅力'' 8（+8）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 天界语，心灵感应 10</span></div></div>\n</div>",
+    "title": "蝇群魔 Swarm Devil",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "18",
+    "role": "游击",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "星界",
+    "creature-type": "魔法兽（魔鬼，集群）",
+    "xp": "2000",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "10764"
+  }
+]

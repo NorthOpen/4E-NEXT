@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>13级 杂兵 护卫</span></div>\n<div class=bg-title><span>中型 自然界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 1；失手攻击无法伤害杂兵</span><span>''先攻'' +10</span></div>\n<div><span>''AC'' 29，''强韧'' 26，''反射'' 23，''意志'' 25</span><span>''侦查'' +9</span></div>\n<div><span>''速度'' 5</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}银质短剑（心灵，武器）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+18vs.AC<br>命中：10 伤害，若目标处于定身则外加 5 点心灵伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}念动捆缚✦遭遇</div>\n<div class=description>攻击：射程 5（一个生物）+16vs.强韧<br>命中：目标定身（豁免终止）。</div>\n<div class=\"italic bg-flavortext\">（译注：前面吉斯洋基战士的“念动捆缚”威能限定了目标的体型，而吉斯洋基士兵的则没有，此外除了吉斯洋基士兵以外的吉斯洋基人阵营都是邪恶，只有吉斯洋基士兵是混乱</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 16（+9）</span><span>''敏捷'' 14（+8）</span><span>''感知'' 16（+9）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 12（+7）</span><span>''智力'' 12（+7）</span><span>''魅力'' 10（+6）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 通用语，异怪语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 链甲，银质短剑</span></div></div>\n</div>",
+    "title": "吉斯洋基士兵 Githyanki Legionary",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "13",
+    "role": "护卫",
+    "specialty-role": "杂兵",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物",
+    "xp": "175",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "2191"
+  }
+]

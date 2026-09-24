@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>4级 杂兵 远程</span></div>\n<div class=bg-title><span>中型 自然界 野兽</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 1；失手攻击无法伤害杂兵</span><span>''先攻'' +5</span></div>\n<div><span>''AC'' 16，''强韧'' 14，''反射'' 16，''意志'' 15</span><span>''侦查'' +9</span></div>\n<div><span>''速度'' 6，攀爬 5（蛛行）</span><span>''感官'' 黑暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}螯击✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+9vs.AC<br>命中：4 点伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}迟缓刺✦随意</div>\n<div class=description>攻击：射程 10（一个生物）+7vs.反射<br>命中：4 点伤害，且目标迟缓直到该穴钓虫线刺者下回合结束。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}击倒刺✦遭遇</div>\n<div class=description>攻击：射程 10（一个生物）+7vs.反射<br>命中：6 点伤害，且目标倒地。</div>\n<div class=\"italic bg-flavortext\">（穴钓虫）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 13（+3）</span><span>''敏捷'' 17（+5）</span><span>''感知'' 14（+4）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 13（+3）</span><span>''智力'' 2（-2）</span><span>''魅力'' 5（-1）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n</div>",
+    "title": "穴钓虫线刺者 Cave Fisher Line Spiker",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "4",
+    "role": "远程",
+    "specialty-role": "杂兵",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "野兽",
+    "xp": "44",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "9985"
+  }
+]

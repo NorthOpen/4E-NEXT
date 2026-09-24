@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>16级 游击</span></div>\n<div class=bg-title><span>中型 自然界 类人生物（水生）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 151；''重伤'' 75</span><span>''先攻'' +17</span></div>\n<div><span>''AC'' 30，''强韧'' 28，''反射'' 30，''意志'' 27</span><span>''侦查'' +12</span></div>\n<div><span>''速度'' 6，游泳 6</span><span>''感官'' 黑暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">水生</div>\n<div class=description>该寇涛鱼人切割者可以在水下呼吸。在水中战斗时，它的攻击骰对非水生生物获得+2 加值。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}倒刺匕首（武器）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+21vs.AC<br>命中：4d4+14 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}致伤打击（武器）✦随意</div>\n<div class=description>攻击：近战 1（一个提供战斗优势给该寇涛鱼人切割者的生物）+21vs.AC<br>命中：2d4+4 伤害，且目标迟缓并受到 10 点持续伤害（豁免终止两者）。</div>\n<div class=\"bold font-size-h4 bg-category\">移动动作</div>\n<div class=\"bold bg-power\">灵活机动✦随意</div>\n<div class=description>前提：该寇涛鱼人切割者必须邻接一个敌人。<br>效果：该寇涛鱼人切割者快步 3 格到另一个邻接该敌人的格子。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}迅捷打击✦随意</div>\n<div class=description>触发：一个敌人的近战攻击对该寇涛鱼人切割者失手。<br>效果（直觉反应）：该寇涛鱼人切割者快步 4 格并进行一次倒刺匕首攻击。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 杂技+20，隐秘+20</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 21（+13）</span><span>''敏捷'' 24（+15）</span><span>''感知'' 19（+12）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 15（+10）</span><span>''智力'' 17（+11）</span><span>''魅力'' 17（+11）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 异怪语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 匕首</span></div></div>\n</div>",
+    "title": "寇涛鱼人切割者 Kuo-Toa Cutter",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "16",
+    "role": "游击",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物（水生）",
+    "xp": "1400",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "12585"
+  }
+]

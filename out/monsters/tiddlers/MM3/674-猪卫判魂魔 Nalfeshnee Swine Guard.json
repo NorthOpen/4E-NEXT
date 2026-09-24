@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>20级 蛮战</span></div>\n<div class=bg-title><span>超大型 元素界 类人生物（恶魔）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 237；''重伤'' 118</span><span>''先攻'' +11</span></div>\n<div><span>''AC'' 32，''强韧'' 34，''反射'' 32，''意志'' 32</span><span>''侦查'' +16</span></div>\n<div><span>''抗力'' 10 毒素</span><span>''感官'' 黑暗视觉</span></div>\n<div><span>''速度'' 6，飞行 4（笨拙）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}戟（武器）✦随意</div>\n<div class=description>攻击：近战 3（一个生物）+25vs.AC<br>命中：3d12+16 伤害，且该猪卫判魂魔推动目标两格。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}臭毒啮咬（毒素）✦随意</div>\n<div class=description>攻击：近战 2（一个生物）+25vs.AC<br>命中：3d8+12 伤害，以及 10 点持续毒素伤害（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">可变抗性✦每遭遇两次</div>\n<div class=description>触发：该猪卫判魂魔受到强酸、寒冷、火焰、闪电或雷鸣伤害。<br>效果（自由动作）：该猪卫判魂魔获得 20 点触发的伤害类型的抗性直到遭遇结束或直到它再次使用可变抗性。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}精神粉碎（心灵）✦遭遇</div>\n<div class=description>触发：该猪卫判魂魔首次重伤。<br>攻击（自由动作）：近程爆发 3（爆发内所有敌人）+23vs.意志命中：2d8+6 心灵伤害，且目标晕眩（豁免终止）。<br>首次豁免失败时：该猪卫判魂魔滑移目标 3 格。且目标改晕眩为震慑（豁免终止）。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 威吓+20</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 26（+18）</span><span>''敏捷'' 12（+11）</span><span>''感知'' 22（+16）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 27（+18）</span><span>''智力'' 13（+11）</span><span>''魅力'' 20（+15）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 深渊语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 板甲，戟</span></div></div>\n</div>",
+    "title": "猪卫判魂魔 Nalfeshnee Swine Guard",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "20",
+    "role": "蛮战",
+    "specialty-role": "",
+    "size": "超大型",
+    "origin": "元素界",
+    "creature-type": "类人生物（恶魔）",
+    "xp": "2800",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "10355"
+  }
+]

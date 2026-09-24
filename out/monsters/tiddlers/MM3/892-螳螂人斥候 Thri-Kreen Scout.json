@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>7级 游击</span></div>\n<div class=bg-title><span>中型 自然界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 80；''重伤'' 40</span><span>''先攻'' +9</span></div>\n<div><span>''AC'' 21，''强韧'' 20，''反射'' 20，''意志'' 18</span><span>''侦查'' +10</span></div>\n<div><span>''速度'' 8</span><span>''感官'' 昏暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}矛（武器）✦随意</div>\n<div class=description>攻击：近战 2（一个生物）+12vs.AC<br>命中：2d8+5 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}手里剑（武器）✦随意</div>\n<div class=description>攻击：射程 10/20（一个生物）+12vs.AC<br>命中：2d4+7 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}跳跃打击（武器）✦随意</div>\n<div class=description>效果：该螳螂人斥候移动其速度的格数并在该移动中的任一时点进行下述攻击。攻击：近战 2（一个生物）+12vs.AC<br>命中：3d8+5 伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">移动动作</div>\n<div class=\"bold bg-power\">螳螂跃✦遭遇</div>\n<div class=description>效果：该螳螂人斥候跳跃等值于其速度的格数。该移动不会引发借机攻击。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">急突反冲✦随意</div>\n<div class=description>触发：该螳螂人斥候被一次攻击命中。<br>效果（直觉反应）：该螳螂人斥候快步 1 格（若该攻击使该螳螂人斥候重伤则为 4 格）。</div>\n<div class=\"bold bg-power\">灵能增幅（心灵）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>触发：该螳螂人斥候通过矛或手里剑命中。<br>效果（自由动作）：该攻击造成 2d6 额外心灵伤害。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 运动+12，坚韧+11</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 19（+7）</span><span>''敏捷'' 18（+7）</span><span>''感知'' 15（+5）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 16（+6）</span><span>''智力'' 14（+5）</span><span>''魅力'' 11（+3）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 通用语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 矛，10 枚手里剑</span></div></div>\n</div>",
+    "title": "螳螂人斥候 Thri-Kreen Scout",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "7",
+    "role": "游击",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物",
+    "xp": "300",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "14189"
+  }
+]

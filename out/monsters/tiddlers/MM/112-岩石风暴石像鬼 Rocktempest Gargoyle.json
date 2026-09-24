@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>23级 精英 伏击</span></div>\n<div class=bg-title><span>大型 元素界 类人生物（土系）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 330；''重伤'' 165</span><span>''先攻'' +23</span></div>\n<div><span>''AC'' 37，''强韧'' 37，''反射'' 36，''意志'' 34</span><span>''侦查'' +14</span></div>\n<div><span>''免疫'' 石化；''豁免'' +2；''行动点'' 1</span><span>''感官'' 黑暗视觉，震动感知 10</span></div>\n<div><span>''速度'' 6，飞行 8（盘旋）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}爪击✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+28vs.AC<br>命中：2d8+6 伤害，以及 15 点持续伤害（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}爪击风暴✦随意</div>\n<div class=description>效果：该石像鬼使用两次爪击。如果两次攻击都命中同一个目标，则该目标晕眩（豁免终止）。</div>\n<div class=\"bold bg-power\">石像形态✦随意</div>\n<div class=description>效果：该石像鬼进入石像形态直到它其以一个次要动作终止该效果。在该状态下，它获得震动感知 10 与 30 点全伤害抗性，在它的每回合开始时获得 10 点临时生命值，且不能进行除了终止该效果以外的动作。当该石像鬼终止该效果时，在它下回合结束前它的所有伤害骰获<br>得+10 加值。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}飞越攻击✦充能（该石像鬼使用石像形态时）</div>\n<div class=description>效果：该石像鬼飞行最多 8 格。在它移动中的任意时点，它进行以下攻击三次，但是对任何生物都只能进行一次。该移动不会引发借机攻击。<br>攻击：近战 1（一个生物）+26vs.强韧<br>命中：4d8+12 伤害，且该石像鬼滑移目标最多三格。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 26（+19）</span><span>''敏捷'' 27（+19）</span><span>''感知'' 17（+14）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 24（+18）</span><span>''智力'' 15（+13）</span><span>''魅力'' 21（+16）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 荒神语</span></div></div>\n</div>",
+    "title": "岩石风暴石像鬼 Rocktempest Gargoyle",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "23",
+    "role": "伏击",
+    "specialty-role": "精英",
+    "size": "大型",
+    "origin": "元素界",
+    "creature-type": "类人生物（土系）",
+    "xp": "10200",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "1916"
+  }
+]

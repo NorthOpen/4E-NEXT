@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>14级 远程</span></div>\n<div class=bg-title><span>中型 元素界 魔法兽（气系，土系）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 113；''重伤'' 56</span><span>''先攻'' +12</span></div>\n<div><span>''AC'' 26，''强韧'' 26，''反射'' 25，''意志'' 25</span><span>''侦查'' +9</span></div>\n<div><span>''免疫'' 疾病，石化，毒素；''抗力'' 10 雷鸣</span><span></span></div>\n<div><span>''速度'' 6</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}研磨石✦随意</div>\n<div class=description>攻击：+21 vs. AC<br>命中：1d10+3 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}猛掷雷霆石（雷鸣）✦随意</div>\n<div class=description>攻击：射程 20，+21 vs. AC<br>命中：2d8+6 伤害。失手：一半伤害。<br>效果：目标当前占据的一个格子变成在该风暴石狂怒者下回合开始时出现的一次爆发 2 的攻<br>击的起始格：+19vs.强韧；1d10+6 雷鸣伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}破片爆发（雷鸣）✦充能 4,5,6{{$:/dnd/images/four}}{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：近程爆发 2，+21 vs. AC<br>命中：1d6+6 伤害以及 1d6 雷鸣伤害，且该风暴石狂怒者推动目标两格。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">融身入地（瞬移，要求该风暴石狂怒者在地面上）✦遭遇</div>\n<div class=description>触发：当首次重伤时。<br>该风暴石狂怒者消失，没有生物对它拥有视线或效果线。在其下回合开始时，该风暴石狂怒<br>者出现在它之前的空间 10 格内的位置。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 16（+10）</span><span>''敏捷'' 20（+12）</span><span>''感知'' 15（+9）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 23（+13）</span><span>''智力'' 6（+5）</span><span>''魅力'' 20（+12）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 荒神语</span></div></div>\n</div>",
+    "title": "风暴石狂怒者 Stormstone Fury",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "14",
+    "role": "远程",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "元素界",
+    "creature-type": "魔法兽（气系，土系）",
+    "xp": "1000",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "6922"
+  }
+]

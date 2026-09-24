@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>9级 游击</span></div>\n<div class=bg-title><span>中型 元素界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 98；''重伤'' 49</span><span>''先攻'' +8</span></div>\n<div><span>''AC'' 23，''强韧'' 23，''反射'' 21，''意志'' 21</span><span>''侦查'' +10</span></div>\n<div><span>''抗力'' 5 可变（参照史拉蟾弱点转化）；''易伤'' 10 可变（参照史拉蟾弱点转化）</span><span>''感官'' 昏暗视觉</span></div>\n<div><span>''速度'' 7，瞬移 2</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">史拉蟾弱点转化</div>\n<div class=description>流体史拉蟾在开始开始遭遇时带有下列六种伤害类型其中一种的 10 点易伤，随机决定：1-<br>寒冷，2-火焰，3-闪电，4-黯蚀，5-心灵，6-雷鸣。它拥有其余五种伤害类型的 5 点抗性。当该流体史拉蟾受到来自其易伤类型的伤害时，它的易伤改变为其余五种伤害类型中的一种，随机决定，且它获得它先前易伤伤害类型的抗性。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}爪抓✦随意</div>\n<div class=description>攻击：+14 vs. AC<br>命中：2d8+3 伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}流体狂怒</div>\n<div class=description>触发：当首次重伤时充能。<br>该流体史拉蟾快步 2 格并对该快步期间邻接的每个生物进行一次爪抓攻击。</div>\n<div class=\"bold bg-power\">敏锐反应✦随意</div>\n<div class=description>触发：当该史拉蟾受到来自攻击的伤害时。<br>该流体史拉蟾快步 1 格。</div>\n<div class=\"italic bg-flavortext\">（流体史拉蟾）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 16（+7）</span><span>''敏捷'' 15（+6）</span><span>''感知'' 13（+5）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 18（+8）</span><span>''智力'' 7（+2）</span><span>''魅力'' 14（+6）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 通用语，荒神语</span></div></div>\n</div>",
+    "title": "流体史拉蟾 Flux Slaad",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "9",
+    "role": "游击",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "元素界",
+    "creature-type": "类人生物",
+    "xp": "400",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "8860"
+  }
+]

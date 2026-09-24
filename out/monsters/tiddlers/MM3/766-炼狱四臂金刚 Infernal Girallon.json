@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>22级 蛮战</span></div>\n<div class=bg-title><span>大型 星界 野兽（魔鬼）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 249；''重伤'' 124</span><span>''先攻'' +18</span></div>\n<div><span>''AC'' 34，''强韧'' 34，''反射'' 30，''意志'' 32</span><span>''侦查'' +16</span></div>\n<div><span>''速度'' 8，攀爬 6</span><span>''感官'' 黑暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}威胁爪✦灵气 1</div>\n<div class=description>在该灵气内的敌人提供战斗优势。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}燃烧之魂（火焰）✦灵气 2</div>\n<div class=description>任何在该灵气内开始回合的敌人受到 10 点火焰伤害，若该炼狱四臂金刚处于重伤则为 20<br>点火焰伤害。</div>\n<div class=\"bold bg-power\">战斗攀爬者</div>\n<div class=description>该炼狱四臂金刚不会因攀爬而引发借机攻击。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}爪击✦随意</div>\n<div class=description>攻击：近战 2（一个生物）+26vs.AC<br>命中：3d12+10 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}疾风爪✦随意</div>\n<div class=description>效果：该炼狱四臂金刚进行四次下述攻击。攻击：近战 2（一个生物）+26vs.AC<br>命中：1d12+8 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}燃烧脓水（火焰）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：近程冲击 3（冲击内所有敌人）+24vs.反射<br>命中：3d10+15 火焰伤害，以及 10 点持续火焰伤害（豁免终止）。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 杂技+23，运动+24</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 27（+19）</span><span>''敏捷'' 24（+18）</span><span>''感知'' 20（+16）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 19（+15）</span><span>''智力'' 3（+7）</span><span>''魅力'' 12（+12）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span></div></div>\n</div>",
+    "title": "炼狱四臂金刚 Infernal Girallon",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "22",
+    "role": "蛮战",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "星界",
+    "creature-type": "野兽（魔鬼）",
+    "xp": "4150",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "11976"
+  }
+]

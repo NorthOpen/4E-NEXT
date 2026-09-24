@@ -1,13 +1,16 @@
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { execSync } from "node:child_process";
-import { DATA_DIR, RAW_FILE, CANONICAL_DIR } from "./lib/paths.js";
+import { DATA_DIR, RAW_FILE, CANONICAL_DIR, OUT_DIR } from "./lib/paths.js";
 import { runExtract } from "./etl/extract.js";
 import { runClassify } from "./etl/classify.js";
 import { runNormalize } from "./etl/normalize.js";
 import { runIndex } from "./etl/index.js";
 import { runAudit } from "./etl/audit.js";
 import { findRulesSource, runRules } from "./etl/rules.js";
+import { runMonsters } from "./etl/monsters/index.js";
+import { exportMonsterMedia, findMonsterSource } from "./etl/monsters/extract.js";
+import { runMonsterTiddlers } from "./etl/monsters/render.js";
 
 function findSourceHtml(): string | undefined {
   if (!existsSync(DATA_DIR)) return undefined;
@@ -128,12 +131,62 @@ async function cmdRules(): Promise<void> {
   console.log("[rules] 已写出: " + r.output);
 }
 
+async function cmdMonsters(): Promise<void> {
+  // 怪物手册源文件（44MB xlsx）不随仓库分发：没放源文件时保留已入库的 out/monsters/，
+  // 仅提示跳过，避免 pnpm all 整体失败（与 rules 同一处理）。
+  const src = findMonsterSource();
+  if (!src) {
+    console.warn("[monsters] 未找到怪物手册源文件（xlsx），跳过；沿用已入库的 out/monsters/");
+    return;
+  }
+  const r = runMonsters({ source: src });
+  const c = r.coverage;
+  console.log("[monsters] 源文件: " + r.source);
+  console.log("[monsters] 无损层 " + r.raw.rows + " 行 / 总表 " + r.raw.indexRows + " 条 / 目录 " + r.raw.tocEntries + " 章 / 图片锚点 " + r.raw.images);
+  console.log("[monsters] 分块 " + r.blocks.sections + " 章 → " + r.blocks.blocks + " 个怪物块");
+  console.log("[monsters] 规范层 " + r.total + " 条（校验通过 " + r.valid + " / 失败 " + r.invalid + "）");
+  console.log("[monsters] " + (r.initial ? "首次同步" : "增量同步")
+    + " 新增 " + r.changes.added + " / 更新 " + r.changes.changed + " / 移除 " + r.changes.removed);
+  console.log("[monsters] 书归属 " + Object.entries(r.byBook).map(([k, v]) => k + "=" + v).join(" ") + "（未对齐目录的章节 " + c.sections.unmatched.length + "）");
+  console.log("[monsters] 字段覆盖率: 等级 " + pct(c.fieldCoverage.level) + " / HP " + pct(c.fieldCoverage.hp) + " / AC " + pct(c.fieldCoverage.ac)
+    + " / 威能 " + pct(c.fieldCoverage.powers) + " / 特性 " + pct(c.fieldCoverage.traits) + " / 图片 " + pct(c.fieldCoverage.image));
+  console.log("[monsters] 威能 " + c.powers.totalPowers + " 条 + 特性 " + c.powers.totalTraits + " 条；无威能的条目 " + c.powers.entriesWithNoPower);
+  console.log("[monsters] 已写出: " + r.files.canonical + " / " + r.files.categories);
+  console.log("[monsters] 审计: " + r.files.audit);
+}
+
+async function cmdMonstersMedia(): Promise<void> {
+  const src = findMonsterSource();
+  if (!src) {
+    console.error("[monsters:media] 未找到怪物手册源文件（xlsx）");
+    process.exitCode = 1;
+    return;
+  }
+  const dir = join(OUT_DIR, "monsters", "media");
+  const r = exportMonsterMedia(src, dir);
+  console.log("[monsters:media] 已导出 " + r.files + " 张插图（" + (r.bytes / 1048576).toFixed(1) + " MB）到 " + r.dir);
+  console.log("[monsters:media] 该目录不入库，仅本地按需生成");
+}
+
+async function cmdMonstersTiddler(): Promise<void> {
+  // 展示态导出：把规范层渲染成 4E Wiki 的 creature 词条（web 端生物卡零改动可渲染）
+  const r = runMonsterTiddlers();
+  console.log("[monsters:tiddler] 已导出 " + r.files + " 个 creature 词条到 " + r.dir);
+  console.log("[monsters:tiddler] 分书: " + Object.entries(r.byBook).map(([k, v]) => k + "=" + v).join(" "));
+  console.log("[monsters:tiddler] 形态：creature 数据块 + 字段自转写 + 官方动作图标宏，可被 web/src/lib/wikirender.ts 直接渲染");
+}
+
+function pct(v: number): string {
+  return (v * 100).toFixed(1) + "%";
+}
+
 async function cmdAll(): Promise<void> {
   await cmdExtract();
   await cmdClassify();
   await cmdNormalize();
   await cmdIndex();
   await cmdRules();
+  await cmdMonsters();
 }
 
 async function main(): Promise<void> {
@@ -145,13 +198,18 @@ async function main(): Promise<void> {
     normalize: cmdNormalize,
     index: cmdIndex,
     rules: cmdRules,
+    monsters: cmdMonsters,
+    "monsters:media": cmdMonstersMedia,
+    "monsters:tiddler": cmdMonstersTiddler,
     sync: cmdSync,
     commit: cmdCommit,
     all: cmdAll,
   };
   const h = handlers[cmd];
   if (!h) {
-    console.error("未知命令: " + cmd + "。用法: pnpm <extract|profile|classify|normalize|index|rules|sync|commit|all>");
+    console.error(
+      "未知命令: " + cmd + "。用法: pnpm <extract|profile|classify|normalize|index|rules|monsters|monsters:media|monsters:tiddler|sync|commit|all>"
+    );
     process.exitCode = 1;
     return;
   }

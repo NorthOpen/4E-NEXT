@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>10级 杂兵 护卫</span></div>\n<div class=bg-title><span>中型 自然界 类人生物（不死生物）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 1；失手攻击无法伤害杂兵</span><span>''先攻'' +11</span></div>\n<div><span>''AC'' 26，''强韧'' 23，''反射'' 22，''意志'' 20</span><span>''侦查'' +12</span></div>\n<div><span>''免疫'' 疾病，毒素；''抗力'' 10 黯蚀</span><span>''感官'' 黑暗视觉</span></div>\n<div><span>''速度'' 7，攀爬 4（蛛行）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">毁灭阳光</div>\n<div class=description>每当该吸血鬼在阳光直射的地方开始回合，它在其回合只能可以进行的只有一个移动动作。<br>如果它在阳光直射的地方结束该回合，则它将化为灰烬并摧毁。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}爪击✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+15vs.AC<br>命中：8 点伤害，且若该吸血鬼没有擒抱生物则它擒抱目标（挣脱 DC18）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬✦随意</div>\n<div class=description>攻击：近战 1（一个被该吸血鬼擒抱的生物）+15vs.AC（若目标处于晕眩，则该攻击必然命中）<br>命中：10 点伤害，且目标晕眩直到该擒抱结束。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 21（+10）</span><span>''敏捷'' 19（+9）</span><span>''感知'' 15（+7）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 18（+9）</span><span>''智力'' 9（+4）</span><span>''魅力'' 12（+6）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 通用语</span></div></div>\n</div>",
+    "title": "老年吸血鬼衍体 Elder Vampire Spawn",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "10",
+    "role": "护卫",
+    "specialty-role": "杂兵",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物（不死生物）",
+    "xp": "125",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "4418"
+  }
+]

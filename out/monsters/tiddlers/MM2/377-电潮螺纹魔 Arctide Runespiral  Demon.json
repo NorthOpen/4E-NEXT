@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>12级 远程</span></div>\n<div class=bg-title><span>大型 元素界 魔法兽（恶魔）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 97；''重伤'' 48</span><span>''先攻'' +12</span></div>\n<div><span>''AC'' 24，''强韧'' 23，''反射'' 25，''意志'' 23</span><span>''侦查'' +10</span></div>\n<div><span>''抗力'' 15 可变（每遭遇两次）</span><span></span></div>\n<div><span>''速度'' 7</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬✦随意</div>\n<div class=description>攻击：+17 vs. AC<br>命中：1d6+5 伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}集束打击（闪电）✦随意</div>\n<div class=description>攻击：射程 10，+19 vs. 反射<br>命中：2d8+5 闪电伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/area}}猛电爆发（闪电）✦随意</div>\n<div class=description>攻击：区域 10 爆发 2，+15 vs. 反射<br>命中：1d8+5 闪电伤害，爆发内每有一个生物再造成 1 点额外闪电伤<br>害。每个受到此攻击伤害的盟友在其下回合开始时的所有充能骰都获得+1 加值。若该加值使充能骰结果大于 6，则视为 6。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}奥法电弧（闪电）✦随意</div>\n<div class=description>触发：当敌人移动到邻接该电潮螺纹魔的位置时。<br>攻击：+17 vs. 反射<br>命中：1d8+5 闪电伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}重伤放电（闪电）✦遭遇</div>\n<div class=description>触发：首次重伤时。<br>攻击：近程爆发 1，+15 vs. 反射<br>命中：1d8+5 闪电伤害，且目标晕眩（豁免终止）。</div>\n<div class=\"italic bg-flavortext\">（螺纹魔）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 15（+8）</span><span>''敏捷'' 23（+12）</span><span>''感知'' 19（+10）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 19（+10）</span><span>''智力'' 7（+4）</span><span>''魅力'' 12（+7）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶力量 15（+8）</span><span style=flex-basis:auto>''语言'' 深渊语敏捷 23（+12）</span></div></div>\n</div>",
+    "title": "电潮螺纹魔 Arctide Runespiral  Demon",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "12",
+    "role": "远程",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "元素界",
+    "creature-type": "魔法兽（恶魔）",
+    "xp": "700",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "5911"
+  }
+]

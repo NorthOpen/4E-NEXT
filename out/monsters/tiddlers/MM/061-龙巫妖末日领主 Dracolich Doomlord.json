@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>22级 强者 控制</span></div>\n<div class=bg-title><span>超大型 自然界 魔法兽（龙，不死生物）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 840；''重伤'' 420</span><span>''先攻'' +18</span></div>\n<div><span>''AC'' 36，''强韧'' 35，''反射'' 34，''意志'' 32</span><span>''侦查'' +21</span></div>\n<div><span>''免疫'' 疾病，毒素；''抗力'' 15 黯蚀；''易伤'' 10 光耀；''豁免'' +5；''行动点'' 2</span><span>''感官'' 黑暗视觉</span></div>\n<div><span>''速度'' 8，飞行 10（笨拙）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}死亡灵气✦灵气 3</div>\n<div class=description>在该灵气内的敌人不能恢复生命值或得到临时生命值。</div>\n<div class=\"bold bg-power\">行动恢复</div>\n<div class=description>每当该龙巫妖回合结束时，其身上任何晕眩、震慑或受控效果终止。</div>\n<div class=\"bold bg-power\">本能控制</div>\n<div class=description>在 10+该龙巫妖的先攻检定值的先攻序位，该龙巫妖可以使用一个自由动作来使用魅惑凝视。该攻击不会引发借机攻击。如果该龙巫妖因为受控或震慑效果不能使用自由动作来进行<br>该攻击，则作为该龙巫妖进行该攻击的代替，那效果终止。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬（黯蚀）✦随意</div>\n<div class=description>攻击：近战 2（一个生物）+27vs.AC<br>命中：2d8+8 伤害，以及 10 点持续黯蚀伤害（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}爪击✦随意</div>\n<div class=description>攻击：近战 2（一或两个生物）+27vs.AC（如果该龙巫妖只以一个生物作为目标，则它可对该生物进行两次该攻击）<br>命中：3d8+16 伤害。<br>效果：该龙巫妖滑移目标最多两格。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}龙息（黯蚀）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：近程冲击 5（范围内所有敌人）+25vs.反射<br>命中：5d12+14 黯蚀伤害，且目标虚弱（豁免终止）。失手：一半伤害，且目标虚弱直到其下回合结束。<br>效果：目标失去任何黯蚀抗性（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}魅惑凝视（魅惑）✦随意（一轮一次）</div>\n<div class=description>攻击：射程 5（一个生物）+25vs.意志命中：目标受控（豁免终止）。<br>效果：该龙巫妖滑移目标最多两格。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}重伤喷吐✦遭遇</div>\n<div class=description>触发：该龙巫妖首次重伤，<br>效果（自由动作）：龙息充能，且该龙巫妖使用它。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 洞察+21</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 27（+19）</span><span>''敏捷'' 24（+18）</span><span>''感知'' 20（+16）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 26（+19）</span><span>''智力'' 18（+15）</span><span>''魅力'' 17（+14）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 通用语，龙语</span></div></div>\n</div>",
+    "title": "龙巫妖末日领主 Dracolich Doomlord",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "22",
+    "role": "控制",
+    "specialty-role": "强者",
+    "size": "超大型",
+    "origin": "自然界",
+    "creature-type": "魔法兽（龙，不死生物）",
+    "xp": "20750",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "1129"
+  }
+]

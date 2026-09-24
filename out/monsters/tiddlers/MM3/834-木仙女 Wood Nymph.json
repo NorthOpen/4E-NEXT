@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>10级 护卫</span></div>\n<div class=bg-title><span>中型 精界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 104；''重伤'' 52</span><span>''先攻'' +10</span></div>\n<div><span>''AC'' 26，''强韧'' 21，''反射'' 21，''意志'' 24</span><span>''侦查'' +13</span></div>\n<div><span>''速度'' 6（森林行者）</span><span>''感官'' 昏暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">再生（医疗）</div>\n<div class=description>每当该木仙女在至少有 1 点生命值的情况下邻接或在其树内部开始回合时，它恢复 5 点生命<br>值。</div>\n<div class=\"bold bg-power\">树之绑定</div>\n<div class=description>每个木仙女都绑定着一颗占据 1 格的树。该木仙女可以进入该格子且在其内期间获得超级掩<br>蔽。此外，该木仙女视该树为可以与之构成夹击的盟友。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}木手✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+15vs.AC<br>命中：3d8+5 伤害，且目标迟缓直到该木仙女下回合结束。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}受困于木（瞬移）✦充能（当该木仙女的树内没有敌人时）</div>\n<div class=description>攻击：近战 1（一个生物）+13vs.反射<br>命中：该木仙女瞬移目标 6 格到包含有该木仙女的树的格子，且目标除出游戏（豁免终止）。当该效果终止时，目标出现在由其选择的一个邻接该树的不被占据的格子。<br>效果：该木仙女瞬移 8 格到一个邻接其树的格子。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}孤寂哭泣（魅惑，心灵）✦遭遇</div>\n<div class=description>攻击：射程 20（一个生物）+15vs.意志命中：2d8+9 心灵伤害。<br>效果：直到遭遇结束或直到该木仙女的生命值降到 0，目标被标记且每当它在既没有邻接该<br>木仙女也没有比它在开始回合时更接近该木仙女的情况下结束回合时受到 5 点伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">树家（瞬移）✦随意</div>\n<div class=description>前提：该木仙女必须在其树 6 格内。<br>效果：该木仙女瞬移到一个邻接其树的格子。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 交涉+15，洞察+13，自然+13</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 18（+9）</span><span>''敏捷'' 17（+8）</span><span>''感知'' 16（+8）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 16（+8）</span><span>''智力'' 18（+9）</span><span>''魅力'' 21（+10）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 通用语，精灵语</span></div></div>\n</div>",
+    "title": "木仙女 Wood Nymph",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "10",
+    "role": "护卫",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "精界",
+    "creature-type": "类人生物",
+    "xp": "500",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "13202"
+  }
+]

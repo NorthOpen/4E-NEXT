@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>7级 杂兵 护卫</span></div>\n<div class=bg-title><span>中型 自然界 活化生物（不死生物）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 1；失手攻击无法伤害杂兵</span><span>''先攻'' +9</span></div>\n<div><span>''AC'' 23，''强韧'' 20，''反射'' 20，''意志'' 18</span><span>''侦查'' +5</span></div>\n<div><span>''免疫'' 疾病，毒素；''抗力'' 10 黯蚀</span><span>''感官'' 黑暗视觉</span></div>\n<div><span>''速度'' 5</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}长剑（武器）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+12vs.AC命中：7 点伤害。<br>效果：该骷髅标记目标直到该骷髅下回合结束。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}标枪（武器）✦随意</div>\n<div class=description>攻击：射程 20（一个生物）+12vs.AC命中：7 点伤害。<br>效果：该骷髅标记目标直到该骷髅下回合结束。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 18（+7）</span><span>''敏捷'' 19（+7）</span><span>''感知'' 14（+5）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 16（+6）</span><span>''智力'' 3（-1）</span><span>''魅力'' 3（-1）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 鳞甲，重盾，长剑，3 支标枪</span></div></div>\n</div>",
+    "title": "骷髅士兵 Skeletal Legionary",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "7",
+    "role": "护卫",
+    "specialty-role": "杂兵",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "活化生物（不死生物）",
+    "xp": "75",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "4050"
+  }
+]

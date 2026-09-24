@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>12级 杂兵（头目） 控制</span></div>\n<div class=bg-title><span>小型 精界 类人生物（植物）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 1；失手攻击无法伤害杂兵</span><span>''先攻'' +10</span></div>\n<div><span>''AC'' 26，''强韧'' 23，''反射'' 24，''意志'' 25</span><span>''侦查'' +9</span></div>\n<div><span>''速度'' 8（森林行者）</span><span>''感官'' 盲视 10</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}蔓藤之盾✦灵气 1</div>\n<div class=description>在该灵气内的植物盟友的所有防御获得+2 加值。</div>\n<div class=\"bold bg-power\">精神之主的奴隶</div>\n<div class=description>如果该苔藓人蔓生者是由失落苔藓精神之主生成的，则它紧接在其创造者的回合后行动。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}触须打击✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+17vs.AC<br>命中：10 点伤害，且目标迟缓直到其下回合结束。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}拟像攻击✦随意</div>\n<div class=description>效果：当该苔藓人蔓生者在遭遇中首次行动时，选择一个属于该苔藓人蔓生者看得见的一个敌人的随意近战攻击威能。如果该苔藓人蔓生者是由一个失落苔藓精神之主生成的，则选择一个属于该失落苔藓精神之主命中以生成该苔藓人蔓生者的敌人的随意近战攻击威能。<br>攻击：近战 1（一个生物）+17vs.AC<br>命中：目标如同被所选的攻击命中一样受到伤害和受到效果影响。该伤害骰使用威能被选的生物的属性调整值。该伤害不包括任何其所有者或该威能可能带有的任何对伤害骰的加值或减值。此外，该苔藓人蔓生者获得来自该威能的命中条目的任何增益，使用威能被选的生物的属性调整值但是不包括任何加值或减值。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">增培爆发</div>\n<div class=description>触发：该苔藓人蔓生者的生命值降到 0。<br>效果（无动作）：该苔藓人蔓生者 3 格内的每个非杂兵植物盟友获得 20 点临时生命值。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 14（+8）</span><span>''敏捷'' 18（+10）</span><span>''感知'' 16（+9）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 16（+9）</span><span>''智力'' 3（+2）</span><span>''魅力'' 20（+11）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n</div>",
+    "title": "苔藓人蔓生者 Mossling Grower",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "12",
+    "role": "控制",
+    "specialty-role": "杂兵（头目）",
+    "size": "小型",
+    "origin": "精界",
+    "creature-type": "类人生物（植物）",
+    "xp": "175",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "13322"
+  }
+]

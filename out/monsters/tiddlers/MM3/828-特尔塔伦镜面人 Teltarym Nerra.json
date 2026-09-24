@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>21级 蛮战</span></div>\n<div class=bg-title><span>大型 星界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 237；''重伤'' 118</span><span>''先攻'' +15</span></div>\n<div><span>''AC'' 33，''强韧'' 33，''反射'' 30，''意志'' 31</span><span>''侦查'' +16</span></div>\n<div><span>''速度'' 8</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}锤拳✦随意</div>\n<div class=description>攻击：近战 2（一个生物）+26vs.AC<br>命中：2d10+10 伤害，且该特尔塔伦镜面人推动目标 1 格。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}疾风锤✦随意</div>\n<div class=description>效果：该特尔塔伦镜面人进行两次锤拳攻击。</div>\n<div class=\"bold font-size-h4 bg-category\">移动动作</div>\n<div class=\"bold bg-power\">镜面跃（瞬移）✦随意</div>\n<div class=description>效果：该特尔塔伦镜面人瞬移 5 格到一个邻接一面镜子或另一个镜面人的空间。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">反射痛苦✦充能（当首次重伤时）</div>\n<div class=description>触发：一个敌人以一次近战攻击命中该特尔塔伦镜面人。<br>效果（直觉反应）：触发的敌人受到等值于该攻击所造成的伤害一半的伤害。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 26（+18）</span><span>''敏捷'' 21（+15）</span><span>''感知'' 23（+16）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 17（+13）</span><span>''智力'' 8（+9）</span><span>''魅力'' 10（+10）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 天界语</span></div></div>\n</div>",
+    "title": "特尔塔伦镜面人 Teltarym Nerra",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "21",
+    "role": "蛮战",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "星界",
+    "creature-type": "类人生物",
+    "xp": "3200",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "13107"
+  }
+]

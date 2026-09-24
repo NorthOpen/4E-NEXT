@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>4级 游击</span></div>\n<div class=bg-title><span>中型 自然界 活化生物（不死生物）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 55；''重伤'' 27</span><span>''先攻'' +6</span></div>\n<div><span>''AC'' 18，''强韧'' 17，''反射'' 16，''意志'' 14</span><span>''侦查'' +3</span></div>\n<div><span>''免疫'' 疾病，毒素</span><span>''感官'' 黑暗视觉</span></div>\n<div><span>''速度'' 6（冲锋时为 8）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">肉狂冲锋</div>\n<div class=description>在该僵尸冲锋期间，它的移动不会引发借机攻击。</div>\n<div class=\"bold bg-power\">僵尸虚弱</div>\n<div class=description>一次重击将使该僵尸的生命值自动降到 0。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}木棒✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+9vs.AC<br>命中：1d8+6 伤害，若该僵尸冲锋目标则为 2d8+6 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+9vs.AC<br>命中：2d6+5 伤害，且目标晕眩直到该僵尸下回合结束。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">死亡饥饿✦遭遇</div>\n<div class=description>触发：该僵尸生命值降到 0，但不是因为重击。<br>效果（无动作）：投一个 d20。若为 15 或更高，则该僵尸改为减少到 1 点生命值。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 18（+6）</span><span>''敏捷'' 15（+4）</span><span>''感知'' 13（+3）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 15（+4）</span><span>''智力'' 1（-3）</span><span>''魅力'' 3（-2）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 木棒</span></div></div>\n</div>",
+    "title": "肉狂僵尸 Flesh-Crazed Zombie",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "4",
+    "role": "游击",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "活化生物（不死生物）",
+    "xp": "175",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "4621"
+  }
+]

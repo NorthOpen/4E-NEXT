@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>5级 游击</span></div>\n<div class=bg-title><span>大型 自然界 野兽（坐骑）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 67；''重伤'' 33</span><span>''先攻'' +7</span></div>\n<div><span>''AC'' 19，''强韧'' 18，''反射'' 17，''意志'' 16</span><span>''侦查'' +9</span></div>\n<div><span>''速度'' 8</span><span>''感官'' 昏暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">群猎</div>\n<div class=description>该狼对任何邻接两个或更多该狼盟友的敌人拥有战斗优势。</div>\n<div class=\"bold bg-power\">猎人包围（坐骑）</div>\n<div class=description>该狼的骑手对任何邻接一个或更多除该狼以外的该骑手的盟友的敌人拥有战斗优势。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+10vs.AC<br>命中：2d8+4 伤害，对倒地目标则为 3d8+4 伤害。若该狼对目标有战斗优势则目标倒地。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 19（+6）</span><span>''敏捷'' 16（+5）</span><span>''感知'' 14（+4）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 19（+6）</span><span>''智力'' 5（-1）</span><span>''魅力'' 11（+2）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n</div>",
+    "title": "凶暴狼 Dire Wolf",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "5",
+    "role": "游击",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "自然界",
+    "creature-type": "野兽（坐骑）",
+    "xp": "200",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "4871"
+  }
+]

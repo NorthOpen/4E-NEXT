@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>19级 精英 护卫</span></div>\n<div class=bg-title><span>超大型 自然界 类人生物（活体构装）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 362；''重伤'' 181</span><span>''先攻'' +15</span></div>\n<div><span>''AC'' 35，''强韧'' 35，''反射'' 30，''意志'' 30</span><span>''侦查'' +13</span></div>\n<div><span>''豁免'' +2；''行动点'' 1</span><span></span></div>\n<div><span>''速度'' 8</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">势不可挡</div>\n<div class=description>机关巨神兵在结算其冲锋攻击之后还能进行其他动作。</div>\n<div class=\"bold bg-power\">长距威胁</div>\n<div class=description>机关巨神兵可以对其触及范围内（3 格）的敌人进行借机攻击。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}斧✦随意</div>\n<div class=description>攻击：触及 3，+24 vs. AC<br>命中：2d10+9 伤害，且对一个邻接目标的敌人造成 9 点伤害。<br>效果：目标被标记直到该机关巨神兵下回合结束。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}锤✦随意</div>\n<div class=description>攻击：触及 3，+24 vs. AC<br>命中：2d8+9 伤害，且该机关巨神兵滑移目标 2 格，且目标倒地。<br>失手：9 点伤害。</div>\n<div class=\"bold bg-power\">机关人决心（医疗）✦遭遇</div>\n<div class=description>该机关巨神兵获得 12 点临时生命值且可以对一个持续伤害效果进行一次豁免。如果它在重<br>伤时使用该威能，则它还会恢复 12 点生命值。</div>\n<div class=\"italic bg-flavortext\">（机关巨神兵）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 28（+18）</span><span>''敏捷'' 18（+13）</span><span>''感知'' 18（+13）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 21（+14）</span><span>''智力'' 5（+6）</span><span>''魅力'' 8（+8）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 通用语</span></div></div>\n</div>",
+    "title": "机关巨神兵 Warforged Titan",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "19",
+    "role": "护卫",
+    "specialty-role": "精英",
+    "size": "超大型",
+    "origin": "自然界",
+    "creature-type": "类人生物（活体构装）",
+    "xp": "4800",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "9322"
+  }
+]

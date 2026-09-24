@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>10级 强者 护卫</span></div>\n<div class=bg-title><span>巨型 异界 魔法兽（水生）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 432；''重伤'' 216</span><span>''先攻'' +13</span></div>\n<div><span>''AC'' 24，''强韧'' 26，''反射'' 22，''意志'' 22</span><span>''侦查'' +15</span></div>\n<div><span>''豁免'' +5；''行动点'' 2</span><span>''感官'' 黑暗视觉，心灵感应 20</span></div>\n<div><span>''速度'' 6，游泳 10</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">水生</div>\n<div class=description>该海巨妖可以在水下呼吸。在水中战斗时，它的攻击骰对非水生生物获得+2 加值。</div>\n<div class=\"bold bg-power\">长距威胁</div>\n<div class=description>该海巨妖可以对其 3 格内的敌人进行借机攻击。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}触手碾碎✦随意</div>\n<div class=description>攻击：近战 3（一个生物）+15vs.AC<br>命中：2d8+5 伤害，且该海巨妖擒抱目标。该海巨妖同时最多可以擒抱八个生物。<br>次要维持：该海巨妖维持它的所有擒抱，且每个被该海巨妖擒抱的生物受到 5 点伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}船只吞噬者✦随意</div>\n<div class=description>攻击：近战 3（一个载具）+13vs.强韧<br>命中：2d10+10 伤害，且目标在该海巨妖保持在其 3 格内期间受缚。在因该威能受缚期间，该载具在该海巨妖的回合开始时受到 20 点伤害。该载具的驾驶员可以花费一个标准动作来让该载具进行一次豁免掷骰。若豁免，该载具便不再受缚。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}毁灭缠绕✦随意</div>\n<div class=description>效果：该海巨妖进行两次触手碾碎攻击以及一次船只吞噬者攻击。</div>\n<div class=\"bold bg-power\">灾难波涛（结界）✦遭遇</div>\n<div class=description>效果：该海巨妖生成一个近程爆发 3 的结界持续直到遭遇结束。该结界是困难地形。任何在<br>该结界内开始回合的生物受到 5 点伤害并被滑移 2 格。每轮一次以一个次要动作，该海巨妖<br>可以移动该结界最多 3 格。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}致命暴摔✦随意</div>\n<div class=description>攻击：近战 1（一个被该海巨妖擒抱的生物）+13vs.强韧<br>命中：1d8+5 伤害，且该海巨妖滑移目标 3 格。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}抛砸✦随意</div>\n<div class=description>效果：该海巨妖滑移一个被其擒抱的生物 5 格到一个邻接一个生物的格子。该擒抱终止，且该海巨妖对这两个生物进行下述的近战攻击。<br>攻击：+13vs.强韧<br>命中：1d8+5 伤害，且目标倒地。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}毒液喷射（毒素）✦随意（一轮一次）</div>\n<div class=description>攻击：射程 10（一个生物）+13vs.强韧<br>命中：2d8+4 毒素伤害，且目标目盲（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">报复紧缩✦随意</div>\n<div class=description>触发：一个被该海巨妖擒抱的生物对该海巨妖造成伤害。<br>效果（直觉反应）：每个被该海巨妖擒抱的生物都受到 5 点伤害。</div>\n<div class=\"italic bg-flavortext\">（海巨妖）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 23（+11）</span><span>''敏捷'' 22（+11）</span><span>''感知'' 20（+10）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 20（+10）</span><span>''智力'' 18（+9）</span><span>''魅力'' 19（+9）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 心灵感应 20</span></div></div>\n</div>",
+    "title": "海巨妖 Sea Kraken",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "10",
+    "role": "护卫",
+    "specialty-role": "强者",
+    "size": "巨型",
+    "origin": "异界",
+    "creature-type": "魔法兽（水生）",
+    "xp": "2500",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "12479"
+  }
+]

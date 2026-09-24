@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>29级 精英（头目） 控制</span></div>\n<div class=bg-title><span>中型 星界 类人生物（魔鬼）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 530；''重伤'' 265</span><span>''先攻'' +21</span></div>\n<div><span>''AC'' 44，''强韧'' 40，''反射'' 42，''意志'' 43</span><span>''侦查'' +22</span></div>\n<div><span>''抗力'' 15 火焰；''豁免'' +2；''行动点'' 1</span><span></span></div>\n<div><span>''速度'' 6</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}永恒堕落✦灵气 5{{$:/dnd/images/five}}</div>\n<div class=description>在该灵气内的敌人对魅惑效果的豁免受到-2 减值。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}堕落之触（心灵）✦随意</div>\n<div class=description>攻击：+32vs.意志（一个或两个生物）<br>命中：4d6+10 心灵伤害，且目标对抗魅惑效果的防御受到-2 减值直到该堕落魔王下回合结束。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}罪恶之触（魅惑，心灵）✦充能 4,5,6{{$:/dnd/images/four}}{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：近战 1（一个或两个生物）+32vs.意志<br>命中：4d6+10 黯蚀伤害，并选择下列的一个效果：<br>·欲望：目标被其五格内的一个敌人标记（豁免终止）。<br>·无度：目标晕眩（豁免终止）。<br>·贪婪：该堕落魔王滑移目标 5 格到一个邻接目标的一个盟友的格子。目标必须对任何进行会引发敌人的借机攻击的动作的盟友发动借机攻击（豁免终止）。<br>·恐惧：该堕落魔王推动目标 5 格。目标不能主动移动到比它开始回合时所在的格子离该堕落魔王更近的位置。<br>·懒惰：目标定身（豁免终止）。<br>·仇恨：每当目标使用攻击威能时便会受到 2d10+10 伤害（豁免终止）。</div>\n<div class=\"bold bg-power\">呼唤堕落✦充能（当首次重伤时）</div>\n<div class=description>效果：六个堕落信徒出现在该堕落魔王 5 格内不被占据的格子。这些堕落信徒紧接在该堕落<br>魔王的先攻序位之后行动。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">传播堕落✦随意（一轮一次）</div>\n<div class=description>效果：该堕落魔王 10 格内的一个堕落信徒以一个自由动作进行一次基本攻击。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}终焉之罪（魅惑，心灵）</div>\n<div class=description>触发：该堕落魔王的生命值降到 0。<br>攻击（直觉打断）：近程爆发 5（爆发内所有敌人）+32vs.意志<br>命中：4d6+10 心灵伤害，且目标受到由该堕落魔王选择的罪恶之触的一种效果影响。</div>\n<div class=\"italic bg-flavortext\">（堕落魔）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 22（+20）</span><span>''敏捷'' 25（+21）</span><span>''感知'' 27（+22）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 25（+21）</span><span>''智力'' 28（+23）</span><span>''魅力'' 30（+24）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 天界语</span></div></div>\n</div>",
+    "title": "堕落魔王 Sire of Corruption",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "29",
+    "role": "控制",
+    "specialty-role": "精英（头目）",
+    "size": "中型",
+    "origin": "星界",
+    "creature-type": "类人生物（魔鬼）",
+    "xp": "15000",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "10563"
+  }
+]

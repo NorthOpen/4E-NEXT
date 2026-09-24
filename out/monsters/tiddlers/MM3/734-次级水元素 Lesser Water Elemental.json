@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>1级 控制</span></div>\n<div class=bg-title><span>小型 元素界 魔法兽（水生，水系）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 29；''重伤'' 14</span><span>''先攻'' +2</span></div>\n<div><span>''AC'' 15，''强韧'' 14，''反射'' 13，''意志'' 12</span><span>''侦查'' +0</span></div>\n<div><span>''速度'' 6，游泳 6</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">水生</div>\n<div class=description>该次级水元素可以在水下呼吸。在水中战斗时，它的攻击骰对非水生生物获得+2 加值。</div>\n<div class=\"bold bg-power\">寒冷过敏</div>\n<div class=description>每当该次级水元素受到寒冷伤害时，它获得对在其下回合结束前命中它的下一次攻击的 5<br>点易伤。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}击打✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+4vs.反射<br>命中：1d6 伤害，以及 5 点持续伤害（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}淹没✦遭遇</div>\n<div class=description>攻击：近程冲击 3（冲击内所有敌人）+4vs.强韧<br>命中：2d6+2 伤害，且该次级水元素推动目标 2 格并击倒它。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">溺水精髓✦随意（一轮一次）</div>\n<div class=description>效果：该次级水元素滑移每个带有来自其击打的持续伤害的生物 1 格。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 16（+3）</span><span>''敏捷'' 14（+2）</span><span>''感知'' 11（+0）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 13（+1）</span><span>''智力'' 5（-3）</span><span>''魅力'' 8（-1）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 能理解荒神语</span></div></div>\n</div>",
+    "title": "次级水元素 Lesser Water Elemental",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "1",
+    "role": "控制",
+    "specialty-role": "",
+    "size": "小型",
+    "origin": "元素界",
+    "creature-type": "魔法兽（水生，水系）",
+    "xp": "100",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "11451"
+  }
+]

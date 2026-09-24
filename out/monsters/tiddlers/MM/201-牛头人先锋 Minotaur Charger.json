@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>9级 游击</span></div>\n<div class=bg-title><span>中型 自然界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 94；''重伤'' 47</span><span>''先攻'' +9</span></div>\n<div><span>''AC'' 23，''强韧'' 23，''反射'' 21，''意志'' 20</span><span>''侦查'' +10</span></div>\n<div><span>''速度'' 6</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">灵巧冲锋</div>\n<div class=description>在该牛头人冲锋期间，它的移动不会引发借机攻击。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}弯刃大刀（武器）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+14vs.AC<br>命中：4d4+7 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}手斧（武器）✦随意</div>\n<div class=description>攻击：射程 10（一个生物）+14vs.AC<br>命中：2d6+7 伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}角撞✦随意</div>\n<div class=description>触发：一个邻接该牛头人的敌人对该牛头人造成伤害。攻击（直觉反应）：近战 1（触发的敌人）+12vs.强韧<br>命中：1d6+5 伤害，且该牛头人可以推动目标一格并快步一格到该目标之前占据的格子。该<br>牛头人可以以这种方式推动目标并快步四次。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 20（+9）</span><span>''敏捷'' 17（+7）</span><span>''感知'' 13（+5）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 14（+6）</span><span>''智力'' 10（+4）</span><span>''魅力'' 14（+6）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 通用语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 弯刃大刀，4 把手斧</span></div></div>\n</div>",
+    "title": "牛头人先锋 Minotaur Charger",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "9",
+    "role": "游击",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物",
+    "xp": "400",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "3323"
+  }
+]

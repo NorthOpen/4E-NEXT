@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>10级 远程</span></div>\n<div class=bg-title><span>大型 自然界 类人生物（巨人）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 86；''重伤'' 43</span><span>''先攻'' +6</span></div>\n<div><span>''AC'' 24，''强韧'' 23，''反射'' 19，''意志'' 20</span><span>''侦查'' +12</span></div>\n<div><span>''速度'' 6</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">双重行动</div>\n<div class=description>该双头巨人进行两次先攻检定并在每一个检定结果获得一个完整的回合。该双头巨人每轮可<br>以进行两个直觉动作，但在其两个回合的回合与回合之间分别只能进行一个。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}标枪（武器）✦随意</div>\n<div class=description>攻击：近战 2（一个生物）+15vs.AC<br>命中：1d6+6 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}标枪（武器）✦随意</div>\n<div class=description>攻击：射程 20（一个生物）+17vs.AC<br>命中：1d6+6 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}束缚（武器）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：射程 20（一个生物）+17vs.AC<br>命中：2d6+7 伤害，且目标受缚直到它挣脱（DC18）或瞬移。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 20（+10）</span><span>''敏捷'' 12（+6）</span><span>''感知'' 15（+7）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 20（+10）</span><span>''智力'' 8（+4）</span><span>''魅力'' 9（+4）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 巨人语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 10 支标枪</span></div></div>\n</div>",
+    "title": "双头巨人猎手 Ettin Hunter",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "10",
+    "role": "远程",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "自然界",
+    "creature-type": "类人生物（巨人）",
+    "xp": "500",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "1831"
+  }
+]

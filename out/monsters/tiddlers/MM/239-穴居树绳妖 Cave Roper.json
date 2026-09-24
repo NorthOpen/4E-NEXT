@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>12级 精英 控制</span></div>\n<div class=bg-title><span>大型 元素界 魔法兽（土系）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 252；''重伤'' 126</span><span>''先攻'' +7</span></div>\n<div><span>''AC'' 26，''强韧'' 26，''反射'' 21，''意志'' 23</span><span>''侦查'' +9</span></div>\n<div><span>''豁免'' +2；''行动点'' 1</span><span>''感官'' 黑暗视觉</span></div>\n<div><span>''速度'' 2，攀爬 2（蛛行）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">触手释放</div>\n<div class=description>在一个生物对该树绳妖进行一次攻击骰之前，它可以选择以该树绳妖的一根触手为目标。该触手使用与该树绳妖相同的防御值。如果该攻击命中，则它不会对该树绳妖造成伤害或其他<br>效果，不过该树绳妖的一个擒抱终止（由该攻击者选择）。</div>\n<div class=\"bold bg-power\">岩石身躯</div>\n<div class=description>该树绳妖可以缩起其触手并闭上眼睛和嘴巴来伪装成一块天然的岩石。在该树绳妖位于一个<br>水平的岩石表面上时，一个生物必须成功一次 DC28 的侦查检定才能看穿该树绳妖的伪装。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}触手✦随意</div>\n<div class=description>前提：该树绳妖擒抱的生物少于两个。攻击：近战 10（一个生物）+15vs.反射<br>命中：2d8+9 伤害，且该树绳妖擒抱目标（挣脱 DC20）。在该擒抱期间，目标虚弱。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}双重攻击✦随意</div>\n<div class=description>效果：该树绳妖使用两次触手攻击。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬✦随意</div>\n<div class=description>攻击：近战 1（一个被该树绳妖擒抱的生物）+17vs.AC命中：4d12+12 伤害。<br>失手：一半伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}翻卷✦随意（一轮一次）</div>\n<div class=description>攻击：近战 10（所有被该树绳妖擒抱的生物）+17vs.强韧<br>命中：该树绳妖拉动目标最多 5 格。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 隐秘+12</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 19（+10）</span><span>''敏捷'' 12（+7）</span><span>''感知'' 16（+9）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 22（+12）</span><span>''智力'' 11（+6）</span><span>''魅力'' 9（+5）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 荒神语</span></div></div>\n</div>",
+    "title": "穴居树绳妖 Cave Roper",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "12",
+    "role": "控制",
+    "specialty-role": "精英",
+    "size": "大型",
+    "origin": "元素界",
+    "creature-type": "魔法兽（土系）",
+    "xp": "1400",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "3942"
+  }
+]

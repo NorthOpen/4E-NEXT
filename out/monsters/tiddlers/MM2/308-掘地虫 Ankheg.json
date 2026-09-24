@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>3级 精英 伏击</span></div>\n<div class=bg-title><span>大型 自然界 野兽</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 100；''重伤'' 50</span><span>''先攻'' +10</span></div>\n<div><span>''AC'' 17，''强韧'' 14，''反射'' 16，''意志'' 14</span><span>''侦查'' +9</span></div>\n<div><span>''抗力'' 5 强酸；''豁免'' +2；''行动点'' 1</span><span>''感官'' 震动感知 5</span></div>\n<div><span>''速度'' 8，掘穴 4（坑道）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">颚部运载</div>\n<div class=description>掘地虫在搬动一个中型或小型的生物时可以按正常速度移动。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}爪击✦随意</div>\n<div class=description>攻击：+8 vs. AC<br>命中：1d8+5 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}颚部钳咬（只能在该掘地虫没有擒抱生物的时候使用）✦随意</div>\n<div class=description>攻击：+8 vs. AC<br>命中：1d8+5 伤害，且该掘地虫擒抱目标。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}强酸喷射（强酸，首次重伤时充能）</div>\n<div class=description>攻击：近程冲击 3，+8 vs. 反射<br>命中：1d8+5 强酸伤害，且目标迟缓并受到 5 点持续强酸伤害（豁免终止两者）。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啃蚀窜离（强酸）✦随意</div>\n<div class=description>攻击：以一个被该掘地虫擒抱的生物为目标，+8 vs. AC<br>命中：1d8+2 伤害，以及 5 点持续强酸伤害（豁免终止）。然后该掘地虫快步两格并拉动目标到一个邻接其新位置的空间。</div>\n<div class=\"italic bg-flavortext\">所有天使中的最高者便是天使长，来自众星之海的强大存在。天使长是一个神域中仅次于真神的最高权威。 天使长的模板可以被加到任意天使之上。 天使长（Archangel）                                 精英 控制 （天使）                                              XP 精英 HP+8*等级+体质值                                                豁免+2；行动点 1 威能 近战：复仇打击（当该天使长 5 格内的一个盟友生命值降到 0 时；随意） 该天使长快步两格并以一个自由动作进行一次近战基本攻击。 近程：至尊仪态（标准动作；遭遇）·光耀 近程爆发 5；以敌人为目标；等级+4vs.意志；1d8+感知调整值光耀伤害，且目标震慑直到 该天使长下回合结束。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 隐秘+11</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 15（+3）</span><span>''敏捷'' 20（+6）</span><span>''感知'' 16（+4）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 18（+5）</span><span>''智力'' 2（-3）</span><span>''魅力'' 4（-2）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n</div>",
+    "title": "掘地虫 Ankheg",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "3",
+    "role": "伏击",
+    "specialty-role": "精英",
+    "size": "大型",
+    "origin": "自然界",
+    "creature-type": "野兽",
+    "xp": "300",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "4956"
+  }
+]

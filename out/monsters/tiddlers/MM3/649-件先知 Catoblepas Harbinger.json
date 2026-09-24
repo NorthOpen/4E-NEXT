@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>10级 精英 控制</span></div>\n<div class=bg-title><span>大型 暗影界 野兽</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 220；''重伤'' 110</span><span>''先攻'' +7</span></div>\n<div><span>''AC'' 24，''强韧'' 22，''反射'' 20，''意志'' 22</span><span>''侦查'' +15</span></div>\n<div><span>''抗力'' 5 黯蚀；''豁免'' +2；''行动点'' 1</span><span>''感官'' 盲视 5</span></div>\n<div><span>''速度'' 6</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}鸦后气场✦灵气 5{{$:/dnd/images/five}}</div>\n<div class=description>任何在该灵气内死亡豁免失败的生物受到等值于其重伤值一半的伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}角抵✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+15vs.AC<br>命中：2d8+9 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}猛毒喷吐（毒素）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：近程冲击 5（冲击内所有生物）+13vs.强韧<br>命中：2d6+6 毒素伤害，以及 5 点持续毒素伤害（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}终焉一瞥（魅惑，黯蚀）✦随意</div>\n<div class=description>触发：该件先知 5 格内的一个敌人主动移动远离该件先知。<br>攻击（借机动作）：近程爆发 10（爆发内触发的敌人）+13vs.意志<br>命中：5 点黯蚀伤害，且目标定身并获得 5 点全伤害易伤（豁免终止两者）。</div>\n<div class=\"italic bg-flavortext\">（件）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 18（+9）</span><span>''敏捷'' 15（+7）</span><span>''感知'' 21（+10）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 22（+11）</span><span>''智力'' 3（+1）</span><span>''魅力'' 11（+5）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n</div>",
+    "title": "件先知 Catoblepas Harbinger",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "10",
+    "role": "控制",
+    "specialty-role": "精英",
+    "size": "大型",
+    "origin": "暗影界",
+    "creature-type": "野兽",
+    "xp": "1000",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "9911"
+  }
+]

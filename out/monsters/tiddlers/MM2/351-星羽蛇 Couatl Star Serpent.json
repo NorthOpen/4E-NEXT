@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>15级 精英（头目） 控制</span></div>\n<div class=bg-title><span>大型 星界 魔法兽（鳞爪类）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 286；''重伤'' 143</span><span>''先攻'' +11</span></div>\n<div><span>''AC'' 29，''强韧'' 27，''反射'' 27，''意志'' 28</span><span>''侦查'' +18</span></div>\n<div><span>''豁免'' +2；''行动点'' 1</span><span>''感官'' 昏暗视觉</span></div>\n<div><span>''速度'' 6，飞行 8（盘旋）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">光耀吸收（光耀）</div>\n<div class=description>若该星羽蛇受到光耀伤害，则其攻击造成 5 点额外光耀伤害直到其下回合结束。</div>\n<div class=\"bold bg-power\">扭曲自如</div>\n<div class=description>星羽蛇在其回合开始时能如同其回合结束时一样对定身和受缚状态进行豁免。此外，星羽蛇可以对那些不能豁免终止且正常情况下将在其回合结束时或某敌人回合结束时终止的定身<br>和受缚状态进行豁免。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬（毒素，光耀）✦随意</div>\n<div class=description>攻击：触及 2，+20 vs. AC<br>命中：1d6+5 毒素和光耀伤害，且目标受到 5 点毒素和光耀伤害并迟缓（豁免终止两者）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}羽蛇光耀（火焰，医疗，光耀）✦遭遇</div>\n<div class=description>该星羽蛇获得虚体和相位移动能力直到其回合结束并移动 8 格。该星羽蛇可以移动穿过敌人<br>攻击：的空间。当该星羽蛇移动穿过盟友的空间时，该盟友恢复 15 点生命值且可以花费一个复原力。当该星羽蛇移动穿过敌人的空间时，该星羽蛇对该敌人进行该攻击：+19 vs. 意志<br>命中：1d6+5火焰和光耀伤害，以及 10 点持续火焰和光耀伤害（豁免终止）。该星羽蛇每次使用该威能时对同一个目标只能攻击一次。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}净化尖哮（心灵）✦遭遇</div>\n<div class=description>攻击：近程爆发 5，以敌人为目标，+18 vs. 意志<br>命中：1d10+6 心灵伤害，且目标晕眩（豁免终止）。若<br>目标承受着火焰、毒素或光耀持续伤害，则它还会震慑直到该星羽蛇下回合结束。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}正义盘鞭✦随意</div>\n<div class=description>攻击：触及 2，+19 vs. 强韧<br>命中：1d6+5 伤害，且目标被擒抱。被该星羽蛇擒抱的生物提供战斗优势给<br>该星羽蛇，且该星羽蛇可以移动被擒抱的生物而不需要进行力量攻击。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}捆紧✦随意</div>\n<div class=description>攻击：触及 2，以一个被该星羽蛇擒抱的生物为目标，+19 vs. 强韧<br>命中：2d6+5 伤害，且目标晕眩直到<br>该星羽蛇下回合结束。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 神秘+17，交涉+17</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 20（+12）</span><span>''敏捷'' 18（+11）</span><span>''感知'' 22（+13）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 15（+9）</span><span>''智力'' 20（+12）</span><span>''魅力'' 20（+12）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 天界语</span></div></div>\n</div>",
+    "title": "星羽蛇 Couatl Star Serpent",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "15",
+    "role": "控制",
+    "specialty-role": "精英（头目）",
+    "size": "大型",
+    "origin": "星界",
+    "creature-type": "魔法兽（鳞爪类）",
+    "xp": "2400",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "5535"
+  }
+]

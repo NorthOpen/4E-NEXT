@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>25级 强者 伏击</span></div>\n<div class=bg-title><span>大型 星界 魔法兽（变形生物，蜘蛛）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 368；''重伤'' 184</span><span>''先攻'' +24</span></div>\n<div><span>''AC'' 38，''强韧'' 37，''反射'' 36，''意志'' 34</span><span>''侦查'' +23</span></div>\n<div><span>''抗力'' 30 毒素；''豁免'' +2；''行动点'' 1</span><span>''感官'' 黑暗视觉，盲视 5</span></div>\n<div><span>''速度'' 6，攀爬 6（蛛行）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">战斗优势</div>\n<div class=description>当该罗丝的化身命中一个提供战斗优势给它的生物时，该生物虚弱并受到 20 点持续毒素伤<br>害（豁免终止两者）。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+30vs.AC<br>命中：4d6+19 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}强酸网（强酸）✦充能 4,5,6{{$:/dnd/images/four}}{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：近程冲击 5（冲击内所有敌人）+28vs.反射 命中：3d8+8 强酸伤害，且目标迟缓（豁免终止）。<br>首次豁免失败时：目标受到 20 点持续强酸伤害（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/area}}光荣献祭（结界）✦充能（当首次重伤时）</div>\n<div class=description>攻击：以一个非杂兵恶魔、卓尔或蜘蛛盟友为中心的区域 10 爆发 2（爆发内所有敌人）+28vs.反射<br>效果：该恶魔、卓尔或蜘蛛的生命值降到 0。命中：目标定身（豁免终止）。<br>效果：该爆发生成一个结界持续直到遭遇结束。该结界是困难地形，且任何在该结界内结束<br>其移动的非蜘蛛生物定身（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">黑暗云雾（结界）✦随意（一轮一次）</div>\n<div class=description>效果：该罗丝的化身生成一个近程爆发 1 的结界持续直到该罗丝的化身下回合结束。该结界阻挡该罗丝的化身以外的所有生物的视线。该罗丝的化身以外的任何生物在该结界内时目<br>盲。</div>\n<div class=\"bold bg-power\">改变外形（变形）✦随意</div>\n<div class=description>效果：该罗丝的化身改变其物理形态为一个中型的卓尔直到它再次使用改变外形或直到它的生命值降到 0。该生物在其新形态下保持其数据。其衣物、护甲和其他所有物不会改变。要变成一个特定个体的形态，该罗丝的化身必须见过该个体。其他生物可以进行一次 DC43 的<br>洞察检定来识破该形态是伪装的。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}穿刺蛛腿（毒素）✦随意</div>\n<div class=description>触发：一个敌人移动到一个邻接该罗丝的化身的格子。攻击（直觉打断）：近战 1（触发的敌人）+30vs.AC<br>命中：2d6+4 伤害，且目标被擒抱。直到该擒抱终止，目标受到 10 点持续毒素伤害。</div>\n<div class=\"italic bg-flavortext\">当罗丝的生命值降到四分之一以下时，她的精神将离开她的身体且她在一段时间内将不能再以物理形态显形。神魂破散通常持续至少几个月，多的话可以持续好几年。在这段时间里，罗丝的力量稍有削弱，但这绝不是微不足道的。 如果 PC 们想要彻底地杀死罗丝，那么他们必须满足一个或多个的特殊条件。这可能要求他们摧毁她最主要的神殿或是找到能够发出致命一击的神器。如果这些特殊条件已满足， 罗丝便不能再神魂破散而只能保持存在。这里有一些样品任务。 命运编织机：隐藏在纳斯赛尔德雷（Nath Seldarie），柯瑞隆在阿梵多（Arvandor）的宫殿中的，便是命运编织机（Loom of Fate）。以前一度被蜘蛛神后所使用，这件神器可以用来重新编排罗丝的命运之线。柯瑞隆确保了该神器免于来自罗丝的危险但是却畏惧使用它。 罗丝之卵：找出并摧毁罗丝之卵（Egg of Lolth），一件远古且神秘的神器，可以封印魔网深渊的大门并防止罗丝女神挣脱。 罗丝之狱：冒险者们必须前往罗丝之狱（Lolth’s Prison），一个在魔网深渊彼端的半位面。在那里，他们必须摧毁骨巨像以找回真理之坠（pendant of truth）。在罗丝之前取得这 件圣物便可阻止她神魂破散。 （罗丝蜘蛛神后）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 唬骗+25，交涉+26，洞察+23，威吓+26</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 29（+21）</span><span>''敏捷'' 27（+20）</span><span>''感知'' 23（+18）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 28（+21）</span><span>''智力'' 22（+18）</span><span>''魅力'' 28（+21）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 天界语</span></div></div>\n</div>",
+    "title": "罗丝的化身 Aspect of Lolth",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "25",
+    "role": "伏击",
+    "specialty-role": "强者",
+    "size": "大型",
+    "origin": "星界",
+    "creature-type": "魔法兽（变形生物，蜘蛛）",
+    "xp": "14000",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "12656"
+  }
+]

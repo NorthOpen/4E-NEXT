@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>22级 蛮战</span></div>\n<div class=bg-title><span>大型 异界 类人生物，夺心魔</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 255；''重伤'' 127</span><span>''先攻'' +18</span></div>\n<div><span>''AC'' 34，''强韧'' 35，''反射'' 33，''意志'' 32</span><span>''侦查'' +19</span></div>\n<div><span>''抗力'' 10 心灵</span><span>''感官'' 黑暗视觉，心灵感应 10</span></div>\n<div><span>''速度'' 6</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}开膛破肚✦随意</div>\n<div class=description>攻击：近战 2（一个生物）+27vs.AC<br>命中：4d10+16 伤害（对被该变种夺心魔巨怪擒抱的生物则为 6d10+16）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}精神冲击（心灵）✦充能 6{{$:/dnd/images/six}}</div>\n<div class=description>攻击：近程冲击 5（冲击内所有敌人）+25vs.意志<br>命中：1d12+7 心灵伤害，且目标晕眩（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}变种夺心魔的呼唤（魅惑，心灵）✦遭遇</div>\n<div class=description>攻击：射程 10（一个生物）+25vs.意志命中：4d12+20 心灵伤害。<br>效果：该变种夺心魔巨怪拉动目标 10 格到一个邻接它的格子。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}触手✦随意</div>\n<div class=description>前提：该变种夺心魔巨怪必须没有擒抱生物。攻击：近战 1（一个生物）+25vs.反射<br>命中：该变种夺心魔巨怪擒抱目标。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}心灵爆破（心灵）</div>\n<div class=description>触发：该变种夺心魔巨怪的生命值降到 0。<br>攻击（无动作）：近程爆发 2（爆发内所有敌人）+26vs.意志命中：15 点持续心灵伤害（豁免终止）。</div>\n<div class=\"italic bg-flavortext\">（变种夺心魔巨怪）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 28（+20）</span><span>''敏捷'' 24（+18）</span><span>''感知'' 26（+19）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 25（+18）</span><span>''智力'' 6（+19）</span><span>''魅力'' 23（+17）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 异怪语，心灵感应 10</span></div></div>\n</div>",
+    "title": "变种夺心魔巨怪 Thoon Hulk",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "22",
+    "role": "蛮战",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "异界",
+    "creature-type": "类人生物，夺心魔",
+    "xp": "4150",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "12875"
+  }
+]

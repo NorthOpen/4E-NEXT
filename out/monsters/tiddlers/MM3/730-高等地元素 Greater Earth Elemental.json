@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>22级 护卫</span></div>\n<div class=bg-title><span>大型 元素界 魔法兽（地系）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 212；''重伤'' 106</span><span>''先攻'' +11</span></div>\n<div><span>''AC'' 37，''强韧'' 35，''反射'' 32，''意志'' 33</span><span>''侦查'' +11</span></div>\n<div><span>''易伤'' 雷鸣（参照脆皮）</span><span>''感官'' 震动感知 5</span></div>\n<div><span>''速度'' 9，掘穴 9</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">大地穿行</div>\n<div class=description>该高等地元素可以如同相位移动一样穿过土地或岩石。</div>\n<div class=\"bold bg-power\">脆皮</div>\n<div class=description>每当该高等地元素受到雷鸣伤害时，它的所有防御受到-2 减值直到其下回合结束。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}击打✦随意</div>\n<div class=description>攻击：近战 2（一个生物）+27vs.AC<br>命中：4d8+12 伤害，且目标不能快步直到该高等地元素下回合结束。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}碾压跺踏✦充能（当首次重伤时）</div>\n<div class=description>攻击：近战 2（一个生物）+25vs.反射命中：5d8+20 伤害。<br>效果：目标和所有在它 2 格内的敌人倒地。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 27（+19）</span><span>''敏捷'' 6（+9）</span><span>''感知'' 11（+11）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 28（+20）</span><span>''智力'' 5（+8）</span><span>''魅力'' 6（+9）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 能理解荒神语</span></div></div>\n</div>",
+    "title": "高等地元素 Greater Earth Elemental",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "22",
+    "role": "护卫",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "元素界",
+    "creature-type": "魔法兽（地系）",
+    "xp": "4150",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "11389"
+  }
+]

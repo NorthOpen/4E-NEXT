@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "extractorVersion": 4,
+  "generatedAt": "2026-09-24T15:56:01.565Z",
+  "initial": false,
+  "source": {
+    "file": "DnD4E-怪物手册1~3合订本（六巫翻译-灵霜整理）.xlsx",
+    "sha256": "f7b30c06e603e44a0f885dfbfdf05724679b252aaa5b1cf5367ec06bdbad34cc",
+    "bytes": 44287298
+  },
+  "changes": {
+    "added": 0,
+    "changed": 0,
+    "removed": 0
+  },
+  "totals": {
+    "count": 927,
+    "valid": 927,
+    "invalid": 0
+  },
+  "books": {
+    "MM1": 304,
+    "MM2": 322,
+    "MM3": 301
+  }
+}

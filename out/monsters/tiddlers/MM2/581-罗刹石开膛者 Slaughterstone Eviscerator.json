@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>18级 蛮战</span></div>\n<div class=bg-title><span>大型 自然界 活化生物（构装体）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 212；''重伤'' 106</span><span>''先攻'' +15</span></div>\n<div><span>''AC'' 30，''强韧'' 31，''反射'' 30，''意志'' 28</span><span>''侦查'' +9</span></div>\n<div><span>''免疫'' 疾病，毒素，睡眠</span><span>''感官'' 黑暗视觉</span></div>\n<div><span>''速度'' 6</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}螺旋刃</div>\n<div class=description>灵气 2：所有在该灵气内开始回合的生物受到 10 点伤害。</div>\n<div class=\"bold bg-power\">坑道战斗</div>\n<div class=description>罗刹石开膛者在挤过时攻击骰不会受到减值且在挤过时不会提供战斗优势。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}开膛刃✦随意</div>\n<div class=description>攻击：触及 2，+21 vs. AC<br>命中：2d12+8 伤害（重击则为 4d12+32）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}螺旋剑风✦充能 6{{$:/dnd/images/six}}</div>\n<div class=description>攻击：近程爆发 2，+21 vs. AC<br>命中：1d12+8 伤害（重击则为 2d12+20）。</div>\n<div class=\"italic bg-flavortext\">一些史拉蟾可以通过出芽来繁衍。史拉蟾衍生者身上覆盖着球根，当该史拉蟾衍生者被攻击时，这些疮子就会抖动破裂，露出一个小史拉蟾衍体。 史拉蟾衍生者是一个可以被加到任意大型史拉蟾上的模板。 先决条件：大型史拉蟾，LV15 史拉蟾衍生者（Slaad Spawner）                       精英 控制 类人生物                                                                XP 精英 HP 无增加                                                       豁免+2；行动点 1 威能 衍生史拉蟾（直觉反应，当该史拉蟾衍生者被攻击命中时；随意） 一个史拉蟾衍体出现在一个邻接该史拉蟾衍生者的空间。其回合在该史拉蟾衍生者的先攻序 位之后进行。PC 们杀死由该威能生成的史拉蟾衍体不会获得经验值。 （史拉蟾衍生者和史拉蟾衍体）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 25（+16）</span><span>''敏捷'' 22（+15）</span><span>''感知'' 10（+9）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 22（+15）</span><span>''智力'' 1（+4）</span><span>''魅力'' 3（+5）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n</div>",
+    "title": "罗刹石开膛者 Slaughterstone Eviscerator",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "18",
+    "role": "蛮战",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "自然界",
+    "creature-type": "活化生物（构装体）",
+    "xp": "2000",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "8894"
+  }
+]

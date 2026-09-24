@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>22级 游击</span></div>\n<div class=bg-title><span>大型 自然界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 206；''重伤'' 103</span><span>''先攻'' +21</span></div>\n<div><span>''AC'' 36，''强韧'' 33，''反射'' 35，''意志'' 34</span><span>''侦查'' +21</span></div>\n<div><span>''速度'' 8，瞬移 8</span><span>''感官'' 黑暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}刺链（雷鸣，武器）✦随意</div>\n<div class=description>攻击：触及 3，+28 vs. AC<br>命中：1d12+5 伤害以及 1d8 雷鸣伤害，且目标被擒抱并被拉动到一个邻接该恶<br>鬼雷鸣者的空间。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}雷霆传送（瞬移，雷鸣）✦充能 4,5,6{{$:/dnd/images/four}}{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：该恶鬼雷鸣者在该攻击前或攻击后瞬移 8 格：近程爆发 2，以敌人为目标，+25 vs. 反射<br>命中：2d12+8<br>雷鸣伤害，且该恶鬼雷鸣者推动目标 2 格。如果该恶鬼雷鸣者有擒抱的生物，则该攻击对这个被擒抱的生物造成 2d12 额外伤害，且该擒抱终止。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">迷罩（幻术）✦随意</div>\n<div class=description>该恶鬼雷鸣者可以伪装其物理形态为任意中型或大型的类人生物。一个生物可以通过洞察检<br>定对抗该恶鬼雷鸣者的唬骗检定成功来识破这是伪装的。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">链舞（瞬移）✦随意</div>\n<div class=description>触发：当该恶鬼雷鸣者被攻击命中时。<br>该恶鬼雷鸣者瞬移 3 格。</div>\n<div class=\"italic bg-flavortext\">（恶鬼雷鸣者）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 杂技+24，运动+23，唬骗+23，隐秘+24</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 23（+17）</span><span>''敏捷'' 27（+19）</span><span>''感知'' 20（+16）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 22（+17）</span><span>''智力'' 16（+14）</span><span>''魅力'' 24（+18）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 通用语，巨人语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 皮甲，刺链</span></div></div>\n</div>",
+    "title": "恶鬼雷鸣者 Oni Thunderer",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "22",
+    "role": "游击",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "自然界",
+    "creature-type": "类人生物",
+    "xp": "4150",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "8576"
+  }
+]

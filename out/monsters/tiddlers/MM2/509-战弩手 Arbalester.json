@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>4级 远程</span></div>\n<div class=bg-title><span>中型 自然界 活化生物（构装体，造妖）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 43；''重伤'' 21</span><span>''先攻'' +6</span></div>\n<div><span>''AC'' 16，''强韧'' 15，''反射'' 17，''意志'' 15</span><span>''侦查'' +9</span></div>\n<div><span>''免疫'' 疾病，毒素</span><span>''感官'' 黑暗视觉</span></div>\n<div><span>''速度'' 6</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">守护区域</div>\n<div class=description>如果一个敌人在该战弩手回合开始时位于该战弩手的守护区域内（参照“守护”条目），则<br>该战弩手的双重射击充能。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}击打✦随意</div>\n<div class=description>攻击：+11 vs. AC<br>命中：1d6+4 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}矢✦随意</div>\n<div class=description>攻击：射程 20/40，+11 vs. AC<br>命中：1d10+4 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}双重射击✦充能 4,5,6{{$:/dnd/images/four}}{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>该战弩手进行两次矢攻击，每次攻击对不同的目标进行。这些目标互相之间必须在 5 格内。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 15（+4）</span><span>''敏捷'' 18（+6）</span><span>''感知'' 15（+4）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 13（+3）</span><span>''智力'' 5（-1）</span><span>''魅力'' 8（+1）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n</div>",
+    "title": "战弩手 Arbalester",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "4",
+    "role": "远程",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "活化生物（构装体，造妖）",
+    "xp": "175",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "7850"
+  }
+]

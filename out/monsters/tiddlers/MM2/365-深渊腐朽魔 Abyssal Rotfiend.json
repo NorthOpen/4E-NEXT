@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>26级 控制</span></div>\n<div class=bg-title><span>大型 元素界 类人生物（恶魔，不死生物）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 245；''重伤'' 122</span><span>''先攻'' +20</span></div>\n<div><span>''AC'' 40，''强韧'' 38，''反射'' 36，''意志'' 40</span><span>''侦查'' +20</span></div>\n<div><span>''免疫'' 恐惧；''抗力'' 20 火焰，10 黯蚀，20 可变（每遭遇三次）</span><span>''感官'' 真视 20</span></div>\n<div><span>''速度'' 6，飞行 6（盘旋）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}深渊场</div>\n<div class=description>灵气 5：在该灵气内的敌人不能瞬移。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}碎颅（心灵）✦随意</div>\n<div class=description>攻击：触及 2，+28 vs. 反射<br>命中：3d8+8 心灵伤害，对重伤的目标则为 2d8+8 心灵伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}召唤脓肿（心灵）✦随意</div>\n<div class=description>攻击：射程 10，+29 vs. 强韧<br>命中：2d8+8 心灵伤害，且若目标在其回合移动超过两格，则它受到 2d8<br>额外伤害（豁免终止）。若该深渊腐朽魔处于重伤，则目标移动一格或以上便会受到该伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/area}}浮动绝望（心灵，结界）✦遭遇</div>\n<div class=description>区域 10 爆发 2；爆发生成一个黑暗瘴气的结界持续直到该深渊腐朽魔下回合结束。任何在该结界内开始回合的敌人受到 10 点心灵伤害且提供战斗优势给该深渊腐朽魔直到该敌人下回合结束。<br>次要维持：该结界继续存在，且该深渊腐朽魔可以移动它 5 格。</div>\n<div class=\"italic bg-flavortext\">（深渊腐朽魔）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 26（+21）</span><span>''敏捷'' 25（+20）</span><span>''感知'' 25（+20）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 29（+22）</span><span>''智力'' 20（+18）</span><span>''魅力'' 32（+24）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 深渊语，通用语</span></div></div>\n</div>",
+    "title": "深渊腐朽魔 Abyssal Rotfiend",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "26",
+    "role": "控制",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "元素界",
+    "creature-type": "类人生物（恶魔，不死生物）",
+    "xp": "9000",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "5756"
+  }
+]

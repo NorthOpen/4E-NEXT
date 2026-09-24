@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>25级 强者 控制</span></div>\n<div class=bg-title><span>巨型 异界 魔法兽</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 928；''重伤'' 464</span><span>''先攻'' +19</span></div>\n<div><span>''AC'' 39，''强韧'' 41，''反射'' 37，''意志'' 39</span><span>''侦查'' +24</span></div>\n<div><span>''豁免'' +5；''行动点'' 2</span><span>''感官'' 盲视 20，心灵感应 20</span></div>\n<div><span>''速度'' 飞行 10（盘旋）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">长距威胁</div>\n<div class=description>该星辰巨妖可以对其 4 格内的敌人进行借机攻击。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}来自彼端的触手（心灵）✦随意</div>\n<div class=description>攻击：近战 4（一个生物）+30vs.AC<br>命中：3d8+9 伤害，且该星辰巨妖擒抱目标。该星辰巨妖同时最多可以擒抱八个生物。次要维持：该星辰巨妖维持它的所有擒抱，且每个被它擒抱的生物受到 15 点心灵伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}捕获心灵（心灵）✦随意</div>\n<div class=description>攻击：近战 4（每个被该星辰巨妖擒抱的生物）+28vs.意志<br>命中：2d8+9 心灵伤害，且直到遭遇结束，该星辰巨妖的疯狂之触攻击骰对目标获得+5 加值。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}船只吞噬者✦随意</div>\n<div class=description>攻击：近战 4（一个载具）+28vs.强韧<br>命中：2d10+10 伤害，且目标在该星辰巨妖保持在其 4 格内期间受缚。在因该威能受缚期间，该载具在该星辰巨妖的回合开始时受到 20 点伤害。该载具的驾驶员可以花费一个标准动作来让该载具进行一次豁免掷骰。若豁免，该载具便不再受缚。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}疯狂之触✦随意</div>\n<div class=description>攻击：近战 4（一个生物）+28vs.意志<br>命中：目标对一个或多个由该星辰巨妖选择的生物使用其等级最高的遭遇攻击威能。该使用不会消耗该威能。即使该威能已经被消耗目标也要使用该威能。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}无力化脉冲✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：近程冲击 4（冲击内所有敌人）+28vs.意志<br>命中：目标晕眩（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}精神错乱（心灵）✦遭遇</div>\n<div class=description>触发：该星辰巨妖首次重伤。<br>攻击（无动作）：近程爆发 10（爆发内所有敌人）+28vs.意志命中：4d10+9 心灵伤害，且目标震慑（豁免终止）。<br>失手：一半伤害，且目标晕眩（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}目睹恐怖（魅惑，心灵）✦随意</div>\n<div class=description>触发：一个敌人对该星辰巨妖失手。<br>攻击（直觉反应）：近程爆发 10（爆发内触发的敌人）+28vs.意志命中：3d8+9 心灵伤害，且目标受控直到其下回合结束。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 隐秘+26</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 28（+21）</span><span>''敏捷'' 25（+19）</span><span>''感知'' 25（+19）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 24（+19）</span><span>''智力'' 27（+20）</span><span>''魅力'' 28（+21）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 心灵感应 20</span></div></div>\n</div>",
+    "title": "星辰巨妖 Astral Kraken",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "25",
+    "role": "控制",
+    "specialty-role": "强者",
+    "size": "巨型",
+    "origin": "异界",
+    "creature-type": "魔法兽",
+    "xp": "35000",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "12509"
+  }
+]

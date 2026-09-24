@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>4级 游击</span></div>\n<div class=bg-title><span>小型 自然界 活化生物（不死生物）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 56；''重伤'' 28</span><span>''先攻'' +8</span></div>\n<div><span>''AC'' 18，''强韧'' 16，''反射'' 17，''意志'' 15</span><span>''侦查'' +2</span></div>\n<div><span>''速度'' 8，攀爬 6</span><span>''感官'' 昏暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">战斗优势</div>\n<div class=description>枯皮怪的攻击对任何提供战斗优势给它的生物造成 1d6 额外伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}爪击✦随意</div>\n<div class=description>攻击：+9 vs. AC<br>命中：1d6+2 伤害，且目标迟缓（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}双重攻击（只能在重伤时使用）✦随意</div>\n<div class=description>该枯皮怪进行两次爪击攻击。</div>\n<div class=\"bold font-size-h4 bg-category\">移动动作</div>\n<div class=\"bold bg-power\">血之舞（只能在重伤时使用）✦随意</div>\n<div class=description>该枯皮怪快步 2 格<br>联合攻击<br>枯皮怪的近战攻击对任何有两个或以上的该枯皮怪的盟友邻接的敌人造成 2 点额外伤害。</div>\n<div class=\"bold bg-power\">飞跃✦随意</div>\n<div class=description>该枯皮怪跳跃 4 格。在该跳跃中，它对抗借机攻击的 AC 获得+5 加值，且任何借机攻击对该<br>枯皮怪失手的敌人提供战斗优势给该枯皮怪直到该枯皮怪回合结束。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 11（+2）</span><span>''敏捷'' 19（+6）</span><span>''感知'' 11（+2）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 16（+5）</span><span>''智力'' 7（+0）</span><span>''魅力'' 12（+3）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 深渊语，通用语</span></div></div>\n</div>",
+    "title": "枯皮怪 Witherling",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "4",
+    "role": "游击",
+    "specialty-role": "",
+    "size": "小型",
+    "origin": "自然界",
+    "creature-type": "活化生物（不死生物）",
+    "xp": "175",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "9404"
+  }
+]

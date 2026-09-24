@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>16级 控制</span></div>\n<div class=bg-title><span>中型 自然界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 153；''重伤'' 76</span><span>''先攻'' +10</span></div>\n<div><span>''AC'' 30，''强韧'' 26，''反射'' 29，''意志'' 28</span><span>''侦查'' +11</span></div>\n<div><span>''速度'' 6</span><span>''感官'' 昏暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}爪击（瞬移）✦随意</div>\n<div class=description>攻击：攻击，近战 1（一个生物）+21 vs. AC<br>命中：3d6+10 伤害，且该罗刹妖瞬移目标最多三格。失手：该罗刹妖可以瞬移目标一格。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/area}}误导幻象（幻术，心灵）✦随意</div>\n<div class=description>攻击：区域 5 爆发 1（范围内所有敌人）+19vs.意志<br>命中：2d10+11 心灵伤害，且该罗刹妖滑移目标最多四格。失手：该罗刹妖可以滑移目标一格。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/area}}恐怖幻象（恐惧，幻术，心灵）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：区域 5 爆发 1（范围内所有敌人）+19vs.意志 命中：3d10+13 心灵伤害，且目标定身（豁免终止）。<br>失手：一半伤害，且目标迟缓直到该罗刹妖下回合结束。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">迷罩（幻术）✦随意</div>\n<div class=description>效果：该罗刹妖改变其自身的物理形态为一个中型类人生物直到它再次使用迷罩或直到它生<br>命值降到 0。其他生物可以进行一次 DC36 的洞察检定来识破该形态是幻术。</div>\n<div class=\"bold bg-power\">持久幻象（幻术）✦随意</div>\n<div class=description>效果：该罗刹妖在它 10 格内的一个没被占据的格子生成一个中型或更小的物件或生物的幻象。该幻象可以动，但它不能发出声音。该幻象持续直到该罗刹妖下回合结束。一个成功通过 DC22 的洞察检定的生物可以看穿该幻术。<br>次要维持：该幻象继续持续直到该罗刹妖下回合结束，且该罗刹妖可以移动该幻象最多六格。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 12（+9）</span><span>''敏捷'' 14（+10）</span><span>''感知'' 16（+11）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 17（+11）</span><span>''智力'' 24（+15）</span><span>''魅力'' 21（+13）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 通用语</span></div></div>\n</div>",
+    "title": "罗刹妖法师 Rakshasa Mage",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "16",
+    "role": "控制",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物",
+    "xp": "1400",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "3905"
+  }
+]

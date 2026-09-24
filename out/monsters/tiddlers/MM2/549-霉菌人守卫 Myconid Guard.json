@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>4级 护卫</span></div>\n<div class=bg-title><span>中型 精界 类人生物（植物）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 56；''重伤'' 28</span><span>''先攻'' +5</span></div>\n<div><span>''AC'' 18，''强韧'' 17，''反射'' 16，''意志'' 14</span><span>''侦查'' +3</span></div>\n<div><span>''速度'' 6</span><span>''感官'' 震动感知 10</span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}刺击✦随意</div>\n<div class=description>攻击：+11 vs. AC<br>命中：2d6+3 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}平定孢子（毒素）✦遭遇</div>\n<div class=description>攻击：近程爆发 1，+9 vs. 意志<br>命中：1d6+3 毒素伤害，且目标不能进行标准动作直到该霉菌人守卫下回<br>合结束。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">菌落根✦随意</div>\n<div class=description>触发：当该霉菌人守卫在 5 格内有霉菌人盟友的情况下被攻击命中时。<br>该霉菌人守卫从该攻击只受到一半伤害，且该霉菌人盟友受到相等的伤害。</div>\n<div class=\"italic bg-flavortext\">（从左往右：霉菌人守卫，霉菌人腐败牧师，霉菌人菌王，霉菌人守卫）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 18（+6）</span><span>''敏捷'' 16（+5）</span><span>''感知'' 12（+3）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 16（+5）</span><span>''智力'' 8（+1）</span><span>''魅力'' 10（+2）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n</div>",
+    "title": "霉菌人守卫 Myconid Guard",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "4",
+    "role": "护卫",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "精界",
+    "creature-type": "类人生物（植物）",
+    "xp": "175",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "8464"
+  }
+]

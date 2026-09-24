@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>26级 精英 游击</span></div>\n<div class=bg-title><span>大型 元素界 魔法兽（寒系）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 486；''重伤'' 243</span><span>''先攻'' +23</span></div>\n<div><span>''AC'' 40，''强韧'' 39，''反射'' 37，''意志'' 36</span><span>''侦查'' +20</span></div>\n<div><span>''抗力'' 30 寒冷；''豁免'' +2；''行动点'' 1</span><span>''感官'' 昏暗视觉</span></div>\n<div><span>''速度'' 8（冰雪行者）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}冰原外衣（寒冷）</div>\n<div class=description>灵气 1：任何进入该灵气的敌人受到 10 点寒冷伤害。从冰原外衣受到寒冷伤害的生物不能进行借机攻击直到该精魂狼之子下回合结束。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬（寒冷）✦随意</div>\n<div class=description>攻击：触及 2，+31 vs. AC<br>命中：2d10+9 伤害以及 1d10 寒冷伤害，且目标被擒抱。</div>\n<div class=\"bold font-size-h4 bg-category\">移动动作</div>\n<div class=\"bold bg-power\">拖走✦随意</div>\n<div class=description>该精魂狼之子快步 1 格或移动其速度的格数，并拉动一个被它擒抱的生物到一个邻接它的空<br>间。该移动不会导致该擒抱终止。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">狼口撕裂✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：触及 2，以一个被该精魂狼之子擒抱的生物为目标，+32 vs. AC<br>命中：3d10+9 伤害，以及 10 点持<br>续伤害（豁免终止）。该擒抱终止，然后该精魂狼之子推动目标 5 格并击倒它。</div>\n<div class=\"bold font-size-h4 bg-category\">自由动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}恐怖冲撞（寒，只能在该精魂狼之子进行一次冲锋攻击之后使用）✦遭遇</div>\n<div class=description>冷<br>攻击：近程爆发 2，+29 vs. 强韧<br>命中：2d10 寒冷伤害，且目标倒地。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}黑冰吐息（寒冷，结界）</div>\n<div class=description>触发：当首次重伤时冲锋。<br>攻击：近程冲击 5，+29 vs. 强韧<br>命中：4d10+9 寒冷伤害。失手：一半伤害。<br>效果：冲击生成一个冰雪的结界持续直到该精魂狼之子生命值降到 0。该结界是困难地形。</div>\n<div class=\"italic bg-flavortext\">（译注：精魂狼之子被官方勘误过，本译稿按照勘误后的版本）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 威吓+21</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 30（+23）</span><span>''敏捷'' 26（+21）</span><span>''感知'' 25（+20）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 27（+21）</span><span>''智力'' 11（+13）</span><span>''魅力'' 16（+16）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 通用语，巨人语</span></div></div>\n</div>",
+    "title": "精魂狼之子 Son of the Spirit Wolf",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "26",
+    "role": "游击",
+    "specialty-role": "精英",
+    "size": "大型",
+    "origin": "元素界",
+    "creature-type": "魔法兽（寒系）",
+    "xp": "18000",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "9389"
+  }
+]

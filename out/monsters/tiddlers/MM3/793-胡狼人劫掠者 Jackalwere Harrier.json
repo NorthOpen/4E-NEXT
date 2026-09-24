@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>3级 杂兵 护卫</span></div>\n<div class=bg-title><span>中型 自然界 类人生物（变形生物）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 1；失手攻击无法伤害杂兵</span><span>''先攻'' +5</span></div>\n<div><span>''AC'' 19，''强韧'' 16，''反射'' 17，''意志'' 14</span><span>''侦查'' +1</span></div>\n<div><span>''速度'' 6</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">战斗优势</div>\n<div class=description>每当该胡狼人劫掠者命中一个提供战斗优势给它的生物时，该生物倒地。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬✦随意</div>\n<div class=description>前提：该胡狼人劫掠者必须处于胡狼形态。攻击：近战 1（一个生物）+8vs.AC<br>命中：5 点伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}匕首（武器）✦随意</div>\n<div class=description>前提：该胡狼人劫掠者必须处于人类形态。攻击：近战 1（一个生物）+8vs.AC<br>命中：3 点伤害，且目标提供战斗优势给在该胡狼人劫掠者下回合开始前的下一次对目标进<br>行的攻击。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">改变外形（变形）✦随意</div>\n<div class=description>效果：该胡狼人劫掠者改变其物理形态为一匹中型的胡狼或一个人类直到它再次使用改变外形或直到其生命值降到 0。该生物在其新形态下保持其数据。其衣物、护甲和其他所有物不会改变。要变成一个特定个体的形态，该胡狼人劫掠者必须见过该个体。其他生物可以进行<br>一次 DC26 的洞察检定来识破这两个形态是伪装的。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 运动+9，隐秘+8</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 17（+4）</span><span>''敏捷'' 15（+3）</span><span>''感知'' 11（+1）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 14（+3）</span><span>''智力'' 10（+1）</span><span>''魅力'' 14（+3）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 通用语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 匕首</span></div></div>\n</div>",
+    "title": "胡狼人劫掠者 Jackalwere Harrier",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "3",
+    "role": "护卫",
+    "specialty-role": "杂兵",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物（变形生物）",
+    "xp": "38",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "12447"
+  }
+]

@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>6级 控制</span></div>\n<div class=bg-title><span>中型 暗影界 类人生物（不死生物）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 73；''重伤'' 36</span><span>''先攻'' +8</span></div>\n<div><span>''AC'' 20，''强韧'' 16，''反射'' 19，''意志'' 18</span><span>''侦查'' -1</span></div>\n<div><span>''免疫'' 疾病，毒素；''抗力'' 10 黯蚀</span><span>''感官'' 黑暗视觉</span></div>\n<div><span>''速度'' 0，飞行 6（盘旋）；相位移动</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}疯狂低语（心灵）✦灵气 3</div>\n<div class=description>任何在该灵气内结束回合的敌人受到 5 点心灵伤害，且该缚灵滑移它最多两格。</div>\n<div class=\"bold bg-power\">虚体</div>\n<div class=description>该缚灵从所有攻击都只受到一半伤害，除了那些造成力场伤害的。每当该缚灵受到光耀伤害<br>时，它失去该特性直到其下回合开始。</div>\n<div class=\"bold bg-power\">缚灵衍体</div>\n<div class=description>当该缚灵杀死一个类人生物时，该类人生物在该缚灵下回合开始时变成一个缚灵幻影。该新缚灵出现在死亡的类人生物的空间或是最近的不被占据的格子，且它投一个新的先攻检定。<br>该新缚灵在 DM 的控制下行动。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}疯狂之触（心灵）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+9vs.意志<br>命中：2d6+7 心灵伤害，且目标的所有防御受到-2 减值（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}混沌之触（魅惑，心灵）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：近战 1（一个生物）+9vs.意志<br>命中：2d6+7 心灵伤害，且该缚灵滑移目标最多五格。然后目标必须以一个自由动作对其最近的盟友进行一次基本攻击。<br>失手：一半伤害，且该缚灵滑移目标最多 2 格。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 隐秘+13</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 6（+1）</span><span>''敏捷'' 20（+8）</span><span>''感知'' 3（-1）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 17（+6）</span><span>''智力'' 11（+3）</span><span>''魅力'' 19（+7）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 通用语</span></div></div>\n</div>",
+    "title": "疯狂缚灵 Mad Wraith",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "6",
+    "role": "控制",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "暗影界",
+    "creature-type": "类人生物（不死生物）",
+    "xp": "250",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "4487"
+  }
+]

@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>5级 远程</span></div>\n<div class=bg-title><span>小型 暗影界 类人生物，黑暗小妖</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 50；''重伤'' 25</span><span>''先攻'' +6</span></div>\n<div><span>''AC'' 17，''强韧'' 16，''反射'' 17，''意志'' 16</span><span>''侦查'' +9</span></div>\n<div><span>''速度'' 6</span><span>''感官'' 黑暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">战斗优势（黯蚀）</div>\n<div class=description>每当该暗影弩手命中一个提供战斗优势给它的生物时，该暗影弩手造成 5 点额外黯蚀伤害，<br>且该生物的每个邻接的盟友受到 5 点黯蚀伤害。</div>\n<div class=\"bold bg-power\">致命精准</div>\n<div class=description>该暗影弩手的远程攻击对任何被该暗影弩手的盟友夹击的敌人拥有战斗优势。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}匕首（武器）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+10vs.AC<br>命中：1d4+5 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}黑矢（武器）✦随意</div>\n<div class=description>攻击：射程 15/30（一个生物）+10vs.强韧<br>命中：1d8+5 伤害，且目标每当触发借机攻击时便受到 5 点伤害（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">移动动作</div>\n<div class=\"bold bg-power\">暗遁✦随意</div>\n<div class=description>效果：该暗影弩手移动 4 格，对抗由该移动引发的借机攻击时 AC 获得+4 加值，且对所有当<br>它结束该移动时邻接它的生物获得战斗优势直到该暗影弩手下回合结束。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">死于黑暗</div>\n<div class=description>触发：该暗影弩手的生命值降为 0。<br>效果（无动作）：所有邻接该暗影弩手的敌人目盲直到他或她下回合结束。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 隐秘+11</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 11（+2）</span><span>''敏捷'' 18（+6）</span><span>''感知'' 15（+4）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 14（+4）</span><span>''智力'' 11（+2）</span><span>''魅力'' 11（+2）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 通用语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 匕首，弩，20 支矢，丝绳（50 英尺），爪钩</span></div></div>\n</div>",
+    "title": "暗影弩手 Shadow Bolter",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "5",
+    "role": "远程",
+    "specialty-role": "",
+    "size": "小型",
+    "origin": "暗影界",
+    "creature-type": "类人生物，黑暗小妖",
+    "xp": "200",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "10208"
+  }
+]

@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>16级 远程</span></div>\n<div class=bg-title><span>中型 元素界 魔法兽</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 123；''重伤'' 61</span><span>''先攻'' +13</span></div>\n<div><span>''AC'' 28，''强韧'' 27，''反射'' 27，''意志'' 29</span><span>''侦查'' +9</span></div>\n<div><span>''免疫'' 疾病，毒素，光耀；''抗力'' 可变（每遭遇四次）</span><span>''感官'' 黑暗视觉</span></div>\n<div><span>''速度'' 4，飞行 4（盘旋）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}棱面光华（光耀）</div>\n<div class=description>灵气 2：所有在该灵气内结束回合的敌人受到 5 点光耀伤害且在其当前回合中豁免受到-2 减值。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}棱晶闪耀（光耀）✦随意</div>\n<div class=description>攻击：+21 vs. 反射<br>命中：1d10+7 光耀伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}虹光矢（光耀）✦随意</div>\n<div class=description>攻击：射程 20，+21 vs. 意志<br>命中：2d8+7 光耀伤害，且目标目盲直到该棱面魔晶下回合结束。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}七彩闪烁✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：近程爆发 3，以敌人为目标，+21 vs. 意志<br>命中：目标晕眩（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}棱晶粉碎（光耀）</div>\n<div class=description>触发：当该棱面魔晶的生命值降到 0 时。<br>攻击：近程爆发 2，+21 vs. 意志<br>命中：2d8+7 光耀伤害，且目标目盲（豁免终止）。</div>\n<div class=\"italic bg-flavortext\">（从左往右：火焰魔晶，死亡魔晶，风暴魔晶，棱面魔晶）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 19（+12）</span><span>''敏捷'' 20（+13）</span><span>''感知'' 13（+9）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 21（+13）</span><span>''智力'' 7（+6）</span><span>''魅力'' 24（+15）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 深渊语</span></div></div>\n</div>",
+    "title": "棱面魔晶 Prismatic Shard",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "16",
+    "role": "远程",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "元素界",
+    "creature-type": "魔法兽",
+    "xp": "1400",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "5477"
+  }
+]

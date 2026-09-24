@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>24级 远程</span></div>\n<div class=bg-title><span>中型 自然界 类人生物，人类</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 175；''重伤'' 87</span><span>''先攻'' +16</span></div>\n<div><span>''AC'' 34，''强韧'' 36，''反射'' 34，''意志'' 36</span><span>''侦查'' +18</span></div>\n<div><span>''速度'' 6（大地行者）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}战锤（武器）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+29vs.AC<br>命中：2d10+13 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}石之拥✦随意</div>\n<div class=description>攻击：射程 10（一个生物）+29vs.反射<br>命中：2d6+7 伤害，且目标受缚并受到 10 点持续伤害（豁免终止两者）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}裂地✦随意</div>\n<div class=description>攻击：射程 20（一个因该阴秘塑石者的石之拥而受缚的生物）+19vs.强韧<br>命中：2d8+7 伤害，且目标震慑（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}暴走大地✦充能 4,5,6{{$:/dnd/images/four}}{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：近程爆发 2（爆发内所有敌人）+29vs.反射<br>命中：2d6+8 伤害，且该阴秘塑石者推动目标 3 格并击倒它。</div>\n<div class=\"italic bg-flavortext\">（石暴君之拳和阴秘塑石者）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 神秘+19，坚韧+24，威吓+26</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 19（+16）</span><span>''敏捷'' 19（+16）</span><span>''感知'' 23（+18）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 25（+19）</span><span>''智力'' 14（+14）</span><span>''魅力'' 28（+21）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 通用语，荒神语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 战锤，仪式用的匕首</span></div></div>\n</div>",
+    "title": "阴秘塑石者 Chthonic Stoneshaper",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "24",
+    "role": "远程",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物，人类",
+    "xp": "6050",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "13522"
+  }
+]

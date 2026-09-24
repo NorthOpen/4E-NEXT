@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>12级 精英 蛮战</span></div>\n<div class=bg-title><span>大型 星界 类人生物（魔鬼）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 298；''重伤'' 149</span><span>''先攻'' +10</span></div>\n<div><span>''AC'' 24，''强韧'' 23，''反射'' 21，''意志'' 21</span><span>''侦查'' +8</span></div>\n<div><span>''抗力'' 10 火焰；''豁免'' +2；''行动点'' 1</span><span></span></div>\n<div><span>''速度'' 5</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}锁链缠身</div>\n<div class=description>灵气 3：在该灵气内开始回合的敌人要离开该灵气时必须进行一次 DC21 的运动检定或杂技检定才能离开。若该检定失败，则该敌人不能再次尝试离开该灵气直到其下回合开始。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}刺链打击（武器）✦随意</div>\n<div class=description>攻击：触及 3，+15 vs. AC<br>命中：2d12+4 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}刺链狂鞭✦充能 6{{$:/dnd/images/six}}</div>\n<div class=description>该刺链魔对攻击范围内的每个敌人各进行一次刺链打击攻击。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}刺链支配（魅惑）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：触及 3，+15 vs. 强韧<br>命中：3d6+5 伤害，且目标受控（豁免终止）。若目标在其回合开始时距离<br>该刺链魔超过 3 格，则该受控状态终止。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 22（+12）</span><span>''敏捷'' 19（+10）</span><span>''感知'' 15（+8）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 19（+10）</span><span>''智力'' 15（+8）</span><span>''魅力'' 13（+7）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 天界语</span></div></div>\n</div>",
+    "title": "刺链魔 Gorechain Devil",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "12",
+    "role": "蛮战",
+    "specialty-role": "精英",
+    "size": "大型",
+    "origin": "星界",
+    "creature-type": "类人生物（魔鬼）",
+    "xp": "1400",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "6035"
+  }
+]

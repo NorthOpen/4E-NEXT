@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>35级 强者 蛮战</span></div>\n<div class=bg-title><span>超大型 星界 魔法兽（变形生物，蜘蛛） XP-</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 634；''重伤'' 317</span><span>''先攻'' +29</span></div>\n<div><span>''AC'' 49，''强韧'' 46，''反射'' 49，''意志'' 49</span><span>''侦查'' +31</span></div>\n<div><span>''免疫'' 毒素；''豁免'' +5；''行动点'' 2</span><span>''感官'' 黑暗视觉，盲视 20，心灵感应 20</span></div>\n<div><span>''速度'' 8，攀爬 8（蛛行），瞬移 8</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬（毒素）✦随意</div>\n<div class=description>攻击：近战 3（一个生物）+40vs.AC命中：4d10+12 伤害。<br>效果：目标受到 20 点持续毒素伤害（豁免终止）。</div>\n<div class=\"bold bg-power\">阴险毒素（魅惑，毒素）✦充能 6{{$:/dnd/images/six}}</div>\n<div class=description>效果：选择罗丝 10 格内的一个承受着持续毒素伤害的敌人。该敌人对一个由罗丝选择的生<br>物进行一次基本攻击，且该攻击造成 4d10+18 额外毒素伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}燃烧网（强酸）✦随意（一轮一次）</div>\n<div class=description>攻击：近程冲击 5（冲击内所有敌人）+38vs.反射<br>命中：2d8+12 强酸伤害，且目标定身（豁免终止）。<br>首次豁免失败时：目标改为定身且受到 30 点持续强酸伤害（豁免终止两者）。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}穿刺蛛腿（毒素）✦随意</div>\n<div class=description>触发：一个敌人进入罗丝 3 格内的一个格子。<br>攻击（直觉打断）：近战 3（一个生物）+40vs.AC<br>命中：4d8+12 伤害，且目标受缚并受到 20 点持续毒素伤害（豁免终止）。</div>\n<div class=\"bold bg-power\">不朽耐力✦随意</div>\n<div class=description>触发：罗丝受一个可以被豁免终止的效果影响。<br>效果（无动作）：罗丝对该效果进行一次豁免掷骰。</div>\n<div class=\"bold bg-power\">神魂破散✦遭遇</div>\n<div class=description>触发：罗丝的生命值降到 317 或更低。<br>效果（无动作）：罗丝神魂破散（参照“神魂破散”边栏）。</div>\n<div class=\"italic bg-flavortext\">（译注：罗丝蜘蛛神后形态的“阴险毒素”威能原文标记有近程符号，但是效果却跟罗丝卓尔形态的阴险毒素威能除了数值以外基本一致，并不是近程威能，虽官方未勘误，此处仍进</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 神秘+31，唬骗+34，交涉+34，洞察+31，威吓+34，宗教+31</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 27（+25）</span><span>''敏捷'' 34（+29）</span><span>''感知'' 28（+26）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 29（+26）</span><span>''智力'' 29（+26）</span><span>''魅力'' 34（+29）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 天界语，心灵感应 20</span></div></div>\n</div>",
+    "title": "罗丝蜘蛛神后 Lolth the Spider Queen",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "35",
+    "role": "蛮战",
+    "specialty-role": "强者",
+    "size": "超大型",
+    "origin": "星界",
+    "creature-type": "魔法兽（变形生物，蜘蛛） XP-",
+    "xp": "",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "12632"
+  }
+]

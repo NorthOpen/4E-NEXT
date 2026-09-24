@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>9级 护卫</span></div>\n<div class=bg-title><span>中型 自然界 野兽（集群）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 92；''重伤'' 46</span><span>''先攻'' +12</span></div>\n<div><span>''AC'' 25，''强韧'' 19，''反射'' 24，''意志'' 19</span><span>''侦查'' +5</span></div>\n<div><span>''抗力'' 来自近战和远程攻击的一半伤害；''易伤'' 来自近程和区域攻击的 10 点伤害</span><span>''感官'' 昏暗视觉</span></div>\n<div><span>''速度'' 6</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}集群攻击</div>\n<div class=description>灵气 1：所有在该灵气内开始回合的敌人受到 3 点伤害。如果该敌人拥有一件生锈的物品，则该敌人还会迟缓直到其回合结束。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}集群之牙✦随意</div>\n<div class=description>攻击：+14 vs. 反射<br>命中：2d8+1 伤害，且如果目标穿着重甲，则该盔甲生锈直到遭遇结束。在该盔甲生<br>锈期间，目标的 AC 受到-1 减值（可累计），最多累计到-5。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">锈蚀防御✦随意</div>\n<div class=description>触发：当该锈蚀怪集群被一次武器攻击命中时。<br>用于触发的攻击的武器生锈直到遭遇结束。在该武器生锈期间，目标使用该武器的伤害骰和<br>攻击骰受到-1 减值（可累计），最多累计到-5。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 8（+3）</span><span>''敏捷'' 22（+10）</span><span>''感知'' 13（+5）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 12（+5）</span><span>''智力'' 2（+0）</span><span>''魅力'' 12（+5）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n</div>",
+    "title": "幼年锈蚀怪集群 Young Rust Monster Swarm (LV9)#2",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "9",
+    "role": "护卫",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "野兽（集群）",
+    "xp": "400",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "8727"
+  }
+]

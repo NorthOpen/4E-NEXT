@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>10级 蛮战</span></div>\n<div class=bg-title><span>大型 元素界 魔法兽（土系）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 125；''重伤'' 62</span><span>''先攻'' +7</span></div>\n<div><span>''AC'' 22，''强韧'' 24，''反射'' 21，''意志'' 21</span><span>''侦查'' +11</span></div>\n<div><span>''免疫'' 疾病，石化，毒素</span><span></span></div>\n<div><span>''速度'' 5</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}花岗拳✦随意</div>\n<div class=description>攻击：触及 2，+13 vs. AC<br>命中：2d10+6 伤害，且若目标处于重伤，则目标倒地。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">内在崩坏✦遭遇</div>\n<div class=description>触发：当首次重伤时。<br>该石拳粉碎者获得 20 点临时生命值。如果它在其下回合开始时拥有临时生命值，则它失去<br>它们并获得 1 个行动点，这个行动点只能在该回合内使用。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 21（+10）</span><span>''敏捷'' 15（+7）</span><span>''感知'' 12（+6）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 15（+7）</span><span>''智力'' 4（+2）</span><span>''魅力'' 15（+7）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 荒神语</span></div></div>\n</div>",
+    "title": "石拳粉碎者 Rockfist Smasher",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "10",
+    "role": "蛮战",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "元素界",
+    "creature-type": "魔法兽（土系）",
+    "xp": "500",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "6892"
+  }
+]

@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>7级 控制</span></div>\n<div class=bg-title><span>中型 自然界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 77；''重伤'' 38</span><span>''先攻'' +6</span></div>\n<div><span>''AC'' 20，''强韧'' 17，''反射'' 20，''意志'' 20</span><span>''侦查'' +2</span></div>\n<div><span>''速度'' 6</span><span>''感官'' 昏暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">战斗优势</div>\n<div class=description>半精灵欺诈师对任何提供给它战斗优势的生物造成 2d6 额外伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}匕首（武器）✦随意</div>\n<div class=description>攻击：+12 vs. AC<br>命中：1d4+4 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}迷惑行为（魅惑）✦随意</div>\n<div class=description>攻击：+10 vs. 意志<br>命中：目标对由该半精灵欺诈师选择的一个它的盟友进行一次基本攻击。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}银色骗术（魅惑）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：射程 10，+10 vs. 意志<br>命中：目标受控直到该半精灵欺诈师下回合结束。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}怜悯感染（魅惑）✦遭遇</div>\n<div class=description>攻击：近程爆发 5，+10 vs. 意志<br>命中：以敌人为目标；目标不能攻击该半精灵欺诈师（豁免终止）。如<br>果该半精灵欺诈师对目标进行攻击骰，则该目标对该效果进行一次豁免。</div>\n<div class=\"bold font-size-h4 bg-category\">移动动作</div>\n<div class=\"bold bg-power\">骗子逃遁✦遭遇</div>\n<div class=description>该半精灵欺诈师快步 6 格且可以进行一次隐秘检定而不受到移动带来的减值。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 唬骗+12，洞察+7，隐秘+11，盗术+11</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 10（+3）</span><span>''敏捷'' 17（+6）</span><span>''感知'' 9（+2）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 13（+4）</span><span>''智力'' 12（+4）</span><span>''魅力'' 19（+7）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 通用语，精灵语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 高档衣物，匕首</span></div></div>\n</div>",
+    "title": "半精灵欺诈师 Half-Elf Con Artist",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "7",
+    "role": "控制",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物",
+    "xp": "300",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "7741"
+  }
+]

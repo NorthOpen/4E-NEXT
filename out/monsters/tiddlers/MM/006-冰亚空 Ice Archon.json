@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>13级 护卫</span></div>\n<div class=bg-title><span>中型 元素界 类人生物（冰系）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 135；''重伤'' 67</span><span>''先攻'' +8</span></div>\n<div><span>''AC'' 29，''强韧'' 27，''反射'' 25，''意志'' 22</span><span>''侦查'' +9</span></div>\n<div><span>''免疫'' 疾病，毒素；''抗力'' 20 寒冷</span><span></span></div>\n<div><span>''速度'' 6</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}冰冻灵气✦灵气 2</div>\n<div class=description>敌人在该灵气内不能快步。</div>\n<div class=\"bold bg-power\">寒冰消融</div>\n<div class=description>每当该亚空受到火焰伤害时，它的所有防御受到-2 减值直到其下回合结束。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}寒冰硬头锤（寒冷）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+18vs.AC命中：4d6+7 寒冷伤害。<br>效果：该亚空标记它两格内的所有敌人直到该亚空下回合结束。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}寒冰制裁✦随意</div>\n<div class=description>触发：一个被该亚空标记的敌人进行一次目标不包括该亚空的攻击。攻击（借机动作）：近战 1（触发的敌人）+18vs.AC<br>命中：2d8+5 伤害，且目标虚弱直到其下回合结束。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 15（+8）</span><span>''敏捷'' 11（+6）</span><span>''感知'' 17（+9）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 23（+12）</span><span>''智力'' 18（+10）</span><span>''魅力'' 11（+6）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 荒神语</span></div></div>\n</div>",
+    "title": "冰亚空 Ice Archon",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "13",
+    "role": "护卫",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "元素界",
+    "creature-type": "类人生物（冰系）",
+    "xp": "800",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "95"
+  }
+]

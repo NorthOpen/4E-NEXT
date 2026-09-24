@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>14级 游击</span></div>\n<div class=bg-title><span>中型 自然界 魔法兽</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 141；''重伤'' 70</span><span>''先攻'' +14</span></div>\n<div><span>''AC'' 28，''强韧'' 27，''反射'' 26，''意志'' 24</span><span>''侦查'' +10</span></div>\n<div><span>''抗力'' 20 寒冷</span><span>''感官'' 昏暗视觉</span></div>\n<div><span>''速度'' 8（冰雪行者）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬（寒冷）✦随意</div>\n<div class=description>攻击：+19 vs. AC<br>命中：1d10+6 伤害以及 1d6 寒冷伤害，对倒地目标则为 2d10+6 伤害以及 1d6 寒冷伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}扑倒（寒冷，只能在冲锋时使用）✦随意</div>\n<div class=description>攻击：+19 vs. AC<br>命中：2d10+6 伤害以及 1d6 寒冷伤害，且目标倒地。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}寒冻吐息（寒冷）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：近程冲击 5，+17 vs. 反射<br>命中：2d6+6 寒冷伤害。<br>失手：一半伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">拖拽（只能在邻接一个倒地敌人的时候使用）✦随意</div>\n<div class=description>该冬狼快步 1 格并拉动它邻接的一个倒地目标 1 格。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 23（+13）</span><span>''敏捷'' 21（+12）</span><span>''感知'' 17（+10）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 21（+12）</span><span>''智力'' 9（+6）</span><span>''魅力'' 10（+7）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 通用语，巨人语</span></div></div>\n</div>",
+    "title": "冬狼 Winter Wolf",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "14",
+    "role": "游击",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "魔法兽",
+    "xp": "1000",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "9352"
+  }
+]

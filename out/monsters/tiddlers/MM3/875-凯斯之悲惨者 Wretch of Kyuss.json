@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>13级 杂兵 蛮战</span></div>\n<div class=bg-title><span>中型 自然界 活化生物（不死生物）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 1；失手攻击无法伤害杂兵</span><span>''先攻'' +7</span></div>\n<div><span>''AC'' 25，''强韧'' 26，''反射'' 23，''意志'' 24</span><span>''侦查'' +8</span></div>\n<div><span>''免疫'' 疾病，恐惧，毒素；''抗力'' 10；''易伤'' 5 光耀</span><span>''感官'' 黑暗视觉</span></div>\n<div><span>''速度'' 5</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}击打（黯蚀）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+18vs.AC<br>命中：13 黯蚀伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}终焉之赠（疾病，黯蚀）</div>\n<div class=description>触发：一次近战或远程攻击使该凯斯之悲惨者的生命值降到 0。<br>攻击（无动作）：近程爆发 1（爆发内所有生物）+16vs.强韧命中：10 点黯蚀伤害，且目标暴露在凯斯之触之下。</div>\n<div class=\"italic bg-flavortext\">（凯斯之衍体）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 21（+11）</span><span>''敏捷'' 13（+7）</span><span>''感知'' 15（+8）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 18（+10）</span><span>''智力'' 4（+3）</span><span>''魅力'' 6（+4）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span></div></div>\n</div>",
+    "title": "凯斯之悲惨者 Wretch of Kyuss",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "13",
+    "role": "蛮战",
+    "specialty-role": "杂兵",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "活化生物（不死生物）",
+    "xp": "200",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "13893"
+  }
+]

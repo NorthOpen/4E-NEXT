@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>2级 游击</span></div>\n<div class=bg-title><span>中型 自然界 类人生物（水生）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 34；''重伤'' 17</span><span>''先攻'' +7</span></div>\n<div><span>''AC'' 16，''强韧'' 13，''反射'' 14，''意志'' 13</span><span>''侦查'' +3</span></div>\n<div><span>''速度'' 7（沼泽行者），游泳 5</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}腐烂恶臭（毒素）</div>\n<div class=description>灵气 2：所有在该灵气内花费复原力的敌人虚弱直到其下回合结束。</div>\n<div class=\"bold bg-power\">自然释放（医疗）</div>\n<div class=description>任何对霸蛙人侦察兵造成重击的攻击者恢复 4 点生命值。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}标枪（武器）✦随意</div>\n<div class=description>攻击：+6 vs. AC<br>命中：1d6+3 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}标枪（武器）✦随意</div>\n<div class=description>攻击：射程 10/20，+8 vs. AC<br>命中：1d6+3 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}痉挛跳跃（必击，武器）✦遭遇</div>\n<div class=description>攻击：该霸蛙人侦察兵身上的所有标记终止，且它在该攻击之前快步 4 格：+7 vs. AC<br>命中：2d6+3 伤害，<br>且目标对该霸蛙人侦察兵的攻击骰受到-4 减值直到该霸蛙人侦察兵下回合结束。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 运动+8</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 14（+3）</span><span>''敏捷'' 18（+5）</span><span>''感知'' 14（+3）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 10（+1）</span><span>''智力'' 10（+1）</span><span>''魅力'' 8（+0）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 荒神语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 5 把标枪</span></div></div>\n</div>",
+    "title": "霸蛙人侦察兵 Bullywug Twitcher",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "2",
+    "role": "游击",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物（水生）",
+    "xp": "125",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "5308"
+  }
+]

@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>6级 蛮战</span></div>\n<div class=bg-title><span>大型 自然界 类人生物（鳞爪类），蜥蜴人</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 86；''重伤'' 43</span><span>''先攻'' +6</span></div>\n<div><span>''AC'' 18，''强韧'' 19，''反射'' 16，''意志'' 16</span><span>''侦查'' +4</span></div>\n<div><span>''速度'' 8（沼泽行者）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}巨木棒（武器）✦随意</div>\n<div class=description>攻击：近战 2（一个生物）+11vs.AC<br>命中：2d10+6 伤害，且该黑鳞打击者可推动目标一格。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}狂怒啮咬✦随意</div>\n<div class=description>前提：该黑鳞打击者必须处于重伤。<br>攻击：近战 1（一个生物）+11vs.AC命中：1d6+4 伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}扫尾✦充能（首次重伤时）</div>\n<div class=description>触发：该黑鳞打击者受到来自一个敌人的伤害。<br>攻击（直觉反应）：近程冲击 2（范围内所有生物）+9vs.反射命中：2d8+6 伤害，且目标倒地。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 22（+9）</span><span>''敏捷'' 16（+6）</span><span>''感知'' 12（+4）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 16（+6）</span><span>''智力'' 5（+0）</span><span>''魅力'' 6（+1）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 龙语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 巨木棒</span></div></div>\n</div>",
+    "title": "黑鳞打击者 Blackscale Crusher",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "6",
+    "role": "蛮战",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "自然界",
+    "creature-type": "类人生物（鳞爪类），蜥蜴人",
+    "xp": "250",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "3091"
+  }
+]

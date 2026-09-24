@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>20级 伏击</span></div>\n<div class=bg-title><span>大型 元素界 魔法兽（气系）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 143；''重伤'' 71</span><span>''先攻'' +22</span></div>\n<div><span>''AC'' 34，''强韧'' 31，''反射'' 33，''意志'' 32</span><span>''侦查'' +10</span></div>\n<div><span>''易伤'' 10 火焰</span><span></span></div>\n<div><span>''速度'' 0，飞行 10（盘旋）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">风中幻影</div>\n<div class=description>该高等气元素每当在没有邻接敌人的情况下开始回合时便变成隐形。该隐形持续直到其下回<br>合结束或直到它攻击。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}击打✦随意</div>\n<div class=description>攻击：近战 2（一个生物）+25vs.AC<br>命中：3d10+8 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}吞没之风✦随意</div>\n<div class=description>攻击：近战 2（一个看不见该高等气元素的生物）+23vs.强韧<br>命中：该高等气元素滑移目标 1 格到其空间内，且目标被擒抱。直到该擒抱终止，目标晕眩<br>且受到 20 点持续伤害。当该高等气元素移动时，该被擒抱的目标也随着它一同移动，保持在该高等气元素的空间内。该高等气元素在有擒抱生物的时候可以以完整的速度移动，且它不需要花费标准动作或进行攻击骰来移动被擒抱的生物。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 隐秘+23</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 22（+16）</span><span>''敏捷'' 27（+18）</span><span>''感知'' 11（+10）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 17（+13）</span><span>''智力'' 5（+7）</span><span>''魅力'' 8（+9）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 能理解荒神语</span></div></div>\n</div>",
+    "title": "高等气元素 Greater Air Elemental",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "20",
+    "role": "伏击",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "元素界",
+    "creature-type": "魔法兽（气系）",
+    "xp": "2800",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "11347"
+  }
+]

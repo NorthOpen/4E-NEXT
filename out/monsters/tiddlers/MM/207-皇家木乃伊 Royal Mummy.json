@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>12级 精英（头目） 控制</span></div>\n<div class=bg-title><span>中型 自然界 类人生物（不死生物）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 236；''重伤'' 118</span><span>''先攻'' +5</span></div>\n<div><span>''AC'' 26，''强韧'' 24，''反射'' 22，''意志'' 26</span><span>''侦查'' +9</span></div>\n<div><span>''免疫'' 疾病；''抗力'' 10 黯蚀，10 毒素；''豁免'' +2；''行动点'' 1</span><span>''感官'' 黑暗视觉</span></div>\n<div><span>''速度'' 4</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}皇族气场✦灵气 5{{$:/dnd/images/five}}</div>\n<div class=description>每当一个盟友在该灵气内开始回合时，该木乃伊可以以一个自由动作滑移该盟友最多两格。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}恐惧诅咒（恐惧）✦灵气 5{{$:/dnd/images/five}}</div>\n<div class=description>敌人在该灵气内对抗该木乃伊的攻击的所有防御受到-2 减值。</div>\n<div class=\"bold bg-power\">易燃体质</div>\n<div class=description>每当该木乃伊受到火焰伤害时，它受到 5 点持续火焰伤害（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}王杖（武器）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+17vs.AC<br>命中：2d8+9 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}瘟疫吟唱（黯蚀）✦随意</div>\n<div class=description>攻击：射程 10（一个生物）+15vs.强韧<br>命中：2d6+6 黯蚀伤害，以及 5 点持续黯蚀伤害（豁免终止）。每当目标受到该持续伤害时，邻接它的每个盟友受到 5 点黯蚀伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}绝望掌握（恐惧，心灵）✦随意</div>\n<div class=description>攻击：射程 10（一个生物）+15vs.意志<br>命中：1d12+9 心灵伤害，且目标定身并在攻击骰上受到-2 减值直到该木乃伊下回合结束。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}疫恐扩散✦随意</div>\n<div class=description>效果：该木乃伊使用瘟疫吟唱和绝对掌握。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}绝对恐怖（恐惧，心灵）✦遭遇</div>\n<div class=description>攻击：近程爆发 3（范围内所有敌人）+15vs.意志<br>命中：2d10+13 心灵伤害，且该木乃伊推动目标最多 4 格。失手：一半伤害，且该木乃伊推动目标最多 2 格。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">衰弱诅咒✦随意（一轮一次）</div>\n<div class=description>效果：射程 10（一个生物）。每当目标花费一个复原力时，它虚弱直到其下回合结束。该<br>效果持续直到该木乃伊再次使用此威能或目标进行一次长休息。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 洞察+14，宗教+13</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 20（+11）</span><span>''敏捷'' 8（+5）</span><span>''感知'' 16（+9）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 14（+8）</span><span>''智力'' 14（+8）</span><span>''魅力'' 22（+12）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 通用语</span></div></div>\n</div>",
+    "title": "皇家木乃伊 Royal Mummy",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "12",
+    "role": "控制",
+    "specialty-role": "精英（头目）",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物（不死生物）",
+    "xp": "1400",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "3412"
+  }
+]

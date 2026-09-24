@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>28级 远程</span></div>\n<div class=bg-title><span>中型 元素界 活化生物（构装体，火系）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 194；''重伤'' 97</span><span>''先攻'' +24</span></div>\n<div><span>''AC'' 42，''强韧'' 40，''反射'' 42，''意志'' 39</span><span>''侦查'' +21</span></div>\n<div><span>''抗力'' 15 火焰</span><span></span></div>\n<div><span>''速度'' 6</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}元素炼狱✦灵气 2</div>\n<div class=description>该灵气内的敌人不能从火焰抗性获得增益且不能对带有持续火焰伤害的效果进行豁免。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}燃炎爪（火焰）✦随意</div>\n<div class=description>攻击：近战 2（一个生物）+31vs.AC<br>命中：20 点持续火焰伤害（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}火焰矢（火焰）✦随意</div>\n<div class=description>攻击：射程 10（一个或两个生物）+31vs.反射<br>命中：25 点持续火焰伤害（豁免终止）。</div>\n<div class=\"bold bg-power\">恼人火焰（火焰）✦随意</div>\n<div class=description>效果：10 格内的所有承受着持续火焰伤害的敌人立即受到等值于那个持续火焰伤害的火焰<br>伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/area}}神灾炼狱（火焰）✦充能（首次重伤时）</div>\n<div class=description>攻击：区域 10 爆发 2（爆发内所有敌人）+31vs.反射<br>命中：2d10+5 火焰伤害，以及 15 点持续火焰伤害（豁免终止）。后续效果：10 点持续火焰伤害（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">解放天启✦遭遇</div>\n<div class=description>触发：一个敌人对该弑神者炼狱造成重击或该弑神者炼狱首次重伤。<br>效果（无动作）：该弑神者炼狱创造一个其自身的分身，该分身出现在最近的不被占据的格子。该分身拥有与该弑神者炼狱相同的生命值，被视为与该弑神者炼狱消耗掉了同样的威能，且在该弑神者炼狱的回合行动。该弑神者炼狱身上的任何效果都不会带到分身身上。在该弑神者炼狱下回合结束时，该分身消失。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 23（+20）</span><span>''敏捷'' 30（+24）</span><span>''感知'' 24（+21）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 26（+22）</span><span>''智力'' 13（+15）</span><span>''魅力'' 21（+19）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 荒神语</span></div></div>\n</div>",
+    "title": "弑神者炼狱 Godslayer Inferno",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "28",
+    "role": "远程",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "元素界",
+    "creature-type": "活化生物（构装体，火系）",
+    "xp": "13000",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "9596"
+  }
+]

@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>13级 蛮战</span></div>\n<div class=bg-title><span>中型 自然界 活化生物（不死生物）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 158；''重伤'' 79</span><span>''先攻'' +7</span></div>\n<div><span>''AC'' 25，''强韧'' 25，''反射'' 23，''意志'' 24</span><span>''侦查'' +6</span></div>\n<div><span>''免疫'' 疾病，恐惧，毒素；''抗力'' 15 黯蚀；''易伤'' 5 火焰，5 光耀</span><span>''感官'' 黑暗视觉</span></div>\n<div><span>''速度'' 5</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}恐惧蠕虫（恐惧）✦灵气 1</div>\n<div class=description>在该灵气内的活体生物对该凯斯之子的攻击骰受到-2 减值。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}击打（疾病）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+18vs.AC<br>命中：2d10+10 伤害，且目标暴露在凯斯之触之下。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}蠕虫入体（疾病，黯蚀）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：近程爆发 1（爆发内的一个活体生物）+16vs.强韧<br>命中：目标受到 10 点持续黯蚀伤害（豁免终止）。此外，目标暴露在凯斯之触之下。<br>首次豁免失败时：该持续伤害增加到 15 点。<br>第二次豁免失败时：目标震慑，且该持续伤害增加到 20 点（豁免终止两者）。<br>特殊：被该攻击杀死的类人生物的尸体在该凯斯之子下回合开始时变成一个凯斯之悲惨者。要复活该生物之前必须先摧毁该凯斯之悲惨者。</div>\n<div class=\"bold bg-power\">凯斯之触  LV16 疾病（Touch of Kyuss）</div>\n<div class=description>坚韧：改善 DC25，稳定 DC20，恶化 DC19 或以下<br>目标痊愈。  初始效果：目标在花  目标失去两个复原力。如  末期阶段：目标死亡并立即<br>费复原力时只能恢  果其复原力减少到0 或更  变成一个凯斯之子。</div>\n<div class=\"bold bg-power\">复通常一半的生命  少，则它死亡且立即复活</div>\n<div class=description>值。如果它死亡，则  为一个凯斯之子。</div>\n<div class=\"bold bg-power\">它立即复活为一个</div>\n<div class=description>凯斯之悲惨者。</div>\n<div class=\"italic bg-flavortext\">（译注：疾病的具体规则详见《城主指南》P49）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 21（+11）</span><span>''敏捷'' 13（+7）</span><span>''感知'' 11（+6）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 18（+10）</span><span>''智力'' 6（+4）</span><span>''魅力'' 18（+10）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span></div></div>\n</div>",
+    "title": "凯斯之子 Son of Kyuss",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "13",
+    "role": "蛮战",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "活化生物（不死生物）",
+    "xp": "800",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "13871"
+  }
+]

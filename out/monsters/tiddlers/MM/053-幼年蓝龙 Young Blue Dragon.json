@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>6级 强者 远程</span></div>\n<div class=bg-title><span>大型 自然界 魔法兽（龙）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 296；''重伤'' 148</span><span>''先攻'' +5</span></div>\n<div><span>''AC'' 20，''强韧'' 20，''反射'' 17，''意志'' 18</span><span>''侦查'' +11</span></div>\n<div><span>''抗力'' 10 闪电；''豁免'' +5；''行动点'' 2</span><span>''感官'' 黑暗视觉</span></div>\n<div><span>''速度'' 8，飞行 10</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}暴走雷电（闪电）✦灵气 5{{$:/dnd/images/five}}</div>\n<div class=description>在该龙重伤期间，任何在该灵气内结束回合的敌人受到 5 点闪电伤害。</div>\n<div class=\"bold bg-power\">行动恢复</div>\n<div class=description>每当该龙回合结束时，其身上任何晕眩、震慑或受控效果终止。</div>\n<div class=\"bold bg-power\">本能放电</div>\n<div class=description>在 10+该龙先攻检定值的先攻序位，该龙可以使用一个自由动作来飞行最多其速度并使用闪电爆发。该移动不会引发借机攻击。如果该龙因为受控或震慑效果不能使用自由动作来进行<br>该攻击，则作为该龙进行该攻击的代替，那效果终止。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}角抵（闪电）✦随意</div>\n<div class=description>攻击：近战 2（一个生物）+11vs.AC<br>命中：4d6+5 闪电伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}爪击✦随意</div>\n<div class=description>攻击：近战 2（一或两个生物）+11vs.AC（如果该龙只以一个生物作为目标，则它可以对该生物进行两次该攻击）<br>命中：2d6+5 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/area}}闪电爆发（闪电）✦随意</div>\n<div class=description>攻击：区域 20 爆发 2（范围内所有生物）+11vs.反射命中：2d10+5 闪电伤害。<br>失手：一半伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}龙息（闪电）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：近程冲击 10（范围内最多三个生物）+11vs.反射命中：3d8+8 闪电伤害。<br>失手：一半伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}翼击✦随意</div>\n<div class=description>触发：一个敌人以近战攻击命中该龙。<br>攻击（直觉反应）：近程爆发 2（范围内所有敌人）+9vs.反射命中：目标倒地。<br>效果：该龙飞行最多其速度。该移动不会引发借机攻击。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}重伤喷吐✦遭遇</div>\n<div class=description>触发：该龙首次重伤。<br>效果（自由动作）：龙息充能，且该龙使用它。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 运动+13，洞察+11</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 21（+8）</span><span>''敏捷'' 15（+5）</span><span>''感知'' 17（+6）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 18（+7）</span><span>''智力'' 12（+4）</span><span>''魅力'' 13（+4）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 通用语，龙语</span></div></div>\n</div>",
+    "title": "幼年蓝龙 Young Blue Dragon",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "6",
+    "role": "远程",
+    "specialty-role": "强者",
+    "size": "大型",
+    "origin": "自然界",
+    "creature-type": "魔法兽（龙）",
+    "xp": "1250",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "907"
+  }
+]

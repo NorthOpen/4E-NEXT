@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>9级 游击</span></div>\n<div class=bg-title><span>大型 精界 类人生物（巨人）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 99；''重伤'' 49</span><span>''先攻'' +8</span></div>\n<div><span>''AC'' 23，''强韧'' 21，''反射'' 20，''意志'' 18</span><span>''侦查'' +4</span></div>\n<div><span>''速度'' 8</span><span>''感官'' 昏暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">战斗优势</div>\n<div class=description>该亚巨人粗暴者对任何提供战斗优势给它的生物造成 5 点额外伤害。</div>\n<div class=\"bold bg-power\">亚巨人隐秘</div>\n<div class=description>该亚巨人粗暴者在它占据的一个格子对它想对之躲藏的生物拥有超级掩蔽或全隐蔽的情况<br>下便可进行隐秘检定来进入躲藏。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}矛（武器）✦随意</div>\n<div class=description>攻击：近战 2（一个生物）+14vs.AC<br>命中：2d8+8 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}穿刺打击（武器）✦遭遇</div>\n<div class=description>攻击：近战 2（一个生物）+12vs.反射<br>命中：2d12+8 伤害，且该亚巨人粗暴者滑移目标 5 格到该亚巨人粗暴者 2 格内的一个格子。</div>\n<div class=\"bold font-size-h4 bg-category\">移动动作</div>\n<div class=\"bold bg-power\">跳跃机动✦随意</div>\n<div class=description>效果：该亚巨人粗暴者不再被标记，且它快步 3 格并可以在该快步中移动穿过敌人的空间。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}狡猾欺诈✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：近战 3（一个生物）+12vs.意志<br>命中：该亚巨人粗暴者击倒目标或滑移它 3 格。</div>\n<div class=\"italic bg-flavortext\">（亚巨人粗暴者）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 唬骗+11，隐秘+11，盗术+11</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 24（+11）</span><span>''敏捷'' 14（+6）</span><span>''感知'' 11（+4）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 19（+8）</span><span>''智力'' 13（+5）</span><span>''魅力'' 14（+6）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 通用语，精灵语，巨人语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 革甲，轻盾，矛</span></div></div>\n</div>",
+    "title": "亚巨人粗暴者 Verbeeg Rowdy",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "9",
+    "role": "游击",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "精界",
+    "creature-type": "类人生物（巨人）",
+    "xp": "400",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "14363"
+  }
+]

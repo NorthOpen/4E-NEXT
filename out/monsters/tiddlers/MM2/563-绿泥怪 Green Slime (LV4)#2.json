@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>4级 伏击</span></div>\n<div class=bg-title><span>中型 自然界 野兽（盲目，泥型怪）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 47；''重伤'' 23</span><span>''先攻'' +9</span></div>\n<div><span>''AC'' 20，''强韧'' 23，''反射'' 17，''意志'' 20</span><span>''侦查'' +2</span></div>\n<div><span>''免疫'' 凝视；''抗力'' 5 强酸；''易伤'' 5 火焰，5 光耀</span><span>''感官'' 盲视 10，震动感知 10</span></div>\n<div><span>''速度'' 4，攀爬 4</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">加速溶解</div>\n<div class=description>绿泥怪的攻击对承受着持续强酸伤害的生物造成 1d6 额外强酸伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}吞没（强酸）✦随意</div>\n<div class=description>攻击：+7 vs. 反射<br>命中：1d6+3 强酸伤害，且目标被吞没（豁免终止）。在被吞没期间，目标受到 5 点<br>持续强酸伤害且受缚。在目标被吞没期间，以该绿泥怪为目标的攻击只对该绿泥怪造成一半<br>伤害且对被吞没的生物造成另一半伤害。在它吞没生物期间，该绿泥怪只能对被这个吞没的<br>生物进行攻击。</div>\n<div class=\"italic bg-flavortext\">（底栖魔鱼烂泥）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 隐秘+11</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 11（+2）</span><span>''敏捷'' 16（+5）</span><span>''感知'' 11（+2）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 17（+5）</span><span>''智力'' 3（-2）</span><span>''魅力'' 1（-3）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n</div>",
+    "title": "绿泥怪 Green Slime (LV4)#2",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "4",
+    "role": "伏击",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "野兽（盲目，泥型怪）",
+    "xp": "175",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "8630"
+  }
+]

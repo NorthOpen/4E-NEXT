@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>20级 精英 远程</span></div>\n<div class=bg-title><span>超大型 精界 类人生物（巨人）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 296；''重伤'' 148</span><span>''先攻'' +11</span></div>\n<div><span>''AC'' 32，''强韧'' 31，''反射'' 33，''意志'' 31</span><span>''侦查'' +18</span></div>\n<div><span>''豁免'' +2；''行动点'' 1</span><span>''感官'' 真视 6</span></div>\n<div><span>''速度'' 8</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}木杖（武器）✦随意</div>\n<div class=description>攻击：触及 3，+27 vs. AC<br>命中：1d12+10 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}强酸眼（强酸，黯蚀）✦随意</div>\n<div class=description>攻击：射程 10，以一个或两个生物为目标，+25 vs. 反射<br>命中：2d8+9 强酸和黯蚀伤害，且目标不能使用<br>遭遇或每日攻击威能直到目标下回合结束。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}邪眼✦随意</div>\n<div class=description>攻击：射程 10，+25 vs. 强韧<br>命中：目标受到该废陋巨人障目者的邪眼的影响（豁免终止）。在目标受<br>到邪眼影响期间，每当该废陋巨人障目者的攻击伤害到目标以外的一个生物时，目标受到等值的伤害。如果该废陋巨人障目者对一个不同的目标使用邪眼则该效果终止。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/area}}浓水冲淋（强酸，黯蚀）✦遭遇</div>\n<div class=description>攻击：区域 10 爆发 2，+23 vs. 反射<br>命中：2d8+9 强酸和黯蚀伤害，以及 10 点持续强酸和黯蚀伤害（豁免终止）。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 23（+16）</span><span>''敏捷'' 12（+11）</span><span>''感知'' 16（+13）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 22（+16）</span><span>''智力'' 26（+18）</span><span>''魅力'' 23（+16）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 精灵语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 木杖</span></div></div>\n</div>",
+    "title": "废陋巨人障目者 Fomorian Blinder",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "20",
+    "role": "远程",
+    "specialty-role": "精英",
+    "size": "超大型",
+    "origin": "精界",
+    "creature-type": "类人生物（巨人）",
+    "xp": "5600",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "7212"
+  }
+]

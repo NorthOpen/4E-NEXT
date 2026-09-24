@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>13级 游击</span></div>\n<div class=bg-title><span>大型 自然界 类人生物（鳞爪类）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 131；''重伤'' 65</span><span>''先攻'' +13</span></div>\n<div><span>''AC'' 27，''强韧'' 24，''反射'' 25，''意志'' 24</span><span>''侦查'' +15</span></div>\n<div><span>''速度'' 7</span><span>''感官'' 昏暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">战斗优势</div>\n<div class=description>龙兽人伏击者对任何提供给它战斗优势的敌人造成 2d6 额外伤害。</div>\n<div class=\"bold bg-power\">龙兽人狂暴（在重伤状态下）</div>\n<div class=description>每轮一次当该龙兽人伏击者攻击命中时，它获得 10 点临时生命值。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}大砍刀（毒素，武器）✦随意</div>\n<div class=description>攻击：触及 2，+18 vs. AC<br>命中：4d4 伤害以及 5 点毒素伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">移动动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}横冲直撞✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>该龙兽人伏击者快步其速度的格数，并对它在这次移动中邻接的每个敌人进行该攻击：<br>攻击：+16 vs. 反射<br>命中：目标倒地。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}剧毒鸣叫（毒素）</div>\n<div class=description>触发：当首次重伤时充能。<br>攻击：近程冲击 2，+16 vs. 反射<br>命中：3d6+5 毒素伤害，且目标受到 5 点持续毒素伤害（豁免终止）。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 18（+10）</span><span>''敏捷'' 20（+11）</span><span>''感知'' 18（+10）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 19（+10）</span><span>''智力'' 12（+7）</span><span>''魅力'' 14（+8）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 通用语，龙语力量 18（+10）</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 革甲，大砍刀</span></div></div>\n</div>",
+    "title": "龙兽人伏击者 Drakkoth Ambusher",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "13",
+    "role": "游击",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "自然界",
+    "creature-type": "类人生物（鳞爪类）",
+    "xp": "800",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "6638"
+  }
+]

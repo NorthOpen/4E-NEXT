@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>10级 控制</span></div>\n<div class=bg-title><span>中型 星界 类人生物（魔鬼）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 110；''重伤'' 55</span><span>''先攻'' +8</span></div>\n<div><span>''AC'' 24，''强韧'' 22，''反射'' 20，''意志'' 24</span><span>''侦查'' +9</span></div>\n<div><span>''抗力'' 10 火焰</span><span>''感官'' 黑暗视觉</span></div>\n<div><span>''速度'' 6</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}约束领域✦灵气 3</div>\n<div class=description>该灵气内的格子对敌人来说是困难地形。</div>\n<div class=\"bold bg-power\">锁链之子</div>\n<div class=description>在定身或受缚期间，该链锁魔裔的攻击骰获得+2 加值且在尝试挣脱擒抱和对定身或受缚的<br>效果豁免掷骰时获得+2 加值。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}链鞭✦随意</div>\n<div class=description>攻击：近战 3（一个生物）+15vs.AC<br>命中：3d6+8 伤害，处于晕眩的目标还会被定身（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}恶毒枷锁（心灵）✦随意</div>\n<div class=description>攻击：近战 5（一个生物）+13vs.意志<br>命中：2d6+6 心灵伤害，且若目标在其下回合结束时更接近该链锁魔裔，则目标晕眩（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}无拘尖啸（心灵）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：近程冲击 3（冲击内所有生物）+13vs.强韧<br>命中：2d6+6 心灵伤害，且该链锁魔裔推动目标两格。目标还会晕眩（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">精神枷锁（心灵）✦充能（当首次重伤时）</div>\n<div class=description>效果：近程爆发 5 内的两个互相邻接的敌人被精神锁缚（豁免终止，每个目标对该效果分别进行豁免掷骰）。在被精神锁缚期间，敌人在其回合开始和结束时如果不与另一个受该威能影响的生物邻接则会受到 10 点心灵伤害。<br>后续效果：该效果继续，只是伤害减少为 5 点（豁免终止）。</div>\n<div class=\"italic bg-flavortext\">（链锁魔裔）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 17（+8）</span><span>''敏捷'' 16（+8）</span><span>''感知'' 19（+9）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 22（+11）</span><span>''智力'' 18（+9）</span><span>''魅力'' 18（+9）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 天界语</span></div></div>\n</div>",
+    "title": "链锁魔裔 Chained Cambion",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "10",
+    "role": "控制",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "星界",
+    "creature-type": "类人生物（魔鬼）",
+    "xp": "500",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "9872"
+  }
+]

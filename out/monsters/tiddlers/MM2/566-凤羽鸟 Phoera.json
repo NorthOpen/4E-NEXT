@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>12级 精英 游击</span></div>\n<div class=bg-title><span>中型 元素界 魔法兽（火系）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 114；''重伤'' 57</span><span>''先攻'' +14</span></div>\n<div><span>''AC'' 26，''强韧'' 23，''反射'' 25，''意志'' 25</span><span>''侦查'' +8</span></div>\n<div><span>''抗力'' 15 火焰；''易伤'' 5 寒冷；''行动点'' 1</span><span></span></div>\n<div><span>''速度'' 6，飞行 10</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}凤凰高温（火焰）</div>\n<div class=description>灵气 2：所有进入该灵气或在其内开始回合的生物受到 5 点火焰伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}爪击（火焰）✦随意</div>\n<div class=description>攻击：+17 vs. AC<br>命中：1d4+5 伤害，以及 5 点持续火焰伤害（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}火羽（火焰）✦充能 4,5,6{{$:/dnd/images/four}}{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：近程冲击 4，+15 vs. 反射<br>命中：3d6+5 火焰伤害。</div>\n<div class=\"bold bg-power\">费余额共计（火焰）✦遭遇</div>\n<div class=description>该凤羽鸟飞行其速度的格数而不引发借机攻击，且它在该移动中的任一时点进行一次爪击攻<br>击或火羽攻击。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}死亡爆发（火焰，结界）</div>\n<div class=description>触发：当该凤羽鸟的生命值降到 0 时。<br>攻击：近程爆发 2，+13 vs. 反射<br>命中：3d8+5 火焰伤害。<br>效果：爆发生成一个火焰的结界持续直到遭遇结束。所有进入该结界或在其内开始回合的生物受到 5 点火焰伤害。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 13（+7）</span><span>''敏捷'' 23（+12）</span><span>''感知'' 14（+8）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 10（+6）</span><span>''智力'' 10（+6）</span><span>''魅力'' 18（+10）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 通用语，荒神语</span></div></div>\n</div>",
+    "title": "凤羽鸟 Phoera",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "12",
+    "role": "游击",
+    "specialty-role": "精英",
+    "size": "中型",
+    "origin": "元素界",
+    "creature-type": "魔法兽（火系）",
+    "xp": "350",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "8671"
+  }
+]

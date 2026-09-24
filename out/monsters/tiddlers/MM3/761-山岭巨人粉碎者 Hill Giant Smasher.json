@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>11级 蛮战</span></div>\n<div class=bg-title><span>大型 自然界 类人生物（巨人）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 137；''重伤'' 68</span><span>''先攻'' +7</span></div>\n<div><span>''AC'' 23，''强韧'' 24，''反射'' 20，''意志'' 23</span><span>''侦查'' +8</span></div>\n<div><span>''速度'' 8</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">灵活</div>\n<div class=description>在其每个回合开始时，该山岭巨人粉碎者可以对一个可以被豁免终止的效果进行一次豁免掷<br>骰。该效果必须包含有定身、受缚或迟缓效果。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}巨木棒（武器）✦随意</div>\n<div class=description>攻击：近战 2（一个生物）+16vs.AC<br>命中：2d10+10 伤害，且邻接该山岭巨人粉碎者的另一个敌人受到 7 点伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}野蛮粉碎（武器）✦充能（如果该威能失手）</div>\n<div class=description>攻击：近战 2（一个生物）+16vs.AC<br>命中：4d10+14 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}旋风粉碎（武器）✦遭遇</div>\n<div class=description>攻击：近程爆发 2（爆发内所有敌人）+16vs.AC<br>命中：2d10+8 伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}执着粉碎</div>\n<div class=description>触发：该山岭巨人粉碎者的生命值降到 0。<br>效果（直觉打断）：该山岭巨人粉碎者移动其速度一半的格数并进行一次巨木棒攻击。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 运动+15</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 21（+10）</span><span>''敏捷'' 14（+7）</span><span>''感知'' 16（+8）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 17（+8）</span><span>''智力'' 7（+3）</span><span>''魅力'' 11（+5）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 巨人语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 革甲，巨木棒</span></div></div>\n</div>",
+    "title": "山岭巨人粉碎者 Hill Giant Smasher",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "11",
+    "role": "蛮战",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "自然界",
+    "creature-type": "类人生物（巨人）",
+    "xp": "600",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "11898"
+  }
+]

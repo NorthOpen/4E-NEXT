@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>17级 精英 伏击</span></div>\n<div class=bg-title><span>超大型 精界 类人生物（巨人）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 262；''重伤'' 131</span><span>''先攻'' +17</span></div>\n<div><span>''AC'' 31，''强韧'' 30，''反射'' 28，''意志'' 27</span><span>''侦查'' +17</span></div>\n<div><span>''豁免'' +2；''行动点'' 1</span><span>''感官'' 真视 6</span></div>\n<div><span>''速度'' 8</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}狂笑堕落</div>\n<div class=description>灵气 1：在该灵气内的敌人意志受到-2 减值。</div>\n<div class=\"bold bg-power\">无形狂热</div>\n<div class=description>废陋巨人狂笑者的攻击对一个看不见它的生物造成 4d6 额外伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}开膛破肚（武器）✦随意</div>\n<div class=description>攻击：触及 3，+22 vs. AC<br>命中：2d8+7 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}追心匕首（武器）✦随意</div>\n<div class=description>攻击：射程 10，以一个或两个生物为目标，+22 vs. AC<br>命中：2d8+7 伤害。<br>效果：该匕首在该废陋巨人狂笑者进行该攻击后返回。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}邪眼✦随意</div>\n<div class=description>攻击：射程 5，+20 vs. 意志<br>命中：目标视该废陋巨人狂笑者为隐形（豁免终止）。</div>\n<div class=\"bold bg-power\">改变体型✦随意</div>\n<div class=description>该废陋巨人狂笑者改变其体型为中型且它的开膛破肚的触及变为 1。该废陋巨人狂笑者可以<br>以一个次要动作恢复到它的正常体型和正常触及。</div>\n<div class=\"italic bg-flavortext\">（从左往右：废陋巨人屠夫，废陋巨人狂笑者）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 唬骗+14，隐秘+18</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 24（+15）</span><span>''敏捷'' 21（+13）</span><span>''感知'' 19（+12）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 23（+14）</span><span>''智力'' 15（+10）</span><span>''魅力'' 13（+9）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 精灵语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 2 把匕首</span></div></div>\n</div>",
+    "title": "废陋巨人狂笑者 Fomorian Cackler",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "17",
+    "role": "伏击",
+    "specialty-role": "精英",
+    "size": "超大型",
+    "origin": "精界",
+    "creature-type": "类人生物（巨人）",
+    "xp": "3200",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "7185"
+  }
+]

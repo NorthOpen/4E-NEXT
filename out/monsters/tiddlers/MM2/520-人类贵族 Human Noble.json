@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>5级 头目 控制</span></div>\n<div class=bg-title><span>中型 自然界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 60；''重伤'' 30</span><span>''先攻'' +3</span></div>\n<div><span>''AC'' 19，''强韧'' 17，''反射'' 17，''意志'' 18</span><span>''侦查'' +3</span></div>\n<div><span>''速度'' 5</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">受保护</div>\n<div class=description>当有盟友邻接它的时候人类贵族的所有防御获得+2 加值。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}长剑（武器）✦随意</div>\n<div class=description>攻击：+10 vs. AC<br>命中：1d8+3 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}任命勇士✦随意</div>\n<div class=description>近程爆发 10；以一个盟友为目标；目标以一个自由动作进行一次基本攻击并在该攻击前或<br>攻击后快步 1 格。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}鼓舞人心的权威✦遭遇</div>\n<div class=description>近程爆发 10；以一个盟友为目标；目标以一个自由动作使用一个随意、遭遇或充能攻击威<br>能。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}煽动迟疑（魅惑）✦遭遇</div>\n<div class=description>攻击：近程爆发 5，以敌人为目标，+9 vs. 意志<br>命中：目标不能在其下回合使用标准动作。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 交涉+10，洞察+8，威吓+10</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 15（+4）</span><span>''敏捷'' 12（+3）</span><span>''感知'' 12（+3）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 12（+3）</span><span>''智力'' 14（+4）</span><span>''魅力'' 16（+5）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 通用语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 链甲，轻盾，长剑</span></div></div>\n</div>",
+    "title": "人类贵族 Human Noble",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "5",
+    "role": "控制",
+    "specialty-role": "头目",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物",
+    "xp": "200",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "8007"
+  }
+]

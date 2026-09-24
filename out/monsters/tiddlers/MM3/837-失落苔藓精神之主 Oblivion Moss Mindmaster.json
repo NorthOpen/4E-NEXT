@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>12级 精英 控制</span></div>\n<div class=bg-title><span>大型 精界 魔法兽（植物）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 250；''重伤'' 125</span><span>''先攻'' +6</span></div>\n<div><span>''AC'' 26，''强韧'' 24，''反射'' 22，''意志'' 25</span><span>''侦查'' +12</span></div>\n<div><span>''豁免'' +2；''行动点'' 1</span><span>''感官'' 盲视 20，心灵感应 10</span></div>\n<div><span>''速度'' 2（森林行者），攀爬 2</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}精神盲区✦灵气 1</div>\n<div class=description>任何在该灵气内开始回合的敌人视该失落苔藓精神之主为隐形直到该敌人下回合开始。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}腐蚀之触（强酸）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+17vs.AC<br>命中：1d8+5 强酸伤害，以及 10 点持续强酸伤害（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}扰乱精神（心灵）✦随意</div>\n<div class=description>攻击：射程 10（一个生物）+15vs.意志<br>命中：3d6+7 心灵伤害，且该失落苔藓精神之主滑移目标 5 格。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}洗刷精神（心灵）✦随意</div>\n<div class=description>攻击：射程 10（一个生物）+15vs.意志<br>命中：3d6+7 心灵伤害，且该失落苔藓精神之主或是它的一个盟友对目标隐形直到该失落苔藓精神之主下回合结束。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}吸收记忆（心灵）✦充能（当没有苔藓人复制体存在时）</div>\n<div class=description>攻击：射程 5（一个敌人）+15vs.意志<br>命中：目标晕眩且不能使用其遭遇或每日攻击威能（豁免终止两者）。<br>效果：该失落苔藓精神之主在该失落苔藓精神之主 5 格内生成一个目标的苔藓人复制体。选择一个最能反映目标的职能和威能的苔藓人杂兵。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">引导苔藓✦随意（一轮一次）</div>\n<div class=description>效果：该失落苔藓精神之主 10 格内的一个苔藓人杂兵可以以一个自由动作移动其速度的格<br>数。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">吸收伤害✦随意</div>\n<div class=description>触发：该失落苔藓精神之主 20 格内的一个苔藓人受到伤害。<br>效果（直觉打断）：该失落苔藓精神之主代替该苔藓人受到该伤害。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 17（+9）</span><span>''敏捷'' 10（+6）</span><span>''感知'' 23（+12）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 21（+11）</span><span>''智力'' 19（+10）</span><span>''魅力'' 16（+9）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 通用语，心灵感应 10</span></div></div>\n</div>",
+    "title": "失落苔藓精神之主 Oblivion Moss Mindmaster",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "12",
+    "role": "控制",
+    "specialty-role": "精英",
+    "size": "大型",
+    "origin": "精界",
+    "creature-type": "魔法兽（植物）",
+    "xp": "1400",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "13254"
+  }
+]

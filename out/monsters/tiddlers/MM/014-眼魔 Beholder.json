@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>9级 强者 远程</span></div>\n<div class=bg-title><span>大型 异界 魔法兽</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 392；''重伤'' 196</span><span>''先攻'' +9</span></div>\n<div><span>''AC'' 23，''强韧'' 21，''反射'' 22，''意志'' 22</span><span>''侦查'' +11</span></div>\n<div><span>''豁免'' +5；''行动点'' 2</span><span>''感官'' 黑暗视觉，全域视野</span></div>\n<div><span>''速度'' 0，飞行 4（盘旋）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">全域视野</div>\n<div class=description>敌人不能通过夹击对该眼魔获得战斗优势。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+14vs.AC<br>命中：2d8+8 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}眼魔射线✦随意</div>\n<div class=description>效果：该眼魔使用下列的两种眼魔射线，每种眼魔射线各对不同的目标使用。该攻击不会引发借机攻击。 1-魅惑射线（魅惑）：射程 10；+14vs.意志；目标受控直到其下回合结束。<br>2-创伤射线（黯蚀）：射程 10；+14vs.强韧；2d10+6 黯蚀伤害。<br>3-昏睡射线（魅惑）：射程 10；+14vs.意志；目标定身（豁免终止）。首次豁免失败时：目标昏迷代替定身（豁免终止）。<br>4-念动射线：射程 10；+14vs.强韧；该眼魔滑移目标最多 4 格。<br>5-迟缓射线（黯蚀）：射程 10；+14vs.反射；3d6+5 黯蚀伤害，且目标迟缓（豁免终止）。<br>6-光耀射线（光耀）：射程 10；+14vs.意志；1d6+5 光耀伤害，且目标目盲（豁免终止）。<br>攻击：7-恐怖射线（恐惧，心灵）：射程 10，+14 vs. 意志<br>命中：2d8+5 心灵伤害，且该眼魔推动目标其速度的格数。<br>8-石化射线：射线 10；+14vs.强韧；目标石化（豁免终止）。后效：目标定身（豁免结束）。<br>9-死亡射线（黯蚀）：射程 10；+14vs.强韧；2d8+10 黯蚀伤害。如果目标在该攻击之前或之后重伤，则目标晕眩（豁免终止）。<br>首次豁免失败时：目标晕眩且虚弱（豁免终止两者）。第二次豁免失败时：目标死亡。<br>10-解离射线：射程 10；+14vs.强韧；1d8+5 伤害，以及 10 点持续伤害（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}眼魔射线狂怒✦充能 6{{$:/dnd/images/six}}</div>\n<div class=description>前提：该眼魔必须处于重伤。<br>效果：如上述眼魔射线，只是该眼魔可以进行三种眼魔射线攻击。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}主眼✦随意（一轮一次）</div>\n<div class=description>攻击：近程冲击 5（范围内所有敌人）+12vs.意志<br>命中：目标不能使用遭遇或每日攻击威能直到其下回合结束。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}随机眼魔射线✦随意</div>\n<div class=description>触发：该眼魔有意识且一个敌人在它 5 格内开始回合。<br>效果（无动作）：该眼魔对触发的敌人使用一种随机的眼魔射线。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 18（+8）</span><span>''敏捷'' 20（+9）</span><span>''感知'' 15（+6）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 18（+8）</span><span>''智力'' 19（+8）</span><span>''魅力'' 20（+9）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 异怪语</span></div></div>\n</div>",
+    "title": "眼魔 Beholder",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "9",
+    "role": "远程",
+    "specialty-role": "强者",
+    "size": "大型",
+    "origin": "异界",
+    "creature-type": "魔法兽",
+    "xp": "2000",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "197"
+  }
+]

@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>22级 头目 远程</span></div>\n<div class=bg-title><span>中型 自然界 类人生物（不死生物）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 156；''重伤'' 78</span><span>''先攻'' +16</span></div>\n<div><span>''AC'' 36，''强韧'' 32，''反射'' 36，''意志'' 35</span><span>''侦查'' +14</span></div>\n<div><span>''免疫'' 疾病，毒素；''抗力'' 20 黯蚀</span><span>''感官'' 黑暗视觉</span></div>\n<div><span>''速度'' 6</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}死灵气场（黯蚀）✦灵气 5{{$:/dnd/images/five}}</div>\n<div class=description>任何在该灵气内结束回合的活体生物受到 10 点黯蚀伤害。每当该巫妖受到光耀伤害时，其<br>灵气解除直到该巫妖下回合结束。</div>\n<div class=\"bold bg-power\">命匣</div>\n<div class=description>当该巫妖的生命值降到 0 时，其身体和个人物品都化为灰烬且它消失，但是它并未被摧毁。<br>在 1d10 天后它在它的命匣一格内重现（连同它的个人物品），除非该命匣被摧毁。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}吸血鬼之触（医疗，黯蚀）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+25vs.强韧<br>命中：4d8+6 黯蚀伤害，且该巫妖恢复等值于该伤害的生命值。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}暗黑之矢（闪电，黯蚀）✦随意</div>\n<div class=description>攻击：射程 20（一或两个生物）+27vs.反射<br>命中：3d6+10 闪电和黯蚀伤害，且一个邻接目标的盟友快步最多两格。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/area}}黑炎（火焰，黯蚀）✦充能（首次重伤时）</div>\n<div class=description>攻击：区域 10 爆发 2（范围内所有敌人）+27vs.反射<br>命中：3d10+8 火焰和黯蚀伤害，且目标受到 15 点持续火焰和黯蚀伤害并提供战斗优势（豁免终止两者）。<br>失手：一半伤害，以及 10 点持续火焰和黯蚀伤害（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">移动动作</div>\n<div class=\"bold bg-power\">暗影步（瞬移）✦遭遇</div>\n<div class=description>效果：该巫妖瞬移最多其两倍速度。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 神秘+24，历史+24，洞察+19</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 14（+13）</span><span>''敏捷'' 20（+16）</span><span>''感知'' 17（+14）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 18（+15）</span><span>''智力'' 27（+19）</span><span>''魅力'' 24（+18）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 深渊语，通用语，精灵语</span></div></div>\n</div>",
+    "title": "巫妖勾魂者 Lich Soulreaver",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "22",
+    "role": "远程",
+    "specialty-role": "头目",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物（不死生物）",
+    "xp": "4150",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "2987"
+  }
+]

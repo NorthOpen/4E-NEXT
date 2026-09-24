@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>16级 远程</span></div>\n<div class=bg-title><span>中型 星界 活化生物（不死生物）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 116；''重伤'' 58</span><span>''先攻'' +12</span></div>\n<div><span>''AC'' 28，''强韧'' 26，''反射'' 27，''意志'' 28</span><span>''侦查'' +11</span></div>\n<div><span>''免疫'' 疾病，恐惧，毒素；''抗力'' 15 黯蚀；''易伤'' 5 火焰，5 光耀</span><span>''感官'' 黑暗视觉</span></div>\n<div><span>''速度'' 6，飞行 6（盘旋）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}恐惧蠕虫（恐惧）✦灵气 1</div>\n<div class=description>在该灵气内的活体生物对该凯斯之先驱的攻击骰受到-2 减值。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}缠绕之主（黯蚀）✦灵气 1</div>\n<div class=description>任何在该灵气内开始回合的敌人受到 10 点黯蚀伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}腐烂之拥（疾病，黯蚀）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+21vs.AC<br>命中：2d6+4 黯蚀伤害，且目标暴露在凯斯之触之下。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}缠绕宣告（疾病，黯蚀）✦随意</div>\n<div class=description>攻击：射程 20（一个生物）+21vs.强韧<br>命中：2d6+10 黯蚀伤害，以及 5 点持续黯蚀伤害（豁免终止）。此外，目标暴露在凯斯之触之下。<br>首次豁免失败时：该持续伤害增加到 10 点，且目标晕眩（豁免终止两者）。<br>第二次豁免失败时：该持续伤害增加到 15 点，且目标改晕眩为震慑（豁免终止两者）。特殊：被该攻击杀死的类人生物的尸体在该凯斯之先驱下回合开始时变成一个凯斯之悲惨者。要复活该生物之前必须先摧毁该凯斯之悲惨者。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/area}}蛆虫喷发（疾病，黯蚀，结界）✦遭遇</div>\n<div class=description>攻击：区域 10 爆发 2（爆发内所有活体生物）+21vs.强韧<br>命中：2d6+6 黯蚀伤害，以及 5 点持续黯蚀伤害（豁免终止）。此外，目标暴露在凯斯之触之下。<br>效果：该爆发生成一个结界持续直到遭遇结束。任何进入该结界或在其内结束回合的活体生<br>物受到 15 点黯蚀伤害。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 11（+8）</span><span>''敏捷'' 19（+12）</span><span>''感知'' 17（+11）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 14（+10）</span><span>''智力'' 6（+6）</span><span>''魅力'' 22（+14）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span></div></div>\n</div>",
+    "title": "凯斯之先驱 Herald of Kyuss",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "16",
+    "role": "远程",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "星界",
+    "creature-type": "活化生物（不死生物）",
+    "xp": "1400",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "13904"
+  }
+]

@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>17级 游击</span></div>\n<div class=bg-title><span>中型 元素界 类人生物（恶魔），兽人</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 165；''重伤'' 82</span><span>''先攻'' +12</span></div>\n<div><span>''AC'' 31，''强韧'' 29，''反射'' 28，''意志'' 28</span><span>''侦查'' +11</span></div>\n<div><span>''抗力'' 5 火焰</span><span>''感官'' 黑暗视觉</span></div>\n<div><span>''速度'' 6</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">灵敏反应</div>\n<div class=description>该半魔兽人掠夺者对抗借机攻击的 AC 获得+4 加值。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}巨斧（武器）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+22vs.AC<br>命中：2d12+12 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}野蛮暴怒✦随意</div>\n<div class=description>效果：该半魔兽人掠夺者移动其速度的格数且可以在该移动中移动穿过敌人的空间。在该移动中的任一时点，该半魔兽人掠夺者可以进行一次巨斧攻击。该半魔兽人掠夺者进行该攻击<br>前在该移动中每有一次借机攻击对它进行它在该伤害骰中便获得+5 加值。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}手斧（武器）✦随意</div>\n<div class=description>攻击：射程 5/10（一个生物）+22vs.AC<br>命中：2d6+12 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}火焰粉碎（火焰，武器）✦遭遇</div>\n<div class=description>攻击：近战 1（一个生物）+20vs.强韧<br>命中：2d12+10 火焰伤害，且目标受到 15 点持续火焰伤害并提供战斗优势（豁免终止两者）。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">不屈狂怒</div>\n<div class=description>触发：该半魔兽人掠夺者的生命值首次降到 0。<br>效果（无动作）：该半魔兽人掠夺者改为拥有 1 点生命值，且它的攻击骰获得+2 加值以及伤害骰获得+4 加值直到遭遇结束。</div>\n<div class=\"italic bg-flavortext\">（半魔兽人掠夺者）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 运动+19</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 22（+14）</span><span>''敏捷'' 15（+10）</span><span>''感知'' 17（+11）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 21（+13）</span><span>''智力'' 8（+7）</span><span>''魅力'' 10（+8）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 深渊语，通用语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 革甲，巨斧，3 把手斧</span></div></div>\n</div>",
+    "title": "半魔兽人掠夺者 Tanarukk Marauder",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "17",
+    "role": "游击",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "元素界",
+    "creature-type": "类人生物（恶魔），兽人",
+    "xp": "1600",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "14116"
+  }
+]

@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>30级 蛮战</span></div>\n<div class=bg-title><span>大型 星界 活化生物（构装体）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 341；''重伤'' 170</span><span>''先攻'' +22</span></div>\n<div><span>''AC'' 40，''强韧'' 44，''反射'' 41，''意志'' 42</span><span>''侦查'' +23</span></div>\n<div><span>''速度'' 6</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">惩戒波动</div>\n<div class=description>每当该阿莫斯之光受到伤害时，该生物 2 格内的所有敌人受到 5 点伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}愤怒铁拳✦随意</div>\n<div class=description>攻击：近战 2（一个生物）+35vs.AC<br>命中：4d10+20 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}死亡狂怒✦充能 6{{$:/dnd/images/six}}</div>\n<div class=description>效果：该阿莫斯之光对其两格内的每个敌人进行一次愤怒铁拳攻击。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}卡兰杜冷的遗赠（寒冷）✦遭遇</div>\n<div class=description>攻击：近程爆发 2（爆发内所有敌人）+32vs.强韧<br>命中：4d10+20 寒冷伤害，且目标定身（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">解放天启✦遭遇</div>\n<div class=description>触发：一个敌人对该阿莫斯之光造成重击或该阿莫斯之光首次重伤。<br>效果（无动作）：该阿莫斯之光创造一个其自身的分身，该分身出现在最近的不被占据的格子。该分身拥有与该阿莫斯之光相同的生命值，被视为与该阿莫斯之光消耗掉了同样的威能，且在该阿莫斯之光的回合行动。该阿莫斯之光身上的任何效果都不会带到分身身上。在该阿莫斯之光下回合结束时，该分身消失。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 28（+24）</span><span>''敏捷'' 25（+22）</span><span>''感知'' 27（+23）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 31（+25）</span><span>''智力'' 9（+14）</span><span>''魅力'' 24（+22）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 天界语</span></div></div>\n</div>",
+    "title": "阿莫斯之光 Light of Amoth",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "30",
+    "role": "蛮战",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "星界",
+    "creature-type": "活化生物（构装体）",
+    "xp": "19000",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "9615"
+  }
+]

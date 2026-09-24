@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>9级 精英 蛮战</span></div>\n<div class=bg-title><span>超大型 自然界 野兽（坐骑，鳞爪类）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 234；''重伤'' 117</span><span>''先攻'' +6</span></div>\n<div><span>''AC'' 21，''强韧'' 23，''反射'' 19，''意志'' 21</span><span>''侦查'' +7</span></div>\n<div><span>''豁免'' +2；''行动点'' 1</span><span></span></div>\n<div><span>''速度'' 6</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">兽王（坐骑）</div>\n<div class=description>当该尖角比蒙有一个 LV9 或以上的友方骑手骑乘它时，该骑手的 AC 和反射获得+1 加值。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}角抵✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+14vs.AC<br>命中：3d10+5 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}双重攻击✦随意</div>\n<div class=description>效果：该尖角比蒙进行两次角抵攻击。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}践踏✦遭遇</div>\n<div class=description>效果：该尖角比蒙快步两倍其速度的格数且在该移动中可以进入敌人的空间。每当该尖角比<br>蒙在该移动中首次进入一个敌人的空间时，它可以对那敌人进行一次角抵攻击。</div>\n<div class=\"italic bg-flavortext\">（尖角比蒙）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 20（+9）</span><span>''敏捷'' 14（+6）</span><span>''感知'' 16（+7）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 17（+7）</span><span>''智力'' 4（+1）</span><span>''魅力'' 9（+3）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n</div>",
+    "title": "尖角比蒙 Spirehorn Behemoth",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "9",
+    "role": "蛮战",
+    "specialty-role": "精英",
+    "size": "超大型",
+    "origin": "自然界",
+    "creature-type": "野兽（坐骑，鳞爪类）",
+    "xp": "800",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "9767"
+  }
+]

@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>27级 护卫</span></div>\n<div class=bg-title><span>超大型 元素界 活化生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 248；''重伤'' 124</span><span>''先攻'' +24</span></div>\n<div><span>''AC'' 43，''强韧'' 39，''反射'' 40，''意志'' 38</span><span>''侦查'' +20</span></div>\n<div><span>''免疫'' 魅惑，恐惧；''抗力'' 5 全伤害</span><span>''感官'' 黑暗视觉，真视 10</span></div>\n<div><span>''速度'' 8</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}爪击✦随意</div>\n<div class=description>攻击：触及 3，+34 vs. AC<br>命中：2d8+8 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}寻猎（只能在该巡猎者没有擒抱生物的时候使用）✦随意</div>\n<div class=description>攻击：触及 3，+30 vs. 强韧<br>命中：2d8+8 伤害，且目标被擒抱。该巡猎者可以移动被它擒抱的生物而不<br>用进行力量攻击。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}眼睛射线（强酸，寒冷，火，每轮充能一种射线——投 d4 决定哪一种）</div>\n<div class=description>焰，雷鸣<br>该巡猎者发射所有的射线只以一个标准动作，但是每个射线的目标必须是不同的：射程 10；<br>+32vs.反射。<br>1-强酸射线：2d10+9 强酸伤害，且目标目盲（豁免终止）。<br>2-寒冷射线：2d10+9 寒冷伤害，且目标定身（豁免终止）。<br>3-火焰射线：2d10+9 火焰伤害，且目标受到 15 点持续火焰伤害（豁免终止）。<br>4-雷鸣射线：2d10+9 雷鸣伤害，且目标震慑（豁免终止）。</div>\n<div class=\"bold bg-power\">绝对精准（瞬移）✦每日</div>\n<div class=description>该巡猎者能够感知到它被命令去搜查的某个目标或是某种类型的生物（离得最近的）的大致位置。该巡猎者瞬移到该目标 10 格内的一个空间。当该巡猎者使用该威能时目标不需要一<br>定跟它在同一个位面。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">自我修复（医疗）</div>\n<div class=description>触发：当首次重伤时充能。<br>该巡猎者恢复 20 点生命值且 AC 获得+4 加值直到其下回合开始。</div>\n<div class=\"italic bg-flavortext\">（巡猎者）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 26（+21）</span><span>''敏捷'' 29（+22）</span><span>''感知'' 25（+20）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 24（+20）</span><span>''智力'' 2（+9）</span><span>''魅力'' 10（+13）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n</div>",
+    "title": "巡猎者 Retriever",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "27",
+    "role": "护卫",
+    "specialty-role": "",
+    "size": "超大型",
+    "origin": "元素界",
+    "creature-type": "活化生物",
+    "xp": "11000",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "8699"
+  }
+]

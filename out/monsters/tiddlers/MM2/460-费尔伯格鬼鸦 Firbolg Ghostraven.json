@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>16级 精英 伏击</span></div>\n<div class=bg-title><span>大型 精界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 238；''重伤'' 119</span><span>''先攻'' +18</span></div>\n<div><span>''AC'' 30，''强韧'' 28，''反射'' 29，''意志'' 28</span><span>''侦查'' +18</span></div>\n<div><span>''易伤'' 黯蚀（如果该费尔伯格鬼鸦受到黯蚀伤害，则它的再生在其下回合失效）；''豁免'' +2；''行动点'' 1</span><span>''感官'' 昏暗视觉</span></div>\n<div><span>''速度'' 8</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">鬼鸦打击</div>\n<div class=description>当该费尔伯格鬼鸦命中一个在该费尔伯格鬼鸦的回合开始时看不见该费尔伯格鬼鸦的目标<br>时，该攻击造成 2d8 额外伤害。</div>\n<div class=\"bold bg-power\">猎人飞行</div>\n<div class=description>费尔伯格鬼鸦在跳跃或以一半速度飞行时不引发借机攻击。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}重型战镐（武器）✦随意</div>\n<div class=description>攻击：触及 2，+21 vs. AC<br>命中：1d12+7 伤害（重击则为 2d12+19 伤害）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}双重攻击✦随意</div>\n<div class=description>该费尔伯格鬼鸦进行两次重型战镐攻击。如果该费尔伯格鬼鸦的这两次攻击命中两个目标，<br>则该费尔伯格鬼鸦选择其中一个目标目盲（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}月火✦充能 4,5,6{{$:/dnd/images/four}}{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：射程 10，+19 vs. 意志<br>命中：直到该费尔伯格鬼鸦下回合结束，目标不能从隐形或隐蔽获得增益。</div>\n<div class=\"bold bg-power\">鬼鸦形态（变形）✦随意</div>\n<div class=description>直到该费尔伯格鬼鸦攻击，它获得虚体和相位移动以及等值于其步行速度的飞行速度（笨拙）。在昏暗和黑暗环境下，它在该形态下拥有隐蔽。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 运动+19，自然+18，隐秘+19</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 20（+13）</span><span>''敏捷'' 23（+14）</span><span>''感知'' 21（+13）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 17（+11）</span><span>''智力'' 13（+9）</span><span>''魅力'' 15（+10）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 通用语，精灵语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 皮甲，乌鸦头盔，重型战镐</span></div></div>\n</div>",
+    "title": "费尔伯格鬼鸦 Firbolg Ghostraven",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "16",
+    "role": "伏击",
+    "specialty-role": "精英",
+    "size": "大型",
+    "origin": "精界",
+    "creature-type": "类人生物",
+    "xp": "2800",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "7140"
+  }
+]

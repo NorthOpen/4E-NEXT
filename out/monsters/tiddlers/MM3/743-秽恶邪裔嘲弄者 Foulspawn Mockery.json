@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>10级 控制</span></div>\n<div class=bg-title><span>中型 异界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 104；''重伤'' 52</span><span>''先攻'' +8</span></div>\n<div><span>''AC'' 24，''强韧'' 19，''反射'' 22，''意志'' 20</span><span>''侦查'' +9</span></div>\n<div><span>''速度'' 6，瞬移 3</span><span>''感官'' 昏暗视觉，心灵感应 10</span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+15vs.AC<br>命中：3d6+6 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}精神追猎（心灵）✦随意</div>\n<div class=description>攻击：射程 5（一个生物）+13vs.意志<br>命中：2d6+6 心灵伤害。在目标下回合结束时，如果它没有邻接任何其盟友，则它受到 10<br>点心灵伤害以及 10 点持续心灵伤害（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/area}}疯狂爆发（心灵）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：区域 10 爆发 1（爆发内所有敌人）+13vs.意志<br>命中：2d6+6 心灵伤害，且目标晕眩（豁免终止）。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 18（+9）</span><span>''敏捷'' 17（+8）</span><span>''感知'' 18（+9）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 16（+8）</span><span>''智力'' 15（+7）</span><span>''魅力'' 21（+10）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 异怪语，心灵感应 10</span></div></div>\n</div>",
+    "title": "秽恶邪裔嘲弄者 Foulspawn Mockery",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "10",
+    "role": "控制",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "异界",
+    "creature-type": "类人生物",
+    "xp": "500",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "11612"
+  }
+]

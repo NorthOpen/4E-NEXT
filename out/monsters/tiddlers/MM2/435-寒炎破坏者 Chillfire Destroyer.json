@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>14级 蛮战</span></div>\n<div class=bg-title><span>大型 元素界 魔法兽（寒系，火系）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 173；''重伤'' 86</span><span>''先攻'' +12</span></div>\n<div><span>''AC'' 26，''强韧'' 26，''反射'' 25，''意志'' 25</span><span>''侦查'' +12</span></div>\n<div><span>''免疫'' 疾病，毒素；''抗力'' 10 寒冷，10 火焰</span><span></span></div>\n<div><span>''速度'' 5</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}泄露火核（火焰）</div>\n<div class=description>灵气 2：在该寒炎破坏者重伤的时候，所有在该灵气内开始回合的生物受到 10 点火焰伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}寒冻击打（寒冷）✦随意</div>\n<div class=description>攻击：触及 2，+17 vs. AC<br>命中：1d12+6 伤害以及 1d12 寒冷伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}践踏（寒冷）✦随意</div>\n<div class=description>该寒炎破坏者移动其速度的格数且可以移动穿过敌人的空间。该寒炎破坏者进行该攻击：<br>攻击：+15 vs. 反射<br>命中：1d10+6 伤害以及 1d10 寒冷伤害，且目标倒地。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}火核破灭（火焰）</div>\n<div class=description>触发：当该寒炎破坏者生命值降到 0 时。<br>该寒炎破坏者不会死亡直到其下回合开始。在此之前，该寒炎破坏者不能进行动作。在该寒<br>攻击：炎破坏者下回合开始时，它进行该攻击：近程爆发 3，+15 vs. 反射<br>命中：4d10+6 火焰伤害。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 16（+10）</span><span>''敏捷'' 20（+12）</span><span>''感知'' 20（+12）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 23（+13）</span><span>''智力'' 5（+4）</span><span>''魅力'' 12（+8）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 荒神语</span></div></div>\n</div>",
+    "title": "寒炎破坏者 Chillfire Destroyer",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "14",
+    "role": "蛮战",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "元素界",
+    "creature-type": "魔法兽（寒系，火系）",
+    "xp": "1000",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "6838"
+  }
+]

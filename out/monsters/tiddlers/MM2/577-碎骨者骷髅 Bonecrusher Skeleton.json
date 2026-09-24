@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>7级 护卫</span></div>\n<div class=bg-title><span>大型 自然界 活化生物（不死生物），牛头人</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 80；''重伤'' 40</span><span>''先攻'' +10</span></div>\n<div><span>''AC'' 22，''强韧'' 21，''反射'' 21，''意志'' 19</span><span>''侦查'' +6</span></div>\n<div><span>''免疫'' 疾病，毒素；''抗力'' 10 黯蚀；''易伤'' 5 光耀</span><span>''感官'' 黑暗视觉</span></div>\n<div><span>''速度'' 8</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">长距威胁</div>\n<div class=description>碎骨者骷髅可以对其触及范围（2 格）内的敌人进行借机攻击。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}巨木棒（武器）✦随意</div>\n<div class=description>攻击：触及 2，+13 vs. AC<br>命中：1d10+5 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}毁灭打击（武器）✦充能 6{{$:/dnd/images/six}}</div>\n<div class=description>攻击：触及 2，+13 vs. AC<br>命中：2d10+5 伤害，且目标倒地。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 20（+8）</span><span>''敏捷'' 21（+8）</span><span>''感知'' 16（+6）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 16（+6）</span><span>''智力'' 3（-1）</span><span>''魅力'' 3（-1）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 巨木棒</span></div></div>\n</div>",
+    "title": "碎骨者骷髅 Bonecrusher Skeleton",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "7",
+    "role": "护卫",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "自然界",
+    "creature-type": "活化生物（不死生物），牛头人",
+    "xp": "300",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "8835"
+  }
+]

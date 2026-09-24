@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>5级 游击</span></div>\n<div class=bg-title><span>中型 自然界 野兽</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 67；''重伤'' 33</span><span>''先攻'' +7</span></div>\n<div><span>''AC'' 19，''强韧'' 19，''反射'' 17，''意志'' 15</span><span>''侦查'' +11</span></div>\n<div><span>''抗力'' 5 寒冷</span><span>''感官'' 昏暗视觉</span></div>\n<div><span>''速度'' 7（冰雪行者）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">狂怒冲锋者</div>\n<div class=description>该耶提暴怒者的冲锋攻击造成 5 点额外伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}爪击✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+10vs.AC<br>命中：1d6+6 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}战嚎（恐惧，心灵）✦随意</div>\n<div class=description>攻击：射程 7（一个生物）+8vs.意志<br>命中：1d6+4 心灵伤害，且该耶提暴怒者对目标进行冲锋。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}践踏✦遭遇</div>\n<div class=description>效果：该耶提暴怒者快步其速度的格数且在该快步中可以进入敌人的空间。每当该耶提暴怒者在该快步中首次进入一个敌人的空间时，它对该敌人进行下述攻击。<br>攻击：近战 0；+8vs.反射<br>命中：1d6+4 伤害，且该敌人倒地。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}恐怖嚎叫（恐惧，雷鸣）✦遭遇</div>\n<div class=description>攻击：近程冲击 4（冲击内所有敌人）+8vs.意志<br>命中：1d10+6 雷鸣伤害，且该耶提暴怒者推动目标 3 格。</div>\n<div class=\"italic bg-flavortext\">（耶提）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 19（+6）</span><span>''敏捷'' 17（+5）</span><span>''感知'' 19（+6）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 19（+6）</span><span>''智力'' 11（+2）</span><span>''魅力'' 16（+5）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span></div></div>\n</div>",
+    "title": "耶提暴怒者 Yeti Rampager",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "5",
+    "role": "游击",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "野兽",
+    "xp": "200",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "14673"
+  }
+]

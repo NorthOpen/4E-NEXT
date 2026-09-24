@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>17级 杂兵 游击</span></div>\n<div class=bg-title><span>小型 元素界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 1；失手攻击无法伤害杂兵</span><span>''先攻'' +17</span></div>\n<div><span>''AC'' 31，''强韧'' 30，''反射'' 31，''意志'' 26</span><span>''侦查'' +10</span></div>\n<div><span>''速度'' 5，瞬移 3</span><span>''感官'' 昏暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}啮咬✦随意</div>\n<div class=description>攻击：+22 vs. AC<br>命中：13 点伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}混乱猛击✦随意</div>\n<div class=description>攻击：该史拉蟾衍体跳跃最多其速度的距离然后攻击一个邻接的敌人：+22 vs. AC<br>命中：12 点伤害，且<br>目标倒地。<br>失手：该史拉蟾衍体爆炸且生命值降为 0。然后该史拉蟾衍体进行以下近程爆发 1 攻击：<br>攻击：+20 vs. 反射<br>命中：9 点伤害。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 17（+11）</span><span>''敏捷'' 24（+15）</span><span>''感知'' 14（+10）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 22（+14）</span><span>''智力'' 3（+4）</span><span>''魅力'' 7（+6）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span></div></div>\n</div>",
+    "title": "史拉蟾衍体 Slaad Spawn",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "17",
+    "role": "游击",
+    "specialty-role": "杂兵",
+    "size": "小型",
+    "origin": "元素界",
+    "creature-type": "类人生物",
+    "xp": "400",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "8873"
+  }
+]

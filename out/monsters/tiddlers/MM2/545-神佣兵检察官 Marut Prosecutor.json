@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>21级 头目 控制</span></div>\n<div class=bg-title><span>中型 星界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 147；''重伤'' 73</span><span>''先攻'' +13</span></div>\n<div><span>''AC'' 35，''强韧'' 32，''反射'' 33，''意志'' 33</span><span>''侦查'' +21</span></div>\n<div><span>''免疫'' 睡眠；''抗力'' 10 雷鸣</span><span>''感官'' 真视 10</span></div>\n<div><span>''速度'' 8，飞行 4（盘旋），瞬移 4</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">正义约束</div>\n<div class=description>被迟缓、定身或受缚的生物对该神佣兵检察官的攻击骰受到-2 减值。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}击打（雷鸣）✦随意</div>\n<div class=description>攻击：+26 vs. AC<br>命中：1d10+4 伤害以及 1d6 雷鸣伤害，且目标迟缓（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}尖刻证言（心灵）✦随意</div>\n<div class=description>攻击：近程爆发 10，以一个敌人为目标，+25 vs. 意志<br>命中：3d6+7 心灵伤害，且目标的攻击骰、技能检<br>定和属性检定受到-2 减值（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}宣言✦随意</div>\n<div class=description>攻击：射程 10，+22 vs. 强韧<br>命中：目标定身（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}控告印记（心灵，只能在没有生物受该威能影响时使用）✦随意</div>\n<div class=description>攻击：近程爆发 10，以一个敌人为目标，+25 vs. 意志<br>命中：直到该神佣兵检察官下回合结束，目标提供战斗优势给该神佣兵检察官，且该神佣兵检察官与其盟友对该生物造成 5 点额外心灵伤害。<br>次要维持：该效果继续存在。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 洞察+21，威吓+22</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 18（+14）</span><span>''敏捷'' 16（+13）</span><span>''感知'' 23（+16）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 21（+15）</span><span>''智力'' 23（+16）</span><span>''魅力'' 24（+17）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 天界语</span></div></div>\n</div>",
+    "title": "神佣兵检察官 Marut Prosecutor",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "21",
+    "role": "控制",
+    "specialty-role": "头目",
+    "size": "中型",
+    "origin": "星界",
+    "creature-type": "类人生物",
+    "xp": "3200",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "8410"
+  }
+]

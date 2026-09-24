@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>16级 远程</span></div>\n<div class=bg-title><span>大型 自然界 类人生物（鳞爪类）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 125；''重伤'' 63</span><span>''先攻'' +13</span></div>\n<div><span>''AC'' 28，''强韧'' 29，''反射'' 28，''意志'' 28</span><span>''侦查'' +13</span></div>\n<div><span>''速度'' 7</span><span>''感官'' 昏暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">龙兽人狂怒（在重伤状态下）</div>\n<div class=description>每轮一次当该龙兽人毒射手攻击命中时，它获得 10 点临时生命值。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}长剑（武器）✦随意</div>\n<div class=description>攻击：+23 vs. AC<br>命中：2d8+4 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}长弓（武器）✦随意</div>\n<div class=description>攻击：射程 20/40，+23 vs. AC<br>命中：2d10+5 伤害，且目标获得 10 点毒素易伤（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}剧毒鸣叫（毒素）</div>\n<div class=description>触发：当该龙兽人毒射手在其回合开始时处于重伤时充能。<br>攻击：近程冲击 3，+21 vs. 反射<br>命中：1d10 毒素伤害，且目标受到 5 点持续毒素伤害（豁免终止）。</div>\n<div class=\"italic bg-flavortext\">（译注：以上三体龙兽人的体型都被官方勘误过，这里按照的是勘误后的版本） （从左往右：龙兽人伏击者，龙兽人狂暴者，龙兽人毒射手）</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 20（+13）</span><span>''敏捷'' 21（+13）</span><span>''感知'' 21（+13）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 23（+14）</span><span>''智力'' 15（+10）</span><span>''魅力'' 14（+10）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 通用语，龙语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 皮甲，长剑，长弓，30 支箭</span></div></div>\n</div>",
+    "title": "龙兽人毒射手 Drakkoth Venomshot",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "16",
+    "role": "远程",
+    "specialty-role": "",
+    "size": "大型",
+    "origin": "自然界",
+    "creature-type": "类人生物（鳞爪类）",
+    "xp": "1400",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "6665"
+  }
+]

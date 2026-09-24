@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>9级 控制</span></div>\n<div class=bg-title><span>中型 元素界 类人生物</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 97；''重伤'' 48</span><span>''先攻'' +6</span></div>\n<div><span>''AC'' 23，''强韧'' 19，''反射'' 21，''意志'' 21</span><span>''侦查'' +8</span></div>\n<div><span>''速度'' 6</span><span>''感官'' 昏暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}凋零法杖（黯蚀，武器）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+13vs.反射<br>命中：2d6+10 黯蚀伤害，且该鹫妖腐败者推动目标 2 格。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}凋零冲击（法器，黯蚀）✦随意</div>\n<div class=description>攻击：射程 5（一个生物）+13vs.意志<br>命中：2d8+4 黯蚀伤害，且目标定身（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}吞噬之火（法器，火焰）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：射程 5（一个生物）+13vs.强韧<br>命中：2d10+10 火焰伤害，以及 5 点持续火焰伤害（豁免终止）。每次豁免失败时：目标 3 格内的每个盟友受到 5 点火焰伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/area}}腐败诅咒（黯蚀，结界）✦遭遇</div>\n<div class=description>攻击：区域 10 爆发 3（爆发内所有敌人）+13vs.强韧命中：2d6+5 黯蚀伤害。<br>效果：该爆发生成一个结界持续直到遭遇结束。任何在该结界内的敌人不能恢复生命值。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}衰弱冲击（法器）✦遭遇</div>\n<div class=description>攻击：近程冲击 5（冲击内所有敌人）+13vs.意志<br>命中：目标虚弱直到该鹫妖腐败者下回合结束。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 神秘+13，唬骗+12，交涉+12，历史+13</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 12（+5）</span><span>''敏捷'' 14（+6）</span><span>''感知'' 19（+8）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 17（+7）</span><span>''智力'' 19（+8）</span><span>''魅力'' 16（+7）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 通用语，荒神语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 法杖</span></div></div>\n</div>",
+    "title": "鹫妖腐败者 Nagpa Corruptor",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "9",
+    "role": "控制",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "元素界",
+    "creature-type": "类人生物",
+    "xp": "400",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "12989"
+  }
+]

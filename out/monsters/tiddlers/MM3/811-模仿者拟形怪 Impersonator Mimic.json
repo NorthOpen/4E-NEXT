@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>16级 控制</span></div>\n<div class=bg-title><span>中型 异界 魔法兽</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 160；''重伤'' 80</span><span>''先攻'' +14</span></div>\n<div><span>''AC'' 30，''强韧'' 27，''反射'' 28，''意志'' 27</span><span>''侦查'' +13</span></div>\n<div><span>''抗力'' 10 强酸</span><span>''感官'' 黑暗视觉，震动感知 5</span></div>\n<div><span>''速度'' 6</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}击打✦随意</div>\n<div class=description>攻击：近战 2（一个生物）+21vs.AC<br>命中：3d8+11 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}强制洗脑（魅惑）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：近战 2（一个生物）+19vs.强韧<br>命中：目标受控（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}呼唤收割（魅惑）✦随意（一轮一次）</div>\n<div class=description>攻击：射程 10（一个生物）+19vs.意志<br>命中：该模仿者拟形怪滑移目标 4 格，且目标提供战斗优势直到该模仿者拟形怪下回合结束。</div>\n<div class=\"bold bg-power\">切换形态（变形）✦随意（一轮一次）</div>\n<div class=description>效果：该模仿者拟形怪呈现下面的一种形态。它不能改变其体型。它保持所选的形态直到它再次使用该威能。<br>泥型形态：该模仿者拟形怪变成一个泥型怪。当它在该形态下挤过时，它以完整的速度移动而不是一半速度。它不会因挤过而攻击骰受到-5 减值和提供战斗优势。<br>类人生物形态：该模仿者拟形怪的唬骗检定获得+4 加值。此外，它可以使用它杀过的最后一个类人生物所会的所有语言。<br>物体形态：在该形态下，该模仿者拟形怪拥有 10 点全伤害抗性，处于定身，且不能攻击。此外，一个生物必须进行一次 DC31 的侦查检定成功才能注意到该模仿者拟形怪是一个活体<br>生物。</div>\n<div class=\"bold font-size-h4 bg-category\">自由动作</div>\n<div class=\"bold bg-power\">吸收✦随意（一轮一次）</div>\n<div class=description>前提：该模仿者拟形怪只能在其回合中使用吸收。<br>效果：该模仿者拟形怪使一个邻接它或是占据其空间（参照拟形怪衍体的与主同行威能）的拟形怪衍体的生命值降到 0。当它这样做的时候，它获得 1 个行动点。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 21（+13）</span><span>''敏捷'' 22（+14）</span><span>''感知'' 20（+13）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 24（+15）</span><span>''智力'' 26（+16）</span><span>''魅力'' 24（+15）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 无</span><span style=flex-basis:auto>''语言'' 通用语，异怪语</span></div></div>\n</div>",
+    "title": "模仿者拟形怪 Impersonator Mimic",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "16",
+    "role": "控制",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "异界",
+    "creature-type": "魔法兽",
+    "xp": "1400",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "12805"
+  }
+]

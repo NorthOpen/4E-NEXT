@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>7级 蛮战</span></div>\n<div class=bg-title><span>中型 自然界 类人生物（鳞爪类）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 100；''重伤'' 50</span><span>''先攻'' +5</span></div>\n<div><span>''AC'' 19，''强韧'' 21，''反射'' 17，''意志'' 19</span><span>''侦查'' +6</span></div>\n<div><span>''速度'' 5</span><span>''感官'' 黑暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}战蜥人恶臭✦灵气 1</div>\n<div class=description>活体敌人在该灵气内攻击骰受到-2 减值。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}爪击✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+12vs.AC<br>命中：4d6+5 伤害。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}牙爪✦随意</div>\n<div class=description>攻击：近战 1（一或两个生物）+12vs.AC（若该战蜥人只以一个生物为目标，则它可以对该生物进行两次该攻击）<br>命中：2d6+2 伤害。如果该攻击使目标重伤，则该战蜥人对目标使用爪击。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 18（+7）</span><span>''敏捷'' 15（+5）</span><span>''感知'' 16（+6）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 20（+8）</span><span>''智力'' 4（+0）</span><span>''魅力'' 11（+3）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 龙语</span></div></div>\n</div>",
+    "title": "战蜥人打击者 Troglodyte Thrasher (LV7)#1",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "7",
+    "role": "蛮战",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "自然界",
+    "creature-type": "类人生物（鳞爪类）",
+    "xp": "300",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "4276"
+  }
+]

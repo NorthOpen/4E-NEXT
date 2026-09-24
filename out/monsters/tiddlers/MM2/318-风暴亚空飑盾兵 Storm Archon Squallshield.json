@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>17级 护卫</span></div>\n<div class=bg-title><span>中型 元素界 类人生物（气系，水系）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 168；''重伤'' 84</span><span>''先攻'' +15</span></div>\n<div><span>''AC'' 33，''强韧'' 30，''反射'' 30，''意志'' 26</span><span>''侦查'' +15</span></div>\n<div><span>''免疫'' 疾病，毒素；''抗力'' 15 闪电，15 雷鸣</span><span></span></div>\n<div><span>''速度'' 飞行 8（盘旋）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}雨墙</div>\n<div class=description>灵气 1；所有在该灵气内开始回合的敌人进行一次 DC22 的运动检定或杂技检定。该检定失败的敌人倒地。</div>\n<div class=\"bold bg-power\">暴风标记</div>\n<div class=description>当风暴亚空飑盾兵命中一个被其通过远程或近战攻击标记的生物时，该生物迟缓（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}长剑（武器）✦随意</div>\n<div class=description>攻击：+23 vs. AC<br>命中：2d8+7 伤害，且该风暴亚空飑盾兵标记目标直到该风暴亚空飑盾兵下回合结束。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/range}}咆哮闪电（闪电）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>攻击：射程 10，+21 vs. 反射<br>命中：2d8+7 闪电伤害，且该风暴亚空飑盾兵标记目标（豁免终止）。每个<br>邻接目标的敌人受到一半伤害并被该风暴亚空飑盾兵标记（豁免终止）。</div>\n<div class=\"bold font-size-h4 bg-category\">移动动作</div>\n<div class=\"bold bg-power\">风暴追猎（瞬移）✦充能 5,6{{$:/dnd/images/five}}{{$:/dnd/images/six}}</div>\n<div class=description>该风暴亚空飑盾兵瞬移 7 格到一个邻接一个被其标记的生物的空间。然后该生物提供给该风<br>暴亚空飑盾兵战斗优势直到该风暴亚空飑盾兵回合结束。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 19（+12）</span><span>''敏捷'' 20（+13）</span><span>''感知'' 15（+10）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 24（+15）</span><span>''智力'' 17（+11）</span><span>''魅力'' 17（+11）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 荒神语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 板甲，轻盾，长剑</span></div></div>\n</div>",
+    "title": "风暴亚空飑盾兵 Storm Archon Squallshield",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM2",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "17",
+    "role": "护卫",
+    "specialty-role": "",
+    "size": "中型",
+    "origin": "元素界",
+    "creature-type": "类人生物（气系，水系）",
+    "xp": "1600",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "5082"
+  }
+]

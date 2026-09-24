@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>11级 杂兵 护卫</span></div>\n<div class=bg-title><span>中型 星界 类人生物（魔鬼）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 1；失手攻击无法伤害杂兵</span><span>''先攻'' +8</span></div>\n<div><span>''AC'' 27，''强韧'' 24，''反射'' 23，''意志'' 21</span><span>''侦查'' +6</span></div>\n<div><span>''速度'' 6，瞬移 3</span><span>''感官'' 黑暗视觉</span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">方阵防御</div>\n<div class=description>该军团魔地狱守卫在邻接其他军团魔的时候 AC 获得+2 加值。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}长剑（火焰，武器）✦随意</div>\n<div class=description>攻击：近战 1（一个生物）+16vs.AC<br>命中：9 点伤害，且若目标在其下回合内主动移动则它受到 4 点火焰伤害。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 14（+7）</span><span>''敏捷'' 12（+6）</span><span>''感知'' 12（+6）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 14（+7）</span><span>''智力'' 10（+5）</span><span>''魅力'' 12（+6）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 邪恶</span><span style=flex-basis:auto>''语言'' 天界语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 长剑</span></div></div>\n</div>",
+    "title": "军团魔地狱守卫 Legion Devil  Hellguard",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "11",
+    "role": "护卫",
+    "specialty-role": "杂兵",
+    "size": "中型",
+    "origin": "星界",
+    "creature-type": "类人生物（魔鬼）",
+    "xp": "150",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "627"
+  }
+]

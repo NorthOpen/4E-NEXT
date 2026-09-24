@@ -1,0 +1,24 @@
+[
+  {
+    "created": "20260924184744924",
+    "text": "<div class=creature>\n<div class=\"bold font-size-h4 bg-title\"><span>{{!!title}}</span><span>32级 强者 控制</span></div>\n<div class=bg-title><span>超大型 元素界 类人生物（火系，荒神）</span><span>XP {{!!xp}}</span></div>\n<div><span>''HP'' 1140；''重伤'' 570</span><span>''先攻'' +27</span></div>\n<div><span>''AC'' 47，''强韧'' 42，''反射'' 45，''意志'' 44</span><span>''侦查'' +29</span></div>\n<div><span>''免疫'' 疾病，火焰；''豁免'' +5；''行动点'' 3</span><span>''感官'' 黑暗视觉</span></div>\n<div><span>''速度'' 10，飞行 8（盘旋）</span><span></span></div>\n<div class=\"bold font-size-h4 bg-category\">特性</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/aura}}凋零火焰✦灵气 5{{$:/dnd/images/five}}</div>\n<div class=description>在该灵气内的敌人无法获得火焰抗性的增益。</div>\n<div class=\"bold font-size-h4 bg-category\">标准动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}燃炎刃（火焰，武器）✦随意</div>\n<div class=description>攻击：近战 3（一个生物）+37vs.AC<br>命中：2d10+9 火焰伤害，以及 20 点持续火焰伤害（豁免终止）。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/meleebasic}}燃炎弧斩✦随意</div>\n<div class=description>效果：伊密克斯对触及范围内的每个敌人进行一次燃炎刃攻击。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}火山阵（火焰，结界）✦随意</div>\n<div class=description>效果：伊密克斯使其 10 格内的一个耀动火焰的生命值降为 0 并以该耀动火焰为中心进行下述攻击。<br>攻击：近程爆发 1（爆发内所有生物）+35vs.反射命中：6d6+19 火焰伤害。<br>效果：该爆发生成一个结界持续直到遭遇结束。任何进入该结界或在其内结束回合的敌人受<br>到 20 点火焰伤害。</div>\n<div class=\"bold bg-power\">火元素之仆（火焰）✦充能（当伊密克斯开始回合时其 10 格内没有耀动火焰）</div>\n<div class=description>效果：伊密克斯生成四个耀动火焰，在伊密克斯重伤时则为六个，每个都在它 10 格内的一个不被占据的格子。这些耀动火焰不能进行动作。任何邻接着一个或多个耀动火焰开始回合的生物受到 15 点火焰伤害。这些耀动火焰拥有等值于伊密克斯的防御值且每个都有 1 点生命值。失手攻击无法伤害耀动火焰。每个耀动火焰都会持续直到遭遇结束或直到伊密克斯在距离它超过 10 格的位置结束回合。以一个次要动作，伊密克斯可以移动每个耀动火焰最多<br>6 格。</div>\n<div class=\"bold font-size-h4 bg-category\">次要动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}眩目耀光（火焰）✦充能（当首次重伤时）</div>\n<div class=description>攻击：近程爆发 10（邻接耀动火焰的敌人）+35vs.强韧命中：3d6+10 火焰伤害，且目标目盲（豁免终止）。<br>失手：一半伤害，且目标的攻击骰受到-2 减值直到伊密克斯下回合结束。</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}饥饿火焰（火焰）✦遭遇</div>\n<div class=description>攻击：近程爆发 10（承受着持续火焰伤害的敌人）+35vs.强韧<br>命中：目标虚弱（豁免终止）。所有邻接至少一个目标的生物受到 10 点火焰伤害。</div>\n<div class=\"bold font-size-h4 bg-category\">触发动作</div>\n<div class=\"bold bg-power\">{{$:/dnd/images/close}}重点需求✦随意</div>\n<div class=description>触发：一个敌人以快步以外的形式主动移动远离一个耀动火焰。 攻击（借机动作）：近程爆发 10（爆发内触发的敌人）+35vs.意志<br>命中：目标晕眩直到其下回合结束。</div>\n<div class=\"bold bg-power\">火焰成形（火焰）✦随意</div>\n<div class=description>触发：一个敌人的近战攻击对伊密克斯失手。<br>效果（直觉反应）：触发的敌人和它的每个邻接的盟友受到 10 点火焰伤害。</div>\n<div class=\"bold bg-power\">不朽耐力✦随意</div>\n<div class=description>触发：伊密克斯受一个可以被豁免终止的效果影响。<br>效果（无动作）：伊密克斯对该效果进行一次豁免掷骰。</div>\n<div class=\"bg-power\"><div class=\"ability\"><span style=flex-basis:auto>''技能'' 神秘+31，唬骗+30，威吓+30，宗教+31</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''力量'' 23（+22）</span><span>''敏捷'' 33（+27）</span><span>''感知'' 26（+24）</span></div></div>\n<div class=\"bg-power\"><div class=\"ability\"><span>''体质'' 21（+21）</span><span>''智力'' 30（+26）</span><span>''魅力'' 28（+25）</span></div></div>\n<div><div class=\"ability\"><span>''阵营'' 混乱邪恶</span><span style=flex-basis:auto>''语言'' 荒神语</span></div></div>\n<div><div class=\"ability\"><span style=flex-basis:auto>''装备'' 巨剑</span></div></div>\n</div>",
+    "title": "伊密克斯 Imix",
+    "creator": "4E NEXT 数据管线",
+    "modified": "20260924184744924",
+    "modifier": "4E NEXT 数据管线",
+    "source": "MM3",
+    "tags": "生物",
+    "type": "text/vnd.tiddlywiki",
+    "revision": "0",
+    "bag": "default",
+    "level": "32",
+    "role": "控制",
+    "specialty-role": "强者",
+    "size": "超大型",
+    "origin": "元素界",
+    "creature-type": "类人生物（火系，荒神）",
+    "xp": "135000",
+    "upstream": "DnD4E 怪物手册 1~3 合订本（六巫翻译 · 灵霜整理）",
+    "row": "12233"
+  }
+]
