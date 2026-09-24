@@ -17,12 +17,13 @@ import PortraitFrame from "./PortraitFrame";
 import CombatPanels from "./CombatPanel";
 import { collectProficiencyTokens, collectProficiencySources, isProficient, featChoiceInfo, collectArmorTokens, collectShieldTokens, collectImplementGroups, armorProficient, type FeatOption, type ProfGroup } from "./proficiency";
 import { SmartHover } from "./SmartHover";
+import { WikiBody as WikiBodyBase } from "./WikiBody";
 import { collectClassSources, collectFeatSources } from "./combat-source";
 import { stripWiki } from "../lib/text";
 import { safeHtml } from "../lib/sanitize";
 import { panelMeta, useSheetLayout, panelsInGroup, defaultPanelGroup, SHEET_PANEL_GROUPS, type SheetPanelId } from "../lib/sheetLayout";
 import { hybridTalentGroups, resolveHybridOption, isHybridTalentFeat, mergedClassTraitText, originalFeatureInfo, type HybridTalentGroup } from "../lib/hybrid";
-import { wikiToHtml, classTraitHtml, classFeaturesHtml, classSummary, raceTraitHtml, raceBodyHtml, splitRaceLore, splitClassLore, splitAuxPowers, parseSubraceInfo, parseFeatureSections, parseClassFeatureOptions, parseReplacementPairs, tokenizeWikiBody, parseRaceTraitLines, type FeatureSection } from "../lib/wikirender";
+import { wikiToHtml, classTraitHtml, classFeaturesHtml, classSummary, raceTraitHtml, raceBodyHtml, splitRaceLore, splitClassLore, splitAuxPowers, parseSubraceInfo, parseFeatureSections, parseClassFeatureOptions, parseReplacementPairs, parseRaceTraitLines, RACE_HEADER_NAMES, type FeatureSection } from "../lib/wikirender";
 import { BASE_WEAPONS, BASE_ARMORS, BASE_IMPLEMENTS, BASE_SHIELDS, findBaseItem, baseItemId, traitsText, type BaseWeapon, type BaseImplement } from "../lib/baseitems";
 import { priceForLevel, itemLevels, enhancementBonusForLevel } from "../lib/levelprices";
 import { POWER_CATEGORIES, POWER_COLORS, ITEM_COLOR, FEAT_COLOR } from "../lib/colors";
@@ -712,21 +713,9 @@ const DEF_BONUS_LABELS: Record<DefenseBonusSource, string> = {
 };
 
 // 职业特性正文渲染：保留换行/表格，并把 [[威能]]、[[专长]] 等超链接转为悬浮卡片预览
-function WikiBody({ body, fields, lookup, indent }: { body: string; fields: Record<string, string>; lookup: (target: string) => Entry | undefined; indent?: boolean }) {
-  const tokens = useMemo(() => tokenizeWikiBody(body, fields, indent), [body, fields, indent]);
-  return (
-    <>
-      {tokens.map((t, i) => {
-        if (t.kind === "link") {
-          const entry = lookup(t.target);
-          if (!entry) return <span key={i} className="wiki-ref-plain">{t.alias}</span>;
-          return <SmartHover key={i} className="wiki-ref" popClass="wiki-ref-pop" pop={<EntryCard entry={entry} />}>{t.alias}</SmartHover>;
-        }
-        if (t.kind === "html") return <div key={i} className="wiki-html" dangerouslySetInnerHTML={safeHtml(enBreak(t.html))} />;
-        return <span key={i} dangerouslySetInnerHTML={safeHtml(enBreak(t.html))} />;
-      })}
-    </>
-  );
+// 实现已抽到 ./WikiBody；此处仅注入悬浮卡内容（WikiBody ↔ EntryCard 的循环依赖由此规避）。
+function WikiBody(props: Omit<Parameters<typeof WikiBodyBase>[0], "pop">) {
+  return <WikiBodyBase {...props} pop={(e) => <EntryCard entry={e} />} />;
 }
 
 // 单个职业特性条目：普通特性渲染标题+正文；选择型特性渲染「选择一个」选项（阵营面板样式）
@@ -1035,18 +1024,6 @@ function cnTitle(title: string): string {
 const FEAT_TITLE_RENAME: Record<string, string> = { "魔能爆 Eldritch Blast": "使用魔能", "神圣制裁": "神圣制裁（Divine Sanction）" };
 function featTitle(title: string): string {
   return FEAT_TITLE_RENAME[title.trim()] ?? title;
-}
-
-// 正文中的「中文 English」名称对（如「大气精魂 Air Spirit」「召唤自然盟友 Summon Natural Ally」）：
-// 在中文与英文之间插入 <br/>，使英文排在中文下方，且中间无空行。
-// 仅当英文直接后接中文/中文标点/行尾时触发，避免把「力量 Strength 调整值」这类句中英文术语误切。
-function enBreak(html: string): string {
-  return html.replace(
-    // 中文短语 + 空格 + 英文词（1~4 词）。仅在英文直接后接中文/中文标点或行尾时换行，
-    // 避免把「力量 Strength 调整值」这类英文后带空格的句中术语误切。
-    /([\u4e00-\u9fff·、]{1,}) ([A-Za-z][A-Za-z'’\-]{1,}(?: [A-Za-z'’\-]{1,}){0,3})(?=[\u4e00-\u9fff]|[\u3000-\u303f，。；！？、：“”‘’]|$)/g,
-    "$1<br/>$2",
-  );
 }
 
 // 特性正文下方补充的「获得XX威能」提示（正文无 [[威能]] 链接时，明确告知玩家获得该威能，如保护者「自然生长」）
@@ -5548,11 +5525,13 @@ export default function CharacterSheet({
     const body = raceTraitHtml(raceEntry.sourceText);
     return body ? parseRaceTraitLines(body) : [];
   }, [raceEntry]);
-  // 简洁模式：仅保留「技能奖励」之后的实用特性（身高/体重/属性调整/语言/技能奖励等已自动填写的条目不再展示）
-  const compactRaceTraits = useMemo(() => {
-    const i = raceTraits.findIndex((t) => /技能/.test(t.name));
-    return i >= 0 ? raceTraits.slice(i + 1) : raceTraits;
-  }, [raceTraits]);
+  // 简洁模式：仅保留实用特性——按 classTrait 的**显式头部槽行集合**剔除
+  // （身高/体重/属性调整/体型/速度/视觉/语言/技能奖励都是自动回填项，不展示；
+  //   不可依赖「技能奖励」行的位置切分：私设种族不填技能奖励时该行不存在，会导致切分失效）
+  const compactRaceTraits = useMemo(
+    () => raceTraits.filter((t) => !RACE_HEADER_NAMES.has(t.name.trim())),
+    [raceTraits],
+  );
   // 基础种族内部的可替代特性：被替代特性名（如「龙息」）→ 替代特性行（如「龙惧」）
   const raceAltForBase = useMemo(() => {
     const map = new Map<string, (typeof raceTraits)[number]>();

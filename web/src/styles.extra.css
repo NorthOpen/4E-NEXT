@@ -67,9 +67,9 @@
 .hb-cache-title .material-symbols-outlined { font-size: 20px; color: var(--md-sys-color-primary); }
 .hb-cache-figure { display: inline-flex; align-items: baseline; gap: 4px; font-variant-numeric: tabular-nums; }
 .hb-cache-figure b { font-size: 18px; font-weight: var(--fw-display); }
-.hb-cache-total { font-size: 12.5px; color: var(--md-sys-color-on-surface-variant); }
+.hb-cache-total { font-size: 12px; color: var(--md-sys-color-on-surface-variant); }
 .hb-cache-pct {
-  margin-left: 6px; padding: 1px 8px; border-radius: var(--md-sys-shape-corner-full); font-size: 11.5px;
+  margin-left: 6px; padding: 1px 8px; border-radius: var(--md-sys-shape-corner-full); font-size: 12px;
   background: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container);
 }
 .hb-cache-danger .hb-cache-pct { background: var(--md-sys-color-error-container); color: var(--md-sys-color-on-error-container); }
@@ -80,7 +80,7 @@
 .hb-cache-seg { display: block; height: 100%; transition: width var(--md-sys-motion-duration-medium2) var(--md-sys-motion-easing-emphasized); }
 .hb-cache-body { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: 12px 28px; }
 .hb-cache-legend { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 16px; }
-.hb-cache-legend li { display: flex; align-items: center; gap: 6px; font-size: 12.5px; min-width: 0; }
+.hb-cache-legend li { display: flex; align-items: center; gap: 6px; font-size: 12px; min-width: 0; }
 .hb-cache-legend li.muted { opacity: 0.45; }
 .hb-cache-dot { flex: none; width: 8px; height: 8px; border-radius: 50%; }
 .hb-cache-legend-label { color: var(--md-sys-color-on-surface-variant); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -88,7 +88,7 @@
 .hb-cache-side { min-width: 0; }
 .hb-cache-side-title { font-size: 12px; font-weight: var(--fw-label); color: var(--md-sys-color-on-surface-variant); margin-bottom: 4px; }
 .hb-cache-tops { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 3px; }
-.hb-cache-tops li { display: flex; align-items: center; gap: 8px; font-size: 12.5px; min-width: 0; }
+.hb-cache-tops li { display: flex; align-items: center; gap: 8px; font-size: 12px; min-width: 0; }
 .hb-cache-top-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .hb-cache-top-val { margin-left: auto; flex: none; color: var(--md-sys-color-on-surface-variant); font-variant-numeric: tabular-nums; }
 .hb-cache-foot { margin: 0; line-height: 1.5; }
@@ -132,7 +132,7 @@
   background: var(--md-sys-color-error-container); color: var(--md-sys-color-on-error-container);
 }
 .hb-pack-desc {
-  margin: 0; font-size: 12.5px; line-height: 1.5; color: var(--md-sys-color-on-surface-variant);
+  margin: 0; font-size: 12px; line-height: 1.5; color: var(--md-sys-color-on-surface-variant);
   display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
 }
 .hb-pack-desc.empty { font-style: italic; opacity: 0.72; }
@@ -142,7 +142,7 @@
 .hb-pack-cats { display: flex; flex-wrap: wrap; gap: 6px; }
 .hb-cat-chip {
   display: inline-flex; align-items: center; gap: 5px; padding: 1px 9px;
-  border-radius: var(--md-sys-shape-corner-full); font-size: 11.5px;
+  border-radius: var(--md-sys-shape-corner-full); font-size: 12px;
   background: var(--md-sys-color-surface-container-highest); color: var(--md-sys-color-on-surface-variant);
 }
 .hb-cat-chip em { font-style: normal; font-weight: var(--fw-label); color: var(--md-sys-color-primary); }
@@ -154,7 +154,7 @@
   padding-top: 8px; border-top: 1px solid var(--md-sys-color-outline-variant);
 }
 .hb-pack-ops md-filled-button { --md-filled-button-container-height: 32px; }
-.hb-pack-ops md-text-button { --md-text-button-container-height: 32px; --md-text-button-label-text-size: 12.5px; }
+.hb-pack-ops md-text-button { --md-text-button-container-height: 32px; --md-text-button-label-text-size: 12px; }
 
 /* ---- 空状态 ---- */
 .hb-empty { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 32px 16px; text-align: center; }
@@ -180,8 +180,8 @@
 .hb-hit:hover { background: var(--md-sys-color-surface-container-high); }
 .hb-hit-top { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
 .hb-hit-name { font-size: 14px; font-weight: var(--fw-body); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.hb-hit-cat { flex: none; font-size: 11.5px; color: var(--md-sys-color-primary); font-weight: var(--fw-label); }
-.hb-hit-meta { display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; color: var(--md-sys-color-on-surface-variant); }
+.hb-hit-cat { flex: none; font-size: 12px; color: var(--md-sys-color-primary); font-weight: var(--fw-label); }
+.hb-hit-meta { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--md-sys-color-on-surface-variant); }
 .hb-hit-meta .material-symbols-outlined { font-size: 14px; }
 .hb-hit-off {
   font-style: normal; padding: 0 6px; border-radius: var(--md-sys-shape-corner-full);
@@ -226,7 +226,7 @@
 .hb-sort { display: inline-flex; align-items: center; gap: 4px; flex-wrap: wrap; }
 .hb-view .chip.mini {
   height: 28px; padding: 0 10px; font-size: 12px;
-  border-radius: var(--md-sys-shape-corner-small);
+  border-radius: var(--md-sys-shape-corner-full);
 }
 .hb-chip-count {
   font-style: normal; margin-left: 6px; padding: 0 6px; font-size: 11px;
@@ -263,22 +263,24 @@
 .hb-check-all { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; }
 .hb-entry-list { display: flex; flex-direction: column; gap: 2px; padding: 6px; min-height: 200px; }
 .hb-entry-row {
-  display: flex; align-items: center; gap: 6px; padding: 0 6px;
-  border-radius: var(--md-sys-shape-corner-small);
+  display: flex; align-items: center; gap: 8px; padding: 4px 8px 4px 4px;
+  min-height: 56px;
+  border-radius: var(--md-sys-shape-corner-large);
   transition: background var(--md-sys-motion-duration-short2) var(--md-sys-motion-easing-standard);
 }
 .hb-entry-row:hover { background: var(--md-sys-color-surface-container-high); }
-.hb-entry-row.selected { background: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); }
+/* 选中态：仅背景标蓝；文字/图标保持原色（on-surface / on-surface-variant），避免整行发蓝变形。
+   必须显式声明 flex-direction:row —— 全局 .selected（styles.css）定义 column，会覆盖行内布局 */
+.hb-entry-row.selected { background: var(--md-sys-color-secondary-container); flex-direction: row; }
 .hb-entry-main {
-  flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; padding: 8px 4px;
+  flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; padding: 8px 4px;
   border: none; background: transparent; color: inherit; font: inherit; text-align: left; cursor: pointer;
 }
-.hb-entry-name { font-size: 14px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.hb-entry-sub { font-size: 11.5px; color: var(--md-sys-color-on-surface-variant); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.hb-entry-row.selected .hb-entry-sub { color: inherit; opacity: 0.82; }
+.hb-entry-name { font-size: 16px; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.hb-entry-sub { font-size: 14px; color: var(--md-sys-color-on-surface-variant); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .hb-entry-ops { flex: none; display: inline-flex; align-items: center; }
-.hb-entry-ops md-icon-button { width: 34px; height: 34px; --md-icon-button-icon-size: 18px; }
-.hb-entry-ops .material-symbols-outlined { font-size: 18px; }
+.hb-entry-ops md-icon-button { width: 40px; height: 40px; --md-icon-button-icon-size: 24px; }
+.hb-entry-ops .material-symbols-outlined { font-size: 24px; }
 
 /* 翻页条 */
 .hb-pager {
@@ -288,7 +290,7 @@
 }
 .hb-pager-nav { display: inline-flex; align-items: center; gap: 2px; }
 .hb-pager-nav md-icon-button { width: 36px; height: 36px; --md-icon-button-icon-size: 20px; }
-.hb-pager-info { min-width: 92px; text-align: center; font-size: 12.5px; color: var(--md-sys-color-on-surface-variant); font-variant-numeric: tabular-nums; }
+.hb-pager-info { min-width: 92px; text-align: center; font-size: 12px; color: var(--md-sys-color-on-surface-variant); font-variant-numeric: tabular-nums; }
 .hb-pager-size { display: inline-flex; align-items: center; gap: 4px; }
 
 /* 条目预览 */
@@ -699,7 +701,7 @@
 }
 .hb-tmpl-item:hover { background: var(--md-sys-color-surface-container-high); }
 .hb-tmpl-name { font-size: 14px; font-weight: var(--fw-body); color: var(--md-sys-color-on-surface); }
-.hb-tmpl-meta { font-size: 11.5px; color: var(--md-sys-color-on-surface-variant); }
+.hb-tmpl-meta { font-size: 12px; color: var(--md-sys-color-on-surface-variant); }
 
 /* 从基础名录选择：分组列表（组标签 + 条目） */
 .hb-gear-group { display: flex; flex-direction: column; gap: 2px; padding-top: 4px; }
@@ -755,10 +757,17 @@
   max-height: calc(100vh - 120px); overflow: auto;
 }
 .hb-ed-preview-head {
-  display: inline-flex; align-items: center; gap: 6px;
-  font-size: 12.5px; font-weight: var(--fw-label); color: var(--md-sys-color-on-surface-variant);
+  display: flex; align-items: center; gap: 6px;
+  font-size: 12px; font-weight: var(--fw-label); color: var(--md-sys-color-on-surface-variant);
 }
 .hb-ed-preview-head .material-symbols-outlined { font-size: 17px; color: var(--md-sys-color-primary); }
+/* 基础装备预览：装备栏紧凑块 与 选择面板卡片 双栏同显（所见即所得，两种车卡形态并列） */
+.hb-mundane-preview { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; align-items: start; }
+.hb-mundane-col { min-width: 0; }
+.hb-mundane-col-label {
+  margin-bottom: 4px; font-size: 12px; font-weight: var(--fw-label);
+  color: var(--md-sys-color-on-surface-variant); text-align: center;
+}
 
 /* Markdown 正文在条目卡片内的排版（列表 / 引用 / 代码 / 分割线） */
 .pc-details ul, .pc-details ol { margin: 4px 0; padding-left: 20px; }
@@ -796,7 +805,7 @@ md-dialog.sheet-dialog.sheet-dialog-store { max-width: min(520px, calc(100% - 48
 .d4e-store-dlg { display: flex; flex-direction: column; gap: 14px; }
 .d4e-store-lead { margin: 0; font-size: 14px; line-height: 1.75; color: var(--md-sys-color-on-surface); }
 .d4e-store-note {
-  margin: 0; font-size: 12.5px; line-height: 1.7;
+  margin: 0; font-size: 12px; line-height: 1.7;
   color: var(--md-sys-color-on-surface-variant);
   font-variant-numeric: tabular-nums;
 }
@@ -811,7 +820,7 @@ md-dialog.sheet-dialog.sheet-dialog-store { max-width: min(520px, calc(100% - 48
 }
 .d4e-store-gauge-head {
   display: flex; align-items: center; justify-content: space-between; gap: 8px;
-  font-size: 12.5px; font-weight: var(--fw-label);
+  font-size: 12px; font-weight: var(--fw-label);
   color: var(--md-sys-color-on-surface-variant);
 }
 .d4e-store-gauge-label { display: inline-flex; align-items: center; gap: 6px; }
@@ -824,7 +833,7 @@ md-dialog.sheet-dialog.sheet-dialog-store { max-width: min(520px, calc(100% - 48
   border-radius: var(--md-sys-shape-corner-full);
   background: var(--md-sys-color-error-container);
   color: var(--md-sys-color-on-error-container);
-  font-size: 11.5px;
+  font-size: 12px;
 }
 /* MD3 线性进度指示器：轨道 error-container / 指示条 error */
 .d4e-store-gauge-bar {
@@ -938,7 +947,7 @@ md-dialog.sheet-dialog.sheet-dialog-store { max-width: min(520px, calc(100% - 48
 .ct-label-cell { padding: 2px 4px; }
 .ct-label-input {
   width: 100%; padding: 2px 4px; border: none; background: transparent;
-  color: var(--md-sys-color-on-surface); font: inherit; font-size: 12.5px; text-align: center;
+  color: var(--md-sys-color-on-surface); font: inherit; font-size: 12px; text-align: center;
 }
 .ct-label-input::placeholder { color: var(--md-sys-color-on-surface-variant); opacity: .7; }
 
@@ -973,7 +982,7 @@ md-dialog.sheet-dialog.sheet-dialog-store { max-width: min(520px, calc(100% - 48
   font-size: 12px;
 }
 .ct-label-input:focus { outline: 2px solid var(--md-sys-color-primary); outline-offset: 1px; border-radius: var(--md-sys-shape-corner-extra-small); }
-.ct-label-text { font-size: 12.5px; font-weight: var(--fw-body); text-align: center; }
+.ct-label-text { font-size: 12px; font-weight: var(--fw-body); text-align: center; }
 @media (max-width: 960px) {
   .combat-table.attack .ct-head,
   .combat-table.attack .ct-row { min-width: 680px; }
@@ -984,21 +993,41 @@ md-dialog.sheet-dialog.sheet-dialog-store { max-width: min(520px, calc(100% - 48
 /* ===== 私设结构化编辑器通用壳 =====
    服务于 装备威能段 / 套装增益 / 专长等级表 / 词条对 / 等级特性小节。
    与威能「次攻击组」同语言：色条 + 分组底 + 行内输入并排。 */
-.hb-itempower, .hb-setbonus, .hb-feattable, .hb-terms, .hb-levelsections {
+.hb-itempower, .hb-setbonus, .hb-feattable, .hb-terms, .hb-levelsections, .hb-racetraits, .hb-racelore, .hb-raceaux {
   display: flex; flex-direction: column; gap: 12px;
 }
-.hb-itempower-sec, .hb-setbonus-block, .hb-levelsection {
+.hb-itempower-sec, .hb-setbonus-block, .hb-levelsection, .hb-racetrait-row, .hb-raceaux-head {
   border: 1px solid var(--md-sys-color-outline-variant);
   border-left: 4px solid var(--md-sys-color-primary-variant, var(--md-sys-color-primary));
   border-radius: var(--md-sys-shape-corner-medium);
   background: var(--md-sys-color-surface-container-low);
   padding: 12px; display: flex; flex-direction: column; gap: 10px;
 }
+.hb-racetrait-row .hb-pblock-head md-filled-text-field { flex: 1 1 160px; min-width: 0; }
+.hb-racetrait-row .hb-pblock-head md-icon-button { flex: none; }
+/* 种族·属性调整「或」/ 属性1 / 体型 / 语言 / 技能奖励：输入框在上、候选 chip 在下；
+   威能引用插入器为虚线框的独立小组 */
+.hb-raceability, .hb-raceinput, .hb-racelang, .hb-raceskills, .hb-pwr-inserter { display: flex; flex-direction: column; gap: 10px; }
+.hb-pwr-inserter {
+  margin-top: 4px; padding: 10px 12px;
+  border: 1px dashed var(--md-sys-color-outline-variant);
+  border-radius: var(--md-sys-shape-corner-medium);
+}
+.hb-chips-label { font-size: 12px; color: var(--md-sys-color-on-surface-variant); align-self: center; }
+/* 预览区「车卡映射」说明：部分字段是车卡的自动回填项，不在预览卡片内呈现，在此给出当前值与去向 */
+.hb-ed-map {
+  margin-top: 12px; padding: 10px 12px; display: flex; align-items: flex-start; gap: 8px;
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: var(--md-sys-shape-corner-medium);
+  background: var(--md-sys-color-surface-container-low);
+  font-size: 12px; line-height: 1.6; color: var(--md-sys-color-on-surface-variant);
+}
+.hb-ed-map .material-symbols-outlined { font-size: 16px; flex: none; color: var(--md-sys-color-primary); }
 .hb-itempower-head {
   display: flex; align-items: center; justify-content: space-between; gap: 8px;
 }
 .hb-itempower-headlabel {
-  font-size: 13.5px; font-weight: var(--fw-heading, 600); color: var(--md-sys-color-on-surface);
+  font-size: 14px; font-weight: var(--fw-heading, 600); color: var(--md-sys-color-on-surface);
 }
 .hb-itempower-preview { font-size: 12px; color: var(--md-sys-color-on-surface-variant); }
 .hb-itempower-kwrow, .hb-itempower-freqrow {
@@ -1024,14 +1053,36 @@ md-dialog.sheet-dialog.sheet-dialog-store { max-width: min(520px, calc(100% - 48
 .hb-stat-row md-filled-text-field { grid-column: 2; width: 100%; overflow: hidden; }
 .hb-stat-row .hint { grid-column: 2; margin: 0; }
 .hb-stat-row .hb-ed-chips { grid-column: 2; align-items: center; }
-.hb-stat-row .hb-ed-chips md-filled-text-field { width: 170px; flex: none; }
+.hb-stat-row .hb-ed-chips md-filled-text-field {
+  width: 130px; flex: none;
+  /* v2.2.0 无 container-height token：高度由 top/bottom-space 合成（默认 16px→56px；8px→40px 紧凑） */
+  --md-filled-text-field-top-space: 8px;
+  --md-filled-text-field-bottom-space: 8px;
+  --md-filled-text-field-input-text-size: 12px;
+  --md-filled-text-field-label-text-size: 12px;
+}
+/* 增强行：输入框与「自动运算」开关同一行 */
+.hb-stat-row .hb-stat-inline {
+  grid-column: 2; display: flex; align-items: center; gap: 12px; min-width: 0;
+}
+.hb-stat-row .hb-stat-inline md-filled-text-field { flex: 1; min-width: 0; width: auto; }
+.hb-stat-row .hb-stat-inline .hb-enh-auto { flex: none; justify-self: auto; }
+/* 增强「自动运算」开关 */
+.hb-stat-row .hb-enh-auto {
+  grid-column: 2; display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12px; color: var(--md-sys-color-on-surface-variant); justify-self: start;
+  cursor: pointer; user-select: none;
+}
+.hb-stat-row .hb-enh-auto md-switch { --md-switch-track-height: 18px; --md-switch-track-width: 32px; --md-switch-state-layer-size: 26px; }
+/* 私设种族预览直接复用车卡「种族特性」板块的 CSS（.block / .race-detail / .race-trait / .sr-tag / .lore-fold 等），
+   样式定义在 styles.css，此处不再另设卡片外观。 */
 /* —— 装备·选择式引导卡（形态+类别前置）与特性段数徽标 —— */
 .hb-equip-guide {
   border-color: var(--md-sys-color-primary);
   box-shadow: 0 0 0 1px color-mix(in srgb, var(--md-sys-color-primary) 18%, transparent);
 }
 .hb-guide-chips { margin: 2px 0; }
-.hb-guide-chips .chip { height: 36px; padding: 0 16px; font-size: 13.5px; }
+.hb-guide-chips .chip { height: 36px; padding: 0 16px; font-size: 14px; border-radius: var(--md-sys-shape-corner-full); }
 .hb-count-badge {
   align-self: flex-start;
   font-size: 12px; font-weight: var(--fw-heading, 600); color: var(--md-sys-color-primary);

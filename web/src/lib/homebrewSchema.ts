@@ -244,8 +244,8 @@ export const POWER_SOURCES = ["奥术", "武术", "神术", "原力", "灵能", 
 export const RACIAL_SIZES = ["超小型", "小型", "中型", "大型", "超大型"];
 // 种族速度
 export const SPEEDS = ["4格", "5格", "6格", "7格"];
-// 种族视觉
-export const VISIONS = ["普通视觉", "标准视觉", "黑暗视觉", "昏暗视觉"];
+// 种族视觉（官方语料只有这三种：「标准视觉」在全库 0 命中，与「普通视觉」同义，已删除）
+export const VISIONS = ["普通视觉", "昏暗视觉", "黑暗视觉"];
 // 装备稀有度（对齐原版）
 export const RARITIES = ["普通", "非普通", "稀有", "神之碎片"];
 // 仪式类别
@@ -660,18 +660,19 @@ function escapeHtml(s: string): string {
 }
 
 // 从表单 JSON 字符串解析「标签块」数组；非法/空返回 null。
-export function parsePowerBlocks(json?: string): PowerBlock[] | null {
+export function parsePowerBlocks(json?: string, opts?: { keepEmpty?: boolean }): PowerBlock[] | null {
   if (!json) return null;
   try {
     const v = JSON.parse(json);
     if (!Array.isArray(v)) return null;
-    const blocks = v
-      .map((b) => ({
-        label: typeof b?.label === "string" ? b.label : "",
-        text: typeof b?.text === "string" ? b.text : "",
-        indent: typeof b?.indent === "number" ? b.indent : 0,
-      }))
-      .filter((b) => b.label.trim() || b.text.trim());
+    const rows: PowerBlock[] = v.map((b) => ({
+      label: typeof b?.label === "string" ? b.label : "",
+      text: typeof b?.text === "string" ? b.text : "",
+      indent: typeof b?.indent === "number" ? b.indent : 0,
+    }));
+    // keepEmpty：编辑态保留空块（否则清空「标签」后该块瞬间消失）
+    if (opts?.keepEmpty) return rows;
+    const blocks = rows.filter((b) => b.label.trim() || b.text.trim());
     return blocks.length ? blocks : null;
   } catch {
     return null;
@@ -935,30 +936,35 @@ export const ITEM_TYPE_TIPS: Record<string, string> = {
 /** 装备「特性」段：官方 `<div class=text>` 纯文本行集合；多段特性逐段添加。 */
 export interface ItemPropertySection { lines: string[]; }
 /** 解析 form.properties 的 JSON → ItemPropertySection[] */
-export function parseItemProperties(json?: string): ItemPropertySection[] {
+export function parseItemProperties(json?: string, opts?: { keepEmpty?: boolean }): ItemPropertySection[] {
   if (!json) return [];
   try {
     const v = JSON.parse(json);
     if (!Array.isArray(v)) return [];
+    // ⚠ 保留空段（lines=[]）：编辑器中「＋ 添加一个特性段」先建空段再填内容，此处过滤会令新段瞬间消失（按钮看似失效）。
+    // 保存侧 serializeItemProperties 会跳过无内容的段，不影响成品输出。
     return v
-      .map((s): ItemPropertySection => ({
-        lines: Array.isArray(s?.lines)
-          ? s.lines.map((l: unknown) => (typeof l === "string" ? l : "")).filter((l: string) => l.trim())
-          : [],
-      }))
-      .filter((s) => s.lines.length);
+      .map((s): ItemPropertySection => {
+        const raw = Array.isArray(s?.lines) ? s.lines.map((l: unknown) => (typeof l === "string" ? l : "")) : [];
+        // keepEmpty：编辑态同时保留段内空行（textarea 的换行/空行不被吞掉）
+        return { lines: opts?.keepEmpty ? raw : raw.filter((l: string) => l.trim()) };
+      });
   } catch {
     return [];
   }
 }
-/** 序列化 ItemPropertySection[] 为官方「特性」bg-item 段 HTML（多段并列） */
+/** 序列化 ItemPropertySection[] 为官方「特性」bg-item 段 HTML（一个标题 + 单 text，多行用 <br> 分隔，参考米莎凯之杖） */
 export function serializeItemProperties(secs: ItemPropertySection[]): string {
-  return secs
-    .map((s) =>
-      '<div class="bold bg-item">特性</div>' +
-      s.lines.map((l) => `<div class=text>${escapeHtml(l)}</div>`).join("")
-    )
-    .join("");
+  const lines = secs
+    // 跳过编辑中的空段（parseItemProperties 保留空段，保存时不输出）
+    .flatMap((s) => s.lines.filter((l) => l.trim()).map((l) => l.trim()));
+  if (!lines.length) return "";
+  // 官方格式：一个「特性」标题 + 单一 text 段落，多条特性用 <br> 分隔；
+  // 仅多条时每条前加「✦」列表符，单条不加（参考「米莎凯之杖」「驱魔师腰带」）
+  const rows = lines.length > 1 ? lines.map((l) => (l.startsWith("✦") ? l : "✦" + l)) : [lines[0]];
+  return '<div class="bold bg-item">特性</div><div class=text>' +
+    rows.map((l) => escapeHtml(l)).join("<br>") +
+    "</div>";
 }
 /** 从官方 details HTML 逆解析「特性」bg-item 段 → ItemPropertySection[]（剥除内联 <b>/链接 标签，解码实体，<br> 拆行） */
 export function parseItemPropertiesHtml(html: string): ItemPropertySection[] {
@@ -996,29 +1002,26 @@ export interface EquipmentData {
   bodyText: string;
 }
 
-/** 各族统计表行（单一来源，EntryEditor 面板显隐 与 ItemCard 卡片表行共用）；C 族可带增强（颈部/臂部） */
+/** 各族统计表行（单一来源，EntryEditor 面板显隐 与 ItemCard 卡片表行共用）；C 族可带增强（颈部/臂部）。
+ *  魔法物品不含重量（官方数据 2600+ 条魔法装备的全部字段均无 weight）——重量仅属于基础装备（MUNDANE_STAT_ROWS）。 */
 export const FAMILY_STAT_ROWS: Record<EquipFamily, { key: ItemStatKey; label: string }[]> = {
   A: [
     { key: "group", label: "分类组" },
     { key: "enh", label: "增强" },
     { key: "cost", label: "价格" },
-    { key: "weight", label: "重量" },
     { key: "critical", label: "重击" },
   ],
   B: [
     { key: "group", label: "分类组" },
     { key: "enh", label: "增强" },
     { key: "cost", label: "价格" },
-    { key: "weight", label: "重量" },
   ],
   C: [
     // 「分类组」仅对 武器/法器(A)/护甲(B) 有意义（GROUPS_BY_CATEGORY 也只定义这三类）；魔宠/伙伴/坐骑等通用配件无分类组
     { key: "cost", label: "价格" },
-    { key: "weight", label: "重量" },
   ],
   D: [
     { key: "cost", label: "价格" },
-    { key: "weight", label: "重量" },
   ],
 };
 /** 取某族的统计表行；C 族在已填增强时追加「增强」行。 */
@@ -1153,31 +1156,33 @@ export function residualEquipmentText(html: string): string {
   return txt;
 }
 
-export function parseItemPowerSections(json?: string): ItemPowerSection[] {
+export function parseItemPowerSections(json?: string, opts?: { keepEmpty?: boolean }): ItemPowerSection[] {
   if (!json) return [];
   try {
     const v = JSON.parse(json);
     if (!Array.isArray(v)) return [];
     const baseOf = (b: unknown): ItemPowerBase =>
       typeof b === "string" && (b === "自定义" || (POWER_HEAD_BASES as readonly string[]).includes(b)) ? (b as ItemPowerBase) : "威能";
-    return v
-      .map((s): ItemPowerSection => ({
+    const secs = v.map((s): ItemPowerSection => {
+      const blocks: PowerBlock[] = Array.isArray(s?.blocks)
+        ? s.blocks.map((b: PowerBlock) => ({
+            label: typeof b?.label === "string" ? b.label : "",
+            text: typeof b?.text === "string" ? b.text : "",
+            indent: typeof b?.indent === "number" ? b.indent : 0,
+          }))
+        : ([] as PowerBlock[]);
+      return {
         base: baseOf(s?.base),
         head: typeof s?.head === "string" ? s.head : "",
         keywords: typeof s?.keywords === "string" ? s.keywords : "",
         freq: (ITEM_FREQUENCIES as readonly string[]).includes(s?.freq) ? (s.freq as ItemFreq) : "",
         action: typeof s?.action === "string" ? s.action : "",
-        blocks: Array.isArray(s?.blocks)
-          ? s.blocks
-              .map((b: PowerBlock) => ({
-                label: typeof b?.label === "string" ? b.label : "",
-                text: typeof b?.text === "string" ? b.text : "",
-                indent: typeof b?.indent === "number" ? b.indent : 0,
-              }))
-              .filter((b: PowerBlock) => b.label.trim() || b.text.trim())
-          : ([] as PowerBlock[]),
-      }))
-      .filter((s) => (s.base === "自定义" ? (s.head ?? "").trim() : s.freq || s.action || s.keywords || s.blocks.length));
+        blocks: opts?.keepEmpty ? blocks : blocks.filter((b) => b.label.trim() || b.text.trim()),
+      };
+    });
+    // keepEmpty：编辑态保留空段（否则清空「频率/动作/关键词」后该段瞬间消失）
+    if (opts?.keepEmpty) return secs;
+    return secs.filter((s) => (s.base === "自定义" ? (s.head ?? "").trim() : s.freq || s.action || s.keywords || s.blocks.length));
   } catch {
     return [];
   }
@@ -1334,7 +1339,17 @@ export function serializeRitualInfo(h: RitualHeader): string {
 
 // —— 译名字典 terms 词条对 ——
 /** terms 字符串 ↔ 键值对数组（按 `英: 中` 切分，: / ： 均可，空行过滤） */
-export function parseTerms(text?: string): [string, string][] {
+export function parseTerms(text?: string, opts?: { keepEmpty?: boolean }): [string, string][] {
+  if (text === undefined) return [];
+  // keepEmpty：编辑态保留空行与原始空白（「＋ 添加词条对」的空行、输入中的行尾空格不被吞掉）。
+  // 注意空串在此视为「一行空词条」——否则添加首个词条对写回 "" 后会被当作无内容而消失。
+  if (opts?.keepEmpty) {
+    // 仅在冒号后吃掉一个分隔空格，其余原样保留 → 「英文 + 中文」两栏拆分可无损往返（含空栏）
+    return text.split(/\r?\n/).map((l): [string, string] => {
+      const m = l.match(/^([^:：]*)[:：] ?([\s\S]*)$/);
+      return m ? [m[1], m[2]] : [l, ""];
+    });
+  }
   if (!text) return [];
   return text
     .split(/\r?\n/)
@@ -1346,7 +1361,10 @@ export function parseTerms(text?: string): [string, string][] {
       return [l.slice(0, i).trim(), l.slice(i + 1).trim()];
     });
 }
-export function serializeTerms(pairs: [string, string][]): string {
+export function serializeTerms(pairs: [string, string][], opts?: { keepEmpty?: boolean }): string {
+  // keepEmpty：编辑态不做裁剪与剔除，保证空行数量在「序列化 → 解析」间一一对应；
+  // 任一侧为空时省略分隔空格，避免空栏读出多余的前导空格
+  if (opts?.keepEmpty) return pairs.map(([en, zh]) => (en || zh ? `${en}:${zh ? " " + zh : ""}` : "")).join("\n");
   return pairs
     .filter(([en, zh]) => en.trim() || zh.trim())
     .map(([en, zh]) => (en.trim() ? `${en}: ${zh.trim()}` : zh.trim()))
@@ -1414,7 +1432,7 @@ export function serializeItemSet(knowledge: string, components: string[], bonuse
 }
 
 /** 截取 `!! 标题` 到下个 `!! ` 之间的正文（无标题结尾可选） */
-function sectionBetweenWiki(src: string, startTitle: string, endTitle?: string): string {
+export function sectionBetweenWiki(src: string, startTitle: string, endTitle?: string): string {
   const re = new RegExp("\\n!! " + startTitle + "\\n(.*?)(?:\\n!! |$)", "s");
   const m = src.match(re);
   if (!m) return "";
@@ -1529,33 +1547,36 @@ function tryParseJsonArray<T>(json?: string): T[] | null {
   }
 }
 /** 编辑态 form.featRows（JSON）→ FeatRow[]；空/非法返回 [] */
-export function parseFeatRowsJson(json?: string): FeatRow[] {
+export function parseFeatRowsJson(json?: string, opts?: { keepEmpty?: boolean }): FeatRow[] {
   const v = tryParseJsonArray<FeatRow>(json) ?? [];
-  return v
-    .map((r) => ({ level: String(r?.level ?? ""), power: String(r?.power ?? "") }))
-    .filter((r) => r.level.trim() || r.power.trim());
+  const rows = v.map((r) => ({ level: String(r?.level ?? ""), power: String(r?.power ?? "") }));
+  // keepEmpty：编辑态保留空行（否则清空「等级」后该行瞬间消失）
+  if (opts?.keepEmpty) return rows;
+  return rows.filter((r) => r.level.trim() || r.power.trim());
 }
 /** 编辑态 form.setBonuses（JSON）→ SetBonusBlock[]；空/非法返回 [] */
-export function parseSetBonusesJson(json?: string): SetBonusBlock[] {
+export function parseSetBonusesJson(json?: string, opts?: { keepEmpty?: boolean }): SetBonusBlock[] {
   const v = tryParseJsonArray<SetBonusBlock>(json) ?? [];
-  return v
-    .map((b) => ({ pieces: String(b?.pieces ?? ""), text: String(b?.text ?? "") }))
-    .filter((b) => b.pieces.trim() || b.text.trim());
+  const rows = v.map((b) => ({ pieces: String(b?.pieces ?? ""), text: String(b?.text ?? "") }));
+  // keepEmpty：编辑态保留空块（否则清空「件数」后该块瞬间消失）
+  if (opts?.keepEmpty) return rows;
+  return rows.filter((b) => b.pieces.trim() || b.text.trim());
 }
 /** 编辑态 form.levelSections（JSON）→ LevelFeatureSection[]；
  *  兼容旧值（存 wikitext）时回落 parseLevelSections。 */
-export function parseLevelSectionsJson(json?: string, opts?: { allowPlain?: boolean }): LevelFeatureSection[] {
+export function parseLevelSectionsJson(json?: string, opts?: { allowPlain?: boolean; keepEmpty?: boolean }): LevelFeatureSection[] {
   const v = tryParseJsonArray<LevelFeatureSection>(json);
   if (v) {
-    return v
-      .map((s) => ({
-        level: String(s?.level ?? ""),
-        title: String(s?.title ?? ""),
-        kind: (s?.kind === "power" ? "power" : "feature") as LevelFeatureSection["kind"],
-        body: String(s?.body ?? ""),
-        refs: Array.isArray(s?.refs) ? s.refs.map((r) => String(r ?? "")) : [],
-      }))
-      .filter((s) => s.level || s.title || s.body.trim() || s.refs.length);
+    const rows = v.map((s) => ({
+      level: String(s?.level ?? ""),
+      title: String(s?.title ?? ""),
+      kind: (s?.kind === "power" ? "power" : "feature") as LevelFeatureSection["kind"],
+      body: String(s?.body ?? ""),
+      refs: Array.isArray(s?.refs) ? s.refs.map((r) => String(r ?? "")) : [],
+    }));
+    // keepEmpty：编辑态保留空小节（否则「＋ 添加小节」的全空新行会被立即剔除，按钮看似失效）
+    if (opts?.keepEmpty) return rows;
+    return rows.filter((s) => s.level || s.title || s.body.trim() || s.refs.length);
   }
   return parseLevelSections(json, opts);
 }
@@ -1810,21 +1831,18 @@ export const FEAT_PRESETS: PowerPreset[] = [
   {
     name: "威能授予型",
     group: "增益型",
-    desc: "将一个N级或更低的\\胜利类别\\威能作为遭遇威能",
-    blocks: [{ label: "增益", text: "你可以将一个1级或更低的「武器」威能作为遭遇威能使用。" }],
+    desc: "获得一个具体威能（作为遭遇威能使用）",
+    blocks: [{ label: "增益", text: "你获得[[冰刺击]]威能，它可以作为遭遇威能使用。" }],
   },
 ];
-/** 前提句式候选：职业式/等级式/受训式（官方 3202 条统计）
- *  value 为整句模板，"$" 表示可填充槽位。 */
-export const FEAT_PREREQ_CANDIDATES: string[] = [
-  "职业：战士",
-  "职业：游荡者",
-  "职业：诗人",
-  "角色等级：5级",
-  "5级，增援 3 个",
-  "技能受训：隐秘",
-  "智力 15",
-  "反击者",
+/** 前提句式候选（官方 3202 条前提语料归纳，按句式分类分组）
+ *  仅提供句式前缀做预输入，点击后填入前缀、由用户补全具体内容（如「职业：」+ 战士）。 */
+export const FEAT_PREREQ_GROUPS: { label: string; items: string[] }[] = [
+  { label: "职业式", items: ["职业："] },
+  { label: "等级式", items: ["角色等级："] },
+  { label: "受训式", items: ["技能受训："] },
+  { label: "属性式", items: ["力量", "敏捷", "体质", "智力", "感知", "魅力"] },
+  { label: "种族式", items: ["种族："] },
 ];
 
 const COMMON: SheetField[] = [
@@ -1884,14 +1902,24 @@ export const CATEGORY_FIELDS: Record<string, SheetField[]> = {
     { key: "special", label: "特殊", type: "longtext", placeholder: "可选，如特殊说明/可多次选择" },
     { key: "featRows", label: "关联威能等级表", type: "longtext", placeholder: "流派专长的等级×关联威能列表" },
   ],
+  // 种族数据 8 槽按官方 classTrait 头部顺序排列（平均身高→平均体重→属性调整→体型→速度→视觉→语言→技能奖励）
   race: [
-    { key: "size", label: "体型", type: "select", options: RACIAL_SIZES },
-    { key: "speed", label: "速度", type: "multichips", options: SPEEDS },
+    { key: "avgHeight", label: "平均身高", type: "text", placeholder: `官方「''平均身高：''」行文本，如：129cm-145cm/4'3"-4'9"` },
+    { key: "avgWeight", label: "平均体重", type: "text", placeholder: `官方「''平均体重：''」行文本，如：73kg-100kg/160-220 lb` },
+    { key: "abilityOne", label: "出生奖励属性1", type: "select", options: SIX_ABILITIES, placeholder: "如：力量（必然 +2 的那一项）" },
+    { key: "abilityTwo", label: "出生奖励属性2", type: "select", options: SIX_ABILITIES, placeholder: "如：力量或感知" },
+    { key: "size", label: "体型", type: "select", options: RACIAL_SIZES, placeholder: "如：中型" },
+    // 速度：原版 54 个种族的速度一律是单一数值（4/5/6/7格），无一例外；额外移动方式（飞行/游泳/攀爬等）
+    // 在原版里是写在「''速度：''」同一行的后缀文本（仅皮克精/蟾蜍怪 2 例），故这里只收数值，
+    // 额外移动方式请写成种族特性行（车卡会把特性行原样展示，语义更清楚）。
+    { key: "speed", label: "速度", type: "text", placeholder: "只填数值，单位「格」，如 6（保存时自动补成「6格」）；飞行/游泳等额外移动方式请写成种族特性行" },
     { key: "vision", label: "视觉", type: "multichips", options: VISIONS },
-    { key: "abilityOne", label: "出生奖励属性1", type: "select", options: SIX_ABILITIES },
-    { key: "abilityTwo", label: "出生奖励属性2", type: "select", options: SIX_ABILITIES },
-    { key: "skill", label: "技能", type: "multichips", options: SKILLS },
-    { key: "levelSections", label: "种族特性/威能", type: "longtext" },
+    { key: "languages", label: "语言", type: "text", placeholder: "官方「''语言：''」行文本，如：通用语，矮人语；写「任选两种」「A或B」时车卡会留空槽位供玩家自选" },
+    { key: "skillBonus", label: "技能奖励", type: "text", placeholder: "官方「''技能奖励：''」行文本，须写成「+N技能名」并用「，」分隔，如：+2地城，+2坚韧" },
+    { key: "raceTraits", label: "种族特性", type: "longtext", placeholder: "结构化特性行（名称 + 正文 + 可选替代），保存时拼装进 classTrait 块" },
+    { key: "startingPower", label: "起始威能", type: "text", placeholder: "威能全名（如 矮人恢复力 Dwarven Resilience）。保存时在 classTrait 内追加「''短名：''你具有[[威能名]]威能。」行——车卡据此授予该威能——并输出 {{威能名}} 转clusion 行与官方文本对齐" },
+    { key: "loreSections", label: "正文块", type: "longtext", placeholder: "可增删的正文块（标题 + 正文），保存时按序拼装在 classTrait 块之后" },
+    { key: "raceAuxPowers", label: "辅助威能", type: "longtext", placeholder: "小节标题 + 引言 + 威能条目列表，保存时拼装为 `!! 标题` + `!!! 威能名` + 描述 + `{{威能名}}`" },
   ],
   class: [
     { key: "role", label: "职责", type: "select", options: ROLES },
@@ -1927,6 +1955,9 @@ export const CATEGORY_FIELDS: Record<string, SheetField[]> = {
     { key: "time", label: "时间", type: "text", placeholder: "如：10分钟" },
     { key: "cost", label: "材料花费", type: "text", placeholder: "如：25gp，和价值20gp的器材" },
     { key: "marketPrice", label: "市场价格", type: "text", placeholder: "如：125gp" },
+    // 官方仪式卡的斜体风味引子（`//你的听众随着那安稳平静的曲调…//`）与效果正文是两回事：
+    // 前者是卡片名字下的引子，后者是 ritualinfo 之后的效果描述，必须分开存放。
+    { key: "flavorText", label: "风味文本", type: "text", placeholder: "可选的斜体风味描述（显示在卡片名字下）" },
   ],
   dictionary: [
     { key: "termsPairs", label: "词条对", type: "longtext", placeholder: "英文: 中文（每行一对）" },
@@ -2002,10 +2033,10 @@ export const CATEGORY_SECTIONS: Record<string, HomebrewSection[]> = {
     // 抬头(meta) → 风味文本 → 统计表 → 特性 → 威能 → 正文。
     // 「统计数据」用横排表渲染器（kind:"equip-stats"），行集由形态/类别(装备族)自动决定；
     // 基础专属字段（subCategory + MUNDANE_FIELDS）由该组件按 MUNDANE_STAT_ROWS 呈现。
-    { title: "基本信息 · 装备", keys: ["name", "nameEn", "source", "itemForm", "itemCategory", "rarity", "itemLevel"], core: true },
+    { title: "基本信息 · 装备", keys: ["name", "nameEn", "source", "itemForm", "itemLevel", "rarity"], core: true },
     { title: "风味文本", keys: ["flavorText"], core: true },
     { title: "统计数据", keys: ["group", "itemSuitable", "enh", "critical", "cost", "weight", "subCategory", ...MUNDANE_FIELDS], core: true, kind: "equip-stats", hint: "统计行按装备族/形态自动决定，与右侧卡片统计表一一对应。" },
-    { title: "物品特性", keys: ["properties"], core: true },
+    { title: "物品特性", keys: ["properties"], core: true, optional: "纯文本特性描述（如潜行加值、伤害免疫等）；消耗品、基础装备常不需要" },
     { title: "物品威能", keys: ["powerSections"], core: true, optional: "官方 72% 装备含威能段；消耗品、基础装备常不需要", },
     { title: "正文", keys: ["sourceText"], core: true, optional: "自由 Markdown 补充（背景故事/变体规则/DM 备注）；官方装备无此部分" },
     { title: "外观", keys: ["cardColor", "cardIcon"] },
@@ -2033,9 +2064,16 @@ export const CATEGORY_SECTIONS: Record<string, HomebrewSection[]> = {
   ],
   race: [
     { title: "基本信息 · 种族", keys: ["name", "nameEn", "source"], core: true },
-    { title: "种族数据", keys: ["size", "speed", "vision", "abilityOne", "abilityTwo", "skill"], core: true },
-    { title: "种族特性/威能", keys: ["levelSections"], core: true },
-    { title: "外观", keys: ["cardColor", "cardIcon"] },
+    {
+      title: "种族数据",
+      keys: ["avgHeight", "avgWeight", "abilityOne", "abilityTwo", "size", "speed", "vision", "languages", "skillBonus"],
+      core: true,
+      hint: "顺序即官方 classTrait 头部顺序；保存时逐行写入 classTrait 块，车卡据此自动回填属性调整/体型/速度/视觉/语言/技能奖励。",
+    },
+    { title: "种族特性", keys: ["raceTraits"], core: true, hint: "正文内写 [[威能名]]，保存后车卡会自动授予该威能；正文含「替代「XX」」时车卡识别为替换关系。" },
+    { title: "起始威能", keys: ["startingPower"], core: true, hint: "该种族自带的种族威能（如矮人的「矮人恢复力」）。填全名后保存时会在 classTrait 内写一行「''短名：''你具有[[威能全名]]威能。」，车卡据此把该威能授予角色（种族/辅助槽）；同时在块后输出 {{威能全名}} 转clusion 行与官方文本对齐。" },
+    { title: "正文", keys: ["loreSections"], core: true, hint: "按块拼装在 classTrait 块之后；首块无标题时作为「种族背景」引言，其余无标题块并入前一块。辅助威能请填在下面的专用分区。" },
+    { title: "辅助威能", keys: ["raceAuxPowers"], core: true, hint: "结构固定为「小节标题 + 引言 + 威能条目」；每条威能保存时写成 `!!! 威能名` + 描述 + `{{威能名}}` 三行，车卡据此渲染可悬浮、带「选择此威能」的威能条目。威能名建议与数据库中的威能全名一致（中文 English）。" },
     TAGS_SECTION,
   ],
   class: [
@@ -2070,6 +2108,8 @@ export const CATEGORY_SECTIONS: Record<string, HomebrewSection[]> = {
   ],
   ritual: [
     { title: "基本信息 · 仪式", keys: ["name", "nameEn", "source"], core: true },
+    // 顺序对齐官方仪式卡：抬头 → 风味引子 → ritualinfo 数据行 → 效果正文
+    { title: "风味文本", keys: ["flavorText"], core: true },
     { title: "仪式信息", keys: ["ritualLevel", "ritualCategory", "keySkill", "time", "cost", "marketPrice"], core: true },
     { title: "外观", keys: ["cardColor", "cardIcon"] },
     TAGS_SECTION,
@@ -2109,7 +2149,7 @@ function powerRefSections(label: string): HomebrewSection[] {
 }
 
 // 纯通用类型的分区：仅「基本信息 + 外观 + 标签」，正文独立成区（无专属标量字段）。
-function genericSections(label: string): HomebrewSection[] {
+export function genericSections(label: string): HomebrewSection[] {
   return [
     { title: `基本信息 · ${label}`, keys: ["name", "nameEn", "source"], core: true },
     { title: "外观", keys: ["cardColor", "cardIcon"] },
@@ -2122,7 +2162,7 @@ function genericSections(label: string): HomebrewSection[] {
 // 这两类正文完全由结构化编辑器派生（power：标签块；dictionary：词条对），不再提供自由 Markdown 正文区。
 export const POWER_REF_CATEGORIES: ReadonlySet<string> = new Set([
   "magic-school", "pact", "bloodline", "theme", "domain",
-  "epic-destiny", "paragon-path", "class", "race",
+  "epic-destiny", "paragon-path", "class",
 ]);
 export const WITHOUT_BODY: ReadonlySet<string> = new Set(["feat", "power", "dictionary"]);
 
@@ -2130,295 +2170,10 @@ export function fieldsFor(cat: string): SheetField[] {
   return [...COMMON, ...(CATEGORY_FIELDS[cat] ?? []), ...APPEARANCE_FIELDS];
 }
 
-function splitTags(s: string): string[] {
+export function splitTags(s: string): string[] {
   return s
     .split(/[，,、]/)
     .map((t) => t.trim())
     .filter(Boolean);
 }
 
-// 草稿/表单值 → Entry。existingId 用于编辑时保留原 id。
-// opts.allowEmpty 用于实时预览：跳过 name/category 必填校验、source 不做「私设」兜底，
-// 以便在空类型/空名称时也能构造出供骨架占位预览的 entry。
-export function buildEntry(
-  form: Record<string, string>,
-  existingId?: string,
-  opts?: { allowEmpty?: boolean },
-): { ok: true; entry: Entry } | { ok: false; error: string } {
-  const name = (form.name ?? "").trim();
-  const cat = (form.category ?? "").trim();
-  if (!opts?.allowEmpty) {
-    if (!name) return { ok: false, error: "请填写名称" };
-    if (!cat) return { ok: false, error: "请选择分类" };
-  }
-
-  const extras: Record<string, string> = {};
-  // 结构化编辑的 JSON form 键（存编辑态，不落库为标量；由下方分类分支派生成 entry 字段）
-  const STRUCTURED_KEYS = new Set(["powerSections", "properties", "featRows", "setBonuses", "termsPairs", "levelSections", "creatureBlock"]);
-  for (const f of fieldsFor(cat)) {
-    const v = (form[f.key] ?? "").trim();
-    if (f.type === "tags" || f.key === "name" || f.key === "nameEn" || f.key === "category" || f.key === "source" || f.key === "sourceText" || f.key === "powerBlocks" || STRUCTURED_KEYS.has(f.key) || !v) continue;
-    extras[f.key] = v;
-  }
-  for (const f of CATEGORY_FIELDS[cat] ?? []) {
-    const v = (form[f.key] ?? "").trim();
-    if (v && f.key !== "powerBlocks" && !STRUCTURED_KEYS.has(f.key)) extras[f.key] = v;
-  }
-
-  // 威能：再生频率 → usage 代码；威能类型 → powerKind（两个正交维度）
-  if (cat === "power") {
-    const freq = powerFreqOf(form.usageZh || "");
-    if (freq) extras.usage = freq.usage;
-    const type = powerKindOf(form.powerType || "");
-    if (type) extras.powerKind = type.powerKind;
-  }
-
-  let sourceText = form.sourceText ?? "";
-  // —— 各类型结构化派生 ——
-  // 装备：物品威能段 → entry.power（官方 bg-item 格式），供 ItemCard 专属威能区块渲染
-  if (cat === "equipment") {
-    const secs = parseItemPowerSections(form.powerSections);
-    if (secs.length) extras.power = serializeItemPowerSections(secs);
-    // 增强算法：对象 = 类别默认+覆盖（有默认的类别才落字段）；加值 = 等级推导+覆盖（仅对有增强的类别推导，
-    // 奇物/头部等不凭空造增强行——与官方覆盖一致）
-    if (form.itemForm !== "mundane") {
-      const target = enhTargetOf(form.itemCategory, form.enhTarget);
-      if (target) extras.enhTarget = target;
-      // 加值推导：类别默认有增强，或用户已显式设置对象（设对象即意味着该物品有增强）
-      if (enhAppliesTo(form.itemCategory) || target) {
-        const bonus = enhBonusOf(form.itemLevel ?? "", extras.enh);
-        if (bonus) extras.enh = bonus;
-      }
-    }
-    // 武器/法器/护甲：分类组即官方 itemSuitable（同 token 空间），补写以对齐 ItemSlotPicker 槽位过滤（官方条目均携带该字段）
-    if (extras.group && !extras.itemSuitable && GROUPS_BY_CATEGORY[form.itemCategory ?? ""]) extras.itemSuitable = extras.group;
-  }
-  // 专长：关联威能等级表 → 拼到 benefit 末尾（官方 <table>）
-  if (cat === "feat") {
-    const rows = parseFeatRowsJson(form.featRows);
-    if (rows.length && form.benefit) extras.benefit = form.benefit.trim() + "\n" + serializeFeatTable(rows);
-  }
-  // 物品套装：知识/组成/增益 → sourceText（wiki 章节）
-  if (cat === "item-set") {
-    const components = (form.setComponents ?? "").split(/[，,、]/).map((s) => s.trim()).filter(Boolean);
-    const bonuses = parseSetBonusesJson(form.setBonuses);
-    sourceText = serializeItemSet(form.setKnowledge ?? "", components, bonuses);
-  }
-  // 译名字典：词条对 → sourceText / terms
-  if (cat === "dictionary") {
-    const pairs = parseTerms(form.termsPairs ?? "");
-    sourceText = serializeTerms(pairs);
-    if (pairs.length) extras.terms = pairs.map(([e, z]) => `${e}: ${z}`).join("\n");
-  }
-  // 威能引用类：提供「等级特性小节」结构化编辑，但**不隐藏正文**——lore 类正文（如 主题扮演/创建、种族外貌）
-  // 仍需 textarea 承载。仅当用户填写了 levelSections 时才用结构化结果覆盖 sourceText，否则保留手写正文。
-  if (POWER_REF_CATEGORIES.has(cat)) {
-    const secs = parseLevelSectionsJson(form.levelSections, { allowPlain: true });
-    if (secs.length) {
-      let body = serializeLevelSections(secs);
-      // 典范之道/传奇天命：正文以「前提条件：{{!!prerequisite}}」模板开头
-      if ((cat === "paragon-path" || cat === "epic-destiny") && body) {
-        body = `前提条件：{{!!prerequisite}}\n${body}`;
-      }
-      sourceText = body;
-    }
-  }
-
-  const bodyFormat: "md" | "wiki" = form.bodyFormat === "wiki" ? "wiki" : "md";
-  // 威能结构化「标签块」：非空时渲染为官方一致的 <table class=details>，优先于 Markdown 正文。
-  const powerBlocks = cat === "power" ? parsePowerBlocks(form.powerBlocks) : null;
-  let details: string | undefined;
-  // 威能：详情完全由「标签块」派生（正文面板已移除，仍与官方 details 格式一致）。
-  // 其余无正文区的类型（如专长，卡片不渲染 details）不派生 details，避免保存冗余数据。
-  if (cat === "power") {
-    if (powerBlocks && powerBlocks.length) details = serializePowerBlocks(powerBlocks);
-  } else if (cat === "ritual") {
-    // 仪式：头部六行(div.ritualinfo) + 效果正文（对齐官方仪式卡布局）
-    const header = serializeRitualInfo({
-      ritualLevel: form.ritualLevel ?? "",
-      ritualCategory: form.ritualCategory ?? "",
-      time: form.time ?? "",
-      cost: form.cost ?? "",
-      marketPrice: form.marketPrice ?? "",
-      keySkill: form.keySkill ?? "",
-    });
-    const effect = sourceText ? renderBody(sourceText, bodyFormat, extras) : "";
-    details = header || effect ? (header ? header + (effect ? "\n" + effect : "") : effect) : undefined;
-  } else if (cat === "creature") {
-    // 生物：数据块(structured) 追加到 lore 正文之后（details 优先于 sourceText 被卡片渲染）。
-    // 数据块之外保留 sourceText 的 lore 文本区（设计开放问题①：保留非数据块自由正文）。
-    const lore = sourceText ? renderBody(sourceText, bodyFormat, extras) : "";
-    const blk = parseCreatureBlockJson(form.creatureBlock);
-    const blockHtml = blk ? serializeCreatureBlock(blk) : "";
-    details = lore || blockHtml ? [lore, blockHtml].filter(Boolean).join("\n") : undefined;
-  } else if (cat === "equipment") {
-    // 装备：details 纯派生 —— 仅 特性段 + 正文。
-    // 增强/重击/甲类 是卡片统计表行的权威标量，此处不再重复写入 details（消灭双重同步）。
-    const props = parseItemProperties(form.properties);
-    const bodyHtml = sourceText ? renderBody(sourceText, bodyFormat, extras) : "";
-    details = serializeEquipmentDetails({ props, bodyHtml });
-  } else if (!WITHOUT_BODY.has(cat)) {
-    if (powerBlocks && powerBlocks.length) {
-      details = serializePowerBlocks(powerBlocks);
-    } else {
-      details = sourceText ? renderBody(sourceText, bodyFormat, extras) : undefined;
-    }
-  }
-  const entry: Entry = {
-    id: existingId?.trim() || name,
-    name,
-    nameEn: (form.nameEn ?? "").trim() || undefined,
-    category: cat,
-    tags: splitTags(form.tags ?? ""),
-    origin: "user",
-    source: (form.source ?? "").trim() || (opts?.allowEmpty ? "" : "私设"),
-    sourceText,
-    bodyFormat,
-    fields: extras,
-    wiki: { transclusions: [], links: [], macros: [], headings: [] },
-    ...(powerBlocks && powerBlocks.length ? { powerBlocks } : {}),
-    details,
-    ...extras,
-  };
-  return { ok: true, entry };
-}
-
-export function draftToForm(entry: Entry): Record<string, string> {
-  const form: Record<string, string> = {
-    name: entry.name ?? "",
-    nameEn: entry.nameEn ?? "",
-    category: entry.category ?? "",
-    tags: (entry.tags ?? []).join(", "),
-    source: entry.source ?? "",
-    sourceText: entry.sourceText ?? "",
-    bodyFormat: detectBodyFormat(entry),
-  };
-  for (const f of CATEGORY_FIELDS[entry.category] ?? []) {
-    const v = (entry as Record<string, unknown>)[f.key];
-    form[f.key] = typeof v === "string" ? v : "";
-  }
-  // —— 结构化编辑回填（各类型）——
-  // 装备：entry.power / details 中的 bg-item 威能段 → powerSections；
-  //       另把 details 的「增强：/重击：」文本行回填进 enh/critical（官方此类信息存于 details，顶层为空）
-  if (entry.category === "equipment") {
-    // 基础形态兜底：无 itemForm 标记的旧条目，按基础字段自明判定（isMundaneEntry），保证回填后仍显示基础形态
-    if (!form.itemForm && isMundaneEntry(entry)) form.itemForm = "mundane";
-    const full = (entry.power as string) || (entry.details as string) || "";
-    const secs = parseItemPowerSectionsHtml(full);
-    if (secs.length) form.powerSections = JSON.stringify(secs);
-    const props = parseItemPropertiesHtml(full);
-    if (props.length) form.properties = JSON.stringify(props);
-    const statOf = (label: string) => {
-      const m = full.match(new RegExp(`<b>\\s*${label}\\s*：\\s*</b>\\s*([^<]*)`));
-      return m && m[1] ? m[1].trim() : "";
-    };
-    if (!form.critical) form.critical = statOf("重击");
-    // —— 增强算法回填：官方 details「增强：」行是**对象文本**（加值由等级推导），进 enhTarget 而非 enh ——
-    // 旧数据迁移：与等级推导一致的加值 → 清空交由算法跟随；曾被塞进 enh 的对象文本（如 "AC"/"+2攻击骰和伤害骰"）→ 归位 enhTarget
-    const lvls = itemLevels(form.itemLevel ?? "");
-    const derivedBonuses = lvls.length ? [...new Set(lvls.map(enhancementBonusForLevel))] : [];
-    const derivedStr = derivedBonuses.map((b) => "+" + b).join("/");
-    if (form.enh && derivedStr && form.enh.trim() === derivedStr) {
-      form.enh = "";
-    } else if (form.enh && !/^\s*[+−-]?\d+(\.\d+)?\s*$/.test(form.enh)) {
-      if (!form.enhTarget) form.enhTarget = normalizeEnhTarget(form.enh);
-      form.enh = "";
-    }
-    const enhLine = statOf("增强");
-    if (!form.enhTarget && enhLine) form.enhTarget = normalizeEnhTarget(enhLine);
-    // 武器/法器/护甲：官方 itemSuitable 与分类组同 token 空间（重刃/法杖/鳞甲…），映射进「分类组」供统计行与候选使用
-    if (!form.group && form.itemSuitable && GROUPS_BY_CATEGORY[form.itemCategory ?? ""]) form.group = form.itemSuitable;
-    // 残余头部行（配方花费/关键技能/时间/要求/前提 等未结构化内容）→ 正文，官方条目导入不丢内容。
-    // 官方 sourceText 全部为 <<item-format>> 宏占位（无实义），先清空再填；自制条目（origin=user）的
-    // details 由 特性段+正文 派生，跳过残余回填避免正文重复。
-    if (entry.origin !== "user") {
-      if (/^\s*<<item-format>>\s*$/.test(form.sourceText)) form.sourceText = "";
-      const residual = residualEquipmentText(full);
-      if (residual) form.sourceText = [form.sourceText.trim(), residual].filter(Boolean).join("\n\n");
-    }
-  }
-  // 专长：benefit 内嵌的等级×威能表 → featRows
-  if (entry.category === "feat") {
-    const rows = parseFeatTable((entry as Record<string, unknown>).benefit as string);
-    if (rows?.length) form.featRows = JSON.stringify(rows);
-  }
-  // 物品套装：sourceText 的知识/组成/增益三节 → 三个字段
-  if (entry.category === "item-set") {
-    const parsed = parseSetBonuses(entry.sourceText ?? "");
-    form.setKnowledge = parsed.knowledge;
-    form.setBonuses = JSON.stringify(parsed.setBonus);
-    form.setComponents = extractLinks(sectionBetweenWiki(entry.sourceText ?? "", "套装组成", "套装增益")).join("，");
-  }
-  // 译名字典：terms/sourceText 的「英: 中」行 → termsPairs
-  if (entry.category === "dictionary") {
-    const src = (typeof entry.terms === "object" && entry.terms ? Object.entries(entry.terms).map(([e, z]) => `${e}: ${z}`).join("\n") : "") || entry.sourceText || "";
-    form.termsPairs = parseTerms(src).map(([e, z]) => `${e}: ${z}`).join("\n");
-  }
-  // 仪式：从 details/sourceText 的 ritualinfo 反推缺失的头部字段（time/cost/marketPrice）
-  if (entry.category === "ritual") {
-    if (!form.time || !form.cost || !form.marketPrice) {
-      const h = parseRitualInfo(
-        ((entry as Record<string, unknown>).details as string) || entry.sourceText || "",
-        { ritualLevel: form.ritualLevel, ritualCategory: form.ritualCategory, time: form.time, cost: form.cost, marketPrice: form.marketPrice, keySkill: String((form.keySkill ?? "")) },
-      );
-      if (h.time) form.time = h.time;
-      if (h.cost) form.cost = h.cost;
-      if (h.marketPrice) form.marketPrice = h.marketPrice;
-    }
-  }
-  // 生物：details/sourceText 中的 div.creature 数据块 → creatureBlock（结构化）；并从 sourceText 剥离数据块，
-  // 使 lore 文本区只保留数据块之外的自由正文（新建条目的 sourceText 本就是 lore-only，不受影响）。
-  if (entry.category === "creature") {
-    const full = ((entry as Record<string, unknown>).details as string) || entry.sourceText || "";
-    const blk = parseCreatureBlock(full);
-    if (blk) form.creatureBlock = JSON.stringify(blk);
-    const lore = (form.sourceText ?? "").replace(/<div class="?creature"?>[\s\S]*?<\/div>/i, "").replace(/\n{3,}/g, "\n\n").trim();
-    form.sourceText = lore;
-  }
-  // 威能引用类：正文（或 details 兜底）→ 等级特性小节；剥离「前提条件：{{!!prerequisite}}」首行
-  if (POWER_REF_CATEGORIES.has(entry.category)) {
-    let src = entry.sourceText || "";
-    if ((entry.category === "paragon-path" || entry.category === "epic-destiny") && !src) {
-      src = (entry as Record<string, unknown>).details as string || "";
-    }
-    const stripped = src.replace(/^前提条件：\{\{!!prerequisite\}\}(\r?\n)?/, "");
-    const secs = parseLevelSections(stripped, { allowPlain: true });
-    if (secs.length) form.levelSections = JSON.stringify(secs);
-  }
-  // 威能「标签块」回填：以数组形式存入表单（编辑器按 PowerBlock[] 使用）
-  if (entry.category === "power" && Array.isArray(entry.powerBlocks) && entry.powerBlocks.length) {
-    form.powerBlocks = JSON.stringify(entry.powerBlocks);
-  } else if (entry.category === "power" && entry.details) {
-    // 官方/旧条目的 details HTML → 可编辑标签块（拆成 目标/攻击/命中… 行，含缩进与换行）
-    const blocks = parsePowerDetails(entry.details);
-    if (blocks?.length) form.powerBlocks = JSON.stringify(blocks);
-  }
-  // 威能：再生频率缺省时按官方 usage/usageZh 反推（只有 随意/遭遇/每日 三值）
-  if (entry.category === "power" && !form.usageZh) {
-    if (entry.usage === "at-will" || entry.usageZh === "随意") form.usageZh = "随意";
-    else if (entry.usage === "encounter" || entry.usageZh === "遭遇") form.usageZh = "遭遇";
-    else if (entry.usage === "daily" || entry.usageZh === "每日") form.usageZh = "每日";
-  }
-  // 威能类型：官方 powerType（如「邪术师攻击」「影子杀手辅助」）剥离授予者前缀，
-  // 归一为 攻击/辅助/特殊 三选；无从属时按 powerKind 兜底。
-  if (entry.category === "power") {
-    const t = entry.powerType ?? "";
-    const m = /^(.*?)(攻击|辅助|特殊|威能)$/.exec(t);
-    const type = m?.[2] === "威能" ? "特殊" : m?.[2];
-    if (type && POWER_TYPES.some((p) => p.label === type)) {
-      form.powerType = type;
-      if (!form.grantedBy && m?.[1]) form.grantedBy = m[1];
-    } else if (entry.powerKind === "utility") form.powerType = "辅助";
-    else if (entry.powerKind === "special") form.powerType = "特殊";
-    else if (entry.powerKind === "attack") form.powerType = "攻击";
-  }
-  // 威能：sourceText 若只是「<<power-format>>」等宏占位（剥掉宏后为空），清空以免正文区显示无意义代码
-  if (entry.category === "power" && form.sourceText && !form.sourceText.replace(/<<[^>]+>>/g, "").trim()) {
-    form.sourceText = "";
-  }
-  for (const f of APPEARANCE_FIELDS) {
-    const v = (entry as Record<string, unknown>)[f.key];
-    form[f.key] = typeof v === "string" ? v : "";
-  }
-  return form;
-}

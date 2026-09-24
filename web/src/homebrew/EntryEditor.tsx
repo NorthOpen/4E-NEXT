@@ -1,12 +1,15 @@
 import { platform } from "@platform";
 import { useEffect, useMemo, useRef, useState, type ChangeEvent } from "react";
-import type { CSSProperties } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import { HexColorPicker } from "react-colorful";
 import type { Entry, PowerBlock } from "../data/types";
 import { CATEGORY_LABELS } from "../data/labels";
-import { FilledButton, FilledTextField, IconButton, OutlinedButton, TextButton } from "../components/md";
-import EntryCard from "../sheet/EntryCard";
-import { buildEntry, draftToForm, fieldsFor, CATEGORY_FIELDS, CATEGORY_LIST, CATEGORY_SECTIONS, WITHOUT_BODY, POWER_FREQUENCIES, POWER_TYPES, RANGE_TEMPLATES, composeRange, parseRange, parsePowerBlocks, POWER_BLOCK_LABELS, POWER_TEMPLATE_SECONDARY, POWER_PRESETS, PRESET_GROUPS, ITEM_FREQUENCIES, ITEM_POWER_KEYWORDS, POWER_HEAD_BASES, ACTION_TYPES, parseItemPowerSections, parseItemProperties, parseFeatRowsJson, parseSetBonusesJson, parseTerms, serializeTerms, FEAT_PRESETS, FEAT_PREREQ_CANDIDATES, parseLevelSectionsJson, parseCreatureBlockJson, CREATURE_ROLES, CREATURE_SIZES, CREATURE_ORIGINS, CREATURE_ACTIONS, CREATURE_FREQUENCIES, CREATURE_ROW_PRESETS, GROUPS_BY_CATEGORY, GROUPS, SUIT_CANDIDATES_BY_CATEGORY, suitRowFor, ENH_TARGETS_BY_CATEGORY, ENH_TARGETS_COMMON, enhTargetOf, enhBonusOf, enhAppliesTo, equipFamilyOf, equipmentStatRows, MUNDANE_STAT_ROWS, MUNDANE_CATEGORIES, MUNDANE_FIELDS, gearToForm, ITEM_CATEGORY_TIPS, RARITY_TIPS, ITEM_TYPE_TIPS, type LevelFeatureSection, type SheetField, type RangeTemplateItem, type PowerPreset, type HomebrewSection, type ItemPowerSection, type ItemPropertySection, type FeatRow, type SetBonusBlock, type CreatureBlock } from "../lib/homebrewSchema";
+import { FilledButton, FilledTextField, IconButton, OutlinedButton, Switch, TextButton } from "../components/md";
+import { buildEntry, draftToForm } from "../lib/categorySpecs/entryBuild";
+import { specFor } from "../lib/categorySpecs";
+import { parseRaceTraitsJson, parseRaceLoreJson, parseRaceAuxJson, emptyRaceAuxGroup, RACE_LANGUAGES, toggleCommaToken, skillBonusToken, raceTraitNameConflicts, collectRacePowerRefs } from "../lib/categorySpecs/race";
+import type { RaceTraitRow, RaceLoreBlock, RaceAuxGroup, RaceAuxPower } from "../lib/categorySpecs/types";
+import { fieldsFor, CATEGORY_FIELDS, CATEGORY_LIST, CATEGORY_SECTIONS, WITHOUT_BODY, POWER_FREQUENCIES, POWER_TYPES, RANGE_TEMPLATES, composeRange, parseRange, parsePowerBlocks, POWER_BLOCK_LABELS, POWER_TEMPLATE_SECONDARY, POWER_PRESETS, PRESET_GROUPS, ITEM_FREQUENCIES, ITEM_POWER_KEYWORDS, POWER_HEAD_BASES, ACTION_TYPES, parseItemPowerSections, parseItemProperties, parseFeatRowsJson, parseSetBonusesJson, parseTerms, serializeTerms, FEAT_PRESETS, FEAT_PREREQ_GROUPS, parseLevelSectionsJson, parseCreatureBlockJson, CREATURE_ROLES, CREATURE_SIZES, CREATURE_ORIGINS, CREATURE_ACTIONS, CREATURE_FREQUENCIES, CREATURE_ROW_PRESETS, SKILLS, GROUPS_BY_CATEGORY, GROUPS, SUIT_CANDIDATES_BY_CATEGORY, suitRowFor, ENH_TARGETS_BY_CATEGORY, ENH_TARGETS_COMMON, enhTargetOf, enhBonusOf, enhAppliesTo, equipFamilyOf, equipmentStatRows, MUNDANE_STAT_ROWS, MUNDANE_CATEGORIES, MUNDANE_FIELDS, gearToForm, ITEM_CATEGORY_TIPS, RARITY_TIPS, ITEM_TYPE_TIPS, type LevelFeatureSection, type SheetField, type RangeTemplateItem, type PowerPreset, type HomebrewSection, type ItemPowerSection, type ItemPropertySection, type FeatRow, type SetBonusBlock, type CreatureBlock } from "../lib/homebrewSchema";
 import { wikiToMarkdown } from "../lib/markdown";
 import { itemLevels, enhancementBonusForLevel, priceForLevel } from "../lib/levelprices";
 import { loadCategory, loadOfficialCategory } from "../data/loaders";
@@ -82,6 +85,7 @@ const STAT_HINTS: Record<string, string> = {
 const OPT_SEC_HAS: Record<string, (f: Record<string, string>) => boolean> = {
   sourceText: (f) => !!(f.sourceText ?? "").trim(),
   powerSections: (f) => parseItemPowerSections(f.powerSections).length > 0,
+  properties: (f) => parseItemProperties(f.properties).length > 0,
 };
 
 // 基础名录（gear.json）懒加载缓存
@@ -464,6 +468,8 @@ function ItemPowerSectionsEditor({ value, onChange }: { value: ItemPowerSection[
                       <button key={fr} type="button" className={"chip mini" + (s.freq === fr ? " active" : "")} onClick={() => chooseFreq(i, fr)}>{fr}</button>
                     ))}
                   </div>
+                </div>
+                <div className="hb-itempower-freqrow">
                   <span className="hb-label-sm">动作</span>
                   <div className="hb-ed-chips">
                     {ACTION_TYPES.map((a) => (
@@ -492,12 +498,13 @@ function ItemPowerSectionsEditor({ value, onChange }: { value: ItemPowerSection[
 function ItemPropertiesEditor({ value, onChange }: { value: ItemPropertySection[]; onChange: (v: ItemPropertySection[]) => void }) {
   const [collapsed, setCollapsed] = useState<Record<number, boolean>>({});
   const upd = (i: number, raw: string) => {
-    const lines = raw.split("\n").map((l) => l.trim()).filter(Boolean);
-    if (lines.length === 0) {
+    // 保留原始行（含空行）：若在此处 trim/filter，输入中的换行会被立刻吞掉，根本无法打出多行特性。
+    // 仅在整段清空（无任何非空白内容）时删除该段；空行由保存侧 serializeItemProperties 跳过。
+    if (!raw.trim()) {
       onChange(value.filter((_, j) => j !== i));
       return;
     }
-    onChange(value.map((s, j) => (j === i ? { lines } : s)));
+    onChange(value.map((s, j) => (j === i ? { lines: raw.split("\n") } : s)));
   };
   const move = (i: number, d: -1 | 1) => {
     const j = i + d;
@@ -573,6 +580,13 @@ function EquipmentStatTableEditor({ form, set }: { form: Record<string, string>;
   // 增强算法：加值留空 = 按等级推导（enhBonusOf）；对象 = 类别默认（enhTargetOf）+ chips/自定义覆盖
   const enhDerived = !mundane && (enhAppliesTo(form.itemCategory) || (form.enhTarget ?? "").trim())
     ? enhBonusOf(form.itemLevel ?? "", "") : "";
+  // 增强「自动运算」开关：开启后按物品等级推导加值并同步写入（万律：L1-5→+1，L6-10→+2，…，L26-30→+6）
+  const [enhAuto, setEnhAuto] = useState(() => !(form.enh ?? "").trim());
+  useEffect(() => {
+    if (!enhAuto) return;
+    const d = enhBonusOf(form.itemLevel ?? "", "");
+    if (form.enh !== d) set("enh", d);
+  }, [enhAuto, form.itemLevel]);
   return (
     <div className="hb-stat-table" data-ed-field="stats">
       {rows.map((r) => {
@@ -609,15 +623,28 @@ function EquipmentStatTableEditor({ form, set }: { form: Record<string, string>;
         return (
           <div key={r.key} className="hb-stat-row" data-ed-field={r.key}>
             <span className="hb-stat-row-label">{r.label}</span>
-            <FilledTextField
-              value={val}
-              placeholder={
-                r.key === "enh"
-                  ? enhDerived ? `自动：${enhDerived}` : "如 +3"
-                  : r.key === "subCategory" ? "如 巨剑/链甲（基础名录带自动填）" : undefined
-              }
-              onInput={(e) => set(r.key, (e.target as HTMLInputElement).value ?? "")}
-            />
+            {r.key === "enh" ? (
+              <div className="hb-stat-inline">
+                <FilledTextField
+                  value={val}
+                  disabled={enhAuto}
+                  placeholder={enhAuto ? (enhDerived ? `自动：${enhDerived}` : "先填物品等级以自动推导") : enhDerived ? `自动：${enhDerived}` : "如 +3"}
+                  onInput={(e) => set(r.key, (e.target as HTMLInputElement).value ?? "")}
+                />
+                {!mundane && (
+                  <label className="hb-enh-auto">
+                    <Switch selected={enhAuto} onChange={(e) => setEnhAuto((e.target as any).selected)} />
+                    <span>自动运算</span>
+                  </label>
+                )}
+              </div>
+            ) : (
+              <FilledTextField
+                value={val}
+                placeholder={r.key === "subCategory" ? "如 巨剑/链甲（基础名录带自动填）" : undefined}
+                onInput={(e) => set(r.key, (e.target as HTMLInputElement).value ?? "")}
+              />
+            )}
             {renderCands()}
             {r.key === "enh" && !mundane && (() => {
               // 增强对象：类别默认 chips + 自定义输入（用户自主设定；点当前项恢复默认）
@@ -637,13 +664,16 @@ function EquipmentStatTableEditor({ form, set }: { form: Record<string, string>;
                 </div>
               );
             })()}
-            {r.key === "enh" && enhDerived && !val.trim() && (
-              <span className="hint">按物品等级自动推导增强：{enhDerived}；手动填写后以填写为准（清空即恢复推导）。</span>
+            {r.key === "enh" && enhAuto && (
+              <span className="hint">按物品等级自动推导增强{enhDerived ? `：${enhDerived}` : "，需先填写物品等级"}；关闭开关后可手动填写。</span>
             )}
-            {r.key === "enh" && val.trim() && firstEnh !== undefined && !val.includes("+" + firstEnh) && (
+            {r.key === "enh" && !enhAuto && enhDerived && !val.trim() && (
+              <span className="hint">按物品等级自动推导增强：{enhDerived}；开启「自动运算」或手动填写（清空即恢复推导）。</span>
+            )}
+            {r.key === "enh" && !enhAuto && val.trim() && firstEnh !== undefined && !val.includes("+" + firstEnh) && (
               <span className="hint hb-hint-warn">提示：按首个等级通常为 +{firstEnh}，当前「{val.trim()}」为手动覆盖。</span>
             )}
-            {r.key === "enh" && val.trim() && !(firstEnh !== undefined && !val.includes("+" + firstEnh)) && (
+            {r.key === "enh" && !enhAuto && val.trim() && !(firstEnh !== undefined && !val.includes("+" + firstEnh)) && (
               <span className="hint">已手动设置加值；清空输入框可恢复按等级推导。</span>
             )}
             {r.key === "cost" && priceRangeAll.length > 0 && (
@@ -744,9 +774,17 @@ function LevelSectionsEditor({ value, onChange, titleLabel, category }: {
   value: string; onChange: (json: string) => void;
   titleLabel?: (s: LevelFeatureSection) => string; category?: string;
 }) {
-  const sections = parseLevelSectionsJson(value, { allowPlain: true });
+  const sections = parseLevelSectionsJson(value, { allowPlain: true, keepEmpty: true });
   const setSections = (s: LevelFeatureSection[]) => onChange(JSON.stringify(s));
   const upd = (i: number, u: Partial<LevelFeatureSection>) => setSections(sections.map((s, j) => (j === i ? { ...s, ...u } : s)));
+  // 小节顺序即正文输出顺序（保存时按数组顺序拼「!! N级：标题」分节），故支持上下调整
+  const move = (i: number, dir: -1 | 1) => {
+    const j = i + dir;
+    if (j < 0 || j >= sections.length) return;
+    const next = [...sections];
+    [next[i], next[j]] = [next[j], next[i]];
+    setSections(next);
+  };
   const kindCandidates: ("feature" | "power")[] = ["feature", "power"];
   const label = (i: number) => (titleLabel ? titleLabel(sections[i]) : sections[i].level || sections[i].title || `小节 ${i + 1}`);
   const [armed, setArmed] = useState<string | null>(null);
@@ -779,7 +817,11 @@ function LevelSectionsEditor({ value, onChange, titleLabel, category }: {
         <div key={i} className="hb-levelsection" data-ed-field={`levelSections[${i}]`}>
           <div className="hb-itempower-head">
             <span className="hb-itempower-headlabel">{label(i)}</span>
-            <IconButton title="删除此小节" onClick={() => setSections(sections.filter((_, j) => j !== i))}><span className="material-symbols-outlined">delete</span></IconButton>
+            <div className="hb-pblock-actions">
+              <IconButton title="上移此小节" disabled={i === 0} onClick={() => move(i, -1)}><span className="material-symbols-outlined">keyboard_arrow_up</span></IconButton>
+              <IconButton title="下移此小节" disabled={i === sections.length - 1} onClick={() => move(i, 1)}><span className="material-symbols-outlined">keyboard_arrow_down</span></IconButton>
+              <IconButton title="删除此小节" onClick={() => setSections(sections.filter((_, j) => j !== i))}><span className="material-symbols-outlined">delete</span></IconButton>
+            </div>
           </div>
           <div className="hb-levelsection-rows">
             <FilledTextField label="等级" value={s.level} placeholder="如：1级 / 11级（可空）" onInput={(e) => upd(i, { level: (e.target as HTMLInputElement).value })} />
@@ -812,6 +854,307 @@ function LevelSectionsEditor({ value, onChange, titleLabel, category }: {
       <div className="hb-pblock-actions">
         <OutlinedButton onClick={() => setSections([...sections, { level: "", title: "", kind: "feature", body: "", refs: [] }])}>＋ 添加小节</OutlinedButton>
       </div>
+    </div>
+  );
+}
+
+// —— 威能引用插入器 ——
+// 车卡 raceGrantedPowerEntries 只认特性正文里的 [[链接]]，且引用名必须等于威能库的 id
+// （形如「矮人恢复力 Dwarven Resilience」）；手写英文名极易拼错，拼错则威能不会授予，
+// 故提供按库检索的候选 chip，点击即插入完整引用名。
+function PowerRefInserter({ powers, onPick }: { powers: Entry[]; onPick: (id: string) => void }) {
+  const [q, setQ] = useState("");
+  const hits = useMemo(() => {
+    const s = q.trim().toLowerCase();
+    if (!s) return [];
+    return powers.filter((p) => p.id.toLowerCase().includes(s) || (p.nameEn ?? "").toLowerCase().includes(s)).slice(0, 8);
+  }, [powers, q]);
+  return (
+    <div className="hb-pwr-inserter">
+      <FilledTextField label="插入威能引用" value={q} placeholder="搜索威能名（中文或英文）" onInput={(e) => setQ((e.target as HTMLInputElement).value)} />
+      <div className="hb-ed-chips">
+        {powers.length === 0 ? (
+          <span className="hint">威能库加载中…</span>
+        ) : !q.trim() ? (
+          <span className="hint">输入关键字后点候选，即把 [[威能全名]] 追加到上方当前编辑的特性正文。</span>
+        ) : hits.length === 0 ? (
+          <span className="hint">威能库中没有匹配项（该威能尚未收录，引用后车卡不会授予）。</span>
+        ) : (
+          hits.map((p) => (
+            <button key={p.id} type="button" className="chip mini" title={p.id} onClick={() => { onPick(p.id); setQ(""); }}>{p.name || p.id}</button>
+          ))
+        )}
+      </div>
+    </div>
+  );
+}
+
+// —— 种族·特性行编辑器 ——
+// 每行 = 特性名 + 正文（可含 [[威能]] 引用，车卡据此自动授予）+ 替代（被替换的基础特性名，如 龙息）。
+// 保存时 race spec 拼装为官方 @@.classTrait 块；数据存 form.raceTraits 的 JSON。
+function RaceTraitEditor({ value, onChange, powers }: { value: RaceTraitRow[]; onChange: (rows: RaceTraitRow[]) => void; powers: Entry[] }) {
+  // 威能引用的插入目标行：点特性正文时记录（默认第一行），点候选威能时把 [[全名]] 追加到该行
+  const [focusIdx, setFocusIdx] = useState(0);
+  const updateAt = (i: number, upd: Partial<RaceTraitRow>) =>
+    onChange(value.map((t, j) => (j === i ? { ...t, ...upd } : t)));
+  const move = (i: number, dir: -1 | 1) => {
+    const j = i + dir;
+    if (j < 0 || j >= value.length) return;
+    const next = [...value];
+    [next[i], next[j]] = [next[j], next[i]];
+    onChange(next);
+  };
+  const insertRef = (i: number, id: string) => {
+    const t = value[i];
+    if (!t) return;
+    const body = t.body.replace(/\s+$/, "");
+    updateAt(i, { body: `${body}${body ? " " : ""}[[${id}]]` });
+  };
+  // 「替代」候选 = 本条目其它特性名：官方亚种写法把基础特性与替代行同时写在同一个 classTrait 块内，
+  // 被替代者必然是本条目的另一行，故用候选 chip 而不是自由输入（避免名字打错导致替代关系失效）。
+  const candidates = useMemo(() => [...new Set(value.map((t) => t.name.trim()).filter(Boolean))], [value]);
+  return (
+    <div className="hb-racetraits" data-ed-field="raceTraits">
+      <p className="hint" style={{ margin: "0 0 8px" }}>
+        每个特性行 = 特性名 + 正文（可含 [[威能]] 引用，车卡上据此自动授予）；「替代」点选本条目里的另一条特性名（如 龙息），留空则不改写特性。
+      </p>
+      {value.map((t, i) => (
+        <div key={i} className="hb-racetrait-row">
+          <div className="hb-pblock-head">
+            <FilledTextField label="特性名" value={t.name} placeholder="如：矮人恢复力" onInput={(e) => updateAt(i, { name: (e.target as HTMLInputElement).value })} />
+            <IconButton title="上移" onClick={() => move(i, -1)}><span className="material-symbols-outlined">arrow_upward</span></IconButton>
+            <IconButton title="下移" onClick={() => move(i, 1)}><span className="material-symbols-outlined">arrow_downward</span></IconButton>
+            <IconButton title="删除此行" onClick={() => onChange(value.filter((_, j) => j !== i))}><span className="material-symbols-outlined">close</span></IconButton>
+          </div>
+          <div className="hb-ed-chips">
+            <span className="hb-chips-label">替代</span>
+            {candidates.filter((c) => c !== t.name).length === 0 && !(t.replaces ?? "").trim() ? (
+              <span className="hint">本条目暂无其它特性可被替代</span>
+            ) : (
+              [...new Set([...candidates.filter((c) => c !== t.name), (t.replaces ?? "").trim()])].filter(Boolean).map((c) => (
+                <button key={c} type="button" className={"chip mini" + (t.replaces === c ? " active" : "")} onClick={() => updateAt(i, { replaces: t.replaces === c ? "" : c })}>{c}</button>
+              ))
+            )}
+          </div>
+          <textarea
+            className="hb-textarea"
+            rows={3}
+            value={t.body}
+            placeholder="特性正文（可含 [[威能]] 链接）"
+            onFocus={() => setFocusIdx(i)}
+            onChange={(e: ChangeEvent<HTMLTextAreaElement>) => updateAt(i, { body: e.target.value })}
+          />
+        </div>
+      ))}
+      <div className="hb-pblock-actions">
+        <OutlinedButton onClick={() => onChange([...value, { name: "", body: "" }])}>＋ 添加特性行</OutlinedButton>
+      </div>
+      <PowerRefInserter powers={powers} onPick={(id) => insertRef(Math.min(focusIdx, Math.max(value.length - 1, 0)), id)} />
+    </div>
+  );
+}
+
+// —— 种族·语言编辑器 ——
+// 自由文本 + 常用语言 chip 辅助：chip 追加/移除「，」分隔的固定语言；
+// 「另外任选一种」「矮人语或巨人语」这类写法直接输入文本，车卡 parseRaceAutofill 会据此留出空槽位供玩家自选。
+function RaceLanguagesEditor({ value, onChange }: { value: string; onChange: (v: string) => void }) {
+  const parts = value.split("，").map((p) => p.trim());
+  return (
+    <div className="hb-racelang" data-ed-field="languages">
+      <FilledTextField label="语言" value={value} placeholder="如：通用语，矮人语" onInput={(e) => onChange((e.target as HTMLInputElement).value)} />
+      <div className="hb-ed-chips">
+        {RACE_LANGUAGES.map((l) => (
+          <button key={l} type="button" className={"chip mini" + (parts.includes(l) ? " active" : "")} onClick={() => onChange(toggleCommaToken(value, l))}>{l}</button>
+        ))}
+      </div>
+      <span className="hint">点选 chip 追加或移除固定语言；「另外任选一种」「矮人语或巨人语」直接写在文本框里，车卡会自动留出空槽位供玩家自选。</span>
+    </div>
+  );
+}
+
+// —— 种族·技能奖励编辑器 ——
+// 官方「技能奖励」行写法固定为 `+2技能名`（多项用「，」分隔，如 `+2地城，+2坚韧`），
+// 车卡 parseRaceAutofill 用 `+N技能名` 正则回填技能加值，故 chip 直接产出该格式的片段。
+function RaceSkillsEditor({ value, onChange }: { value: string; onChange: (v: string) => void }) {
+  const parts = value.split("，").map((p) => p.trim());
+  return (
+    <div className="hb-raceskills" data-ed-field="skillBonus">
+      <FilledTextField label="技能奖励" value={value} placeholder="如：+2地城，+2坚韧" onInput={(e) => onChange((e.target as HTMLInputElement).value)} />
+      <div className="hb-ed-chips">
+        {SKILLS.map((s) => {
+          const tok = skillBonusToken(s);
+          return (
+            <button key={s} type="button" className={"chip mini" + (parts.includes(tok) ? " active" : "")} onClick={() => onChange(toggleCommaToken(value, tok))}>{tok}</button>
+          );
+        })}
+      </div>
+      <span className="hint">官方写法为「+N技能名」，多项用「，」分隔；「+2到另外一个技能」这类自由写法直接写在文本框里。</span>
+    </div>
+  );
+}
+
+// —— 种族·「出生奖励属性2」编辑器 ——
+// 官方 45 个种族几乎全部写成「A或B」（矮人「力量或感知」、精灵「智力或感知」），
+// 车卡 parseRaceAbilities 按「或」切分、由玩家二选一（未选时默认取第一项），
+// 故这里允许多选（最多两项，以「或」连接），同时保留自由输入以兼容其他写法。
+const RACE_ABILITY_OPTIONS = ["力量", "敏捷", "体质", "智力", "感知", "魅力"];
+function RaceAbilityTwoEditor({ value, onChange }: { value: string; onChange: (v: string) => void }) {
+  const parts = value.split("或").map((p) => p.trim()).filter(Boolean);
+  return (
+    <div className="hb-raceability">
+      <FilledTextField value={value} placeholder="如：力量或感知" onInput={(e) => onChange((e.target as HTMLInputElement).value)} />
+      <div className="hb-ed-chips">
+        {RACE_ABILITY_OPTIONS.map((a) => {
+          const on = parts.includes(a);
+          return (
+            <button
+              key={a}
+              type="button"
+              className={"chip mini" + (on ? " active" : "")}
+              onClick={() => {
+                // 最多两项；已满两项时再点第三项，顶掉最早选的一项
+                const next = on ? parts.filter((p) => p !== a) : [...parts, a].slice(-2);
+                onChange(next.join("或"));
+              }}
+            >
+              {a}
+            </button>
+          );
+        })}
+      </div>
+      <span className="hint">官方写法「A或B」，车卡上玩家二选一。</span>
+    </div>
+  );
+}
+
+// —— 种族·「自由输入 + 候选 chip」通用编辑器（单选） ——
+// 种族数据板块的统一形态：先给手动输入框（可写官方任意写法），下方再给候选 chip 作辅助。
+// 单选语义——点已选项即取消；多选字段（视觉/技能奖励）各有专用编辑器。
+function RaceInputWithChips({ value, options, placeholder, onChange }: {
+  value: string;
+  options: string[];
+  placeholder?: string;
+  onChange: (v: string) => void;
+}) {
+  return (
+    <div className="hb-raceinput">
+      <FilledTextField value={value} placeholder={placeholder} onInput={(e) => onChange((e.target as HTMLInputElement).value)} />
+      <div className="hb-ed-chips">
+        {options.map((o) => (
+          <button key={o} type="button" className={"chip mini" + (value === o ? " active" : "")} onClick={() => onChange(value === o ? "" : o)}>{o}</button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// —— 种族·正文块编辑器 ——
+// 每块 = 标题（可留空 → 无标题自由块，首块作为「种族背景」引言）+ 正文。
+// 保存时 race spec 按序拼装在 classTrait 块之后（辅助威能已拆到独立分区的专用编辑器）。
+const RACE_LORE_TITLES = ["种族背景", "外貌特征", "态度和信仰", "团体", "角色扮演"];
+const RACE_LORE_HINT = "正文按块拼装在 classTrait 块之后；标题留空即为无标题自由块（只有首块能无标题，车卡把它作为「种族背景」引言，其余无标题块会并入前一块）。辅助威能请填在下方「辅助威能」分区。";
+function RaceLoreEditor({ value, onChange }: { value: RaceLoreBlock[]; onChange: (blocks: RaceLoreBlock[]) => void }) {
+  const updateAt = (i: number, upd: Partial<RaceLoreBlock>) =>
+    onChange(value.map((b, j) => (j === i ? { ...b, ...upd } : b)));
+  const move = (i: number, dir: -1 | 1) => {
+    const j = i + dir;
+    if (j < 0 || j >= value.length) return;
+    const next = [...value];
+    [next[i], next[j]] = [next[j], next[i]];
+    onChange(next);
+  };
+  return (
+    <div className="hb-racelore" data-ed-field="loreSections">
+      <p className="hint" style={{ margin: "0 0 8px" }}>{RACE_LORE_HINT}</p>
+      {value.map((b, i) => (
+        <div key={i} className="hb-racetrait-row">
+          <div className="hb-pblock-head">
+            <FilledTextField label="标题" value={b.title} placeholder="留空 = 无标题自由块" onInput={(e) => updateAt(i, { title: (e.target as HTMLInputElement).value })} />
+            <IconButton title="上移" onClick={() => move(i, -1)}><span className="material-symbols-outlined">arrow_upward</span></IconButton>
+            <IconButton title="下移" onClick={() => move(i, 1)}><span className="material-symbols-outlined">arrow_downward</span></IconButton>
+            <IconButton title="删除此块" onClick={() => onChange(value.filter((_, j) => j !== i))}><span className="material-symbols-outlined">close</span></IconButton>
+          </div>
+          <div className="hb-ed-chips">
+            {RACE_LORE_TITLES.map((t) => (
+              <button key={t} type="button" className={"chip mini" + (b.title === t ? " active" : "")} onClick={() => updateAt(i, { title: b.title === t ? "" : t })}>{t}</button>
+            ))}
+          </div>
+          <textarea
+            className="hb-textarea"
+            rows={3}
+            value={b.body}
+            placeholder="正文（可含 [[链接]] 与 ''加粗''）"
+            onChange={(e: ChangeEvent<HTMLTextAreaElement>) => updateAt(i, { body: e.target.value })}
+          />
+        </div>
+      ))}
+      <div className="hb-pblock-actions">
+        <OutlinedButton onClick={() => onChange([...value, { title: "", body: "" }])}>＋ 添加正文块</OutlinedButton>
+      </div>
+    </div>
+  );
+}
+
+// —— 种族·辅助威能编辑器 ——
+// 结构固定为「小节标题 + 引言 + 威能条目」：每条 = 威能名 + 描述。
+// 保存时写成 `!!! 威能名` + 描述 + `{{威能名}}`，车卡据此渲染可悬浮、带「选择此威能」的威能条目
+// —— 这是自由正文块做不到的，所以单独成区而不是塞在正文块里当标题。
+function RaceAuxEditor({ value, onChange, powers }: { value: RaceAuxGroup; onChange: (g: RaceAuxGroup) => void; powers: Entry[] }) {
+  const [focusIdx, setFocusIdx] = useState(0);
+  const powers_ = value.powers;
+  const setPower = (i: number, upd: Partial<RaceAuxPower>) =>
+    onChange({ ...value, powers: powers_.map((p, j) => (j === i ? { ...p, ...upd } : p)) });
+  const move = (i: number, dir: -1 | 1) => {
+    const j = i + dir;
+    if (j < 0 || j >= powers_.length) return;
+    const next = [...powers_];
+    [next[i], next[j]] = [next[j], next[i]];
+    onChange({ ...value, powers: next });
+  };
+  return (
+    <div className="hb-raceaux" data-ed-field="raceAuxPowers">
+      <p className="hint" style={{ margin: "0 0 8px" }}>
+        该种族有专属辅助威能时才需要填。威能名写成数据库里的全名（如`雪崩冲撞 Avalanche Rush`）才会在车卡上显示为可悬浮的威能条目；只写中文名时车卡仍会渲染条目，但悬浮卡与名称匹配可能失败。
+      </p>
+      <div className="hb-raceaux-head">
+        <FilledTextField label="小节标题" value={value.title} placeholder="如：矮人辅助威能" onInput={(e) => onChange({ ...value, title: (e.target as HTMLInputElement).value })} />
+        <span className="hb-label">引言（可选）</span>
+        <textarea
+          className="hb-textarea"
+          rows={2}
+          value={value.intro}
+          placeholder="威能小节的背景叙述，如「你必须是一名矮人才能获得并使用矮人威能」"
+          onChange={(e: ChangeEvent<HTMLTextAreaElement>) => onChange({ ...value, intro: e.target.value })}
+        />
+      </div>
+      {powers_.map((p, i) => (
+        <div key={i} className="hb-racetrait-row">
+          <div className="hb-pblock-head">
+            <FilledTextField label="威能名" value={p.name} placeholder="如：雪崩冲撞 Avalanche Rush" onInput={(e) => setPower(i, { name: (e.target as HTMLInputElement).value })} />
+            <IconButton title="上移" onClick={() => move(i, -1)}><span className="material-symbols-outlined">arrow_upward</span></IconButton>
+            <IconButton title="下移" onClick={() => move(i, 1)}><span className="material-symbols-outlined">arrow_downward</span></IconButton>
+            <IconButton title="删除此威能" onClick={() => onChange({ ...value, powers: powers_.filter((_, j) => j !== i) })}><span className="material-symbols-outlined">close</span></IconButton>
+          </div>
+          <textarea
+            className="hb-textarea"
+            rows={3}
+            value={p.body}
+            placeholder="威能描述（车卡上折叠显示，展开后可见）"
+            onFocus={() => setFocusIdx(i)}
+            onChange={(e: ChangeEvent<HTMLTextAreaElement>) => setPower(i, { body: e.target.value })}
+          />
+        </div>
+      ))}
+      <div className="hb-pblock-actions">
+        <OutlinedButton onClick={() => onChange({ ...value, powers: [...powers_, { name: "", body: "" }] })}>＋ 添加威能</OutlinedButton>
+      </div>
+      <PowerRefInserter
+        powers={powers}
+        onPick={(id) => {
+          const i = Math.min(focusIdx, Math.max(powers_.length - 1, 0));
+          if (powers_[i]) setPower(i, { name: id });
+        }}
+      />
     </div>
   );
 }
@@ -1065,8 +1408,9 @@ export default function EntryEditor({
   const [tmplOpen, setTmplOpen] = useState(false);
   const [tmplQuery, setTmplQuery] = useState("");
   const [tmplEntries, setTmplEntries] = useState<Entry[] | null>(null);
-  // 预览威能引用：装备的 威能/正文 含 [[链接]] 时，懒加载官方威能表用于悬浮解析
-  const [pwrMap, setPwrMap] = useState<Map<string, Entry> | null>(null);
+  // 预览威能引用解析：官方+私设威能索引（懒加载一次，存 ref 保证 lookup 恒可用，
+  // 数据就绪后 re-render 使 [[威能]] 从纯文本转为蓝色悬浮链接）
+  const [pwrState, setPwrState] = useState<{ m: Map<string, Entry> | null }>({ m: null });
   const pwrStartedRef = useRef(false);
   // 物品套装「套装组成」：懒加载官方装备名作候选（只加载一次），支持搜索过滤
   const [equipNames, setEquipNames] = useState<string[] | null>(null);
@@ -1108,15 +1452,14 @@ export default function EntryEditor({
     return () => { alive = false; };
   }, [tmplOpen, form.category, pools]);
 
-  // 装备预览的威能引用解析：仅当正文/威能出现 [[…]] 时懒加载官方威能索引（只加载一次）
+  // 预览的威能引用解析：进入编辑器即懒加载官方+私设威能索引（只加载一次），
+  // 供装备（威能/正文）、专长（增益/前提/特殊）等含 [[…]] 的引用悬浮解析。
+  // 数据存 state（setPwrState 触发 re-render），lookup 恒为函数：数据未就绪时 [[威能]]
+  // 渲染为纯文本（wiki-ref-plain），就绪后自动转为蓝色悬浮链接。
   useEffect(() => {
-    if (form.category !== "equipment" || pwrStartedRef.current) return;
-    const src = (form.sourceText ?? "") + "\n" + (form.power ?? "");
-    if (!src.includes("[[")) return;
+    if (pwrStartedRef.current) return;
     pwrStartedRef.current = true;
-    let alive = true;
     (powerIndexPromise ??= loadCategory("power")).then((entries) => {
-      if (!alive) return;
       const m = new Map<string, Entry>();
       for (const e of entries) {
         m.set(e.id, e);
@@ -1124,10 +1467,17 @@ export default function EntryEditor({
         if (e.name) m.set(e.name, e);
         if (e.nameEn) m.set(e.nameEn, e);
       }
-      setPwrMap(m);
+      try {
+        for (const p of loadPools()) for (const e of p.entries ?? []) {
+          if (e.category !== "power") continue;
+          if (e.id) m.set(e.id, e);
+          if (e.name) m.set(e.name, e);
+          if (e.nameEn) m.set(e.nameEn, e);
+        }
+      } catch { /* 私设包读取失败不影响官方索引 */ }
+      setPwrState({ m });
     }).catch(() => {});
-    return () => { alive = false; };
-  }, [form.category, form.sourceText, form.power]);
+  }, [form.category]);
 
   // —— 基础名录（gear.json）弹层：非魔法装备（基础武器/护甲/法器/盾牌/冒险装备）一键带入 ——
   const [gearOpen, setGearOpen] = useState(false);
@@ -1174,7 +1524,11 @@ export default function EntryEditor({
     setGearOpen(false);
   };
 
-  const lookup = pwrMap ? (t: string) => pwrMap.get(t) ?? pwrMap.get(t.toLowerCase()) : undefined;
+  // lookup 恒为函数：FeatRichText 恒走链接渲染分支；索引未就绪时解析不到返回 undefined（纯文本），
+  // 就绪后自动返回词条转为蓝色悬浮链接
+  const lookup = (t: string) => pwrState.m?.get(t) ?? pwrState.m?.get(t.toLowerCase());
+  // 威能库去重列表（Map 的键有 id/name/nameEn 多个，值对象同一份）：供种族「插入威能引用」检索候选
+  const racePowers = useMemo(() => (pwrState.m ? Array.from(new Set(pwrState.m.values())) : []), [pwrState.m]);
   const applyTemplate = (e: Entry) => {
     setForm((prev) => ({ ...draftToForm(e), bodyFormat: "md", __pool: prev.__pool ?? poolId }));
     setTip(`已从「${e.name}」带入字段作为起点，可在此基础上修改。`);
@@ -1249,6 +1603,44 @@ export default function EntryEditor({
     patch({ [k]: v });
   }
 
+  /** 装备「形态」三态（基础物品/魔法物品/冒险装备）：与类别联动，切换时清空另一形态的专属字段 */
+  function setEquipForm(kind: "mundane" | "magic" | "adventure") {
+    const p: Record<string, string> = { itemForm: kind === "magic" ? "" : "mundane" };
+    const clearMagic = (q: Record<string, string>) => {
+      q.itemLevel = ""; q.rarity = ""; q.enh = ""; q.enhTarget = ""; q.critical = ""; q.itemSuitable = ""; q.powerSections = "";
+    };
+    const clearMundane = (q: Record<string, string>, cat: string) => {
+      const rowKeys = new Set<string>((MUNDANE_STAT_ROWS[cat] ?? []).map((r) => r.key));
+      for (const kk of MUNDANE_FIELDS) if (!rowKeys.has(kk)) q[kk] = "";
+    };
+    if (kind === "mundane") {
+      // 基础物品：类别限于 武器/护甲/法器/盾牌
+      if (form.itemForm !== "mundane") clearMagic(p);
+      if (!["武器", "护甲", "法器", "盾牌"].includes(form.itemCategory ?? "")) {
+        p.itemCategory = "武器";
+        clearMundane(p, "武器");
+        p.subCategory = "";
+      }
+    } else if (kind === "adventure") {
+      // 冒险装备：基础形态 + 类别固定为 冒险装备（仅价格/重量）
+      if (form.itemForm !== "mundane") clearMagic(p);
+      if (form.itemCategory !== "冒险装备") {
+        p.itemCategory = "冒险装备";
+        clearMundane(p, "冒险装备");
+        p.subCategory = "";
+        p.group = ""; p.itemSuitable = ""; p.enhTarget = "";
+      }
+    } else {
+      // 魔法物品：类别不能为 冒险装备
+      if (form.itemForm === "mundane") {
+        for (const kk of MUNDANE_FIELDS) p[kk] = "";
+        p.subCategory = "";
+      }
+      if (form.itemCategory === "冒险装备" || !form.itemCategory) p.itemCategory = "武器";
+    }
+    patch(p);
+  }
+
   /** 从预览虚线框点击跳转：把左侧对应字段滚动到视野内并聚焦、短暂高亮 */
   function goField(k: string) {
     const el = formRef.current?.querySelector(`[data-ed-field="${k}"]`) as HTMLElement | null;
@@ -1304,6 +1696,10 @@ export default function EntryEditor({
     setTip("已转换为 Markdown，请检查排版后保存。");
   }
 
+  // 基础装备的「基础件」类别：车卡上以 装备栏紧凑块/选择面板卡片 呈现，与魔法物品卡不同形态
+  const isMundaneBase = form.category === "equipment" && form.itemForm === "mundane"
+    && ["武器", "护甲", "法器", "盾牌"].includes(form.itemCategory ?? "");
+
   const previewEntry = useMemo(() => {
     if (!form.category) return null;
     const fused = { ...blank(form.category), ...form, category: form.category };
@@ -1325,6 +1721,24 @@ export default function EntryEditor({
     if (!form.category) pushMiss({ key: "category", label: "私设类型" });
     for (const f of fields) {
       if (f.required && !(form[f.key] ?? "").trim()) pushMiss({ key: f.key, label: f.label });
+    }
+    // 种族结构化行的「无名」校验：车卡靠 `''名称：''正文` 定位特性行、靠威能名渲染辅助威能条目，
+    // 缺名时该行在预览与车卡上都会整体消失（表现为「填了没用」），保存前拦下。
+    if (form.category === "race") {
+      const namelessTrait = parseRaceTraitsJson(form.raceTraits).some((t) => !t.name.trim() && t.body.trim());
+      if (namelessTrait) pushMiss({ key: "raceTraits", label: "种族特性（有正文但缺特性名）" });
+      const namelessPower = parseRaceAuxJson(form.raceAuxPowers).powers.some((p) => !p.name.trim() && p.body.trim());
+      if (namelessPower) pushMiss({ key: "raceAuxPowers", label: "辅助威能（有描述但缺威能名）" });
+      // 特性名与 8 个自动头部槽位同名：车卡按 RACE_HEADER_NAMES 剔除头部行，同名特性会被一并剔除（填了不显示）
+      const conflicts = raceTraitNameConflicts(parseRaceTraitsJson(form.raceTraits));
+      if (conflicts.length) pushMiss({ key: "raceTraits", label: `种族特性（特性名与头部槽位同名，车卡不会展示：${conflicts.join("、")}）` });
+      // 未收录威能引用：车卡只按威能库 id 解析 [[链接]] 与威能名，不在库里时该威能不会被授予
+      if (pwrState.m) {
+        for (const g of collectRacePowerRefs(form)) {
+          const missing = g.refs.filter((n) => !pwrState.m!.has(n) && !pwrState.m!.has(n.toLowerCase()));
+          if (missing.length) pushMiss({ key: g.key, label: `${g.label}（威能未收录，车卡不会授予：${missing.join("、")}）` });
+        }
+      }
     }
     if (miss.length) {
       setFieldErrs(miss);
@@ -1384,6 +1798,167 @@ export default function EntryEditor({
 
   // 装备「选择式引导卡」：新建装备未选类别时，形态+类别前置选择，其余面板据此展开
   const equipGuide = form.category === "equipment" && !form.itemCategory;
+  const fieldByKey = useMemo(() => new Map(fields.map((f) => [f.key, f])), [fields]);
+  // 装备类别候选（字段全部选项；魔法形态用其排除 冒险装备 的版本）
+  const itemCatOptions = fieldByKey.get("itemCategory")?.options ?? [];
+  // 装备「形态」三态推导：基础物品（基础件 武器/护甲/法器/盾牌）/ 魔法物品 / 冒险装备
+  const equipFormKind: "mundane" | "magic" | "adventure" | null = form.category === "equipment"
+    ? (form.itemForm === "mundane"
+        ? (form.itemCategory === "冒险装备" ? "adventure" : "mundane")
+        : "magic")
+    : null;
+  // 形态对应的类别候选（魔法形态不含 冒险装备；冒险装备形态类别固定）
+  const equipCatOptions = equipFormKind === null
+    ? (fieldByKey.get("itemCategory")?.options ?? [])
+    : equipFormKind === "mundane"
+      ? ["武器", "护甲", "法器", "盾牌"]
+      : equipFormKind === "adventure"
+        ? ["冒险装备"]
+        : (itemCatOptions ?? []).filter((o) => o !== "冒险装备");
+  const equipFormHints: Record<string, string> = {
+    mundane: "非魔法基础装备：含 擅长加值/伤害/护甲加值 等基础字段；类别限于 武器/护甲/法器/盾牌。",
+    magic: "魔法物品：含 稀有度/等级/增强/威能段 等；非魔法基础装备可从「从基础名录选择」一键带入。",
+    adventure: "标准的冒险道具（绳、火把、油等）：仅含 价格/重量 等字段，无攻击、AC 与威能。",
+  };
+
+  // spec.editors 专用字段编辑器：editorKey → 渲染函数（依赖 form/set 闭包，故定义在组件内）。
+  // 未登记类别 / 未映射字段走 Shell 默认渲染；编辑器组件本身为文件级组件，此处仅做适配层。
+  const EDITOR_COMPONENTS: Record<string, (f: SheetField) => ReactNode> = {
+    powerSections: (f) => {
+      const secs = parseItemPowerSections(form.powerSections, { keepEmpty: true });
+      return (
+        <div key={f.key} className="hb-field hb-field-full" data-ed-field={f.key}>
+          <span className="hb-label">{f.label}</span>
+          <ItemPowerSectionsEditor value={secs} onChange={(s) => set("powerSections", JSON.stringify(s))} />
+        </div>
+      );
+    },
+    properties: (f) => {
+      const props = parseItemProperties(form.properties, { keepEmpty: true });
+      return (
+        <div key={f.key} className="hb-field hb-field-full" data-ed-field={f.key}>
+          <span className="hb-label">{f.label}</span>
+          <ItemPropertiesEditor value={props} onChange={(p) => set("properties", JSON.stringify(p))} />
+        </div>
+      );
+    },
+    featRows: (f) => {
+      const rows = parseFeatRowsJson(form.featRows, { keepEmpty: true });
+      return (
+        <div key={f.key} className="hb-field hb-field-full" data-ed-field={f.key}>
+          <span className="hb-label">{f.label}</span>
+          <FeatTableEditor value={rows} onChange={(r) => set("featRows", JSON.stringify(r))} />
+        </div>
+      );
+    },
+    powerBlocks: (f) => {
+      const blocks = parsePowerBlocks(form.powerBlocks, { keepEmpty: true }) ?? [];
+      return (
+        <div key={f.key} className="hb-field hb-field-full" data-ed-field={f.key}>
+          <span className="hb-label">{f.label}</span>
+          <PowerBlockEditor value={blocks} onChange={(b) => set("powerBlocks", JSON.stringify(b))} />
+        </div>
+      );
+    },
+    featPrereq: (f) => {
+      const v = form.prerequisite ?? "";
+      return (
+        <div key={f.key} className="hb-field hb-field-full" data-ed-field={f.key}>
+          <span className="hb-label">{f.label}</span>
+          <div className="hb-ed-chips">
+            {FEAT_PREREQ_GROUPS.flatMap((g) => g.items).map((c) => {
+              const on = v.split("，").some((p) => p.trim().startsWith(c));
+              return (
+                <button key={c} type="button" className={"chip mini" + (on ? " active" : "")} onClick={() => {
+                  const parts = v ? v.split("，").map((p) => p.trim()).filter(Boolean) : [];
+                  const idx = parts.findIndex((p) => p.startsWith(c));
+                  if (idx >= 0) parts.splice(idx, 1);
+                  else parts.push(c);
+                  set("prerequisite", parts.join("，"));
+                }}>{c}</button>
+              );
+            })}
+          </div>
+          <textarea className="hb-textarea" value={v} rows={3} placeholder={f.placeholder ?? "如：职业：战士，角色等级：4级"} onChange={(e) => set("prerequisite", e.target.value)} />
+          <span className="hint">官方前提按句式分为 职业式 / 等级式 / 受训式 / 属性式 / 种族式；多前提组合用「，」分隔，点选可追加或移除。</span>
+        </div>
+      );
+    },
+    featBenefit: (f) => {
+      const v = form.benefit ?? "";
+      return (
+        <div key={f.key} className="hb-field hb-field-full hb-field-feat-benefit" data-ed-field={f.key}>
+          <div className="hb-field-head">
+            <span className="hb-label">{f.label}</span>
+            <span className="hb-pblock-presets-label hb-feat-hint">专长预设 · 点击以模板替换当前增益</span>
+          </div>
+          <div className="hb-pblock-presets hb-feat-presets">
+            {FEAT_PRESETS.map((p) => (
+              <button key={p.name} type="button" className="chip mini" title={p.desc} onClick={() => set("benefit", p.blocks.map((b) => b.text).join(""))}>{p.name}</button>
+            ))}
+          </div>
+          <textarea className="hb-textarea" value={v} rows={5} placeholder={f.placeholder ?? "该专长带来的效果"} onChange={(e) => set("benefit", e.target.value)} />
+        </div>
+      );
+    },
+    raceTraits: (f) => {
+      const rows = parseRaceTraitsJson(form.raceTraits, { keepEmpty: true });
+      return (
+        <div key={f.key} className="hb-field hb-field-full" data-ed-field={f.key}>
+          <span className="hb-label">{f.label}</span>
+          <RaceTraitEditor value={rows} onChange={(r) => set("raceTraits", JSON.stringify(r))} powers={racePowers} />
+        </div>
+      );
+    },
+    loreSections: (f) => {
+      const blocks = parseRaceLoreJson(form.loreSections, { keepEmpty: true });
+      return (
+        <div key={f.key} className="hb-field hb-field-full" data-ed-field={f.key}>
+          <span className="hb-label">{f.label}</span>
+          <RaceLoreEditor value={blocks} onChange={(b) => set("loreSections", JSON.stringify(b))} />
+        </div>
+      );
+    },
+    raceAuxPowers: (f) => {
+      const g = form.raceAuxPowers ? parseRaceAuxJson(form.raceAuxPowers, { keepEmpty: true }) : emptyRaceAuxGroup();
+      return (
+        <div key={f.key} className="hb-field hb-field-full" data-ed-field={f.key}>
+          <span className="hb-label">{f.label}</span>
+          <RaceAuxEditor value={g} onChange={(v) => set("raceAuxPowers", JSON.stringify(v))} powers={racePowers} />
+        </div>
+      );
+    },
+    // 种族数据里的单选字段（出生奖励属性1 / 体型）：也统一为「输入框在上、候选 chip 在下」，
+    // 保证板块内每个字段都能自由输入官方任意写法，chip 只作辅助。
+    raceInputChips: (f) => (
+      <div key={f.key} className="hb-field" data-ed-field={f.key}>
+        <span className="hb-label">{f.label}{f.required ? " *" : ""}</span>
+        <RaceInputWithChips
+          value={form[f.key] ?? ""}
+          options={f.options ?? []}
+          placeholder={f.placeholder}
+          onChange={(v) => set(f.key, v)}
+        />
+      </div>
+    ),
+    // 与「出生奖励属性1」并排成对：同为 .hb-field 半栏，避免属性2 独占整行留下半栏空洞
+    raceAbilityTwo: (f) => (
+      <div key={f.key} className="hb-field" data-ed-field={f.key}>
+        <span className="hb-label">{f.label}</span>
+        <RaceAbilityTwoEditor value={form.abilityTwo ?? ""} onChange={(v) => set("abilityTwo", v)} />
+      </div>
+    ),
+    raceLanguages: (f) => (
+      <div key={f.key} className="hb-field hb-field-full">
+        <RaceLanguagesEditor value={form.languages ?? ""} onChange={(v) => set("languages", v)} />
+      </div>
+    ),
+    raceSkills: (f) => (
+      <div key={f.key} className="hb-field hb-field-full">
+        <RaceSkillsEditor value={form.skillBonus ?? ""} onChange={(v) => set("skillBonus", v)} />
+      </div>
+    ),
+  };
 
   function renderField(f: SheetField) {
     // 装备→先选类别再设计其余字段：未选 itemCategory 前隐藏所有依赖类别的字段，
@@ -1421,27 +1996,12 @@ export default function EntryEditor({
         if (f.key === "subCategory" || MUNDANE_FIELDS.includes(f.key)) return null;
       }
     }
-    // 「形态」单选：魔法物品 / 基础装备（装备专属）
-    if (f.key === "itemForm") {
-      return (
-        <div key={f.key} className="hb-field hb-field-full" data-ed-field={f.key}>
-          <span className="hb-label">{f.label}</span>
-          <div className="hb-ed-chips">
-            <button type="button" className={"chip mini" + (val !== "mundane" ? " active" : "")} onClick={() => set("itemForm", val === "mundane" ? "" : "")}>
-              魔法物品
-            </button>
-            <button type="button" className={"chip mini" + (val === "mundane" ? " active" : "")} onClick={() => set("itemForm", val === "mundane" ? "" : "mundane")}>
-              基础装备
-            </button>
-          </div>
-          <span className="hint">
-            {val === "mundane"
-              ? "基础（非魔法）装备：含 武器擅长/伤害/护甲加值/检定/冒险装备 等，无增强/稀有度/等级/威能。"
-              : "魔法物品：含 稀有度/等级/增强/威能段 等；非魔法基础装备可从「从基础名录选择」一键带入。"}
-          </span>
-        </div>
-      );
-    }
+    // spec.editors 查表：已实现专用编辑器的字段优先（power/equipment/feat/race）；
+    // 未登记类别 / 未映射字段继续走下方 Shell 默认渲染。
+    const specEditor = specFor(form.category).editors?.[f.key];
+    if (specEditor && EDITOR_COMPONENTS[specEditor]) return EDITOR_COMPONENTS[specEditor](f);
+    // 「形态」统一由顶部「形态」面板（基础物品/魔法物品/冒险装备）选择，不再在基本信息内重复
+    if (f.key === "itemForm") return null;
     // 「威能类型」单选：攻击 / 辅助 / 特殊，写入 powerType（buildEntry 派生 powerKind，卡头显示「战士攻击 1」）
     if (f.key === "powerType") {
       return (
@@ -1500,39 +2060,9 @@ export default function EntryEditor({
       );
     }
     // —— 各类型结构化编辑器 ——
-    // 装备「物品威能段」
-    if (f.key === "powerSections") {
-      const secs = parseItemPowerSections(form.powerSections);
-      return (
-        <div key={f.key} className="hb-field hb-field-full" data-ed-field={f.key}>
-          <span className="hb-label">{f.label}</span>
-          <ItemPowerSectionsEditor value={secs} onChange={(s) => set("powerSections", JSON.stringify(s))} />
-        </div>
-      );
-    }
-    // 装备「物品特性」
-    if (f.key === "properties") {
-      const props = parseItemProperties(form.properties);
-      return (
-        <div key={f.key} className="hb-field hb-field-full" data-ed-field={f.key}>
-          <span className="hb-label">{f.label}</span>
-          <ItemPropertiesEditor value={props} onChange={(p) => set("properties", JSON.stringify(p))} />
-        </div>
-      );
-    }
-    // 专长「关联威能等级表」
-    if (f.key === "featRows") {
-      const rows = parseFeatRowsJson(form.featRows);
-      return (
-        <div key={f.key} className="hb-field hb-field-full" data-ed-field={f.key}>
-          <span className="hb-label">{f.label}</span>
-          <FeatTableEditor value={rows} onChange={(r) => set("featRows", JSON.stringify(r))} />
-        </div>
-      );
-    }
     // 套装「件数增益块」
     if (f.key === "setBonuses") {
-      const blocks = parseSetBonusesJson(form.setBonuses);
+      const blocks = parseSetBonusesJson(form.setBonuses, { keepEmpty: true });
       return (
         <div key={f.key} className="hb-field hb-field-full" data-ed-field={f.key}>
           <span className="hb-label">{f.label}</span>
@@ -1542,11 +2072,11 @@ export default function EntryEditor({
     }
     // 词典「词条对」
     if (f.key === "termsPairs") {
-      const pairs = parseTerms(form.termsPairs);
+      const pairs = parseTerms(form.termsPairs, { keepEmpty: true });
       return (
         <div key={f.key} className="hb-field hb-field-full" data-ed-field={f.key}>
           <span className="hb-label">{f.label}</span>
-          <TermsPairsEditor value={pairs} onChange={(p) => set("termsPairs", serializeTerms(p))} />
+          <TermsPairsEditor value={pairs} onChange={(p) => set("termsPairs", serializeTerms(p, { keepEmpty: true }))} />
         </div>
       );
     }
@@ -1571,41 +2101,6 @@ export default function EntryEditor({
         </div>
       );
     }
-    // 专长「前提」：text + 前提句式候选
-    if (f.key === "prerequisite" && form.category === "feat") {
-      return (
-        <div key={f.key} className="hb-field hb-field-full" data-ed-field={f.key}>
-          <span className="hb-label">{f.label}</span>
-          <div className="hb-ed-chips">
-            {FEAT_PREREQ_CANDIDATES.map((c) => (
-              <button key={c} type="button" className={"chip mini" + (val === c ? " active" : "")} onClick={() => set(f.key, val === c ? "" : c)}>{c}</button>
-            ))}
-          </div>
-          <textarea className="hb-textarea" value={val} rows={3} placeholder={f.placeholder ?? "如：职业：战士"} onChange={(e) => set(f.key, e.target.value)} />
-          <span className="hint">官方前提以 职业式 / 等级式 / 受训式 为主；点选候选或自由输入。</span>
-        </div>
-      );
-    }
-    // 专长「增益」：预设条 + 自由文本
-    if (f.key === "benefit" && form.category === "feat") {
-      const applyPreset = (t: string) => {
-        set("benefit", t);
-      };
-      return (
-        <div key={f.key} className="hb-field hb-field-full hb-field-feat-benefit" data-ed-field={f.key}>
-          <div className="hb-field-head">
-            <span className="hb-label">{f.label}</span>
-            <span className="hb-pblock-presets-label hb-feat-hint">专长预设 · 点击以模板替换当前增益</span>
-          </div>
-          <div className="hb-pblock-presets hb-feat-presets">
-            {FEAT_PRESETS.map((p) => (
-              <button key={p.name} type="button" className="chip mini" title={p.desc} onClick={() => applyPreset(p.blocks.map((b) => b.text).join(""))}>{p.name}</button>
-            ))}
-          </div>
-          <textarea className="hb-textarea" value={val} rows={5} placeholder={f.placeholder ?? "该专长带来的效果"} onChange={(e) => set(f.key, e.target.value)} />
-        </div>
-      );
-    }
     // 「风味文本」：斜体风味描述，独立成段用全宽多行输入，便于书写
     if (f.key === "flavorText") {
       return (
@@ -1618,15 +2113,6 @@ export default function EntryEditor({
             placeholder={f.placeholder ?? "可选的斜体风味描述"}
             onChange={(e: ChangeEvent<HTMLTextAreaElement>) => set(f.key, e.target.value)}
           />
-        </div>
-      );
-    }
-    if (f.key === "powerBlocks") {
-      const blocks = parsePowerBlocks(form.powerBlocks) ?? [];
-      return (
-        <div key={f.key} className="hb-field hb-field-full" data-ed-field={f.key}>
-          <span className="hb-label">{f.label}</span>
-          <PowerBlockEditor value={blocks} onChange={(b) => set("powerBlocks", JSON.stringify(b))} />
         </div>
       );
     }
@@ -1659,8 +2145,8 @@ export default function EntryEditor({
                 </button>
               ))
             ) : (
-              (f.key === "itemCategory" && form.itemForm === "mundane"
-                ? MUNDANE_CATEGORIES
+              (f.key === "itemCategory" && form.category === "equipment"
+                ? equipCatOptions
                 : f.options ?? []
               ).map((o) => (
                 <button key={o} type="button" className={"chip mini" + (val === o ? " active" : "")} title={tipFor(o)} onClick={() => set(f.key, val === o ? "" : o)}>
@@ -1887,13 +2373,17 @@ export default function EntryEditor({
         </div>
       );
     }
+    // 装备统计提示（价格/重量/速度/护甲加值…）只属于装备统计表（EquipmentStatTableEditor）。
+    // 其他类别复用了同名键（种族 speed、仪式 cost），若不过滤就会串味：
+    // 种族「速度」会显示「如 -1（护甲速度罚值）」、仪式「材料花费」会显示「格式：数字 gp」。
+    const isEquipCat = form.category === "equipment";
     return (
       <div key={f.key} className="hb-field" data-ed-field={f.key}>
         <span className="hb-label">{f.label}{f.required ? " *" : ""}</span>
         <FilledTextField value={val} placeholder={f.placeholder} onInput={(e) => set(f.key, (e.target as HTMLInputElement).value ?? "")} />
-        {f.key === "itemLevel" && enhExpectedAll && <span className="hint">按这些等级，增强应约为 {enhExpectedAll}</span>}
-        {STAT_HINTS[f.key] && <span className="hint">{STAT_HINTS[f.key]}</span>}
-        {f.key === "cost" && priceRangeAll.length > 0 && (
+        {isEquipCat && f.key === "itemLevel" && enhExpectedAll && <span className="hint">按这些等级，增强应约为 {enhExpectedAll}</span>}
+        {isEquipCat && STAT_HINTS[f.key] && <span className="hint">{STAT_HINTS[f.key]}</span>}
+        {isEquipCat && f.key === "cost" && priceRangeAll.length > 0 && (
           <span className={"hint" + (val.trim() && val.includes("gp") && priceRangeAll.every((p) => !val.includes(String(p))) ? " hb-hint-warn" : "")}>
             {val.trim() && val.includes("gp") && priceRangeAll.every((p) => !val.includes(String(p)))
               ? `提示：当前「${val.trim()}」与按等级的价格（${priceRangeAll.map((p) => p + " gp").join("/")}）不符`
@@ -1902,8 +2392,8 @@ export default function EntryEditor({
                 : `按这些等级价格：${levels.map((l) => `L${l}≈${priceForLevel(l)}gp`).join("，")}`}
           </span>
         )}
-        {f.key === "cost" && priceRangeAll.length === 0 && <span className="hint">价格填数字 +「gp」，如「1020 gp」</span>}
-        {f.key === "weight" && <span className="hint">重量填数字 +「磅」，如「4 磅」</span>}
+        {isEquipCat && f.key === "cost" && priceRangeAll.length === 0 && <span className="hint">价格填数字 +「gp」，如「1020 gp」</span>}
+        {isEquipCat && f.key === "weight" && <span className="hint">重量填数字 +「磅」，如「4 磅」</span>}
       </div>
     );
   }
@@ -1936,9 +2426,6 @@ export default function EntryEditor({
       { coreSections: [] as HomebrewSection[], extraSections: [] as HomebrewSection[] },
     );
   }, [sections]);
-  const fieldByKey = useMemo(() => new Map(fields.map((f) => [f.key, f])), [fields]);
-  // 引导卡用：魔法形态的类别候选（基础形态用 MUNDANE_CATEGORIES 收窄）
-  const itemCatOptions = fieldByKey.get("itemCategory")?.options ?? [];
   const poolField = (
     <div className="hb-field hb-field-full">
       <span className="hb-label">归属包</span>
@@ -2103,23 +2590,50 @@ export default function EntryEditor({
                       <h4 className="hb-ed-card-title">新建装备：先选形态与类别</h4>
                       <p className="hb-ed-section-hint">先选择形态与类别，其余面板（统计数据 / 特性 / 威能 / 正文）将据此展开。</p>
                       <div className="hb-field hb-field-full">
-                        <span className="hb-label">形态</span>
+                        <span className="hb-label">装备形态</span>
                         <div className="hb-ed-chips hb-guide-chips">
-                          <button type="button" className={"chip" + (form.itemForm !== "mundane" ? " active" : "")} onClick={() => set("itemForm", "")}>魔法物品</button>
-                          <button type="button" className={"chip" + (form.itemForm === "mundane" ? " active" : "")} onClick={() => set("itemForm", "mundane")}>基础装备</button>
+                          <button type="button" className={"chip" + (equipFormKind === "mundane" ? " active" : "")} onClick={() => setEquipForm("mundane")}>基础物品</button>
+                          <button type="button" className={"chip" + (equipFormKind === "magic" ? " active" : "")} onClick={() => setEquipForm("magic")}>魔法物品</button>
+                          <button type="button" className={"chip" + (equipFormKind === "adventure" ? " active" : "")} onClick={() => setEquipForm("adventure")}>冒险装备</button>
                         </div>
-                        <span className="hint">{form.itemForm === "mundane" ? "基础（非魔法）装备：含 擅长/伤害/护甲加值 等基础字段，无增强/稀有度/威能。" : "魔法物品：含 稀有度/等级/增强/威能段；基础装备也可稍后从「从基础名录选择」一键带入。"}</span>
+                        <span className="hint">{equipFormHints[equipFormKind ?? "magic"]}</span>
                       </div>
                       <div className="hb-field hb-field-full">
                         <span className="hb-label">类别</span>
-                        <div className="hb-ed-chips hb-guide-chips">
-                          {(form.itemForm === "mundane" ? MUNDANE_CATEGORIES : itemCatOptions).map((o) => (
-                            <button key={o} type="button" className={"chip" + (form.itemCategory === o ? " active" : "")} title={ITEM_CATEGORY_TIPS[o]} onClick={() => set("itemCategory", o)}>
+                        <div className="hb-ed-chips">
+                          {equipCatOptions.map((o) => (
+                            <button key={o} type="button" className={"chip mini" + (form.itemCategory === o ? " active" : "")} title={ITEM_CATEGORY_TIPS[o]} onClick={() => set("itemCategory", o)}>
                               {o}
                             </button>
                           ))}
                         </div>
-                        <span className="hint">选中类别后引导卡收起，左侧面板与右侧卡片统计表都会按该类别自动排列。</span>
+                        <span className="hint">{equipFormKind === "adventure" ? "冒险装备类别固定，无需再选。" : "选中类别后引导卡收起，左侧面板与右侧卡片统计表都会按该类别自动排列。"}</span>
+                      </div>
+                    </section>
+                  )}
+                  {form.category === "equipment" && !equipGuide && (
+                    <section className="hb-ed-card hb-equip-form" data-ed-field="itemForm">
+                      <h4 className="hb-ed-card-title">形态与类别</h4>
+                      <p className="hb-ed-section-hint">选择装备形态与类别；右侧实时预览与下方填写的字段将随之切换。</p>
+                      <div className="hb-field hb-field-full">
+                        <span className="hb-label">装备形态</span>
+                        <div className="hb-ed-chips hb-guide-chips">
+                          <button type="button" className={"chip" + (equipFormKind === "mundane" ? " active" : "")} onClick={() => setEquipForm("mundane")}>基础物品</button>
+                          <button type="button" className={"chip" + (equipFormKind === "magic" ? " active" : "")} onClick={() => setEquipForm("magic")}>魔法物品</button>
+                          <button type="button" className={"chip" + (equipFormKind === "adventure" ? " active" : "")} onClick={() => setEquipForm("adventure")}>冒险装备</button>
+                        </div>
+                        <span className="hint">{equipFormHints[equipFormKind ?? "magic"]}</span>
+                      </div>
+                      <div className="hb-field hb-field-full">
+                        <span className="hb-label">类别</span>
+                        <div className="hb-ed-chips">
+                          {equipCatOptions.map((o) => (
+                            <button key={o} type="button" className={"chip mini" + (form.itemCategory === o ? " active" : "")} title={ITEM_CATEGORY_TIPS[o]} onClick={() => set("itemCategory", o)}>
+                              {o}
+                            </button>
+                          ))}
+                        </div>
+                        <span className="hint">{equipFormKind === "adventure" ? "冒险装备类别固定，无需再选。" : "切换类别会联动重置部分统计字段（分类组/适合/增强对象等），并重新排列统计数据表。"}</span>
                       </div>
                     </section>
                   )}
@@ -2127,6 +2641,8 @@ export default function EntryEditor({
                     if (equipGuide && si > 0) return null;
                     // 基础形态无威能段：整区隐藏（连「＋ 添加」细条也不给）
                     if (sec.keys[0] === "powerSections" && form.itemForm === "mundane") return null;
+                    // 冒险装备（非战斗用）仅保留正文：隐藏风味文本与物品特性区块（连细条也不给）
+                    if (equipFormKind === "adventure" && (sec.keys[0] === "flavorText" || sec.keys[0] === "properties")) return null;
                     const optKey = sec.optional ? sec.keys[0] : undefined;
                     const optHas = optKey ? (OPT_SEC_HAS[optKey]?.(form) ?? false) : false;
                     // 可选区块展开态：用户显式开关优先，未干预时按是否有内容自动
@@ -2134,7 +2650,13 @@ export default function EntryEditor({
                     // 收起态：一条「＋ 添加」细条
                     if (optKey && !optOn) {
                       return (
-                        <button key={si} type="button" className="hb-opt-strip" onClick={() => setOptSecs((p) => ({ ...p, [optKey]: true }))}>
+                        <button key={si} type="button" className="hb-opt-strip" onClick={() => {
+                          setOptSecs((p) => ({ ...p, [optKey]: true }));
+                          // 「物品特性」从空态展开时直接预置一段，省去再点一次「＋ 添加一个特性段」；已有内容时不再重复预置
+                          if (optKey === "properties" && parseItemProperties(form.properties).length === 0) {
+                            set("properties", JSON.stringify([{ lines: [""] }]));
+                          }
+                        }}>
                           <span className="material-symbols-outlined">add_circle</span>
                           添加「{sec.title}」
                           <span className="hb-opt-strip-hint">可选 · {sec.optional}</span>
@@ -2185,7 +2707,8 @@ export default function EntryEditor({
                       </span>
                       <div className="hb-extra-body">
                         <div className="hb-extra-body-inner">
-                          {extraSections.map((sec, ei) => (
+                          {/* 预览中不呈现的内容不在左栏显示：基础装备（基础件）预览为 base-item/picker-card，无卡片配色/图标，隐藏「外观」 */}
+                          {extraSections.filter((s) => !(isMundaneBase && s.keys[0] === "cardColor")).map((sec, ei) => (
                             <section key={ei} className="hb-ed-card">
                               <h4 className="hb-ed-card-title">{sec.title}</h4>
                               {sec.hint && <p className="hb-ed-section-hint">{sec.hint}</p>}
@@ -2231,7 +2754,7 @@ export default function EntryEditor({
               )}
 
               {body && !WITHOUT_BODY.has(form.category) && !equipGuide
-                && !sections?.some((s) => s.keys.includes("sourceText")) && (
+                && !sections?.some((s) => s.keys.includes("sourceText") || s.keys.includes("loreSections")) && (
                 <section className="hb-ed-card">{renderField(body)}</section>
               )}
             </>
@@ -2244,7 +2767,38 @@ export default function EntryEditor({
             实时预览
           </div>
           {previewEntry ? (
-            <EntryCard entry={previewEntry} frame jump={goField} lookup={lookup} />
+            (() => {
+              // 预览卡统一走类别 spec 分发：已实现类别用专属预览（威能/装备/专长/种族），
+              // 未登记类别走 genericSpec → GenericCard。
+              const Preview = specFor(previewEntry.category).Preview;
+              return (
+                <>
+                  <Preview
+                    entry={previewEntry}
+                    frame
+                    jump={goField}
+                    lookup={lookup}
+                    optionalOn={{
+                      powerSections: optSecs["powerSections"] ?? OPT_SEC_HAS["powerSections"]?.(form) ?? false,
+                      sourceText: optSecs["sourceText"] ?? OPT_SEC_HAS["sourceText"]?.(form) ?? false,
+                      properties: optSecs["properties"] ?? OPT_SEC_HAS["properties"]?.(form) ?? false,
+                    }}
+                  />
+                  {/* 车卡映射说明：体型/速度/视觉是车卡的自动回填项，种族特性板块本身不渲染它们
+                      （卡片必须与车卡 1:1，故不塞进卡片，改在卡片外给出当前值与去向） */}
+                  {form.category === "race" && (
+                    <div className="hb-ed-map">
+                      <span className="material-symbols-outlined">info</span>
+                      <span>
+                        体型 / 速度 / 视觉 是车卡的自动回填项，不在上面这张「种族特性」卡片里展示：
+                        体型 与 视觉 写入<b>角色信息</b>面板，速度 写入<b>移动力</b>面板。
+                        当前值 —— 体型 {form.size || "（未填）"}，速度 {form.speed || "（未填）"}，视觉 {form.vision || "（未填）"}。
+                      </span>
+                    </div>
+                  )}
+                </>
+              );
+            })()
           ) : (
             <p className="hint">先在左侧选择私设类型，这里将实时呈现该词条在车卡界面中的最终样子，填入字段即时更新。</p>
           )}
