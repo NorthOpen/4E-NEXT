@@ -18,7 +18,7 @@ import {
   type Relations,
 } from "../../sheet/candidates";
 import type { Character } from "../../sheet/character";
-import { buyPointsUsed, parseClassSkills, parseTrainedSkillCount, racialBonus } from "../../sheet/character";
+import { buyPointsUsed, parseClassSkills, parseTrainedSkillCount, racialBonus, type PowerSlots } from "../../sheet/character";
 import {
   applyAbilityScores,
   applyClassPick,
@@ -51,6 +51,32 @@ export interface EngineCtx {
   wikiLookup: (t: string) => Entry | undefined;
 }
 
+/**
+ * 卡上已有的威能 id：槽位里的 + 职业/种族/主题/专长赠送的。
+ * 同一张卡不能重复选同一个威能（4E 规则），候选集合里必须把这些剔掉 ——
+ * 高等级时同一类威能的候选几乎完全重叠（每个槽位都是「≤角色等级」），
+ * 不剔就会看到模型把最好的那一个往每个槽位里各挑一遍。
+ */
+function takenPowerIds(char: Character): Set<string> {
+  const out = new Set<string>();
+  for (const c of ["atWill", "encounter", "daily", "utility", "special"] as (keyof PowerSlots)[]) {
+    for (const id of char.powerSlots?.[c] ?? []) if (id) out.add(id);
+  }
+  for (const arr of [char.classGrantedPowerIds, char.raceGrantedPowerIds, char.raceAutoGrantedPowerIds, char.themeGrantedPowerIds]) {
+    for (const id of arr ?? []) if (id) out.add(id);
+  }
+  for (const ids of Object.values(char.featGrantedPowerIds ?? {})) for (const id of ids) if (id) out.add(id);
+  return out;
+}
+
+/** 卡上已有的专长 id：常规专长槽位 + 职业赠送专长。 */
+function takenFeatIds(char: Character): Set<string> {
+  const out = new Set<string>();
+  for (const id of char.featSlots ?? []) if (id) out.add(id);
+  for (const id of char.classGrantedFeatIds ?? []) if (id) out.add(id);
+  return out;
+}
+
 /** 某一项决定的合法候选（与选择器同源；属性/技能/装备这类不走候选表的返回 null）。 */
 export function candidatesFor(d: Decision, ctx: EngineCtx, char: Character, level: number): Entry[] | null {
   if (d.kind === "race") return ctx.data.races;
@@ -60,6 +86,7 @@ export function candidatesFor(d: Decision, ctx: EngineCtx, char: Character, leve
   if (d.kind === "power" && d.slotCat && d.slotCat !== "special") {
     const category: PowerCategoryKey =
       d.slotCat === "atWill" ? "at-will" : d.slotCat === "encounter" ? "encounter" : d.slotCat === "daily" ? "daily" : "utility";
+    const taken = takenPowerIds(char);
     return powerCandidates({
       entries: ctx.data.powers,
       relations: ctx.data.relations,
@@ -68,9 +95,12 @@ export function candidatesFor(d: Decision, ctx: EngineCtx, char: Character, leve
       category,
       // 等级上限用角色等级：与人物页槽位选择器默认「当前及以下」一致
       maxLevel: level,
-    });
+    }).filter((p) => !taken.has(p.id));
   }
-  if (d.kind === "feat") return featCandidates(ctx.data.feats, featTierOf(level));
+  if (d.kind === "feat") {
+    const taken = takenFeatIds(char);
+    return featCandidates(ctx.data.feats, featTierOf(level)).filter((f) => !taken.has(f.id));
+  }
   return null;
 }
 
