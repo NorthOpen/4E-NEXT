@@ -6,6 +6,7 @@
 import { stripWiki } from "../text";
 import type { Entry } from "../../data/types";
 import { ABILITY_KEYS, ABILITY_LABELS, BUY_POINTS } from "../../sheet/character";
+import { abilityBoostCounts } from "../../sheet/leveling";
 
 /** 22 点购买制的四个社区常用数组（用户指定，顺序 = 力量/体质/敏捷/智力/感知/魅力）。 */
 export const ABILITY_PRESETS: { values: number[]; note: string }[] = [
@@ -96,11 +97,14 @@ export function decisionPrompt(a: DecisionPromptArgs): string {
 }
 
 /**
- * 属性分配（22 点购买制）的提示词。
+ * 属性分配的提示词：**两步走** —— 先 22 点纯购点得到基础值，再把升级提升分配完。
  *
- * 这一项与「从候选里挑一个」不同：它是参数分配而不是枚举选择，因此单独一份提示词。
- * 四个社区常用数组连同各自定位一起给出（用户指定）：前两个适合混职、
- * 18 14 11 10 10 8 是一般玩家最青睐的效率最大化数组、18 12 12 10 10 10 比较均衡。
+ * 三个必须说清楚的点（都是实际踩过的坑）：
+ *   ① 四个参考数组是**纯粹的购点结果**（正好 22 点），**不含种族加值**；
+ *      种族加值由车卡器另算，不要算进这 22 点，也不要因为种族加值就少买。
+ *   ② 22 点**必须正好花满**（不是"尽量"）—— 否则会出现只用了 20/22 的卡。
+ *   ③ 升级提升（4/8/14/18/24/28 级「两个 +1」、11/21 级「全部 +1」）也要分配完，
+ *      否则高等级卡的属性会偏低。
  */
 export interface AbilityPromptArgs {
   brief: string;
@@ -110,8 +114,8 @@ export interface AbilityPromptArgs {
   racial: Record<string, number>;
   raceName: string;
   className: string;
-  /** 当前已用购点 */
-  used: number;
+  /** 角色等级（决定升级提升的点数） */
+  level: number;
   instruction?: string;
 }
 
@@ -120,25 +124,37 @@ export function abilityPrompt(a: AbilityPromptArgs): string {
   const racial = ABILITY_KEYS.filter((k) => (a.racial[k] ?? 0) !== 0)
     .map((k) => ABILITY_LABELS[k].zh + " +" + a.racial[k])
     .join("、");
+  const { twoPlus, allPlus } = abilityBoostCounts(a.level);
+  const boostTotal = twoPlus * 2 + allPlus * 6;
   return [
     "【角色现状】",
     a.brief,
-    "（上面「属性」一行是当前的基础值，不含种族加值）",
+    "（上面「属性」一行是当前值，可能已经含升级提升）",
     "",
     "【本次要决定的事】",
-    "分配 " + BUY_POINTS + " 点购买点数，得到六个属性的基础值（8–18 的整数）。",
-    "· 种族：" + (a.raceName || "（未选）") + (racial ? "；种族加值 " + racial + "（由车卡器另算，不要重复投资）" : ""),
-    "· 职业：" + (a.className || "（未选）"),
-    "· 当前基础值：" + cur + "；已用 " + a.used + "/" + BUY_POINTS + " 点",
+    "为一个 " + a.level + " 级角色分配属性，分两步：",
     "",
-    "【参考数组】（顺序 = 力量/体质/敏捷/智力/感知/魅力，可按需微调，也可以完全自己分配）",
+    "第一步 · " + BUY_POINTS + " 点购买制，得到六个属性的**基础值**（8–18 的整数）",
+    "· 必须**正好花满 " + BUY_POINTS + " 点**（不是「尽量」；下面四个参考数组都正好是 " + BUY_POINTS + " 点）。",
+    "· 这四个数组是**纯购点结果，不含任何种族加值**——不要把它们当成「含种族加值的最终值」。",
+    "· 种族：" + (a.raceName || "（未选）") + (racial ? "；种族加值 " + racial : "（未选种族）"),
+    "  种族加值由车卡器**另算**：不要算进这 " + BUY_POINTS + " 点，也不要因为种族加值高就少买。",
+    "· 职业：" + (a.className || "（未选）"),
+    "· 当前值（仅供参考，可以推翻）：" + cur,
+    "参考数组（顺序 = 力量/体质/敏捷/智力/感知/魅力）：",
     ...ABILITY_PRESETS.map((p) => "- " + p.values.join(" ") + " —— " + p.note),
+    "",
+    "第二步 · 升级提升（同样必须分配完）",
+    "· 4/8/14/18/24/28 级各「两个 +1」（任选两项各 +1）；11/21 级「全部 +1」（六项各 +1）。",
+    "· 本等级累计：" + twoPlus + " 次「两个 +1」+ " + allPlus + " 次「全部 +1」= 共 **" + boostTotal + " 点**，必须一点不剩地分完。",
+    "· 每项约束：至少 +" + allPlus + "（「全部 +1」会加到每一项），最多 +" + (twoPlus + allPlus) + "。",
+    "· 加到哪几项由你决定：优先主属性 / 命中相关项，并与第一步的取向一致。",
     "",
     "【玩家要求】",
     a.instruction && a.instruction.trim() ? a.instruction.trim() : "（没有额外要求，请按常见强度分配）",
     "",
-    "请尽量把 " + BUY_POINTS + " 点用完，让属性与职业定位、玩家要求一致。只输出 JSON：",
-    '{"abilities":{"str":16,"con":14,"dex":11,"int":10,"wis":10,"cha":8},"reason":"<理由>"}',
+    "只输出 JSON（base 必须正好 " + BUY_POINTS + " 点；boosts 合计必须正好 " + boostTotal + " 点，为 0 时写 {}）：",
+    '{"base":{"str":16,"con":14,"dex":13,"int":10,"wis":11,"cha":8},"boosts":{"str":2,"con":1},"reason":"<理由>"}',
   ].join("\n");
 }
 

@@ -18,7 +18,7 @@ import {
   type Relations,
 } from "../../sheet/candidates";
 import type { Character } from "../../sheet/character";
-import { buyPointsUsed, parseClassSkills, parseTrainedSkillCount, racialBonus, type PowerSlots } from "../../sheet/character";
+import { BUY_POINTS, parseClassSkills, parseTrainedSkillCount, racialBonus, type PowerSlots } from "../../sheet/character";
 import {
   applyAbilityScores,
   applyClassPick,
@@ -254,12 +254,15 @@ export async function buildAll(o: BuildOptions): Promise<{ char: Character; step
           racial: racialBonus(race, working.raceAbility2Choice),
           raceName: race?.name ?? "",
           className: cls?.name ?? "",
-          used: buyPointsUsed(working.abilities),
+          level: working.level,
           instruction: o.instruction,
           signal: o.signal,
         });
         working = applyAbilityScores(working, res.abilities);
-        const note: PickedNote = { kind: "ok", text: "已分配（用 " + res.used + "/22 点）" };
+        const note: PickedNote = {
+          kind: "ok",
+          text: "已分配（购点 " + res.used + "/" + BUY_POINTS + " 点" + (res.boostTotal ? "，升级提升 +" + res.boostTotal + " 点" : "") + "）",
+        };
         steps.push({ id: d.id, label: d.label, ok: true, note });
         o.onStep?.(i + 1, total, working, steps[steps.length - 1]);
         continue;

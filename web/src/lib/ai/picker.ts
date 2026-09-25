@@ -7,6 +7,7 @@
 import type { Entry } from "../../data/types";
 import type { Decision } from "../../sheet/candidates";
 import { ABILITY_KEYS, BUY_POINTS, buyPointsUsed, type AbilityKey } from "../../sheet/character";
+import { abilityBoostCounts } from "../../sheet/leveling";
 import { chatJson } from "./chat";
 import { abilityPrompt, decisionPrompt, invalidPickPrompt, skillPrompt, systemPrompt } from "./prompts";
 import { excerpt } from "./transport";
@@ -105,47 +106,111 @@ export async function pickForDecision(a: PickArgs): Promise<PickResult> {
 export interface AbilityPickArgs {
   cfg: AiConfig;
   brief: string;
-  /** 当前基础属性（购点值） */
+  /** 当前属性（含升级提升） */
   current: Record<string, number>;
   racial: Record<string, number>;
   raceName: string;
   className: string;
-  /** 当前已用购点 */
-  used: number;
+  /** 角色等级：决定升级提升要分配多少点 */
+  level: number;
   instruction?: string;
   signal?: AbortSignal;
 }
 
 export interface AbilityPickResult {
+  /** 最终值 = 基础值 + 升级提升，直接写进 char.abilities */
   abilities: Record<AbilityKey, number>;
+  /** 22 点购点得到的基础值（不含种族加值） */
+  base: Record<AbilityKey, number>;
+  /** 升级提升加在哪几项上（每项加了几次 +1） */
+  boosts: Record<AbilityKey, number>;
+  /** 升级提升总点数 */
+  boostTotal: number;
   reason: string;
   used: number;
 }
 
 interface RawAbilities {
+  /** 新版：22 点基础值 */
+  base?: unknown;
+  /** 新版：升级提升的分配 */
+  boosts?: unknown;
+  /** 旧字段（兼容） */
   abilities?: unknown;
   reason?: unknown;
 }
 
-type AbilityRead = { ok: true; abilities: Record<AbilityKey, number>; used: number } | { ok: false; error: string };
+type AbilityRead =
+  | { ok: true; abilities: Record<AbilityKey, number>; base: Record<AbilityKey, number>; boosts: Record<AbilityKey, number>; boostTotal: number; used: number }
+  | { ok: false; error: string };
 
-/** 校验模型给的属性数组：六项齐全、8–18 的整数、购点不超过上限。 */
-function readAbilities(raw: RawAbilities): AbilityRead {
-  const src = raw.abilities;
-  if (!src || typeof src !== "object") return { ok: false, error: "没有给出 abilities 对象" };
+/**
+ * 校验模型给的属性分配，分两步：
+ *   ① base：六项齐全、8–18 的整数、购点**正好** 22 点（不是「不超过」—— 没花满就是没分配完）；
+ *   ② boosts：升级提升必须**正好**等于该等级应有的点数，且每项满足「至少 allPlus（全部 +1 会加到每一项）、
+ *      最多 twoPlus + allPlus（同一级的两个 +1 不能加到同一项）」；
+ *   最终值 = base + boosts，且不超过 30。
+ */
+function readAbilities(raw: RawAbilities, level: number): AbilityRead {
+  const src = raw.base ?? raw.abilities;
+  if (!src || typeof src !== "object" || Array.isArray(src)) return { ok: false, error: "没有给出 base 对象（22 点基础属性）" };
   const obj = src as Record<string, unknown>;
-  const abilities = {} as Record<AbilityKey, number>;
+  const base = {} as Record<AbilityKey, number>;
   for (const k of ABILITY_KEYS) {
     const v = obj[k];
     if (typeof v !== "number" || !Number.isInteger(v)) {
-      return { ok: false, error: "属性 " + k + " 不是整数（收到 " + JSON.stringify(v) + "）" };
+      return { ok: false, error: "基础属性 " + k + " 不是整数（收到 " + JSON.stringify(v) + "）" };
     }
-    if (v < 8 || v > 18) return { ok: false, error: "属性 " + k + " = " + v + "，超出 8–18 的范围" };
+    if (v < 8 || v > 18) return { ok: false, error: "基础属性 " + k + " = " + v + "，超出 8–18 的范围" };
+    base[k] = v;
+  }
+  const used = buyPointsUsed(base);
+  if (used !== BUY_POINTS) {
+    const gap = BUY_POINTS - used;
+    return {
+      ok: false,
+      error: gap > 0
+        ? "这个基础数组只花了 " + used + " 点，还有 " + gap + " 点没分配（必须正好花满 " + BUY_POINTS + " 点）"
+        : "这个基础数组要花 " + used + " 点，超过上限 " + BUY_POINTS + " 点",
+    };
+  }
+
+  const { twoPlus, allPlus } = abilityBoostCounts(level);
+  const boostTotal = twoPlus * 2 + allPlus * 6;
+  const braw = raw.boosts ?? {};
+  if (!braw || typeof braw !== "object" || Array.isArray(braw)) return { ok: false, error: "boosts 必须是对象（属性 → 加几次 +1）" };
+  const bobj = braw as Record<string, unknown>;
+  for (const k of Object.keys(bobj)) {
+    if (!ABILITY_KEYS.includes(k as AbilityKey)) return { ok: false, error: "boosts 里出现了未知属性：" + k };
+  }
+  const boosts = {} as Record<AbilityKey, number>;
+  let sum = 0;
+  for (const k of ABILITY_KEYS) {
+    const v = bobj[k] ?? 0;
+    if (typeof v !== "number" || !Number.isInteger(v) || v < 0) {
+      return { ok: false, error: "boosts." + k + " 必须是非负整数（收到 " + JSON.stringify(bobj[k]) + "）" };
+    }
+    boosts[k] = v;
+    sum += v;
+  }
+  if (sum !== boostTotal) {
+    return {
+      ok: false,
+      error: "升级提升分配了 " + sum + " 点，本等级应正好 " + boostTotal + " 点（" + twoPlus + " 次「两个 +1」+ " + allPlus + " 次「全部 +1」）",
+    };
+  }
+  for (const k of ABILITY_KEYS) {
+    if (boosts[k] < allPlus) return { ok: false, error: "「全部 +1」会加到每一项，所以 boosts." + k + " 至少是 " + allPlus };
+    if (boosts[k] > twoPlus + allPlus) return { ok: false, error: "boosts." + k + " = " + boosts[k] + " 超过上限 " + (twoPlus + allPlus) + "（同一级的两个 +1 不能加到同一项）" };
+  }
+
+  const abilities = {} as Record<AbilityKey, number>;
+  for (const k of ABILITY_KEYS) {
+    const v = base[k] + boosts[k];
+    if (v > 30) return { ok: false, error: k + " 加上升级提升后是 " + v + "，超过上限 30" };
     abilities[k] = v;
   }
-  const used = buyPointsUsed(abilities);
-  if (used > BUY_POINTS) return { ok: false, error: "这个数组要花 " + used + " 点，超过上限 " + BUY_POINTS + " 点" };
-  return { ok: true, abilities, used };
+  return { ok: true, abilities, base, boosts, boostTotal, used };
 }
 
 /**
@@ -163,15 +228,17 @@ export async function pickAbilities(a: AbilityPickArgs): Promise<AbilityPickResu
         racial: a.racial,
         raceName: a.raceName,
         className: a.className,
-        used: a.used,
+        level: a.level,
         instruction: a.instruction,
       }),
     },
   ];
 
   const first = await chatJson<RawAbilities>(a.cfg, messages, { signal: a.signal });
-  const read = readAbilities(first.data);
-  if (read.ok) return { abilities: read.abilities, reason: capReason(first.data.reason), used: read.used };
+  const read = readAbilities(first.data, a.level);
+  if (read.ok) {
+    return { abilities: read.abilities, base: read.base, boosts: read.boosts, boostTotal: read.boostTotal, reason: capReason(first.data.reason), used: read.used };
+  }
 
   const second = await chatJson<RawAbilities>(
     a.cfg,
@@ -181,13 +248,17 @@ export async function pickAbilities(a: AbilityPickArgs): Promise<AbilityPickResu
       {
         role: "user",
         content:
-          "上面的分配不合法：" + read.error + "。请重新给出合法数组（六项 str/con/dex/int/wis/cha 齐全、8–18 的整数、总花费不超过 " + BUY_POINTS + " 点）。",
+          "上面的分配不合法：" + read.error +
+          "。请重新给出：base（六项 str/con/dex/int/wis/cha 齐全、8–18 的整数、购点正好 " + BUY_POINTS + " 点）" +
+          "与 boosts（升级提升，合计正好 " + (abilityBoostCounts(a.level).twoPlus * 2 + abilityBoostCounts(a.level).allPlus * 6) + " 点）。",
       },
     ],
     { signal: a.signal },
   );
-  const again = readAbilities(second.data);
-  if (again.ok) return { abilities: again.abilities, reason: capReason(second.data.reason), used: again.used };
+  const again = readAbilities(second.data, a.level);
+  if (again.ok) {
+    return { abilities: again.abilities, base: again.base, boosts: again.boosts, boostTotal: again.boostTotal, reason: capReason(second.data.reason), used: again.used };
+  }
   throw new AiError("format", "模型两次给出的属性分配都不合法（" + again.error + "）。");
 }
 

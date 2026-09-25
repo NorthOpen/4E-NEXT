@@ -69,6 +69,23 @@ export function levelFromXp(xp: number): LevelInfo {
   return best;
 }
 
+/**
+ * 该等级累计获得的**属性提升**次数。
+ * 升级表里 4/8/14/18/24/28 级是「两个 +1」（任选两项各 +1），11/21 级是「全部 +1」。
+ * 属性分配的提示词与校验都要用它：购点（基础值）之外，这些提升也必须分配完。
+ */
+export function abilityBoostCounts(level: number): { twoPlus: number; allPlus: number } {
+  const lv = Math.max(1, Math.min(30, level));
+  let twoPlus = 0;
+  let allPlus = 0;
+  for (const l of LEVELS) {
+    if (l.level > lv) break;
+    if (l.abilityBoost === "两个 +1") twoPlus++;
+    else if (l.abilityBoost === "全部 +1") allPlus++;
+  }
+  return { twoPlus, allPlus };
+}
+
 export function xpForLevel(level: number): number {
   const l = LEVELS.find((x) => x.level === level);
   return l ? l.xp : 0;

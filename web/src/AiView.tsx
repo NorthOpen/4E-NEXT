@@ -48,7 +48,7 @@ import EntryCard from "./sheet/EntryCard";
 import PickerModal from "./sheet/PickerModal";
 import ClassPickerModal from "./sheet/ClassPickerModal";
 import { applyAbilityScores, applyClassPick, applyLevel, applyRacePick } from "./sheet/transitions";
-import { buyPointsUsed, BUY_POINTS, defaultCharacter, racialBonus, type Character, type PowerSlots } from "./sheet/character";
+import { BUY_POINTS, defaultCharacter, racialBonus, type Character, type PowerSlots } from "./sheet/character";
 
 interface CardData {
   powers: Entry[];
@@ -252,7 +252,8 @@ export default function AiView({
   const classWillPick = !!classDecision && classDecision.status === "empty" && !skipSet.has(classDecision.id);
   // 这一项是否「可以交给 AI」：属性看是否纯购点；受训技能看职业是否已有、或这轮 AI 会先把职业选出来；其余看候选
   const aiEligibleFor = (d: Decision, c: Character): boolean => {
-    if (d.kind === "abilities") return buyPointsUsed(c.abilities) <= BUY_POINTS;
+    // 属性永远可代选：AI 会按等级重算「22 点购点 + 升级提升」，不依赖当前值是否合规
+    if (d.kind === "abilities") return true;
     if (d.kind === "skills") {
       const sc = ctx ? skillsFor(c, ctx) : null;
       return c.classId ? !!sc && sc.available.length > 0 : classWillPick;
@@ -305,13 +306,17 @@ export default function AiView({
         racial: racialBonus(race, workChar.raceAbility2Choice),
         raceName: race?.name ?? "",
         className: cls?.name ?? "",
-        used: buyPointsUsed(workChar.abilities),
+        level: workChar.level,
         instruction,
       });
       applyWork(applyAbilityScores(workChar, res.abilities));
       pushFeed("abilities", "属性分配", {
         kind: "ok",
-        text: "已分配（用 " + res.used + "/" + BUY_POINTS + " 点）" + (res.reason ? " —— " + res.reason : ""),
+        text:
+          "已分配（购点 " + res.used + "/" + BUY_POINTS + " 点" +
+          (res.boostTotal ? "，升级提升 +" + res.boostTotal + " 点" : "") +
+          "）" +
+          (res.reason ? " —— " + res.reason : ""),
       });
     } catch (e) {
       pushFeed("abilities", "属性分配", { kind: "err", text: describeError(e) });

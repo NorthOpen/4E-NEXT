@@ -12,9 +12,9 @@
 import type { Entry } from "../data/types";
 import { powerCategory, type PowerCategoryKey } from "../lib/colors";
 import {
+  ABILITY_KEYS,
   baseClassName,
   buyPointsUsed,
-  BUY_POINTS,
   DAILY_SLOT_LEVELS,
   ENCOUNTER_SLOT_LEVELS,
   LEGENDARY_SLOT_LEVEL,
@@ -24,7 +24,7 @@ import {
   type PowerSlots,
   type SlotLevel,
 } from "./character";
-import { LEVELS } from "./leveling";
+import { abilityBoostCounts, LEVELS } from "./leveling";
 
 /** relations.json 的形状（职业/种族 → 授予的威能 id） */
 export interface Relations {
@@ -188,14 +188,19 @@ export function decisionList(char: Character, opts: { targetLevel?: number } = {
     current: char.classId,
   });
 
-  // 属性排在种族/职业之后：分配时要用到种族加值与职业定位，提示词里会一并给出
+  // 属性排在种族/职业之后：分配时要用到种族加值与职业定位，提示词里会一并给出。
+  // 说明文字不再显示「已用 N/22」——升级提升也写进同一份 abilities 里，N 会超过 22 而显得像出错；
+  // 改成列当前值 + 本等级应有的升级提升点数。
   const points = buyPointsUsed(char.abilities);
+  const boost = abilityBoostCounts(level);
+  const boostTotal = boost.twoPlus * 2 + boost.allPlus * 6;
+  const curAbil = ABILITY_KEYS.map((k) => char.abilities?.[k] ?? 10).join("/");
   out.push({
     id: "abilities",
     kind: "abilities",
     label: "属性分配（22 点购买）",
     status: points > 0 ? "filled" : "empty",
-    detail: "已用 " + points + "/" + BUY_POINTS + " 点",
+    detail: "当前 " + curAbil + (boostTotal ? " · 升级提升 " + boostTotal + " 点" : ""),
   });
 
   // 主题不在 AI 车卡范围内（玩家自行在人物页挑选），因此这里不产生主题决策项
