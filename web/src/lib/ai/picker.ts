@@ -126,6 +126,10 @@ export interface AbilityPickResult {
   boosts: Record<AbilityKey, number>;
   /** 升级提升总点数 */
   boostTotal: number;
+  /** 本等级「两个 +1」的次数（4/8/14/18/24/28 级） */
+  twoPlus: number;
+  /** 本等级「全部 +1」的次数（11/21 级，六项各 +1） */
+  allPlus: number;
   reason: string;
   used: number;
 }
@@ -141,7 +145,16 @@ interface RawAbilities {
 }
 
 type AbilityRead =
-  | { ok: true; abilities: Record<AbilityKey, number>; base: Record<AbilityKey, number>; boosts: Record<AbilityKey, number>; boostTotal: number; used: number }
+  | {
+      ok: true;
+      abilities: Record<AbilityKey, number>;
+      base: Record<AbilityKey, number>;
+      boosts: Record<AbilityKey, number>;
+      boostTotal: number;
+      twoPlus: number;
+      allPlus: number;
+      used: number;
+    }
   | { ok: false; error: string };
 
 /**
@@ -210,7 +223,7 @@ function readAbilities(raw: RawAbilities, level: number): AbilityRead {
     if (v > 30) return { ok: false, error: k + " 加上升级提升后是 " + v + "，超过上限 30" };
     abilities[k] = v;
   }
-  return { ok: true, abilities, base, boosts, boostTotal, used };
+  return { ok: true, abilities, base, boosts, boostTotal, twoPlus, allPlus, used };
 }
 
 /**
@@ -237,7 +250,16 @@ export async function pickAbilities(a: AbilityPickArgs): Promise<AbilityPickResu
   const first = await chatJson<RawAbilities>(a.cfg, messages, { signal: a.signal });
   const read = readAbilities(first.data, a.level);
   if (read.ok) {
-    return { abilities: read.abilities, base: read.base, boosts: read.boosts, boostTotal: read.boostTotal, reason: capReason(first.data.reason), used: read.used };
+    return {
+      abilities: read.abilities,
+      base: read.base,
+      boosts: read.boosts,
+      boostTotal: read.boostTotal,
+      twoPlus: read.twoPlus,
+      allPlus: read.allPlus,
+      reason: capReason(first.data.reason),
+      used: read.used,
+    };
   }
 
   const second = await chatJson<RawAbilities>(
@@ -257,7 +279,16 @@ export async function pickAbilities(a: AbilityPickArgs): Promise<AbilityPickResu
   );
   const again = readAbilities(second.data, a.level);
   if (again.ok) {
-    return { abilities: again.abilities, base: again.base, boosts: again.boosts, boostTotal: again.boostTotal, reason: capReason(second.data.reason), used: again.used };
+    return {
+      abilities: again.abilities,
+      base: again.base,
+      boosts: again.boosts,
+      boostTotal: again.boostTotal,
+      twoPlus: again.twoPlus,
+      allPlus: again.allPlus,
+      reason: capReason(second.data.reason),
+      used: again.used,
+    };
   }
   throw new AiError("format", "模型两次给出的属性分配都不合法（" + again.error + "）。");
 }

@@ -314,7 +314,10 @@ export default function AiView({
         kind: "ok",
         text:
           "已分配（购点 " + res.used + "/" + BUY_POINTS + " 点" +
-          (res.boostTotal ? "，升级提升 +" + res.boostTotal + " 点" : "") +
+          (res.boostTotal
+            ? "，升级提升 +" + res.boostTotal + " 点 = " +
+              [res.allPlus ? res.allPlus + " 次全体 +1" : "", res.twoPlus ? res.twoPlus + " 次两项 +1" : ""].filter(Boolean).join(" + ")
+            : "") +
           "）" +
           (res.reason ? " —— " + res.reason : ""),
       });

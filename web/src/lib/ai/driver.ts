@@ -261,7 +261,13 @@ export async function buildAll(o: BuildOptions): Promise<{ char: Character; step
         working = applyAbilityScores(working, res.abilities);
         const note: PickedNote = {
           kind: "ok",
-          text: "已分配（购点 " + res.used + "/" + BUY_POINTS + " 点" + (res.boostTotal ? "，升级提升 +" + res.boostTotal + " 点" : "") + "）",
+          text:
+            "已分配（购点 " + res.used + "/" + BUY_POINTS + " 点" +
+            (res.boostTotal
+              ? "，升级提升 +" + res.boostTotal + " 点 = " +
+                [res.allPlus ? res.allPlus + " 次全体 +1" : "", res.twoPlus ? res.twoPlus + " 次两项 +1" : ""].filter(Boolean).join(" + ")
+              : "") +
+            "）",
         };
         steps.push({ id: d.id, label: d.label, ok: true, note });
         o.onStep?.(i + 1, total, working, steps[steps.length - 1]);

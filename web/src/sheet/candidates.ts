@@ -200,7 +200,13 @@ export function decisionList(char: Character, opts: { targetLevel?: number } = {
     kind: "abilities",
     label: "属性分配（22 点购买）",
     status: points > 0 ? "filled" : "empty",
-    detail: "当前 " + curAbil + (boostTotal ? " · 升级提升 " + boostTotal + " 点" : ""),
+    detail:
+      "当前 " + curAbil +
+      (boostTotal
+        ? " · 升级提升 " + boostTotal + " 点（" +
+          [boost.allPlus ? boost.allPlus + " 次全体 +1" : "", boost.twoPlus ? boost.twoPlus + " 次两项 +1" : ""].filter(Boolean).join("、") +
+          "）"
+        : ""),
   });
 
   // 主题不在 AI 车卡范围内（玩家自行在人物页挑选），因此这里不产生主题决策项
