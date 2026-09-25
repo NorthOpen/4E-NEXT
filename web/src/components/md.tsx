@@ -20,6 +20,7 @@ import { MdCheckbox } from "@material/web/checkbox/checkbox.js";
 import { MdDialog } from "@material/web/dialog/dialog.js";
 import { MdDivider } from "@material/web/divider/divider.js";
 import { MdSlider } from "@material/web/slider/slider.js";
+import { MdLinearProgress } from "@material/web/progress/linear-progress.js";
 import { MdTabs } from "@material/web/tabs/tabs.js";
 import { MdPrimaryTab } from "@material/web/tabs/primary-tab.js";
 
@@ -42,6 +43,8 @@ export const Checkbox = createComponent({ tagName: "md-checkbox", elementClass: 
 export const Dialog = createComponent({ tagName: "md-dialog", elementClass: MdDialog, react: React, events: { onOpen: "open", onClose: "close", onOpened: "opened", onClosed: "closed" } });
 export const Divider = createComponent({ tagName: "md-divider", elementClass: MdDivider, react: React });
 export const Slider = createComponent({ tagName: "md-slider", elementClass: MdSlider, react: React, events: { onInput: "input", onChange: "change" } });
+// MD3 线性进度指示器：不确定进度（indeterminate）用于「AI 正在逐项生成」这类没有确定百分比的场景。
+export const LinearProgress = createComponent({ tagName: "md-linear-progress", elementClass: MdLinearProgress, react: React });
 // MD3 Primary Tabs（主标签页）：用于切换同级视图，选中项由 primary 色胶囊指示器标出。
 // md-tabs 自己管理选中态、指示器动画与左右方向键导航，只在切换时冒泡 change 事件，
 // 选中项通过 event.target.activeTabIndex 读取。

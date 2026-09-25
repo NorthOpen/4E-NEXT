@@ -1929,3 +1929,130 @@ md-dialog.sheet-dialog.sheet-dialog-store { max-width: min(520px, calc(100% - 48
   .wb { height: calc(100vh - var(--gm-chrome)); height: calc(100dvh - var(--gm-chrome)); }
   .wb-zoom { right: 8px; bottom: 8px; }
 }
+
+/* ============================================================
+   AI 车卡页（AiView）
+   —— 本文件只放本页特有的排布；颜色 / 形状 / 动效一律走 MD3 令牌，
+      控件一律用 components/md 的 MD3 组件或既有语义类（.block / .md3-seg / .chip / .mode-chip）
+   ============================================================ */
+
+/* 布局：单栏纵向堆叠 / 双栏两列（与 LearnView、SettingsView 同一套约定，跟随全局单栏/双栏开关） */
+.ai-view { display: flex; flex-direction: column; gap: 16px; }
+.ai-col { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.ai-view.layout-double { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; align-items: start; }
+/* 意图卡跨两栏占满整行：它是本页的主操作，双栏时也不该被挤进某一栏 */
+.ai-hero { grid-column: 1 / -1; background: var(--md-sys-color-surface-container); }
+
+/* 意图卡：一句话说明 + 主操作按钮 */
+.ai-hero .hb-textarea { min-height: 56px; }
+/* 快捷指定种族/职业：两个描边按钮（点开人物页那两个挑选弹窗） */
+.ai-hero-picks { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 12px 0 0; }
+.ai-hero-picks md-filled-select { flex: 0 1 180px; min-width: 0; }
+/* 连接配置按钮：图标走 MD3 icon slot，文字与状态点自成一行 flex（保证垂直居中） */
+.ai-conn-label { display: inline-flex; align-items: center; gap: 6px; }
+.ai-conn-dot {
+  flex: none; width: 8px; height: 8px; border-radius: 50%;
+  background: var(--md-sys-color-outline); /* 未配置 = 中性灰 */
+}
+.ai-conn-dot.ok { background: var(--md-sys-color-primary); }
+.ai-hero .hint:last-child { margin-bottom: 0; }
+
+/* 表单：与设置页同款（md 组件占满整行） */
+.ai-field { margin-bottom: 12px; }
+.ai-field md-filled-select, .ai-field md-filled-text-field { width: 100%; }
+.ai-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 12px; }
+/* 连接配置展开后的内容区：与标题行拉开一点距离 */
+.ai-conn-body { margin-top: 4px; }
+/* 行内小图标（提示文字里的 info / hourglass 等）：跟文字基线对齐 */
+.ai-inline-ic { font-size: 16px; vertical-align: -3px; margin-right: 4px; }
+
+/* 清单分组：组标题（MD3 小节标签，用主色，与 .block-title 同一语言）+ 组计数 */
+.ai-group + .ai-group { margin-top: 14px; }
+.ai-group-head {
+  display: flex; align-items: center; gap: 8px; margin: 10px 0 6px;
+  font-size: 12px; font-weight: var(--fw-label); letter-spacing: 0.02em;
+  color: var(--md-sys-color-primary);
+}
+.ai-group-count {
+  margin-left: auto; font-variant-numeric: tabular-nums;
+  color: var(--md-sys-color-on-surface-variant); font-weight: var(--fw-caption);
+}
+
+/* 决策清单：按 MD3 列表项排（行高 ≥44、hover 状态层、small 圆角） */
+.ai-items { display: flex; flex-direction: column; margin: 4px 0 0; }
+.ai-item { display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 2px 8px; border-radius: var(--md-sys-shape-corner-small); }
+.ai-item:hover { background: color-mix(in srgb, var(--md-sys-color-on-surface) 5%, transparent); }
+.ai-item-gap { flex: none; width: 40px; }
+.ai-item-text { display: flex; flex-direction: column; gap: 1px; min-width: 0; flex: 1 1 auto; }
+.ai-item-title { font-size: 14px; font-weight: var(--fw-body); }
+.ai-item-sub { font-size: 12px; color: var(--md-sys-color-on-surface-variant); font-weight: var(--fw-caption); }
+.ai-item md-text-button { flex: none; }
+
+/* 威能大类下的槽位：横排铺开（高等级会有 4–7 格，换行而不是纵向拉长板块）
+   沿用 MD3「可选中的卡片」语言：未选 = surface-container-low + 描边；已选 = secondary-container（与全站 .chip.active 一致） */
+.ai-slots { display: flex; flex-wrap: wrap; gap: 8px; }
+.ai-slot {
+  display: flex; flex-direction: column; gap: 2px; flex: 1 1 152px; max-width: 232px; min-width: 0;
+  padding: 6px 10px 9px;
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: var(--md-sys-shape-corner-medium);
+  background: var(--md-sys-color-surface-container-low);
+  transition: background-color var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-standard);
+}
+.ai-slot:hover { background: var(--md-sys-color-surface-container); }
+.ai-slot:has(.ai-slot-value.on) {
+  border-color: transparent;
+  background: var(--md-sys-color-secondary-container);
+  color: var(--md-sys-color-on-secondary-container);
+}
+.ai-slot:has(.ai-slot-value.on):hover { background: color-mix(in srgb, var(--md-sys-color-on-secondary-container) 6%, var(--md-sys-color-secondary-container)); }
+.ai-slot-head { display: flex; align-items: center; gap: 2px; min-height: 32px; }
+.ai-slot-gap { flex: none; width: 32px; }
+.ai-slot-level { font-size: 12px; font-weight: var(--fw-label); color: var(--md-sys-color-on-surface-variant); }
+.ai-slot:has(.ai-slot-value.on) .ai-slot-level { color: var(--md-sys-color-on-secondary-container); }
+/* 槽位里的勾选框与图标按钮收小一档，避免把整格撑高 */
+.ai-slot md-checkbox { --md-checkbox-container-size: 18px; --md-checkbox-state-layer-size: 32px; }
+.ai-slot-btn {
+  margin-left: auto; flex: none;
+  --md-icon-button-icon-size: 18px;
+  --md-icon-button-state-layer-width: 32px;
+  --md-icon-button-state-layer-height: 32px;
+  --md-icon-button-icon-color: var(--md-sys-color-on-surface-variant);
+}
+.ai-slot:has(.ai-slot-value.on) .ai-slot-btn { --md-icon-button-icon-color: var(--md-sys-color-on-secondary-container); }
+.ai-slot-value {
+  font-size: 13.5px; line-height: 1.35; color: var(--md-sys-color-on-surface-variant);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.ai-slot-value.on { color: var(--md-sys-color-on-secondary-container); font-weight: var(--fw-body); }
+
+/* 挑选理由的悬浮卡片：与 .wiki-ref-pop / .gl-pop 同一套弹出层规格。
+   注意 z-index 必须 ≥ 400（要高于 .picker-overlay 的 300 与页面各板块），否则会被后面的板块盖住；
+   这里不能只挂 .hp-pop —— 那个类在本项目里只负责定位方向，没有任何视觉属性。 */
+.ai-pop {
+  display: block; width: 400px; max-width: calc(100vw - 120px);
+  z-index: 400;
+  border-radius: var(--md-sys-shape-corner-medium);
+  box-shadow: var(--md-sys-elevation-shadow-level3);
+  pointer-events: none;
+}
+.ai-pop > * { width: 100%; box-sizing: border-box; }
+
+/* AI 反馈行：左侧一颗状态点（颜色区分结果）；可悬浮预览的行右侧给一个样式图标 */
+.ai-feed-dot { flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--md-sys-color-primary); }
+.ai-feed-ic { flex: none; font-size: 16px; color: var(--md-sys-color-on-surface-variant); }
+.ai-feed-dot.warn { background: var(--md-sys-color-tertiary); }
+.ai-feed-dot.err { background: var(--md-sys-color-error); }
+
+/* 操作条（测试连接 / 一键建卡）+ 进度 + 步骤日志 */
+.ai-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin: 12px 0 6px; }
+.ai-progress { width: 100%; margin: 6px 0; }
+.ai-items .ai-item { min-height: 40px; }
+
+/* 行内提示：沿用「数据与同步」板块的消息规范（容器色 + on-容器文字） */
+.ai-msg { margin: 10px 0; padding: 10px 12px; border-radius: var(--md-sys-shape-corner-medium); font-size: 13px; line-height: 1.75; }
+.ai-msg.ok { background: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); }
+.ai-msg.warn { background: var(--md-sys-color-tertiary-container); color: var(--md-sys-color-on-tertiary-container); }
+.ai-msg.err { background: var(--md-sys-color-error-container); color: var(--md-sys-color-on-error-container); }
+
+

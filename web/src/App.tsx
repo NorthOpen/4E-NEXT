@@ -6,6 +6,7 @@ import { exportCharacterCard, type ExportFormat } from "./lib/exportImage";
 import SearchView from "./SearchView";
 import SettingsView from "./SettingsView";
 import LearnView from "./LearnView";
+import AiView from "./AiView";
 import ReserveView from "./ReserveView";
 import OverviewView from "./OverviewView";
 import BackgroundView from "./BackgroundView";
@@ -26,7 +27,7 @@ import { useIsMobile } from "./lib/media";
 
 // 导出给 lib/tutorial —— 教学步骤要指明「这一步切到哪个页面」。
 // type 导入在编译期被抹掉，不会和 App 形成运行时循环依赖。
-export type View = "sheet" | "background" | "reserve" | "overview" | "draw" | "search" | "learn" | "homebrew" | "settings";
+export type View = "sheet" | "background" | "reserve" | "overview" | "draw" | "search" | "learn" | "ai" | "homebrew" | "settings";
 type Layout = "single" | "double";
 
 // 手机端底部导航（MD3 NavigationBar）：只放建卡/跑团最常用的 4 个顶级目标。
@@ -56,7 +57,7 @@ const GM_NAV: { view: string; icon: string; label: string }[] = [
 ];
 
 /** 这些页面由「更多」面板承载：命中时把底栏的「更多」标为选中，用户才知道自己在哪 */
-const MOBILE_MORE_VIEWS: View[] = ["search", "learn", "homebrew", "settings"];
+const MOBILE_MORE_VIEWS: View[] = ["search", "learn", "ai", "homebrew", "settings"];
 
 // S 曲线羽化：多段渐停近似缓动，底部渐隐更自然
 function featherMask(feather: number): string {
@@ -263,14 +264,22 @@ function Shell() {
   }
 
   function newCard() {
-    const card: SavedCard = { id: uid(), name: "角色 " + (cards.length + 1), char: defaultCharacter(), updatedAt: Date.now() };
+    addCardWith(defaultCharacter());
+    setCardOpen(false);
+  }
+
+  /**
+   * 用给定内容新建一张人物卡并切过去（存档页「新建人物卡」与 AI 页「从零建卡」共用）。
+   * AI 页会先把「目标等级的空白卡」准备好再调这里，所以切过去之后 AI 的落子就直接写进这张新卡。
+   */
+  function addCardWith(c: Character) {
+    const card: SavedCard = { id: uid(), name: "角色 " + (cards.length + 1), char: c, updatedAt: Date.now() };
     const next = [...cards, card];
     setCards(next);
     saveCards(next);
-    setChar(card.char);
+    setChar(c);
     setActiveId(card.id);
     saveActiveId(card.id);
-    setCardOpen(false);
   }
 
   function deleteCard(id: string) {
@@ -287,8 +296,11 @@ function Shell() {
     if (renamingId === id) setRenamingId(null);
   }
 
-  // 进入抽卡模式：清空当前存档（保留卡名）
-  function enterDrawCleared() {
+  /**
+   * 清空当前存档（保留卡 id 与卡名）。抽卡的「清空并进入」与 AI 页的「从零建卡」共用这一份，
+   * 免得两处各写一遍清空逻辑、日后一处改了另一处忘了。
+   */
+  function clearActiveCard() {
     setChar(defaultCharacter());
     clearPortrait();
     setCards((p) => {
@@ -296,6 +308,11 @@ function Shell() {
       saveCards(next);
       return next;
     });
+  }
+
+  // 进入抽卡模式：清空当前存档（保留卡名）
+  function enterDrawCleared() {
+    clearActiveCard();
     setDrawOpen(false);
     setView("draw");
   }
@@ -456,6 +473,7 @@ function Shell() {
         <button type="button" className={"side-btn" + (appMode === "player" && view === "draw" ? " active" : "")} data-tour="nav-draw" title="抽卡" onClick={() => setDrawOpen(true)}><span className="material-symbols-outlined">casino</span><span className="sb-label">抽卡</span></button>
         <button type="button" className={isActive("search") ? "side-btn active" : "side-btn"} data-tour="nav-search" title="词条" onClick={() => openPlayerPage("search")}><span className="material-symbols-outlined">search</span><span className="sb-label">词条</span></button>
         <button type="button" className={isActive("learn") ? "side-btn active" : "side-btn"} data-tour="nav-learn" title="规则" onClick={() => openPlayerPage("learn")}><span className="material-symbols-outlined">school</span><span className="sb-label">规则</span></button>
+        <button type="button" className={isActive("ai") ? "side-btn active" : "side-btn"} data-tour="nav-ai" title="AI 车卡" onClick={() => openPlayerPage("ai")}><span className="material-symbols-outlined">auto_awesome</span><span className="sb-label">AI</span></button>
         <button type="button" className={isActive("settings") ? "side-btn active" : "side-btn"} data-tour="nav-settings" title="设置" onClick={() => openPlayerPage("settings")}><span className="material-symbols-outlined">settings</span><span className="sb-label">设置</span></button>
         <div className="rail-spacer" />
         <div className="side-sep" />
@@ -489,6 +507,9 @@ function Shell() {
           {view === "overview" && <OverviewView layout={layout} char={char} setChar={setChar} />}
           {view === "search" && <SearchView />}
           {view === "learn" && <LearnView layout={layout} />}
+          {view === "ai" && (
+            <AiView layout={layout} char={char} setChar={setChar} onNewCard={addCardWith} />
+          )}
           {view === "homebrew" && <HomebrewView layout={layout} />}
           {view === "settings" && <SettingsView layout={layout} onStartTutorial={startTutorial} />}
         </div>
@@ -573,6 +594,11 @@ function Shell() {
             <button type="button" className="mob-more-item" onClick={() => { setMobileMore(false); openPlayerPage("learn"); }}>
               <span className="material-symbols-outlined mob-more-ic">school</span>
               <span className="mob-more-text"><span className="mob-more-label">规则</span><span className="mob-more-sub">万律速查</span></span>
+              <span className="material-symbols-outlined mob-more-arrow">chevron_right</span>
+            </button>
+            <button type="button" className="mob-more-item" onClick={() => { setMobileMore(false); openPlayerPage("ai"); }}>
+              <span className="material-symbols-outlined mob-more-ic">auto_awesome</span>
+              <span className="mob-more-text"><span className="mob-more-label">AI</span><span className="mob-more-sub">用自己的接口帮你选</span></span>
               <span className="material-symbols-outlined mob-more-arrow">chevron_right</span>
             </button>
             <button type="button" className="mob-more-item" onClick={() => { setMobileMore(false); openPlayerPage("settings"); }}>

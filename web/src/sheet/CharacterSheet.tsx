@@ -4,8 +4,10 @@ import { createPortal } from "react-dom";
 import { FilledTextField, FilledSelect, SelectOption, TextButton, IconButton, FilledTonalButton, Switch, Tabs, PrimaryTab } from "../components/md";
 import { loadCategory, loadRelations } from "../data/loaders";
 import type { Entry } from "../data/types";
-import { type AbilityKey, type Character, ABILITY_LABELS, deriveStats, isHeavyArmor, parseClassStats, parseRaceAbilities, racialBonus, applyAbilityBonus, parseTrainedSkillCount, parseClassSkills, parseBuiltinTrainedSkills, cleanDisplayName, setPowerSlot, clearPowerSlot, setFeatSlot, clearFeatSlot, setEquipmentSlot, clearEquipmentSlot, EQUIPMENT_SLOTS, buyPointsUsed, BUY_POINTS, DEFENSE_BONUS_SOURCES, parseRaceDefenses, baseClassName, SKILL_TABLE, ARMOR_PENALTY_SKILLS, armorPenaltyFor, zhName, type DefenseKey, type DefenseBonusSource, type SpeedMods, type SkillMods, type PowerSlots, grantedPowerCategory, grantedPowerSlot, type SlotLevel, ENCOUNTER_SLOT_LEVELS, DAILY_SLOT_LEVELS, UTILITY_SLOT_LEVELS, PARAGON_SLOT_LEVELS, LEGENDARY_SLOT_LEVEL, type ClassStats, type RaceDefenseBonus, type DerivedStats, setRitualSlot, clearRitualSlot, customSum, emptyCustomBonuses, type CustomBonuses, type CustomEntry } from "./character";
+import { type AbilityKey, type Character, ABILITY_LABELS, deriveStats, isHeavyArmor, parseClassStats, parseRaceAbilities, racialBonus, applyAbilityBonus, parseTrainedSkillCount, parseClassSkills, parseBuiltinTrainedSkills, cleanDisplayName, setPowerSlot, clearPowerSlot, setFeatSlot, clearFeatSlot, setEquipmentSlot, clearEquipmentSlot, EQUIPMENT_SLOTS, buyPointsUsed, BUY_POINTS, DEFENSE_BONUS_SOURCES, parseRaceDefenses, baseClassName, SKILL_TABLE, ARMOR_PENALTY_SKILLS, armorPenaltyFor, zhName, type DefenseKey, type DefenseBonusSource, type SpeedMods, type SkillMods, type PowerSlots, grantedPowerCategory, grantedPowerSlot, type SlotLevel, type ClassStats, type RaceDefenseBonus, type DerivedStats, setRitualSlot, clearRitualSlot, customSum, emptyCustomBonuses, type CustomBonuses, type CustomEntry } from "./character";
 import { LEVELS, levelFromXp, xpForLevel } from "./leveling";
+import { powerSlotLevels } from "./candidates";
+import { featGrantedPowers, featReplacementInfo, featPrereqClassFeature } from "./featEffects";
 import PowerSlotPicker from "./PowerSlotPicker";
 import FeatSlotPicker from "./FeatSlotPicker";
 import FeatChoiceDialog from "./FeatChoiceDialog";
@@ -167,22 +169,8 @@ function padEmpty<T extends string | undefined>(arr: T[], n: number): T[] {
   return out;
 }
 
-// 由升级表推导各「等级槽位」应填充的威能等级。
-// 遭遇/每日最多 3 个不同等级（取 3 个最近获得的等级）+ 1 个典范槽位；辅助逐个递增（2/6/10/…）再加典范/传奇；
-// 返回数组第 i 项 = 第 i 个该类别威能空位的标签等级（"paragon"/"legendary" 为无等级数字的典范/传奇槽位）。
-function powerSlotLevels(cat: "atWill" | "encounter" | "daily" | "utility", level: number): SlotLevel[] {
-  if (cat === "atWill") return [1, 1];
-  const points = cat === "encounter" ? ENCOUNTER_SLOT_LEVELS : cat === "daily" ? DAILY_SLOT_LEVELS : UTILITY_SLOT_LEVELS;
-  const leveled = points.filter((p) => p <= level).reverse(); // 从高到低
-  let arr: SlotLevel[] = cat === "utility" ? leveled : leveled.slice(0, 3); // 遭遇/每日最多 3 个不同等级
-  if (cat === "encounter" && level >= PARAGON_SLOT_LEVELS.encounter) arr = ["paragon", ...arr];
-  if (cat === "daily" && level >= PARAGON_SLOT_LEVELS.daily) arr = ["paragon", ...arr];
-  if (cat === "utility") {
-    if (level >= PARAGON_SLOT_LEVELS.utility) arr = ["paragon", ...arr];
-    if (level >= LEGENDARY_SLOT_LEVEL) arr = ["legendary", ...arr];
-  }
-  return arr;
-}
+// powerSlotLevels（槽位等级推导）已移到 sheet/candidates.ts —— AI 车卡要用同一份规则，
+// 放在这里会变成私有实现，两边各写一份迟早分叉。
 
 // 空位按钮文字：典范/传奇槽位标注为「选择典范/传奇遭遇威能」；普通等级槽位一律「选择遭遇威能」
 // （高等级兼容低等级，无需在按钮上标注具体等级，点击后可选 ≤ 当前等级的威能）。
@@ -314,12 +302,8 @@ function grantedRitualLinks(text?: string, lookup?: (t: string) => Entry | undef
   return out;
 }
 
-// —— 专长赠送威能 / 威能替换 ——
-
-// 专长正文（前提 + 增益 + 特殊）拼接，用于扫描其中赠送/替换威能的表述
-function featBodyText(f: Entry): string {
-  return [f.prerequisite, f.benefit, (f as { fields?: { special?: string } }).fields?.special].filter(Boolean).join("\n");
-}
+// —— 专长正文展示 ——
+// 赠送/替换威能的解析已移到 sheet/featEffects.ts（AI 代选专长要用同一份判断，避免两边分叉）。
 
 // 专长简洁模式正文：专长名后的增益文字（去 wiki 标记与 HTML 标签；[[链接]] 只留中文名）
 function compactFeatText(f: Entry): string {
@@ -332,76 +316,8 @@ function compactFeatText(f: Entry): string {
     .trim();
 }
 
-// 专长赠送的威能：正文「获得[[威能]]威能」的明确赠送句。
-// 排除否定语境（不/不会/不再/没有/未曾获得）与被动引用（「获得[[X]]的通常效果」），
-// 也不把替换型专长（单独用 featReplacementInfo 处理）算作普通赠送。
-function featGrantedPowers(f: Entry, lookup: (t: string) => Entry | undefined): Entry[] {
-  const out: Entry[] = [];
-  const text = featBodyText(f);
-  const re = /获得\[\[([^\]|]+)(?:\|[^\]]+)?\]\](?:威能)?(?![^。！？!?.,，、\n])/g;
-  let m: RegExpExecArray | null;
-  while ((m = re.exec(text)) !== null) {
-    const before = text.slice(Math.max(0, m.index - 3), m.index);
-    if (/(不|不会|不再|没有|未曾|并非)$/.test(before)) continue;
-    const e = lookup(m[1].trim());
-    if (e && e.category === "power" && !out.some((x) => x.id === e.id)) out.push(e);
-  }
-  return out;
-}
 
-// 专长前提是否与「职业特性」相关：前提中出现「」引用的职业特性名或「职业特性」字样（如「引导神力」职业特性）。
-// 相关时，该专长赠送的威能应送入「种族/职业威能」（special），而非标准攻击/辅助空位。
-function featPrereqClassFeature(f: Entry): boolean {
-  const p = f.prerequisite ?? "";
-  if (!p) return false;
-  return /「[^」]+」/.test(p) || /职业特性/.test(p);
-}
 
-// 专长将旧威能替换为新威能：识别三类替换表述，返回新威能与目标说明（供选择后弹面板询问填入哪个格子）。
-//  - 「获得[[新]]专长威能，它会替换你的N级辅助威能」
-//  - 「[[新]]专长威能替换你的一个N级或更高级的辅助威能」
-//  - 「将你的[[旧]]种族威能替换成[[新]]威能」
-export interface FeatReplacement {
-  newPower: Entry;
-  hint: string; // 目标说明文字（如「替换你的一个16级或更高级的辅助威能」）
-  targetCat?: keyof PowerSlots; // 被替换威能所在的槽位类别（供替换弹窗只显示相关槽位）
-}
-// 从目标说明片段解析被替换威能的槽位类别
-function replTargetCat(fragment: string): keyof PowerSlots | undefined {
-  if (/辅助/.test(fragment)) return "utility";
-  if (/遭遇攻击|遭遇/.test(fragment)) return "encounter";
-  if (/每日攻击|每日/.test(fragment)) return "daily";
-  if (/种族威能/.test(fragment)) return "special";
-  return undefined;
-}
-function featReplacementInfo(f: Entry, lookup: (t: string) => Entry | undefined): FeatReplacement | undefined {
-  const text = featBodyText(f);
-  const resolve = (t: string): Entry | undefined => {
-    const e = lookup(t.trim());
-    return e && e.category === "power" ? e : undefined;
-  };
-  let m: RegExpMatchArray | null;
-  // 「将一个N级或更高级的X威能替换成[[新]]威能」/「你将一个N级或更高级的X威能替换成[[新]]威能」
-  m = text.match(/(?:你可以)?将一个(\d+)级或更高级的(辅助|遭遇攻击|每日攻击)威能替换成\[\[([^\]]+)\]\](?:威能)?/);
-  if (m) {
-    const np = resolve(m[3]);
-    if (np) {
-      const cat = m[2] === "辅助" ? "utility" : m[2] === "遭遇攻击" ? "encounter" : "daily";
-      return { newPower: np, hint: "替换你的" + m[1] + "级或更高级的" + m[2] + "威能", targetCat: cat };
-    }
-  }
-  // 「获得[[新]]专长威能，它会替换你的N级辅助威能」
-  m = text.match(/获得\[\[([^\]]+)\]\](?:专长威能)?，?\s*它会替换你的([^。！？\n]+)/);
-  if (m) { const np = resolve(m[1]); if (np) return { newPower: np, hint: "替换你的" + m[2].trim(), targetCat: replTargetCat(m[2]) }; }
-  m = text.match(/\[\[([^\]]+)\]\](?:专长威能)?替换你的([^。！？\n]+)/);
-  if (m) { const np = resolve(m[1]); if (np) return { newPower: np, hint: "替换你的" + m[2].trim(), targetCat: replTargetCat(m[2]) }; }
-  m = text.match(/将你的\[\[([^\]]+)\]\][^。！？\n]{0,12}?替换成\[\[([^\]]+)\]\][^。！？\n]{0,8}?威能/);
-  if (m) { const np = resolve(m[2]); if (np) return { newPower: np, hint: "替换你的" + m[1].trim() + "威能", targetCat: "special" }; }
-  // 「你失去该威能，且获得[[新]]威能」（如游荡者专长「背刺」）
-  m = text.match(/你失去该威能，?\s*且获得\[\[([^\]]+)\]\](?:威能)?/);
-  if (m) { const np = resolve(m[1]); if (np) return { newPower: np, hint: "替换一个你已有的相关攻击威能", targetCat: replTargetCat(text) }; }
-  return undefined;
-}
 
 // 冒险装备价格解析：把「15gp」「2gp」「5sp」「可变」等文本压成 gp 数值
 function parseGearCost(cost?: string): number {

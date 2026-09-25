@@ -6,6 +6,7 @@
 //
 // 刻意不打包的内容：
 //   · WebDAV 配置（4enext.webdav*）——里面有应用密码，不该落进一个随手放在下载目录的文件里
+//   · AI 配置（4enext.ai*）——里面有 API Key，同理
 //   · 同步基线 / 同步状态 / 设备 ID —— 这些是「本机与远端对到哪一步」的记账，
 //     换台机器恢复时应当重新建立；带着旧的记账恢复，反而会把远端的改动误判成本机删过的
 // 背景图的字节存在 IndexedDB 里（localStorage 只有一个路径标记），所以单独随包带一份，
@@ -22,6 +23,7 @@ export const BACKUP_FORMAT = 1;
 /** 不进备份文件的键前缀（凭据与同步记账，理由见文件头注释） */
 const EXCLUDED_PREFIXES = [
   "4enext.webdav",
+  "4enext.ai",
   "4enext.syncBase",
   "4enext.syncState",
   "4enext.syncTombstones",

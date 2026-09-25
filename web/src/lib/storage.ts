@@ -117,6 +117,8 @@ function groupOf(key: string): StorageGroupKey {
   }
   // 同步配置（WebDAV 地址/账号/应用密码）与同步基线同属「设置」一类
   if (key.startsWith("4enext.webdav") || key.startsWith("4enext.sync") || key === "4enext.deviceId.v1") return "appearance";
+  // AI 配置（供应商 / 模型 / API Key）与同步配置同属「设置」一类
+  if (key.startsWith("4enext.ai")) return "appearance";
   return "other";
 }
 

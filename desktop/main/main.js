@@ -87,18 +87,29 @@ let storeTimer = null;
 
 // ---------------------------------------------------------------- 凭据落盘加密
 //
-// storage.json 里躺着一条敏感数据：WebDAV 应用密码（4enext.webdav.v1）。
-// 明文放在应用数据目录里，任何能读到这个文件的人（同机其它账户、备份、被云同步的 AppData）
-// 都能直接拿去用。这里用 Electron 的 safeStorage（Windows = DPAPI，macOS = 钥匙串，
-// Linux = libsecret）把它换成密文：
-//   · 落盘   password → passwordEnc（base64 密文）
-//   · 读盘   passwordEnc → password
-// 渲染进程拿到的仍是明文，存储接缝的契约不变，同步逻辑一行都不用改。
+// storage.json 里躺着两条敏感数据：WebDAV 应用密码（4enext.webdav.v1）与
+// AI 接口的 API Key（4enext.ai.v1）。明文放在应用数据目录里，任何能读到这个文件的人
+// （同机其它账户、备份、被云同步的 AppData）都能直接拿去用。这里用 Electron 的 safeStorage
+// （Windows = DPAPI，macOS = 钥匙串，Linux = libsecret）把它们换成密文：
+//   · 落盘   password / apiKey → passwordEnc / apiKeyEnc（base64 密文）
+//   · 读盘   passwordEnc / apiKeyEnc → password / apiKey
+// 渲染进程拿到的仍是明文，存储接缝的契约不变，业务逻辑一行都不用改。
 // 代价：密文与当前系统账户绑定，把 storage.json（或绿色版整个目录）拷到另一台机器后
-//       密码需要去设置里重填一次——这是"不把凭据明文写盘"应付的代价。
+//       凭据需要去设置里重填一次——这是"不把凭据明文写盘"应付的代价。
 // safeStorage 不可用（部分 Linux 桌面没装 keyring）时自动退回明文，功能不受影响。
 
 const WEBDAV_KEY = "4enext.webdav.v1";
+const AI_KEY = "4enext.ai.v1";
+
+/**
+ * 需要加密落盘的字段：[存储键, 明文字段, 密文字段]。
+ * apiKeys 是「每个供应商一把 Key」的表（对象），helper 会先 JSON 化再加密。
+ */
+const SECRET_FIELDS = [
+  [WEBDAV_KEY, "password", "passwordEnc"],
+  [AI_KEY, "apiKey", "apiKeyEnc"],
+  [AI_KEY, "apiKeys", "apiKeysEnc"],
+];
 
 function secretAvailable() {
   try {
@@ -110,36 +121,55 @@ function secretAvailable() {
 
 function decryptSecrets() {
   if (!secretAvailable()) return;
-  const raw = store[WEBDAV_KEY];
-  if (typeof raw !== "string") return;
-  try {
-    const cfg = JSON.parse(raw);
-    if (cfg && typeof cfg.passwordEnc === "string" && !cfg.password) {
-      cfg.password = safeStorage.decryptString(Buffer.from(cfg.passwordEnc, "base64"));
-      delete cfg.passwordEnc;
-      store[WEBDAV_KEY] = JSON.stringify(cfg);
+  for (const [storeKey, field, encField] of SECRET_FIELDS) {
+    const raw = store[storeKey];
+    if (typeof raw !== "string") continue;
+    try {
+      const cfg = JSON.parse(raw);
+      if (cfg && typeof cfg[encField] === "string" && !cfg[field]) {
+        const plain = safeStorage.decryptString(Buffer.from(cfg[encField], "base64"));
+        // 字段可能是字符串（密码），也可能是对象（分供应商的 Key 表）：能解析成 JSON 就还原成对象
+        try {
+          cfg[field] = JSON.parse(plain);
+        } catch {
+          cfg[field] = plain;
+        }
+        delete cfg[encField];
+        store[storeKey] = JSON.stringify(cfg);
+      }
+    } catch {
+      // 解不开（换了机器 / 换了系统账户）就当没设过，让用户去设置里重填，别把文件写坏
     }
-  } catch {
-    // 解不开（换了机器 / 换了系统账户）就当没设过密码，让用户去设置里重填，别把文件写坏
   }
 }
 
-/** 落盘前的序列化：把 WebDAV 密码换成密文，其余数据原样 */
+/** 单个字段加密后的 JSON 文本；解析不了或字段为空时原样返回 */
+function encryptSecretField(raw, field, encField) {
+  if (typeof raw !== "string") return raw;
+  try {
+    const cfg = JSON.parse(raw);
+    const v = cfg ? cfg[field] : undefined;
+    if (v !== undefined && v !== null && v !== "") {
+      const text = typeof v === "string" ? v : JSON.stringify(v);
+      // 空表（还没存过任何 Key）不必加密，保持可读
+      if (text && text !== "{}" && text !== "[]") {
+        cfg[encField] = safeStorage.encryptString(text).toString("base64");
+        delete cfg[field];
+        return JSON.stringify(cfg);
+      }
+    }
+  } catch {
+    /* 解析不了就原样写出，交由渲染进程自己兜底 */
+  }
+  return raw;
+}
+
+/** 落盘前的序列化：把两条凭据换成密文，其余数据原样 */
 function serializedStore() {
   if (!secretAvailable()) return JSON.stringify(store);
   const out = { ...store };
-  const raw = out[WEBDAV_KEY];
-  if (typeof raw === "string") {
-    try {
-      const cfg = JSON.parse(raw);
-      if (cfg && typeof cfg.password === "string" && cfg.password) {
-        cfg.passwordEnc = safeStorage.encryptString(cfg.password).toString("base64");
-        delete cfg.password;
-        out[WEBDAV_KEY] = JSON.stringify(cfg);
-      }
-    } catch {
-      /* 解析不了就原样写出，交由渲染进程自己兜底 */
-    }
+  for (const [storeKey, field, encField] of SECRET_FIELDS) {
+    out[storeKey] = encryptSecretField(out[storeKey], field, encField);
   }
   return JSON.stringify(out);
 }
@@ -243,20 +273,58 @@ async function davRequest(req) {
 // 但它同时也是一条 SSRF 通道：一旦渲染进程里跑起来注入的脚本（例如导入了带脚本的私设包），
 // 就能拿它去探测内网网段、路由器、本机服务。所以这里加两道闸：
 //   ① 只接受应用自身页面（app://）发来的请求；
-//   ② 目标 origin 必须是用户在设置里填的那台 WebDAV 服务器——设置页是逐键保存的，
-//      所以正常同步永远命中白名单，不会有任何打扰；其余地址（内网/本机/任意公网）
-//      一律弹窗询问，同一 origin 每次运行只问一次。
+//   ② 目标 origin 必须是用户在设置里亲手填的地址（WebDAV 服务器，或 AI 接口的 Base URL）
+//      —— 设置是逐键保存的，所以正常同步与正常调用永远命中白名单，不会有任何打扰；
+//      其余地址（内网/本机/任意公网）一律弹窗询问，同一 origin 每次运行只问一次。
+//      注意：AI 的接口地址必须**落到存储里**才会被放行（见 lib/ai/config.ts 与 AiView 的地址固化），
+//      否则用户每次连接测试都会撞上询问弹窗。
 
-/** 主进程自持的"已授权 origin"：取用户填的 WebDAV 地址 */
+/**
+ * 本机 / 内网地址。
+ *
+ * 用途见 configuredOrigins：AI 接口地址只预授权公网地址。
+ * 本地模型（127.0.0.1 的 Ollama / LM Studio）与内网中转站都属于这一类 ——
+ * 它们仍是合法用法，只是要走一次询问弹窗。
+ */
+function isPrivateHost(hostname) {
+  const h = String(hostname || "").toLowerCase().replace(/^\[|\]$/g, "");
+  if (!h) return true;
+  if (h === "localhost" || h.endsWith(".localhost") || h.endsWith(".local") || h.endsWith(".internal")) return true;
+  if (h === "::1" || h.startsWith("fc") || h.startsWith("fd") || h.startsWith("fe80")) return true; // IPv6 ULA / link-local
+  const m = /^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$/.exec(h);
+  if (!m) return false;
+  const a = Number(m[1]);
+  const b = Number(m[2]);
+  if (a === 0 || a === 10 || a === 127) return true;
+  if (a === 172 && b >= 16 && b <= 31) return true;
+  if (a === 192 && b === 168) return true;
+  if (a === 169 && b === 254) return true;
+  return false;
+}
+
+/**
+ * 主进程自持的"已授权 origin"：取用户在设置里填的 WebDAV 地址与 AI 接口地址。
+ *
+ * 两者的待遇刻意不同：
+ *   · WebDAV —— 一律预授权（自建服务器常在内网，"每次开应用都弹窗"会直接毁掉同步体验，
+ *     这是当初就定下的取舍）。
+ *   · AI 接口 —— 只预授权公网地址。理由：AI 配置本身也是一份可写的存储，
+ *     被注入的脚本理论上能先把它改成内网地址再发请求，从而"自授权"绕过这道闸门。
+ *     内网/本机地址（本地模型、内网中转站）仍然可用，只是每次运行要走一次询问弹窗。
+ */
 function configuredOrigins() {
   const out = new Set();
   try {
     loadStore();
-    const raw = store["4enext.webdav.v1"];
-    if (typeof raw === "string") {
+    for (const key of [WEBDAV_KEY, AI_KEY]) {
+      const raw = store[key];
+      if (typeof raw !== "string") continue;
       const cfg = JSON.parse(raw);
-      const url = cfg && cfg.url;
-      if (typeof url === "string" && url.trim()) out.add(new URL(url.trim()).origin);
+      const url = cfg && (cfg.url || cfg.baseUrl);
+      if (typeof url !== "string" || !url.trim()) continue;
+      const parsed = new URL(url.trim());
+      if (key === AI_KEY && isPrivateHost(parsed.hostname)) continue;
+      out.add(parsed.origin);
     }
   } catch {
     /* 配置缺失或损坏 → 视为没有授权目标，走询问流程 */
@@ -275,8 +343,8 @@ function originAllowed(origin) {
     title: "允许访问这个地址吗",
     message: "4E NEXT 想要访问 " + origin + "。",
     detail:
-      "这不是你在设置里填的 WebDAV 服务器。\n\n" +
-      "正常情况下同步只会访问你自己配置的那台服务器。出现这个提示，可能是：\n" +
+      "这不是你在设置里填过的地址（WebDAV 服务器 / AI 接口）。\n\n" +
+      "正常情况下，同步与 AI 调用只会访问你自己配置的那台服务器。出现这个提示，可能是：\n" +
       "· 你正在测试一台新服务器（允许即可）；\n" +
       "· 某个私设包/同步数据里带了脚本，正在借应用探测你的内网。\n\n" +
       "不确定来源时请选择「取消」。允许后本次运行期间不再重复询问。",

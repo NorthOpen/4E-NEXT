@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { loadCategory } from "../data/loaders";
 import type { Entry } from "../data/types";
-import { baseClassName } from "./character";
+import { classPowerIds } from "./candidates";
 import PickList from "./PickList";
 
 interface Props {
@@ -38,11 +38,9 @@ export default function PowerPicker({ classEntry, relations, selected, onToggle 
   }, [classEntry]);
 
   const powers = useMemo(() => {
-    if (!classEntry || all.length === 0) return [];
-    const ids = new Set<string>();
-    for (const key of [baseClassName(classEntry.name), classEntry.name, classEntry.id]) {
-      for (const id of relations.powerByGrantedBy[key] ?? []) ids.add(id);
-    }
+    if (all.length === 0) return [];
+    const ids = classPowerIds([classEntry], relations); // 同源实现，见 sheet/candidates.ts
+    if (!ids) return [];
     return all.filter((p) => ids.has(p.id));
   }, [classEntry, all, relations]);
 

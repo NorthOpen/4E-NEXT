@@ -5,16 +5,11 @@ import { useIncremental } from "../lib/incremental";
 import { cleanDisplayName, zhName } from "./character";
 import type { Entry } from "../data/types";
 import { DeepSearchField, matchByName, matchDeep } from "./DeepSearch";
+import { featTierOf } from "./candidates";
 
 const TIERS = ["英雄", "典范", "传奇"];
 const FEAT_TYPES = ["种族", "职业", "技能", "流派", "通用"];
 const SKILL_NAMES = ["运动", "坚韧", "杂技", "隐秘", "盗术", "神秘", "历史", "宗教", "地城", "医疗", "洞察", "自然", "侦查", "唬骗", "交涉", "威吓", "市井"];
-
-function defaultTier(level: number): string {
-  if (level <= 10) return "英雄";
-  if (level <= 20) return "典范";
-  return "传奇";
-}
 
 // 专长前置条件中的种族/职业名：需作为独立词出现（前后不是中文字符），避免「半精灵」误匹配「精灵」
 function containsWord(text: string, word: string): boolean {
@@ -43,7 +38,7 @@ interface Props {
 }
 
 export default function FeatSlotPicker({ entries, loading, allRaces, allClasses, currentLevel, currentId, lookup, onSelect, onClear, onClose }: Props) {
-  const [tier, setTier] = useState<string>(defaultTier(currentLevel));
+  const [tier, setTier] = useState<string>(featTierOf(currentLevel)); // 同源实现，见 sheet/candidates.ts
   const [type, setType] = useState("");
   const [query, setQuery] = useState("");
   const [deep, setDeep] = useState(false); // 全文搜索开关

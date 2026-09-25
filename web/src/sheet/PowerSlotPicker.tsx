@@ -3,7 +3,7 @@ import { useIncremental } from "../lib/incremental";
 import { createPortal } from "react-dom";
 import EntryCard from "./EntryCard";
 import { POWER_CATEGORIES, powerCategory, type PowerCategoryKey } from "../lib/colors";
-import { baseClassName } from "./character";
+import { classPowerIds, racePowerIds } from "./candidates";
 import type { Entry } from "../data/types";
 import { DeepSearchField, matchByName, matchDeep } from "./DeepSearch";
 
@@ -45,26 +45,11 @@ export default function PowerSlotPicker({ entries, loading, relations, classEntr
 
   const conf = POWER_CATEGORIES.find((c) => c.key === cat);
 
-  const classIds = useMemo(() => {
-    // 混职：合并两个职业（含基础职业名/全名/id 的授予表）
-    const entries = [classEntry, classEntry2].filter((x): x is Entry => !!x);
-    if (entries.length === 0) return null;
-    const ids = new Set<string>();
-    for (const ce of entries) {
-      for (const key of [baseClassName(ce.name), ce.name, ce.id]) {
-        for (const id of relations.powerByGrantedBy[key] ?? []) ids.add(id);
-      }
-    }
-    return ids;
-  }, [classEntry, classEntry2, relations]);
-  
+  // 来源集合走 sheet/candidates 的同源实现（AI 车卡也用这一份，避免两边规则分叉）
+  // 混职：合并两个职业（含基础职业名/全名/id 的授予表）
+  const classIds = useMemo(() => classPowerIds([classEntry, classEntry2], relations), [classEntry, classEntry2, relations]);
 
-  const raceIds = useMemo(() => {
-    if (!raceEntry) return null;
-    const ids = new Set<string>(raceEntry.wiki.transclusions);
-    for (const id of relations.powerByGrantedBy[raceEntry.name] ?? []) ids.add(id);
-    return ids;
-  }, [raceEntry, relations]);
+  const raceIds = useMemo(() => racePowerIds(raceEntry, relations), [raceEntry, relations]);
 
   const hasSourceFilter = !!classIds || !!raceIds;
 
