@@ -420,6 +420,45 @@ export default function AiView({
     abortRef.current?.abort();
   }
 
+  /**
+   * 失败的一步可以直接重试：按 id 把那一项决定找回来重跑一次
+   * （模型两次都没给出合法结果时，界面会给这条反馈挂一个「重试」）。
+   */
+  function retryDecision(id: string) {
+    if (!ctx || building) return;
+    const d = list.find((x) => x.id === id);
+    if (!d) return;
+    if (d.kind === "abilities") {
+      void onPickAbilities();
+      return;
+    }
+    if (d.kind === "skills") {
+      const sc = skillsFor(workChar, ctx);
+      if (sc.available.length > 0) void onPickSkills(sc);
+      return;
+    }
+    const cands = candidatesFor(d, ctx, workChar, level);
+    if (cands && cands.length > 0) void onPick(d, cands);
+  }
+
+  // 哪些失败行还能重试（决定项还在、且现在有得可选）。只对失败行计算，避免每行都跑一遍候选过滤。
+  const retryable = useMemo(() => {
+    const m = new Map<string, boolean>();
+    if (!ctx) return m;
+    for (const f of feedback) {
+      if (f.kind !== "err" || m.has(f.id)) continue;
+      const d = list.find((x) => x.id === f.id);
+      if (!d) continue;
+      if (d.kind === "abilities") m.set(f.id, true);
+      else if (d.kind === "skills") m.set(f.id, skillsFor(workChar, ctx).available.length > 0);
+      else {
+        const cands = candidatesFor(d, ctx, workChar, level);
+        m.set(f.id, !!cands && cands.length > 0);
+      }
+    }
+    return m;
+  }, [ctx, feedback, list, workChar, level]);
+
   // 清单分组：基础 / 威能四类（横排槽位）/ 专长 / 进阶 / 装备与仪式
   const basicItems = list.filter((d) => d.kind === "race" || d.kind === "class" || d.kind === "abilities" || d.kind === "skills");
   const featItems = list.filter((d) => d.kind === "feat");
@@ -809,6 +848,16 @@ export default function AiView({
                         <span className="ai-item-sub">{f.text}</span>
                       </span>
                       {preview && <span className="material-symbols-outlined ai-feed-ic">style</span>}
+                      {f.kind === "err" && retryable.get(f.id) && (
+                        <TextButton
+                          className="ai-feed-retry"
+                          disabled={!ready || picking !== null || building}
+                          title="让 AI 再试一次这一步"
+                          onClick={() => retryDecision(f.id)}
+                        >
+                          重试
+                        </TextButton>
+                      )}
                     </SmartHover>
                   );
                 })}

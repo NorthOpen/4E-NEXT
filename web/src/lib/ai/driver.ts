@@ -12,7 +12,7 @@ import type { PowerCategoryKey } from "../colors";
 import {
   decisionList,
   featCandidates,
-  featTierOf,
+  featSlotTier,
   powerCandidates,
   type Decision,
   type Relations,
@@ -99,7 +99,9 @@ export function candidatesFor(d: Decision, ctx: EngineCtx, char: Character, leve
   }
   if (d.kind === "feat") {
     const taken = takenFeatIds(char);
-    return featCandidates(ctx.data.feats, featTierOf(level)).filter((f) => !taken.has(f.id));
+    // 阶层按「这个槽位是哪一级获得的」算，而不是角色当前等级 —— 见 sheet/candidates 的 featSlotTier
+    const tier = featSlotTier(d.slotIndex ?? 0, level);
+    return featCandidates(ctx.data.feats, tier).filter((f) => !taken.has(f.id));
   }
   return null;
 }

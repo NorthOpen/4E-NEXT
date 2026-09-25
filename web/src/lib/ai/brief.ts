@@ -4,7 +4,7 @@
 // 不给原始 Character JSON（字段太多、派生值会诱导模型去算数），也不给暂存/标记类字段。
 
 import { ABILITY_KEYS, ABILITY_LABELS, abilityModifier, type Character } from "../../sheet/character";
-import { powerSlotLevels } from "../../sheet/candidates";
+import { featSlotTier, powerSlotLevels } from "../../sheet/candidates";
 import { LEVELS } from "../../sheet/leveling";
 
 export interface BriefContext {
@@ -62,7 +62,8 @@ export function cardBrief(char: Character, ctx: BriefContext): string {
   const featParts: string[] = [];
   for (let i = 0; i < featCount; i++) {
     const id = char.featSlots?.[i];
-    featParts.push("专长" + (i + 1) + " " + (id ? nm(id, ctx) : "（空）"));
+    // 带上该槽位应挑的阶层（英雄/典范/传奇）：槽位是哪一级获得的就属哪个阶层
+    featParts.push("专长" + (i + 1) + "[" + featSlotTier(i, char.level) + "] " + (id ? nm(id, ctx) : "（空）"));
   }
   lines.push("专长：" + (featParts.length ? featParts.join(" ｜ ") : "（无槽位）"));
   lines.push("典范之道：" + nm(char.paragonPathId, ctx) + "；传奇命运：" + nm(char.epicDestinyId, ctx));

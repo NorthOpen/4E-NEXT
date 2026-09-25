@@ -131,6 +131,32 @@ export function featCandidates(entries: Entry[], tier: string): Entry[] {
   return entries.filter((f) => !tier || f.tierZh === tier);
 }
 
+/**
+ * 第 index 个专长槽位是**在哪一级获得的**（0 基下标）。
+ * 依据升级表的「已知专长」列：1 级 1 个、2 级第 2 个、4 级第 3 个……11 级第 7 个（典范）、21 级第 13 个（传奇）。
+ * 超出该等级应有的槽位数（人类奖励专长、或手动扩容）返回 undefined。
+ */
+export function featSlotLevel(index: number, level: number): number | undefined {
+  const lv = Math.max(1, Math.min(30, level));
+  for (let l = 1; l <= lv; l++) {
+    if ((LEVELS[l - 1]?.feats ?? 0) >= index + 1) return l;
+  }
+  return undefined;
+}
+
+/**
+ * 该专长槽位应当在哪个阶层挑（英雄 / 典范 / 传奇）。
+ *
+ * 规则依据：专长分英雄（1–10 级）、典范（11–20 级）、传奇（21–30 级）三个阶层，
+ * 一个槽位是在哪一级获得的，就该在那个阶层里挑 —— 所以 12 级角色的第 1 个专长槽（1 级获得）
+ * 仍然只能挑英雄专长，而不是跟着角色等级去挑典范专长。
+ * 额外槽位（人类奖励专长等）无从判断获得等级，回落到角色当前阶层。
+ */
+export function featSlotTier(index: number, level: number): "英雄" | "典范" | "传奇" {
+  const at = featSlotLevel(index, level);
+  return at === undefined ? featTierOf(level) : featTierOf(at);
+}
+
 // —— 决策清单 ——
 
 export type DecisionKind = "abilities" | "race" | "class" | "skills" | "power" | "feat" | "paragon" | "epic" | "equipment" | "ritual";
@@ -262,14 +288,17 @@ export function decisionList(char: Character, opts: { targetLevel?: number } = {
   const featCount = info ? info.feats : 0;
   for (let i = 0; i < featCount; i++) {
     const cur = char.featSlots?.[i];
+    // 阶层看「这个槽位是哪一级获得的」，不是角色当前等级：12 级卡的第 1 个专长槽仍属英雄阶层
+    const tier = featSlotTier(i, level);
+    const at = featSlotLevel(i, level);
     out.push({
       id: "feat:" + i,
       kind: "feat",
-      label: "专长 " + (i + 1) + "（" + featTierOf(level) + "）",
+      label: "专长 " + (i + 1) + "（" + tier + "）",
       status: cur ? "filled" : "empty",
       current: cur,
       slotIndex: i,
-      detail: featTierOf(level) + "阶层",
+      detail: tier + "阶层" + (at ? " · " + at + " 级获得" : "（额外槽位）"),
     });
   }
 

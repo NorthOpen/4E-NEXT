@@ -2041,6 +2041,8 @@ md-dialog.sheet-dialog.sheet-dialog-store { max-width: min(520px, calc(100% - 48
 /* AI 反馈行：左侧一颗状态点（颜色区分结果）；可悬浮预览的行右侧给一个样式图标 */
 .ai-feed-dot { flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--md-sys-color-primary); }
 .ai-feed-ic { flex: none; font-size: 16px; color: var(--md-sys-color-on-surface-variant); }
+/* 失败反馈行尾的「重试」：紧凑一点，别把行撑高 */
+.ai-feed-retry { flex: none; --md-text-button-container-height: 32px; }
 .ai-feed-dot.warn { background: var(--md-sys-color-tertiary); }
 .ai-feed-dot.err { background: var(--md-sys-color-error); }
 
