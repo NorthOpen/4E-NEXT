@@ -2057,4 +2057,117 @@ md-dialog.sheet-dialog.sheet-dialog-store { max-width: min(520px, calc(100% - 48
 .ai-msg.warn { background: var(--md-sys-color-tertiary-container); color: var(--md-sys-color-on-tertiary-container); }
 .ai-msg.err { background: var(--md-sys-color-error-container); color: var(--md-sys-color-on-error-container); }
 
+/* 主持侧的 AI 页（GmAiView）：页面只有一个顶栏，别让那张卡横着铺满整个宽屏 */
+.gm-ai { max-width: 900px; }
+
+/* ============================================================
+   ⑮ 主持模式 · 审阅（ReviewView）
+   —— 把存档里的复数张卡同时摊开：名册 + 详情 / 速览网格 / 卡片网格。
+
+   沿用 ⑪ 那一套：外壳 .gl-shell + .gl-bar、名册行的 .gr、空态的 .gm-empty、
+   徽标 .gl-item-slot / .gl-chip-sub 都是现成的，本节只写这一页自己的三块版面：
+     .rv-head        详情与网格单元的头（名字 + 元信息 + 局部切换）
+     .rv-body        名册模式右栏的内容区
+     .rv-board       速览 / 卡片的网格
+     .rv-pick*       选择人物卡的弹窗
+
+   ── 滚动模型（这一页唯一需要解释的地方，也是前两版栽跟头的地方）──
+   这一页**不自造滚动口**：与玩家侧的速览页完全一样，整页跟着 document 滚。
+   怪物追踪页（⑪）之所以能「整页不滚、两块各自滚」，是因为它下半截那块数据块本来就
+   按一屏高度设计；审阅页嵌进来的却是**完整速览面板**与**整张人物卡**，两样都比一屏长，
+   再套一层内滚动只会得到「滚动口是谁」不确定的嵌套结构 —— 而 .gl-bar 的
+   position:sticky 认的正是「最近的滚动祖先」：祖先一换，标题栏要么跟着内容滚走，
+   要么粘在一个根本不滚的盒子上不动。
+   所以这里把 ⑪ 的定高与裁切在 .rv-view 作用域内全部解除（.gc / .rv-body / .gm-shell
+   的高度与 overflow 都还原成内容尺寸），滚动只留 document 一个 —— 与玩家速览页同构，
+   sticky 的行为也就与那边一致。
+   ============================================================ */
+.rv-head {
+  flex: none; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; min-width: 0;
+  position: relative; z-index: 2;
+  padding: 12px 16px;
+  background: var(--md-sys-color-surface-container-low);
+  border-bottom: 1px solid var(--md-sys-color-outline-variant);
+}
+.rv-head-name {
+  min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  font-size: 15px; font-weight: var(--fw-heading); color: var(--md-sys-color-on-surface);
+}
+.rv-head-sub { font-size: 11.5px; color: var(--md-sys-color-on-surface-variant); }
+/* 局部切换推到最右：它是这一栏的次级操作，不该跟卡名抢视线 */
+.rv-head .md3-seg { margin-left: auto; }
+/* 「打开这张卡 / 去编辑」：跟着切换组走在最右，按这一栏的密度收一档 */
+.rv-open { flex: none; --md-text-button-container-height: 34px; --md-text-button-label-text-size: 13px; }
+
+/* 名册：解除 ⑪ 的定高网格 —— .gc 按内容长，右栏不再是一个内滚动盒 */
+.rv-view .gc { height: auto; }
+.rv-body {
+  display: flex; flex-direction: column;
+  min-width: 0; min-height: 0;
+  padding: 14px 16px 18px;
+}
+.rv-body > * { flex: none; }
+.rv-sheet { min-width: 0; }
+/* 嵌在右栏里的速览面板不限高、不拉伸：它多高，右栏就多高，溢出交给整页滚动。
+   （面板一旦被拉成一屏高，它自己就成了滚动盒，.gl-bar 的 sticky 会粘在那个不滚的
+   盒子上 —— 表现就是标题栏一动不动；拉伸解开后它与玩家速览页的行为一致。）
+   .rv-body .glance 的选择器是为了压过 styles.glance.css 里的同名规则。 */
+.rv-body .glance { align-self: start; }
+.rv-body .glance .gl-shell { height: auto; }
+.rv-body .glance .gl-loading { min-height: 180px; }
+
+/* 外壳：解除 ⑪ 的圆角裁切。overflow:hidden 会为 sticky 造出一个「不滚的裁剪盒」，
+   标题栏粘在它身上就永远不动；这里它的高度已经是内容尺寸，没有需要裁的东西。
+   视觉上没有代价：.gl-bar 是铺满顶边的实底块，外壳圆角本来就看不见。 */
+.gm-view.rv-view .gm-shell { overflow: visible; }
+
+/* 速览 / 卡片：单元并排铺开。用 auto-fit 而不是写死两列 —— 面板有自己的 12 栏网格，
+   窄到 560px 以下就退成单列，免得两个面板挤在一条窄栏里（那正是「看着不自适应」的由来）。 */
+.rv-board {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(560px, 1fr));
+  gap: 16px; align-items: start;
+  padding: 16px;
+}
+.rv-board-sheet { grid-template-columns: minmax(0, 1fr); }
+/* 单元：不再限高、不再裁切 —— 面板按内容长，高度差由 align-items:start 各自成行 */
+.rv-cell {
+  display: flex; flex-direction: column; min-width: 0;
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: var(--md-sys-shape-corner-medium);
+}
+.rv-cell-body { min-width: 0; }
+.rv-cell-name {
+  min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  padding: 0; border: 0; background: none; cursor: pointer;
+  font: inherit; font-size: 14px; font-weight: var(--fw-subheading); color: var(--md-sys-color-primary);
+}
+.rv-cell-name:hover { text-decoration: underline; }
+
+/* --- 选择人物卡（弹窗） --- */
+.rv-pick { display: flex; flex-direction: column; gap: 4px; }
+.rv-pick-row {
+  display: flex; align-items: center; gap: 10px;
+  padding: 7px 12px; border-radius: var(--md-sys-shape-corner-medium);
+  background: var(--md-sys-color-surface-container); cursor: pointer;
+  transition: background-color var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-standard);
+}
+.rv-pick-row:hover { background: var(--md-sys-color-surface-container-highest); }
+.rv-pick-row.on { background: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); }
+.rv-pick-text { display: flex; flex-direction: column; gap: 1px; min-width: 0; flex: 1 1 auto; }
+.rv-pick-name { display: flex; align-items: center; gap: 8px; min-width: 0; font-size: 13.5px; font-weight: var(--fw-subheading); }
+.rv-pick-sub { font-size: 11.5px; color: var(--md-sys-color-on-surface-variant); }
+.rv-pick-row.on .rv-pick-sub { color: inherit; opacity: .85; }
+.rv-pick-row.on .gl-item-slot { background: color-mix(in srgb, var(--md-sys-color-on-secondary-container) 14%, transparent); color: inherit; }
+
+@media (max-width: 900px) {
+  /* 窄屏：单元只留一列（auto-fit 在 560px 阈值下本来也会退化，这里只是把阈值让开） */
+  .rv-board { grid-template-columns: minmax(0, 1fr); padding: 12px; }
+  .rv-body { padding: 12px; }
+  .rv-head { padding: 10px 12px; }
+}
+@media (max-width: 640px) {
+  .rv-head .md3-seg { margin-left: 0; }
+}
+
 

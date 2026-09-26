@@ -85,8 +85,14 @@ export interface GlanceData {
 
 const EMPTY_CLASS: ClassStats = { baseHp: 0, hpPerLevel: 0, surges: 0, fort: 0, ref: 0, will: 0 };
 
-/** 加载速览页所需的五类词条（loaders 内部有缓存，与人物页共用同一份请求）。 */
-export function useGlance(char: Character): GlanceData {
+/**
+ * 速览所需的五类词条（loaders 内部有缓存，与人物页共用同一份请求）。
+ *
+ * 单独抽出来是因为主持侧的「审阅」页要在**不推导任何数值**的前提下认名字
+ * （名册上的种族 / 职业、卡片网格的标题）：那里一次摊开十几张卡，
+ * 每张都走一遍 useGlance 的完整推导是白算的。
+ */
+export function useGlanceSource() {
   const [races, setRaces] = useState<Entry[]>([]);
   const [classes, setClasses] = useState<Entry[]>([]);
   const [feats, setFeats] = useState<Entry[]>([]);
@@ -119,10 +125,47 @@ export function useGlance(char: Character): GlanceData {
     };
   }, []);
 
-  const powerMap = useMemo(() => new Map(powers.map((p) => [p.id, p])), [powers]);
-  const featMap = useMemo(() => new Map(feats.map((f) => [f.id, f])), [feats]);
-  const itemMap = useMemo(() => new Map(items.map((i) => [i.id, i])), [items]);
-  const classMap = useMemo(() => new Map(classes.map((c) => [c.id, c])), [classes]);
+  // 映射在 memo 里现建：依赖数组只放数组本身，避免每次渲染都重算整个速览数据
+  return useMemo(
+    () => ({
+      ready,
+      races,
+      classes,
+      feats,
+      items,
+      powers,
+      powerMap: new Map(powers.map((p) => [p.id, p])),
+      featMap: new Map(feats.map((f) => [f.id, f])),
+      itemMap: new Map(items.map((i) => [i.id, i])),
+      classMap: new Map(classes.map((c) => [c.id, c])),
+    }),
+    [ready, races, classes, feats, items, powers]
+  );
+}
+
+/**
+ * 只需「这张卡是谁」的场景（审阅页的名册 / 卡片网格 / 选择弹窗）：种族名 + 职业显示名。
+ * 刻意不做数值推导 —— 十几张卡同时铺开时，防御与技能那些计算没有一处会被读到。
+ */
+export function useCardMeta(char: Character): { race: string; cls: string; ready: boolean } {
+  const src = useGlanceSource();
+  return useMemo(() => {
+    const race = src.races.find((r) => r.id === char.raceId);
+    const c1 = src.classes.find((c) => c.id === char.classId);
+    const c2 = char.hybrid ? src.classes.find((c) => c.id === char.classId2) : undefined;
+    const names = [c1, c2].filter((c): c is Entry => !!c).map((c) => cleanDisplayName(c.name));
+    return {
+      ready: src.ready,
+      race: race ? cleanDisplayName(race.name) : "",
+      cls: char.hybrid && names.length ? "混职：" + names.join(" / ") : names[0] ?? "",
+    };
+  }, [src, char.raceId, char.classId, char.classId2, char.hybrid]);
+}
+
+/** 速览页所需的五类词条（loaders 内部有缓存，与人物页共用同一份请求）。 */
+export function useGlance(char: Character): GlanceData {
+  const src = useGlanceSource();
+  const { ready, races, classes, powerMap, featMap, itemMap, classMap } = src;
 
   return useMemo(() => {
     const raceEntry = races.find((r) => r.id === char.raceId);

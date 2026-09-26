@@ -14,6 +14,8 @@ import DrawView from "./DrawView";
 import HomebrewView from "./HomebrewView";
 import GmView from "./GmView";
 import StoryView from "./StoryView";
+import ReviewView from "./ReviewView";
+import GmAiView from "./GmAiView";
 import { loadCards, saveCards, loadActiveId, saveActiveId, safeSetItem, uid, type SavedCard } from "./lib/storage";
 import { defaultCharacter, migrateCharacter, type Character } from "./sheet/character";
 import { SYNC_APPLIED_EVENT } from "./lib/sync";
@@ -50,10 +52,14 @@ const PLAYER_PRIMARY: { view: View; icon: string; label: string }[] = [
 ];
 
 // 主持模式的主功能：**占据玩家侧那四个功能的位置**，切换模式时整组换掉。
-// 「怪物」是战斗时的追踪台，「故事」是团内线索/想法的白板；以后加先攻追踪等，往这里加一项即可。
+// 「怪物」是战斗时的追踪台，「故事」是团内线索/想法的白板；「审阅」把存档里的卡摊开来看。
+// 主持侧的「AI」不列在这里：它顶替的是导轨下方玩家组里那个 AI 按钮
+// （见 openAiPage —— 同一个按钮在两种模式下指向各自那一页，不在导轨里再占一个位置）。
+// 以后加先攻追踪等，往这里加一项即可。
 const GM_NAV: { view: string; icon: string; label: string }[] = [
   { view: "monsters", icon: "menu_book", label: "怪物" },
   { view: "story", icon: "account_tree", label: "故事" },
+  { view: "review", icon: "fact_check", label: "审阅" },
 ];
 
 /** 这些页面由「更多」面板承载：命中时把底栏的「更多」标为选中，用户才知道自己在哪 */
@@ -84,14 +90,21 @@ function Shell() {
   // 主持模式内的当前页（目前只有「怪物」）。用 string 而非字面量联合：
   // GM_NAV 与 MOBILE_NAV 共用一个 map，联合类型会让比较处处需要断言。
   const [gmPage, setGmPage] = useState("monsters");
+  // 主持侧「AI」不是一个导轨项，而是顶替导轨下方那颗 AI 按钮的宿主页：
+  // 为 true 时主持区渲染主持侧 AI 页，点主持组里任一页会把它关掉（回到那一页）。
+  const [gmAiOpen, setGmAiOpen] = useState(false);
   const isMobile = useIsMobile();
   // 手机端强制单栏：不再提供双栏选项
   const [layoutRaw, setLayoutRaw] = useState<Layout>(() => (platform.storage.getItem("4enext-layout") !== "single" ? "double" : "single"));
   const layout: Layout = isMobile ? "single" : layoutRaw;
   // 主持模式只在桌面开放：手机端用不了（没有导轨、两块控制台也放不下），
   // 所以一旦落到手机端就退回玩家侧，避免停在一个用不了的页面上。
+  // 主持侧 AI 的标记一并收掉，免得切回桌面时又冒出那一页。
   useEffect(() => {
-    if (isMobile && appMode === "gm") setAppMode("player");
+    if (isMobile && appMode === "gm") {
+      setAppMode("player");
+      setGmAiOpen(false);
+    }
   }, [isMobile, appMode]);
   const [mode, setMode] = useState<"edit" | "render">("edit");
   // 手机端「更多」底部面板（承载底栏放不下的入口）
@@ -436,6 +449,23 @@ function Shell() {
     setView(v);
   }
 
+  /**
+   * 导轨上那颗 AI 按钮：同一个按钮，两种模式各指向自己那一页。
+   *   · 玩家模式 → AI 车卡（车卡器的 AI）
+   *   · 主持模式 → 主持侧 AI（只接出顶栏的连接配置与输入），不再把人踢回玩家页
+   * 主持组里因此不需要再摆一个 AI 入口 —— 那样同一个功能会有两个按钮。
+   */
+  function openAiPage() {
+    if (appMode === "gm") {
+      setGmAiOpen(true);
+      return;
+    }
+    openPlayerPage("ai");
+  }
+
+  /** AI 按钮的选中态：两种模式各认自己那一页 */
+  const aiActive = appMode === "gm" ? gmAiOpen : view === "ai";
+
   /** 玩家侧页面的选中态：主持模式下组 2 的按钮不该显示为选中 */
   const isActive = (v: View): boolean => appMode === "player" && view === v;
 
@@ -465,7 +495,7 @@ function Shell() {
               <button key={d.view} type="button" className={isActive(d.view) ? "side-btn active" : "side-btn"} data-tour={"nav-" + d.view} title={d.label} onClick={() => setView(d.view)}><span className="material-symbols-outlined">{d.icon}</span><span className="sb-label">{d.label}</span></button>
             ))
           : GM_NAV.map((d) => (
-              <button key={d.view} type="button" className={gmPage === d.view ? "side-btn active" : "side-btn"} data-tour={"nav-" + d.view} title={d.label} onClick={() => setGmPage(d.view)}><span className="material-symbols-outlined">{d.icon}</span><span className="sb-label">{d.label}</span></button>
+              <button key={d.view} type="button" className={gmPage === d.view && !gmAiOpen ? "side-btn active" : "side-btn"} data-tour={"nav-" + d.view} title={d.label} onClick={() => { setGmAiOpen(false); setGmPage(d.view); }}><span className="material-symbols-outlined">{d.icon}</span><span className="sb-label">{d.label}</span></button>
             ))}
         <div className="side-sep" />
         <button type="button" className="side-btn" data-tour="nav-save" title="存档" onClick={() => setCardOpen(true)}><span className="material-symbols-outlined">folder</span><span className="sb-label">存档</span></button>
@@ -473,13 +503,13 @@ function Shell() {
         <button type="button" className={"side-btn" + (appMode === "player" && view === "draw" ? " active" : "")} data-tour="nav-draw" title="抽卡" onClick={() => setDrawOpen(true)}><span className="material-symbols-outlined">casino</span><span className="sb-label">抽卡</span></button>
         <button type="button" className={isActive("search") ? "side-btn active" : "side-btn"} data-tour="nav-search" title="词条" onClick={() => openPlayerPage("search")}><span className="material-symbols-outlined">search</span><span className="sb-label">词条</span></button>
         <button type="button" className={isActive("learn") ? "side-btn active" : "side-btn"} data-tour="nav-learn" title="规则" onClick={() => openPlayerPage("learn")}><span className="material-symbols-outlined">school</span><span className="sb-label">规则</span></button>
-        <button type="button" className={isActive("ai") ? "side-btn active" : "side-btn"} data-tour="nav-ai" title="AI 车卡" onClick={() => openPlayerPage("ai")}><span className="material-symbols-outlined">auto_awesome</span><span className="sb-label">AI</span></button>
+        <button type="button" className={aiActive ? "side-btn active" : "side-btn"} data-tour="nav-ai" title={appMode === "gm" ? "AI（主持）" : "AI 车卡"} onClick={openAiPage}><span className="material-symbols-outlined">auto_awesome</span><span className="sb-label">AI</span></button>
         <button type="button" className={isActive("settings") ? "side-btn active" : "side-btn"} data-tour="nav-settings" title="设置" onClick={() => openPlayerPage("settings")}><span className="material-symbols-outlined">settings</span><span className="sb-label">设置</span></button>
         <div className="rail-spacer" />
         <div className="side-sep" />
         {/* 主持 / 玩家 切换：与下面的编辑 / 渲染同级，所以放在它上面。
             标签显示「当前模式」（与编辑 / 渲染同一约定），主持模式下整颗高亮。 */}
-        <button type="button" className={"side-btn side-btn-gm" + (appMode === "gm" ? " active" : "")} data-tour="rail-gm" title={appMode === "gm" ? "当前：主持模式，点击切回玩家模式" : "当前：玩家模式，点击切换到主持模式"} aria-pressed={appMode === "gm"} onClick={() => setAppMode((m) => (m === "gm" ? "player" : "gm"))}><span className="material-symbols-outlined">{appMode === "gm" ? "castle" : "person"}</span><span className="sb-label">{appMode === "gm" ? "主持" : "玩家"}</span></button>
+        <button type="button" className={"side-btn side-btn-gm" + (appMode === "gm" ? " active" : "")} data-tour="rail-gm" title={appMode === "gm" ? "当前：主持模式，点击切回玩家模式" : "当前：玩家模式，点击切换到主持模式"} aria-pressed={appMode === "gm"} onClick={() => setAppMode((m) => { if (m === "gm") setGmAiOpen(false); return m === "gm" ? "player" : "gm"; })}><span className="material-symbols-outlined">{appMode === "gm" ? "castle" : "person"}</span><span className="sb-label">{appMode === "gm" ? "主持" : "玩家"}</span></button>
         {/* 编辑 / 渲染只作用于人物卡，主持模式下收起 */}
         {appMode === "player" && (
         <button type="button" className="side-btn" data-tour="rail-mode" title={mode === "edit" ? "切换到渲染模式" : "切换到编辑模式"} onClick={() => setMode((m) => (m === "edit" ? "render" : "edit"))}><span className="material-symbols-outlined">{mode === "edit" ? "edit" : "lock"}</span><span className="sb-label">{mode === "edit" ? "编辑" : "渲染"}</span></button>
@@ -490,9 +520,30 @@ function Shell() {
       </nav>
       <main className="content">
         {appMode === "gm" ? (
-          <div className="view-anim" key={"gm-" + gmPage}>
-            {gmPage === "monsters" && <GmView layout={layout} />}
-            {gmPage === "story" && <StoryView />}
+          <div className="view-anim" key={gmAiOpen ? "gm-ai" : "gm-" + gmPage}>
+            {gmAiOpen ? (
+              <GmAiView />
+            ) : (
+              <>
+                {gmPage === "monsters" && <GmView layout={layout} />}
+                {gmPage === "story" && <StoryView />}
+                {/* 审阅：把存档里的卡摊开来看（只读）。cards 直接吃 App 这一份，
+                    所以玩家侧刚改完的卡切过来就是最新的 */}
+                {gmPage === "review" && (
+                  <ReviewView
+                    cards={cards}
+                    activeId={activeId}
+                    onOpenCard={(id) => {
+                      // 与存档弹窗的「切换到这张卡」同一套（切 id、存 id、同步立绘），
+                      // 再切回玩家模式落到人物页 —— 审阅是只读的，改卡要回那边去改
+                      switchCard(id);
+                      setAppMode("player");
+                      setView("sheet");
+                    }}
+                  />
+                )}
+              </>
+            )}
           </div>
         ) : (
         <div className="view-anim" key={view}>
@@ -528,7 +579,7 @@ function Shell() {
                 data-tour={"mob-" + d.view}
                 className={"mob-nav-item" + (on ? " on" : "")}
                 aria-current={on ? "page" : undefined}
-                onClick={() => (appMode === "gm" ? setGmPage(d.view) : setView(d.view as View))}
+                onClick={() => (appMode === "gm" ? (setGmAiOpen(false), setGmPage(d.view)) : setView(d.view as View))}
               >
                 <span className="mob-nav-ind"><span className="material-symbols-outlined">{d.icon}</span></span>
                 <span className="mob-nav-label">{d.label}</span>
@@ -538,8 +589,8 @@ function Shell() {
           <button
             type="button"
             data-tour="mob-more"
-            className={"mob-nav-item" + (MOBILE_MORE_VIEWS.includes(view) && appMode === "player" ? " on" : "")}
-            aria-current={MOBILE_MORE_VIEWS.includes(view) && appMode === "player" ? "page" : undefined}
+              className={"mob-nav-item" + (MOBILE_MORE_VIEWS.includes(view) && !gmAiOpen ? " on" : "")}
+            aria-current={MOBILE_MORE_VIEWS.includes(view) && !gmAiOpen ? "page" : undefined}
             onClick={() => setMobileMore(true)}
           >
             <span className="mob-nav-ind"><span className="material-symbols-outlined">more_horiz</span></span>
@@ -596,7 +647,7 @@ function Shell() {
               <span className="mob-more-text"><span className="mob-more-label">规则</span><span className="mob-more-sub">万律速查</span></span>
               <span className="material-symbols-outlined mob-more-arrow">chevron_right</span>
             </button>
-            <button type="button" className="mob-more-item" onClick={() => { setMobileMore(false); openPlayerPage("ai"); }}>
+            <button type="button" className="mob-more-item" onClick={() => { setMobileMore(false); openAiPage(); }}>
               <span className="material-symbols-outlined mob-more-ic">auto_awesome</span>
               <span className="mob-more-text"><span className="mob-more-label">AI</span><span className="mob-more-sub">用自己的接口帮你选</span></span>
               <span className="material-symbols-outlined mob-more-arrow">chevron_right</span>

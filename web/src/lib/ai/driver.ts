@@ -95,13 +95,14 @@ export function candidatesFor(d: Decision, ctx: EngineCtx, char: Character, leve
       category,
       // 等级上限用角色等级：与人物页槽位选择器默认「当前及以下」一致
       maxLevel: level,
-    }).filter((p) => !taken.has(p.id));
+      // 去重，但保留「这一格现在已经选着的那个」—— 重roll 时它可以被重新挑中（换不换由模型决定）
+    }).filter((p) => !taken.has(p.id) || p.id === d.current);
   }
   if (d.kind === "feat") {
     const taken = takenFeatIds(char);
     // 阶层按「这个槽位是哪一级获得的」算，而不是角色当前等级 —— 见 sheet/candidates 的 featSlotTier
     const tier = featSlotTier(d.slotIndex ?? 0, level);
-    return featCandidates(ctx.data.feats, tier).filter((f) => !taken.has(f.id));
+    return featCandidates(ctx.data.feats, tier).filter((f) => !taken.has(f.id) || f.id === d.current);
   }
   return null;
 }

@@ -8,41 +8,29 @@
 //   ③ 单步代选：把「一项决定 + 候选」交给模型，拿回一个 id 并落到卡上
 //      —— 落子走 sheet/transitions 的纯函数，与用户点选的结果逐字段一致
 // 跨步编排（一路跑完、逐项确认、决策日志）在下一阶段接入，见 AI车卡设计.md。
+//
+// ① 的界面（含连接配置弹窗）在 components/AiSetupBar，与主持「AI」页共用同一条顶栏。
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import {
   Checkbox,
   FilledButton,
   FilledSelect,
-  FilledTextField,
   IconButton,
   LinearProgress,
   OutlinedButton,
   SelectOption,
-  Slider,
   TextButton,
 } from "./components/md";
+import AiSetupBar from "./components/AiSetupBar";
 import { loadCategory, loadRelations } from "./data/loaders";
 import type { Entry } from "./data/types";
 import { cardBrief } from "./lib/ai/brief";
-import { chatText } from "./lib/ai/chat";
 import { applyPicked, buildAll, candidatesFor, skillsFor, type EngineCtx } from "./lib/ai/driver";
-import {
-  activeProvider,
-  apiKeyFor,
-  effectiveBaseUrl,
-  effectiveModel,
-  isAiConfigured,
-  isPlainHttpEndpoint,
-  loadAiConfig,
-  maskKey,
-  saveAiConfig,
-} from "./lib/ai/config";
+import { isAiConfigured, loadAiConfig } from "./lib/ai/config";
 import { pickAbilities, pickForDecision, pickSkills } from "./lib/ai/picker";
-import { AI_PROVIDERS, providerById } from "./lib/ai/providers";
 import { AiError, type AiConfig } from "./lib/ai/types";
 import { countPending, decisionList, type Decision, type Relations } from "./sheet/candidates";
-import SheetDialog from "./components/SheetDialog";
 import { SmartHover } from "./sheet/SmartHover";
 import EntryCard from "./sheet/EntryCard";
 import PickerModal from "./sheet/PickerModal";
@@ -58,11 +46,6 @@ interface CardData {
   paragons: Entry[];
   epics: Entry[];
   relations: Relations;
-}
-
-interface Msg {
-  kind: "ok" | "warn" | "err";
-  text: string;
 }
 
 /** 反馈列表里可以悬浮出卡片预览的条目类别（这几类 EntryCard 有像样的卡片渲染；职业/典范/天命的正文太大，不预览） */
@@ -106,32 +89,41 @@ export default function AiView({
   onNewCard: (c: Character) => void;
 }) {
   const [cfg, setCfg] = useState<AiConfig>(() => loadAiConfig());
-  const [showKey, setShowKey] = useState(false);
-  const [busy, setBusy] = useState<null | "test">(null);
-  const [msg, setMsg] = useState<Msg | null>(null);
   const [mode, setMode] = useState<Mode>("new");
   const [targetLevel, setTargetLevel] = useState<number>(() => Math.max(1, Math.min(30, char.level || 1)));
   const [instruction, setInstruction] = useState("");
   const [data, setData] = useState<CardData | null>(null);
   const [loadErr, setLoadErr] = useState<string | null>(null);
   const [picking, setPicking] = useState<string | null>(null);
-  // AI 反馈：挑选理由与失败原因，按发生顺序堆在右侧「生成」板块里
+  // 结果输出：右侧「结果输出」板块里的行，**每项决定一行**。
+  // 同一项再次让 AI 挑（单步 / 重roll / 再跑一遍主按钮）都是就地覆盖这一行，不往后追加
+  // —— 否则失败行会永远红着，用户没法「一直重roll到全绿」。
   const [feedback, setFeedback] = useState<
     { id: string; label: string; kind: "ok" | "warn" | "err"; text: string; pickId?: string }[]
   >([]);
-  const [connOpen, setConnOpen] = useState(false); // 连接配置：弹窗
   // 种族 / 职业直接复用人物页那两个挑选弹窗（带搜索、筛选、悬浮预览）
   const [picker, setPicker] = useState<null | "race" | "class">(null);
   // 「从零建卡」在一张**草稿卡**上工作：快捷指定与单步代选都只改草稿、只是预览；
   // 只有点主按钮「新建并车一张 N 级的卡」时才把这张草稿建成新存档并切过去。
   const [draft, setDraft] = useState<Character>(() => defaultCharacter());
+  // 「从零建卡」按下主按钮后，草稿已经变成一张真实存档卡并切了过去：此后工作对象必须是那张卡，
+  // 否则单步 / 重roll 会写回没人看的草稿（界面上看起来就是「点了没反应」）。
+  const [built, setBuilt] = useState(false);
   const [building, setBuilding] = useState(false);
   const [buildProgress, setBuildProgress] = useState<{ done: number; total: number; current: string } | null>(null);
   const abortRef = useRef<AbortController | null>(null);
   // 玩家决定「这一轮让 AI 处理哪些项」：默认全部 AI 可做的项都参与，skipSet 记被取消勾选的项
   const [skipSet, setSkipSet] = useState<Set<string>>(() => new Set());
-  function pushFeed(id: string, label: string, note: { kind: "ok" | "warn" | "err"; text: string }, pickId?: string) {
-    setFeedback((p) => [...p, { id, label, kind: note.kind, text: note.text, pickId }]);
+  /** 写一条输出行：按决定 id 定位，已有就**就地覆盖**（保持它第一次出现的位置），没有才追加。 */
+  function upsertFeed(id: string, label: string, note: { kind: "ok" | "warn" | "err"; text: string }, pickId?: string) {
+    setFeedback((p) => {
+      const row = { id, label, kind: note.kind, text: note.text, pickId };
+      const i = p.findIndex((f) => f.id === id);
+      if (i < 0) return [...p, row];
+      const next = p.slice();
+      next[i] = row;
+      return next;
+    });
   }
   function toggleSkip(id: string) {
     setSkipSet((prev) => {
@@ -166,41 +158,9 @@ export default function AiView({
     };
   }, []);
 
-  // 首次进入把预设地址固化到存储：桌面端据此放行，也让你一眼看到实际会连到哪里。
-  useEffect(() => {
-    const preset = providerById(cfg.providerId).baseUrl;
-    if (!cfg.baseUrl && preset) {
-      const next = { ...cfg, baseUrl: preset };
-      setCfg(next);
-      saveAiConfig(next);
-    }
-    // 只在挂载时补一次；此后由用户输入与供应商切换维护
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const provider = activeProvider(cfg);
-
-  function patch(p: Partial<AiConfig>) {
-    const next = { ...cfg, ...p };
-    setCfg(next);
-    saveAiConfig(next);
-  }
-
+  // 连接配置全部由顶栏组件（components/AiSetupBar）持有与落库：本页只读它做判断，
+  // 「预设地址固化」「测试连接」那些逻辑都在那边，两页共用一份。
   const ready = isAiConfigured(cfg);
-
-  async function onTest() {
-    setBusy("test");
-    setMsg(null);
-    try {
-      const t0 = Date.now();
-      const reply = await chatText(cfg, [{ role: "user", content: "只回复两个字：可用" }], { maxTokens: 32, temperature: 0 });
-      setMsg({ kind: "ok", text: "连接正常（" + (Date.now() - t0) + " 毫秒）。模型回复：" + reply.trim().slice(0, 60) });
-    } catch (e) {
-      setMsg({ kind: "err", text: describeError(e) });
-    } finally {
-      setBusy(null);
-    }
-  }
 
   const nameMap = useMemo(() => {
     const m = new Map<string, Entry>();
@@ -223,17 +183,20 @@ export default function AiView({
     [data, classById, powerById, raceById, nameMap, wikiLookup],
   );
 
-  // 从零建卡的草稿：切到该模式或改目标等级时，重置为「目标等级的空白卡」
+  // 切模式 / 改目标等级（含卡表刚载入）时：草稿重置为「目标等级的空白卡」，输出列表一并清空
+  // —— 输出行是按决定 id 定位的，换了目标卡这些行就没有意义了。
   useEffect(() => {
+    setBuilt(false);
+    setFeedback([]);
     if (mode !== "new") return;
     setDraft(applyLevel(defaultCharacter(), targetLevel, { classById, powerById }));
   }, [mode, targetLevel, classById, powerById]);
 
-  // 本页正在操作的那张卡：从零建卡模式下是草稿（仅预览），优化模式下就是当前存档
-  const workChar = mode === "new" ? draft : char;
-  /** 落子去处：从零建卡写草稿（预览，点主按钮才真正建卡）；优化现有卡直接写当前存档 */
+  // 本页正在操作的那张卡：从零建卡且还没按主按钮时是草稿（仅预览），其余情况都是当前存档
+  const workChar = mode === "new" && !built ? draft : char;
+  /** 落子去处：草稿阶段写草稿（预览）；按下主按钮建卡之后、以及优化模式，都直接写当前存档 */
   const applyWork = (next: Character) => {
-    if (mode === "new") setDraft(next);
+    if (mode === "new" && !built) setDraft(next);
     else setChar(next);
   };
 
@@ -247,25 +210,38 @@ export default function AiView({
 
   const pending = countPending(list);
   const nameOf = (id: string) => nameMap.get(id)?.name;
+
+  // 每项决定的合法候选：清单行、槽位格、重roll 可用性共用这一份（威能表很大，别每处各算一遍）
+  const candMap = useMemo(() => {
+    const m = new Map<string, Entry[] | null>();
+    if (!ctx) return m;
+    for (const d of list) {
+      // 属性（购点数数组）与受训技能（从职业文本解析）不走候选表，见 pickAbilities / skillsFor
+      if (d.kind === "abilities" || d.kind === "skills") continue;
+      m.set(d.id, candidatesFor(d, ctx, workChar, level));
+    }
+    return m;
+  }, [ctx, list, workChar, level]);
+
   // 这轮 AI 会不会先把职业选出来：若会，受训技能也可以先勾上（默认全选，见 aiEligible）
   const classDecision = list.find((d) => d.kind === "class");
   const classWillPick = !!classDecision && classDecision.status === "empty" && !skipSet.has(classDecision.id);
-  // 这一项是否「可以交给 AI」：属性看是否纯购点；受训技能看职业是否已有、或这轮 AI 会先把职业选出来；其余看候选
-  const aiEligibleFor = (d: Decision, c: Character): boolean => {
+  /** 这一项是否「可以交给 AI」：属性永远可以；受训技能看职业是否已有、或这轮 AI 会先把职业选出来；其余看候选 */
+  const aiEligible = (d: Decision): boolean => {
     // 属性永远可代选：AI 会按等级重算「22 点购点 + 升级提升」，不依赖当前值是否合规
     if (d.kind === "abilities") return true;
     if (d.kind === "skills") {
-      const sc = ctx ? skillsFor(c, ctx) : null;
-      return c.classId ? !!sc && sc.available.length > 0 : classWillPick;
+      if (!workChar.classId) return classWillPick;
+      const sc = ctx ? skillsFor(workChar, ctx) : null;
+      return !!sc && sc.available.length > 0;
     }
-    const cands = ctx ? candidatesFor(d, ctx, c, level) : null;
+    const cands = candMap.get(d.id);
     return (
       (d.kind === "power" || d.kind === "feat" || d.kind === "race" || d.kind === "class" || d.kind === "paragon" || d.kind === "epic") &&
       !!cands &&
       cands.length > 0
     );
   };
-  const aiEligible = (d: Decision) => aiEligibleFor(d, workChar);
   // 这一轮被勾选、且还空着、会交给一键去跑的决定数（只统计 AI 真会跑的项）
   const selCount = list.filter((d) => d.status === "empty" && !skipSet.has(d.id) && aiEligible(d)).length;
 
@@ -285,9 +261,9 @@ export default function AiView({
       if (!ctx) return;
       const out = applyPicked(workChar, d, res, ctx);
       applyWork(out.char);
-      pushFeed(d.id, d.label, out.note, res.id);
+      upsertFeed(d.id, d.label, out.note, res.id);
     } catch (e) {
-      pushFeed(d.id, d.label, { kind: "err", text: describeError(e) });
+      upsertFeed(d.id, d.label, { kind: "err", text: describeError(e) });
     } finally {
       setPicking(null);
     }
@@ -310,7 +286,7 @@ export default function AiView({
         instruction,
       });
       applyWork(applyAbilityScores(workChar, res.abilities));
-      pushFeed("abilities", "属性分配", {
+      upsertFeed("abilities", "属性分配", {
         kind: "ok",
         text:
           "已分配（购点 " + res.used + "/" + BUY_POINTS + " 点" +
@@ -322,7 +298,7 @@ export default function AiView({
           (res.reason ? " —— " + res.reason : ""),
       });
     } catch (e) {
-      pushFeed("abilities", "属性分配", { kind: "err", text: describeError(e) });
+      upsertFeed("abilities", "属性分配", { kind: "err", text: describeError(e) });
     } finally {
       setPicking(null);
     }
@@ -341,12 +317,12 @@ export default function AiView({
         instruction,
       });
       applyWork({ ...workChar, classTrainedSkills: res.skills });
-      pushFeed("skills", "受训技能", {
+      upsertFeed("skills", "受训技能", {
         kind: "ok",
         text: "已选 " + (res.skills.length ? res.skills.join("、") : "（未选）") + (res.reason ? " —— " + res.reason : ""),
       });
     } catch (e) {
-      pushFeed("skills", "受训技能", { kind: "err", text: describeError(e) });
+      upsertFeed("skills", "受训技能", { kind: "err", text: describeError(e) });
     } finally {
       setPicking(null);
     }
@@ -381,16 +357,16 @@ export default function AiView({
     abortRef.current = ctrl;
     setBuilding(true);
     setBuildProgress({ done: 0, total: 1, current: "准备中…" });
-    setFeedback([]);
-    // 从零建卡：把草稿建成新存档并切过去（App 负责建卡 + 切 activeId），随后 AI 的落子都写进这张新卡
+    // 只跑玩家勾选、且还空着、AI 真会跑的项。跑完**不重置**输出列表（逐项就地覆盖），
+    // 这样「跑一遍 → 对红行重roll → 再跑一遍补漏」都是在同一份结果上迭代。
+    const include = new Set(list.filter((d) => d.status === "empty" && !skipSet.has(d.id) && aiEligible(d)).map((d) => d.id));
+    // 从零建卡：只有第一次按主按钮才把草稿建成新存档并切过去（App 负责建卡 + 切 activeId）；
+    // 之后再按都固定在这张卡上，免得攒出一堆半成品新卡。
     const base = workChar;
-    if (mode === "new") onNewCard(base);
-    // 只跑玩家勾选、且还空着、AI 真会跑的项
-    const include = new Set(
-      decisionList(base, { targetLevel: level })
-        .filter((d) => d.status === "empty" && !skipSet.has(d.id) && aiEligibleFor(d, base))
-        .map((d) => d.id),
-    );
+    if (mode === "new" && !built) {
+      onNewCard(base);
+      setBuilt(true);
+    }
     try {
       const result = await buildAll({
         cfg,
@@ -402,13 +378,13 @@ export default function AiView({
         include,
         onStep: (i, total, working, step) => {
           setBuildProgress({ done: i, total, current: step.label });
-          setFeedback((p) => [...p, { id: step.id, label: step.label, kind: step.note.kind, text: step.note.text, pickId: step.pickId }]);
+          upsertFeed(step.id, step.label, step.note, step.pickId);
           setChar(working); // 实时写回，用户能看到卡在长出来
         },
       });
       setChar(result.char); // 以 buildAll 的最终值为准
     } catch (e) {
-      if (!ctrl.signal.aborted) pushFeed("build", "一键建卡", { kind: "err", text: describeError(e) });
+      if (!ctrl.signal.aborted) upsertFeed("build", "一键建卡", { kind: "err", text: describeError(e) });
     } finally {
       setBuilding(false);
       abortRef.current = null;
@@ -421,11 +397,11 @@ export default function AiView({
   }
 
   /**
-   * 失败的一步可以直接重试：按 id 把那一项决定找回来重跑一次
-   * （模型两次都没给出合法结果时，界面会给这条反馈挂一个「重试」）。
+   * 重roll 一行：按 id 把那一项决定找回来，让 AI 在**现有结果的基础上**只重挑这一项
+   * （其余已经选好的都保留）。成功行也能重roll —— 看哪条不顺眼就重挑一次。
    */
-  function retryDecision(id: string) {
-    if (!ctx || building) return;
+  function rerollDecision(id: string) {
+    if (!ctx || building || picking !== null) return;
     const d = list.find((x) => x.id === id);
     if (!d) return;
     if (d.kind === "abilities") {
@@ -437,27 +413,28 @@ export default function AiView({
       if (sc.available.length > 0) void onPickSkills(sc);
       return;
     }
-    const cands = candidatesFor(d, ctx, workChar, level);
+    const cands = candMap.get(id);
     if (cands && cands.length > 0) void onPick(d, cands);
   }
 
-  // 哪些失败行还能重试（决定项还在、且现在有得可选）。只对失败行计算，避免每行都跑一遍候选过滤。
-  const retryable = useMemo(() => {
+  // 哪些输出行能重roll（决定项还在、且现在有得可选）。成功行也算 —— 用户要能对着结果反复调，直到没有红行。
+  const rerollable = useMemo(() => {
     const m = new Map<string, boolean>();
     if (!ctx) return m;
     for (const f of feedback) {
-      if (f.kind !== "err" || m.has(f.id)) continue;
+      if (m.has(f.id)) continue;
       const d = list.find((x) => x.id === f.id);
       if (!d) continue;
       if (d.kind === "abilities") m.set(f.id, true);
       else if (d.kind === "skills") m.set(f.id, skillsFor(workChar, ctx).available.length > 0);
       else {
-        const cands = candidatesFor(d, ctx, workChar, level);
+        const cands = candMap.get(f.id);
         m.set(f.id, !!cands && cands.length > 0);
       }
     }
     return m;
-  }, [ctx, feedback, list, workChar, level]);
+  }, [ctx, feedback, list, workChar, candMap]);
+  const failCount = feedback.filter((f) => f.kind === "err").length;
 
   // 清单分组：基础 / 威能四类（横排槽位）/ 专长 / 进阶 / 装备与仪式
   const basicItems = list.filter((d) => d.kind === "race" || d.kind === "class" || d.kind === "abilities" || d.kind === "skills");
@@ -471,7 +448,7 @@ export default function AiView({
 
   /** 清单里的一行（基础 / 专长 / 进阶 / 装备） */
   function renderRow(d: Decision) {
-    const cands = ctx ? candidatesFor(d, ctx, workChar, level) : null;
+    const cands = candMap.get(d.id) ?? null;
     const sc = d.kind === "skills" && ctx ? skillsFor(workChar, ctx) : null;
     const cur = d.current ? nameOf(d.current) ?? d.current : undefined;
     const isAbilities = d.kind === "abilities";
@@ -509,7 +486,7 @@ export default function AiView({
               isAbilities ? void onPickAbilities() : d.kind === "skills" ? void onPickSkills(sc!) : void onPick(d, cands!)
             }
           >
-            {picking === d.id ? "调用中…" : "重新挑选"}
+            {picking === d.id ? "调用中…" : isAbilities ? "重新配置" : "重新挑选"}
           </TextButton>
         )}
       </div>
@@ -518,7 +495,7 @@ export default function AiView({
 
   /** 威能槽位的一格（大类下横排显示）：等级 + 已选/待选 + 单独让 AI 挑 */
   function renderSlot(d: Decision) {
-    const cands = ctx ? candidatesFor(d, ctx, workChar, level) : null;
+    const cands = candMap.get(d.id) ?? null;
     const cur = d.current ? nameOf(d.current) ?? d.current : undefined;
     const canPick = aiEligible(d);
     const lvl = d.slotLevel === "paragon" ? "典范" : d.slotLevel === "legendary" ? "传奇" : (d.slotLevel ?? "") + " 级";
@@ -551,37 +528,25 @@ export default function AiView({
 
   return (
     <div className={"ai-view" + (layout === "double" ? " layout-double" : "")}>
-      {/* ① 意图：说清想要什么 + 快捷指定种族/职业（连接配置收进弹窗，不占版面） */}
-      <section className="block ai-hero">
-        <div className="block-head">
-          <h3 className="block-title">AI 车卡</h3>
-          <div className="block-head-actions">
-            <div className="md3-seg" role="radiogroup" aria-label="任务模式">
-              {MODES.map((m) => (
-                <button key={m.key} type="button" role="radio" aria-checked={mode === m.key} className={"md3-seg-btn" + (mode === m.key ? " on" : "")} onClick={() => setMode(m.key)}>
-                  {mode === m.key && <span className="material-symbols-outlined md3-seg-check">check</span>}
-                  {m.label}
-                </button>
-              ))}
-            </div>
-            <OutlinedButton onClick={() => setConnOpen(true)} title={ready ? "已配置：" + provider.label : "尚未配置 AI 连接"}>
-              <span slot="icon" className="material-symbols-outlined">settings</span>
-              <span className="ai-conn-label">
-                连接配置
-                <span className={"ai-conn-dot" + (ready ? " ok" : "")} aria-hidden="true" />
-              </span>
-            </OutlinedButton>
+      {/* ① 意图：说清想要什么 + 快捷指定种族/职业（连接配置收进弹窗，不占版面）。
+          顶栏与主持「AI」页共用 components/AiSetupBar；本页额外挂模式切换与快捷指定 */}
+      <AiSetupBar
+        title="AI 车卡"
+        cfg={cfg}
+        onCfgChange={setCfg}
+        placeholder={mode === "new" ? "想车一张什么样的卡？" : "想怎么调整这张卡？"}
+        onInstructionChange={setInstruction}
+        extra={
+          <div className="md3-seg" role="radiogroup" aria-label="任务模式">
+            {MODES.map((m) => (
+              <button key={m.key} type="button" role="radio" aria-checked={mode === m.key} className={"md3-seg-btn" + (mode === m.key ? " on" : "")} onClick={() => setMode(m.key)}>
+                {mode === m.key && <span className="material-symbols-outlined md3-seg-check">check</span>}
+                {m.label}
+              </button>
+            ))}
           </div>
-        </div>
-
-        <textarea
-          className="hb-textarea"
-          rows={2}
-          value={instruction}
-          placeholder={mode === "new" ? "想车一张什么样的卡？" : "想怎么调整这张卡？"}
-          onChange={(e) => setInstruction(e.target.value)}
-        />
-
+        }
+      >
         {/* 快捷指定：打开人物页那两个挑选弹窗（可搜索、可筛选、带条目预览）。
             这里只是预览，点右侧「生成」的主按钮才会真正建卡 */}
         <div className="ai-hero-picks">
@@ -601,128 +566,7 @@ export default function AiView({
             </FilledSelect>
           )}
         </div>
-
-        <p className="hint">连接：{ready ? provider.label + " · " + effectiveModel(cfg) : "未配置"}</p>
-      </section>
-
-      {/* ② 连接配置：收进弹窗填写，不再占版面 */}
-      <SheetDialog
-        open={connOpen}
-        headline="连接配置"
-        sub={ready ? provider.label + " · " + effectiveModel(cfg) : "未配置"}
-        onClose={() => setConnOpen(false)}
-        actions={
-          <FilledButton onClick={onTest} disabled={busy !== null || !ready}>
-            {busy === "test" ? "测试中…" : "测试连接"}
-          </FilledButton>
-        }
-      >
-        <div className="ai-conn-body">
-
-          <div className="ai-field">
-            <FilledSelect
-              label="供应商"
-              value={cfg.providerId}
-              onChange={(e) => {
-                const id = (e.target as any).value ?? "deepseek";
-                // 地址固化为新预设：桌面端的请求授权白名单只认「用户填过的地址」，
-                // 留空会让每次连接都撞上「允许访问这个地址吗」的弹窗（见 AI车卡设计.md 安全一节）。
-                // Key 跟着供应商切：每个供应商各存一把，切回来还在。
-                patch({ providerId: id, baseUrl: providerById(id).baseUrl, model: "", apiKey: apiKeyFor(cfg, id) });
-              }}
-            >
-              {AI_PROVIDERS.map((p) => (
-                <SelectOption key={p.id} value={p.id}>{p.label}</SelectOption>
-              ))}
-            </FilledSelect>
-          </div>
-
-          <p className="hint">
-            <span className="material-symbols-outlined ai-inline-ic">info</span>
-            {provider.corsNote}
-          </p>
-
-          <div className="ai-field">
-            <FilledTextField
-              label="模型"
-              placeholder={provider.model || "例如 deepseek-chat"}
-              value={cfg.model}
-              onInput={(e) => patch({ model: (e.target as HTMLInputElement).value ?? "" })}
-            />
-          </div>
-          {provider.models.length > 0 && (
-            <div className="ai-chips">
-              {provider.models.map((m) => (
-                <button key={m} type="button" className={"chip" + (effectiveModel(cfg) === m ? " active" : "")} onClick={() => patch({ model: m })}>
-                  {m}
-                </button>
-              ))}
-            </div>
-          )}
-
-          <div className="ai-field">
-            <FilledTextField
-              type={showKey ? "text" : "password"}
-              label="API Key"
-              placeholder={provider.requiresKey ? "sk-…" : "本地模型可留空"}
-              value={cfg.apiKey}
-              onInput={(e) => patch({ apiKey: (e.target as HTMLInputElement).value ?? "" })}
-            />
-          </div>
-          <div className="settings-row">
-            <TextButton onClick={() => setShowKey((v) => !v)}>{showKey ? "隐藏" : "显示"}</TextButton>
-            <span className="label">当前：{maskKey(cfg.apiKey)}</span>
-            {cfg.apiKey && <TextButton onClick={() => patch({ apiKey: "" })}>清除 Key</TextButton>}
-          </div>
-          <div className="settings-row">
-            <span className="field-label">Key 存法</span>
-            <div className="md3-seg" role="radiogroup" aria-label="Key 存法">
-              <button
-                type="button"
-                role="radio"
-                aria-checked={cfg.keyStorage === "device"}
-                className={"md3-seg-btn" + (cfg.keyStorage === "device" ? " on" : "")}
-                onClick={() => patch({ keyStorage: "device" })}
-              >
-                {cfg.keyStorage === "device" && <span className="material-symbols-outlined md3-seg-check">check</span>}
-                保存在本机
-              </button>
-              <button
-                type="button"
-                role="radio"
-                aria-checked={cfg.keyStorage === "session"}
-                className={"md3-seg-btn" + (cfg.keyStorage === "session" ? " on" : "")}
-                onClick={() => patch({ keyStorage: "session" })}
-              >
-                {cfg.keyStorage === "session" && <span className="material-symbols-outlined md3-seg-check">check</span>}
-                仅本次会话
-              </button>
-            </div>
-          </div>
-          <div className="ai-field">
-            <FilledTextField
-              label="接口地址（Base URL）"
-              placeholder={provider.baseUrl || "https://…/v1"}
-              value={cfg.baseUrl}
-              onInput={(e) => patch({ baseUrl: (e.target as HTMLInputElement).value ?? "" })}
-            />
-          </div>
-          {isPlainHttpEndpoint(effectiveBaseUrl(cfg)) && (
-            <p className="ai-msg warn">
-              接口地址是 http:// 开头：API Key 会以近明文的方式在网络上传输，同一网络内可能被截获。请改用 https://；
-              确实只能走 http 时，请只在完全可信的内网里使用。
-            </p>
-          )}
-
-          <div className="settings-row">
-            <span className="field-label">随机度</span>
-            <Slider min={0} max={1} step={0.1} value={cfg.temperature} onInput={(e) => patch({ temperature: (e.target as any).value })} />
-            <span className="label">{cfg.temperature.toFixed(1)}</span>
-          </div>
-
-          {msg && <p className={"ai-msg " + msg.kind}>{msg.text}</p>}
-        </div>
-      </SheetDialog>
+      </AiSetupBar>
 
       <div className="ai-col">
         {/* 决策清单：这轮交给 AI 的项（勾选 + 一键） */}
@@ -792,23 +636,27 @@ export default function AiView({
         </section>
       </div>
 
-      {/* ④ 生成 + AI 挑选理由（右栏）：生成按钮与反馈放在一起，和左边的清单对照着看 */}
+      {/* ④ 结果输出（右栏）：每一项决定一行结果，和左边的决策清单对照着看 */}
       <div className="ai-col">
         <section className="block">
           <div className="block-head">
-            <h3 className="block-title">生成</h3>
-            <span className="hint">{selCount} 项已勾选</span>
+            <h3 className="block-title">结果输出</h3>
+            <span className="hint">
+              {selCount} 项已勾选{feedback.length > 0 ? (failCount > 0 ? " · " + failCount + " 条失败" : " · 全部就绪") : ""}
+            </span>
           </div>
 
           <div className="ai-actions">
             <FilledButton disabled={!ready || building || !ctx || selCount === 0} onClick={() => void startBuild()}>
               {building
-                ? "正在车卡…"
+                ? "正在输出…"
                 : !ready
                   ? "没有配置有效API"
-                  : mode === "new"
-                    ? "新建并车一张 " + targetLevel + " 级的卡"
-                    : "让 AI 优化这张卡"}
+                  : mode === "new" && !built
+                    ? "新建并输出 " + targetLevel + " 级的卡"
+                    : selCount > 0
+                      ? "输出这 " + selCount + " 项"
+                      : "没有待输出的项"}
             </FilledButton>
             {building && <TextButton onClick={cancelBuild}>中止</TextButton>}
             {!building && feedback.length > 0 && <TextButton onClick={() => setFeedback([])}>清空</TextButton>}
@@ -848,14 +696,14 @@ export default function AiView({
                         <span className="ai-item-sub">{f.text}</span>
                       </span>
                       {preview && <span className="material-symbols-outlined ai-feed-ic">style</span>}
-                      {f.kind === "err" && retryable.get(f.id) && (
+                      {rerollable.get(f.id) && (
                         <TextButton
                           className="ai-feed-retry"
                           disabled={!ready || picking !== null || building}
-                          title="让 AI 再试一次这一步"
-                          onClick={() => retryDecision(f.id)}
+                          title={"让 AI 只重挑这一项，其余已选好的保留：" + f.label}
+                          onClick={() => rerollDecision(f.id)}
                         >
-                          重试
+                          {picking === f.id ? "…" : "重roll"}
                         </TextButton>
                       )}
                     </SmartHover>
