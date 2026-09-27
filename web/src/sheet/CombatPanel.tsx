@@ -185,6 +185,8 @@ export default function CombatPanels(props: {
   featAttackSources: CombatSource[];  // 已选专长中提及「攻击骰」的（攻击面板专长加值来源）
   featDamageSources: CombatSource[];  // 已选专长中提及「伤害骰」的（伤害面板专长加值来源）
   mode: "edit" | "render";
+  /** 导引模式的高亮锚点（见 lib/guide.ts）：标在板块最外层，供导引圈出这一块 */
+  guideAnchor?: string;
 }) {
   const { part, char, setChar, mods, halfLevel, enhanceOf, diceOf, profOf, classAttackSources, featAttackSources, featDamageSources, mode } = props;
   const isAttack = part === "attack";
@@ -439,7 +441,7 @@ export default function CombatPanels(props: {
 
   return (
     <>
-      <section className="block">
+      <section className="block" data-guide={props.guideAnchor}>
         <div className="block-head">
           <h3 className="block-title">{isAttack ? "命中" : "伤害"}</h3>
           <span className="block-head-actions">

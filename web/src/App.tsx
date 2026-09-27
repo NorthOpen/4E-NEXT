@@ -1,5 +1,5 @@
 import { platform } from "@platform";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { ThemeProvider, useTheme } from "./ThemeProvider";
 import CharacterSheet from "./sheet/CharacterSheet";
 import { exportCharacterCard, type ExportFormat } from "./lib/exportImage";
@@ -10,7 +10,7 @@ import AiView from "./AiView";
 import ReserveView from "./ReserveView";
 import OverviewView from "./OverviewView";
 import BackgroundView from "./BackgroundView";
-import DrawView from "./DrawView";
+import GuideView, { GuideFloatingBar } from "./GuideView";
 import HomebrewView from "./HomebrewView";
 import GmView from "./GmView";
 import StoryView from "./StoryView";
@@ -18,9 +18,11 @@ import ReviewView from "./ReviewView";
 import GmAiView from "./GmAiView";
 import { loadCards, saveCards, loadActiveId, saveActiveId, safeSetItem, uid, type SavedCard } from "./lib/storage";
 import { defaultCharacter, migrateCharacter, type Character } from "./sheet/character";
+import { GUIDE_CARD_NAME, GUIDE_STEPS, guideStepIndex, guideSteps as guideStepsFor, loadGuideRun, saveGuideRun, type GuideRun } from "./lib/guide";
 import { SYNC_APPLIED_EVENT } from "./lib/sync";
-import { FilledButton, OutlinedButton, TextButton } from "./components/md";
+import { FilledButton, TextButton } from "./components/md";
 import SheetDialog from "./components/SheetDialog";
+import SavePanel from "./components/SavePanel";
 import StorageAlert from "./components/StorageAlert";
 import Logo from "./components/Logo";
 import TutorialGuide from "./components/TutorialGuide";
@@ -29,11 +31,11 @@ import { useIsMobile } from "./lib/media";
 
 // 导出给 lib/tutorial —— 教学步骤要指明「这一步切到哪个页面」。
 // type 导入在编译期被抹掉，不会和 App 形成运行时循环依赖。
-export type View = "sheet" | "background" | "reserve" | "overview" | "draw" | "search" | "learn" | "ai" | "homebrew" | "settings";
+export type View = "sheet" | "background" | "reserve" | "overview" | "guide" | "search" | "learn" | "ai" | "homebrew" | "settings";
 type Layout = "single" | "double";
 
 // 手机端底部导航（MD3 NavigationBar）：只放建卡/跑团最常用的 4 个顶级目标。
-// MD3 规定 NavigationBar 容纳 3–5 项，其余入口（存档 / 抽卡 / 私设 / 词条 / 规则 / 设置）
+// MD3 规定 NavigationBar 容纳 3–5 项，其余入口（存档 / 导引 / 私设 / 词条 / 规则 / 设置）
 // 收进「更多」底部面板，避免把底栏塞成密集图标条。
 const MOBILE_NAV: { view: View; icon: string; label: string }[] = [
   { view: "sheet", icon: "person", label: "人物" },
@@ -126,13 +128,19 @@ function Shell() {
   const [activeId, setActiveId] = useState<string>(() => loadActiveId() ?? cards[0]?.id ?? "");
   const [char, setChar] = useState<Character>(() => cards.find((c) => c.id === activeId)?.char ?? defaultCharacter());
   const [cardOpen, setCardOpen] = useState(false);
-  const [drawOpen, setDrawOpen] = useState(false);
-  const [exportFormat, setExportFormat] = useState<ExportFormat>("png");
+  // ===== 导引模式（新手教程）=====
+  // 进度绑在一张「导引专用人物卡」上（lib/guide）：卡片内容由上面的自动存档负责，
+  // 这里只记 cardId + 当前步骤，因此中途去别的页面、关掉浏览器再回来都能续上。
+  const [guideRun, setGuideRun] = useState<GuideRun | null>(() => loadGuideRun());
+  const [guideEntryOpen, setGuideEntryOpen] = useState(false);
+  const [guideEndOpen, setGuideEndOpen] = useState(false);
+  // 导引那张卡还存不存在：被用户在存档里删掉时，进行中的导引一并作废
+  const guideCard = guideRun ? cards.find((c) => c.id === guideRun.cardId) : undefined;
+  // 当前卡下可见的步骤表（级别相关的步骤随等级增减，见 lib/guide 的 when）
+  const guideSteps = useMemo(() => guideStepsFor(char), [char]);
+  const guideIndex = guideStepIndex(guideSteps, guideRun?.stepId);
   const [exporting, setExporting] = useState(false);
   const captureRef = useRef<HTMLDivElement>(null);
-  const importRef = useRef<HTMLInputElement>(null);
-  const [renamingId, setRenamingId] = useState<string | null>(null);
-  const [renameText, setRenameText] = useState("");
 
   // 同步把远端数据合并进本机后，紧接着的这次 setChar 是「外部数据驱动」而不是用户编辑：
   // 用它抑制一轮自动保存，否则会把 updatedAt 顶成「刚刚改过」，让下次同步平白多推一遍。
@@ -237,7 +245,7 @@ function Shell() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [portraitOriginal, portraitCropped]);
 
-  // 把某张卡的立绘同步进主题显示（activeId 不变的路径：导入/抽卡/清空重抽）
+  // 把某张卡的立绘同步进主题显示（activeId 不变的路径：导入/新建人物卡/清空）
   function syncPortraitFromChar(c: Character) {
     if (c.portraitOriginal) {
       void applyPortrait(c.portraitOriginal, c.portraitCropped ?? null);
@@ -306,39 +314,79 @@ function Shell() {
       setActiveId(next.id);
       saveActiveId(next.id);
     }
-    if (renamingId === id) setRenamingId(null);
   }
 
   /**
-   * 清空当前存档（保留卡 id 与卡名）。抽卡的「清空并进入」与 AI 页的「从零建卡」共用这一份，
-   * 免得两处各写一遍清空逻辑、日后一处改了另一处忘了。
+   * 打开导引入口面板。导航栏的「导引」在**没有**进行中的导引时才开这里；
+   * 设置页的入口则总是开它 —— 已经有进度时用户还需要「重新开始」这个选项。
    */
-  function clearActiveCard() {
-    setChar(defaultCharacter());
-    clearPortrait();
-    setCards((p) => {
-      const next = p.map((c) => (c.id === activeId ? { ...c, char: defaultCharacter(), updatedAt: Date.now() } : c));
-      saveCards(next);
-      return next;
-    });
+  function openGuideEntry() {
+    setGuideEntryOpen(true);
   }
 
-  // 进入抽卡模式：清空当前存档（保留卡名）
-  function enterDrawCleared() {
-    clearActiveCard();
-    setDrawOpen(false);
-    setView("draw");
-  }
-  // 抽卡完成：写入当前卡并存档，返回人物页
-  function finishDraw(c: Character) {
-    setCards((p) => {
-      const next = p.map((x) => (x.id === activeId ? { ...x, char: c, name: c.name || x.name, updatedAt: Date.now() } : x));
-      saveCards(next);
-      return next;
-    });
+  /**
+   * 开始（或重新开始）导引：强制新建一张空白人物卡并在其上操作。
+   * 这是需求里写死的：导引绝不动用户已有的存档，全部操作都落在这张新卡上。
+   * 上一轮导引如果还没被填过任何内容（连名字都没改），顺手删掉，免得反复重开时攒出一串空卡。
+   */
+  function startGuide() {
+    const prev = guideRun ? cards.find((c) => c.id === guideRun.cardId) : undefined;
+    const untouched = prev && !prev.char.raceId && !prev.char.classId && prev.char.name === "未命名角色";
+    const rest = untouched ? cards.filter((c) => c.id !== prev!.id) : cards;
+    const card: SavedCard = { id: uid(), name: GUIDE_CARD_NAME, char: defaultCharacter(), updatedAt: Date.now() };
+    const next = [...rest, card];
+    setCards(next);
+    saveCards(next);
+    setChar(card.char);
+    setActiveId(card.id);
+    saveActiveId(card.id);
     clearPortrait();
+    setGuideRun({ cardId: card.id, stepId: GUIDE_STEPS[0].id, startedAt: Date.now() });
+    setGuideEntryOpen(false);
+    setMode("edit");
+    setAppMode("player");
+    setView("guide");
+  }
+
+  /**
+   * 点导航栏的「导引」：有进行中的导引就直接回去继续（进度与卡片都是现成的），
+   * 没有才开入口面板问用户要不要新建一张卡。
+   */
+  function openGuide() {
+    if (guideRun && guideCard) {
+      if (activeId !== guideCard.id) {
+        setChar(guideCard.char);
+        setActiveId(guideCard.id);
+        saveActiveId(guideCard.id);
+      }
+      setAppMode("player");
+      setView("guide");
+      return;
+    }
+    openGuideEntry();
+  }
+
+  /** 结束这次导引：只清进度，人物卡留在存档里（用户可能还想继续编辑它） */
+  function finishGuide() {
+    setGuideRun(null);
+    setGuideEndOpen(false);
+    setMode("edit");
     setView("sheet");
   }
+
+  // 导引进度落盘：任何一步变化都写回本机。刷新、切页面、关掉浏览器再回来都能接着走。
+  useEffect(() => {
+    saveGuideRun(guideRun);
+  }, [guideRun]);
+
+  // 导引那张卡被删掉（或本机数据被清）时，这次导引作废并离开导引页 ——
+  // 进度指向一张不存在的卡时，导引页没有可操作的落点，留着只会让用户困惑。
+  useEffect(() => {
+    if (guideRun && !guideCard) {
+      setGuideRun(null);
+      setView((v) => (v === "guide" ? "sheet" : v));
+    }
+  }, [guideRun, guideCard]);
 
   function saveCardNow(id: string) {
     setCards((p) => {
@@ -348,16 +396,13 @@ function Shell() {
     });
   }
 
-  function confirmRename() {
-    const name = renameText.trim();
-    if (renamingId && name) {
-      setCards((p) => {
-        const next = p.map((c) => (c.id === renamingId ? { ...c, name } : c));
-        saveCards(next);
-        return next;
-      });
-    }
-    setRenamingId(null);
+  /** 重命名某张卡（存档面板用；改名只动卡名，不动内容） */
+  function renameCard(id: string, name: string) {
+    setCards((p) => {
+      const next = p.map((c) => (c.id === id ? { ...c, name } : c));
+      saveCards(next);
+      return next;
+    });
   }
 
   // 导出存档：单文件 JSON，包含 人物/储备/速览/背景 四页内容
@@ -399,13 +444,14 @@ function Shell() {
     reader.readAsText(file);
   }
 
-  // 导出角色卡：捕获可见角色卡（临时切到渲染模式以获得干净卡片），输出 PNG / JPG / PDF
-  async function doExport() {
+  // 导出角色卡：捕获可见角色卡（临时切到渲染模式以获得干净卡片），输出 PNG / JPG / PDF。
+  // format 由调用方（存档面板）给出，exporting 仍由 App 持有 —— 导出期间要 forceAllPanels 铺开全部板块。
+  async function doExport(format: ExportFormat) {
     const node = captureRef.current;
     if (!node) return;
     const prevMode = mode;
     const prevLayoutRaw = layoutRaw;
-    const forceSingle = exportFormat === "pdf";
+    const forceSingle = format === "pdf";
     setMode("render");
     // PDF 分页需要单栏布局，便于按面板不跨页排版
     if (forceSingle) setLayoutRaw("single");
@@ -419,7 +465,7 @@ function Shell() {
       await new Promise<void>((r) => requestAnimationFrame(() => requestAnimationFrame(() => r())));
       const base = (char.name || "角色").replace(/[\\/:*?"<>|]/g, "_");
       const bg = getComputedStyle(document.body).backgroundColor;
-      await exportCharacterCard(node, exportFormat, base, bg);
+      await exportCharacterCard(node, format, base, bg);
     } catch (e) {
       console.error(e);
       window.alert("导出失败，请重试。");
@@ -431,16 +477,13 @@ function Shell() {
     }
   }
 
-  function runExport() {
-    // 若当前不在人物页，先切到人物页等待挂载后再导出
-    if (view !== "sheet") {
+  /** 存档面板的「导出」：若当前不在人物页（例如正停在导引里），先切过去等它挂载完再导出 */
+  async function exportCardImage(format: ExportFormat) {
+    if (viewRef.current !== "sheet") {
       setView("sheet");
-      setTimeout(() => {
-        void doExport();
-      }, 500);
-    } else {
-      void doExport();
+      await new Promise((r) => setTimeout(r, 500));
     }
+    await doExport(format);
   }
 
   /** 组 2 里的玩家页面入口：主持模式下点开会先切回玩家模式，否则页面会被主持页挡着看不见 */
@@ -500,7 +543,16 @@ function Shell() {
         <div className="side-sep" />
         <button type="button" className="side-btn" data-tour="nav-save" title="存档" onClick={() => setCardOpen(true)}><span className="material-symbols-outlined">folder</span><span className="sb-label">存档</span></button>
         <button type="button" className={isActive("homebrew") ? "side-btn active" : "side-btn"} data-tour="nav-homebrew" title="私设" onClick={() => openPlayerPage("homebrew")}><span className="material-symbols-outlined">extension</span><span className="sb-label">私设</span></button>
-        <button type="button" className={"side-btn" + (appMode === "player" && view === "draw" ? " active" : "")} data-tour="nav-draw" title="抽卡" onClick={() => setDrawOpen(true)}><span className="material-symbols-outlined">casino</span><span className="sb-label">抽卡</span></button>
+        {/* 导引是**玩家模式独占**的新手教程：主持模式面向的是已经会车卡的人，
+            这里整颗按钮收起来，省得主持侧也冒出一个用不上的入口。
+            有进行中的导引时按钮上点一个小圆点（.sb-run-dot），提示「还没走完」。 */}
+        {appMode === "player" && (
+          <button type="button" className={"side-btn" + (view === "guide" ? " active" : "")} data-tour="nav-guide" title="导引：车卡流程的新手教程" onClick={openGuide}>
+            <span className="material-symbols-outlined">route</span>
+            <span className="sb-label">导引</span>
+            {guideRun && guideCard ? <span className="sb-run-dot" aria-hidden="true" /> : null}
+          </button>
+        )}
         <button type="button" className={isActive("search") ? "side-btn active" : "side-btn"} data-tour="nav-search" title="词条" onClick={() => openPlayerPage("search")}><span className="material-symbols-outlined">search</span><span className="sb-label">词条</span></button>
         <button type="button" className={isActive("learn") ? "side-btn active" : "side-btn"} data-tour="nav-learn" title="规则" onClick={() => openPlayerPage("learn")}><span className="material-symbols-outlined">school</span><span className="sb-label">规则</span></button>
         <button type="button" className={aiActive ? "side-btn active" : "side-btn"} data-tour="nav-ai" title={appMode === "gm" ? "AI（主持）" : "AI 车卡"} onClick={openAiPage}><span className="material-symbols-outlined">auto_awesome</span><span className="sb-label">AI</span></button>
@@ -554,7 +606,33 @@ function Shell() {
           )}
           {view === "reserve" && <ReserveView layout={layout} char={char} setChar={setChar} />}
           {view === "background" && <BackgroundView mode={mode} char={char} setChar={setChar} />}
-          {view === "draw" && <DrawView char={char} setChar={setChar} onExit={() => setView("sheet")} onFinish={finishDraw} />}
+          {view === "guide" && guideRun && guideCard && (
+            <GuideView
+              char={char}
+              setChar={setChar}
+              steps={guideSteps}
+              index={guideIndex}
+              onIndex={(i) => setGuideRun((r) => (r ? { ...r, stepId: guideSteps[i]?.id ?? r.stepId } : r))}
+              onExit={() => setView("sheet")}
+              onFinish={finishGuide}
+              onRestart={startGuide}
+              onOpenSave={() => setCardOpen(true)}
+              // 存档步骤就地渲染的正是这个面板：与「存档」弹窗共用同一个组件与同一份数据
+              save={{
+                cards,
+                activeId,
+                onSwitch: switchCard,
+                onSaveCard: saveCardNow,
+                onRename: renameCard,
+                onDelete: deleteCard,
+                onNewCard: newCard,
+                onImportFile: importSave,
+                onExportImage: exportCardImage,
+                onExportJson: exportSave,
+              }}
+              isMobile={isMobile}
+            />
+          )}
           {view === "overview" && <OverviewView layout={layout} char={char} setChar={setChar} />}
           {view === "search" && <SearchView />}
           {view === "learn" && <LearnView layout={layout} />}
@@ -562,7 +640,7 @@ function Shell() {
             <AiView layout={layout} char={char} setChar={setChar} onNewCard={addCardWith} />
           )}
           {view === "homebrew" && <HomebrewView layout={layout} />}
-          {view === "settings" && <SettingsView layout={layout} onStartTutorial={startTutorial} />}
+          {view === "settings" && <SettingsView layout={layout} onStartTutorial={startTutorial} onStartGuide={openGuideEntry} />}
         </div>
         )}
       </main>
@@ -627,11 +705,14 @@ function Shell() {
               <span className="mob-more-text"><span className="mob-more-label">存档</span><span className="mob-more-sub">切换、重命名、导入导出人物卡</span></span>
               <span className="material-symbols-outlined mob-more-arrow">chevron_right</span>
             </button>
-            <button type="button" className="mob-more-item" onClick={() => { setMobileMore(false); setDrawOpen(true); }}>
-              <span className="material-symbols-outlined mob-more-ic">casino</span>
-              <span className="mob-more-text"><span className="mob-more-label">抽卡</span><span className="mob-more-sub">随机快速建卡</span></span>
-              <span className="material-symbols-outlined mob-more-arrow">chevron_right</span>
-            </button>
+            {/* 导引与其它玩家功能一样只在玩家模式出现（主持模式面向已会车卡的人） */}
+            {appMode === "player" && (
+              <button type="button" className="mob-more-item" onClick={() => { setMobileMore(false); openGuide(); }}>
+                <span className="material-symbols-outlined mob-more-ic">route</span>
+                <span className="mob-more-text"><span className="mob-more-label">导引</span><span className="mob-more-sub">新手教程：一步步带你车卡</span></span>
+                <span className="material-symbols-outlined mob-more-arrow">chevron_right</span>
+              </button>
+            )}
             <button type="button" className="mob-more-item" onClick={() => { setMobileMore(false); openPlayerPage("homebrew"); }}>
               <span className="material-symbols-outlined mob-more-ic">extension</span>
               <span className="mob-more-text"><span className="mob-more-label">私设</span><span className="mob-more-sub">自定义资源包</span></span>
@@ -654,94 +735,83 @@ function Shell() {
             </button>
             <button type="button" className="mob-more-item" onClick={() => { setMobileMore(false); openPlayerPage("settings"); }}>
               <span className="material-symbols-outlined mob-more-ic">settings</span>
-              <span className="mob-more-text"><span className="mob-more-label">设置</span><span className="mob-more-sub">主题、字体与自定义页面板块</span></span>
+              <span className="mob-more-text"><span className="mob-more-label">设置</span><span className="mob-more-sub">主题、字体与自定义人物板块</span></span>
               <span className="material-symbols-outlined mob-more-arrow">chevron_right</span>
             </button>
           </div>
         </SheetDialog>
       )}
       {cardOpen && (
-        <SheetDialog xwide extraClass="sheet-dialog-save" open headline="存档" onClose={() => setCardOpen(false)} actions={
-          <>
-            <input ref={importRef} type="file" accept=".json,application/json" style={{ display: "none" }} onChange={(e) => { const f = e.target.files?.[0]; if (f) importSave(f); e.target.value = ""; }} />
-            <TextButton onClick={() => importRef.current?.click()}>导入存档</TextButton>
-            <TextButton onClick={newCard}>＋ 新建人物卡</TextButton>
-          </>
-        }>
-          <div className="dialog-save-layout">
-            <div className="dialog-save-list">
-              <div className="preset-list">
-                {cards.map((c) => (
-                  <div key={c.id} className={c.id === activeId ? "card-row active" : "card-row"}>
-                    <div className="card-row-main">
-                      {renamingId === c.id ? (
-                        <input className="card-rename-input" value={renameText} autoFocus onChange={(e) => setRenameText(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter") confirmRename(); if (e.key === "Escape") { e.preventDefault(); setRenamingId(null); } }} onBlur={() => setRenamingId(null)} />
-                      ) : (
-                        <button type="button" className="card-row-name" onClick={() => switchCard(c.id)} title="切换到这张卡">
-                          <span className="preset-name">{c.name}{c.id === activeId ? "（当前）" : ""}</span>
-                          <span className="preset-label">Lv{c.char.level} · {new Date(c.updatedAt).toLocaleString("zh-CN")}</span>
-                        </button>
-                      )}
-                    </div>
-                    <div className="card-row-btns">
-                      <button type="button" className="crop-btn" onClick={() => saveCardNow(c.id)}>保存</button>
-                      <button type="button" className="crop-btn" onClick={() => { setRenamingId(c.id); setRenameText(c.name); }}>重命名</button>
-                      {cards.length > 1 && <button type="button" className="crop-btn crop-danger" onClick={() => deleteCard(c.id)}>删除</button>}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="dialog-save-export">
-              <div className="dialog-save-export-title">导出</div>
-              <p className="dialog-save-export-sub">将当前人物卡导出为图片或 JSON 备份文件。</p>
-
-              <div className="export-groups">
-                <div className="export-group">
-                  <span className="export-group-label">图片渲染</span>
-                  <p className="hint">
-                    {exportFormat === "pdf"
-                      ? "以渲染模式生成当前人物卡，并按 A4 纸张分页输出为 PDF 文件。"
-                      : exportFormat === "jpg"
-                        ? "以渲染模式生成当前人物卡，输出为 JPG 图片（有损压缩，文件较小）。"
-                        : "以渲染模式生成当前人物卡，输出为 PNG 图片（无损，文件较大）。"}
-                  </p>
-                  <div className="export-format-row">
-                    {([["png", "PNG"], ["jpg", "JPG"], ["pdf", "PDF"]] as const).map(([f, label]) => (
-                      <button key={f} type="button" className={"export-format-btn" + (exportFormat === f ? " active" : "")} onClick={() => setExportFormat(f)}>{label}</button>
-                    ))}
-                  </div>
-                  <FilledButton disabled={exporting} onClick={runExport}>{exporting ? "导出中…" : "导出"}</FilledButton>
-                </div>
-
-                <div className="export-group">
-                  <span className="export-group-label">存档备份</span>
-                  <p className="hint">导出为 JSON 文件，可随时重新导入。</p>
-                  <OutlinedButton onClick={exportSave}>导出存档</OutlinedButton>
-                </div>
-              </div>
-            </div>
-          </div>
-
+        <SheetDialog xwide extraClass="sheet-dialog-save" open headline="存档" onClose={() => setCardOpen(false)}>
+          {/* 存档面板抽成了独立组件：导引模式的「存档」步骤要把同一份面板就地嵌进导引页 */}
+          <SavePanel
+            cards={cards}
+            activeId={activeId}
+            onSwitch={switchCard}
+            onSaveCard={saveCardNow}
+            onRename={renameCard}
+            onDelete={deleteCard}
+            onNewCard={newCard}
+            onImportFile={importSave}
+            onExportImage={exportCardImage}
+            onExportJson={exportSave}
+          />
         </SheetDialog>
       )}
-      {drawOpen && (
-        <SheetDialog open headline="抽卡" onClose={() => setDrawOpen(false)} actions={<TextButton onClick={() => setDrawOpen(false)}>取消</TextButton>}>
-          <p className="hint">抽卡是一种趣味性的、适合新手的人物卡快速创建方式。注意：进入抽卡后，当前人物卡存档内的全部内容将被清空。请选择：</p>
+      {/* 导引入口：抽卡重构后的「导引」是一次完整的新手教程，只能由用户主动进入，
+          并且**强制新建一张空白人物卡**（导引全程在这张卡上操作，不碰已有存档）。
+          有进行中的导引时（从设置页进来）额外给出「继续」这一条路。 */}
+      {guideEntryOpen && (
+        <SheetDialog open headline="导引" onClose={() => setGuideEntryOpen(false)} actions={<TextButton onClick={() => setGuideEntryOpen(false)}>取消</TextButton>}>
+          <p className="hint">
+            导引模式是一个分布式车卡教学。导引必须在一张新建的空白人物卡上进行。
+          </p>
           <div className="preset-list">
-            <button type="button" className="card-row draw-opt" onClick={enterDrawCleared}>
-              <span className="preset-name">确定，清空当前存档并进入抽卡</span>
-              <span className="preset-label">覆盖当前人物卡的全部内容</span>
-            </button>
-            <button type="button" className="card-row draw-opt" onClick={() => { newCard(); setDrawOpen(false); setView("draw"); }}>
-              <span className="preset-name">创建新存档并进入抽卡</span>
-              <span className="preset-label">自动新建一个空白人物卡，原卡不受影响</span>
+            {guideRun && guideCard && (
+              <button type="button" className="card-row draw-opt" onClick={() => { setGuideEntryOpen(false); openGuide(); }}>
+                <span className="preset-name">继续上次导引</span>
+                <span className="preset-label">
+                  第 {guideIndex + 1} / {guideSteps.length} 步 · {guideSteps[guideIndex]?.title ?? ""}
+                </span>
+              </button>
+            )}
+            <button type="button" className="card-row draw-opt" onClick={startGuide}>
+              <span className="preset-name">{guideRun ? "重新开始导引（新建一张人物卡）" : "开始导引（新建一张人物卡）"}</span>
+              <span className="preset-label">自动新建一个空白人物卡并在其上操作</span>
             </button>
           </div>
+        </SheetDialog>
+      )}
+      {/* 结束导引：只结束教程，人物卡保留在存档里 */}
+      {guideEndOpen && (
+        <SheetDialog
+          open
+          headline="结束这次导引"
+          onClose={() => setGuideEndOpen(false)}
+          actions={
+            <>
+              <TextButton onClick={() => setGuideEndOpen(false)}>继续导引</TextButton>
+              <FilledButton onClick={finishGuide}>结束导引</FilledButton>
+            </>
+          }
+        >
+          <p className="hint">
+            这将彻底结束导引模式，已经完成的与填写的内容不会删除，导引人物会留存于存档。
+          </p>
         </SheetDialog>
       )}
       {/* 存储写满 / 被禁用时提示「没有保存成功」，并给出止损动作 */}
       <StorageAlert onBackup={exportSave} onInspect={() => setView("homebrew")} />
+      {/* 导引悬浮条：离开导引页（去背景/速览/存档……）之后依然「随时展示当前进度」，
+          并一键跳回导引。主持模式是另一套工作流，那里不跟（导引本身就是玩家模式独占功能）。 */}
+      {appMode === "player" && guideRun && guideCard && view !== "guide" && (
+        <GuideFloatingBar
+          steps={guideSteps}
+          index={guideIndex}
+          onOpen={() => setView("guide")}
+          onEnd={() => setGuideEndOpen(true)}
+        />
+      )}
       {/* 教学模式：首次打开自动播放，之后由设置页手动开启 */}
       <TutorialGuide open={tourOpen} onClose={closeTutorial} onGoToView={setView} isMobile={isMobile} />
     </div>

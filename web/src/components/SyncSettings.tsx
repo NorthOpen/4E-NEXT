@@ -103,7 +103,6 @@ export default function SyncSettings() {
   return (
     <section className="block">
       <h3 className="block-title">数据与同步</h3>
-      <p className="hint">使用WebDAV在多台设备之间同步人物卡与私设资源包。</p>
 
       <div className="settings-row">
         <span className="field-label">启用同步</span>

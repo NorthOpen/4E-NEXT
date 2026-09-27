@@ -399,7 +399,7 @@ body {
 .side-btn.active { background: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); }
 .side-btn .material-symbols-outlined { font-size: 22px; }
 .sb-label { font-size: 10px; line-height: 1; font-weight: var(--fw-label); }
-/* 分组分隔符：组 1（人物/背景/储备/速览）与组 2（存档/导出/私设/抽卡/词条/规则/设置）之间、组 2 与底部工具之间 */
+/* 分组分隔符：组 1（人物/背景/储备/速览）与组 2（存档/私设/导引/词条/规则/AI/设置）之间、组 2 与底部工具之间 */
 .side-sep { flex: none; width: 28px; height: 1px; background: var(--md-sys-color-outline-variant); margin: 4px 0; }
 .rail-version { flex: none; margin-top: 4px; font-size: 10px; color: var(--md-sys-color-on-surface-variant); font-weight: var(--fw-label); }
 
@@ -696,6 +696,10 @@ md-filled-text-field, md-filled-select { min-width: 0; }
 /* 存档弹窗：上存档列表（全宽） + 下导出面板（统一沉底，MD3 纵向布局） */
 .dialog-save-layout { display: flex; flex-direction: column; gap: 16px; align-items: stretch; }
 .dialog-save-list { min-width: 0; }
+/* 存档面板顶部的「导入存档 / 新建人物卡」：从弹窗底部搬到列表面板上方，
+   这样导引模式把整块面板就地嵌进页面时，两个动作也在同一屏里够得着
+   （见 components/SavePanel.tsx —— 弹窗与导引共用这一个组件）。 */
+.save-panel-actions { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; }
 /* 存档列表维持单列，导出的两分组在其下方左右并排 */
 .dialog-save-export { display: flex; flex-direction: column; gap: 14px; padding: 14px 16px; border-radius: var(--md-sys-shape-corner-medium); background: var(--md-sys-color-surface-container-high); }
 .dialog-save-export-title { font-size: 16px; font-weight: var(--fw-heading); color: var(--md-sys-color-on-surface); }
@@ -1858,7 +1862,9 @@ md-dialog.sheet-dialog-xw .picker-cards {
 
 .base-picker-card .bi-name, .base-picker-card .bi-dice, .base-picker-card .bi-traits { max-width: 100%; }
 
-/* ===== 抽卡向导 ===== */
+/* ===== 抽卡（威能/专长挑选的辅助模式）=====
+   原「抽卡向导」的随机建卡流程已由导引模式（styles.guide.css）接手；
+   这里保留的 .draw-* 类现在服务于选择器里的抽卡发牌面板（sheet/DrawAssist.tsx）。 */
 .draw { padding: 4px; max-width: 960px; margin: 0 auto; width: 100%; box-sizing: border-box; }
 .draw-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 10px; flex-wrap: wrap; }
 .draw-title { font-size: 22px; font-weight: 500; letter-spacing: 0; color: var(--md-sys-color-on-surface); }
@@ -2446,10 +2452,10 @@ html[data-font="serif"] {
 }
 
 /* ====================================================================
-   车卡页板块摆放（设置 → 自定义页面板块）
+   车卡页板块摆放（设置 → 自定义人物板块）
    - .lt-cell-wide：双栏顶部区里的通栏板块（战斗数值）占满整行
    - 板块被搬到左右栏时，内部宽表收成单列，避免半栏里挤成两列
-   - .ple-*：设置页「自定义页面板块」的拖动编辑器
+   - .ple-*：设置页「自定义人物板块」的拖动编辑器
    ==================================================================== */
 .lt-cell-wide { grid-column: 1 / -1; }
 .col-left .combat-row,

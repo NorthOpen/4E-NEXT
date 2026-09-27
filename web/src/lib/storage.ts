@@ -66,8 +66,8 @@ export function localStorageUsage(): StorageUsage {
 
 /** 存储位置的用户可读名称（网页端「浏览器缓存」/ 桌面端「本地数据文件」）。 */
 export const STORAGE_LABEL: string = platform.storage.label;
-/** 存储位置的一句话说明，用于设置页与私设页。 */
-export const STORAGE_HINT: string = platform.storage.hint;
+/** 存储位置的一句话说明，用于设置页「缓存占用」板块。没有说明的平台（网页端）取空串，由调用方跳过渲染。 */
+export const STORAGE_HINT: string = platform.storage.hint ?? "";
 
 export function fmtBytes(n: number): string {
   if (n < 1024) return n + " B";

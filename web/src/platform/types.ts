@@ -56,8 +56,11 @@ export interface PlatformStorage {
   onWriteError?(cb: (message: string) => void): () => void;
   /** 存储位置的用户可读描述，用于设置页文案 */
   readonly label: string;
-  /** 一句话说明这份数据存在哪、会不会被清 */
-  readonly hint: string;
+  /**
+   * 一句话说明这份数据存在哪、会不会被清。
+   * 网页端已不在设置页展示这条说明，因此可以省略（桌面端仍在用）。
+   */
+  readonly hint?: string;
 }
 
 export type SaveResult =

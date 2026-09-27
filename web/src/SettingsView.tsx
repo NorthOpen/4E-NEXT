@@ -21,7 +21,7 @@ function fmtDataDate(iso: string): string {
   return d.getFullYear() + "-" + p(d.getMonth() + 1) + "-" + p(d.getDate());
 }
 
-export default function SettingsView({ layout, onStartTutorial }: { layout: "single" | "double"; onStartTutorial: () => void }) {
+export default function SettingsView({ layout, onStartTutorial, onStartGuide }: { layout: "single" | "double"; onStartTutorial: () => void; onStartGuide: () => void }) {
   const { seedMode, seedHex, presetHex, isDark, activeHex, variant, setSeedMode, setSeedHex, setPresetHex, setDark, setVariant, bgMode, setBgMode, setBgCustom, bgImage, bgBlur, bgFeather, setBgBlur, setBgFeather, fontMode, setFontMode } = useTheme();
   const bgFileRef = useRef<HTMLInputElement>(null);
   const [oversize, setOversize] = useState<File | null>(null);
@@ -203,8 +203,7 @@ export default function SettingsView({ layout, onStartTutorial }: { layout: "sin
       </section>
 
       <section className="block">
-        <h3 className="block-title">自定义页面板块</h3>
-        <p className="hint">人物页由下列板块组成。按住板块拖动即可调整它们的先后顺序与所在栏位。</p>
+        <h3 className="block-title">自定义人物板块</h3>
         <PanelLayoutEditor defaultMode={layout} />
       </section>
 
@@ -214,7 +213,7 @@ export default function SettingsView({ layout, onStartTutorial }: { layout: "sin
       <div className="settings-col">
       {/* 教学模式与缓存占用放在右栏顶部：双栏时在右上，单栏时紧跟在「数据与同步」之后，
           两种版式下的阅读顺序一致（功能设置在前，说明与版权在后）。 */}
-      <StorageSettings onStartTutorial={onStartTutorial} />
+      <StorageSettings onStartTutorial={onStartTutorial} onStartGuide={onStartGuide} />
 
       <section className="block">
         <h3 className="block-title">致谢</h3>

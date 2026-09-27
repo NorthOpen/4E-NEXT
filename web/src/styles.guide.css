@@ -1,0 +1,446 @@
+/* ==========================================================================
+   导引模式（新手教程）+ 抽卡辅助挑选
+   --------------------------------------------------------------------------
+   导引模式不是一套新的简化界面：它的舞台就是车卡器真实的板块与页面
+   （CharacterSheet 的 onlyPanels / 背景 / 储备 / 速览），本文件只负责
+   「怎么把真实界面摆进导引的壳里」以及置顶进度条、悬浮进度条。
+
+   结构：
+     · .guide-head  置顶分段进度条（吸顶）：段数 = 步数，可点段跳步
+     · .guide-main  左讲解 / 右舞台（手机端上下堆叠）
+     · .guide-nav   上一步 / 跳过本步 / 下一步
+     · .guide-float 离开导引页后的悬浮进度条（App 渲染）
+
+   配色一律走 MD3 语义色令牌，随动态取色与深浅模式自动适配，不写死色值。
+   本文件在 styles.tutorial.css 之后、styles.mobile.css 之前导入（见 main.tsx）。
+   ========================================================================== */
+
+.guide {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ---- 置顶进度条 ---- */
+/* 负外边距抵消 .content 的内边距，让吸顶条横向铺满内容区（app bar 的做法），
+   滚动时下方内容不会从两侧缝隙里露出来。 */
+.guide-head {
+  position: sticky;
+  top: 0;
+  z-index: 6;
+  margin: -20px -20px 0;
+  padding: 12px 20px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: color-mix(in srgb, var(--md-sys-color-surface) 90%, transparent);
+  backdrop-filter: blur(12px) saturate(1.1);
+  border-bottom: 1px solid var(--md-sys-color-outline-variant);
+}
+
+.guide-head-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.guide-badge {
+  flex: none;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--md-sys-shape-corner-full);
+  background: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
+}
+.guide-badge .material-symbols-outlined { font-size: 20px; }
+
+.guide-head-text { display: flex; flex-direction: column; min-width: 0; }
+.guide-head-title { font-size: 14px; font-weight: var(--fw-heading); color: var(--md-sys-color-on-surface); }
+.guide-head-sub {
+  font-size: 12px;
+  color: var(--md-sys-color-on-surface-variant);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 分段进度条：每一段 = 一步，命中区做得比视觉条高，细条也好点 */
+.guide-bar { display: flex; align-items: center; gap: 4px; }
+.guide-seg {
+  flex: 1 1 0;
+  min-width: 0;
+  height: 18px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border-radius: var(--md-sys-shape-corner-full);
+}
+/* 章节切换处留一道缝：一眼看出「现在讲到哪一大块」 */
+.guide-seg.chapter-start { margin-left: 8px; }
+.guide-seg-fill {
+  display: block;
+  width: 100%;
+  height: 6px;
+  border-radius: var(--md-sys-shape-corner-full);
+  background: var(--md-sys-color-surface-container-highest);
+  transition:
+    background-color var(--md-sys-motion-duration-medium2) var(--md-sys-motion-easing-standard),
+    height var(--md-sys-motion-duration-medium2) var(--md-sys-motion-easing-emphasized);
+}
+.guide-seg.done .guide-seg-fill {
+  background: color-mix(in srgb, var(--md-sys-color-primary) 65%, var(--md-sys-color-surface-container-highest));
+}
+.guide-seg.on .guide-seg-fill {
+  background: var(--md-sys-color-primary);
+  height: 10px;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--md-sys-color-primary) 20%, transparent);
+}
+.guide-seg:hover .guide-seg-fill { background: var(--md-sys-color-primary); }
+.guide-seg:focus-visible { outline: 2px solid var(--md-sys-color-primary); outline-offset: 2px; }
+
+/* ---- 主体：左讲解 / 右舞台 ---- */
+.guide-main {
+  display: grid;
+  grid-template-columns: minmax(0, 380px) minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.guide-intro {
+  position: sticky;
+  /* 吸顶进度条的大致高度：讲解卡落在它下面 */
+  top: 108px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: calc(100vh - 140px);
+  overflow: auto;
+  padding: 16px 18px;
+  border-radius: var(--md-sys-shape-corner-large);
+  background: var(--md-sys-color-surface-container-low);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  box-shadow: var(--md-sys-elevation-shadow-level1);
+}
+
+.guide-intro-head { display: flex; align-items: center; gap: 10px; }
+.guide-step-badge {
+  flex: none;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--md-sys-shape-corner-full);
+  background: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+  font-size: 14px;
+  font-weight: var(--fw-heading);
+}
+.guide-intro-headtext { display: flex; flex-direction: column; min-width: 0; }
+.guide-intro-title { margin: 0; font-size: 17px; font-weight: var(--fw-heading); color: var(--md-sys-color-on-surface); }
+.guide-intro-sub { font-size: 12px; color: var(--md-sys-color-on-surface-variant); }
+.guide-intro-p { margin: 0; font-size: 13.5px; line-height: 1.8; color: var(--md-sys-color-on-surface-variant); }
+
+.guide-tips { display: flex; flex-direction: column; gap: 7px; margin: 2px 0 0; padding: 0; list-style: none; }
+.guide-tips li { display: flex; gap: 7px; font-size: 12.5px; line-height: 1.7; color: var(--md-sys-color-on-surface-variant); }
+.guide-tip-ic { flex: none; font-size: 16px; color: var(--md-sys-color-tertiary); }
+
+/* 本步目标：可勾选的目标提示（只提示，不阻拦翻页） */
+.guide-task {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  border-radius: var(--md-sys-shape-corner-medium);
+  background: var(--md-sys-color-tertiary-container);
+  color: var(--md-sys-color-on-tertiary-container);
+  font-size: 12.5px;
+}
+.guide-task.ok { background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container); }
+.guide-task .material-symbols-outlined { flex: none; font-size: 18px; }
+.guide-task-label { font-weight: var(--fw-heading); opacity: 0.85; }
+.guide-task-text { min-width: 0; }
+
+/* ---- 舞台：真实板块 / 真实页面 ---- */
+.guide-stage { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.guide-stage-head { display: flex; align-items: center; gap: 8px; padding: 0 2px; flex-wrap: wrap; }
+.guide-stage-ic { font-size: 20px; color: var(--md-sys-color-primary); }
+.guide-stage-title { font-size: 15px; font-weight: var(--fw-heading); color: var(--md-sys-color-on-surface); }
+.guide-stage-note { font-size: 12px; color: var(--md-sys-color-on-surface-variant); margin-left: auto; }
+.guide-stage-body {
+  min-width: 0;
+  animation: guide-stage-in var(--md-sys-motion-duration-medium2) var(--md-sys-motion-easing-emphasized-decelerate) both;
+}
+@keyframes guide-stage-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* 讲解卡里的「抽卡挑选」按钮：与「本步目标」同一张卡、紧跟在目标下方，通栏摆放 */
+.guide-draw-btn { width: 100%; margin-top: 2px; }
+
+/* 本步要点高亮：圈住讲解里点名的那一块（轮廓不参与布局，不会把板块挤动）。
+   position + z-index 是必需的：车卡页里后面的兄弟行往往自带背景
+   （角色信息下面那一排 .pick-field 就是 position: relative），
+   不抬到前面去，轮廓的下缘会被它们盖住 —— 看起来就是「高亮框被压住了」。 */
+.guide-focus {
+  position: relative;
+  z-index: 2;
+  border-radius: var(--md-sys-shape-corner-medium);
+  outline: 2px solid var(--md-sys-color-primary);
+  outline-offset: 3px;
+  animation: guide-focus-pulse 1.8s var(--md-sys-motion-easing-standard) 2;
+}
+@keyframes guide-focus-pulse {
+  0%, 100% { outline-color: var(--md-sys-color-primary); }
+  50% { outline-color: color-mix(in srgb, var(--md-sys-color-primary) 25%, transparent); }
+}
+
+/* ---- 导引自带的说明卡（欢迎 / 存档 / 完成） ---- */
+.guide-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 18px;
+  border-radius: var(--md-sys-shape-corner-large);
+  background: var(--md-sys-color-surface-container-low);
+  border: 1px solid var(--md-sys-color-outline-variant);
+}
+.guide-card-p { margin: 0; font-size: 13.5px; line-height: 1.8; color: var(--md-sys-color-on-surface-variant); }
+.guide-card-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+/* 就地嵌入整块面板（存档）的说明卡：内部自带两栏排版，卡片内边距收紧一点 */
+.guide-card-wide { padding: 14px; }
+.guide-card-wide .save-panel-actions { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; }
+
+.guide-hero {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: var(--md-sys-shape-corner-medium);
+  background: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
+}
+.guide-hero-ic { flex: none; font-size: 30px; }
+.guide-hero-title { font-size: 15px; font-weight: var(--fw-heading); }
+.guide-hero-sub { font-size: 12.5px; opacity: 0.85; margin-top: 2px; }
+
+.guide-list { display: flex; flex-direction: column; gap: 7px; margin: 0; padding: 0; list-style: none; }
+.guide-list li { position: relative; padding-left: 16px; font-size: 13px; line-height: 1.75; color: var(--md-sys-color-on-surface-variant); }
+.guide-list li::before {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: 9px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--md-sys-color-primary);
+}
+
+.guide-check-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 8px; }
+.guide-check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: var(--md-sys-shape-corner-medium);
+  background: var(--md-sys-color-surface-container);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  font-size: 13px;
+  color: var(--md-sys-color-on-surface);
+}
+.guide-check .material-symbols-outlined { font-size: 18px; color: var(--md-sys-color-outline); }
+.guide-check-label { min-width: 0; }
+.guide-check.ok { background: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); border-color: transparent; }
+.guide-check.ok .material-symbols-outlined { color: var(--md-sys-color-on-secondary-container); }
+.guide-check-value { margin-left: auto; font-weight: var(--fw-heading); }
+
+/* ---- 步骤导航 ----
+   翻页按钮必须**一直看得见**：车卡页有些板块（职业能力、装备、威能）一屏放不下，
+   导航留在文档流里就会被顶到几千像素之外，用户得先滚到底才能点「下一步」。
+   所以这里把它做成吸附在视口底部的操作条（桌面端见下方 min-width 媒体查询，
+   手机端见 max-width: 720px 块），长板块再也不会把它顶走。
+   为什么用 sticky 而不是 fixed：.view-anim 的入场动画带 transform，
+   带 transform 的祖先会成为 fixed 的包含块 —— 切进导引的头 300ms 里按钮会先落到
+   页面最底部再弹回视口，看起来像闪了一下。sticky 不受这个影响，而且滚到最底时
+   它会自然回到文档流位置，不会永远盖住最后一段内容。 */
+.guide-nav { display: flex; align-items: center; gap: 10px; padding: 4px 2px 0; flex-wrap: wrap; }
+.guide-nav-spacer { flex: 1 1 auto; }
+
+/* ---- 悬浮进度条（离开导引页后跟随显示） ---- */
+.guide-float {
+  position: fixed;
+  left: 96px;
+  bottom: 18px;
+  z-index: 90;
+  max-width: calc(100vw - 120px);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px 10px 14px;
+  border-radius: var(--md-sys-shape-corner-large);
+  background: var(--md-sys-color-surface-container-high);
+  color: var(--md-sys-color-on-surface);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  box-shadow: var(--md-sys-elevation-shadow-level3);
+  animation: guide-float-in var(--md-sys-motion-duration-medium2) var(--md-sys-motion-easing-emphasized-decelerate) both;
+}
+@keyframes guide-float-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+.guide-float-ic { flex: none; font-size: 20px; color: var(--md-sys-color-primary); }
+.guide-float-text { display: flex; flex-direction: column; min-width: 0; }
+.guide-float-title { font-size: 12.5px; font-weight: var(--fw-heading); }
+.guide-float-sub {
+  font-size: 11.5px;
+  color: var(--md-sys-color-on-surface-variant);
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.guide-float-bar { display: flex; align-items: center; gap: 2px; width: 180px; flex: none; }
+.guide-float-seg { flex: 1 1 0; height: 4px; border-radius: var(--md-sys-shape-corner-full); background: var(--md-sys-color-surface-container-highest); }
+.guide-float-seg.done { background: color-mix(in srgb, var(--md-sys-color-primary) 65%, var(--md-sys-color-surface-container-highest)); }
+.guide-float-seg.on { background: var(--md-sys-color-primary); }
+.guide-float-actions { display: flex; align-items: center; gap: 6px; flex: none; }
+
+/* 导航轨上的「导引」按钮：有进行中的导引时点一个小圆点，提醒「还没走完」 */
+.side-btn { position: relative; }
+.side-btn .sb-run-dot {
+  position: absolute;
+  top: 7px;
+  right: 12px;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--md-sys-shape-corner-full);
+  background: var(--md-sys-color-primary);
+}
+.side-btn.active .sb-run-dot { background: var(--md-sys-color-on-secondary-container); }
+
+/* ---- 抽卡弹窗（导引专用）---- */
+.draw-dialog { display: flex; flex-direction: column; gap: 14px; }
+.draw-dialog-target { display: flex; flex-direction: column; gap: 8px; }
+.draw-dialog-label { font-size: 12px; font-weight: var(--fw-heading); color: var(--md-sys-color-on-surface-variant); }
+.draw-dialog-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+/* 槽位进度条：只读展示「哪些填好了、现在抽哪个」，顺序由空槽决定，所以不是按钮 */
+.guide-slot-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: var(--md-sys-shape-corner-full);
+  background: var(--md-sys-color-surface-container);
+  color: var(--md-sys-color-on-surface);
+  font-size: 12.5px;
+}
+.guide-slot-chip.on { background: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); border-color: transparent; }
+.guide-slot-chip.done { background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container); border-color: transparent; }
+.guide-slot-chip.skip { opacity: 0.55; }
+.guide-slot-dot { width: 8px; height: 8px; border-radius: var(--md-sys-shape-corner-full); flex: none; }
+.guide-slot-state { font-size: 11.5px; opacity: 0.75; max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.draw-dialog-notice {
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: var(--md-sys-shape-corner-medium);
+  background: var(--md-sys-color-tertiary-container);
+  color: var(--md-sys-color-on-tertiary-container);
+  font-size: 12.5px;
+  line-height: 1.7;
+}
+/* 抽完（或被跳过）之后的收尾块：只有「还需补选」的情况会真正停留在这里被看到 */
+.draw-dialog-done {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 22px 16px;
+  border-radius: var(--md-sys-shape-corner-large);
+  background: var(--md-sys-color-surface-container-low);
+  text-align: center;
+}
+.draw-dialog-done .material-symbols-outlined { font-size: 32px; color: var(--md-sys-color-primary); }
+.draw-dialog-done p { margin: 0; font-size: 13px; line-height: 1.7; color: var(--md-sys-color-on-surface-variant); }
+
+/* ---- 抽卡辅助挑选（威能 / 专长发牌面板） ---- */
+.draw-assist { display: flex; flex-direction: column; gap: 10px; }
+.draw-assist-head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.da-title { font-size: 14px; font-weight: var(--fw-heading); color: var(--md-sys-color-on-surface); }
+.da-count { font-size: 12px; color: var(--md-sys-color-on-surface-variant); }
+.draw-assist .draw-cards { margin: 2px 0; }
+.draw-assist-nav { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+
+@media (max-width: 1080px) {
+  .guide-main { grid-template-columns: minmax(0, 1fr); }
+  .guide-intro { position: static; max-height: none; }
+}
+
+/* 桌面端：步骤导航吸附在视口底部（横跨内容区，与置顶进度条上下呼应）。
+   负的下外边距抵消 .content 的 20px 内边距，吸附时贴到视口最下沿、不留缝；
+   左右负外边距让它像 app bar 一样铺满内容区，内边距把按钮对回正文那一列。
+   .guide 的 min-height 保证「内容不足一屏」时，导航也落在视口底部而不是浮在半空。 */
+@media (min-width: 721px) {
+  .guide { min-height: calc(100vh - 40px); }
+  .guide-nav {
+    position: sticky;
+    bottom: 0;
+    z-index: 7;
+    /* 顶边自动，把导航压到 .guide 的最下方 */
+    margin: auto -20px -20px;
+    padding: 10px 20px;
+    background: color-mix(in srgb, var(--md-sys-color-surface) 92%, transparent);
+    backdrop-filter: blur(12px) saturate(1.1);
+    border-top: 1px solid var(--md-sys-color-outline-variant);
+  }
+}
+
+@media (max-width: 720px) {
+  .guide-head { margin: -10px -10px 0; padding: 8px 10px 10px; }
+  .guide-head-sub { font-size: 11.5px; }
+  .guide-intro { padding: 12px 14px; }
+  .guide-intro-title { font-size: 16px; }
+  .guide-stage-note { margin-left: 0; flex-basis: 100%; }
+  /* 步骤导航吸附在底部导航之上：翻页不用先滚到底。
+     84px = 手机端底栏高度 80px + 4px 缝（见 styles.mobile.css 的 .mob-nav）。 */
+  .guide-nav {
+    position: sticky;
+    bottom: calc(84px + env(safe-area-inset-bottom, 0px));
+    padding: 8px;
+    border-radius: var(--md-sys-shape-corner-large);
+    background: color-mix(in srgb, var(--md-sys-color-surface) 92%, transparent);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--md-sys-color-outline-variant);
+  }
+  .guide-nav-spacer { display: none; }
+  .guide-nav > * { flex: 1 1 0; }
+  .guide-float {
+    left: 10px;
+    right: 10px;
+    bottom: calc(84px + env(safe-area-inset-bottom, 0px));
+    max-width: none;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 10px 12px;
+  }
+  .guide-float-bar { display: none; }
+  .guide-float-text { flex: 1 1 auto; }
+  .guide-float-sub { max-width: none; }
+  .guide-float-actions { flex: 1 1 100%; justify-content: flex-end; }
+  .draw-assist .draw-cards { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* 减弱动态：导引的入场 / 呼吸高亮全部停掉，只留静态轮廓 */
+@media (prefers-reduced-motion: reduce) {
+  .guide-stage-body,
+  .guide-float,
+  .guide-focus { animation: none; }
+}

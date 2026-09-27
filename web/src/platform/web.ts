@@ -50,7 +50,6 @@ export const platform: Platform = {
 
   storage: {
     label: "浏览器缓存",
-    hint: "数据存在本浏览器的站点存储里。清理浏览器数据会一并清掉，建议定期导出或用 WebDAV 同步备份。",
     getItem(key) {
       try {
         return localStorage.getItem(key);

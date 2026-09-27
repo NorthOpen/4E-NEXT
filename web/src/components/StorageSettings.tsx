@@ -31,7 +31,7 @@ function describe(e: unknown): string {
   return e instanceof Error ? e.message : "未知错误。";
 }
 
-export default function StorageSettings({ onStartTutorial }: { onStartTutorial: () => void }) {
+export default function StorageSettings({ onStartTutorial, onStartGuide }: { onStartTutorial: () => void; onStartGuide: () => void }) {
   // 挂载时取一次快照：进入设置页会重新挂载，所以切页回来看到的就是最新值
   const [usage] = useState(() => localStorageBreakdown());
   const [cardCount] = useState(() => loadCards().length);
@@ -112,11 +112,17 @@ export default function StorageSettings({ onStartTutorial }: { onStartTutorial: 
           <FilledButton onClick={onStartTutorial}>开始教学模式</FilledButton>
           <span className="label">{seen ? "已经观看过" : "还没观看过"}</span>
         </div>
+        {/* 教学模式讲「有哪些页面」，导引模式讲「人物卡怎么车出来」——两者并列放在同一块里 */}
+        <div className="settings-row">
+          <span className="field-label">车卡导引</span>
+          <FilledButton onClick={onStartGuide}>开始导引模式</FilledButton>
+          <span className="label">分步式车卡教学</span>
+        </div>
       </section>
 
       <section className="block">
         <h3 className="block-title">缓存占用</h3>
-        <p className="hint">{STORAGE_HINT}</p>
+        {STORAGE_HINT && <p className="hint">{STORAGE_HINT}</p>}
 
         <div className="cacheset-meter">
           <div className="cacheset-meter-head">

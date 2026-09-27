@@ -4576,17 +4576,19 @@ function TextField(props: { label: string; value: string; onChange: (v: string) 
   );
 }
 
-function PickField(props: { label: string; displayName?: string; disabled?: boolean; mode: "edit" | "render"; onClick: () => void }) {
+function PickField(props: { label: string; displayName?: string; disabled?: boolean; mode: "edit" | "render"; onClick: () => void; guide?: string; disabledHint?: string }) {
+  // 禁用时把原因挂在 title 上：灰掉一格却不说明为什么，用户会以为是坏了
+  const title = props.disabled && props.disabledHint ? props.disabledHint : props.label;
   if (props.mode === "render") {
     return (
-      <button type="button" className="render-field render-click" data-tour="pick-field" onClick={props.onClick} disabled={props.disabled} title={props.label}>
+      <button type="button" className="render-field render-click" data-tour="pick-field" data-guide={props.guide} onClick={props.onClick} disabled={props.disabled} title={title}>
         <span className="render-name">{props.label}</span>
         {props.displayName ? <span className="render-value">{props.displayName}</span> : <span className="render-empty">−</span>}
       </button>
     );
   }
   return (
-    <button type="button" className="pick-field" data-tour="pick-field" onClick={props.onClick} disabled={props.disabled} title={props.label}>
+    <button type="button" className="pick-field" data-tour="pick-field" data-guide={props.guide} onClick={props.onClick} disabled={props.disabled} title={title}>
       <span className="pf-label">{props.label}</span>
       <span className={props.displayName ? "pf-value" : "pf-placeholder"}>{props.displayName ?? "请选择"}</span>
       <span className="material-symbols-outlined pf-icon">expand_more</span>
@@ -4622,12 +4624,14 @@ function HybridAbilityBlock({ entry, entry2, detail }: { entry: Entry; entry2: E
 const MOBILE_GROUP_KEY = "4enext.sheetMobileGroup";
 
 export default function CharacterSheet({
-  layout = "single",
+  layout: layoutProp = "single",
   mode,
   char,
   setChar,
   mobile = false,
   forceAllPanels = false,
+  onlyPanels,
+  lockPickers,
 }: {
   layout: "single" | "double";
   mode: "edit" | "render";
@@ -4637,13 +4641,29 @@ export default function CharacterSheet({
   mobile?: boolean;
   /** 导出进行中：强制铺开全部板块，否则导出的图 / PDF 只含当前分组 */
   forceAllPanels?: boolean;
+  /**
+   * 导引模式（GuideView）：只渲染列出的板块，按传入顺序排列。
+   * 把板块从车卡页里「彻底拆开」单独交给导引当舞台，一次只讲一块（也可以一次两块，如金钱+装备）。
+   * 传了就强制单栏、并关掉手机端的分组胶囊 —— 导引里同一时刻只需要这几块板块。
+   */
+  onlyPanels?: SheetPanelId[];
+  /** 导引模式：这些「角色信息」栏位暂时灰掉不可点（由导引按步骤逐个解锁，避免新手误操作） */
+  lockPickers?: ("race" | "class")[];
 }) {
-  // 板块摆放（「设置 → 自定义页面板块」可拖动调整）：配置变化时本组件自动重渲染
+  // 板块摆放（「设置 → 自定义人物板块」可拖动调整）：配置变化时本组件自动重渲染
   const sheetLayout = useSheetLayout();
+
+  // 导引模式：只渲染被点名的板块（空数组按「没传」处理，免得导引少写一个参数就白屏）
+  const guideIds = onlyPanels && onlyPanels.length > 0 ? onlyPanels : null;
+  // 导引一次只摆一块板块，双栏排版没有意义（也避免顶部锚板块的约束干扰）
+  const layout: "single" | "double" = guideIds ? "single" : layoutProp;
+  // 角色信息里的两个关键选择栏：导引模式下按当前步骤锁住未讲到的那个
+  const lockRace = !!lockPickers?.includes("race");
+  const lockClass = !!lockPickers?.includes("class");
 
   // 手机端分组切换：一屏只渲染当前分组的板块，解决 15 个板块整页长滚动。
   // 导出时必须铺开全部板块（forceAllPanels），否则导出的图 / PDF 只含当前那一组。
-  const groupedMobile = mobile && !forceAllPanels;
+  const groupedMobile = mobile && !forceAllPanels && !guideIds;
   const [panelGroupId, setPanelGroupId] = useState<string>(() => {
     try {
       return platform.storage.getItem(MOBILE_GROUP_KEY) ?? "";
@@ -4664,8 +4684,8 @@ export default function CharacterSheet({
       /* 存不进就只在本次会话生效，不影响切换 */
     }
   };
-  // 组内顺序沿用设置页拖出来的 single 顺序
-  const singlePanelIds = activeGroup ? panelsInGroup(activeGroup, sheetLayout.single) : sheetLayout.single;
+  // 组内顺序沿用设置页拖出来的 single 顺序；导引模式则完全按 onlyPanels 给出的顺序
+  const singlePanelIds = guideIds ?? (activeGroup ? panelsInGroup(activeGroup, sheetLayout.single) : sheetLayout.single);
 
   // md-tabs 自己持有选中态，挂载后要把记住的分组同步过去。
   // 注意：程序化设置 activeTabIndex 同样会冒泡 change，所以必须先比对当前值，
@@ -6097,8 +6117,8 @@ export default function CharacterSheet({
   );
 
   const topCol = (
-    // data-tour：教学模式的锚点，见 lib/tutorial.ts
-    <section className="block topbar" data-tour="panel-info">
+    // data-tour：教学模式的锚点，见 lib/tutorial.ts；data-guide：导引模式的高亮锚点，见 lib/guide.ts
+    <section className="block topbar" data-tour="panel-info" data-guide="info">
         <div className="topbar-head">
           <span className="block-title">角色信息</span>
         </div>
@@ -6108,7 +6128,7 @@ export default function CharacterSheet({
             {mode === "render" ? (
               <div className="render-field"><span className="render-name">等级</span><span className="render-value">{char.level}</span></div>
             ) : (
-              <div className="field">
+              <div className="field" data-guide="level">
                 <span className="field-label">等级</span>
                 <div className="stepper">
                   <button type="button" className="step" onClick={() => setLevel(char.level - 1)}>−</button>
@@ -6121,12 +6141,12 @@ export default function CharacterSheet({
             {layout === "double" && resourcePanel}
           </div>
           <div className="info-rows">
-            <div className="info-row row-1">
+            <div className="info-row row-1" data-guide="name">
               <TextField label="姓名" value={char.name} onChange={(v) => setChar({ ...char, name: v })} mode={mode} big />
             </div>
             <div className="info-row row-2">
-              <PickField label="种族" displayName={subraceEntry ? subraceEntry.name : raceEntry?.name} mode={mode} onClick={() => setPicker("race")} />
-              <PickField label="英雄职阶" displayName={classDisplay} mode={mode} onClick={() => setPicker("class")} />
+              <PickField label="种族" displayName={subraceEntry ? subraceEntry.name : raceEntry?.name} mode={mode} disabled={lockRace} disabledHint="导引会在后面的步骤里专门带你选种族" onClick={() => setPicker("race")} guide="race-pick" />
+              <PickField label="英雄职阶" displayName={classDisplay} mode={mode} disabled={lockClass} disabledHint="导引会在后面的步骤里专门带你选职业" onClick={() => setPicker("class")} guide="class-pick" />
               <PickField label={char.level >= 11 ? "典范之道" : "典范之道（11级解锁）"} displayName={paragonPathEntry?.name} disabled={char.level < 11} mode={mode} onClick={() => setPicker("paragon")} />
               <PickField label={char.level >= 21 ? "传奇天命" : "传奇天命（21级解锁）"} displayName={epicDestinyEntry?.name} disabled={char.level < 21} mode={mode} onClick={() => setPicker("epic")} />
             </div>
@@ -6164,7 +6184,7 @@ export default function CharacterSheet({
   );
   const leftTop = (
     <>
-      <div className="stat-layout">
+      <div className="stat-layout" data-guide="stats">
         <div className="stat-col">
           <div className="mini-block">
             <div className="mb-head">
@@ -6173,14 +6193,14 @@ export default function CharacterSheet({
             </div>
             <span className="mb-value">{fmtMod(stats.initiative + initOther)}</span>
           </div>
-          <div className="mini-block">
+          <div className="mini-block" data-guide="abilities">
             <div className="mb-head">
               <span className="mb-label">属性</span>
               <button type="button" className="def-detail-btn" onClick={() => setAbilityDetailOpen(true)} title="查看每项属性的基础值与种族加成构成">查看详情</button>
             </div>
             <div className="ability-actions-row">
               <span className="ability-actions-left">
-                <label className="buy-switch" title="22 购点法：起始 8、10、10、10、10、10">
+                <label className="buy-switch" data-guide="buy" title="22 购点法：起始 8、10、10、10、10、10">
                   <span>购点</span>
                   <Switch selected={abilityMode === "buy"} onChange={(e) => setAbilityMode((e.target as any).selected ? "buy" : "free")} />
                 </label>
@@ -6349,8 +6369,8 @@ export default function CharacterSheet({
   );
   // 命中/伤害：两个独立板块（可分别在左/右栏移动），共享同一份 combatMods
   const combatProps = { char, setChar, mods: stats.mods, halfLevel: stats.halfLevel, enhanceOf, diceOf, profOf, mode, classAttackSources, featAttackSources, featDamageSources } as const;
-  const hitCol = <CombatPanels part="attack" {...combatProps} />;
-  const damageCol = <CombatPanels part="damage" {...combatProps} />;
+  const hitCol = <CombatPanels part="attack" guideAnchor="hit" {...combatProps} />;
+  const damageCol = <CombatPanels part="damage" guideAnchor="damage" {...combatProps} />;
   // 职业特性「选择一个」选项：记录所选值（键 = "职业ID::特性标题"；多选型如戏法存字符串数组）
   const setClassFeatureChoice = (key: string, label: string | string[]) => {
     const next = { ...char.classFeatureChoices };
@@ -6417,7 +6437,7 @@ export default function CharacterSheet({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [feats, powers]);
   const raceCol = (
-    <section className="block">
+    <section className="block" data-guide="race-traits">
         <div className="block-head">
           <h3 className="block-title">种族特性</h3>
           <div className="race-head-actions">
@@ -6699,7 +6719,7 @@ export default function CharacterSheet({
     );
     const classCol = (
       <>
-        <section className="block">
+        <section className="block" data-guide="class-features">
         <div className="block-head">
           <h3 className="block-title">{char.hybrid ? "混职职业能力" : "职业能力"}</h3>
           <div className="block-head-actions">
@@ -6757,7 +6777,7 @@ export default function CharacterSheet({
       const paragonCol = (
         <>
       {char.level >= 11 && (
-        <section className="block">
+        <section className="block" data-guide="paragon">
           <div className="block-head">
             <h3 className="block-title">典范特性</h3>
             <button type="button" className="mode-chip" onClick={() => setPathDetail((p) => !p)}>
@@ -6784,7 +6804,7 @@ export default function CharacterSheet({
       const epicCol = (
         <>
       {char.level >= 21 && (
-        <section className="block">
+        <section className="block" data-guide="epic">
           <div className="block-head">
             <h3 className="block-title">天命特性</h3>
             <button type="button" className="mode-chip" onClick={() => setDestinyDetail((p) => !p)}>
@@ -6812,7 +6832,7 @@ export default function CharacterSheet({
   );
   const skillsCol = (
     <>
-<section className="block">
+<section className="block" data-guide="skills">
         <div className="block-head">
           <h3 className="block-title">技能（{effectiveTrained.length}）</h3>
           {/* 与「命中/伤害」板块一致：动作按钮成组收进 block-head-actions，靠 8px 间距与标题行右端对齐 */}
@@ -6895,7 +6915,7 @@ export default function CharacterSheet({
   );
   const powersCol = (
     <>
-      <section className="block">
+      <section className="block" data-guide="powers">
         <div className="block-head">
           <h3 className="block-title">威能</h3>
                     <span className="head-actions">
@@ -6923,7 +6943,7 @@ export default function CharacterSheet({
           const count = Math.max(effCount, char.powerSlots[cat.key].length);
           const customized = !isSpecial && char.powerSlotOverrides?.[cat.key] !== undefined;
           return (
-            <div key={cat.key} className="selected-group">
+            <div key={cat.key} className="selected-group" data-guide={cat.key === "atWill" ? "power-slots" : undefined}>
               <div className="sg-title">
                 {cat.key !== "utility" && cat.key !== "special" && <span className="sg-dot" style={{ background: cat.color }} />}
                 {cat.label}
@@ -6996,7 +7016,7 @@ export default function CharacterSheet({
   );
   const equipmentCol = (
     <>
-<section className="block">
+<section className="block" data-guide="equip-slots">
         <div className="block-head">
           <h3 className="block-title">装备</h3>
                     <span className="head-actions">
@@ -7318,7 +7338,7 @@ export default function CharacterSheet({
   );
   const themeCol = (
     <>
-      <section className="block theme-block">
+      <section className="block theme-block" data-guide="theme">
         <div className="block-head">
           <h3 className="block-title">主题</h3>
           {themeEntry && <span className="theme-source">[{themeEntry.source}]</span>}
@@ -7396,7 +7416,7 @@ export default function CharacterSheet({
   );
   const featsCol = (
     <>
-      <section className="block feats-block">
+      <section className="block feats-block" data-guide="feat-slots">
         <div className="block-head">
           <h3 className="block-title">专长</h3>
           <button type="button" className="mode-chip" onClick={() => setBlockDetail((p) => ({ ...p, feats: !p.feats }))}>
@@ -7488,7 +7508,7 @@ export default function CharacterSheet({
       </section>
     </>
   );
-  // 板块节点表：顺序与栏位由「设置 → 自定义页面板块」决定（lib/sheetLayout），此处只做 id → 节点映射
+  // 板块节点表：顺序与栏位由「设置 → 自定义人物板块」决定（lib/sheetLayout），此处只做 id → 节点映射
   const panelNodes: Record<SheetPanelId, ReactNode> = {
     info: topCol,
     stats: leftTop,
