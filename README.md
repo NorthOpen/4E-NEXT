@@ -26,12 +26,12 @@
 
 如您希望在本地部署并开发，克隆本仓库至本地后使用 `pnpm --filter 4enext-web dev`，在本地浏览器构建即可。
 
-## 桌面版
+## 独立应用
 
-除网页版外，项目提供封装后的setup与portable两种桌面版本。为在意缓存占用和希望使用独立应用的用户提供。
+除网页版外，项目提供封装后的Windows setup与portable两种桌面版本与Android apk版本。为在意缓存占用和希望使用独立应用的用户提供。
 
-点击下载[最新版本](https://github.com/NorthOpen/4E-NEXT/releases)
-
+点击下载[Windows Desktop](https://github.com/NorthOpen/4E-NEXT/releases/tag/4E-NEXT-Desktop-V0.3.4)
+点击下载[Android Apk](https://github.com/NorthOpen/4E-NEXT/releases/tag/4E-NEXT-Android-V0.3.4)
 
 ## WebDAV
 
