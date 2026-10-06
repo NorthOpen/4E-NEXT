@@ -30,14 +30,28 @@ jobs:
           node-version: 22
           cache: pnpm
 
-      # 守卫：desktop/ 一旦被加回 pnpm workspace，下面那行 --frozen-lockfile 会因为锁文件不同步而
-      # 直接失败（ERR_PNPM_OUTDATED_LOCKFILE），网页端部署整条挂掉，且报错埋在安装步骤里不好定位。
+      # 守卫：desktop/ 与 android/ 一旦被加回 pnpm workspace，下面那行 --frozen-lockfile
+      # 会因为锁文件不同步而直接失败（ERR_PNPM_OUTDATED_LOCKFILE），网页端部署整条挂掉，
+      # 且报错埋在安装步骤里不好定位。
       # 判定逻辑在 scripts/verify-workspace.mjs，本地也可以先跑一遍：pnpm verify:workspace
-      - name: "Guard: desktop not in pnpm workspace"
+      - name: "Guard: desktop/android not in pnpm workspace"
         run: node scripts/verify-workspace.mjs
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+
+      # 同步层自检，两个互补的角度：
+      #   ① 协议契约  —— 手写请求打真实 WebDAV 服务端，验证状态码语义
+      #   ② 传输层行为 —— 用 esbuild 把**真的 webdav.ts** 打出来跑，
+      #      验证请求怎么拼、ETag 乐观锁怎么走、冲突怎么分类、两台设备能否互相同步
+      # 放在这里是因为三端共用同一份同步代码，改坏了网页端/桌面端/安卓端会同时坏。
+      # 纯 Node 内置模块 + esbuild，不需要浏览器也不需要真机。
+      - name: WebDAV / sync tests
+        run: pnpm test:webdav
+
+      # 三端平台接缝的类型检查（_impls.ts 会强制三份实现都满足同一个 Platform 接口）
+      - name: Typecheck all platform targets
+        run: pnpm --filter 4enext-web typecheck
 
       # 数据管线：data/4e Wiki.htm → out/（含分类 JSON、搜索索引、反向关系）
       - name: Build data pipeline

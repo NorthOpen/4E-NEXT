@@ -527,7 +527,7 @@ function Shell() {
       <nav className="side-bar">
         <div className="app-brand">
           <div className="app-logo" title="4E NEXT"><Logo /></div>
-          <div className="rail-version">v{__APP_VERSION__}B</div>
+          <div className="rail-version">v{__APP_VERSION__}</div>
         </div>
         {/* 只有这一块滚动：品牌区留在 .rail-scroll 外面，所以不会被卷走 */}
         <div className="rail-scroll">

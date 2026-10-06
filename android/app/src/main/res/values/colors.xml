@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 品牌青色，取自 web/public/favicon.svg 的 fill（#00838f）。
+     与桌面版图标同源，保证启动画面到界面不跳色。 -->
+<resources>
+    <color name="brand_splash">#00838F</color>
+</resources>

@@ -260,6 +260,24 @@ platform.storage.onWriteError?.((message) => {
   recordFailure("(数据文件)", "other", "unavailable", 0, message);
 });
 
+/**
+ * 安卓端的数据落盘同样是异步的（原生侧防抖 400ms 才写盘），
+ * 与桌面端同理：写失败晚于 setItem 返回，必须有一个由原生**反向调用**的入口。
+ *
+ * 跨进程的推送方向和桌面端相反（桌面是 preload 订阅 ipcRenderer，这里是原生调用网页端），
+ * 所以走一个挂在 window 上的全局函数，由原生 evaluateJavascript 触发。
+ * 收口在这里而不是在 android.ts，是因为它复用上面同一条失败广播链路——
+ * 「磁盘写不进去」和「浏览器配额写满」对用户是同一件事，提示也该是同一条。
+ */
+export function registerNativeWriteErrorHook(): void {
+  if (typeof window === "undefined") return;
+  (window as unknown as { __4ENEXT_STORAGE_ERROR__?: (message: string) => void }).__4ENEXT_STORAGE_ERROR__ = (
+    message: string,
+  ) => {
+    recordFailure("(数据文件)", "other", "unavailable", 0, String(message ?? ""));
+  };
+}
+
 /** 订阅写入失败；返回取消订阅函数。 */
 export function subscribeStorageFailure(fn: FailureListener): () => void {
   failureListeners.add(fn);

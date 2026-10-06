@@ -1,8 +1,10 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App";
+import { platform } from "@platform";
 import { initRipple } from "./lib/ripple";
 import { initOverlayLock } from "./lib/overlayLock";
+import { registerNativeWriteErrorHook } from "./lib/storage";
 import "./styles.css";
 // 增补样式（私设页 v2、导出分组）独立成文件，避免整份覆盖 styles.css 时被一并丢失
 import "./styles.extra.css";
@@ -32,6 +34,36 @@ if (fontPreload) {
 
 initRipple();
 initOverlayLock();
+
+// 安卓端：原生写盘失败时的反向入口（详见 lib/storage.ts 里的说明）。
+// 三种平台都调用它没有副作用——网页端与桌面端根本不会有原生来调。
+registerNativeWriteErrorHook();
+
+// 安卓返回键：系统返回键在 WebView 里默认直接退出应用，
+// 而这套界面里所有浮层（底部卡片、选择器、私设编辑器、导引模式…）的关闭动作
+// 本来就统一挂在 Escape 上（见各处 keydown 监听）。
+// 于是这里把「原生返回键」翻译成一次合成的 Escape，复用同一批关闭逻辑，
+// 不为安卓单独造一套导航栈——那会变成第二个真相来源。
+// 桌面端与网页端不注册这个钩子，行为一个字节都不变。
+if (platform.kind === "android" && typeof window !== "undefined") {
+  window.__4ENEXT_ANDROID_BACK__ = () => {
+    try {
+      const event = new KeyboardEvent("keydown", {
+        key: "Escape",
+        code: "Escape",
+        keyCode: 27,
+        which: 27,
+        bubbles: true,
+        cancelable: true,
+      });
+      window.dispatchEvent(event);
+      return true;
+    } catch {
+      // 合成事件失败时返回 false，让原生侧退回「连按两次退出」的默认行为
+      return false;
+    }
+  };
+}
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

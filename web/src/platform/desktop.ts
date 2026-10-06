@@ -77,6 +77,8 @@ function toSaveResult(r: BridgeSaveResult): SaveResult {
 export const platform: Platform = {
   kind: "desktop",
   version: window.__4ENEXT_DESKTOP__?.version ?? "0.0.0",
+  // 请求由 Electron 主进程发出，不经过浏览器同源策略
+  nativeTransport: true,
 
   fonts: {
     // 衬线/无衬线两支字体都随渲染产物打包（desktop/assets/fonts/chiron.css），

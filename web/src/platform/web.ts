@@ -42,6 +42,8 @@ function storageUsage(): StorageUsageReport {
 export const platform: Platform = {
   kind: "web",
   version: __APP_VERSION__,
+  // 网页端走浏览器 fetch，受同源策略约束——所以界面上要提示用户去配服务端 CORS
+  nativeTransport: false,
 
   fonts: {
     // 无衬线体在网页端是第二张 CDN 样式表，由 ThemeProvider 按 fontMode 动态挂载/移除

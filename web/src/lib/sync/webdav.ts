@@ -96,16 +96,22 @@ async function dav(cfg: SyncConfig, url: string, method: string, init: DavInit =
     if ((e as Error).name === "AbortError") {
       throw new SyncError("network", "请求超时（" + TIMEOUT_MS / 1000 + " 秒）。服务器没有响应，请检查网络或地址。");
     }
-    // 桌面端的失败原因由主进程给出（超时 / 被授权闸门拒绝 / 地址问题），比这里的通用文案准确，
-    // 所以原样附在后面；网页端 fetch 抛的 TypeError 没有有效信息，不展示。
+    // 原生代发（桌面端 / 安卓端）的失败原因由原生侧给出（超时 / 被授权闸门拒绝 /
+    // 证书不受信任 / 地址问题），比这里的通用文案准确，所以原样附在后面；
+    // 网页端 fetch 抛的 TypeError 没有有效信息，不展示。
     const reason =
-      platform.kind === "desktop" && e instanceof Error && e.message ? "（原因：" + e.message + "）" : "";
+      platform.nativeTransport && e instanceof Error && e.message ? "（原因：" + e.message + "）" : "";
     throw new SyncError(
-      platform.kind === "desktop" ? "network" : "cors",
-      platform.kind === "desktop"
-        ? "无法连接服务器。桌面端不受浏览器跨域限制，所以更可能是：地址写错、服务器没有响应、端口/协议不对，或证书不被信任。地址：" + url + reason
+      platform.nativeTransport ? "network" : "cors",
+      platform.nativeTransport
+        ? "无法连接服务器。" +
+          (platform.kind === "android" ? "安卓端" : "桌面端") +
+          "的请求由原生代发、不受浏览器跨域限制，所以更可能是：地址写错、服务器没有响应、端口/协议不对，或证书不被信任。地址：" +
+          url +
+          reason
         : "无法连接服务器。可能是：（1）服务器未放行浏览器跨域请求（CORS 缺少 PUT/PROPFIND/MKCOL 与 Authorization 头）；" +
-          "（2）地址写错；（3）网络不可达。地址：" + url,
+          "（2）地址写错；（3）网络不可达。地址：" +
+          url,
     );
   } finally {
     clearTimeout(timer);
@@ -198,8 +204,9 @@ async function probeAuthedGet(cfg: SyncConfig, url: string): Promise<number | nu
 
 /** 跨域/网络失败后的分诊：说清到底是哪一环，而不是把三种可能一起抛给用户。 */
 async function diagnoseBlocked(cfg: SyncConfig, dir: string): Promise<never> {
-  // 桌面端没有跨域这回事：连不上就是真的连不上，别把 CORS 的排查建议甩给用户。
-  if (platform.kind === "desktop") {
+  // 原生代发（桌面端 / 安卓端）没有跨域这回事：连不上就是真的连不上，
+  // 别把 CORS 的排查建议甩给用户——那会把人往完全错误的方向引。
+  if (platform.nativeTransport) {
     if (!(await probeReachable(dir))) {
       throw new SyncError("network", "网络不通：地址可能拼错了，或服务器当前无法访问。地址：" + dir);
     }

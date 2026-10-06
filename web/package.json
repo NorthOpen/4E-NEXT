@@ -1,14 +1,15 @@
 {
   "name": "4enext-web",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "node scripts/copy-data.mjs && tsc --noEmit && vite build",
     "build:desktop": "node scripts/copy-data.mjs && tsc --noEmit && tsc -p tsconfig.desktop.json --noEmit && node scripts/build-desktop.mjs",
+    "build:android": "node scripts/copy-data.mjs && tsc --noEmit && tsc -p tsconfig.android.json --noEmit && node scripts/build-android.mjs",
     "preview": "vite preview",
-    "typecheck": "tsc --noEmit && tsc -p tsconfig.desktop.json --noEmit",
+    "typecheck": "tsc --noEmit && tsc -p tsconfig.desktop.json --noEmit && tsc -p tsconfig.android.json --noEmit",
     "copy-data": "node scripts/copy-data.mjs"
   },
   "dependencies": {

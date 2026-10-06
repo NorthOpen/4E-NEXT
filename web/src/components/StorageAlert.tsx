@@ -41,7 +41,9 @@ interface Alerted {
 /** 「现在该做什么」：按失败原因和数据类型给不同的下一步。 */
 function tipOf(f: StorageFailure): string {
   if (f.reason !== "quota") {
-    return platform.kind === "desktop"
+    // 原生代发的平台（桌面端 / 安卓端）数据写的是本地文件，失败原因在磁盘与权限，
+    // 跟"无痕模式""浏览器不允许保存数据"无关——别把浏览器那套建议给它们。
+    return platform.nativeTransport
       ? "先把当前人物卡导出成文件留底，再检查磁盘剩余空间，以及数据文件是否被其他程序占用。"
       : "先把当前人物卡导出成文件留底，再退出无痕模式，或在浏览器设置里允许本站保存数据。";
   }
@@ -102,7 +104,7 @@ export default function StorageAlert(props: {
       <SheetDialog
         open
         headline="没有保存成功"
-        sub={quota ? "存储空间已满" : platform.kind === "desktop" ? "本地数据文件写入失败" : "浏览器不允许保存数据"}
+        sub={quota ? "存储空间已满" : platform.nativeTransport ? "本地数据文件写入失败" : "浏览器不允许保存数据"}
         headColor="var(--md-sys-color-error-container)"
         headFg="var(--md-sys-color-on-error-container)"
         extraClass="sheet-dialog-store"

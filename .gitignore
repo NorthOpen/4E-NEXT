@@ -35,6 +35,22 @@ desktop/assets/fonts/
 # 桌面端派生产物（由 web 构建生成，不入库）
 desktop/renderer/
 desktop/release/
+# 冒烟自检报告（每次 `npm --prefix desktop run smoke` 都会重新生成）
+desktop/smoke-report.txt
+
+# 安卓端派生产物
+android/app/src/main/assets/www/
+android/.gradle/
+android/build/
+android/app/build/
+# 打包产物（安装包由 GitHub Release 分发，不入库——与 desktop/release/ 同理）
+android/release/
+# 本机 SDK 路径，每台机器不一样
+android/local.properties
+# 签名密钥与凭据：**绝不能入库**。丢了就无法为同一 applicationId 发更新
+*.jks
+*.keystore
+keystore.properties
 # 开发用说明文档：仅本地保留、不入库（维护者要求移除）
 /私设模块.md
 /私设编辑器设计.md
@@ -44,3 +60,9 @@ desktop/release/
 /怪物数据管线.md
 # 导引模式的步骤底稿：与维护者逐条对文案用的本地文档，不入库
 /导引模式步骤.md
+# 安卓版技术路径：与维护者讨论技术选型的过程稿（含待拍板事项），不入库
+/安卓版技术路径.md
+# 安卓实现文档：验证记录与签名操作指南，属本地维护文档，不入库
+# （android/README.md 是对外的技术说明，仍然入库）
+/android/VERIFICATION.md
+/android/SIGNING.md

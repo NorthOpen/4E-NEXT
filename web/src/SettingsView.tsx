@@ -255,7 +255,7 @@ export default function SettingsView({ layout, onStartTutorial, onStartGuide }: 
         </div>
         <div className="settings-row">
           <span className="field-label">当前版本</span>
-          <span className="label">{__APP_VERSION__}B</span>
+          <span className="label">{__APP_VERSION__}</span>
         </div>
       </section>
 

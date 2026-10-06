@@ -50,10 +50,24 @@ export interface PlatformStorage {
   keys(): string[];
   usage(): StorageUsageReport;
   /**
-   * 异步写入失败通知（桌面端写盘失败时才会用到；网页端没有这种失败形态）。
-   * 返回取消订阅函数。
+   * 异步写入失败通知。
+   *
+   * 为什么需要它：绑定了本地文件的平台（桌面端、安卓端）写盘是异步的，
+   * 失败发生在 `setItem` 返回**之后**——不接这条通道就会静默丢数据。
+   * 网页端没有这种失败形态，所以可选。
+   *
+   * 返回值是 `void` 而不是取消订阅函数：真实实现里没有任何一处需要取消订阅
+   * （订阅者是模块级的单例，生命周期与页面相同），消费端也从不使用返回值。
+   * 这里刻意不为一个没人用的能力保留签名——早先写成返回取消函数，
+   * 结果三份实现全都对不上，反而掩盖了「安卓端根本不用这个回调」这件事。
+   *
+   * 安卓端**不实现它**：那边的推送方向是反的——原生侧写盘失败时
+   * 反向调用网页端注册的 `window.__4ENEXT_STORAGE_ERROR__`
+   * （注册见 lib/storage.ts 的 registerNativeWriteErrorHook，
+   * 触发见 android/.../NativeStore.kt 的 broadcastWriteError）。
+   * 两条路径最终汇入同一条失败广播链路，用户看到的是同一种提示。
    */
-  onWriteError?(cb: (message: string) => void): () => void;
+  onWriteError?(cb: (message: string) => void): void;
   /** 存储位置的用户可读描述，用于设置页文案 */
   readonly label: string;
   /**
@@ -90,10 +104,24 @@ export interface PlatformFonts {
 }
 
 export interface Platform {
-  /** "web" = 浏览器；"desktop" = Electron 外壳 */
-  readonly kind: "web" | "desktop";
+  /** "web" = 浏览器；"desktop" = Electron 外壳；"android" = 安卓 WebView 壳 */
+  readonly kind: "web" | "desktop" | "android";
   /** 应用版本号（与 __APP_VERSION__ 同源） */
   readonly version: string;
+  /**
+   * 这个平台的 HTTP 请求是否**不经过浏览器同源策略**。
+   *
+   * true = 由原生侧代发（桌面端 Electron 主进程 / 安卓端 OkHttp）；
+   * false = 走浏览器的 `fetch`，受 CORS 约束。
+   *
+   * 存在的理由：界面上有多处文案要区分「连不上」的原因。
+   * 浏览器里连不上，最常见的原因是服务端没放行跨域，所以要提示去配 CORS；
+   * 而原生代发根本没有跨域这回事——再说 CORS 就是把用户往错方向引。
+   *
+   * 这比到处写 `kind === "desktop"` 更准确：那个写法在加入安卓端之后
+   * 会把安卓用户也当成浏览器用户，给出错误的排查建议。
+   */
+  readonly nativeTransport: boolean;
   readonly storage: PlatformStorage;
   readonly files: PlatformFiles;
   readonly fonts: PlatformFonts;

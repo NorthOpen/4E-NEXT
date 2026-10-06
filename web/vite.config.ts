@@ -37,13 +37,15 @@ const WIKI_DATA_AT = generatedAtOf("../out/canonical/_meta.json") || generatedAt
 /** 4e 万律数据（万律书单文件 TW5 词条化产物）的录入时间；万律没有 canonical 层，直接取产物自己的戳。 */
 const RULES_DATA_AT = generatedAtOf("public/data/rules.json");
 
-// 构建目标：web（默认，部署到网页端） / desktop（Electron 外壳内嵌）
+// 构建目标：web（默认，部署到网页端） / desktop（Electron 外壳内嵌） / android（安卓 WebView 壳内嵌）
 //
-// 两者共用同一份源码，只在「平台接缝」处换实现（见 src/platform/）：
+// 三者共用同一份源码，只在「平台接缝」处换实现（见 src/platform/）：
 //   BUILD_TARGET=desktop 时 "@platform" 指向 src/platform/desktop.ts，
-//   于是桌面包体里不含任何 localStorage / a[download] / fetch 的 CORS 代码，
-//   网页包体里也不会含任何 IPC 代码。这是「桌面端不影响网页端」的结构保证。
-const isDesktop = process.env.BUILD_TARGET === "desktop";
+//   BUILD_TARGET=android 时指向 src/platform/android.ts，
+//   于是各自的包体里不含另外两个平台的代码。这是「一个平台不影响另一个」的结构保证。
+const buildTarget = process.env.BUILD_TARGET ?? "web";
+const isDesktop = buildTarget === "desktop";
+const isAndroid = buildTarget === "android";
 
 /**
  * 内容安全策略（网页端）。
@@ -93,36 +95,53 @@ function cspMeta(): Plugin {
 
 const desktopAssetsDir = resolve(here, "../desktop/assets");
 const desktopRendererDir = resolve(here, "../desktop/renderer");
+const androidAssetsDir = resolve(here, "../android/app/src/main/assets/www");
 const fontsCss = resolve(desktopAssetsDir, "fonts", "chiron.css");
 // 内置字体是否就绪（由 desktop/scripts/fetch-fonts.mjs 生成）。没就绪就退回 CDN，不让构建直接失败。
-const bundledFonts = isDesktop && existsSync(fontsCss);
+// 安卓端复用同一份字体：桌面端已经抓好并校验过，没必要再抓一遍（64.7MB）。
+const bundledFonts = (isDesktop || isAndroid) && existsSync(fontsCss);
 
 /**
- * 桌面端专属构建步骤：
+ * 「离线壳」专属构建步骤（桌面端与安卓端共用同一套逻辑）：
  *   ① 把 index.html 里的字体 CDN 链接换成内置字体样式表；
- *   ② 把 desktop/assets（内置字体）复制进渲染产物。
+ *   ② 把 desktop/assets（内置字体）复制进产物目录。
  * 网页端不挂这个插件，index.html 与产物一个字节都不动。
+ *
+ * 两端的差异只有三处，都由参数给出：产物目录、日志前缀、是否需要 viewport-fit=cover。
  */
-function desktopAssets(): Plugin {
+function shellAssets(opts: { label: string; outDir: string; fetchFontsHint: string; viewportCover: boolean }): Plugin {
   return {
-    name: "4enext-desktop-assets",
+    name: "4enext-" + opts.label + "-assets",
     apply: "build",
     // order: "post" —— 必须排在 cspMeta 之后，才能把它注入的 meta 摘掉。
     // 桌面端的 CSP 改由 app:// 协议的响应头下发（desktop/main/main.js），那边要额外放行 app: 协议。
+    // 安卓端由 WebView 加载本地资源，同样拿不到自定义响应头，改由 index.html 的 meta 兜住——
+    // 所以安卓**保留** cspMeta 注入的那条 meta，只有桌面端摘掉。
     transformIndexHtml: {
       order: "post",
       handler(html: string) {
-        const withoutCsp = html
-          .split("\n")
-          .filter((line) => !line.includes('http-equiv="Content-Security-Policy"'))
-          .join("\n");
-        if (!bundledFonts) {
-          console.warn("[desktop] 未找到内置字体：" + fontsCss);
-          console.warn("[desktop] 保留字体 CDN 链接（离线首次启动会回退系统字体）。");
-          console.warn("[desktop] 需要离线可用请先执行：node desktop/scripts/fetch-fonts.mjs");
-          return withoutCsp;
+        let out = html;
+        if (isDesktop) {
+          out = out
+            .split("\n")
+            .filter((line) => !line.includes('http-equiv="Content-Security-Policy"'))
+            .join("\n");
         }
-        const kept = withoutCsp
+        if (opts.viewportCover) {
+          // 刘海屏/手势条：让页面铺满整屏，再由 CSS 的 env(safe-area-inset-*) 自己避让。
+          // 不给 viewport-fit=cover 的话，安全区 inset 恒为 0，内容会被刘海压住。
+          out = out.replace(
+            /<meta\s+name="viewport"[^>]*>/i,
+            '<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />',
+          );
+        }
+        if (!bundledFonts) {
+          console.warn("[" + opts.label + "] 未找到内置字体：" + fontsCss);
+          console.warn("[" + opts.label + "] 保留字体 CDN 链接（离线首次启动会回退系统字体）。");
+          console.warn("[" + opts.label + "] 需要离线可用请先执行：" + opts.fetchFontsHint);
+          return out;
+        }
+        const kept = out
           .split("\n")
           .filter((line) => !line.includes("fontsapi.zeoseven.com"))
           .join("\n");
@@ -131,33 +150,60 @@ function desktopAssets(): Plugin {
     },
     closeBundle() {
       // _headers 是给 Netlify / Cloudflare Pages 用的响应头配置，来自 web/public。
-      // 网页端部署需要它，Electron 里它只是一个没人读的孤儿文件。
-      rmSync(join(desktopRendererDir, "_headers"), { force: true });
+      // 装进壳里它只是一个没人读的孤儿文件。
+      rmSync(join(opts.outDir, "_headers"), { force: true });
       if (!existsSync(desktopAssetsDir)) return;
-      cpSync(desktopAssetsDir, desktopRendererDir, { recursive: true });
+      cpSync(desktopAssetsDir, opts.outDir, { recursive: true });
     },
   };
 }
 
+const desktopAssets = () =>
+  shellAssets({
+    label: "desktop",
+    outDir: desktopRendererDir,
+    fetchFontsHint: "node desktop/scripts/fetch-fonts.mjs",
+    viewportCover: false,
+  });
+
+const androidAssets = () =>
+  shellAssets({
+    label: "android",
+    outDir: androidAssetsDir,
+    fetchFontsHint: "npm --prefix desktop run fetch-fonts",
+    viewportCover: true,
+  });
+
 export default defineConfig(({ command }) => ({
-  plugins: isDesktop ? [react(), cspMeta(), desktopAssets()] : [react(), cspMeta()],
+  plugins: isDesktop
+    ? [react(), cspMeta(), desktopAssets()]
+    : isAndroid
+      ? [react(), cspMeta(), androidAssets()]
+      : [react(), cspMeta()],
   server: { port: 5173 },
   // 仅构建产物使用相对路径（可双击打开 dist/index.html、兼容子路径部署）；dev 保持绝对路径避免白屏
   base: command === "build" ? "./" : "/",
   resolve: {
     alias: {
-      "@platform": resolve(here, isDesktop ? "src/platform/desktop.ts" : "src/platform/index.ts"),
+      "@platform": resolve(
+        here,
+        isDesktop ? "src/platform/desktop.ts" : isAndroid ? "src/platform/android.ts" : "src/platform/index.ts",
+      ),
     },
   },
   build: {
-    // 桌面端产物直接落到外壳目录，网页端 dist/ 一个字节都不动
-    outDir: isDesktop ? desktopRendererDir : resolve(here, "dist"),
+    // 桌面端/安卓端产物直接落到各自的外壳目录，网页端 dist/ 一个字节都不动
+    outDir: isDesktop ? desktopRendererDir : isAndroid ? androidAssetsDir : resolve(here, "dist"),
     emptyOutDir: true,
   },
   define: {
     __APP_VERSION__: JSON.stringify(pkg.version),
-    // 桌面端用来判断「字体是否已内置」：内置则不再动态插入字体 CDN 链接
+    // 下面两个「字体是否已内置」的常量必须**在三种构建里都定义**：
+    // src/platform/_impls.ts 会把三份实现都 import 进来做类型校验，
+    // 只在单一目标下 define 的话，另外两种构建会在求值时报 ReferenceError。
+    // 取值本身只对各自的壳有意义（网页端恒为 false）。
     __DESKTOP_FONTS_BUNDLED__: JSON.stringify(bundledFonts),
+    __ANDROID_FONTS_BUNDLED__: JSON.stringify(bundledFonts),
     // 设置页「致谢」展示的数据录入日期（见上面的 dataGeneratedAt）
     __DATA_WIKI_AT__: JSON.stringify(WIKI_DATA_AT),
     __DATA_RULES_AT__: JSON.stringify(RULES_DATA_AT),

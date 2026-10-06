@@ -1,18 +1,26 @@
 // 创建 GitHub Release（不依赖 gh CLI）。
 //
-// 用法：
+// 用法（桌面版）：
 //   GITHUB_TOKEN=xxx node desktop/scripts/create-release.mjs \
-//     --tag "4E-NEXT-Desktop-V0.2.3B-beta.4" \
-//     --title "4E NEXT 桌面版 0.2.3-beta.4（测试版）" \
-//     --notes-file desktop/RELEASE-NOTES.md \
-//     --prerelease
+//     --tag "4E-NEXT-Desktop-V0.3.4" \
+//     --title "4E NEXT 0.3.4（首个正式版）" \
+//     --notes-file desktop/RELEASE-NOTES.md
+//
+// 用法（安卓版；同一个脚本靠 --release-dir 换附件目录）：
+//   GITHUB_TOKEN=xxx node desktop/scripts/create-release.mjs \
+//     --release-dir android/release \
+//     --tag "4E-NEXT-Android-V0.3.4" \
+//     --title "4E NEXT 安卓版 0.3.4" \
+//     --notes-file android/RELEASE-NOTES.md
+//
+// 正式版不加 --prerelease；beta 才需要（beta 若被标成 Latest 会顶掉 stable 的默认下载）。
 //
 // token 从环境变量 GITHUB_TOKEN 或 GH_TOKEN 读，绝不出现在命令行里。
 // 需要 repo 权限（classic PAT 的 repo scope，或 fine-grained 的 Contents: Read and write）。
 
 import { readFileSync, statSync, existsSync, readdirSync } from "node:fs";
 import { execFileSync } from "node:child_process";
-import { basename, dirname, join } from "node:path";
+import { basename, dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const argv = process.argv.slice(2);
@@ -55,12 +63,22 @@ const dryRun = has("dry-run");
 // 附件默认自动发现 desktop/release/ 里的安装包、便携版 zip 与校验和。
 // 刻意不按 tag 拼文件名：tag 命名（4E-NEXT-Desktop-V0.2.3B-beta.4）与产物命名
 // （4E-NEXT-0.2.3-beta.4-...）本来就不是一回事，拼出来的路径对不上。
-const releaseDir = join(dirname(fileURLToPath(import.meta.url)), "..", "release");
+//
+// --release-dir 可以把「找附件」的目录换掉，安卓端就靠这个复用同一个脚本：
+//   node desktop/scripts/create-release.mjs --release-dir android/release --tag ...
+// 之所以不把脚本挪到公共位置：它最初是为桌面端写的，桌面端的发布流程已经在用它，
+// 挪动只会让文档里的路径全部失效。加一个参数是更小的改动。
+const repoRoot = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
+const releaseDir = (() => {
+  const custom = flag("release-dir", null);
+  return custom ? resolve(repoRoot, custom) : join(repoRoot, "desktop", "release");
+})();
 
+/** 不同平台的附件扩展名不一样：桌面是 exe/zip，安卓是 apk。 */
 function discoverAssets() {
   if (!existsSync(releaseDir)) return [];
   const out = readdirSync(releaseDir)
-    .filter((n) => /\.(exe|zip)$/i.test(n) && !/blockmap/i.test(n))
+    .filter((n) => /\.(exe|zip|apk)$/i.test(n) && !/blockmap/i.test(n))
     .sort()
     .map((n) => join(releaseDir, n));
   const sums = join(releaseDir, "SHA256SUMS.txt");
@@ -75,7 +93,11 @@ const assets = skipUpload
   ? []
   : (flag("assets", null) ? flag("assets").split(",") : discoverAssets()).map((p) => p.trim());
 if (!skipUpload && assets.length === 0) {
-  console.error("[release] 没有找到任何附件。先执行 pack:portable 与 dist，或用 --assets 显式指定。");
+  console.error("[release] 没有找到任何附件。");
+  console.error("[release]   找的是：" + releaseDir);
+  console.error("[release]   桌面版先执行：npm --prefix desktop run dist && npm --prefix desktop run pack:portable");
+  console.error("[release]   安卓版先执行：pnpm release:android");
+  console.error("[release]   也可以用 --assets 显式指定文件。");
   process.exit(1);
 }
 

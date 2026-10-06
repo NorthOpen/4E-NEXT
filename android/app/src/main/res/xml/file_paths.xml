@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- FileProvider 可分享的目录。只用应用私有的 cache/exports，不碰外部存储。 -->
+<paths>
+    <cache-path name="exports" path="exports/" />
+    <files-path name="files" path="shared/" />
+</paths>

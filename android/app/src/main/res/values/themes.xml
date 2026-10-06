@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  主题只做三件事，其余交给网页端自己的 MD3 样式：
+    1. 启动窗口（splash）用品牌青色底，避免冷启动闪白；
+    2. 状态栏/导航栏透明，让 WebView 自己画到边（安全区由 CSS 的 env(safe-area-inset-*) 处理）；
+    3. 关闭 ActionBar —— 界面完全由网页端渲染。
+-->
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Theme.A4Enext" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowBackground">@color/brand_splash</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:enforceStatusBarContrast" tools:targetApi="29">false</item>
+        <item name="android:enforceNavigationBarContrast" tools:targetApi="29">false</item>
+    </style>
+</resources>

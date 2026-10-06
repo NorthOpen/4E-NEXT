@@ -1,6 +1,6 @@
 {
   "name": "4enext",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "private": true,
   "packageManager": "pnpm@11.21.0",
   "type": "module",
@@ -19,7 +19,10 @@
     "sync": "tsc && node dist/cli.js sync",
     "commit": "tsc && node dist/cli.js commit",
     "pipeline": "tsc && node dist/cli.js all",
-    "verify:workspace": "node scripts/verify-workspace.mjs"
+    "verify:workspace": "node scripts/verify-workspace.mjs",
+    "test:webdav": "node --test android/scripts/webdav-contract.test.mjs android/scripts/sync-transport.test.mjs",
+    "release:android": "node android/scripts/make-release.mjs",
+    "smoke:android": "node android/scripts/smoke.mjs"
   },
   "dependencies": {
     "cheerio": "^1.0.0",

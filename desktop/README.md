@@ -153,6 +153,9 @@ npm --prefix desktop run pack:portable   # 免安装便携版（含 zip）
   export ELECTRON_MIRROR="https://npmmirror.com/mirrors/electron/"
   export ELECTRON_BUILDER_BINARIES_MIRROR="https://npmmirror.com/mirrors/electron-builder-binaries/"
   ```
+- **打包前必须先有 `.electron-cache/electron-v<版本>-win32-x64.zip`**。
+  `electron-builder.yml` 里的 `electronDist` 直接指向这个 zip，**不再让 electron-builder 自己去下运行时**。
+  没有就先跑 `npm --prefix desktop run fetch-electron`。原因见下面「运行时为什么不现下」。
 - **不要把 `ELECTRON_BUILDER_CACHE` 指向仓库内部**。仓库根 `package.json` 有 `"type": "module"`，
   缓存目录一旦落在仓库里，electron-builder 的 CJS 工具脚本（如图标转换）会被当成 ESM 解析而崩溃。
   默认位置（用户目录）没有这个问题。
@@ -160,6 +163,27 @@ npm --prefix desktop run pack:portable   # 免安装便携版（含 zip）
   在禁止命名管道的沙箱里会直接 `FATAL ... platform_channel.cc: Access denied` 退出；
   Vite 构建也需要 esbuild 以管道 stdio 启动服务进程，同样会被拒。
   这两件事都必须在正常（非受限）环境里做。
+
+### 运行时为什么不现下（踩过的坑）
+
+`electron-builder` 取 Electron 运行时压缩包（158MB）用的是**10 分钟请求超时**，失败还会重试 3 次。实测：
+
+| 来源 | 结果 |
+| --- | --- |
+| GitHub Releases 直连 | 卡到 `Timeout awaiting 'request' for 600000ms`，**连续两次构建都死在这** |
+| npmmirror 镜像 | 连得上，但被限速到 **0.08 MB/s**——158MB 要跑半个多小时，照样超时 |
+
+想改走「本地缓存 + 自带校验和」也不行：`electronDownload.cache` 与 `electronDownload.checksums`
+**这两个键在 `ElectronGetOptions` 里被 `Omit` 掉了，写了会被静默忽略**（排查了很久才发现）。
+
+最终用官方支持的 `electronDist`：直接指向 zip，解压到输出目录，**全程不发任何请求**。
+代价是它是个仓库内相对路径，重新克隆后要先 `fetch-electron`——这个依赖本来就是构建前置条件，
+所以不算新增负担。
+
+> `electronDist` 指 zip 时 `unpack()` 返回 `false`，即**不做 `cleanupAfterUnpack`**。
+> 图标不受影响：`updating asar integrity executable resource` 与 `signing with signtool.exe`
+> 两步照样会跑。实测产物的 `ProductName=4E NEXT` / `FileVersion=0.3.4`，
+> 且 sha256 与 `node_modules/electron/dist/electron.exe` 不同——资源确实被 rcedit 改写过。
 
 ## 打包产物
 
@@ -237,19 +261,21 @@ npm --prefix desktop run clean -- --all  # 连 renderer/ 一起清（需重新 b
 
 ## 发布流程
 
-以 0.2.3-beta.4 为例，tag 用 `4E-NEXT-Desktop-V0.2.3B-beta.4`。
+以 0.3.4 为例，tag 用 `4E-NEXT-Desktop-V0.3.4`。
+**正式版不再带 `B` 后缀、也不加 `--prerelease`**（发布号与 release 号从此一致）。
 
 ```bash
 # 1) 提交
 git add -A
-git commit -m "feat: V0.2.3B"
+git commit -m "feat: V0.3.4"
 
 # 2) 打 tag —— git 不允许 tag 名带空格，用连字符
-git tag -a "4E-NEXT-Desktop-V0.2.3B-beta.4" -m "4E NEXT 桌面版 0.2.3-beta.4（测试版）"
+git tag -a "4E-NEXT-Desktop-V0.3.4" -m "4E NEXT 0.3.4（首个正式版）"
 git push origin main
-git push origin "4E-NEXT-Desktop-V0.2.3B-beta.4"
+git push origin "4E-NEXT-Desktop-V0.3.4"
 
 # 3) 出包（产出安装程序、便携版 zip 与 SHA256SUMS.txt）
+npm --prefix desktop run fetch-electron     # 只需一次；electronDist 依赖这个 zip
 pnpm --filter 4enext-web build:desktop
 npm --prefix desktop run dist
 npm --prefix desktop run pack:portable
@@ -257,10 +283,9 @@ npm --prefix desktop run pack:portable
 # 4) 创建 Release 并上传附件（不依赖 gh CLI）
 export GITHUB_TOKEN=xxx        # classic PAT 的 repo scope 即可
 node desktop/scripts/create-release.mjs \
-  --tag "4E-NEXT-Desktop-V0.2.3B-beta.4" \
-  --title "4E NEXT 桌面版 0.2.3-beta.4（测试版）" \
-  --notes-file desktop/RELEASE-NOTES.md \
-  --prerelease
+  --tag "4E-NEXT-Desktop-V0.3.4" \
+  --title "4E NEXT 0.3.4（首个正式版）" \
+  --notes-file desktop/RELEASE-NOTES.md
 ```
 
 `create-release.mjs` 会自动发现 `desktop/release/` 下的 `*.exe` / `*.zip` 与 `SHA256SUMS.txt` 并上传，
@@ -276,23 +301,24 @@ node desktop/scripts/create-release.mjs --tag "<tag>" --assets "desktop/release/
 装了 `gh` 的话，等价写法：
 
 ```bash
-gh release create "4E-NEXT-Desktop-V0.2.3B-beta.4" \
-  --title "4E NEXT 桌面版 0.2.3-beta.4（测试版）" \
-  --notes-file desktop/RELEASE-NOTES.md --prerelease \
+gh release create "4E-NEXT-Desktop-V0.3.4" \
+  --title "4E NEXT 0.3.4（首个正式版）" \
+  --notes-file desktop/RELEASE-NOTES.md \
   desktop/release/*.exe desktop/release/*.zip desktop/release/SHA256SUMS.txt
 ```
 
 **几条踩过的坑**：
 
 - **tag 名不能带空格**，git 会直接拒绝（`is not a valid tag name`）。要可读就用连字符。
-- **务必带 `--prerelease`**：beta 若被标成 Latest，会顶掉 stable 版本的默认下载。
-- **只传 `setup.exe`、`portable.zip`、`SHA256SUMS.txt`**。`win-unpacked/` 是 432MB 的未打包目录，
+- **正式版不加 `--prerelease`**；带 `--prerelease` 的会是 beta，
+  而且 beta 一旦被标成 Latest，会顶掉 stable 版本的默认下载。
+- **只传 `setup.exe`、`portable.zip`、`SHA256SUMS.txt`**。`win-unpacked/` 是 440MB 的未打包目录，
   GitHub 单附件上限虽然够（2GB），但没有分发价值。
 - token 用 classic PAT 时 scope 选 `repo`；fine-grained token 需要 `Contents: Read and write`。
-- 附件文件名按版本号推导**不可靠**（tag 里是 `V0.2.3B-beta.4`，产物却是 `0.2.3-beta.4`），
+- 附件文件名按版本号推导**不可靠**（0.2.3B 那次 tag 里是 `V0.2.3B-beta.4`，产物却是 `0.2.3-beta.4`），
   所以脚本用目录扫描而不是拼字符串。
 
-## 已知限制（测试版）
+## 已知限制
 
 1. **只验证了 Windows x64**；外壳代码跨平台，但 macOS / Linux 未实测。
 2. 未做代码签名，首次运行会有 SmartScreen 提示。

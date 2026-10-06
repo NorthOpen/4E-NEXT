@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "paths": {
+      "@platform": ["./src/platform/android.ts"]
+    }
+  },
+  "include": ["src"]
+}

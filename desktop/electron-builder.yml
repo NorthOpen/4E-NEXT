@@ -8,6 +8,20 @@ directories:
   output: release
   buildResources: build
 
+# Electron 运行时不用 electron-builder 自己去下，直接用仓库根的 .electron-cache/ 里那个 zip。
+#
+# 为什么：electron-builder 取运行时压缩包（158MB）用的是 10 分钟请求超时，而且失败会重试 3 次。
+# 实测直连 GitHub Releases 卡到 "Timeout awaiting 'request' for 600000ms"（连续两次构建都死在这），
+# 换 npmmirror 虽然连得上，但被限速到 0.08 MB/s——158MB 要跑半个多小时，照样超时。
+# 更要命的是 electron-builder 不认 `electronDownload.cache` / `.checksums`
+# （这两个键在 ElectronGetOptions 里被 Omit 掉了，写了也是静默忽略），
+# 所以没法用「自带校验和 + 本地缓存」那条路。
+#
+# electronDist 指到 zip 是官方支持的形态（见 ElectronFramework.unpack 的 selectElectron）：
+# 直接把 zip 解到输出目录，不发任何请求，也不再重复解压一次。
+# zip 由 `npm --prefix desktop run fetch-electron` 抓取并校验 sha256 后落在这里，不进版本库。
+electronDist: ../.electron-cache/electron-v44.4.1-win32-x64.zip
+
 files:
   - main/**/*
   - preload/**/*

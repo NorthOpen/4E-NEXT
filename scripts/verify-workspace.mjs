@@ -1,9 +1,11 @@
-// 提交/构建前的自检：确认 desktop/ 没有被误加进 pnpm workspace。
+// 提交/构建前的自检：确认那些「不靠 pnpm 管」的目录没有被误加进 pnpm workspace。
 //
 // 背景（2026-09-16 真实事故）：desktop/ 依赖 electron 与 electron-builder。它一旦进入
 // pnpm-workspace.yaml，pnpm-lock.yaml 就必须同步更新；而 CI 跑的是
 // "pnpm install --frozen-lockfile"，锁文件与新的 workspace 成员对不上会直接
 // 以 ERR_PNPM_OUTDATED_LOCKFILE 失败——网页端部署整条挂掉，且报错埋在安装步骤里，不好定位。
+//
+// 同样的理由适用于 android/：它由 Gradle 构建，连 package.json 都没有。
 //
 // desktop 用自己目录下的 npm install（见 desktop/README.md）。
 //
@@ -36,15 +38,26 @@ const members = readFileSync(wsFile, "utf8")
 console.log("[verify-workspace] " + wsFile);
 console.log("[verify-workspace] workspace 成员：" + (members.length ? members.join(", ") : "(空)"));
 
-const forbidden = ["desktop"];
-const bad = members.filter((m) => forbidden.includes(m));
+/** 不能进 workspace 的目录 → 原因与正确做法。 */
+const forbidden = {
+  desktop:
+    "它依赖 electron（约 100MB 二进制），并会让 pnpm-lock.yaml 与 workspace 失去同步，\n" +
+    "  导致 CI 的 pnpm install --frozen-lockfile 以 ERR_PNPM_OUTDATED_LOCKFILE 失败。\n" +
+    "  desktop 请用自己目录下的 npm install，详见 desktop/README.md。",
+  android:
+    "它由 Gradle 构建，连 package.json 都没有，加进来只会让锁文件与 workspace 失去同步，\n" +
+    "  同样会让 CI 的 pnpm install --frozen-lockfile 失败。\n" +
+    "  android 请用 android/gradlew 构建，详见 android/README.md。",
+};
+
+const bad = members.filter((m) => Object.prototype.hasOwnProperty.call(forbidden, m));
 
 if (bad.length > 0) {
   console.error("");
-  console.error("[verify-workspace] 失败：" + bad.join(", ") + " 被加进了 pnpm workspace。");
-  console.error("  它依赖 electron（约 100MB 二进制），并会让 pnpm-lock.yaml 与 workspace 失去同步，");
-  console.error("  导致 CI 的 pnpm install --frozen-lockfile 以 ERR_PNPM_OUTDATED_LOCKFILE 失败，");
-  console.error("  网页端部署会整条挂掉。desktop 请用自己目录下的 npm install，详见 desktop/README.md。");
+  for (const name of bad) {
+    console.error("[verify-workspace] 失败：" + name + " 被加进了 pnpm workspace。");
+    console.error("  " + forbidden[name]);
+  }
   process.exit(1);
 }
 
