@@ -5,8 +5,10 @@ import OverviewView from "./OverviewView";
 import CharacterSheet from "./sheet/CharacterSheet";
 import SavePanel from "./components/SavePanel";
 import DrawDialog from "./sheet/DrawDialog";
-import { Divider, FilledButton, FilledTonalButton, OutlinedButton, TextButton } from "./components/md";
+import { Divider, FilledButton, FilledTonalButton, IconButton, OutlinedButton, TextButton } from "./components/md";
+import { platform } from "@platform";
 import { panelMeta } from "./lib/sheetLayout";
+import { useIsMobile } from "./lib/media";
 import { GUIDE_CHAPTER_LABEL, guideLockedPickers, guideTaskDone, type GuideStep } from "./lib/guide";
 import type { Character } from "./sheet/character";
 import type { ExportFormat } from "./lib/exportImage";
@@ -386,7 +388,14 @@ export default function GuideView(props: Props) {
 /**
  * 导引悬浮条：离开导引页之后（去背景页、速览页、存档面板……）依然能看到进度，
  * 并一键跳回导引。这是「分布在不同页面上的导引」不迷路的保险。
+ *
+ * 收起态：完整条在手机上横向铺满、约 100px 高，会长期压住页面底部的内容，
+ * 而它多数时候只是「进度指示」——所以给一个收起态：一只约 40px 高的小胶囊，
+ * 只留「导引 + 第几步」，点它展开。手机端默认收起（正是屏幕最紧的地方），
+ * 桌面端默认展开；用户切换过就按用户的来，记在本地存储里。
  */
+const GUIDE_FLOAT_FOLD_KEY = "4enext-guide-float-folded";
+
 export function GuideFloatingBar(props: {
   steps: GuideStep[];
   index: number;
@@ -394,9 +403,40 @@ export function GuideFloatingBar(props: {
   onEnd: () => void;
 }) {
   const { steps, index, onOpen, onEnd } = props;
+  const isMobile = useIsMobile();
+  const [folded, setFolded] = useState<boolean>(() => {
+    try {
+      const saved = platform.storage.getItem(GUIDE_FLOAT_FOLD_KEY);
+      if (saved === "1") return true;
+      if (saved === "0") return false;
+    } catch { /* 读不到就按默认走 */ }
+    return isMobile;
+  });
+  const toggleFold = () => {
+    setFolded((prev) => {
+      try { platform.storage.setItem(GUIDE_FLOAT_FOLD_KEY, prev ? "0" : "1"); } catch { /* 存不下不影响本次收起 */ }
+      return !prev;
+    });
+  };
   const safeIndex = Math.min(Math.max(0, index), Math.max(0, steps.length - 1));
   const step = steps[safeIndex];
   if (!step) return null;
+
+  if (folded) {
+    return (
+      <button
+        type="button"
+        className="guide-float guide-float-folded"
+        onClick={toggleFold}
+        title="展开导引进度条"
+        aria-expanded={false}
+      >
+        <span className="material-symbols-outlined guide-float-ic">route</span>
+        <span className="guide-float-count">{safeIndex + 1}/{steps.length}</span>
+      </button>
+    );
+  }
+
   return (
     <div className="guide-float" role="status">
       <span className="material-symbols-outlined guide-float-ic">route</span>
@@ -414,6 +454,10 @@ export function GuideFloatingBar(props: {
       <div className="guide-float-actions">
         <FilledTonalButton onClick={onOpen}>回到导引</FilledTonalButton>
         <TextButton onClick={onEnd}>结束导引</TextButton>
+        {/* 收起：向下收走，与底部的几何位置一致（展开时朝上，见收起态那颗胶囊的说明） */}
+        <IconButton className="guide-float-fold" aria-label="收起导引进度条" aria-expanded onClick={toggleFold}>
+          <span className="material-symbols-outlined">expand_more</span>
+        </IconButton>
       </div>
     </div>
   );

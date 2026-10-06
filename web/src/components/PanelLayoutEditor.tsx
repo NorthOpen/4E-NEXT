@@ -1,11 +1,16 @@
 // 设置页「自定义人物板块」：拖动调整板块在车卡页的先后与所在栏位
 //
-// 交互：HTML5 拖放（按住板块行拖到目标位置），另配 ↑ ↓ ← → 按钮做精细调整——
-// 触屏拖放不可靠，按钮同时也是键盘用户的操作入口。
+// 交互分两套输入设备：
+//   · 鼠标 —— HTML5 拖放（按住板块行拖到目标位置）；
+//   · 手指 —— 触屏不派发 drag 事件，按住拖动只会滚动页面，所以另走一条指针事件路径：
+//             按住约 0.26 秒「拿起」板块，之后跟着手指走，松手落到当时指向的行 / 栏位。
+//             拿起之前一律让页面正常滚动，拿起之后才挡掉滚动（见 blockScroll）。
+// 两套之外都配 ↑ ↓ ← → 按钮做精细调整，也是键盘用户的操作入口。
 // 面板宽度只占设置页一栏，因此双栏用「顶部区 + 左右两栏」三段式预览来对应车卡页的实际版面。
 
-import { useState, type DragEvent } from "react";
+import { useRef, useState, type DragEvent, type PointerEvent as ReactPointerEvent } from "react";
 import { TextButton } from "./md";
+import { useNoHover } from "../lib/media";
 import {
   DOUBLE_ZONES,
   moveSheetPanel,
@@ -23,6 +28,11 @@ import {
 
 type Mode = "single" | "double";
 
+/** 触屏上按住多久算「拿起」：比长按菜单短得多，拿起要跟手； */
+/** 移动超过这个距离（px）则判定为滚动，放弃拿起。 */
+const TOUCH_LIFT_MS = 260;
+const TOUCH_SLOP = 10;
+
 const SLOT_LABEL: Record<SheetLayoutSlot, string> = {
   single: "单栏",
   top: "顶部区",
@@ -38,6 +48,7 @@ const SLOT_HINT: Partial<Record<SheetLayoutSlot, string>> = {
 
 export default function PanelLayoutEditor({ defaultMode = "double" }: { defaultMode?: Mode }) {
   const cfg = useSheetLayout();
+  const touch = useNoHover();
   const [mode, setMode] = useState<Mode>(defaultMode);
   const [dragId, setDragId] = useState<SheetPanelId | null>(null);
   const [overSlot, setOverSlot] = useState<SheetLayoutSlot | null>(null);
@@ -49,6 +60,99 @@ export default function PanelLayoutEditor({ defaultMode = "double" }: { defaultM
   function clearDrag() {
     setDragId(null);
     setOverSlot(null);
+    setOverId(null);
+  }
+
+  // ===== 触屏拖动（指针事件）=====
+  // 指针捕获会把后续事件全部送到起始行，所以落点要用 elementsFromPoint 现问，
+  // 并从命中栈里挑出第一个「不是自己」的板块行。
+  const touchDrag = useRef<{
+    id: SheetPanelId;
+    sx: number;
+    sy: number;
+    lifted: boolean;
+    timer: number | undefined;
+    after: boolean;
+    target: { slot: SheetLayoutSlot; id: SheetPanelId | null } | null;
+  } | null>(null);
+  // 拿起过之后紧跟的那次 click 是手势余波，别让它落到别的按钮上
+  const swallowClick = useRef(false);
+
+  const blockScroll = (ev: TouchEvent) => ev.preventDefault();
+
+  function endTouchDrag(commit: boolean) {
+    const d = touchDrag.current;
+    if (!d) return;
+    if (d.timer !== undefined) window.clearTimeout(d.timer);
+    if (d.lifted) {
+      window.removeEventListener("touchmove", blockScroll);
+      if (commit && d.target) {
+        const { slot, id } = d.target;
+        if (id !== d.id && canDrop(d.id, slot)) setSheetLayout(moveSheetPanel(cfg, d.id, slot, id, d.after));
+      }
+    }
+    touchDrag.current = null;
+    clearDrag();
+  }
+
+  function rowPointerDown(e: ReactPointerEvent<HTMLDivElement>, id: SheetPanelId, slot: SheetLayoutSlot) {
+    if (e.pointerType === "mouse") return;      // 鼠标留给 HTML5 拖放
+    if (e.button !== 0) return;
+    // 行尾那几颗按钮各有各的动作，别把它们变成拖动起点（指针捕获会把 click 也带走）
+    if ((e.target as HTMLElement).closest("button")) return;
+    // 指针已经抬起等极端情形下 setPointerCapture 会抛 InvalidStateError；
+    // 捕获失败只是拿不到后续 move，不该让整个编辑器崩掉。
+    try {
+      e.currentTarget.setPointerCapture(e.pointerId);
+    } catch { /* 拿不到捕获就退化成「按住后不再响应移动」 */ }
+    touchDrag.current = {
+      id, sx: e.clientX, sy: e.clientY, lifted: false, after: false, target: null,
+      timer: window.setTimeout(() => {
+        const d = touchDrag.current;
+        if (!d) return;
+        d.lifted = true;
+        setDragId(d.id);
+        setOverSlot(slot);
+        // 拿起之后必须挡掉 touchmove，否则手指一动页面就跟着滚、板块原地不动。
+        // 必须是非被动监听：被动监听里 preventDefault 无效。
+        window.addEventListener("touchmove", blockScroll, { passive: false });
+        navigator.vibrate?.(8);
+      }, TOUCH_LIFT_MS),
+    };
+  }
+
+  function rowPointerMove(e: ReactPointerEvent<HTMLDivElement>) {
+    const d = touchDrag.current;
+    if (!d) return;
+    if (!d.lifted) {
+      // 还没拿起就移动 = 用户想滚页面，直接放弃
+      if (Math.abs(e.clientX - d.sx) > TOUCH_SLOP || Math.abs(e.clientY - d.sy) > TOUCH_SLOP) endTouchDrag(false);
+      return;
+    }
+    const stack = document.elementsFromPoint(e.clientX, e.clientY);
+    const rowEl = stack.map((el) => el.closest<HTMLElement>("[data-ple-id]")).find((el) => el && el.dataset.pleId !== d.id) ?? null;
+    if (rowEl) {
+      const targetId = rowEl.dataset.pleId as SheetPanelId;
+      const targetSlot = rowEl.dataset.pleSlot as SheetLayoutSlot;
+      if (!canDrop(d.id, targetSlot)) return endTouchDrag(false);
+      const r = rowEl.getBoundingClientRect();
+      // 落在行的上半 → 插到它前面；下半 → 插到它后面（与鼠标拖放同一判据）
+      d.after = e.clientY > r.top + r.height / 2;
+      d.target = { slot: targetSlot, id: targetId };
+      setOverSlot(targetSlot);
+      setOverId(targetId);
+      return;
+    }
+    const zoneEl = stack.map((el) => el.closest<HTMLElement>("[data-ple-zone]")).find(Boolean) ?? null;
+    if (zoneEl) {
+      const targetSlot = zoneEl.dataset.pleZone as SheetLayoutSlot;
+      if (!canDrop(d.id, targetSlot)) return endTouchDrag(false);
+      d.target = { slot: targetSlot, id: null };
+      setOverSlot(targetSlot);
+      setOverId(null);
+      return;
+    }
+    d.target = null;
     setOverId(null);
   }
 
@@ -95,6 +199,9 @@ export default function PanelLayoutEditor({ defaultMode = "double" }: { defaultM
     return (
       <div
         key={id}
+        // 触屏拖动要靠这两个 data 属性反查落点（指针捕获后拿不到真实的 e.target）
+        data-ple-id={id}
+        data-ple-slot={slot}
         className={
           "ple-row" +
           (dragging ? " dragging" : "") +
@@ -129,6 +236,10 @@ export default function PanelLayoutEditor({ defaultMode = "double" }: { defaultM
           e.stopPropagation();
           move(dragId, slot, id, isAfter(e));
         }}
+        onPointerDown={(e) => rowPointerDown(e, id, slot)}
+        onPointerMove={rowPointerMove}
+        onPointerUp={() => { if (touchDrag.current?.lifted) swallowClick.current = true; endTouchDrag(true); }}
+        onPointerCancel={() => endTouchDrag(false)}
       >
         <span className="material-symbols-outlined ple-grip">drag_indicator</span>
         <span className="material-symbols-outlined ple-ic">{meta.icon}</span>
@@ -173,6 +284,7 @@ export default function PanelLayoutEditor({ defaultMode = "double" }: { defaultM
     return (
       <div
         key={slot}
+        data-ple-zone={slot}
         className={
           "ple-zone" +
           (slot === "single" ? " ple-zone-single" : "") +
@@ -197,7 +309,7 @@ export default function PanelLayoutEditor({ defaultMode = "double" }: { defaultM
           {SLOT_HINT[slot] && <span className="ple-zone-hint">{SLOT_HINT[slot]}</span>}
         </div>
         {list.length === 0 ? (
-          <div className="ple-empty">拖动板块到这里</div>
+          <div className="ple-empty">{touch ? "把板块放到这里" : "拖动板块到这里"}</div>
         ) : (
           list.map((id, i) => renderRow(id, slot, i, list.length))
         )}
@@ -223,7 +335,20 @@ export default function PanelLayoutEditor({ defaultMode = "double" }: { defaultM
         </div>
         <TextButton onClick={onReset}>恢复默认摆放</TextButton>
       </div>
-      <div className={"ple-board" + (mode === "double" ? " ple-board-double" : "")}>{slots.map(renderZone)}</div>
+      {/* 触屏上没法靠光标暗示「这一行能拖」，得把话说清楚 */}
+      {touch && <p className="ple-touch-hint">按住板块行约 0.3 秒拿起，拖到目标位置松手；行尾箭头可逐个微调。</p>}
+      <div
+        className={"ple-board" + (mode === "double" ? " ple-board-double" : "")}
+        // 触屏拖动的收尾 click 可能落到别的按钮上，这里拦一次（见 swallowClick）
+        onClickCapture={(e) => {
+          if (!swallowClick.current) return;
+          swallowClick.current = false;
+          e.preventDefault();
+          e.stopPropagation();
+        }}
+      >
+        {slots.map(renderZone)}
+      </div>
     </div>
   );
 }

@@ -7,6 +7,7 @@ import { loadMonsters, type MonsterBlock } from "./data/monsters";
 import EntryCard from "./sheet/EntryCard";
 import MonsterCard from "./components/MonsterCard";
 import { addMonster } from "./data/encounter";
+import { useIsMobile } from "./lib/media";
 
 const CAT_ORDER = [
   "race", "class", "paragon-path", "epic-destiny", "feat", "power", "equipment",
@@ -47,6 +48,9 @@ function monsterToEntry(m: MonsterBlock): Entry {
 }
 
 export default function SearchView() {
+  // 主持模式只在桌面开放（App 在手机端会把 appMode 退回玩家），遭遇面板也就只在桌面存在。
+  // 手机上这个按钮点了只会显示「已加入遭遇 ✓」，而那只怪物永远看不到 —— 干脆不显示。
+  const isMobile = useIsMobile();
   const [cat, setCat] = useState<string>("race");
   const [query, setQuery] = useState("");
   const [detail, setDetail] = useState<Entry | null>(null);
@@ -129,8 +133,9 @@ export default function SearchView() {
         </div>
         <div className="entry-detail">
           {/* 怪物数据本身就是一张完整卡片，直接用 MonsterCard，不再套 GenericCard 外壳。
-              详情上方给一个「加入遭遇」：检索与筛选在词条页做，选中后一步落到主持模式的遭遇面板。 */}
-          {detail && cat === MONSTER_CAT && (
+              详情上方给一个「加入遭遇」：检索与筛选在词条页做，选中后一步落到主持模式的遭遇面板。
+              只在桌面显示 —— 见组件顶部 isMobile 的说明。 */}
+          {detail && cat === MONSTER_CAT && !isMobile && (
             <div className="detail-actions">
               <FilledTonalButton
                 disabled={!blocks.has(detail.id)}

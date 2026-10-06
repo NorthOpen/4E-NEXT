@@ -40,7 +40,9 @@ export const List = createComponent({ tagName: "md-list", elementClass: MdList, 
 export const ListItem = createComponent({ tagName: "md-list-item", elementClass: MdListItem, react: React, events: { onClick: "click" } });
 export const Switch = createComponent({ tagName: "md-switch", elementClass: MdSwitch, react: React, events: { onChange: "change" } });
 export const Checkbox = createComponent({ tagName: "md-checkbox", elementClass: MdCheckbox, react: React, events: { onChange: "change" } });
-export const Dialog = createComponent({ tagName: "md-dialog", elementClass: MdDialog, react: React, events: { onOpen: "open", onClose: "close", onOpened: "opened", onClosed: "closed" } });
+// onCancel：点击遮罩 / 按 Esc 时先派发的可取消事件，preventDefault() 即可拦下这次关闭。
+// 底部卡片用它挡掉「长按浮出卡片时手指离开顺带补的那一次 click」造成的误关。
+export const Dialog = createComponent({ tagName: "md-dialog", elementClass: MdDialog, react: React, events: { onOpen: "open", onCancel: "cancel", onClose: "close", onOpened: "opened", onClosed: "closed" } });
 export const Divider = createComponent({ tagName: "md-divider", elementClass: MdDivider, react: React });
 export const Slider = createComponent({ tagName: "md-slider", elementClass: MdSlider, react: React, events: { onInput: "input", onChange: "change" } });
 // MD3 线性进度指示器：不确定进度（indeterminate）用于「AI 正在逐项生成」这类没有确定百分比的场景。

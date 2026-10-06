@@ -238,8 +238,7 @@ body {
 .slot-filled { position: relative; cursor: pointer; }
 /* 混职天赋选中的职业特性标签（详图模式，显示在专长卡下方） */
 .feat-choice-label { margin-top: 6px; padding: 4px 8px; font-size: 12px; font-weight: 600; color: var(--md-sys-color-primary); border-left: 3px solid var(--md-sys-color-primary); background: var(--md-sys-color-primary-container); border-radius: 4px; line-height: 1.4; }
-/* 详图专长卡悬浮：显示提及的威能与职业特性预览 */
-.slot-filled:hover .compact-pop { display: block; }
+/* 详图专长卡：卡本体已直接渲染全部内容，没有再挂悬停浮层 */
 /* 快速预览：提及威能 / 提及职业特性 */
 .feat-mentions { display: flex; flex-direction: column; gap: 12px; padding: 12px; }
 .feat-mentions .fm-group { display: flex; flex-direction: column; gap: 6px; }
@@ -2438,13 +2437,10 @@ html[data-font="serif"] {
   /* 设置页行内边距收窄 */
   .settings-row { flex-wrap: wrap; gap: 8px; }
 
-  /* 悬浮弹出层宽度更贴近视口 */
-  .hp-pop,
-  .wiki-ref-pop,
-  .cls-option-pop,
-  .cls-choice-power-pop,
-  .compact-pop,
-  .base-pop { width: min(400px, calc(100vw - 24px)); max-width: calc(100vw - 24px); }
+  /* 悬浮弹出层：手机端不再出现这些元素 —— SmartHover 在触屏上根本不渲染浮层，
+     而是把同一份内容交给 MD3 底部卡片（components/PreviewSheet.tsx，
+     判定见 lib/media 的 useSheetPopovers，触屏与 ≤768px 都算）。
+     所以这里不再需要给它们兜宽度；卡片自带 max-width: min(640px, 100%)。 */
 
   /* 亚种选择 / 增益区：手机端撑满整行 */
   .subrace-chooser,
@@ -2465,6 +2461,8 @@ html[data-font="serif"] {
 
 .ple { margin-top: 4px; }
 .ple-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
+/* 触屏上没法靠 cursor:grab 暗示「这一行能拖」，用一行文案代之（只在无悬停设备渲染） */
+.ple-touch-hint { margin: 0 0 8px; font-size: 12px; line-height: 1.6; color: var(--md-sys-color-on-surface-variant); }
 .ple-tabs { height: 32px; }
 .ple-tabs .md3-seg-btn { min-width: 56px; padding: 0 12px; font-size: 13px; }
 

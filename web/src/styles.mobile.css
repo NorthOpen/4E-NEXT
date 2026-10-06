@@ -95,6 +95,97 @@
   background: color-mix(in srgb, var(--md-sys-color-on-secondary-container) 12%, var(--md-sys-color-secondary-container));
 }
 
+/* ===== MD3 模态底部卡片（modal bottom sheet）：触屏上的预览层 =====
+   桌面端的预览浮层（.wiki-ref-pop / .cls-option-pop / .compact-pop 那一套）是绝对定位在
+   触发元素旁边的：触屏没有悬停，浮层还会被祖先的 overflow 裁掉、位置横向超出视口，
+   所以到触屏上整批换成底部卡片（组件见 components/PreviewSheet.tsx，由 SmartHover 触发）。
+
+   这里不加媒体查询：卡片只会在「手机版面 或 无悬停设备」时渲染（lib/media 的
+   useSheetPopovers），按类名生效比再写一遍断点更不容易和 JS 判断走岔。 */
+md-dialog.pop-sheet {
+  /* 贴底：md-dialog 的 host 与内部 <dialog> 都是 position: fixed + inset: 0，
+     下外边距归零、上外边距 auto，盒子就落到视口底部（左右仍由 auto 居中）。 */
+  margin: auto auto 0;
+  width: 100%;
+  /* 手机上就是整宽；平板取 640dp 上限，与 MD3 底部卡片规格一致 */
+  max-width: min(640px, 100%);
+  max-height: min(86dvh, 760px);
+  min-height: 0;
+  /* 上圆角 28dp，下方与屏幕齐平 */
+  border-radius: var(--md-sys-shape-corner-extra-large) var(--md-sys-shape-corner-extra-large) 0 0;
+  /* 卡片本身就是内容容器，沿用 md-dialog 的容器色（进/出场动画里的 ::before 也吃这个变量） */
+  --md-dialog-container-color: var(--md-sys-color-surface-container-high);
+}
+
+/* 卡头：只有一根抓手与一个关闭钮，不占用标题行 —— 预览内容自己带彩色卡头 */
+md-dialog.pop-sheet .pop-sheet-head {
+  position: relative;
+  display: block;
+  padding: 10px 8px 2px;
+  background: transparent;
+}
+.pop-sheet-grip {
+  display: block;
+  width: 32px; height: 4px;
+  margin: 0 auto;
+  border-radius: var(--md-sys-shape-corner-full);
+  background: var(--md-sys-color-on-surface-variant);
+  opacity: .4;
+}
+md-dialog.pop-sheet .pop-sheet-close {
+  position: absolute; right: 4px; top: 2px;
+  --md-icon-button-container-size: 40px;
+  --md-icon-button-icon-color: var(--md-sys-color-on-surface-variant);
+}
+
+/* 内容区：左右留白 + 底部让出 home indicator 安全区 */
+md-dialog.pop-sheet .pop-sheet-body {
+  padding: 8px 12px calc(16px + env(safe-area-inset-bottom, 0px));
+  min-width: 0;
+}
+md-dialog.pop-sheet .pop-sheet-body > * { width: 100%; box-sizing: border-box; min-width: 0; }
+
+/* 浮层类进到卡片里要「落地」：原来的 display:none / 绝对定位 / 定宽 / 阴影全部作废，
+   改为普通流式块，宽度交给卡片。这样卡片里的内容与原浮层完全一致，
+   不必为每种预览各写一份样式。 */
+md-dialog.pop-sheet .hp-pop,
+md-dialog.pop-sheet .wiki-ref-pop,
+md-dialog.pop-sheet .cls-option-pop,
+md-dialog.pop-sheet .cls-choice-power-pop,
+md-dialog.pop-sheet .compact-pop,
+md-dialog.pop-sheet .pf-fold-pop,
+md-dialog.pop-sheet .hy-pop,
+md-dialog.pop-sheet .repl-slot-pop,
+md-dialog.pop-sheet .gl-pop,
+md-dialog.pop-sheet .ai-pop,
+md-dialog.pop-sheet .exe-chip-pop,
+md-dialog.pop-sheet .base-pop {
+  display: block;
+  position: static;
+  top: auto; right: auto; bottom: auto; left: auto;
+  width: auto;
+  max-width: none;
+  max-height: none;
+  z-index: auto;
+  box-shadow: none;
+  overflow: visible;
+  /* 浮层原本是 pointer-events:none（纯展示），卡片里要能上下滚动、能选中文字 */
+  pointer-events: auto;
+}
+/* 基础物品特性浮层：它靠 .base-item:hover 拿到「竖排 + 4px 间距」，
+   进卡片后没有 hover，这里补回同样的排布 */
+md-dialog.pop-sheet .base-pop { display: flex; flex-direction: column; gap: 4px; }
+
+/* ===== 触屏形态的悬停触发元素 =====
+   SmartHover 在触屏上会给触发元素加 .sh-touch；轻点另有含义（长按才是看详情）的再加 .sh-peek。
+   按住 420ms 的这段时间里，系统会先弹出自己的长按菜单（iOS 的呼出气泡 / Android 的上下文菜单），
+   和底部卡片打架，所以这一批触发元素要关掉文字选择与呼出气泡。 */
+.sh-touch { -webkit-tap-highlight-color: transparent; }
+.sh-touch.sh-peek { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
+/* 行内动作在子按钮上（仪式行 / AI 反馈行）：同样不该弹系统菜单 */
+.sh-touch.ritual-row-hover,
+.sh-touch.ai-item { -webkit-touch-callout: none; }
+
 /* ===== 「更多」底部面板：底部导航放不下的入口 + 编辑/渲染切换 ===== */
 .mob-more { display: flex; flex-direction: column; }
 .mob-more-row {
@@ -293,3 +384,205 @@
   /* 阵营选择：三列在窄屏每列约 90px，「守序善良」这类四字阵营名已到临界，收成两列 */
   .align-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
+
+/* ======================================================================
+   系统性审计第 3 轮：触屏可用性
+   ----------------------------------------------------------------------
+   第 2 轮解决的是「宽度放不下」，这一轮解决三件事：
+     A. 悬停浮层在触屏上的替代（见文件上方的 .pop-sheet 一节）；
+     B. 触控目标：鼠标能瞄 13px 的小圆点，手指不能。MD3 的下限是 44×44dp，
+        下面逐项收紧到「这条版面能容得下的最大尺寸」；
+     C. 固定元素与滚动：被底部导航盖住的操作、被 overflow 裁掉又无处可滚的内容、
+        以及 iOS 上会被输入框字号触发整页缩放的地方。
+   ====================================================================== */
+@media (max-width: 768px) {
+  /* ===== A. 主内容区不再被底部导航永久遮住最后一段 ===== */
+
+  /* 底栏是 fixed 的 80dp（+ 安全区）。锚定视口底部的浮层必须整体抬到底栏之上，
+     否则会盖住底栏的点击区：z-index 比底栏高，点哪都先落在浮层上。 */
+  .d4e-snackbar,
+  .gl-toast {
+    /* 92px = 底栏 80px + 12px 缝 */
+    bottom: calc(92px + env(safe-area-inset-bottom, 0px));
+  }
+
+  /* 私设「从模板新建」弹窗：z-index 20 < 底栏 120，遮罩之上还浮着一条能点的底栏，
+     模态形同虚设。抬到底栏之上，但仍低于 md-dialog 所在的顶层 layer。 */
+  .hb-tmpl-modal { z-index: 130; }
+
+  /* 抽卡退出钮：贴顶固定，PWA / 刘海屏下会落到状态栏底下 */
+  .draw-exit { top: calc(12px + env(safe-area-inset-top, 0px)); }
+
+  /* 视口高度一律用 dvh：手机浏览器的地址栏会吃掉 60–110px，
+     100vh 量的是「地址栏收起时」的高度，按它排版的内容底部会掉到屏幕外。 */
+  .app { min-height: 100dvh; }
+
+  /* ===== B. 触控目标：把只能点到 20px 上下的控件放大 ===== */
+
+  /* 防御小方格里的 +/−（语言、属性、资源、仪式、自定义加值行） */
+  .sg-step { width: 30px; height: 30px; font-size: 16px; }
+  .resource-item .step, .resource-item .step.reset { width: 32px; height: 32px; }
+  .ritual-remove { width: 32px; height: 32px; }
+  /* 语言槽的删除钮：原本只有 ~19px，紧挨着输入框，误触代价是删掉一整行 */
+  .ce-del { width: 28px; height: 28px; }
+
+  /* 速览（跑团 HUD）：死亡豁免圆点原本 13×13、间隔 4px，9 个圆点根本分不开 */
+  .gl-pips { gap: 7px; }
+  .gl-pip { width: 20px; height: 20px; }
+  /* HUD 里其余的 +/− / 休息 / 状况圆片：20–34px → 30–36px */
+  .gl-step, .gl-def-temp .gl-step { width: 30px; height: 30px; }
+  .gl-mini-btn { width: 32px; height: 32px; }
+  .gl-rest-btn { min-height: 36px; }
+  .gl-item-row { min-height: 40px; }
+  .gl-skill { min-height: 36px; }
+  .gl-chip { min-height: 34px; }
+
+  /* 装备面板左侧竖排导航：宽 30px、每颗按钮约 26×22px。
+     放宽到 40px 并把按钮撑到 30px 高，仍然是一列窄条，不会挤占装备组。 */
+  .equip-nav { width: 40px; }
+  .equip-nav-btn { min-height: 30px; }
+
+  /* 自定义人物板块编辑器：24×24 的上下移/换栏按钮并排 4 颗，间距 2px */
+  .ple-btn { width: 30px; height: 30px; }
+  .ple-actions { gap: 6px; }
+  /* 34px 的行高塞不下 30px 的按钮，也远低于触控目标下限；行本身撑到 44px。
+     行同时也是触屏拖动的抓手（按住 0.26s 拿起），行高一点更好按。 */
+  .ple-row { height: auto; min-height: 44px; }
+  /* 拖动时手指底下的行要能看清被谁替换：把悬停态一并套给触摸按下的行 */
+  .ple-row:active { background: var(--md-sys-color-surface-container-highest); }
+  .ple-grip { font-size: 22px; }
+
+  /* ===== C. 溢出与滚动 ===== */
+
+  /* 装备面板的吸顶导航原本 top:8px，正好落在吸顶标签页（.mob-tabsbar，48px、z-index 40）
+     底下，被盖住且点不到。下移到标签页下沿。 */
+  .equip-nav { top: calc(52px + env(safe-area-inset-top, 0px)); z-index: 1; }
+
+  /* 万律速查正文里的表格：HTML 是直接注入的，包不了一层滚动容器，
+     只能把表格自身变成横向滚动容器 —— 否则超出宽度的列会被 .app 的 overflow-x:clip
+     永久裁掉，且没有任何办法滚过去。 */
+  .rules-body table { display: block; overflow-x: auto; max-width: 100%; }
+
+  /* 搜索页：双栏塌成单栏后，两个 70vh 的独立滚动框叠在一起（合计 140vh），
+     页面本身几乎不滚，条目只能在盒子里看。手机端改成由页面统一滚动。 */
+  .result-list, .entry-detail { height: auto; max-height: none; overflow: visible; }
+  /* 但结果列表本身很长，给一个下限免得整页被撑到几千像素 */
+  .result-list { max-height: 52dvh; overflow: auto; }
+
+  /* 种族/职业特性正文的 55vh 内滚动框：手机上正文很长，指头很容易滚进盒子里出不来。
+     （只处理仍在用的 .feature-text 兜底块；.feature-html 目前已无引用。） */
+  .feature-text { max-height: none; overflow: visible; }
+
+  /* 私设：编辑器字段区两列在手机上每格仅 147px，浮动标签被截断、输入值只剩半截 */
+  .hb-ed-card { grid-template-columns: minmax(0, 1fr); }
+  /* 私设：包列表 62vh 的内滚动框 + 页面的外滚动，指头老是落在错的那个滚动区 */
+  .hb-pack-list { max-height: none; overflow: visible; }
+
+  /* 防御加值行：label + 44px 输入框在 66px 宽的格子里必然溢出 7px，
+     压到隔壁防御格上。允许换行，让输入框掉到标签下面。 */
+  .def-bonus-item { flex-wrap: wrap; row-gap: 2px; }
+
+  /* 弹窗内的固定尺寸内容：.crop-area 写死 420px、.picker-dialog 用 84vh，
+     两者都可能比可视高度还高，而外层遮罩不滚动 → 底部按钮永远够不到。
+     给遮罩加纵向滚动；子元素 margin:auto 让它放得下时仍然居中，
+     放不下时自动贴顶，从顶部往下滚就能看到按钮。 */
+  .crop-overlay, .picker-overlay { overflow-y: auto; align-items: flex-start; }
+  .crop-dialog, .picker-dialog { margin: auto; }
+  .crop-area { height: min(420px, 46dvh); }
+  .picker-dialog { max-height: 84dvh; }
+
+  /* 混职原始数据弹窗：width 里预留的 120px 是给桌面左导轨的，手机端没有导轨，
+     结果 360px 视口下只拿到 240px。改成贴近视口宽。 */
+  .hybrid-detail-dialog { width: min(880px, calc(100vw - 20px)); }
+
+  /* 汉化后的长英文 / 长 ID 不该把容器撑宽 */
+  .resource-sub ul, .hb-entry-row, .rv-pick-row { overflow-wrap: anywhere; }
+
+  /* AI 建卡槽位：中文威能名 + 英文原名在 13.5px 下单行放不下，被省略号截掉，
+     完整名字只写在 title 里 —— 触屏没有悬停，截掉的部分就再也看不到了。
+     手机上允许折成两行。 */
+  .ai-slot-value { white-space: normal; overflow: visible; text-overflow: clip; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; }
+  /* 槽位按钮原本 32×32，属于误触「让 AI 重挑错槽位」的高代价操作 */
+  .ai-slot-btn { --md-icon-button-state-layer-width: 40px; --md-icon-button-state-layer-height: 40px; }
+
+  /* ===== D. iOS 聚焦缩放 =====
+     iOS Safari 在聚焦 font-size < 16px 的输入框时会把整页放大，
+     放大后 fixed 的底栏与吸顶标签页全部错位。这些是主要的文字输入位置。 */
+  .lang-input, .money-input, .hp-now-input, .hex-input, .rb-select,
+  .adv-cost-input, .card-rename-input, .field input, .sf-range input,
+  .def-bonus-item input, .gl-plain-num, .gl-input {
+    font-size: 16px;
+  }
+  /* md-* 组件内部的输入字号由组件令牌决定，改 font-size 没用，要覆盖令牌 */
+  .gl-num-field { --md-outlined-text-field-input-text-size: 16px; }
+  /* 防御加值格的输入框固定 44px 宽，16px 字号写不下两位数，稍微放宽 */
+  .def-bonus-item input { width: 52px; }
+  /* 速览的数字框同理，宽度跟着字号一起放 */
+  .gl-plain-num { width: 52px; }
+}
+
+/* ===== 导引模式：721–768px 的断点缝隙 =====
+   styles.guide.css 在 720px 就把步骤导航切成「普通文档流」，
+   而手机外壳（.mob-nav、isMobile）要到 768px 才结束 —— 于是 721–768px 这一段
+   （横屏手机、768 宽的平板竖屏）既带着手机底栏，又拿到了桌面端的
+   `position: sticky; bottom: 0` 导航，被 80px 的底栏整个盖住，上一步/下一步点不到。
+   这里把 768px 以下统统按手机端处理，与 lib/media 的断点对齐。 */
+@media (max-width: 768px) {
+  .guide { min-height: 0; }
+  .guide-head { margin: -10px -10px 0; padding: 8px 10px 10px; }
+  .guide-head-sub { font-size: 11.5px; }
+  .guide-nav {
+    position: sticky;
+    bottom: calc(84px + env(safe-area-inset-bottom, 0px));
+    /* 桌面端那条 `margin: auto -20px -20px` 会把导航压到 .guide 底部，
+       手机上要改成普通的圆角浮条 */
+    margin: 0;
+    padding: 8px;
+    border-radius: var(--md-sys-shape-corner-large);
+    background: color-mix(in srgb, var(--md-sys-color-surface) 92%, transparent);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--md-sys-color-outline-variant);
+    z-index: 8;
+  }
+  .guide-nav-spacer { display: none; }
+  .guide-nav > * { flex: 1 1 0; }
+  .guide-float {
+    left: 10px;
+    right: 10px;
+    bottom: calc(84px + env(safe-area-inset-bottom, 0px));
+    max-width: none;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 10px 12px;
+  }
+  .guide-float-bar { display: none; }
+  .guide-float-text { flex: 1 1 auto; }
+  .guide-float-sub { max-width: none; }
+  .guide-float-actions { flex: 1 1 100%; justify-content: flex-end; }
+  /* 收起态是「拇指大小的一枚胶囊」，不是整行浮条：宽度按内容收缩、贴左边 */
+  .guide-float.guide-float-folded { right: auto; width: fit-content; flex-wrap: nowrap; }
+
+  /* 进度条：一步一段，20 步在 340px 里每段只有约 11×18px —— 手指根本点不准，
+     点歪了还会直接跳步。手机上改成横向可滚动的短条，每段给到 26×32px。 */
+  .guide-bar {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    padding-bottom: 2px;
+  }
+  .guide-bar::-webkit-scrollbar { display: none; }
+  .guide-seg { flex: 0 0 auto; min-width: 26px; height: 32px; }
+  .guide-seg.chapter-start { margin-left: 10px; }
+  /* 步骤导航的按钮同样撑到 44px 高 */
+  .guide-nav > button, .guide-nav > .crop-btn, .guide-nav > md-filled-button,
+  .guide-nav > md-text-button, .guide-nav > md-outlined-button { min-height: 44px; }
+}
+
+/* ===== 教学模式卡片：别把操作行顶到屏幕外 =====
+   .tour-card 用 calc(100vh - 24px) 作高度上限，而 TutorialGuide 的定位是按
+   window.innerHeight（可视视口）夹的。地址栏一露出来 100vh 就比可视高度大 60–110px，
+   卡片被夹到 top:12px 后，底部那排「上一步 / 跳过 / 下一步」就掉到折叠线以下，
+   而它是 fixed 定位、页面又滚不动 —— 按钮彻底够不着。改用 dvh 与可视视口对齐。 */
+.tour-card { max-height: calc(100dvh - 24px); }
+.tour-card.center { top: 50dvh; }
+

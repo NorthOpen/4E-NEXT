@@ -345,7 +345,9 @@ const EQUIP_GROUPS: { label: string; kind?: "weapon" | "armor" | "shield"; slots
   { label: "戒指", slots: [{ index: 9, name: "戒指 1" }, { index: 10, name: "戒指 2" }] },
 ];
 
-// 基础物品块：名称 + 大字伤害骰/AC + 简名特性；特性完整定义悬浮显示（同威能简洁模式）
+// 基础物品块：名称 + 大字伤害骰/AC + 简名特性；特性完整定义悬浮显示（同威能简洁模式）。
+// 走 SmartHover：桌面上悬停出浮层，触屏上长按出底部卡片 —— 原来写死 :hover 的话，
+// 手机上不仅看不到完整特性，轻点还会直接跳去「更换基础物品」。
 function BaseItemBlock(props: { id?: string; kind: "weapon" | "armor" | "shield"; label?: string; onClick: () => void }) {
   const item = props.id ? findBaseItem(props.id) : undefined;
   const weapon = item?.kind === "weapon" ? item.weapon : undefined;
@@ -355,7 +357,14 @@ function BaseItemBlock(props: { id?: string; kind: "weapon" | "armor" | "shield"
   const traitNames = weapon && weapon.traits && weapon.traits !== "—" ? weapon.traits : "";
   const traitFull = weapon ? traitsText(weapon.traits) : "";
   return (
-    <button type="button" className="base-item" onClick={props.onClick} title="点击更换基础物品">
+    <SmartHover
+      as="button"
+      className="base-item"
+      popClass="base-pop"
+      onClick={props.onClick}
+      title="点击更换基础物品"
+      pop={traitFull ? traitFull.split("\n").map((l, i) => <span key={i} className="base-pop-line">{l}</span>) : undefined}
+    >
       {shield ? (
         <>
           <span className="bi-name">{shield.name}</span>
@@ -373,11 +382,6 @@ function BaseItemBlock(props: { id?: string; kind: "weapon" | "armor" | "shield"
           <span className="bi-name">{weapon ? weapon.name : (props.label ?? "基础武器")}</span>
           <span className="bi-dice">{weapon ? weapon.dice : "—"}</span>
           <span className="bi-traits">{traitNames || "点击选择"}</span>
-          {traitFull && (
-            <span className="base-pop">
-              {traitFull.split("\n").map((l, i) => <span key={i} className="base-pop-line">{l}</span>)}
-            </span>
-          )}
         </>
       ) : props.kind === "shield" ? (
         <>
@@ -392,7 +396,7 @@ function BaseItemBlock(props: { id?: string; kind: "weapon" | "armor" | "shield"
           <span className="bi-traits">{armor ? (armor.masterwork ? "最小增强 +" + armor.minEnhance : armor.category) : "点击选择"}</span>
         </>
       )}
-    </button>
+    </SmartHover>
   );
 }
 // 基础物品选择弹窗：左侧导航 + 分组卡片
@@ -554,14 +558,13 @@ function EquipGroupSlots(props: {
           if (item) {
             const used = !!props.usedOf?.(i);
             return (
-              <div key={i} className={"compact-row" + (used ? " slot-used" : "")} onClick={() => props.picker(i)} title={used ? "已标记使用（锁定）" : "点击更换"}>
+              <SmartHover key={i} className={"compact-row" + (used ? " slot-used" : "")} popClass="compact-pop" onClick={() => props.picker(i)} title={used ? "已标记使用（锁定）" : "点击更换"} pop={<EntryCard entry={item} />}>
                 <span className="cr-dot" style={{ background: ITEM_COLOR }} />
                 {baseName && <span className="compact-base" onClick={(e) => { e.stopPropagation(); props.onBaseClick?.(i); }}>{baseName}</span>}
                 <span className="cr-name">{item.name}{item.nameEn ? " " + item.nameEn : ""}</span>
                 <span className="cr-sub">{item.rarity}{item.itemLevel ? " · L" + item.itemLevel : ""}</span>
                 <IconButton className="slot-x" title={used ? "已标记使用（锁定）" : "清空槽位"} aria-label="清空槽位" onClick={(e) => { e.stopPropagation(); if (used) return; props.clear(i); }}><span className="material-symbols-outlined">close</span></IconButton>
-                <div className="compact-pop"><EntryCard entry={item} /></div>
-              </div>
+              </SmartHover>
             );
           }
           return (
@@ -6989,13 +6992,12 @@ export default function CharacterSheet({
                     const p = id ? powerMap.get(id) : undefined;
                     if (p) {
                       return (
-                        <div key={i} className={"compact-row" + (isPowerUsed(cat.key, i) ? " slot-used" : "")} onClick={() => onPowerSlotClick(cat.key, i)} title={isPowerUsed(cat.key, i) ? "已标记使用（锁定）" : "点击更换"}>
+                        <SmartHover key={i} className={"compact-row" + (isPowerUsed(cat.key, i) ? " slot-used" : "")} popClass="compact-pop" onClick={() => onPowerSlotClick(cat.key, i)} title={isPowerUsed(cat.key, i) ? "已标记使用（锁定）" : "点击更换"} pop={<EntryCard entry={p} />}>
                           <span className="cr-dot" style={{ background: cat.key === "utility" || cat.key === "special" ? (p.usage === "at-will" ? POWER_COLORS.atWill : p.usage === "encounter" ? POWER_COLORS.encounter : p.usage === "daily" ? POWER_COLORS.daily : POWER_COLORS.utility) : cat.color }} />
                           <span className="cr-name">{p.name}{p.nameEn ? " " + p.nameEn : ""}</span>
                           <span className="cr-sub">L{p.level}{p.usageZh ? " · " + p.usageZh : ""}</span>
                           <IconButton className="slot-x" title={isPowerUsed(cat.key, i) || slotMode ? "锁定" : "清空槽位"} aria-label="清空槽位" onClick={(e) => { e.stopPropagation(); if (slotMode || isPowerUsed(cat.key, i)) return; setChar((c) => ({ ...c, powerSlots: clearPowerSlot(c.powerSlots, cat.key, i) })); }}><span className="material-symbols-outlined">close</span></IconButton>
-                          <div className="compact-pop"><EntryCard entry={p} /></div>
-                        </div>
+                        </SmartHover>
                       );
                     }
                     return (
@@ -7468,15 +7470,12 @@ export default function CharacterSheet({
                 const f = id ? featMap.get(id) : undefined;
                 if (f) {
                   return (
-                    <div key={i} className="compact-row feat-line" onClick={() => openFeatPicker(i)} title="点击更换">
+                    <SmartHover key={i} className="compact-row feat-line" popClass="compact-pop" onClick={() => openFeatPicker(i)} title="点击更换" pop={<EntryCard entry={f} lookup={wikiLookup} />}>
                       <span className="cr-dot" style={{ background: FEAT_COLOR }} />
                       <span className="cr-name">{f.name}：</span>
                       <span className="cr-sub">{compactFeatText(f)}</span>
                       <IconButton className="slot-x" title="清空槽位" aria-label="清空槽位" onClick={(e) => { e.stopPropagation(); setChar((c) => ({ ...c, featSlots: clearFeatSlot(c.featSlots, i) })); }}><span className="material-symbols-outlined">close</span></IconButton>
-                      <div className="compact-pop">
-                        <EntryCard entry={f} lookup={wikiLookup} />
-                      </div>
-                    </div>
+                    </SmartHover>
                   );
                 }
                 return (
@@ -7494,12 +7493,11 @@ export default function CharacterSheet({
                 const f = featMap.get(id);
                 if (!f) return null;
                 return (
-                  <div key={id} className="compact-row gf-item feat-line" title="奖励专长（不占用常规专长槽位）">
+                  <SmartHover key={id} className="compact-row gf-item feat-line" popClass="compact-pop" title="奖励专长（不占用常规专长槽位）" pop={<EntryCard entry={f} lookup={wikiLookup} />}>
                     <span className="cr-dot" style={{ background: FEAT_COLOR }} />
                     <span className="cr-name">{f.name}：</span>
                     <span className="cr-sub">{compactFeatText(f)}</span>
-                    <div className="compact-pop"><EntryCard entry={f} lookup={wikiLookup} /></div>
-                  </div>
+                  </SmartHover>
                 );
               })}
             </div>

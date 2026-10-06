@@ -228,16 +228,13 @@ export function MundaneItemSlot({ entry }: { entry: Entry }) {
   const dice = (v: string, suffix = "") => (v ? "+" + v.replace(/^\+/, "") + suffix : "—");
   let body: ReactNode;
   if (cat === "武器") {
+    // 不再挂 .base-pop 悬停浮层：它列的正是上面 .bi-traits 已经写出的同一份特性文本，
+    // 只是多按标点断成几行。桌面端重复、手机端又根本悬停不出来，直接去掉。
     body = (
       <>
         <span className="bi-name">{name}</span>
         <span className="bi-dice">{entryStr(entry, "damage") || "—"}</span>
         <span className="bi-traits">{traits || entryStr(entry, "subCategory") || "—"}</span>
-        {traits && (
-          <span className="base-pop">
-            {traits.split(/[，,、]/).map((l, i) => <span key={i} className="base-pop-line">{l.trim()}</span>)}
-          </span>
-        )}
       </>
     );
   } else if (cat === "护甲") {

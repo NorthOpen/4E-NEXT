@@ -312,6 +312,27 @@
 .guide-float-seg.done { background: color-mix(in srgb, var(--md-sys-color-primary) 65%, var(--md-sys-color-surface-container-highest)); }
 .guide-float-seg.on { background: var(--md-sys-color-primary); }
 .guide-float-actions { display: flex; align-items: center; gap: 6px; flex: none; }
+/* 收起按钮：压到 36px，别把悬浮条本身撑高 */
+.guide-float-fold { --md-icon-button-container-size: 36px; --md-icon-button-icon-size: 20px; --md-icon-button-icon-color: var(--md-sys-color-on-surface-variant); }
+
+/* 收起态：一枚约 40px 高的小胶囊，只留「导引图标 + 第几步」。
+   完整条在手机上横铺一整行、约 100px 高，长期压住页面底部；收起后只剩拇指大小，
+   点它展开。用 .guide-float.guide-float-folded 提高一级特异性，
+   才能盖过下面手机端那条 .guide-float { left:10px; right:10px }。 */
+.guide-float.guide-float-folded {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
+  max-width: none;
+  padding: 8px 16px 8px 12px;
+  border-radius: var(--md-sys-shape-corner-full);
+  cursor: pointer;
+  font: inherit;
+  color: var(--md-sys-color-on-surface);
+}
+.guide-float.guide-float-folded:active { background: var(--md-sys-color-surface-container-highest); }
+.guide-float-count { font-size: 12.5px; font-weight: var(--fw-label); font-variant-numeric: tabular-nums; }
 
 /* 导航轨上的「导引」按钮：有进行中的导引时点一个小圆点，提醒「还没走完」 */
 .side-btn { position: relative; }
