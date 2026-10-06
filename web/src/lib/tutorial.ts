@@ -15,7 +15,7 @@ import type { View } from "../App";
 export const TUTORIAL_SEEN_KEY = "4enext.tutorialSeen.v1";
 
 /** 教学内容版本。步骤有实质变化时提高它，看过旧版的人会重新看到一次。 */
-export const TUTORIAL_VERSION = "3";
+export const TUTORIAL_VERSION = "4";
 
 /**
  * 本机此前是否完全没有 4E NEXT 的数据。
@@ -85,7 +85,7 @@ export interface TutorialStep {
 }
 
 /**
- * 步骤顺序 = 用户的心智顺序：先看背景与储备这两块「内容写在哪」，再进人物页这个主要工作空间，
+ * 步骤顺序 = 用户的心智顺序：先认清「车卡在人物页」，再看背景与储备这两块「内容写在哪」，
  * 然后是跑团时要用的速览，接着是数据出入口（存档 / 私设）、查规则、最后是设置。
  * 手机端底栏只放得下 4 项，存档 / 私设 / 词条 / 设置都收在「更多」里，
  * 所以这些步骤在手机端退化为高亮「更多」按钮。
@@ -95,6 +95,14 @@ export const TUTORIAL_STEPS: TutorialStep[] = [
     id: "welcome",
     title: "欢迎使用4E NEXT！",
     body: "基于4Ewiki数据与MD3风格的新一代 D&D 4E 车卡器。首次使用请跟随教学快速浏览一遍功能入口。",
+  },
+  {
+    id: "sheet",
+    title: "人物",
+    body: "人物页面是你最主要的工作空间，由一个又一个的板块组成。",
+    anchor: ["[data-tour='nav-sheet']", "[data-tour='mob-sheet']"],
+    view: "sheet",
+    prefer: "right",
   },
   {
     id: "background",
@@ -110,14 +118,6 @@ export const TUTORIAL_STEPS: TutorialStep[] = [
     body: "无论是管理游戏内发放的全新物品，或是职业给予你的储备资源，皆可在此页面实现。同步提供快捷的与人物页面资源交换功能。",
     anchor: ["[data-tour='nav-reserve']", "[data-tour='mob-reserve']"],
     view: "reserve",
-    prefer: "right",
-  },
-  {
-    id: "sheet",
-    title: "人物",
-    body: "人物页面是你最主要的工作空间，由一个又一个的板块组成。",
-    anchor: ["[data-tour='nav-sheet']", "[data-tour='mob-sheet']"],
-    view: "sheet",
     prefer: "right",
   },
   {
