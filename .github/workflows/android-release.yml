@@ -59,11 +59,22 @@ jobs:
         run: pnpm pipeline
 
       # keystore 只在 runner 内存/磁盘上存在，跑完即随 runner 销毁；不进仓库
+      #
+      # 判空**不能**写成 `if: ${{ secrets.ANDROID_KEYSTORE_BASE64 != '' }}`：
+      # `jobs.<job_id>.steps.if` 可用的上下文只有
+      # github / needs / strategy / matrix / job / runner / env / vars / steps / inputs，
+      # 不含 secrets。写进去会让整个 workflow 文件校验不过，
+      # 于是**任何触发方式**都在启动阶段失败——run 建出来了，但一个 job 都没有。
+      # env 是允许 secrets 的，所以改成用 env 传进来、在脚本里判空。
       - name: Restore keystore
-        if: ${{ secrets.ANDROID_KEYSTORE_BASE64 != '' }}
         env:
           KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
         run: |
+          if [ -z "$KEYSTORE_BASE64" ]; then
+            echo "未配置 ANDROID_KEYSTORE_BASE64，跳过 keystore 还原；"
+            echo "本次将产出 debug 签名包，**不可用于正式分发**。"
+            exit 0
+          fi
           mkdir -p android/keystore
           echo "$KEYSTORE_BASE64" | base64 -d > android/keystore/release.jks
 
