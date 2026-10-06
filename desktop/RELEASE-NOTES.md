@@ -15,8 +15,8 @@
 SHA256（与同目录的 `SHA256SUMS.txt` 一致）：
 
 ```
-fa515d212fe9e084758213fc32b05ec732763a699b75a9529e37f655b90ab441  4E-NEXT-0.3.4-setup.exe
-77eedc6901d0cc8ed283f2c19bf679005ed73f021e3c63602eff214f3cd68e1e  4E-NEXT-0.3.4-win-x64-portable.zip
+913e1ee68a67eaa59dffb3796a3c274b23a78616f87235a408c2aa1b732e67db  4E-NEXT-0.3.4-setup.exe
+851edcf4bcdfb9563141681917a4a791a59a78a810bf87bdf0b9dca3543cab5b  4E-NEXT-0.3.4-win-x64-portable.zip
 ```
 
 两个包内容一致，区别只在数据放哪：

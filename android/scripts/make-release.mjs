@@ -29,6 +29,19 @@ const releaseDir = join(androidDir, "release");
 const skipWeb = process.argv.includes("--skip-web");
 const isWindows = process.platform === "win32";
 
+// --require-release-signing：把「debug 签名」从警告升级为失败。
+//
+// 为什么需要这个开关：没配签名时 release 会**静默回落到 debug 签名**（只打印警告），
+// 这条回落对「本地先出个包自测」是对的，但对「打 tag 发布」是错的——
+// 工作流会照常建 Release 并把 debug 签名的包传上去，而 android/RELEASE-NOTES.md
+// 与 SIGNING.md 都写明那种包**不能对外分发**（换了签名就无法覆盖安装，用户只能卸载，
+// 而卸载会连应用私有目录里的人物卡一起删掉）。
+//
+// 所以正式发布这条路要求「证明不了是发布密钥签名，就别发」：
+// 检出 debug 签名、或压根找不到 apksigner 可以验，都直接失败。
+// 手动触发（workflow_dispatch，只为拿个包做真机自测）不加这个开关，行为不变。
+const requireReleaseSigning = process.argv.includes("--require-release-signing");
+
 function step(msg) {
   console.log("[make-release] " + msg);
 }
@@ -195,8 +208,22 @@ if (existsSync(apksigner)) {
   if (verify.status !== 0) {
     console.warn("[make-release] ⚠️  apksigner verify 返回非零，签名可能有问题，请人工确认。");
   }
+  if (requireReleaseSigning && isDebugSigned) {
+    console.error("");
+    console.error("[make-release] 已中止：--require-release-signing 要求发布密钥签名，实际是 debug 签名。");
+    console.error("[make-release]   CI 上出现这一条，说明仓库 Secrets 没配全——");
+    console.error("[make-release]   需要 ANDROID_KEYSTORE_BASE64 / ANDROID_KEYSTORE_PASSWORD /");
+    console.error("[make-release]   ANDROID_KEY_ALIAS / ANDROID_KEY_PASSWORD 四个（见 android/SIGNING.md 第四节）。");
+    console.error("[make-release]   本地出包则检查 android/local.properties 的四行是否齐全。");
+    process.exit(1);
+  }
 } else {
   step("未找到 apksigner，跳过签名校验（" + apksigner + "）");
+  if (requireReleaseSigning) {
+    console.error("[make-release] 已中止：--require-release-signing 要求验签，但找不到 apksigner（" + apksigner + "）。");
+    console.error("[make-release]   「验不了」不等于「签对了」，正式发布不做无证据的放行。");
+    process.exit(1);
+  }
 }
 
 console.log(JSON.stringify({ apk: outApk, version, sizeMb: Number(sizeMb.toFixed(1)), sha256 }));

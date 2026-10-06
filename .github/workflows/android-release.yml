@@ -14,7 +14,10 @@ name: Android Release
 #   ANDROID_KEYSTORE_PASSWORD  keystore 口令
 #   ANDROID_KEY_ALIAS          key 别名
 #   ANDROID_KEY_PASSWORD       key 口令
-# 没有这些 Secrets 时仍会出包，但用的是 debug 签名——**不能用于正式分发**。
+#
+# **打 tag 发布必须配齐这四个**，否则「出包」那一步会直接失败
+# （--require-release-signing：宁可不发，也不发一个 debug 签名的包）。
+# 手动触发不要求，但没配时仍会回落到 debug 签名——那种包只能自测，**不能用于正式分发**。
 #
 # keystore 转 base64：
 #   [Convert]::ToBase64String([IO.File]::ReadAllBytes("4enext-release.jks"))
@@ -52,6 +55,21 @@ jobs:
       - name: "Guard: desktop/android not in pnpm workspace"
         run: node scripts/verify-workspace.mjs
 
+      # 守卫：gradlew 必须带可执行位。
+      #
+      # git 只记录 100644 / 100755 两种模式，而从 Windows 提交时 100755 很容易丢掉
+      # （本地用 gradlew.bat 构建一切正常，完全看不出来）。到了 Linux runner 上
+      # `./gradlew` 直接 Permission denied，而且**失败得极快**——整个 run 只有一行
+      # exit code 1，看不出是哪一步的什么问题。2026-10-07 的 0.3.4 首次出包就栽在这里。
+      - name: "Guard: android/gradlew is executable"
+        run: |
+          mode=$(git ls-files -s android/gradlew | cut -d' ' -f1)
+          if [ "$mode" != "100755" ]; then
+            echo "::error::android/gradlew 在 git 里的模式是 $mode，应为 100755。"
+            echo "修法：git update-index --chmod=+x android/gradlew && git commit"
+            exit 1
+          fi
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
@@ -79,13 +97,19 @@ jobs:
           echo "$KEYSTORE_BASE64" | base64 -d > android/keystore/release.jks
 
       # 出包：脚本会自己构建 web 产物、跑 gradlew、复制 APK、算 SHA256、验签名
+      #
+      # 打 tag 时加 --require-release-signing：**没配 Secrets 就直接失败**，
+      # 而不是照常建一个带 debug 签名包的 Release。理由见 android/SIGNING.md 第四节，
+      # 以及 make-release.mjs 里那个开关的注释——debug 签名的包发出去，
+      # 用户之后无法用正式密钥覆盖安装（只能卸载，而卸载会删掉应用私有目录里的卡）。
+      # workflow_dispatch 不加这个开关：它本来就是"真机验证前先拿个包"的自测通道。
       - name: Build release APK
         env:
           ANDROID_KEYSTORE_PATH: ${{ secrets.ANDROID_KEYSTORE_BASE64 != '' && 'keystore/release.jks' || '' }}
           ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
           ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
           ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
-        run: node android/scripts/make-release.mjs
+        run: node android/scripts/make-release.mjs ${{ startsWith(github.ref, 'refs/tags/') && '--require-release-signing' || '' }}
 
       - uses: actions/upload-artifact@v4
         with:
