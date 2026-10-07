@@ -42,6 +42,10 @@ interface BridgeHttpResult {
 /** 原生对象形状。方法名与 AndroidBridge.kt 的 @JavascriptInterface 一一对应。 */
 interface AndroidNative {
   version(): string;
+  /** 系统栏安全区（CSS px）的 JSON：{top,right,bottom,left}，由宿主随时刷新。 */
+  safeInsets(): string;
+  /** 报告应用主题的明暗，宿主据此切换状态栏/导航栏图标的深浅。 */
+  setDarkTheme(dark: boolean): void;
   storageGetItem(key: string): string | null;
   storageSetItem(key: string, value: string): void;
   storageRemoveItem(key: string): void;
@@ -54,6 +58,13 @@ interface AndroidNative {
 /** 由 document-start 注入的 shim 包装出来的、给应用用的那份 API。 */
 interface AndroidBridge {
   version: string;
+  /**
+   * 应用主题（深色/浅色）→ 状态栏与导航栏图标的明暗。
+   *
+   * 只影响系统图标，不影响页面自身取色（那是 ThemeProvider 的事）。
+   * 与返回键钩子同一个道理：网页端与桌面端没有这个对象，调用方用可选链跳过。
+   */
+  setDarkTheme(dark: boolean): void;
   storage: {
     getItem(key: string): string | null;
     setItem(key: string, value: string): void;

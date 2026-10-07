@@ -104,6 +104,9 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     applyCssVars(schemeToCssVars(scheme));
     // 原生控件（color 选择器、滚动条等）随明暗切换
     document.documentElement.style.colorScheme = isDark ? "dark" : "light";
+    // 安卓壳：系统栏图标的明暗只能由原生设置，把当前主题告诉它。
+    // 网页端与桌面端没有这个对象，可选链直接跳过，行为一个字节都不变。
+    window.__4ENEXT_ANDROID__?.setDarkTheme(isDark);
   }, [scheme, isDark]);
 
   // 应用立绘到主题（不写本地存储；立绘随人物卡由 App 同步存档）

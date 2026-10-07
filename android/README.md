@@ -50,11 +50,17 @@ android/
         xml/network_security_config.xml   自签名证书信任策略
         xml/file_paths.xml                FileProvider 可分享目录
         values/{strings,colors,themes}.xml
-        mipmap-*/                         启动图标（脚本生成）
-  scripts/make-icon.mjs    从桌面版图标生成各密度启动图标
+        mipmap-*/                         启动图标：前景层 + 单色层 + 传统图标（脚本生成）
+        mipmap-anydpi-v26|v33/            自适应图标描述（v33 多一层 monochrome）
+  scripts/make-icon.mjs    生成启动图标（默认样式：品牌青底 + 白色 4E 字形）
 ```
 
 **关键约束**：`android/` 里没有应用源码。想改界面就必须改 `web/`。
+
+壳专属的版面补偿（安全区、状态栏留白）也是网页端代码，但**单独一个文件**：
+`web/src/styles.android.css`。里面每条规则都带 `html[data-shell="android"]`，
+而那个属性只有壳在 document-start 时才打上（见 `WebViewSetup.BRIDGE_SHIM`），
+所以网页端、桌面端、iOS PWA 的版面与改动前逐像素相同。
 
 ## 平台接缝
 
@@ -124,6 +130,40 @@ localStorage**——把人物卡放在那儿是在赌运气。
 > **不是**桌面端那种"用户点了保存"。调用方不要据此提示"已保存到 X"。
 > 另外 `cache/` 可能被系统清理，所以每次导出都会重写一份，不依赖历史文件。
 
+## 安全区与系统栏（状态栏 / 刘海 / 手势条）
+
+**做过两次，第一次是错的**，所以这里把两条错路都记下来，免得第三次走回去：
+
+| 做法 | 为什么不行 |
+| --- | --- |
+| `webView.setPadding(insets)` | WebView 的**网页视口不含 View 的 padding**：内边距只是 View 自己的空白区，Blink 仍然按整块 View 排版。真机表现是"内容照旧顶着状态栏"（0.3.4，SM-S9380） |
+| 只靠 `env(safe-area-inset-*)` | Android WebView 的安全区**只覆盖刘海（display cutout）**，不含状态栏与手势条，这两个值是 0；而且网页端也只有少数几处用了它 |
+
+现在的做法是**原生只负责量，网页端负责避让**：
+
+1. `MainActivity` 在 `setOnApplyWindowInsetsListener` 里取 `systemBars()` 与
+   `displayCutout()` 的**较大值**（横屏时刘海在左右，而 systemBars 的左右是 0），
+   把物理像素换算成 CSS px（÷ density，不换算在高密度屏上会差 2–4 倍），
+   写进 `AndroidBridge.safeAreaJson`；
+2. shim 读 `safeInsets()`，把四个值挂成 `<html>` 上的 `--ae-inset-top/right/bottom/left`，
+   并打上 `data-shell="android"`（document-start 与 DOMContentLoaded 各一次）；
+3. `web/src/styles.android.css` 里那批 `html[data-shell="android"]` 规则据此让位：
+   `.app` 让出上下左右、底部导航高度加上手势条、吸顶标签页的 `top` 从视口顶端下移，
+   另有一条**固定留白条**盖住状态栏 —— 页面是文档滚动的，只靠 padding 一滚就会把内容卷到时间底下。
+
+inset 变化时（旋转、手势条切换、折叠屏展开）主线程反向调用
+`window.__4ENEXT_APPLY_SAFE_AREA__()` 让网页端重读一次，不需要重载页面。
+
+**系统栏图标的明暗**同样只能由原生设置：网页端主题可切（设置页的「深色」），
+`ThemeProvider` 在主题变化时通过 `setDarkTheme(dark)` 报给原生，
+原生再设 `isAppearanceLightStatusBars/NavigationBars`。不联动的话，深色主题下
+深色图标压在同为深色的界面上，时间和电量直接看不见。
+
+> `safeInsets()` 与 `setDarkTheme()` **刻意不做 `fromApp()` 来源校验**（其余桥方法都做）：
+> 两者都在页面渲染早期就被调用，那时 `pageIsOurs` 还没置位、又走不到主线程兜底，
+> 加了守卫就等于恒不生效；而它们能暴露的只有"状态栏多高"和"换个图标明暗"，
+> 既无用户数据也无能力，与存储 / 原生 HTTP / 导出不是一类。
+
 ## 构建
 
 ```bash
@@ -184,7 +224,7 @@ cd android
 | `woff2`（1055 个字体分片） | **不压缩** | WOFF2 本身已是 Brotli 压缩，再 Deflate 是零/负收益（实测 6 个真实分片反而变大 0.99%）；不压缩可从 APK 直接内存映射 |
 | `json`（40MB 数据） | **保持压缩** | 能压到约 1MB，APK 直接少约 39MB 下载量；代价是读 19MB 的 `power.json` 要先解压进内存 |
 
-实测产物（0.3.4）：release APK **87.7 MB**（debug 92.9 MB，差的是一份 debug 签名与未优化资源）。
+实测产物（0.3.5）：release APK **87.9 MB**（debug 92.9 MB，差的是一份 debug 签名与未优化资源）。
 其中字体 1055 个分片未压缩存储、`power.json` 19.9MB → 压缩后 3.1MB。
 
 ## 安全设计
@@ -265,7 +305,9 @@ IndexedDB、React 渲染、离线字体（外部引用数必须为 0）、Materi
 1. **最低支持 Android 12（`minSdk 31`）**，更低版本不支持。
    **截至 0.3.4 已在真机上验证通过**：`pnpm smoke:android --release` 在
    Samsung SM-S9380（Android 16 / arm64-v8a）上 **23/23 通过**。
-   完整验证清单、以及"真机上跑出来的三个 bug"，见 `android/VERIFICATION.md`。
+   0.3.5 只改了图标与安全区（自检探针随之变成 24 项），**真机复核尚未重跑** ——
+   跑法没变，`pnpm smoke:android --release` 会自动挑 `android/release/` 里最新的包。
+   完整验证清单、以及"真机上跑出来的三个 bug"（0.3.5 又补了三个，见该文件），见 `android/VERIFICATION.md`。
 2. **未做按指纹的交互式证书信任**：自签名证书需要用户先把 CA 装进系统凭据库。
 3. **导出无法回报"用户是否真的保存了"**（见上文「导出」一节）。
 4. **返回键语义是"关闭当前浮层 / 再按一次退出"**，不是浏览器的历史后退——

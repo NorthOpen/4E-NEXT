@@ -2,8 +2,10 @@
 <!--
   自适应图标：背景 = @color/brand_splash，前景 = 白色的 4E 字形（源图 alpha 取反）。
   由 android/scripts/make-icon.mjs 生成，不要手改——改就改那个脚本。
+  v33 目录里多一层 monochrome，给 Android 13+ 的「主题化图标」用。
 -->
 <adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
     <background android:drawable="@color/brand_splash" />
     <foreground android:drawable="@mipmap/ic_launcher_foreground" />
+    <monochrome android:drawable="@mipmap/ic_launcher_monochrome" />
 </adaptive-icon>

@@ -1,0 +1,110 @@
+/* ==========================================================================
+   安卓壳专属版面补偿（只在 WebView 壳里生效）
+   --------------------------------------------------------------------------
+   为什么单独一个文件、并且每条规则都带 `html[data-shell="android"]`：
+   三端共用一套版面，网页端与桌面端**不该**因为安卓端的系统栏问题而改变渲染。
+   壳在 document-start 时给 <html> 打上 data-shell="android"（见
+   WebViewSetup.BRIDGE_SHIM 的 applySafeArea），于是这里整批规则在浏览器里
+   一条都不匹配 —— 网页端、桌面端、iOS PWA 的版面与改动前逐像素相同。
+
+   为什么不能只用 env(safe-area-inset-*)：
+   Android WebView 的安全区只覆盖刘海（display cutout），**不含状态栏与手势条**，
+   所以 env(safe-area-inset-top/bottom) 在壳里恒为 0，照它避让等于没避让
+   —— 这正是 0.3.4 真机上「内容顶着状态栏显示」的原因。
+   壳把真实 inset 以 CSS 变量 --ae-inset-* 下发（物理像素 ÷ density = CSS px），
+   这里与 env() 取 max 合流：两边都有值时取大的那个，不会重复累加。
+
+   规则与来源文件一一对应，改动时请两边一起看：
+     · .content 底部留白 / .mob-nav 高度 / 吸底浮层 ……… styles.mobile.css
+     · .guide-nav / .guide-float …………………………… styles.guide.css
+     · .d4e-snackbar …………………………………………… styles.extra.css
+     · .gl-toast ……………………………………………………… styles.glance.css
+   ========================================================================== */
+
+html[data-shell="android"] {
+  --safe-top: max(env(safe-area-inset-top, 0px), var(--ae-inset-top, 0px));
+  --safe-right: max(env(safe-area-inset-right, 0px), var(--ae-inset-right, 0px));
+  --safe-bottom: max(env(safe-area-inset-bottom, 0px), var(--ae-inset-bottom, 0px));
+  --safe-left: max(env(safe-area-inset-left, 0px), var(--ae-inset-left, 0px));
+}
+
+/* 顶部留白条：把状态栏那一条固定盖住。
+   页面是 edge-to-edge 的、且由文档本身滚动，所以「让出状态栏」不能只靠 padding
+   —— 一滚就把内容卷到时间/电量底下。这里补一条不参与布局的视觉遮罩
+   （pointer-events: none），版面避让仍由下面的 padding 负责。
+   桌面浏览器与手机浏览器的 --safe-top 都是 0，等于不存在。 */
+html[data-shell="android"] body::before {
+  content: "";
+  position: fixed; top: 0; left: 0; right: 0;
+  height: var(--safe-top);
+  z-index: 110; /* 高于吸顶标签页(40)，低于底部导航(120)；两者本来也不重叠 */
+  pointer-events: none;
+  background: color-mix(in srgb, var(--md-sys-color-background) 82%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* 整页让出系统栏。box-sizing 必须显式写：.app 原本是 content-box，
+   加上下内边距会让 min-height: 100dvh 之外多出等高的可滚动空白。 */
+html[data-shell="android"] .app {
+  box-sizing: border-box;
+  padding-top: var(--safe-top);
+  padding-right: var(--safe-right);
+  padding-left: var(--safe-left);
+}
+
+/* 车卡页吸顶标签页：sticky 的 top 是相对滚动视口的，不自己让位就会钻进状态栏 */
+html[data-shell="android"] .mob-tabsbar { top: var(--safe-top); }
+
+/* 底部导航：高度与内边距一起加上手势条，否则最后一行标签会被手势条压住 */
+html[data-shell="android"] .mob-nav {
+  height: calc(80px + var(--safe-bottom));
+  padding-bottom: var(--safe-bottom);
+}
+
+/* 底部卡片（模态底部面板）：正文底部让出手势条 */
+html[data-shell="android"] md-dialog.pop-sheet .pop-sheet-body {
+  padding-bottom: calc(16px + var(--safe-bottom));
+}
+
+/* 抽卡退出钮：贴顶固定，让出状态栏 */
+html[data-shell="android"] .draw-exit { top: calc(12px + var(--safe-top)); }
+
+/* 提示条：底栏之上，再让出手势条 */
+html[data-shell="android"] .d4e-snackbar { bottom: calc(16px + var(--safe-bottom)); }
+html[data-shell="android"] .gl-toast { bottom: calc(48px + var(--safe-bottom)); }
+
+/* 导引浮条：桌面版面贴底 18px，手机版面抬到底部导航之上 */
+html[data-shell="android"] .guide-float { bottom: calc(18px + var(--safe-bottom)); }
+
+@media (min-width: 769px) {
+  /* 桌面版面（平板/横屏）：左侧导轨仍有 76px，另外让出刘海；内容底部让出手势条 */
+  html[data-shell="android"] .app {
+    padding-left: calc(76px + var(--safe-left));
+    padding-bottom: var(--safe-bottom);
+  }
+  /* 左侧导轨是 fixed 的，不跟着 .app 的内边距走，要自己让位。
+     导轨背景仍铺到屏幕边缘（状态栏那一条由上面的留白条接管）。 */
+  html[data-shell="android"] .side-bar {
+    left: var(--safe-left);
+    padding-top: calc(16px + var(--safe-top));
+    padding-bottom: calc(14px + var(--safe-bottom));
+  }
+}
+
+@media (max-width: 768px) {
+  /* 内容区底部留白：底部导航变高了（+ 手势条），内容区要跟着让出同样的高度。
+     顶部不加在这里 —— 那是整个 .app 的事，见上面的 .app 规则。 */
+  html[data-shell="android"] .content {
+    padding-bottom: calc(84px + var(--safe-bottom));
+  }
+
+  /* 装备面板吸顶导航：下移到「留白条 + 吸顶标签页」之下 */
+  html[data-shell="android"] .equip-nav { top: calc(52px + var(--safe-top)); }
+
+  /* 吸底的提示条与导引浮条：抬到底部导航之上 */
+  html[data-shell="android"] .d4e-snackbar,
+  html[data-shell="android"] .gl-toast { bottom: calc(92px + var(--safe-bottom)); }
+  html[data-shell="android"] .guide-nav,
+  html[data-shell="android"] .guide-float { bottom: calc(84px + var(--safe-bottom)); }
+}

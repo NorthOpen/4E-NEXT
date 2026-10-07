@@ -47,6 +47,37 @@ object WebViewSetup {
       var seq = 1;
       var cb = {};
       window.${AndroidBridge.CALLBACK_REGISTRY} = cb;
+
+      /*
+       * 安全区：把原生量到的系统栏 inset 挂成 CSS 变量，并在 <html> 上打 data-shell="android"。
+       * 样式在 web/src/styles.android.css —— 整批规则只在壳里生效，浏览器 / 桌面端一条都不匹配。
+       *
+       * 为什么不让 CSS 直接用 env(safe-area-inset-*)：
+       * Android WebView 的安全区只覆盖刘海，**不含状态栏与手势条**，env() 在壳里恒为 0。
+       * 所以必须由原生给数。这里在 document-start 与 DOMContentLoaded 各读一次，
+       * 之后 inset 变化（旋转、手势条切换、折叠屏展开）由原生反向调用本函数刷新。
+       */
+      function applySafeArea() {
+        var root = document.documentElement;
+        if (!root) return;
+        var s;
+        try { s = JSON.parse(N.safeInsets()); } catch (e) { return; }
+        if (!s) return;
+        root.setAttribute('data-shell', 'android');
+        var st = root.style;
+        st.setProperty('--ae-inset-top', s.top + 'px');
+        st.setProperty('--ae-inset-right', s.right + 'px');
+        st.setProperty('--ae-inset-bottom', s.bottom + 'px');
+        st.setProperty('--ae-inset-left', s.left + 'px');
+      }
+      window.__4ENEXT_APPLY_SAFE_AREA__ = applySafeArea;
+      applySafeArea();
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', applySafeArea);
+      } else {
+        applySafeArea();
+      }
+
       function call(kind, payload) {
         return new Promise(function (resolve, reject) {
           var id = seq++;
@@ -74,6 +105,9 @@ object WebViewSetup {
       }
       window.__4ENEXT_ANDROID__ = {
         version: String(N.version()),
+        // 应用主题（深色/浅色）→ 状态栏与导航栏图标的明暗。网页端在主题变化时调用，
+        // 见 web/src/ThemeProvider.tsx。
+        setDarkTheme: function (dark) { try { N.setDarkTheme(!!dark); } catch (e) {} },
         storage: {
           getItem: function (k) { var v = N.storageGetItem(String(k)); return (v === undefined || v === null) ? null : v; },
           setItem: function (k, v) { N.storageSetItem(String(k), String(v)); },
@@ -239,6 +273,25 @@ object WebViewSetup {
         .setDomain(ASSET_HOST)
         .addPathHandler("/assets/", WebViewAssetLoader.AssetsPathHandler(context))
         .build()
+
+    /**
+     * 让页面重新读一次安全区（旋转、手势条切换、折叠屏展开等 inset 变化时调用）。
+     *
+     * 首屏**不依赖**这里：shim 会在 document-start 与 DOMContentLoaded 各读一次（见 [BRIDGE_SHIM]）。
+     * 页面还没就绪或已经销毁时调用都是无害的空操作。
+     */
+    fun applySafeArea(view: WebView) {
+        view.post {
+            try {
+                view.evaluateJavascript(
+                    "window.__4ENEXT_APPLY_SAFE_AREA__&&window.__4ENEXT_APPLY_SAFE_AREA__();",
+                    null,
+                )
+            } catch (_: Throwable) {
+                // 页面已经销毁：没有接收方，丢弃即可
+            }
+        }
+    }
 
     /**
      * 让 WebView 铺满整屏（含刘海与手势条区域），由网页端的 safe-area 自己避让。

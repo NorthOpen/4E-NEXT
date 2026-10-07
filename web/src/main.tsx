@@ -18,6 +18,9 @@ import "./styles.tutorial.css";
 import "./styles.guide.css";
 // 手机端版面（底部导航 + 车卡页顶部胶囊分组）：必须最后导入，才能覆盖 styles.css 的手机端规则
 import "./styles.mobile.css";
+// 安卓壳专属补偿（状态栏/手势条安全区）：整批规则带 html[data-shell="android"]，
+// 浏览器与桌面端一条都不匹配，版面不受影响。放在最后，以便必要时覆盖上面几份。
+import "./styles.android.css";
 
 // 正文字体（Chiron Sung）：index.html 里用 rel="preload" 提前取，这里切成真正的样式表。
 // 为什么不在标签上写 onload="this.rel='stylesheet'"：那属于内联事件处理器，会被 CSP 的

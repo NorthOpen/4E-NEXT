@@ -31,6 +31,11 @@ class AndroidBridge(
     private val store: NativeStore,
     private val exporter: NativeExporter,
     private val versionName: String,
+    /**
+     * 网页端报告应用主题（深色 / 浅色）时回调，由宿主切换状态栏与导航栏图标的明暗。
+     * 回调在**主线程**被调用（见 [setDarkTheme]）。
+     */
+    private val onDarkThemeChange: (Boolean) -> Unit = {},
 ) {
 
     companion object {
@@ -118,10 +123,42 @@ class AndroidBridge(
     @Volatile
     var pageIsOurs: Boolean = false
 
+    /**
+     * 最近一次量到的系统栏安全区，形如 `{"top":44.0,"right":0.0,"bottom":24.0,"left":0.0}`（单位 CSS px）。
+     * 由主线程在 inset 变化时写入；[safeInsets] 只读它，不自己去碰 window。
+     */
+    @Volatile
+    var safeAreaJson: String = """{"top":0.0,"right":0.0,"bottom":0.0,"left":0.0}"""
+
     // ---------------------------------------------------------------- 同步能力
 
     @JavascriptInterface
     fun version(): String = versionName
+
+    /**
+     * 系统栏安全区（CSS px），由主线程在 inset 变化时写入 [safeAreaJson]。
+     *
+     * **刻意不做 [fromApp] 来源校验**：document-start 注入的 shim 会在页面脚本之前读它，
+     * 而那时 `pageIsOurs` 还没置位（它在 onPageFinished 才写），并且本方法跑在
+     * JavaBridge 线程上、走不了主线程兜底 —— 加了守卫就恒返回 0，状态栏留白会时有时无。
+     * 它暴露的内容只有「状态栏/手势条有多高」，既不含用户数据也不构成任何能力，
+     * 与存储、原生 HTTP、导出那几条（都照旧走 fromApp）不是一回事。
+     */
+    @JavascriptInterface
+    fun safeInsets(): String = safeAreaJson
+
+    /**
+     * 网页端在主题切换时报告明暗（见 `web/src/ThemeProvider.tsx`），
+     * 用来把状态栏/导航栏的图标换成深色或浅色 —— 否则深色主题下系统图标是深色的，
+     * 压在同为深色的界面上等于看不见。
+     *
+     * 同 [safeInsets]：不加来源校验（首屏渲染发生在 onPageFinished 之前），
+     * 它的全部作用就是换个图标明暗，没有可利用面。
+     */
+    @JavascriptInterface
+    fun setDarkTheme(dark: Boolean) {
+        main.post { onDarkThemeChange(dark) }
+    }
 
     @JavascriptInterface
     fun storageGetItem(key: String): String? {

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  自适应图标：背景 = 品牌青，前景 = 网页版 favicon 那个标记（带安全边距）。
+  自适应图标：背景 = @color/brand_splash，前景 = 白色的 4E 字形（源图 alpha 取反）。
   由 android/scripts/make-icon.mjs 生成，不要手改——改就改那个脚本。
 -->
 <adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">

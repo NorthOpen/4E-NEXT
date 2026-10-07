@@ -144,6 +144,26 @@ object SmokeTest {
         var vp = document.querySelector('meta[name=viewport]');
         add('viewport-fit=cover 已注入', !!vp && /viewport-fit\s*=\s*cover/.test(vp.getAttribute('content') || ''));
 
+        // 9b. 安全区**真的量到并生效**没有。
+        //     只查 viewport-fit 是不够的：Android WebView 的 env(safe-area-inset-*)
+        //     只覆盖刘海、不含状态栏与手势条，所以壳把真实 inset 以 CSS 变量下发
+        //     （--ae-inset-* + data-shell="android"，规则见 web/src/styles.android.css）。
+        //     这里断的是「下发链路通」+「页面确实按它让出了顶部」——
+        //     0.3.4 恰好就是这两条的断点：原生算出来了却没生效，界面上表现为内容顶着状态栏。
+        var shellAttr = document.documentElement.getAttribute('data-shell');
+        var aeTop = (getComputedStyle(document.documentElement).getPropertyValue('--ae-inset-top') || '').trim();
+        var appEl = document.querySelector('.app');
+        var appPadTop = appEl ? parseFloat(getComputedStyle(appEl).paddingTop) : -1;
+        add(
+          '安全区：原生 inset 已下发且顶部已让出',
+          shellAttr === 'android' &&
+            /^[0-9.]+px/.test(aeTop) &&
+            appPadTop >= 0 &&
+            appPadTop + 0.5 >= parseFloat(aeTop) &&
+            appPadTop > 0,
+          'data-shell=' + shellAttr + ' --ae-inset-top=' + (aeTop || '(空)') + ' .app padding-top=' + appPadTop + 'px'
+        );
+
         // 10. 原生 HTTP 探针通路：走 appassets 上的虚拟路径，证明 shouldInterceptRequest 的分支在。
         //     注意这里的协议头在 Kotlin 侧拼（见 probeJs），因为原始字符串里写 $ 会被当成模板变量。
         var probe = await fetch('@@ORIGIN@@/__api/probe')

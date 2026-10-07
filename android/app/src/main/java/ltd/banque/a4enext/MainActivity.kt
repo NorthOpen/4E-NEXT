@@ -10,6 +10,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
+import org.json.JSONObject
 
 /**
  * 唯一的 Activity。里面几乎什么都不做——界面全在 WebView 里，
@@ -17,7 +18,8 @@ import androidx.core.view.WindowInsetsControllerCompat
  *
  *   1. 系统返回键 —— 默认行为是**直接退出应用**，而不是走网页端的历史栈。
  *      这是安卓移植里最高频、也最容易漏的体验问题（用户一按就退出，以为崩了）。
- *   2. 边到边布局与安全区 —— 刘海和手势条会遮住固定定位的元素。
+ *   2. 安全区与系统栏 —— 把状态栏/手势条的 inset 以 CSS px 交给网页端避让，
+ *      并让系统图标的明暗跟随应用主题。
  *   3. 切后台时把防抖窗口内的存储改动落盘。
  */
 class MainActivity : AppCompatActivity() {
@@ -31,10 +33,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         WindowCompat.setDecorFitsSystemWindows(window, false)
-        WindowInsetsControllerCompat(window, window.decorView).apply {
-            isAppearanceLightStatusBars = true
-            isAppearanceLightNavigationBars = true
-        }
+        // 先按浅色主题起（网页端设置项默认 isDark=false），
+        // 网页端渲染出来后会用桥（setDarkTheme）报一次真实主题，见 applySystemBarsAppearance。
+        applySystemBarsAppearance(dark = false)
 
         val app = application as App
         webView = WebView(this)
@@ -45,6 +46,7 @@ class MainActivity : AppCompatActivity() {
             store = app.store,
             exporter = NativeExporter(this),
             versionName = BuildConfig.VERSION_NAME,
+            onDarkThemeChange = { dark -> applySystemBarsAppearance(dark) },
         )
 
         runSmoke = intent?.getBooleanExtra(EXTRA_SMOKE, false) == true
@@ -91,12 +93,58 @@ class MainActivity : AppCompatActivity() {
 
         webView.addJavascriptInterface(bridge, AndroidBridge.JS_NAME)
 
-        // 安全区：把系统栏 inset 交给网页端，由它用 env(safe-area-inset-*) 与自身布局避让。
-        // 原生侧不做布局猜测——避让逻辑留在 web/，与桌面端、浏览器端是同一套。
+        // 安全区：**只把量到的 inset 换算成 CSS px 交给网页端**，由 web/ 自己避让
+        // （变量与规则见 web/src/styles.android.css）。原生侧不做任何布局猜测——
+        // 避让逻辑留在 web/，与桌面端、浏览器端是同一套。
+        //
+        // ⚠️ 不要改回「给 WebView 加 padding」：WebView 的网页视口不含 View 的 padding，
+        // 加了也不生效。0.3.4 真机上的表现就是"内容直接顶着状态栏显示"（2026-10-07，SM-S9380）。
         ViewCompat.setOnApplyWindowInsetsListener(container) { _, insets ->
-            val bars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            webView.setPadding(bars.left, bars.top, bars.right, bars.bottom)
+            val json = safeAreaJson(insets)
+            if (json != bridge.safeAreaJson) {
+                bridge.safeAreaJson = json
+                WebViewSetup.applySafeArea(webView)
+            }
             insets
+        }
+    }
+
+    /**
+     * 系统栏 inset → CSS px 的 JSON。
+     *
+     * 单位必须换算：WindowInsets 给的是物理像素，而 Blink 的 CSS px 是「物理像素 ÷ density」，
+     * 直接把物理像素写进 CSS 变量在高密度屏上会差 2–4 倍。
+     *
+     * 取 systemBars 与 displayCutout 的较大值：横屏时刘海在左/右，而 systemBars 的左右是 0，
+     * 只取其中一个都会漏。
+     */
+    private fun safeAreaJson(insets: WindowInsetsCompat): String {
+        val bars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+        val cutout = insets.getInsets(WindowInsetsCompat.Type.displayCutout())
+        val density = resources.displayMetrics.density
+        fun css(px: Int): Double {
+            val v = maxOf(px, 0) / density.toDouble()
+            return kotlin.math.round(v * 100) / 100.0
+        }
+        return JSONObject()
+            .put("top", css(maxOf(bars.top, cutout.top)))
+            .put("right", css(maxOf(bars.right, cutout.right)))
+            .put("bottom", css(maxOf(bars.bottom, cutout.bottom)))
+            .put("left", css(maxOf(bars.left, cutout.left)))
+            .toString()
+    }
+
+    /**
+     * 状态栏 / 导航栏图标的明暗跟随应用主题。
+     *
+     * 网页端主题可变（设置页有「深色」开关，见 web/src/ThemeProvider.tsx），
+     * 而系统图标的明暗只能由原生设置 —— 不联动的话，深色主题下会出现
+     * 「深色图标压在深色界面上」，时间和电量直接看不见。
+     */
+    private fun applySystemBarsAppearance(dark: Boolean) {
+        WindowInsetsControllerCompat(window, window.decorView).apply {
+            isAppearanceLightStatusBars = !dark
+            isAppearanceLightNavigationBars = !dark
         }
     }
 
