@@ -43,8 +43,8 @@ android {
         // 好处很实在——省掉一批 API 24~30 的兼容分支，且分区存储/照片选择器行为统一。
         minSdk = 31
         targetSdk = 36
-        versionCode = 304
-        versionName = "0.3.4"
+        versionCode = 305
+        versionName = "0.3.5"
     }
 
     androidResources {

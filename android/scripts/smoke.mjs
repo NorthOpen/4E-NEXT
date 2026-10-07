@@ -11,7 +11,7 @@
 // 签名说明：默认装 **debug** 包。debug 包与 release 包不能互相覆盖安装
 // （签名不同），所以如果机器上装过 release 版，先卸载。
 
-import { existsSync } from "node:fs";
+import { existsSync, readdirSync } from "node:fs";
 import { spawnSync } from "node:child_process";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -37,14 +37,53 @@ const TAG = "4enext-smoke";
 // 默认装 debug 包；--release 或 --apk <路径> 可以换成别的产物。
 // 发布前应当用**真的 release 包**跑一遍——debug 与 release 的 DEX 处理不同，
 // 「debug 能跑」不等于「release 能跑」。
+//
+// --release 取的是 release/ 目录里的产物，**按版本号从新到旧挑**，而不是写死文件名：
+// 写死等于每次发版都得回来改这个脚本，忘一次就是"找不到 APK"。
 const argv = process.argv.slice(2);
 const apkFlagIndex = argv.indexOf("--apk");
 const APK =
   apkFlagIndex >= 0 && argv[apkFlagIndex + 1]
     ? join(process.cwd(), argv[apkFlagIndex + 1])
     : argv.includes("--release")
-      ? join(androidDir, "release", "4E-NEXT-0.3.4-android.apk")
+      ? newestReleaseApk()
       : join(androidDir, "app", "build", "outputs", "apk", "debug", "app-debug.apk");
+
+/** release/ 目录里版本号最大的那个 APK（文件名形如 `4E-NEXT-0.3.5-android.apk`）。 */
+function newestReleaseApk() {
+  const dir = join(androidDir, "release");
+  const files = existsSync(dir)
+    ? readdirSync(dir).filter((f) => /^4E-NEXT-.+-android\.apk$/.test(f))
+    : [];
+  if (files.length === 0) {
+    console.error("[smoke:android] " + dir + " 里没有 APK，先执行：pnpm release:android");
+    process.exit(1);
+  }
+  files.sort((a, b) => compareVersion(b, a)); // 新的在前
+  if (files.length > 1) {
+    console.log(
+      "[smoke:android] release/ 里有 " + files.length + " 个包，取最新的：" + files[0] +
+        "（其余：" + files.slice(1).join(", ") + "）",
+    );
+  }
+  return join(dir, files[0]);
+}
+
+/** 比较两个发布文件名里的版本号（按段比数字，不看字典序）。 */
+function compareVersion(a, b) {
+  const part = (name) => {
+    const m = name.match(/^4E-NEXT-(.+)-android\.apk$/);
+    return m ? m[1] : "0";
+  };
+  const segments = (v) => v.split(/[.\-+]/).map((x) => parseInt(x, 10) || 0);
+  const pa = segments(part(a));
+  const pb = segments(part(b));
+  for (let i = 0; i < Math.max(pa.length, pb.length); i++) {
+    const d = (pa[i] || 0) - (pb[i] || 0);
+    if (d !== 0) return d;
+  }
+  return 0;
+}
 
 if (!existsSync(APK)) {
   console.error("[smoke:android] 找不到 APK：" + APK);
