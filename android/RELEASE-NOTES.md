@@ -8,11 +8,12 @@
 | `4E-NEXT-0.3.5-android.apk` | 87.9 MB | Android 12（API 31）及以上，arm64 + x86_64 |
 
 ```
-e482f91796277ade07773e2fe86cf398b558c2608205fca2e30df30d71d8ff44  4E-NEXT-0.3.5-android.apk
+d17c63d565769ea3f6f362e0361d41e9cb361e4274a72b92b893b44d62bfa46f  4E-NEXT-0.3.5-android.apk
 ```
 
-> 哈希是对**本地产物**算的。同一个 tag 在 CI 上重建可能因构建环境不同而得到不同的字节，
-> **请以 Release 附件里的 `SHA256SUMS.txt` 为准**——那份哈希由出包脚本对真正上传的产物计算。
+> 这条就是**本 Release 附件里那份产物**的哈希，与附件 `SHA256SUMS.txt` 一致
+> （由出包脚本对真正上传的文件计算）。在别的机器上重新构建同版本会得到不同的字节，
+> 校验请以附件为准。
 
 安装：把 APK 传到手机，用文件管理器点开安装。首次需要在系统设置里允许「安装未知来源应用」。
 未上架应用商店，也**不打算上**（原因见文末）。
@@ -78,13 +79,20 @@ e482f91796277ade07773e2fe86cf398b558c2608205fca2e30df30d71d8ff44  4E-NEXT-0.3.5-
 
 ## 验收状态
 
-**0.3.5 这一版在本地完成并已核对的：**
+**这一版由 `Android Release` 流水线出包**（tag `4E-NEXT-Android-V0.3.5`）：CI 上取内置字体、
+`gradlew assembleRelease`、`apksigner verify --print-certs`、算 SHA256、建这个 Release，
+全部步骤通过；流水线里两个「不达标就别发」的开关都开着
+（`--require-release-signing`、`--require-offline-fonts`）。
 
-- 出包：`pnpm release:android` → `BUILD SUCCESSFUL`（含 `lintVitalRelease`），产物 87.9 MB；
+出包前后核对过的：
+
+- 产物 **87.9 MB**（＝内置字体已打进包里；缺字体时只有约 23MB，那种包离线没有正文字体）；
 - **签名**：`apksigner verify --print-certs` → **v3 方案**，
   `CN=4E NEXT, O=4E NEXT contributors, C=CN`，
   指纹 `SHA-256: adc88f819a8a2ff4435c3739bedafe248e401b70ec862e287f11dcc600471d96`
   （与 0.3.4 是同一把密钥，所以能覆盖安装）；
+- **离线可用**：拆包确认内置字体 **1056 个分片**（`www/fonts/chiron.css` + `sung/` + `hei/`），
+  `index.html` 里**外部字体引用为 0** —— 断网也是同一套字形；
 - **桥接**：`dexdump -a` 确认 **10 个**桥方法都带 `@JavascriptInterface` 注解
   （注解一旦被剥离，界面照常、存储与同步静默失效）；
 - **资源**：拆包确认自适应图标（`anydpi` = 背景 + 前景；`anydpi-v33` 多一层 `monochrome`）、
@@ -95,7 +103,7 @@ e482f91796277ade07773e2fe86cf398b558c2608205fca2e30df30d71d8ff44  4E-NEXT-0.3.5-
   **去掉 `data-shell` 的对照组**全部回到 0 / 原值，即网页端与桌面端不受影响；
 - 三端类型检查：`pnpm --filter 4enext-web typecheck` 全过。
 
-**还没做、发这一版之前应当补的一项：真机上重跑自检。**
+**还没做、下一版之前应当补的一项：真机上重跑自检。**
 自检探针新增了一条「安全区已下发且顶部确实让出」，所以这次是 **24 项**：
 
 ```
