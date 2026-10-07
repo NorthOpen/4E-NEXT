@@ -32,7 +32,7 @@
 
 点击下载[Windows Desktop](https://github.com/NorthOpen/4E-NEXT/releases/tag/4E-NEXT-Desktop-V0.3.4)
 
-点击下载[Android Apk](https://github.com/NorthOpen/4E-NEXT/releases/tag/4E-NEXT-Android-V0.3.4)
+点击下载[Android Apk](https://github.com/NorthOpen/4E-NEXT/releases/tag/4E-NEXT-Android-V0.3.5)
 
 ## WebDAV
 
