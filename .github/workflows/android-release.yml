@@ -76,6 +76,20 @@ jobs:
       - name: Build data pipeline
         run: pnpm pipeline
 
+      # 内置字体：65MB / 1055 个 unicode-range 分片，**不入库**（desktop/assets/fonts 在 .gitignore 里）。
+      # 不取的话，web 构建会退回「保留字体 CDN 链接、跳过字体复制」那条分支，
+      # 产物虽然能装能跑，但**离线时没有正文字体**，与安卓版「内置，离线可用」的承诺不符——
+      # 而且 0.3.5 第一次发布就是这么发出去的（APK 只有 23MB，正常应是 88MB）。
+      # 这一步可断点续跑（已存在的分片直接复用），配合下面的 cache，正常情况下只有首次要下 65MB。
+      - name: Cache offline fonts
+        uses: actions/cache@v4
+        with:
+          path: desktop/assets/fonts
+          key: fonts-${{ hashFiles('desktop/scripts/fetch-fonts.mjs') }}
+
+      - name: Fetch offline fonts
+        run: node desktop/scripts/fetch-fonts.mjs
+
       # keystore 只在 runner 内存/磁盘上存在，跑完即随 runner 销毁；不进仓库
       #
       # 判空**不能**写成 `if: ${{ secrets.ANDROID_KEYSTORE_BASE64 != '' }}`：
@@ -98,18 +112,21 @@ jobs:
 
       # 出包：脚本会自己构建 web 产物、跑 gradlew、复制 APK、算 SHA256、验签名
       #
-      # 打 tag 时加 --require-release-signing：**没配 Secrets 就直接失败**，
-      # 而不是照常建一个带 debug 签名包的 Release。理由见 android/SIGNING.md 第四节，
-      # 以及 make-release.mjs 里那个开关的注释——debug 签名的包发出去，
-      # 用户之后无法用正式密钥覆盖安装（只能卸载，而卸载会删掉应用私有目录里的卡）。
-      # workflow_dispatch 不加这个开关：它本来就是"真机验证前先拿个包"的自测通道。
+      # 打 tag 时加两个「不达标就别发」的开关：
+      #   --require-release-signing  检出 debug 签名、或压根验证不了，直接失败。
+      #                              理由见 android/SIGNING.md 第四节——debug 签名的包发出去，
+      #                              用户之后无法用正式密钥覆盖安装（只能卸载，而卸载会删掉
+      #                              应用私有目录里的卡）。
+      #   --require-offline-fonts    产物里没有内置字体就失败（对应上面那一步；
+      #                              这类产物在离线手机上会退回系统字体，属于"看着正常"的降级）。
+      # workflow_dispatch 不加这两个开关：它本来就是"真机验证前先拿个包"的自测通道。
       - name: Build release APK
         env:
           ANDROID_KEYSTORE_PATH: ${{ secrets.ANDROID_KEYSTORE_BASE64 != '' && 'keystore/release.jks' || '' }}
           ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
           ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
           ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
-        run: node android/scripts/make-release.mjs ${{ startsWith(github.ref, 'refs/tags/') && '--require-release-signing' || '' }}
+        run: node android/scripts/make-release.mjs ${{ startsWith(github.ref, 'refs/tags/') && '--require-release-signing --require-offline-fonts' || '' }}
 
       - uses: actions/upload-artifact@v4
         with:

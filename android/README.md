@@ -169,6 +169,8 @@ inset 变化时（旋转、手势条切换、折叠屏展开）主线程反向�
 ```bash
 # 0) 一次性：Android SDK（platform-tools + platforms;android-36 + build-tools;36.0.0）
 #    并在 android/local.properties 里写 sdk.dir，或设 ANDROID_HOME
+#    以及内置字体（65MB / 1055 个分片，**不入库**：desktop/assets/fonts 在 .gitignore 里）：
+node desktop/scripts/fetch-fonts.mjs
 
 # 1) 渲染产物 -> android/app/src/main/assets/www/
 pnpm --filter 4enext-web build:android
@@ -180,7 +182,17 @@ node android/scripts/make-icon.mjs
 cd android
 ./gradlew assembleDebug      # 调试包
 ./gradlew assembleRelease    # 发布包（签名见下）
+
+# 一步到位（含网页产物 + 复制成发布名 + SHA256 + 验签）：
+pnpm release:android
 ```
+
+> **内置字体那一步不能省。** 字体不入库，所以 CI 检出的工作区里是没有的；
+> 少了它，web 构建会**静默**退回「保留字体 CDN 链接、跳过字体复制」那条分支——
+> 包能装能跑、界面正常，只是**离线时没有正文字体**（0.3.5 第一次发布就是这么发出去的：
+> Release 附件 23.4 MB，而正常产物是 87.9 MB，差的正是那 64.7MB 字体）。
+> 因此打 tag 出包时 `make-release.mjs` 会带上 `--require-offline-fonts`，
+> 缺字体直接失败；工作流里也有「取字体 + 缓存」两步（见 `.github/workflows/android-release.yml`）。
 
 ### 环境要求
 

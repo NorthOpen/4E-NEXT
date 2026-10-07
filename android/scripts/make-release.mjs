@@ -42,6 +42,17 @@ const isWindows = process.platform === "win32";
 // 手动触发（workflow_dispatch，只为拿个包做真机自测）不加这个开关，行为不变。
 const requireReleaseSigning = process.argv.includes("--require-release-signing");
 
+// --require-offline-fonts：把「产物里没有内置字体」从警告升级为失败。
+//
+// 为什么需要这个开关：内置字体（65MB / 1055 个分片）不入库（desktop/assets/fonts 在 .gitignore 里），
+// 所以 CI 检出时是空的，web 构建会**静默**退回「保留字体 CDN 链接、跳过字体复制」那条分支
+// ——包能装能跑，界面也正常，只是**离线时没有正文字体**。0.3.5 第一次发布就是这么发出去的：
+// Release 附件 23.4 MB，而正常产物是 87.9 MB，差的正是那 64.7MB 字体。
+//
+// 它对「本地先出个包自测」是对的（本机一般已经抓过字体，抓不到时也确实该能出包），
+// 但对「打 tag 发布」是错的：那种包不满足安卓版「内置，离线可用」的承诺。
+const requireOfflineFonts = process.argv.includes("--require-offline-fonts");
+
 function step(msg) {
   console.log("[make-release] " + msg);
 }
@@ -86,6 +97,25 @@ if (!existsSync(wwwIndex)) {
   console.error("[make-release] 找不到渲染产物：" + wwwIndex);
   console.error("[make-release] 先执行：pnpm --filter 4enext-web build:android");
   process.exit(1);
+}
+
+// ---------------------------------------------------------------- 1b) 内置字体
+
+const fontsCss = join(androidDir, "app", "src", "main", "assets", "www", "fonts", "chiron.css");
+const fontsBundled = existsSync(fontsCss);
+if (fontsBundled) {
+  step("内置字体：已在产物里（" + fontsCss + "）");
+} else {
+  console.warn("");
+  console.warn("[make-release] ⚠️  产物里没有内置字体：" + fontsCss);
+  console.warn("[make-release]    这份包在离线手机上会退回系统字体，与「内置，离线可用」不符。");
+  console.warn("[make-release]    修法：node desktop/scripts/fetch-fonts.mjs（可断点续跑）之后再出包。");
+  console.warn("");
+  if (requireOfflineFonts) {
+    console.error("[make-release] 已中止：--require-offline-fonts 要求产物自带内置字体。");
+    console.error("[make-release]   CI 上多半是漏了「取字体」那一步——desktop/assets/fonts 不在仓库里。");
+    process.exit(1);
+  }
 }
 
 // ---------------------------------------------------------------- 2) 定位 JDK
