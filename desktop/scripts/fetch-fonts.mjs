@@ -33,6 +33,55 @@ const SOURCES = [
 const UA =
   "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36";
 
+// 上游分片接口对突发并发很敏感：实测在 GitHub runner 上以 16 并发连打，会从第 400 个左右开始
+// 回非标准的 **567**（限流），于是整条安卓发布流水线在「取内置字体」这一步直接失败——
+// 单发请求同一时刻是 200，所以这不是源站挂了，而是被当成爬虫挡了。
+//
+// 两道处理：① 压低并发并在分片之间留间隔，把瞬时速率降到源站能接受的范围；
+//          ② 单个分片退避重试（网络错误、408/429 与 5xx 都算可恢复）。
+// 代价是这一步从数秒变成几分钟，比「发布发不出去」划算。
+//
+// 另：actions/cache 的字体缓存**按 ref 隔离**，tag 触发的运行读不到 main 上的缓存，
+// 所以每次 tag 出包都是从零下 1055 个分片——这也是必须把这一步做稳的原因。
+const CONCURRENCY = 2;
+const PACE_MS = 400;
+const ATTEMPTS = 5;
+const MAX_CONSECUTIVE_FAILURES = 40;
+
+let consecutiveFailures = 0;
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+/** 带退避重试的 GET。上游限流用的 567 也落在 res.status >= 500 里，同样重试。 */
+async function fetchWithRetry(url, label) {
+  let last = "未知错误";
+  for (let attempt = 1; attempt <= ATTEMPTS; attempt++) {
+    let retryable = true;
+    try {
+      const res = await fetch(url, { headers: { "User-Agent": UA } });
+      if (res.ok) {
+        consecutiveFailures = 0;
+        return res;
+      }
+      last = "HTTP " + res.status;
+      retryable = res.status === 408 || res.status === 429 || res.status >= 500;
+    } catch (e) {
+      last = e.message;
+    }
+    consecutiveFailures++;
+    // 整站都在拒绝时不要耗到步骤超时：连着 40 次失败就明确报错退出
+    if (consecutiveFailures >= MAX_CONSECUTIVE_FAILURES) {
+      throw new Error(
+        "连续 " + consecutiveFailures + " 次请求失败（最后一次：" + last + "），判定为上游限流或不可用，中止：" + label,
+      );
+    }
+    if (!retryable || attempt === ATTEMPTS) break;
+    const wait = Math.min(30000, 2000 * 2 ** (attempt - 1)) + Math.floor(Math.random() * 250);
+    console.warn("[fetch-fonts]   " + last + "，第 " + attempt + " 次失败，" + wait + " ms 后重试");
+    await sleep(wait);
+  }
+  throw new Error("下载失败 " + last + " " + label);
+}
+
 if (!force && existsSync(CSS_OUT)) {
   const head = readFileSync(CSS_OUT, "utf8").slice(0, 400);
   if (head.includes(SOURCE_ID)) {
@@ -68,9 +117,11 @@ let licenseLines = [];
 for (const src of SOURCES) {
   const cssUrl = "https://fontsapi.zeoseven.com/" + src.id + "/main/result.css";
   console.log("[fetch-fonts] 拉取 " + src.label + " ...");
-  const res = await fetch(cssUrl, { headers: { "User-Agent": UA } });
-  if (!res.ok) {
-    console.error("[fetch-fonts] 失败：HTTP " + res.status + " " + cssUrl);
+  let res;
+  try {
+    res = await fetchWithRetry(cssUrl, "result.css " + src.id);
+  } catch (e) {
+    console.error("[fetch-fonts] 失败：" + e.message + " " + cssUrl);
     process.exit(1);
   }
   const css = await res.text();
@@ -127,13 +178,13 @@ console.log("[fetch-fonts] 分片共 " + downloads.length + " 个，本次需要
 
 let done = 0;
 let bytes = 0;
-await mapLimit(todo, 16, async (item) => {
-  const res = await fetch(item.url, { headers: { "User-Agent": UA } });
-  if (!res.ok) throw new Error("下载失败 " + res.status + " " + item.url);
+await mapLimit(todo, CONCURRENCY, async (item) => {
+  const res = await fetchWithRetry(item.url, item.url);
   const buf = Buffer.from(await res.arrayBuffer());
   writeFileSync(item.dest, buf);
   done++;
   if (done % 200 === 0) console.log("[fetch-fonts]   " + done + "/" + todo.length);
+  await sleep(PACE_MS);
 });
 for (const d of downloads) if (existsSync(d.dest)) bytes += statSync(d.dest).size;
 
