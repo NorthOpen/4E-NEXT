@@ -30,9 +30,9 @@
 
 除网页版外，项目提供封装后的Windows setup与portable两种桌面版本与Android apk版本。为在意缓存占用和希望使用独立应用的用户提供。
 
-点击下载[Windows Desktop](https://github.com/NorthOpen/4E-NEXT/releases/tag/4E-NEXT-Desktop-V0.3.4)
+点击下载[Windows Desktop](https://github.com/NorthOpen/4E-NEXT/releases/tag/4E-NEXT-Desktop-V0.3.6)
 
-点击下载[Android Apk](https://github.com/NorthOpen/4E-NEXT/releases/tag/4E-NEXT-Android-V0.3.5)
+点击下载[Android Apk](https://github.com/NorthOpen/4E-NEXT/releases/tag/4E-NEXT-Android-V0.3.6)
 
 ## WebDAV
 
