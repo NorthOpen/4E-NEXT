@@ -128,6 +128,7 @@ export default function ReserveView({ layout, char, setChar }: Props) {
         <ItemSlotPicker
           entries={items}
           slotName="背包"
+          currentLevel={char.level}
           currentId={char.backpack[slotPicker.index] || undefined}
           onSelect={(id) => setChar({ ...char, backpack: setFeatSlot(char.backpack, slotPicker.index, id) })}
           onClear={() => setChar({ ...char, backpack: clearFeatSlot(char.backpack, slotPicker.index) })}

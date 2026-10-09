@@ -1,18 +1,18 @@
 {
-  "generatedAt": "2026-09-11T14:50:18.699Z",
-  "source": "4e-rules.html",
+  "generatedAt": "2026-10-09T15:52:03.802Z",
+  "source": "4e Rules Compendium.htm",
   "schemaVersion": 1,
   "chapters": 11,
-  "total": 560,
+  "total": 687,
   "byKind": {
-    "rule": 365,
-    "power": 16,
+    "rule": 376,
+    "power": 53,
     "disease": 1,
-    "sidebar": 15,
-    "item": 7,
+    "sidebar": 16,
+    "item": 9,
     "glossary": 149,
-    "faq": 5,
-    "feat": 2
+    "faq": 70,
+    "feat": 13
   },
   "byChapter": [
     {

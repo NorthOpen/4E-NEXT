@@ -36,7 +36,6 @@
       "打击不死 Smite Undead",
       "大地坚韧 Earth's Endurance",
       "大地重担 Burden of Earth",
-      "调和之刃 Harmony of Blades",
       "调停锁链 Chains of the Peacemaker",
       "调停之光 Peacemaker's Light",
       "动员令 Adjure the Chosen",
@@ -57,7 +56,6 @@
       "风灵天使 Angel of the Eleven Winds",
       "封绝守护 Seal of Warding",
       "封锁死门 Sealing Death's Door",
-      "否极泰来 Strikes of Woe and Weal",
       "抚慰之光 Soothing Light",
       "复仇烈焰 Avenging Flame",
       "复仇烈焰 Vengeful Flare",
@@ -98,6 +96,7 @@
       "毁灭之命 Ruinous Kismet",
       "活力真言 Word of Vigor",
       "火焰风暴 Fire Storm",
+      "祸福打击 Strikes of Woe and Weal",
       "激发恐惧 Inspire Dread",
       "激发狂热 Inspire Fanaticism",
       "激发热情 Inspire Fervor",
@@ -108,6 +107,7 @@
       "集体医疗重伤 Mass Cure Serious Wounds",
       "祭司之庇护 Priest's Shield",
       "见证神使 Angelic Witnesses",
+      "剑刃和鸣 Harmony of Blades",
       "剑刃障壁 Blade Barrier",
       "揭示之光 Revealing Light",
       "劫数难逃 Inevitable Doom",
@@ -199,7 +199,6 @@
       "神恩复苏 Divine Vigor",
       "神罚 Divine Punishment",
       "神护之盾 Numinous Shield",
-      "神火风暴 Faerie-Flame Strike",
       "神力报复 Divine Reprisal",
       "神力惩戒 Divine Castigation",
       "神力恩宠 Divine Fervor",
@@ -329,6 +328,7 @@
       "焰击术 Flame Strike",
       "阳光爆发 Sun Burst",
       "阳炎爆 Sunburst",
+      "妖火打击 Faerie-Flame Strike",
       "妖精视觉 Fey Sight",
       "曜岩护盾 Obsidian Shield",
       "野性祝福 Blessing of the Wild",
@@ -707,7 +707,6 @@
       "小鬼信使 Ambassador Imp",
       "邪恶驱逐 Evil Expulsion",
       "邪恶引导之星 Malicious Guide Star",
-      "邪灵巨眼 Baleful Eye of Imix",
       "邪术师契约 Warlock's Bargain",
       "邪术师之眼 Eye of the Warlock",
       "邪术师之跃 Warlock's Leap",
@@ -737,6 +736,7 @@
       "夜影云雾 Nightshade Cloud",
       "夜影之梦 Nightshade Dreams",
       "伊巴之手 Hands of Ihbar",
+      "伊密克斯之邪眼 Baleful Eye of Imix",
       "移形换位 Fey Switch",
       "遗灵艾尔摩斯 Vestige of Ilmeth",
       "遗灵安曼 Vestige of Amaan",
@@ -1696,7 +1696,6 @@
       "光亮术 Light",
       "光谱影像 Spectral Image",
       "光耀法柱 Radiant Pillar",
-      "傀儡诱惑 Charm of Puppet Strings",
       "骸骨封锁 Cordon of Bones",
       "海市蜃楼 Mirage Arcana",
       "寒冰冲击 Blast of Cold",
@@ -1766,7 +1765,7 @@
       "记忆消除 Memory to Mist",
       "加护沉睡术 Preserving Sleep",
       "简易活化术 Simple Animation",
-      "剑咏 Bladesong",
+      "剑歌 Bladesong",
       "脚底抹油 Expeditious Retreat",
       "解除魔法 Dispel Magic",
       "解离术 Disintegrate",
@@ -1795,6 +1794,7 @@
       "控水术 Command Water",
       "狂暴意识 Mind of Rage",
       "狂怒幻景 Visions of Wrath",
+      "傀儡诱惑 Charm of Puppet Strings",
       "困惑术 Confusion",
       "乐而忘危 Blissful Ignorance",
       "雷电枪 Thunderlance",
@@ -1807,8 +1807,8 @@
       "力墙术 Wall of Force",
       "连环闪电 Chain Lightning",
       "联结之魔杖 Wand Coupling",
-      "灵魂傀儡 Soul Puppets",
       "灵魂枯萎 Soul Blight",
+      "灵魂傀儡 Soul Puppets",
       "灵魂收割 Soul Harvest",
       "灵魂之火 Soul Fire",
       "灵体锤 Spectral Ram",
@@ -1900,8 +1900,8 @@
       "世界崩裂术 Crack the World",
       "世界之返 Shunt Between Worlds",
       "束缚旋风 Pinioning Vortex",
-      "衰老术 Enervation",
       "衰弱射线 Ray of Enfeeblement",
+      "衰弱术 Enervation",
       "衰弱沼气 Miasma of Enfeeblement",
       "霜燃术 Frostburn",
       "霜兽术 Rime Beasts",
@@ -2667,7 +2667,6 @@
       "锋锐术 Vorpal Edge",
       "符文抗力 Runic Resistance",
       "腐蚀壁垒 Caustic Rampart",
-      "腐蚀武器 Scouring Weapon",
       "复原附魔 Recuperative Enchantment",
       "复原仲裁 Rejuvenating Intercession",
       "钢铁斗篷注射 Iron-Hide Infusion",
@@ -2715,6 +2714,7 @@
       "强化装甲 Bolster Armor",
       "强键铁卫 Stalwart Defender",
       "强酸甲 Armor of Acid",
+      "侵蚀武器 Scouring Weapon",
       "侵蚀印记 Corrosive Sigil",
       "擒拿捆绳 Grasping Rope",
       "燃烧武器 Burning Weapons",
@@ -3659,6 +3659,11 @@
       "最后一击 Claim the Prize",
       "最后一击 Finishing Cut"
     ],
+    "精野驯兽师": [
+      "安全放逐 Safe Banishment",
+      "伙伴形态 Companion Form",
+      "治疗精野野兽伙伴 Heal Fey Beast Companion"
+    ],
     "符印雕师": [
       "安全符印 Sigil of Safety",
       "仇恨符印 Sigil of Enmity",
@@ -3674,10 +3679,9 @@
       "暗步伏击 Dark Step Ambush",
       "暗夜军队 Army of the Night",
       "暗影匕首 Shadow Knives",
-      "暗影傀儡 Shadow Puppet",
       "暗影火焰 Shadow Fire",
       "暗影结合 Shadow Meld",
-      "暗影军团 Shadowed Legion",
+      "暗影傀儡 Shadow Puppet",
       "暗影能手 Shadow Adept",
       "暗影之棺 Shadow Coffin",
       "薄暮呼唤 Gloaming Call",
@@ -3715,7 +3719,6 @@
       "绞索扼杀 Garrote Strangle",
       "惊怖面容 Terrifying Visage",
       "精准飞镖 Precision Dart",
-      "快速射击 Quick Shot",
       "流星索击倒 Bola Takedown",
       "猫之诡计 Cat's Trickery",
       "蒙尘之心 Heart of Dust",
@@ -3734,6 +3737,7 @@
       "杀手的坚忍 Slayer's Endurance",
       "杀手的逃逸之路 Slayer's Escape",
       "神速之策 Contrivance of Speed",
+      "噬敌附影 Shadow Jack",
       "收割者之触 Reaper's Touch",
       "水上漂 Feathery Tread",
       "死亡标记 Death Mark",
@@ -3756,6 +3760,7 @@
       "宣告死亡 Claim the Dead",
       "旋转锁镰 Whirling Kusari-gama",
       "血影 Blood Shadows",
+      "迅疾射击 Quick Shot",
       "烟雾弹 Smoke Bomb",
       "掩盖之雾 Cloaking Mist",
       "摇曳之影 Slithering Shadow",
@@ -3767,7 +3772,6 @@
       "阴影公会 Guild of Shadows",
       "阴影汇集 Converging Shadows",
       "阴影交换 Shadow Swap",
-      "阴影杰克 Shadow Jack",
       "阴影链接 Shadow Link",
       "阴影灵魂 Shadow Soul",
       "阴影欺诈 Shadowed Deception",
@@ -3780,6 +3784,7 @@
       "隐雾之影 Obscuring Shadow",
       "影镖 Shadow Darts",
       "影步 Shadow Step",
+      "影幕军团 Shadowed Legion",
       "影墙 Wall of Shadows",
       "影行术 Walk Through Shadow",
       "影焰形态 Black Flame Form",
@@ -3839,7 +3844,6 @@
       "飞虎翔袭 Flying Tiger Assault",
       "飞流直下 Thundering Waterfall",
       "飞龙在天 Duel in the Heavens",
-      "飞檐走壁 Spider Technique",
       "风穿柳 Wind Through the Willows",
       "风雨欲来 Calm Before the Storm",
       "凤凰飞升 Rising Phoenix",
@@ -4027,6 +4031,7 @@
       "至高格挡 Supreme Parry",
       "秩序解除 Order Unbound",
       "骤雨势 Lashing Rain",
+      "蛛行技巧 Spider Technique",
       "醉马骝 Drunken Monkey"
     ],
     "吸血鬼贵族": [
@@ -4128,7 +4133,7 @@
       "火焰枷锁 Chains of Fire",
       "火焰喷射 Burning Spray",
       "火焰王冠 Crown of Flames",
-      "火焰旋涡 Flame Spiral",
+      "火焰漩涡 Flame Spiral",
       "火云术 Blazing Cloud",
       "夹击魔宠 Flanking Familiar",
       "惊雷破 Thunder Slam",
@@ -4204,7 +4209,6 @@
       "沙漠龙息 Breath of the Desert Dragon",
       "闪电爆发 Lightning Eruption",
       "闪电匕首 Lightning Daggers",
-      "闪电冲击 Lightning Strike",
       "闪电反冲 Lightning Backlash",
       "闪电混乱风暴 Chaos Storm",
       "闪电裂变 Split Strike",
@@ -4228,6 +4232,7 @@
       "酸暴吐息 Tempest Breath",
       "酸蚀飓风 Acid Typhoon",
       "损伤策略 Damage Gambit",
+      "跳弹电击 Lightning Strike",
       "跳跃闪电 Bounding Bolt",
       "投机魔宠 Opportunistic Familiar",
       "土行术 Earth Passage",
@@ -4289,9 +4294,9 @@
       "众星捧日 Sun and Stars",
       "重生烈焰 Prime the Fire",
       "咒击之刃 Ensorcelled Blade",
-      "卓戈萨之怒 Fury of Dragotha",
       "灼热光辉 Searing Radiance",
-      "灼热之沙 Searing Sands"
+      "灼热之沙 Searing Sands",
+      "卓戈萨之怒 Fury of Dragotha"
     ],
     "黑暗算计者": [
       "暗行之影 Shadow Slip",
@@ -4341,6 +4346,14 @@
       "星辰祈祷 Star Invocation",
       "元素变形 Elemental Transformation",
       "元素祈祷 Elemental Invocation"
+    ],
+    "恶精灵代理人": [
+      "暗影汇报 Umbral Report",
+      "暗影披风 Shadow Cloak",
+      "创造影锻武器 Create Shadow-Wrought Weapon",
+      "恶精之眼 Unseelie Eyes",
+      "寒影打击 Cold Shadow Strike",
+      "释放腐化 Unleash Corruption"
     ],
     "吸血鬼": [
       "暗影集群 Swarm of Shadows",
@@ -4530,7 +4543,6 @@
       "乱石穿空 Skip the Rock",
       "乱心矢 Distracting Shot",
       "麻痹射击 Numbing Shot",
-      "蹒跚猛袭 Staggering Assault",
       "盲点利用 Blind Spot Advantage",
       "猛击飞撞 Bat Aside",
       "猛烈爆发 Blistering Outburst",
@@ -4542,10 +4554,10 @@
       "目眩杂技 Dazzling Acrobatics",
       "暮光恐吓 Twilight Menace",
       "内脏打击 Visceral Strike",
-      "辗转猛击 Hurling Pounce",
       "怒目而视 Threatening Glare",
       "懦夫之灾 Craven's Bane",
       "攀爬行者 Wall Crawl",
+      "蹒跚猛袭 Staggering Assault",
       "偏离打击 Deflected Strike",
       "迫逐击 Hounding Strike",
       "千手屠人 One Hundred Knives",
@@ -4691,6 +4703,7 @@
       "杂技脱身 Acrobat's Escape",
       "杂耍突击 Acrobatic Assault",
       "蚱蜢跳跃 Grasshopper Leap",
+      "辗转猛击 Hurling Pounce",
       "战术技巧 Tactical Trick",
       "站不如躺 Walking Wounded",
       "障眼法 Peripheral Concealment",
@@ -5358,7 +5371,6 @@
       "柳条人 Wicker Man",
       "鹿之强韧 Elk's Fortitude",
       "麻雀群 Cloud of Sparrows",
-      "蹒跚撕裂 Hobbling Rend",
       "猫之优雅 Cat's Grace",
       "魅影之风 Elusive Wind",
       "猛虎形态 Primal Tiger",
@@ -5371,6 +5383,7 @@
       "扭曲大地 Writhing Earth",
       "扭曲藤蔓 Twisting Vines",
       "爬虫灾难 Creeping Doom",
+      "蹒跚撕裂 Hobbling Rend",
       "咆哮末日 Howling Doom",
       "漂浮死亡 Floating Death",
       "潜水之鳍 Diving Fin",
@@ -5544,9 +5557,9 @@
       "捕食者之道 Path of the Predator",
       "不为所动 Untouched",
       "不折快步 Indomitable Shift",
-      "梣木槌狂暴 Ash Hammer Rage",
       "猖獗蓄谋 Rampant Malice",
       "潮汐狂暴 Tidal Rage",
+      "梣木槌狂暴 Ash Hammer Rage",
       "仇怒进攻 Implacable Advance",
       "穿心击 Heart Strike",
       "锤尾兽狂暴 Macetail's Rage",
@@ -5850,6 +5863,7 @@
       "钢铁劲舞 Quick Steel Dance",
       "高潮和弦 Climactic Chord",
       "鼓舞迭句 Inspiring Refrain",
+      "鼓舞演说 Bolstering Speech",
       "骇人狂笑 Hideous Laughter",
       "寒风旋舞 Dance of Biting Wind",
       "寒之刃 Chilled Blade",
@@ -5872,7 +5886,6 @@
       "激发技能 Inspire Competence",
       "激励传说 Zeal-Inspiring Tale",
       "激励呼声 Stirring Shout",
-      "激情演说 Bolstering Speech",
       "及时扰乱 Timely Distraction",
       "集结曲 Corralling Song",
       "加速术 Haste",
@@ -7723,6 +7736,13 @@
       "唇枪舌剑 Silver Tongue, Silver Blade",
       "谈判大师 Master Negotiator"
     ],
+    "欧格玛虔信者": [
+      "此计拙劣 Bad Idea",
+      "理解语言 Understand Language",
+      "灵光一现 Sudden Insight",
+      "学识反射 Learned Response",
+      "战术启迪 Tactical Inspiration"
+    ],
     "秘银军": [
       "次元斩 Dimension Strike",
       "预言防御 Prophetic Defense"
@@ -7806,7 +7826,7 @@
       "石质甲胄 Stone Panoply",
       "震颤脚步 Tremor Step"
     ],
-    "摩拉丁子嗣": [
+    "摩拉丁长子": [
       "大地感知 Earthsense",
       "山势打击 Mountain Stance Strike",
       "准备战斗 Receive the Charge"
@@ -7828,7 +7848,7 @@
     ],
     "灰卫": [
       "大毁灭斩 Devastating Smite",
-      "衰弱斩 Debilitating Smite",
+      "衰弱猛击 Debilitating Smite",
       "无情审判 Relentless Justice"
     ],
     "世界大蛇之牙": [
@@ -8053,12 +8073,12 @@
       "神圣启迪 Divine Inspiration",
       "胜利之风 Winds of Victory",
       "石之壁垒 Bulwark of Stone",
-      "死亡标记 Mark of Death",
       "太阳耀斑 Solar Flare",
       "天堂之泪 Heaven's Tear",
       "危险知识 Dangerous Knowledge",
       "无情恨意 Implacable Enmity",
       "无情袭击 Ruthless Assault",
+      "消亡标记 Mark of Death",
       "重整部队 Rally the Troops"
     ],
     "和平信使": [
@@ -8491,7 +8511,7 @@
       "怀旧攻击 Reminiscent Assault",
       "双生策略 Twinning Ploy"
     ],
-    "复仇武士": [
+    "拉斯玛尔": [
       "复仇空间 Vengeance Shroud",
       "复仇追踪 Rrathmal Pursuit",
       "探寻机会 Trace Chance"
@@ -8552,11 +8572,6 @@
     "不灭": [
       "改变抗力 Vary Resistance"
     ],
-    "长武器大师": [
-      "杠杆击 Leveraging Strike",
-      "远袭式 Reaching Stance",
-      "长武横扫 Polearm Sweep"
-    ],
     "钢空解放者": [
       "钢空架势 Steelsky Stance",
       "解放者之击 Liberator's Blow",
@@ -8604,6 +8619,11 @@
       "钢之咆啸 Steel Scream",
       "治疗回馈 Soothing Reverberation",
       "智取敌首 Mind-Bending Blades"
+    ],
+    "长武器大师": [
+      "杠杆击 Leveraging Strike",
+      "远袭式 Reaching Stance",
+      "长武横扫 Polearm Sweep"
     ],
     "科瑞隆神选者": [
       "高等奥术 High Arcana"
@@ -9021,9 +9041,16 @@
     ],
     "天赋元素法师": [
       "混乱之潮 Chaos Tide",
+      "巨灵之怒 Wrath of the Genies",
       "巨兽解封 Unleash Monolith",
-      "灵魔之怒 Wrath of the Genies",
       "元素回撤 Elemental Retreat"
+    ],
+    "死鼠逃兵": [
+      "混种撕咬 Hybrid Bite",
+      "鼠之形态 Body of the Rat",
+      "凶恶嘶鸣 Savage Hiss",
+      "贼头鼠脑 Dead Rat Stealth",
+      "直觉飞跃 Intuitive Leap"
     ],
     "瓦塔利斯狮鹫大师": [
       "活力俯冲 Invigorating Dive",
@@ -9141,11 +9168,11 @@
       "翩跹之叶 Whirling Leaves",
       "新生之藤 Renewing Vines"
     ],
-    "树精": [
+    "橡树精": [
       "坚实树体 Body of Solid Oak",
       "灵魂形态 Spirit Form",
       "木质庇护所 Wooden Sanctuary",
-      "树精形态 Hamadryad Aspects",
+      "橡树精形态 Hamadryad Aspects",
       "妖精心镜 Fey Mind Mirror",
       "妖精之王 Feyborn Majesty"
     ],
@@ -9286,11 +9313,6 @@
       "索求效忠 Demand Fealty",
       "伟大演说 Great Speech"
     ],
-    "精灵之主": [
-      "精灵调解 Genie's Intercession",
-      "精灵赠礼 Genie's Gift",
-      "有限许愿 Limited Wish"
-    ],
     "入魂者": [
       "精神打击 Phrenic Strike",
       "思想入侵者 Thought Interloper",
@@ -9352,6 +9374,11 @@
       "纠缠命运 Tangled Fate",
       "痛苦移位 Excruciating Transposition",
       "游魂之祸 Soul Scourge"
+    ],
+    "巨灵亲王": [
+      "巨灵调解 Genie's Intercession",
+      "巨灵赠礼 Genie's Gift",
+      "有限许愿 Limited Wish"
     ],
     "龙之化身": [
       "巨龙形态 Draconic Form"
@@ -9571,6 +9598,12 @@
       "连绵毒素 Persistent Poison",
       "隐袭伏击 Insidious Attack",
       "致盲之尘 Blinding Dust"
+    ],
+    "仙宫贵族": [
+      "联合阵线 Unified Front",
+      "临时精类契约 Temporary Fey Pact",
+      "仙宫协定 Sidhe Bargain",
+      "召唤仙宫盟友 Summon Sidhe Ally"
     ],
     "边疆统帅": [
       "猎人包围势 Pack Hunter Stance",
@@ -9891,6 +9924,11 @@
     "天族": [
       "千世遥忆 Memory of a Thousand Lifetimes"
     ],
+    "竖琴手特工": [
+      "潜踪隐迹 Resourceful Dastard",
+      "竖琴手的治愈恩惠 Harper’s Healing Boon",
+      "意外之友 Unexpected Ally"
+    ],
     "心途执行者": [
       "强加意志 Impose Your Will",
       "征服意志 Subjugate the Will",
@@ -9906,11 +9944,11 @@
       "勇气试炼 Test of Mettle",
       "征途狂暴 Warpath Rage"
     ],
-    "精怪亲信": [
-      "亲信冲锋 Janissary Charge",
-      "亲信热忱 Janissary Zeal",
-      "亲信雾态 Janissary's Mist Form",
-      "亲信之盾 Janissary's Shield"
+    "巨灵亲兵": [
+      "亲兵冲锋 Janissary Charge",
+      "亲兵热忱 Janissary Zeal",
+      "亲兵雾态 Janissary's Mist Form",
+      "亲兵之盾 Janissary's Shield"
     ],
     "虹吸": [
       "情绪榨取 Emotion Leech",
@@ -9960,6 +9998,12 @@
       "日出之舞 Dance of Sunrise",
       "旋风突击 Whirling Assault",
       "野性希望 Wild Hope"
+    ],
+    "无冬皇族": [
+      "荣耀决斗灵气 Honorable Challenge",
+      "王者砥柱 Pillar of Lordly Might",
+      "掩护盟友 Cover Your Ally",
+      "振作点，朋友！ Take Heart, Friend!"
     ],
     "银星": [
       "塞伦涅之泪 Tears of Selûne",
@@ -10277,6 +10321,14 @@
       "至优策略 Superior Tactics",
       "致命错失 Miss Me Once"
     ],
+    "图安人": [
+      "图安人动物形态 Tuathan Animal Shape",
+      "无时步伐 Timeless Step",
+      "下定决心 Set Determination",
+      "妖精防护咒 Faerie Warding Charm",
+      "妖精之幸 Faerie Fortune",
+      "真言协定 Bargain of Truth"
+    ],
     "破碎之镜": [
       "图拉斯袭击 Turathi Assault",
       "灾厄光环 Aura of Flawed Nature",
@@ -10438,7 +10490,7 @@
     "大法术": [
       "引导招牌法术 Channel the Signature"
     ],
-    "新月追踪者": [
+    "月锋追踪者": [
       "悠远回音 Distant Echo",
       "月光步伐 Moonbeam Step",
       "月之易位 Lunar Transposition"

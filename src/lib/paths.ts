@@ -6,7 +6,7 @@ export const RAW_DIR = join(OUT_DIR, "raw");
 export const CANONICAL_DIR = join(OUT_DIR, "canonical");
 export const CATEGORIES_DIR = join(OUT_DIR, "categories");
 export const INDEX_DIR = join(OUT_DIR, "index");
-/** 万律书（4e-rules.html）速查词条产物目录 */
+/** 万律书（4e Rules Compendium）速查词条产物目录 */
 export const RULES_DIR = join(OUT_DIR, "rules");
 /** 怪物手册（怪物手册 1~3 合订本 xlsx）管线产物根目录 */
 export const MONSTERS_DIR = join(OUT_DIR, "monsters");

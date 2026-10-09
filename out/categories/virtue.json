@@ -14,7 +14,9 @@
       "creator": "Leon",
       "modified": "20221116055503079",
       "modifier": "Leon",
-      "source": "HoFK"
+      "source": "HoFK",
+      "revision": "0",
+      "bag": "default"
     },
     "wiki": {
       "transclusions": [
@@ -59,7 +61,9 @@
       "creator": "Leon",
       "modified": "20221116060015695",
       "modifier": "Leon",
-      "source": "HoFK"
+      "source": "HoFK",
+      "revision": "0",
+      "bag": "default"
     },
     "wiki": {
       "transclusions": [

@@ -1,4 +1,4 @@
-import { existsSync, readdirSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { execSync } from "node:child_process";
 import { DATA_DIR, RAW_FILE, CANONICAL_DIR, OUT_DIR } from "./lib/paths.js";
@@ -12,13 +12,30 @@ import { runMonsters } from "./etl/monsters/index.js";
 import { exportMonsterMedia, findMonsterSource } from "./etl/monsters/extract.js";
 import { runMonsterTiddlers } from "./etl/monsters/render.js";
 
+// 主维基源文件（data/4e Wiki.htm）。data/ 里可能同时放着万律书源文件，因此优先取文件名带
+// 「wiki / 维基」的那份；一份都没有时退回目录里的 HTML（按修改时间取最新），兼容旧命名。
 function findSourceHtml(): string | undefined {
   if (!existsSync(DATA_DIR)) return undefined;
   const files = readdirSync(DATA_DIR).filter((f) => {
     const n = f.toLowerCase();
     return n.endsWith(".html") || n.endsWith(".htm");
   });
-  return files[0] ? join(DATA_DIR, files[0]) : undefined;
+  if (files.length === 0) return undefined;
+  const named = files.filter((f) => f.toLowerCase().includes("wiki") || f.includes("维基"));
+  const pool = named.length > 0 ? named : files;
+  const newest = pool
+    .map((f) => {
+      const p = join(DATA_DIR, f);
+      let mtime = 0;
+      try {
+        mtime = statSync(p).mtimeMs;
+      } catch {
+        // 读不到修改时间时按 0 处理，不影响能否找到文件
+      }
+      return { p, mtime };
+    })
+    .sort((a, b) => b.mtime - a.mtime);
+  return newest[0].p;
 }
 
 async function cmdExtract(): Promise<void> {
@@ -122,7 +139,7 @@ async function cmdRules(): Promise<void> {
   // 仅提示跳过，避免 pnpm all 整体失败。
   const src = findRulesSource();
   if (!src) {
-    console.warn("[rules] 未找到万律书源文件（4e-rules.html），跳过词条化；沿用已入库的 out/rules/rules.json");
+    console.warn("[rules] 未找到万律书源文件（文件名带 rule 的单文件 TW5 HTML），跳过词条化；沿用已入库的 out/rules/rules.json");
     return;
   }
   const r = runRules();

@@ -491,6 +491,60 @@ md-dialog.pop-sheet .base-pop { display: flex; flex-direction: column; gap: 4px;
   .crop-area { height: min(420px, 46dvh); }
   .picker-dialog { max-height: 84dvh; }
 
+  /* ===== 选择器弹窗：左侧类别导航在手机上改为横向胶囊条 =====
+
+     .class-layout（选择基础武器/护甲/盾牌、选择英雄职业）在 ≤768px 由
+     styles.css 塌成单列，但左侧的 .class-sources 仍保留桌面的「竖排 + 右分隔线」
+     写法，于是 7～12 个类别在弹窗里竖着排成一整块：390×844 实测占 318px，
+     是弹窗可用高度（649px）的一半，最下面的「护盾」还被自身 overflow 裁掉。
+     网格的隐式行也随之对半分，.class-main 只剩 318px —— 去掉两个筛选行和底部
+     按钮后，真正放卡片的 .class-grid 只有 44px，武器卡片基本看不见。
+
+     这里做两件事：
+       ① .class-sources 改成横向胶囊条（与 .equip-nav 的手机端处理一致），
+          高度由内容决定，只占一两行；
+       ② .class-layout 的行高改为 auto + minmax(0,1fr)，把剩下的高度全部让给
+          .class-main，卡片区重新成为弹窗里最大的一块。
+     注：styles.css 另有一条特异性更高的 .base-dialog .class-sources（只写 padding-right），
+     下面把它与 .class-sources 并列，横排后的内边距在基础武器/护甲弹窗里才同样生效。 */
+  .class-sources,
+  .base-dialog .class-sources {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    overflow: visible;
+    padding: 0 0 8px;
+    border-right: none;
+    border-bottom: 1px solid var(--md-sys-color-outline-variant);
+  }
+  /* 桌面端 .cl-item 是「整行竖条」（padding: 10px、背景透明），
+     横排后需要自己的胶囊外观，否则相邻项分不开。 */
+  .class-sources .cl-item {
+    padding: 6px 12px;
+    border-radius: var(--md-sys-shape-corner-full);
+    background: var(--md-sys-color-surface-container-high);
+    font-size: 12.5px;
+    line-height: 1.4;
+    white-space: nowrap;
+  }
+  .class-sources .cl-item:hover { background: var(--md-sys-color-surface-container-highest); }
+  .class-sources .cl-item.active { background: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary); }
+  /* 「← 返回」原来是竖排里的分隔项（下边框 + 外边距），横排里退化成普通胶囊 */
+  .class-sources .cl-back { margin-bottom: 0; border-color: var(--md-sys-color-outline-variant); }
+  /* 混职开关是 .class-sources 里的非按钮子项，横排后同样收掉竖排的分隔线 */
+  .class-sources .hybrid-toggle { margin-bottom: 0; padding: 0 8px; border-bottom: none; }
+
+  /* 导航行按内容占高，卡片区吃满剩余高度（覆盖 styles.css 的对半分与 none） */
+  .class-layout,
+  .base-dialog .class-layout { grid-template-rows: auto minmax(0, 1fr); }
+
+  /* 持握/武器组筛选行：手机端 19 个武器组会折成 4 行，把卡片区又压掉一截。
+     收紧 chip 与行间距（MD3 chip 的 32dp 规格），能多露出半行卡片。 */
+  .class-main { gap: 8px; }
+  .class-roles { gap: 6px; }
+  .class-roles .cr-item { padding: 4px 10px; font-size: 12.5px; }
+
   /* 混职原始数据弹窗：width 里预留的 120px 是给桌面左导轨的，手机端没有导轨，
      结果 360px 视口下只拿到 240px。改成贴近视口宽。 */
   .hybrid-detail-dialog { width: min(880px, calc(100vw - 20px)); }

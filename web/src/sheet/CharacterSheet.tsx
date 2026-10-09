@@ -7740,6 +7740,7 @@ return (
         <ItemSlotPicker
           entries={items}
           slotName={equipPicker.kind === "fixed" ? EQUIPMENT_SLOTS[equipPicker.index] ?? "" : equipPicker.kind === "other" ? "其他" : equipPicker.kind === "consumable" ? "消耗品" : "奇物"}
+          currentLevel={char.level}
           currentId={equipPicker.kind === "fixed" ? char.equipmentSlots[equipPicker.index] : equipPicker.kind === "other" ? char.otherSlots[equipPicker.index] : equipPicker.kind === "consumable" ? char.consumableSlots[equipPicker.index] : char.wondrousSlots[equipPicker.index]}
           onSelect={(id) => setChar((p) => ({
             ...p,
@@ -7762,6 +7763,7 @@ return (
         <ItemSlotPicker
           entries={items}
           slotName="冒险装备"
+          currentLevel={char.level}
           currentId={char.adventureItems[advPicker]?.id}
           onSelect={pickAdvItem}
           onClear={() => { clearAdvItem(advPicker); setAdvPicker(null); }}

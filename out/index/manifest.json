@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-19T07:37:39.414Z",
-  "total": 16031,
+  "generatedAt": "2026-10-09T15:52:03.538Z",
+  "total": 16156,
   "categories": {
     "bloodline": {
       "count": 2,
@@ -12,7 +12,7 @@
       "file": "categories/class.json"
     },
     "creature": {
-      "count": 205,
+      "count": 267,
       "file": "categories/creature.json"
     },
     "dictionary": {
@@ -28,7 +28,7 @@
       "file": "categories/epic-destiny.json"
     },
     "equipment": {
-      "count": 2603,
+      "count": 2618,
       "file": "categories/equipment.json"
     },
     "feat": {
@@ -44,7 +44,7 @@
       "file": "categories/magic-school.json"
     },
     "nav": {
-      "count": 38,
+      "count": 14,
       "file": "categories/nav.json"
     },
     "pact": {
@@ -56,7 +56,7 @@
       "file": "categories/paragon-path.json"
     },
     "power": {
-      "count": 8903,
+      "count": 8939,
       "file": "categories/power.json"
     },
     "race": {
@@ -64,15 +64,15 @@
       "file": "categories/race.json"
     },
     "reference": {
-      "count": 38,
+      "count": 40,
       "file": "categories/reference.json"
     },
     "ritual": {
-      "count": 162,
+      "count": 164,
       "file": "categories/ritual.json"
     },
     "theme": {
-      "count": 27,
+      "count": 35,
       "file": "categories/theme.json"
     },
     "vice": {

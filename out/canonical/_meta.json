@@ -1,21 +1,21 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-21T02:32:33.790Z",
+  "generatedAt": "2026-10-09T15:52:03.302Z",
   "initial": false,
   "changes": {
-    "added": 0,
-    "changed": 0,
-    "removed": 0
+    "added": 164,
+    "changed": 152,
+    "removed": 63
   },
   "categories": {
     "power": {
-      "count": 8903,
-      "valid": 8903,
+      "count": 8939,
+      "valid": 8939,
       "invalid": 0
     },
     "equipment": {
-      "count": 2603,
-      "valid": 2603,
+      "count": 2618,
+      "valid": 2618,
       "invalid": 0
     },
     "paragon-path": {
@@ -39,8 +39,8 @@
       "invalid": 0
     },
     "creature": {
-      "count": 205,
-      "valid": 205,
+      "count": 267,
+      "valid": 267,
       "invalid": 0
     },
     "race": {
@@ -49,18 +49,18 @@
       "invalid": 0
     },
     "ritual": {
-      "count": 162,
-      "valid": 162,
+      "count": 164,
+      "valid": 164,
       "invalid": 0
     },
     "reference": {
-      "count": 38,
-      "valid": 38,
+      "count": 40,
+      "valid": 40,
       "invalid": 0
     },
     "theme": {
-      "count": 27,
-      "valid": 27,
+      "count": 35,
+      "valid": 35,
       "invalid": 0
     },
     "vice": {
@@ -79,8 +79,8 @@
       "invalid": 0
     },
     "nav": {
-      "count": 38,
-      "valid": 38,
+      "count": 14,
+      "valid": 14,
       "invalid": 0
     },
     "magic-school": {
@@ -110,8 +110,8 @@
     }
   },
   "totals": {
-    "count": 16069,
-    "valid": 16069,
+    "count": 16170,
+    "valid": 16170,
     "invalid": 0
   }
 }

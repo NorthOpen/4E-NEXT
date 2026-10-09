@@ -957,6 +957,17 @@
     "text": "暗影幽魂 Shadow Wraith 生物 HoS"
   },
   {
+    "id": "奥利德拉 Olhydra",
+    "name": "奥利德拉",
+    "nameEn": "Olhydra",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "Dungeon",
+    "text": "奥利德拉 Olhydra 生物 Dungeon"
+  },
+  {
     "id": "奥术精灵 Arcane Wisp",
     "name": "奥术精灵",
     "nameEn": "Arcane Wisp",
@@ -977,6 +988,17 @@
     ],
     "source": "MotP",
     "text": "巴菲门特 Baphomet 生物 MotP"
+  },
+  {
+    "id": "巴纳罗斯魔侍臣 Baernaloth Vizier",
+    "name": "巴纳罗斯魔侍臣",
+    "nameEn": "Baernaloth Vizier",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "Demonomicon",
+    "text": "巴纳罗斯魔侍臣 Baernaloth Vizier 生物 Demonomicon"
   },
   {
     "id": "白眼乌鸦 White-Eyed Crow",
@@ -1175,6 +1197,17 @@
     ],
     "source": "AV",
     "text": "大理石象 Marble Elephant 生物 AV"
+  },
+  {
+    "id": "大象 Elephant",
+    "name": "大象",
+    "nameEn": "Elephant",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "AV",
+    "text": "大象 Elephant 生物 AV"
   },
   {
     "id": "蛋白石鲤鱼 Opal Carp",
@@ -1386,6 +1419,28 @@
     "text": "疯言宠物 Gibbering Pet 生物 Dragon"
   },
   {
+    "id": "弗拉兹厄鲁 Fraz-Urb'luu",
+    "name": "弗拉兹厄鲁",
+    "nameEn": "Fraz-Urb'luu",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "Dungeon",
+    "text": "弗拉兹厄鲁 Fraz-Urb'luu 生物 Dungeon"
+  },
+  {
+    "id": "弗洛魔仆从 Vrock Lackey",
+    "name": "弗洛魔仆从",
+    "nameEn": "Vrock Lackey",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "Dungeon",
+    "text": "弗洛魔仆从 Vrock Lackey 生物 Dungeon"
+  },
+  {
     "id": "浮游珊瑚虫 Floating Polyp",
     "name": "浮游珊瑚虫",
     "nameEn": "Floating Polyp",
@@ -1395,6 +1450,17 @@
     ],
     "source": "Dragon",
     "text": "浮游珊瑚虫 Floating Polyp 生物 Dragon"
+  },
+  {
+    "id": "腐朽者，弗拉萨斯 Phraxas the Decayed",
+    "name": "腐朽者，弗拉萨斯",
+    "nameEn": "Phraxas the Decayed",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "Demonomicon",
+    "text": "腐朽者，弗拉萨斯 Phraxas the Decayed 生物 Demonomicon"
   },
   {
     "id": "缚魂 Bound Soul",
@@ -1472,6 +1538,17 @@
     ],
     "source": "HoEC",
     "text": "海仙子 Nereid 生物 HoEC"
+  },
+  {
+    "id": "海洋马 Horse, Sea",
+    "name": "海洋马",
+    "nameEn": "Horse, Sea",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "AV",
+    "text": "海洋马 Horse, Sea 生物 AV"
   },
   {
     "id": "寒霜泰坦战士 Frost Titan Warrior",
@@ -1782,6 +1859,28 @@
     "text": "尖啸蜥蜴 Z'tal 生物 Dragon"
   },
   {
+    "id": "剑翅螳女王 Swordwing Queen",
+    "name": "剑翅螳女王",
+    "nameEn": "Swordwing Queen",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "Dungeon",
+    "text": "剑翅螳女王 Swordwing Queen 生物 Dungeon"
+  },
+  {
+    "id": "剑蜘蛛 Blade Spider",
+    "name": "剑蜘蛛",
+    "nameEn": "Blade Spider",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "MM",
+    "text": "剑蜘蛛 Blade Spider 生物 MM"
+  },
+  {
     "id": "界魔 Bound Demon",
     "name": "界魔",
     "nameEn": "Bound Demon",
@@ -1793,6 +1892,39 @@
     "text": "界魔 Bound Demon 生物 AP"
   },
   {
+    "id": "九狱公主，格莱西雅 Glasya, Princess of the Nine Hells",
+    "name": "九狱公主，格莱西雅",
+    "nameEn": "Glasya, Princess of the Nine Hells",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "Dungeon",
+    "text": "九狱公主，格莱西雅 Glasya, Princess of the Nine Hells 生物 Dungeon"
+  },
+  {
+    "id": "鹫马 Hippogriff",
+    "name": "鹫马",
+    "nameEn": "Hippogriff",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "MM",
+    "text": "鹫马 Hippogriff 生物 MM"
+  },
+  {
+    "id": "鹫马恐怖战骑 Hippogriff Dreadmount",
+    "name": "鹫马恐怖战骑",
+    "nameEn": "Hippogriff Dreadmount",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "MM",
+    "text": "鹫马恐怖战骑 Hippogriff Dreadmount 生物 MM"
+  },
+  {
     "id": "巨大眼镜蛇 Giant Cobra",
     "name": "巨大眼镜蛇",
     "nameEn": "Giant Cobra",
@@ -1802,6 +1934,17 @@
     ],
     "source": "HoF",
     "text": "巨大眼镜蛇 Giant Cobra 生物 HoF"
+  },
+  {
+    "id": "巨蚁 Giant Ant",
+    "name": "巨蚁",
+    "nameEn": "Giant Ant",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "AV",
+    "text": "巨蚁 Giant Ant 生物 AV"
   },
   {
     "id": "卡诺罗斯魔 Canoloth",
@@ -1848,6 +1991,17 @@
     "text": "考芮精舞棒者 Korred Cudgeleer 生物 MotP"
   },
   {
+    "id": "科斯彻奇 Kostchtchie",
+    "name": "科斯彻奇",
+    "nameEn": "Kostchtchie",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "Demonomicon",
+    "text": "科斯彻奇 Kostchtchie 生物 Demonomicon"
+  },
+  {
     "id": "枯霜树人守护者 Frostblight Treant Protector",
     "name": "枯霜树人守护者",
     "nameEn": "Frostblight Treant Protector",
@@ -1859,6 +2013,17 @@
     "text": "枯霜树人守护者 Frostblight Treant Protector 生物 HoFK"
   },
   {
+    "id": "骷髅马 Horse, Skeletal",
+    "name": "骷髅马",
+    "nameEn": "Horse, Skeletal",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "AV",
+    "text": "骷髅马 Horse, Skeletal 生物 AV"
+  },
+  {
     "id": "夸塞魔伙伴 Quasit Companion",
     "name": "夸塞魔伙伴",
     "nameEn": "Quasit Companion",
@@ -1868,6 +2033,17 @@
     ],
     "source": "MME",
     "text": "夸塞魔伙伴 Quasit Companion 生物 MME"
+  },
+  {
+    "id": "狂怒龙兽 Rage Drake",
+    "name": "狂怒龙兽",
+    "nameEn": "Rage Drake",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "MM",
+    "text": "狂怒龙兽 Rage Drake 生物 MM"
   },
   {
     "id": "拉瓦斯塔观察者 Raavasta Observer",
@@ -2068,6 +2244,17 @@
     "text": "罗刹妖之爪 Rakshasa Claw 生物 Dragon"
   },
   {
+    "id": "骆驼 Camel",
+    "name": "骆驼",
+    "nameEn": "Camel",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "AV",
+    "text": "骆驼 Camel 生物 AV"
+  },
+  {
     "id": "玛瑙犬 Onyx Dog",
     "name": "玛瑙犬",
     "nameEn": "Onyx Dog",
@@ -2121,6 +2308,17 @@
     ],
     "source": "HoF",
     "text": "猛禽比蒙 Raptor Behemoth 生物 HoF"
+  },
+  {
+    "id": "梦魇 Nightmare",
+    "name": "梦魇",
+    "nameEn": "Nightmare",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "MM",
+    "text": "梦魇 Nightmare 生物 MM"
   },
   {
     "id": "秘法眼 Arcane Eye",
@@ -2178,6 +2376,83 @@
     "text": "泥形怪 Ooze 生物 Dragon"
   },
   {
+    "id": "泥型幼仔 Ooze Scion",
+    "name": "泥型幼仔",
+    "nameEn": "Ooze Scion",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "Dungeon",
+    "text": "泥型幼仔 Ooze Scion 生物 Dungeon"
+  },
+  {
+    "id": "帕祖祖 Pazuzu",
+    "name": "帕祖祖",
+    "nameEn": "Pazuzu",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "Demonomicon",
+    "text": "帕祖祖 Pazuzu 生物 Demonomicon"
+  },
+  {
+    "id": "判魂魔仆从 Nalfeshnee Lackey",
+    "name": "判魂魔仆从",
+    "nameEn": "Nalfeshnee Lackey",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "Dungeon",
+    "text": "判魂魔仆从 Nalfeshnee Lackey 生物 Dungeon"
+  },
+  {
+    "id": "普通巨蜥 Giant Lizard, Draft",
+    "name": "普通巨蜥",
+    "nameEn": "Giant Lizard, Draft",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "AV",
+    "text": "普通巨蜥 Giant Lizard, Draft 生物 AV"
+  },
+  {
+    "id": "骑乘巨蜥 Giant Lizard, Riding",
+    "name": "骑乘巨蜥",
+    "nameEn": "Giant Lizard, Riding",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "AV",
+    "text": "骑乘巨蜥 Giant Lizard, Riding 生物 AV"
+  },
+  {
+    "id": "骑乘鲨 Shark, Riding",
+    "name": "骑乘鲨",
+    "nameEn": "Shark, Riding",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "AV",
+    "text": "骑乘鲨 Shark, Riding 生物 AV"
+  },
+  {
+    "id": "骑乘用马 Riding Horse",
+    "name": "骑乘用马",
+    "nameEn": "Riding Horse",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "MM",
+    "text": "骑乘用马 Riding Horse 生物 MM"
+  },
+  {
     "id": "气魔蝠 Air Mephit",
     "name": "气魔蝠",
     "nameEn": "Air Mephit",
@@ -2189,28 +2464,6 @@
     "text": "气魔蝠 Air Mephit 生物 Dragon"
   },
   {
-    "id": "气系亚空暴刃使 Air Archon Tempestblade",
-    "name": "气系亚空暴刃使",
-    "nameEn": "Air Archon Tempestblade",
-    "category": "creature",
-    "tags": [
-      "生物"
-    ],
-    "source": "MotP",
-    "text": "气系亚空暴刃使 Air Archon Tempestblade 生物 MotP"
-  },
-  {
-    "id": "气系亚空扰风使 Air Archon Zephyrhaunt",
-    "name": "气系亚空扰风使",
-    "nameEn": "Air Archon Zephyrhaunt",
-    "category": "creature",
-    "tags": [
-      "生物"
-    ],
-    "source": "MotP",
-    "text": "气系亚空扰风使 Air Archon Zephyrhaunt 生物 MotP"
-  },
-  {
     "id": "气系亚空士兵 Air Archon Grunt",
     "name": "气系亚空士兵",
     "nameEn": "Air Archon Grunt",
@@ -2220,6 +2473,28 @@
     ],
     "source": "HoEC",
     "text": "气系亚空士兵 Air Archon Grunt 生物 HoEC"
+  },
+  {
+    "id": "气亚空暴刃使 Air Archon Tempestblade",
+    "name": "气亚空暴刃使",
+    "nameEn": "Air Archon Tempestblade",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "MotP",
+    "text": "气亚空暴刃使 Air Archon Tempestblade 生物 MotP"
+  },
+  {
+    "id": "气亚空扰风使 Air Archon Zephyrhaunt",
+    "name": "气亚空扰风使",
+    "nameEn": "Air Archon Zephyrhaunt",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "MotP",
+    "text": "气亚空扰风使 Air Archon Zephyrhaunt 生物 MotP"
   },
   {
     "id": "气之巨兽 Air Monolith",
@@ -2253,6 +2528,17 @@
     ],
     "source": "Dragon",
     "text": "青铜狮鹫 Bronze Griffon 生物 Dragon"
+  },
+  {
+    "id": "三角巨兽 Trihorn Behemoth",
+    "name": "三角巨兽",
+    "nameEn": "Trihorn Behemoth",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "AV",
+    "text": "三角巨兽 Trihorn Behemoth 生物 AV"
   },
   {
     "id": "沙漠巨鹏 Desert Roc",
@@ -2354,6 +2640,17 @@
     "text": "深狱炼魔仆人 Pit Fiend Servitor 生物 HoFK"
   },
   {
+    "id": "狮鹫 Griffon",
+    "name": "狮鹫",
+    "nameEn": "Griffon",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "MM",
+    "text": "狮鹫 Griffon 生物 MM"
+  },
+  {
     "id": "石之鸡蛇 Stone Fowl",
     "name": "石之鸡蛇",
     "nameEn": "Stone Fowl",
@@ -2387,6 +2684,50 @@
     "text": "噬魂者 Soul Eater 生物 HoS"
   },
   {
+    "id": "受训精野豹 Trained Fey Panther",
+    "name": "受训精野豹",
+    "nameEn": "Trained Fey Panther",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "HoF",
+    "text": "受训精野豹 Trained Fey Panther 生物 HoF"
+  },
+  {
+    "id": "受训闪烁狗 Trained Blink Dog",
+    "name": "受训闪烁狗",
+    "nameEn": "Trained Blink Dog",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "HoF",
+    "text": "受训闪烁狗 Trained Blink Dog 生物 HoF"
+  },
+  {
+    "id": "受训位移兽 Trained Displacer Beast",
+    "name": "受训位移兽",
+    "nameEn": "Trained Displacer Beast",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "HoF",
+    "text": "受训位移兽 Trained Displacer Beast 生物 HoF"
+  },
+  {
+    "id": "受训幼枭熊 Trained Young Owlbear",
+    "name": "受训幼枭熊",
+    "nameEn": "Trained Young Owlbear",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "HoF",
+    "text": "受训幼枭熊 Trained Young Owlbear 生物 HoF"
+  },
+  {
     "id": "书鬼 Book Imp",
     "name": "书鬼",
     "nameEn": "Book Imp",
@@ -2398,6 +2739,17 @@
     "text": "书鬼 Book Imp 生物 AP"
   },
   {
+    "id": "霜焰狮鹫 Rimefire Griffon",
+    "name": "霜焰狮鹫",
+    "nameEn": "Rimefire Griffon",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "MM",
+    "text": "霜焰狮鹫 Rimefire Griffon 生物 MM"
+  },
+  {
     "id": "水晶蛛衍体 Crysmalite",
     "name": "水晶蛛衍体",
     "nameEn": "Crysmalite",
@@ -2407,6 +2759,50 @@
     ],
     "source": "HoEC",
     "text": "水晶蛛衍体 Crysmalite 生物 HoEC"
+  },
+  {
+    "id": "水巨灵风暴使者 Marid Stormbringer",
+    "name": "水巨灵风暴使者",
+    "nameEn": "Marid Stormbringer",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "Dungeon",
+    "text": "水巨灵风暴使者 Marid Stormbringer 生物 Dungeon"
+  },
+  {
+    "id": "水巨灵唤浪者 Marid Wavecaller",
+    "name": "水巨灵唤浪者",
+    "nameEn": "Marid Wavecaller",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "Dungeon",
+    "text": "水巨灵唤浪者 Marid Wavecaller 生物 Dungeon"
+  },
+  {
+    "id": "水巨灵角斗士 Marid Gladiator",
+    "name": "水巨灵角斗士",
+    "nameEn": "Marid Gladiator",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "Dungeon",
+    "text": "水巨灵角斗士 Marid Gladiator 生物 Dungeon"
+  },
+  {
+    "id": "水巨灵颂吟者 Marid Rawun",
+    "name": "水巨灵颂吟者",
+    "nameEn": "Marid Rawun",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "Dungeon",
+    "text": "水巨灵颂吟者 Marid Rawun 生物 Dungeon"
   },
   {
     "id": "水魔 Maridan",
@@ -2519,6 +2915,50 @@
     "text": "疼痛魔队长 Pain Devil Captain 生物 MotP"
   },
   {
+    "id": "天界冲锋者 Celestial Charger",
+    "name": "天界冲锋者",
+    "nameEn": "Celestial Charger",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "MM",
+    "text": "天界冲锋者 Celestial Charger 生物 MM"
+  },
+  {
+    "id": "天堂比蒙巨兽 Celestial Behemoth",
+    "name": "天堂比蒙巨兽",
+    "nameEn": "Celestial Behemoth",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "Dragon",
+    "text": "天堂比蒙巨兽 Celestial Behemoth 生物 Dragon"
+  },
+  {
+    "id": "天堂飞马 Celestial Pegasus",
+    "name": "天堂飞马",
+    "nameEn": "Celestial Pegasus",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "Dragon",
+    "text": "天堂飞马 Celestial Pegasus 生物 Dragon"
+  },
+  {
+    "id": "天堂战虎 Celestial Battle Tiger",
+    "name": "天堂战虎",
+    "nameEn": "Celestial Battle Tiger",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "Dragon",
+    "text": "天堂战虎 Celestial Battle Tiger 生物 Dragon"
+  },
+  {
     "id": "天堂战马 Celestial Warhorse",
     "name": "天堂战马",
     "nameEn": "Celestial Warhorse",
@@ -2550,6 +2990,50 @@
     ],
     "source": "HoF",
     "text": "头狼 Pack Wolf 生物 HoF"
+  },
+  {
+    "id": "土巨灵宝石投手 Dao Gemslinger",
+    "name": "土巨灵宝石投手",
+    "nameEn": "Dao Gemslinger",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "Dungeon",
+    "text": "土巨灵宝石投手 Dao Gemslinger 生物 Dungeon"
+  },
+  {
+    "id": "土巨灵地卜师 Dao Geomancer",
+    "name": "土巨灵地卜师",
+    "nameEn": "Dao Geomancer",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "Dungeon",
+    "text": "土巨灵地卜师 Dao Geomancer 生物 Dungeon"
+  },
+  {
+    "id": "土巨灵监工 Dao Overseer",
+    "name": "土巨灵监工",
+    "nameEn": "Dao Overseer",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "Dungeon",
+    "text": "土巨灵监工 Dao Overseer 生物 Dungeon"
+  },
+  {
+    "id": "土巨灵剑刃大师 Dao Blademaster",
+    "name": "土巨灵剑刃大师",
+    "nameEn": "Dao Blademaster",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "Dungeon",
+    "text": "土巨灵剑刃大师 Dao Blademaster 生物 Dungeon"
   },
   {
     "id": "土魔 Daolanin",
@@ -2662,6 +3146,17 @@
     "text": "嗡鸣平衡者 Duodrone Balancer 生物 Dragon"
   },
   {
+    "id": "乌布利瓦 Oublivae",
+    "name": "乌布利瓦",
+    "nameEn": "Oublivae",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "Demonomicon",
+    "text": "乌布利瓦 Oublivae 生物 Demonomicon"
+  },
+  {
     "id": "希泰克 Sitak",
     "name": "希泰克",
     "nameEn": "Sitak",
@@ -2673,6 +3168,17 @@
     "text": "希泰克 Sitak 生物 Dragon"
   },
   {
+    "id": "犀牛 Rhinoceros",
+    "name": "犀牛",
+    "nameEn": "Rhinoceros",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "AV",
+    "text": "犀牛 Rhinoceros 生物 AV"
+  },
+  {
     "id": "蟋蟀人 Fiddling Grig",
     "name": "蟋蟀人",
     "nameEn": "Fiddling Grig",
@@ -2682,6 +3188,17 @@
     ],
     "source": "HoF",
     "text": "蟋蟀人 Fiddling Grig 生物 HoF"
+  },
+  {
+    "id": "仙宫守卫 Sidhe House Guard",
+    "name": "仙宫守卫",
+    "nameEn": "Sidhe House Guard",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "HoF",
+    "text": "仙宫守卫 Sidhe House Guard 生物 HoF"
   },
   {
     "id": "象牙剧痛山羊 Ivory Goat of Travail",
@@ -2739,6 +3256,17 @@
     "text": "小眼魔 Beholderkin 生物 Dragon"
   },
   {
+    "id": "蝎尾狮 Manticore",
+    "name": "蝎尾狮",
+    "nameEn": "Manticore",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "MM",
+    "text": "蝎尾狮 Manticore 生物 MM"
+  },
+  {
     "id": "星海巨无霸 Astral Dreadnought",
     "name": "星海巨无霸",
     "nameEn": "Astral Dreadnought",
@@ -2748,6 +3276,28 @@
     ],
     "source": "MotP",
     "text": "星海巨无霸 Astral Dreadnought 生物 MotP"
+  },
+  {
+    "id": "凶暴狼 Dire Wolf",
+    "name": "凶暴狼",
+    "nameEn": "Dire Wolf",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "MM",
+    "text": "凶暴狼 Dire Wolf 生物 MM"
+  },
+  {
+    "id": "凶暴鲨 Shark, Dire",
+    "name": "凶暴鲨",
+    "nameEn": "Shark, Dire",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "AV",
+    "text": "凶暴鲨 Shark, Dire 生物 AV"
   },
   {
     "id": "凶暴狮 Dire Lion",
@@ -2770,6 +3320,17 @@
     ],
     "source": "HoF",
     "text": "凶暴熊 Dire Bear 生物 HoF"
+  },
+  {
+    "id": "凶暴野猪 Dire Boar",
+    "name": "凶暴野猪",
+    "nameEn": "Dire Boar",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "MM",
+    "text": "凶暴野猪 Dire Boar 生物 MM"
   },
   {
     "id": "熊动物伙伴 Bear Animal Companion",
@@ -2803,6 +3364,17 @@
     ],
     "source": "AV",
     "text": "血石蜘蛛 Bloodstone Spider 生物 AV"
+  },
+  {
+    "id": "延-西-宾 Yan-C-Bin",
+    "name": "延-西-宾",
+    "nameEn": "Yan-C-Bin",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "Dungeon",
+    "text": "延-西-宾 Yan-C-Bin 生物 Dungeon"
   },
   {
     "id": "岩精 Pech",
@@ -2849,6 +3421,28 @@
     "text": "夜魔 Satyr of the Night 生物 Dragon"
   },
   {
+    "id": "伊尔明斯特·奥玛 Elminster Aumar",
+    "name": "伊尔明斯特·奥玛",
+    "nameEn": "Elminster Aumar",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "Dungeon",
+    "text": "伊尔明斯特·奥玛 Elminster Aumar 生物 Dungeon"
+  },
+  {
+    "id": "翼龙 Wyvern",
+    "name": "翼龙",
+    "nameEn": "Wyvern",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "MM",
+    "text": "翼龙 Wyvern 生物 MM"
+  },
+  {
     "id": "阴暗凶兽 Gloom Beast",
     "name": "阴暗凶兽",
     "nameEn": "Gloom Beast",
@@ -2891,6 +3485,17 @@
     ],
     "source": "Dragon",
     "text": "银金矿蛇 Electrum Serpent 生物 Dragon"
+  },
+  {
+    "id": "银龙坐骑 Silver Dragon Steed",
+    "name": "银龙坐骑",
+    "nameEn": "Silver Dragon Steed",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "Dragon",
+    "text": "银龙坐骑 Silver Dragon Steed 生物 Dragon"
   },
   {
     "id": "隐形追击者 Invisible Stalker",
@@ -3025,6 +3630,50 @@
     "text": "预警蜥蜴 Critic Lizard 生物 Dragon"
   },
   {
+    "id": "元素战士（火系） Elemental Warrior (Fire)",
+    "name": "元素战士（火系）",
+    "nameEn": "Elemental Warrior (Fire)",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "HoEC",
+    "text": "元素战士（火系） Elemental Warrior (Fire) 生物 HoEC"
+  },
+  {
+    "id": "元素战士（气系） Elemental Warrior (Air)",
+    "name": "元素战士（气系）",
+    "nameEn": "Elemental Warrior (Air)",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "HoEC",
+    "text": "元素战士（气系） Elemental Warrior (Air) 生物 HoEC"
+  },
+  {
+    "id": "元素战士（水系） Elemental Warrior (Water)",
+    "name": "元素战士（水系）",
+    "nameEn": "Elemental Warrior (Water)",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "HoEC",
+    "text": "元素战士（水系） Elemental Warrior (Water) 生物 HoEC"
+  },
+  {
+    "id": "元素战士（土系） Elemental Warrior (Earth)",
+    "name": "元素战士（土系）",
+    "nameEn": "Elemental Warrior (Earth)",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "HoEC",
+    "text": "元素战士（土系） Elemental Warrior (Earth) 生物 HoEC"
+  },
+  {
     "id": "远古风暴龙 Ancient Typhoon Dragon",
     "name": "远古风暴龙",
     "nameEn": "Ancient Typhoon Dragon",
@@ -3056,6 +3705,17 @@
     ],
     "source": "Dragon",
     "text": "月光灵球 Moon Wisp 生物 Dragon"
+  },
+  {
+    "id": "战马 Warhorse",
+    "name": "战马",
+    "nameEn": "Warhorse",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "MM",
+    "text": "战马 Warhorse 生物 MM"
   },
   {
     "id": "召出的小动物（灰魔术袋） Conjured Critter (Gray Bag)",
@@ -3122,6 +3782,28 @@
     ],
     "source": "AP",
     "text": "蜘蛛 Spider 生物 AP"
+  },
+  {
+    "id": "朱庇莱克斯 Juiblex",
+    "name": "朱庇莱克斯",
+    "nameEn": "Juiblex",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "Dungeon",
+    "text": "朱庇莱克斯 Juiblex 生物 Dungeon"
+  },
+  {
+    "id": "祖格莫伊 Zuggtmoy",
+    "name": "祖格莫伊",
+    "nameEn": "Zuggtmoy",
+    "category": "creature",
+    "tags": [
+      "生物"
+    ],
+    "source": "Demonomicon",
+    "text": "祖格莫伊 Zuggtmoy 生物 Demonomicon"
   },
   {
     "id": "译名数据字典",
@@ -6643,6 +7325,17 @@
     ],
     "source": "AV",
     "text": "撤退靴 Boots of Withdrawal 物品 AV 足部 非普通"
+  },
+  {
+    "id": "尘泥便鞋 Silt Sandals",
+    "name": "尘泥便鞋",
+    "nameEn": "Silt Sandals",
+    "category": "equipment",
+    "tags": [
+      "物品"
+    ],
+    "source": "DSCS",
+    "text": "尘泥便鞋 Silt Sandals 物品 DSCS 足部 非普通"
   },
   {
     "id": "城垛之戒 Ring of Battlements",
@@ -10429,6 +11122,17 @@
     "text": "缚敌戒指 Foe Binder Ring 物品 Dragon 戒指 非普通"
   },
   {
+    "id": "缚灵之刃 Wraithblade",
+    "name": "缚灵之刃",
+    "nameEn": "Wraithblade",
+    "category": "equipment",
+    "tags": [
+      "物品"
+    ],
+    "source": "Dragon",
+    "text": "缚灵之刃 Wraithblade 物品 Dragon 武器 轻刃 非普通"
+  },
+  {
     "id": "覆膜护甲 Ectoplasmic Armor",
     "name": "覆膜护甲",
     "nameEn": "Ectoplasmic Armor",
@@ -12145,17 +12849,6 @@
     "text": "幻影长靴 Phantom Chaussures 物品 AV 足部 非普通"
   },
   {
-    "id": "幻影之刃 Wraithblade",
-    "name": "幻影之刃",
-    "nameEn": "Wraithblade",
-    "category": "equipment",
-    "tags": [
-      "物品"
-    ],
-    "source": "Dragon",
-    "text": "幻影之刃 Wraithblade 物品 Dragon 武器 轻刃 非普通"
-  },
-  {
     "id": "唤醒之钟 Chime of Awakening",
     "name": "唤醒之钟",
     "nameEn": "Chime of Awakening",
@@ -13344,17 +14037,6 @@
     "text": "疾风骑乘 Ride the Winds 物品 HoF 另类奖励 妖精魔法赠礼 非普通"
   },
   {
-    "id": "脊骨腰带 Backbone Belt",
-    "name": "脊骨腰带",
-    "nameEn": "Backbone Belt",
-    "category": "equipment",
-    "tags": [
-      "物品"
-    ],
-    "source": "AV",
-    "text": "脊骨腰带 Backbone Belt 物品 AV 腰部 非普通"
-  },
-  {
     "id": "集骨者护目镜 Goggles of the Bone Collector",
     "name": "集骨者护目镜",
     "nameEn": "Goggles of the Bone Collector",
@@ -13397,6 +14079,17 @@
     ],
     "source": "AV",
     "text": "嫉世者护目镜 Cynic's Goggles 物品 AV 头部 非普通"
+  },
+  {
+    "id": "脊骨腰带 Backbone Belt",
+    "name": "脊骨腰带",
+    "nameEn": "Backbone Belt",
+    "category": "equipment",
+    "tags": [
+      "物品"
+    ],
+    "source": "AV",
+    "text": "脊骨腰带 Backbone Belt 物品 AV 腰部 非普通"
   },
   {
     "id": "记忆法杖 Mnemonic Staff",
@@ -15126,6 +15819,17 @@
     "text": "巨龙药粉 Dragon Powder 物品 Dragon 消耗品 非普通"
   },
   {
+    "id": "巨龙之戒 Ring of Dragons",
+    "name": "巨龙之戒",
+    "nameEn": "Ring of Dragons",
+    "category": "equipment",
+    "tags": [
+      "物品"
+    ],
+    "source": "NCS",
+    "text": "巨龙之戒 Ring of Dragons 物品 NCS 戒指 稀有"
+  },
+  {
     "id": "巨龙之牙 Dragon Tooth",
     "name": "巨龙之牙",
     "nameEn": "Dragon Tooth",
@@ -16079,6 +16783,17 @@
     "text": "苦涩解除法杖 Staff of Bitter Dismissal 物品 PsP 法器 法杖 非普通"
   },
   {
+    "id": "苦痛甲虫 Agony Beetle",
+    "name": "苦痛甲虫",
+    "nameEn": "Agony Beetle",
+    "category": "equipment",
+    "tags": [
+      "物品"
+    ],
+    "source": "DSCS",
+    "text": "苦痛甲虫 Agony Beetle 物品 DSCS 消耗品 非普通"
+  },
+  {
     "id": "苦痛外衣 Skin of Agonies",
     "name": "苦痛外衣",
     "nameEn": "Skin of Agonies",
@@ -16187,6 +16902,17 @@
     ],
     "source": "AV",
     "text": "宽容法袍 Robe of Forbearance 物品 AV 护甲 布甲 非普通"
+  },
+  {
+    "id": "狂暴颈环纹身 Rage Torc Tattoo",
+    "name": "狂暴颈环纹身",
+    "nameEn": "Rage Torc Tattoo",
+    "category": "equipment",
+    "tags": [
+      "物品"
+    ],
+    "source": "Dragon",
+    "text": "狂暴颈环纹身 Rage Torc Tattoo 物品 Dragon 奇物 纹身 非普通"
   },
   {
     "id": "狂暴之速靴 Boots of Furious Speed",
@@ -18378,6 +19104,17 @@
     "text": "锚定护甲 Anchoring Armor 物品 PsP 护甲 板甲 非普通"
   },
   {
+    "id": "梅勒冈特之黑刃 Melegaunt's Darkblade",
+    "name": "梅勒冈特之黑刃",
+    "nameEn": "Melegaunt's Darkblade",
+    "category": "equipment",
+    "tags": [
+      "物品"
+    ],
+    "source": "Dungeon",
+    "text": "梅勒冈特之黑刃 Melegaunt's Darkblade 物品 Dungeon 武器 重刃，轻刃 非普通"
+  },
+  {
     "id": "梅洛拉之面具 Mask of Melora",
     "name": "梅洛拉之面具",
     "nameEn": "Mask of Melora",
@@ -18539,6 +19276,17 @@
     ],
     "source": "AV",
     "text": "迷离护甲 Flickersight Armor 物品 AV 护甲 布甲，皮甲，革甲 非普通"
+  },
+  {
+    "id": "迷人面纱 Alluring Veil",
+    "name": "迷人面纱",
+    "nameEn": "Alluring Veil",
+    "category": "equipment",
+    "tags": [
+      "物品"
+    ],
+    "source": "DSCS",
+    "text": "迷人面纱 Alluring Veil 物品 DSCS 头部 非普通"
   },
   {
     "id": "米密尔 Mimir",
@@ -21549,6 +22297,17 @@
     "text": "沙地行者之靴 Sandwalker Boots 物品 AV2 足部 非普通"
   },
   {
+    "id": "沙旅果 Dune Runner's Fruit",
+    "name": "沙旅果",
+    "nameEn": "Dune Runner's Fruit",
+    "category": "equipment",
+    "tags": [
+      "物品"
+    ],
+    "source": "DSCS",
+    "text": "沙旅果 Dune Runner's Fruit 物品 DSCS 消耗品 药剂及灵药 非普通"
+  },
+  {
     "id": "沙漠斗篷 Cloak of the Desert",
     "name": "沙漠斗篷",
     "nameEn": "Cloak of the Desert",
@@ -22572,6 +23331,17 @@
     "text": "生命药剂 Potion of Life 物品 PH 消耗品 药剂及灵药 普通"
   },
   {
+    "id": "生命之果 Fruit of Life",
+    "name": "生命之果",
+    "nameEn": "Fruit of Life",
+    "category": "equipment",
+    "tags": [
+      "物品"
+    ],
+    "source": "DSCS",
+    "text": "生命之果 Fruit of Life 物品 DSCS 消耗品 药剂及灵药 非普通"
+  },
+  {
     "id": "生命之河手套 River of Life Gloves",
     "name": "生命之河手套",
     "nameEn": "River of Life Gloves",
@@ -22592,6 +23362,17 @@
     ],
     "source": "AV2",
     "text": "生命之河图腾 Life River Totem 物品 AV2 法器 图腾 非普通"
+  },
+  {
+    "id": "生命之戒 Ring of Life",
+    "name": "生命之戒",
+    "nameEn": "Ring of Life",
+    "category": "equipment",
+    "tags": [
+      "物品"
+    ],
+    "source": "DSCS",
+    "text": "生命之戒 Ring of Life 物品 DSCS 戒指 非普通"
   },
   {
     "id": "生命之力护符 Life Force Amulet",
@@ -23560,6 +24341,17 @@
     ],
     "source": "MME",
     "text": "树叶王冠 Crown of Leaves 物品 MME 头部 普通"
+  },
+  {
+    "id": "竖琴手胸针 Harper Pin",
+    "name": "竖琴手胸针",
+    "nameEn": "Harper Pin",
+    "category": "equipment",
+    "tags": [
+      "物品"
+    ],
+    "source": "NCS",
+    "text": "竖琴手胸针 Harper Pin 物品 NCS 奇物 稀有"
   },
   {
     "id": "衰弱法珠 Orb of Drastic Resolutions",
@@ -26158,6 +26950,17 @@
     "text": "无敌圣甲虫 Scarab of Invulnerability 物品 PH 颈部 非普通"
   },
   {
+    "id": "无冬城王冠 Crown of Neverwinter",
+    "name": "无冬城王冠",
+    "nameEn": "Crown of Neverwinter",
+    "category": "equipment",
+    "tags": [
+      "物品"
+    ],
+    "source": "NCS",
+    "text": "无冬城王冠 Crown of Neverwinter 物品 NCS 头部 稀有"
+  },
+  {
     "id": "无悔胸针 Brooch of No Regrets",
     "name": "无悔胸针",
     "nameEn": "Brooch of No Regrets",
@@ -27027,6 +27830,17 @@
     "text": "小丑鞋 Jester Shoes 物品 AV 足部 非普通"
   },
   {
+    "id": "蝎颚头盔 Scorpion Mandible Helm",
+    "name": "蝎颚头盔",
+    "nameEn": "Scorpion Mandible Helm",
+    "category": "equipment",
+    "tags": [
+      "物品"
+    ],
+    "source": "DSCS",
+    "text": "蝎颚头盔 Scorpion Mandible Helm 物品 DSCS 头部 非普通"
+  },
+  {
     "id": "蝎狮盾牌 Manticore Shield",
     "name": "蝎狮盾牌",
     "nameEn": "Manticore Shield",
@@ -27190,6 +28004,17 @@
     ],
     "source": "AV",
     "text": "心灵感应头环 Telepathy Circlet 物品 AV 头部 非普通"
+  },
+  {
+    "id": "心灵干预护符 Amulet of Psychic Interference",
+    "name": "心灵干预护符",
+    "nameEn": "Amulet of Psychic Interference",
+    "category": "equipment",
+    "tags": [
+      "物品"
+    ],
+    "source": "DSCS",
+    "text": "心灵干预护符 Amulet of Psychic Interference 物品 DSCS 颈部 非普通"
   },
   {
     "id": "心灵攻击头巾 Headband of Psychic Attack",
@@ -28347,17 +29172,6 @@
     "text": "寻猎兽甲 Hunting Beast Armor 物品 PH2 护甲 革甲 非普通"
   },
   {
-    "id": "驯山钩 Hill Tamer Crook",
-    "name": "驯山钩",
-    "nameEn": "Hill Tamer Crook",
-    "category": "equipment",
-    "tags": [
-      "物品"
-    ],
-    "source": "HoF",
-    "text": "驯山钩 Hill Tamer Crook 物品 HoF 奇物 非普通"
-  },
-  {
     "id": "训诫护甲 Rebuking Armor",
     "name": "训诫护甲",
     "nameEn": "Rebuking Armor",
@@ -28521,6 +29335,17 @@
     ],
     "source": "AV2",
     "text": "迅足英雄纹身 Fleet Hero Tattoo 物品 AV2 奇物 纹身 非普通"
+  },
+  {
+    "id": "驯山钩 Hill Tamer Crook",
+    "name": "驯山钩",
+    "nameEn": "Hill Tamer Crook",
+    "category": "equipment",
+    "tags": [
+      "物品"
+    ],
+    "source": "HoF",
+    "text": "驯山钩 Hill Tamer Crook 物品 HoF 奇物 非普通"
   },
   {
     "id": "压制武器 Suppression Weapon",
@@ -29938,6 +30763,17 @@
     "text": "影流护甲 Shadowflow Armor 物品 PH 护甲 布甲，皮甲 稀有"
   },
   {
+    "id": "影舞甲 Shadowdance Armor",
+    "name": "影舞甲",
+    "nameEn": "Shadowdance Armor",
+    "category": "equipment",
+    "tags": [
+      "物品"
+    ],
+    "source": "Adventure",
+    "text": "影舞甲 Shadowdance Armor 物品 Adventure 护甲 布甲，皮甲 非普通"
+  },
+  {
     "id": "影舞者斗篷 Shadowdancer's Cloak",
     "name": "影舞者斗篷",
     "nameEn": "Shadowdancer's Cloak",
@@ -30772,6 +31608,17 @@
     ],
     "source": "AV2",
     "text": "原初精魂圣徽 Symbol of the First Spirits 物品 AV2 法器 圣徽 非普通"
+  },
+  {
+    "id": "原初元素 Primal Element",
+    "name": "原初元素",
+    "nameEn": "Primal Element",
+    "category": "equipment",
+    "tags": [
+      "物品"
+    ],
+    "source": "DSCS",
+    "text": "原初元素 Primal Element 物品 DSCS 炼金物品 其他 非普通"
   },
   {
     "id": "原质苔粉 Id Moss Powder",
@@ -32754,39 +33601,6 @@
     "text": "准确射击武器 Prime Shot Weapon 物品 AV 武器 任意远程 普通"
   },
   {
-    "id": "卓尔家族勋章 Drow House Insignia",
-    "name": "卓尔家族勋章",
-    "nameEn": "Drow House Insignia",
-    "category": "equipment",
-    "tags": [
-      "物品"
-    ],
-    "source": "Adventure",
-    "text": "卓尔家族勋章 Drow House Insignia 物品 Adventure 颈部 非普通"
-  },
-  {
-    "id": "卓越圣徽 Symbol of Excellence",
-    "name": "卓越圣徽",
-    "nameEn": "Symbol of Excellence",
-    "category": "equipment",
-    "tags": [
-      "物品"
-    ],
-    "source": "Dragon",
-    "text": "卓越圣徽 Symbol of Excellence 物品 Dragon 法器 圣徽 非普通"
-  },
-  {
-    "id": "卓越杂役头盔 Exceptional Factotum Helm",
-    "name": "卓越杂役头盔",
-    "nameEn": "Exceptional Factotum Helm",
-    "category": "equipment",
-    "tags": [
-      "物品"
-    ],
-    "source": "MME",
-    "text": "卓越杂役头盔 Exceptional Factotum Helm 物品 MME 头部 稀有"
-  },
-  {
     "id": "灼弧气印 Blazing Arc Ki Focus",
     "name": "灼弧气印",
     "nameEn": "Blazing Arc Ki Focus",
@@ -32818,6 +33632,39 @@
     ],
     "source": "MME",
     "text": "灼热之盾 Searing Shield 物品 MME 臂部 任意盾牌 非普通"
+  },
+  {
+    "id": "卓尔家族勋章 Drow House Insignia",
+    "name": "卓尔家族勋章",
+    "nameEn": "Drow House Insignia",
+    "category": "equipment",
+    "tags": [
+      "物品"
+    ],
+    "source": "Adventure",
+    "text": "卓尔家族勋章 Drow House Insignia 物品 Adventure 颈部 非普通"
+  },
+  {
+    "id": "卓越圣徽 Symbol of Excellence",
+    "name": "卓越圣徽",
+    "nameEn": "Symbol of Excellence",
+    "category": "equipment",
+    "tags": [
+      "物品"
+    ],
+    "source": "Dragon",
+    "text": "卓越圣徽 Symbol of Excellence 物品 Dragon 法器 圣徽 非普通"
+  },
+  {
+    "id": "卓越杂役头盔 Exceptional Factotum Helm",
+    "name": "卓越杂役头盔",
+    "nameEn": "Exceptional Factotum Helm",
+    "category": "equipment",
+    "tags": [
+      "物品"
+    ],
+    "source": "MME",
+    "text": "卓越杂役头盔 Exceptional Factotum Helm 物品 MME 头部 稀有"
   },
   {
     "id": "滋补腰带 Belt of Nourishment",
@@ -40992,17 +41839,6 @@
     "text": "归化者 Becomer 专长 Dragon 英雄 当你选择此专长时，你必须选择一个你能以[[变形裔伪装 Changeling Disguise]]威能来模仿的种族。你学会一个由你选择的种族已知的额外语言（如果那种族能选任何语言，那你也可以），且你在所选种族的有技能奖励的一个技能上获得+2种族加值（如果你选择人类，则你在一个你选择的技能上获得此加值）。另外，当使用[[变形裔伪装 Changeling Disguise]]来模仿你所选的种族时，你在避免被识破的检定上获得额外的+5加值 变形裔，[[变形裔伪装 Changeling Disguise]]威能"
   },
   {
-    "id": "傀儡师 Puppeteer",
-    "name": "傀儡师",
-    "nameEn": "Puppeteer",
-    "category": "feat",
-    "tags": [
-      "专长"
-    ],
-    "source": "PsP",
-    "text": "傀儡师 Puppeteer 专长 PsP 典范 当一个敌人对抗一个由你的心灵术士攻击威能造成的效果的豁免失败时，你能以一个自由动作滑动该敌人1格 11级，心灵术士"
-  },
-  {
     "id": "诡步冲锋 Roundabout Charge",
     "name": "诡步冲锋",
     "nameEn": "Roundabout Charge",
@@ -44960,7 +45796,7 @@
       "专长"
     ],
     "source": "Dragon",
-    "text": "进阶坐骑（天堂比蒙巨兽） Improved Steed (Celestial Behemoth) 专长 Dragon 典范 当你使用[[召唤天堂坐骑 Call Celestial Steed]]威能时，你可以选择召唤一个天堂比蒙巨兽，而不是天堂战马 11级，[[召唤天堂坐骑 Call Celestial Steed]]威能"
+    "text": "进阶坐骑（天堂比蒙巨兽） Improved Steed (Celestial Behemoth) 专长 Dragon 典范 当你使用[[召唤天堂坐骑 Call Celestial Steed]]威能时，你可以选择召唤一个[[天堂比蒙巨兽 Celestial Behemoth]]，而不是[[天堂战马 Celestial Warhorse]] 11级，[[召唤天堂坐骑 Call Celestial Steed]]威能"
   },
   {
     "id": "进阶坐骑（天堂飞马） Improved Steed (Celestial Pegasus)",
@@ -44971,18 +45807,18 @@
       "专长"
     ],
     "source": "Dragon",
-    "text": "进阶坐骑（天堂飞马） Improved Steed (Celestial Pegasus) 专长 Dragon 典范 当你使用[[召唤天堂坐骑 Call Celestial Steed]]威能时，你可以选择召唤一个天堂飞马，而不是天堂战马 11级，[[召唤天堂坐骑 Call Celestial Steed]]威能"
+    "text": "进阶坐骑（天堂飞马） Improved Steed (Celestial Pegasus) 专长 Dragon 典范 当你使用[[召唤天堂坐骑 Call Celestial Steed]]威能时，你可以选择召唤一个[[天堂飞马 Celestial Pegasus]]，而不是[[天堂战马 Celestial Warhorse]] 11级，[[召唤天堂坐骑 Call Celestial Steed]]威能"
   },
   {
-    "id": "进阶坐骑（天堂战虎）|Improved Steed (Celestial Battle Tiger)",
-    "name": "进阶坐骑（天堂战虎）|",
+    "id": "进阶坐骑（天堂战虎） Improved Steed (Celestial Battle Tiger)",
+    "name": "进阶坐骑（天堂战虎）",
     "nameEn": "Improved Steed (Celestial Battle Tiger)",
     "category": "feat",
     "tags": [
       "专长"
     ],
     "source": "Dragon",
-    "text": "进阶坐骑（天堂战虎）| Improved Steed (Celestial Battle Tiger) 专长 Dragon 英雄 当你使用[[召唤天堂坐骑 Call Celestial Steed]]威能时，你可以选择召唤一个天堂战虎，而不是天堂战马 [[召唤天堂坐骑 Call Celestial Steed]]威能"
+    "text": "进阶坐骑（天堂战虎） Improved Steed (Celestial Battle Tiger) 专长 Dragon 英雄 当你使用[[召唤天堂坐骑 Call Celestial Steed]]威能时，你可以选择召唤一个[[天堂战虎 Celestial Battle Tiger]]，而不是[[天堂战马 Celestial Warhorse]] [[召唤天堂坐骑 Call Celestial Steed]]威能"
   },
   {
     "id": "进阶坐骑（银龙） Improved Steed (Silver Dragon)",
@@ -44993,7 +45829,7 @@
       "专长"
     ],
     "source": "Dragon",
-    "text": "进阶坐骑（银龙） Improved Steed (Silver Dragon) 专长 Dragon 传奇 当你使用[[召唤天堂坐骑 Call Celestial Steed]]威能时，你可以选择召唤一个银龙坐骑，而不是天堂战马 21级，[[召唤天堂坐骑 Call Celestial Steed]]威能"
+    "text": "进阶坐骑（银龙） Improved Steed (Silver Dragon) 专长 Dragon 传奇 当你使用[[召唤天堂坐骑 Call Celestial Steed]]威能时，你可以选择召唤一个[[银龙坐骑 Silver Dragon Steed]]，而不是[[天堂战马 Celestial Warhorse]] 21级，[[召唤天堂坐骑 Call Celestial Steed]]威能"
   },
   {
     "id": "进迫领主 Thaneborn Advance",
@@ -47427,6 +48263,17 @@
     "text": "盔甲专精（鳞甲） Armor Specialization (Scale) 专长 PH 典范 当你装备鳞甲时，你在AC上获得+1专长加值。你无视鳞甲导致的速度减值 11级，敏捷15，擅长鳞甲"
   },
   {
+    "id": "傀儡师 Puppeteer",
+    "name": "傀儡师",
+    "nameEn": "Puppeteer",
+    "category": "feat",
+    "tags": [
+      "专长"
+    ],
+    "source": "PsP",
+    "text": "傀儡师 Puppeteer 专长 PsP 典范 当一个敌人对抗一个由你的心灵术士攻击威能造成的效果的豁免失败时，你能以一个自由动作滑动该敌人1格 11级，心灵术士"
+  },
+  {
     "id": "困惑技巧 Confounding Technique",
     "name": "困惑技巧",
     "nameEn": "Confounding Technique",
@@ -49616,15 +50463,15 @@
     "text": "罗丝之残酷献祭 <神力> Lolth's Cruel Sacrifice <Divinity> 专长 BoVD 英雄 你获得[[罗丝之残酷献祭 Lolth's Cruel Sacrifice]]威能 「引导神力」职业特性，必须信仰罗丝"
   },
   {
-    "id": "罗丝之肉 Lolth's Meat",
-    "name": "罗丝之肉",
+    "id": "罗丝之飨 Lolth's Meat",
+    "name": "罗丝之飨",
     "nameEn": "Lolth's Meat",
     "category": "feat",
     "tags": [
       "专长"
     ],
     "source": "Dragon",
-    "text": "罗丝之肉 Lolth's Meat 专长 Dragon 英雄 当你将一个敌人生命值降到0或更低时，你在攻击骰上获得+1专长加值，直到你下一回合结束 卓尔"
+    "text": "罗丝之飨 Lolth's Meat 专长 Dragon 英雄 当你将一个敌人生命值降到0或更低时，你在攻击骰上获得+1专长加值，直到你下一回合结束 卓尔"
   },
   {
     "id": "罗丝之拥 Lolth's Embrace",
@@ -49713,28 +50560,6 @@
     ],
     "source": "Dragon",
     "text": "蛮横威严 Imperious Majesty 专长 Dragon 英雄 你可以使用魅力代替敏捷来决定你的先攻调整值。当你以攻击命中一个在遭遇中还未行动的生物时，它在对你的攻击骰上受到等同于你魅力调整值的减值，直到你下一回合结束 提夫林"
-  },
-  {
-    "id": "蹒跚打击 Staggering Strike",
-    "name": "蹒跚打击",
-    "nameEn": "Staggering Strike",
-    "category": "feat",
-    "tags": [
-      "专长"
-    ],
-    "source": "MP2",
-    "text": "蹒跚打击 Staggering Strike 专长 MP2 英雄 当你将对一个敌人造成「猎手标的」伤害时，你可以放弃此伤害的1个伤害骰子来推离该敌人1格 游侠，「猎手标的」职业特性"
-  },
-  {
-    "id": "蹒跚挑战 Staggering Challenge",
-    "name": "蹒跚挑战",
-    "nameEn": "Staggering Challenge",
-    "category": "feat",
-    "tags": [
-      "专长"
-    ],
-    "source": "Dragon",
-    "text": "蹒跚挑战 Staggering Challenge 专长 Dragon 典范 在你以你的「挑战」职业特性提供的近战基本攻击命中一个敌人，且你正使用一面盾牌，你能击倒此目标，而不是以此攻击造成伤害。 11级，战士，「挑战」职业特性"
   },
   {
     "id": "漫步精界 Walk Among the Fey",
@@ -51583,6 +52408,28 @@
     ],
     "source": "Dragon",
     "text": "盘旋秋叶 Swirling Leaves of Autumn 专长 Dragon 英雄 当你的「谜踪步」契约之赐触发时，你离开的那格和每个邻近它的格子成为轻度阴暗，直到你下一回合开始 邪术师，「精类契约」职业特性，必须信仰瑟翰妮"
+  },
+  {
+    "id": "蹒跚打击 Staggering Strike",
+    "name": "蹒跚打击",
+    "nameEn": "Staggering Strike",
+    "category": "feat",
+    "tags": [
+      "专长"
+    ],
+    "source": "MP2",
+    "text": "蹒跚打击 Staggering Strike 专长 MP2 英雄 当你将对一个敌人造成「猎手标的」伤害时，你可以放弃此伤害的1个伤害骰子来推离该敌人1格 游侠，「猎手标的」职业特性"
+  },
+  {
+    "id": "蹒跚挑战 Staggering Challenge",
+    "name": "蹒跚挑战",
+    "nameEn": "Staggering Challenge",
+    "category": "feat",
+    "tags": [
+      "专长"
+    ],
+    "source": "Dragon",
+    "text": "蹒跚挑战 Staggering Challenge 专长 Dragon 典范 在你以你的「挑战」职业特性提供的近战基本攻击命中一个敌人，且你正使用一面盾牌，你能击倒此目标，而不是以此攻击造成伤害。 11级，战士，「挑战」职业特性"
   },
   {
     "id": "抛开 Cast Aside",
@@ -56568,17 +57415,6 @@
     "text": "死神信徒 Disciple of Death 专长 HoFL 英雄 你在死亡豁免检定上获得+5专长加值 感知13"
   },
   {
-    "id": "死亡标记 Marked for Death",
-    "name": "死亡标记",
-    "nameEn": "Marked for Death",
-    "category": "feat",
-    "tags": [
-      "专长"
-    ],
-    "source": "Dragon",
-    "text": "死亡标记 Marked for Death 专长 Dragon 英雄 当你对一个目标造成你的[[黑暗收割 Dark Reaping]]种族威能的额外暗蚀伤害时，其他被你标记的敌人受到等同于你体质调整值的暗蚀伤害 体质13，返世幽魂，标记敌人的能力"
-  },
-  {
     "id": "死亡和绝望之眼 Eye of Death and Despair",
     "name": "死亡和绝望之眼",
     "nameEn": "Eye of Death and Despair",
@@ -56764,6 +57600,17 @@
     ],
     "source": "Dragon",
     "text": "死消生长 <神力> In Death, Life <Divinity> 专长 Dragon 英雄 你获得[[死消生长 In Death, Life]]威能 「引导神力」职业特性，必须信仰鸦后"
+  },
+  {
+    "id": "死之印记 Marked for Death",
+    "name": "死之印记",
+    "nameEn": "Marked for Death",
+    "category": "feat",
+    "tags": [
+      "专长"
+    ],
+    "source": "Dragon",
+    "text": "死之印记 Marked for Death 专长 Dragon 英雄 当你对一个目标造成你的[[黑暗收割 Dark Reaping]]种族威能的额外暗蚀伤害时，其他被你标记的敌人受到等同于你体质调整值的暗蚀伤害 体质13，返世幽魂，标记敌人的能力"
   },
   {
     "id": "四臂乱舞 Four-Armed Flurry",
@@ -59351,17 +60198,6 @@
     "text": "无情神速 Inexorable Speed 专长 PsP 传奇 当你使用你的[[思维速度 Speed of Thought]]时，你可以穿过敌人的空间，且你的移动不会引发借机攻击 21级，战魂，[[思维速度 Speed of Thought]]威能"
   },
   {
-    "id": "无情寿衣 Brutal Shroud",
-    "name": "无情寿衣",
-    "nameEn": "Brutal Shroud",
-    "category": "feat",
-    "tags": [
-      "专长"
-    ],
-    "source": "Dragon",
-    "text": "无情寿衣 Brutal Shroud 专长 Dragon 英雄 当你给你的[[刺客寿衣 Assassin's Shroud]]掷伤害骰时，将每个结果为1的伤害骰子重掷，直到其结果不再是1 刺客，[[刺客寿衣 Assassin's Shroud]]威能"
-  },
-  {
     "id": "无情寿衣 Inexorable Shroud",
     "name": "无情寿衣",
     "nameEn": "Inexorable Shroud",
@@ -61111,6 +61947,17 @@
     "text": "凶残适应 Ferocious Resilience 专长 PsP 典范 当你使用你的[[战斗适应 Battle Resilience]]时，你在近战伤害骰上获得+2威能加值，直到你下一回合结束。此加值21级时为+4 11级，战魂，[[战斗适应 Battle Resilience]]威能"
   },
   {
+    "id": "凶残寿衣 Brutal Shroud",
+    "name": "凶残寿衣",
+    "nameEn": "Brutal Shroud",
+    "category": "feat",
+    "tags": [
+      "专长"
+    ],
+    "source": "Dragon",
+    "text": "凶残寿衣 Brutal Shroud 专长 Dragon 英雄 当你给你的[[刺客寿衣 Assassin's Shroud]]掷伤害骰时，将每个结果为1的伤害骰子重掷，直到其结果不再是1 刺客，[[刺客寿衣 Assassin's Shroud]]威能"
+  },
+  {
     "id": "凶残撕咬 <吸血鬼血统> Savage Bite <Vampire Bloodline>",
     "name": "凶残撕咬 <吸血鬼血统>",
     "nameEn": "Savage Bite <Vampire Bloodline>",
@@ -61991,15 +62838,15 @@
     "text": "雅灵剑法师 Eladrin Sword Wizardry 专长 AP 英雄 当使用法师威能时，你能将长剑作为法器持用。当作为法器使用时，你的长剑将它的增强加值加到攻击骰、伤害骰和由特性给予的任何额外伤害上（如果可用的话）。当你将长剑作为法器使用时，你不在攻击骰上获得你的武器擅长加值 <br>如果你有当你持用魔杖时给予增益的任何专长或职业特性，则当你持用长剑时这些增益同样生效。如果这些增益适用于攻击，则只有当你将长剑作为法器施展法师攻击威能时才生效 敏捷13，雅灵，法师"
   },
   {
-    "id": "雅灵剑法优势 Eladrin Swordmage Advance",
-    "name": "雅灵剑法优势",
+    "id": "雅灵剑法突进 Eladrin Swordmage Advance",
+    "name": "雅灵剑法突进",
     "nameEn": "Eladrin Swordmage Advance",
     "category": "feat",
     "tags": [
       "专长"
     ],
     "source": "AP",
-    "text": "雅灵剑法优势 Eladrin Swordmage Advance 专长 AP 英雄 当你使用你的[[妖精步舞 Fey Step]]种族威能来传送到邻近一个敌人的格子时，你能以一个自由动作对该敌人进行一次近战基本攻击 雅灵，剑法师"
+    "text": "雅灵剑法突进 Eladrin Swordmage Advance 专长 AP 英雄 当你使用你的[[妖精步舞 Fey Step]]种族威能来传送到邻近一个敌人的格子时，你能以一个自由动作对该敌人进行一次近战基本攻击 雅灵，剑法师"
   },
   {
     "id": "雅灵士兵 Eladrin Soldier",
@@ -67810,6 +68657,28 @@
     "text": "准确之牙 Precise Fangs 专长 PrP 英雄 当你使用[[精魂之牙 Spirit's Fangs]]威能时，你在此攻击骰上获得+2加值 萨满，「狩猎精魂」职业特性"
   },
   {
+    "id": "灼敌之日 <神力> Solar Enemy <Divinity>",
+    "name": "灼敌之日 <神力>",
+    "nameEn": "Solar Enemy <Divinity>",
+    "category": "feat",
+    "tags": [
+      "专长"
+    ],
+    "source": "DP",
+    "text": "灼敌之日 <神力> Solar Enemy <Divinity> 专长 DP 英雄 你获得引导神力威能[[灼敌之日 Solar Enemy]] 「引导神力」职业特性，必须信仰太阳领域的神祇"
+  },
+  {
+    "id": "灼烧蒸汽 Burning Vapors",
+    "name": "灼烧蒸汽",
+    "nameEn": "Burning Vapors",
+    "category": "feat",
+    "tags": [
+      "专长"
+    ],
+    "source": "HoEC",
+    "text": "灼烧蒸汽 Burning Vapors 专长 HoEC 典范 你在强酸伤害骰上获得+3专长加值。此加值21级时为+4<br>另外，当你受到一次攻击的强酸伤害时，邻近你的每个敌人在攻击骰受到-2减值直到它下一回合结束 11级"
+  },
+  {
     "id": "卓尔兽王 Drow Beast Mastery",
     "name": "卓尔兽王",
     "nameEn": "Drow Beast Mastery",
@@ -67874,28 +68743,6 @@
     ],
     "source": "PH2",
     "text": "卓越血脉 Transcendent Lineage 专长 PH2 传奇 当你使用你的[[千世遥忆 Memory of a Thousand Lifetimes]]种族威能时，你可以重掷此掷骰，且把任一结果加到触发的掷骰上 21级，天族"
-  },
-  {
-    "id": "灼敌之日 <神力> Solar Enemy <Divinity>",
-    "name": "灼敌之日 <神力>",
-    "nameEn": "Solar Enemy <Divinity>",
-    "category": "feat",
-    "tags": [
-      "专长"
-    ],
-    "source": "DP",
-    "text": "灼敌之日 <神力> Solar Enemy <Divinity> 专长 DP 英雄 你获得引导神力威能[[灼敌之日 Solar Enemy]] 「引导神力」职业特性，必须信仰太阳领域的神祇"
-  },
-  {
-    "id": "灼烧蒸汽 Burning Vapors",
-    "name": "灼烧蒸汽",
-    "nameEn": "Burning Vapors",
-    "category": "feat",
-    "tags": [
-      "专长"
-    ],
-    "source": "HoEC",
-    "text": "灼烧蒸汽 Burning Vapors 专长 HoEC 典范 你在强酸伤害骰上获得+3专长加值。此加值21级时为+4<br>另外，当你受到一次攻击的强酸伤害时，邻近你的每个敌人在攻击骰受到-2减值直到它下一回合结束 11级"
   },
   {
     "id": "资源共享 Shared Resources",
@@ -70203,17 +71050,6 @@
     "text": "复仇十字军 Vengeful Crusader 典范 Dragon 圣武士，在洞察或侦查上受训"
   },
   {
-    "id": "复仇武士 Rrathmal",
-    "name": "复仇武士",
-    "nameEn": "Rrathmal",
-    "category": "paragon-path",
-    "tags": [
-      "典范"
-    ],
-    "source": "PH3",
-    "text": "复仇武士 Rrathmal 典范 PH3 吉斯泽雷人"
-  },
-  {
     "id": "复仇之锤 Hammer of Vengeance",
     "name": "复仇之锤",
     "nameEn": "Hammer of Vengeance",
@@ -71050,17 +71886,6 @@
     "text": "精类浸染者 Feytouched 典范 PH 邪术师，「精类契约」"
   },
   {
-    "id": "精灵之主 Prince of Genies",
-    "name": "精灵之主",
-    "nameEn": "Prince of Genies",
-    "category": "paragon-path",
-    "tags": [
-      "典范"
-    ],
-    "source": "HoEC",
-    "text": "精灵之主 Prince of Genies 典范 HoEC 元素界起源，或在交涉上受训"
-  },
-  {
     "id": "精神大师 Phrenic Master",
     "name": "精神大师",
     "nameEn": "Phrenic Master",
@@ -71114,6 +71939,17 @@
     ],
     "source": "PHRD",
     "text": "九重导师 Ninefold Master 典范 PHRD 龙裔，任意奥术职业，[[龙脉施法者 Draconic Spellcaster]]专长"
+  },
+  {
+    "id": "巨灵亲王 Prince of Genies",
+    "name": "巨灵亲王",
+    "nameEn": "Prince of Genies",
+    "category": "paragon-path",
+    "tags": [
+      "典范"
+    ],
+    "source": "HoEC",
+    "text": "巨灵亲王 Prince of Genies 典范 HoEC 元素界起源，或在交涉上受训"
   },
   {
     "id": "巨龙杀手 Dragonslayer",
@@ -71400,6 +72236,17 @@
     ],
     "source": "EPG",
     "text": "昆达拉克盗贼克星 Kundarak Ghorad'din 典范 EPG [[防护之龙纹 <龙纹> Mark of Warding <Dragonmark>]]专长"
+  },
+  {
+    "id": "拉斯玛尔 Rrathmal",
+    "name": "拉斯玛尔",
+    "nameEn": "Rrathmal",
+    "category": "paragon-path",
+    "tags": [
+      "典范"
+    ],
+    "source": "PH3",
+    "text": "拉斯玛尔 Rrathmal 典范 PH3 吉斯泽雷人"
   },
   {
     "id": "拉扎安德拉信徒 Disciple of Razaundra",
@@ -71985,6 +72832,17 @@
     "text": "命运射手 Seven Fates Archer 典范 PH3 巡者"
   },
   {
+    "id": "摩拉丁长子 Firstborn of Moradin",
+    "name": "摩拉丁长子",
+    "nameEn": "Firstborn of Moradin",
+    "category": "paragon-path",
+    "tags": [
+      "典范"
+    ],
+    "source": "PH2",
+    "text": "摩拉丁长子 Firstborn of Moradin 典范 PH2 矮人"
+  },
+  {
     "id": "摩拉丁之锤 Hammer of Moradin",
     "name": "摩拉丁之锤",
     "nameEn": "Hammer of Moradin",
@@ -71994,17 +72852,6 @@
     ],
     "source": "DP",
     "text": "摩拉丁之锤 Hammer of Moradin 典范 DP 牧师或圣武士，擅长战锤或飞锤，必须信仰摩拉丁"
-  },
-  {
-    "id": "摩拉丁子嗣 Firstborn of Moradin",
-    "name": "摩拉丁子嗣",
-    "nameEn": "Firstborn of Moradin",
-    "category": "paragon-path",
-    "tags": [
-      "典范"
-    ],
-    "source": "PH2",
-    "text": "摩拉丁子嗣 Firstborn of Moradin 典范 PH2 矮人"
   },
   {
     "id": "魔宠管理员 Familiar Keeper",
@@ -74009,17 +74856,6 @@
     "text": "心智统帅 Mind General 典范 DSCS 贵族学者主题"
   },
   {
-    "id": "新月追踪者 Moonrise Stalker",
-    "name": "新月追踪者",
-    "nameEn": "Moonrise Stalker",
-    "category": "paragon-path",
-    "tags": [
-      "典范"
-    ],
-    "source": "Dragon",
-    "text": "新月追踪者 Moonrise Stalker 典范 Dragon 巡者"
-  },
-  {
     "id": "信仰之盾 Faithful Shield",
     "name": "信仰之盾",
     "nameEn": "Faithful Shield",
@@ -74744,6 +75580,17 @@
     ],
     "source": "AP",
     "text": "原始引导者 Primordial Channeler 典范 AP 术士，「狂野魔法」职业特性"
+  },
+  {
+    "id": "月锋追踪者 Moonrise Stalker",
+    "name": "月锋追踪者",
+    "nameEn": "Moonrise Stalker",
+    "category": "paragon-path",
+    "tags": [
+      "典范"
+    ],
+    "source": "Dragon",
+    "text": "月锋追踪者 Moonrise Stalker 典范 Dragon 巡者"
   },
   {
     "id": "月弓之箭 Arrow of the Moonbow",
@@ -75810,6 +76657,17 @@
     "text": "安全步法 Safe Stride 威能 游侠 PH 遭遇 移动动作 武术 游侠辅助 游侠"
   },
   {
+    "id": "安全放逐 Safe Banishment",
+    "name": "安全放逐",
+    "nameEn": "Safe Banishment",
+    "category": "power",
+    "tags": [
+      "威能"
+    ],
+    "source": "HoF",
+    "text": "安全放逐 Safe Banishment 威能 HoF 随意 移动动作 奥术 精野驯兽师辅助 精野驯兽师"
+  },
+  {
     "id": "安全符印 Sigil of Safety",
     "name": "安全符印",
     "nameEn": "Sigil of Safety",
@@ -76219,18 +77077,6 @@
     "text": "暗影符文 Shadowdark Invocation 威能 神导士 DP 每日 标准动作 寒冰，神术，法器，区域 神导士攻击 神导士"
   },
   {
-    "id": "暗影傀儡 Shadow Puppet",
-    "name": "暗影傀儡",
-    "nameEn": "Shadow Puppet",
-    "category": "power",
-    "tags": [
-      "威能",
-      "刺客"
-    ],
-    "source": "Dragon",
-    "text": "暗影傀儡 Shadow Puppet 威能 刺客 Dragon 每日 标准动作 魅惑，法器，心灵，影能 刺客攻击 刺客"
-  },
-  {
     "id": "暗影寒爪 Shadow Claws",
     "name": "暗影寒爪",
     "nameEn": "Shadow Claws",
@@ -76265,6 +77111,17 @@
     ],
     "source": "HoS",
     "text": "暗影环绕 Sphere of Shadows 威能 牧师 HoS 每日 次要动作 神术，影能，区域 牧师辅助 牧师"
+  },
+  {
+    "id": "暗影汇报 Umbral Report",
+    "name": "暗影汇报",
+    "nameEn": "Umbral Report",
+    "category": "power",
+    "tags": [
+      "威能"
+    ],
+    "source": "HoF",
+    "text": "暗影汇报 Umbral Report 威能 HoF 每日 标准动作 奥术，影能 恶精灵代理人辅助 恶精灵代理人"
   },
   {
     "id": "暗影火焰 Shadow Fire",
@@ -76373,18 +77230,6 @@
     "text": "暗影军团 Shadow Legion 威能 邪术师 HoS 每日 标准动作 奥术，咒法，暗蚀，影能 邪术师攻击 邪术师"
   },
   {
-    "id": "暗影军团 Shadowed Legion",
-    "name": "暗影军团",
-    "nameEn": "Shadowed Legion",
-    "category": "power",
-    "tags": [
-      "威能",
-      "刺客"
-    ],
-    "source": "Dragon",
-    "text": "暗影军团 Shadowed Legion 威能 刺客 Dragon 每日 次要动作 影能，架势 刺客辅助 刺客"
-  },
-  {
     "id": "暗影跨步 Shade Stride",
     "name": "暗影跨步",
     "nameEn": "Shade Stride",
@@ -76394,6 +77239,18 @@
     ],
     "source": "Dragon",
     "text": "暗影跨步 Shade Stride 威能 Dragon 遭遇 次要动作 影能，传送 专长辅助 专长"
+  },
+  {
+    "id": "暗影傀儡 Shadow Puppet",
+    "name": "暗影傀儡",
+    "nameEn": "Shadow Puppet",
+    "category": "power",
+    "tags": [
+      "威能",
+      "刺客"
+    ],
+    "source": "Dragon",
+    "text": "暗影傀儡 Shadow Puppet 威能 刺客 Dragon 每日 标准动作 魅惑，法器，心灵，影能 刺客攻击 刺客"
   },
   {
     "id": "暗影末日领地 Shadowbane Circle",
@@ -76441,6 +77298,17 @@
     ],
     "source": "HoS",
     "text": "暗影扭曲 Shadow Warp 威能 邪术师 HoS 随意 自由动作 奥术，影能 邪术师辅助 邪术师"
+  },
+  {
+    "id": "暗影披风 Shadow Cloak",
+    "name": "暗影披风",
+    "nameEn": "Shadow Cloak",
+    "category": "power",
+    "tags": [
+      "威能"
+    ],
+    "source": "HoF",
+    "text": "暗影披风 Shadow Cloak 威能 HoF 遭遇 次要动作 奥术，影能 恶精灵代理人辅助 恶精灵代理人"
   },
   {
     "id": "暗影奇袭 From the Shadows",
@@ -81931,18 +82799,6 @@
     "text": "策略优势 Tactical Supremacy 威能 战魂 PH3 每日 次要动作 灵能 战魂辅助 战魂"
   },
   {
-    "id": "梣木槌狂暴 Ash Hammer Rage",
-    "name": "梣木槌狂暴",
-    "nameEn": "Ash Hammer Rage",
-    "category": "power",
-    "tags": [
-      "威能",
-      "野蛮人"
-    ],
-    "source": "PH2",
-    "text": "梣木槌狂暴 Ash Hammer Rage 威能 野蛮人 PH2 每日 标准动作 原力，狂暴，武器 野蛮人攻击 野蛮人"
-  },
-  {
     "id": "叉状闪电 Forked Lightning",
     "name": "叉状闪电",
     "nameEn": "Forked Lightning",
@@ -82536,6 +83392,18 @@
     ],
     "source": "PH2",
     "text": "晨曦火焰圣印 Dawn Fire Sigil 威能 神罚使 PH2 每日 标准动作 神术，光耀，武器 神罚使攻击 神罚使"
+  },
+  {
+    "id": "梣木槌狂暴 Ash Hammer Rage",
+    "name": "梣木槌狂暴",
+    "nameEn": "Ash Hammer Rage",
+    "category": "power",
+    "tags": [
+      "威能",
+      "野蛮人"
+    ],
+    "source": "PH2",
+    "text": "梣木槌狂暴 Ash Hammer Rage 威能 野蛮人 PH2 每日 标准动作 原力，狂暴，武器 野蛮人攻击 野蛮人"
   },
   {
     "id": "趁虚而入 Profit from Weakness",
@@ -84616,6 +85484,17 @@
     "text": "创造熔炉 Forge of Creation 威能 DP 每日 次要动作 神术 摩拉丁神选者辅助 摩拉丁神选者"
   },
   {
+    "id": "创造影锻武器 Create Shadow-Wrought Weapon",
+    "name": "创造影锻武器",
+    "nameEn": "Create Shadow-Wrought Weapon",
+    "category": "power",
+    "tags": [
+      "威能"
+    ],
+    "source": "HoF",
+    "text": "创造影锻武器 Create Shadow-Wrought Weapon 威能 HoF 遭遇 次要动作 奥术，影能 恶精灵代理人辅助 恶精灵代理人"
+  },
+  {
     "id": "创造之秘 Creation Secret",
     "name": "创造之秘",
     "nameEn": "Creation Secret",
@@ -84834,6 +85713,17 @@
     ],
     "source": "PsP",
     "text": "磁石诱饵 Lodestone Lure 威能 战魂 PsP 随意 标准动作 可强化，灵能，武器 战魂攻击 战魂"
+  },
+  {
+    "id": "此计拙劣 Bad Idea",
+    "name": "此计拙劣",
+    "nameEn": "Bad Idea",
+    "category": "power",
+    "tags": [
+      "威能"
+    ],
+    "source": "NCS",
+    "text": "此计拙劣 Bad Idea 威能 NCS 遭遇 即时中断 神术 欧格玛虔信者辅助 欧格玛虔信者"
   },
   {
     "id": "此消彼长 Invigorating Confrontation",
@@ -86209,7 +87099,7 @@
       "威能"
     ],
     "source": "PH2",
-    "text": "大地感知 Earthsense 威能 PH2 每日 次要动作 架势 摩拉丁子嗣辅助 摩拉丁子嗣"
+    "text": "大地感知 Earthsense 威能 PH2 每日 次要动作 架势 摩拉丁长子辅助 摩拉丁长子"
   },
   {
     "id": "大地根系 Earth Roots",
@@ -88118,18 +89008,6 @@
     ],
     "source": "PsP",
     "text": "凋零奇巧 Withered Technique 威能 炽念使 PsP 随意 标准动作 可强化，灵能，武器 炽念使攻击 炽念使"
-  },
-  {
-    "id": "调和之刃 Harmony of Blades",
-    "name": "调和之刃",
-    "nameEn": "Harmony of Blades",
-    "category": "power",
-    "tags": [
-      "威能",
-      "牧师"
-    ],
-    "source": "NCS",
-    "text": "调和之刃 Harmony of Blades 威能 牧师 NCS 遭遇 标准动作 神术，力场，武器 牧师攻击 牧师"
   },
   {
     "id": "调停封锁 Peacemaker's Interdiction",
@@ -90613,6 +91491,17 @@
     "text": "恶化毒素 Progressive Toxin 威能 Dragon 每日 标准动作 毒素 专长辅助 专长"
   },
   {
+    "id": "恶精之眼 Unseelie Eyes",
+    "name": "恶精之眼",
+    "nameEn": "Unseelie Eyes",
+    "category": "power",
+    "tags": [
+      "威能"
+    ],
+    "source": "HoF",
+    "text": "恶精之眼 Unseelie Eyes 威能 HoF 遭遇 次要动作 奥术，影能 恶精灵代理人辅助 恶精灵代理人"
+  },
+  {
     "id": "恶魔部落 Demonic Hordes",
     "name": "恶魔部落",
     "nameEn": "Demonic Hordes",
@@ -92475,18 +93364,6 @@
     "text": "飞檐走壁 Ghost of the Rooftops 威能 刺客 HoS 随意 移动动作 武术 刺客辅助 刺客"
   },
   {
-    "id": "飞檐走壁 Spider Technique",
-    "name": "飞檐走壁",
-    "nameEn": "Spider Technique",
-    "category": "power",
-    "tags": [
-      "威能",
-      "武僧"
-    ],
-    "source": "PH3",
-    "text": "飞檐走壁 Spider Technique 威能 武僧 PH3 随意 移动动作 灵能 武僧辅助 武僧"
-  },
-  {
     "id": "飞燕成群 Host of Sparrows",
     "name": "飞燕成群",
     "nameEn": "Host of Sparrows",
@@ -94344,18 +95221,6 @@
     "text": "凤凰天舞 Phoenix Dance 威能 武僧 PH3 每日 标准动作 火焰，法器，灵能，光耀 武僧攻击 武僧"
   },
   {
-    "id": "否极泰来 Strikes of Woe and Weal",
-    "name": "否极泰来",
-    "nameEn": "Strikes of Woe and Weal",
-    "category": "power",
-    "tags": [
-      "威能",
-      "牧师"
-    ],
-    "source": "NCS",
-    "text": "否极泰来 Strikes of Woe and Weal 威能 牧师 NCS 遭遇 标准动作 神术，力场，医疗，武器 牧师攻击 牧师"
-  },
-  {
     "id": "否决败阵 Deny Defeat",
     "name": "否决败阵",
     "nameEn": "Deny Defeat",
@@ -94782,18 +95647,6 @@
     "text": "腐蚀武器 Corroding Weapon 威能 德鲁伊 HoFK 每日 次要动作 强酸，毒素，原力 德鲁伊攻击 德鲁伊"
   },
   {
-    "id": "腐蚀武器 Scouring Weapon",
-    "name": "腐蚀武器",
-    "nameEn": "Scouring Weapon",
-    "category": "power",
-    "tags": [
-      "威能",
-      "机关术士"
-    ],
-    "source": "EPG",
-    "text": "腐蚀武器 Scouring Weapon 威能 机关术士 EPG 遭遇 标准动作 强酸，奥术，武器 机关术士攻击 机关术士"
-  },
-  {
     "id": "腐蚀雨 Caustic Rain",
     "name": "腐蚀雨",
     "nameEn": "Caustic Rain",
@@ -95077,7 +95930,7 @@
       "威能"
     ],
     "source": "PH3",
-    "text": "复仇空间 Vengeance Shroud 威能 PH3 每日 标准动作 心灵，区域 复仇武士攻击 复仇武士"
+    "text": "复仇空间 Vengeance Shroud 威能 PH3 每日 标准动作 心灵，区域 拉斯玛尔攻击 拉斯玛尔"
   },
   {
     "id": "复仇雷暴字符 Word of Vengeful Thunder",
@@ -95370,7 +96223,7 @@
       "威能"
     ],
     "source": "PH3",
-    "text": "复仇追踪 Rrathmal Pursuit 威能 PH3 随意 即时反应 复仇武士辅助 复仇武士"
+    "text": "复仇追踪 Rrathmal Pursuit 威能 PH3 随意 即时反应 拉斯玛尔辅助 拉斯玛尔"
   },
   {
     "id": "复仇诅咒 Cursing Vengeance",
@@ -96113,17 +96966,6 @@
     "text": "干涉妖法 Necromantic Disruption 威能 剑法师 Dragon 遭遇 标准动作 奥术，武器 剑法师攻击 剑法师"
   },
   {
-    "id": "杠杆击 Leveraging Strike",
-    "name": "杠杆击",
-    "nameEn": "Leveraging Strike",
-    "category": "power",
-    "tags": [
-      "威能"
-    ],
-    "source": "MP",
-    "text": "杠杆击 Leveraging Strike 威能 MP 遭遇 标准动作 武术，武器 长武器大师攻击 长武器大师"
-  },
-  {
     "id": "钢崩破 Steel Avalanche",
     "name": "钢崩破",
     "nameEn": "Steel Avalanche",
@@ -96779,6 +97621,17 @@
     ],
     "source": "Dragon",
     "text": "岗岩护盾 Granite Shield 威能 牧师 Dragon 遭遇 标准动作 灵气，神术，武器 牧师攻击 牧师"
+  },
+  {
+    "id": "杠杆击 Leveraging Strike",
+    "name": "杠杆击",
+    "nameEn": "Leveraging Strike",
+    "category": "power",
+    "tags": [
+      "威能"
+    ],
+    "source": "MP",
+    "text": "杠杆击 Leveraging Strike 威能 MP 遭遇 标准动作 武术，武器 长武器大师攻击 长武器大师"
   },
   {
     "id": "高潮和弦 Climactic Chord",
@@ -98021,6 +98874,18 @@
     "text": "鼓舞言辞 Encouraging Remark 威能 督军 MP 遭遇 标准动作 武术 督军辅助 督军"
   },
   {
+    "id": "鼓舞演说 Bolstering Speech",
+    "name": "鼓舞演说",
+    "nameEn": "Bolstering Speech",
+    "category": "power",
+    "tags": [
+      "威能",
+      "诗人"
+    ],
+    "source": "HoF",
+    "text": "鼓舞演说 Bolstering Speech 威能 诗人 HoF 随意 次要动作 武术 诗人攻击 诗人"
+  },
+  {
     "id": "鼓舞战意 Inspired Belligerence",
     "name": "鼓舞战意",
     "nameEn": "Inspired Belligerence",
@@ -98857,18 +99722,6 @@
     ],
     "source": "PH",
     "text": "规避攻击 Evasive Strike 威能 游侠 PH 遭遇 标准动作 武术，武器 游侠攻击 游侠"
-  },
-  {
-    "id": "傀儡诱惑 Charm of Puppet Strings",
-    "name": "傀儡诱惑",
-    "nameEn": "Charm of Puppet Strings",
-    "category": "power",
-    "tags": [
-      "威能",
-      "法师"
-    ],
-    "source": "Dragon",
-    "text": "傀儡诱惑 Charm of Puppet Strings 威能 法师 Dragon 遭遇 标准动作 奥术，魅惑，惑控，法器 法师攻击 法师"
   },
   {
     "id": "诡步 Cunning Step",
@@ -99765,6 +100618,17 @@
     "text": "寒鸭浮水 Springing Drake Assault 威能 武僧 PsP 遭遇 攻击招数<br>&nbsp;&nbsp;标准动作 套路，法器，灵能 武僧攻击 武僧"
   },
   {
+    "id": "寒影打击 Cold Shadow Strike",
+    "name": "寒影打击",
+    "nameEn": "Cold Shadow Strike",
+    "category": "power",
+    "tags": [
+      "威能"
+    ],
+    "source": "HoF",
+    "text": "寒影打击 Cold Shadow Strike 威能 HoF 遭遇 无动作 奥术，寒冰，暗蚀，影能 恶精灵代理人攻击 恶精灵代理人"
+  },
+  {
     "id": "寒之刃 Chilled Blade",
     "name": "寒之刃",
     "nameEn": "Chilled Blade",
@@ -100339,7 +101203,7 @@
       "法师"
     ],
     "source": "HoS",
-    "text": "黑暗宣判 Dooming Darkness 威能 法师 HoS 遭遇 标准动作 奥术，法器，暗蚀，幽影，心灵，影能，区域 法师攻击 法师"
+    "text": "黑暗宣判 Dooming Darkness 威能 法师 HoS 每日 标准动作 奥术，法器，暗蚀，幽影，心灵，影能，区域 法师攻击 法师"
   },
   {
     "id": "黑暗漩涡 Maelstrom of Darkness",
@@ -104814,6 +105678,17 @@
     "text": "混淆火矢 Bolts of Bedevilment 威能 PH2 遭遇 标准动作 魅惑，火焰 图拉斯名门攻击 图拉斯名门"
   },
   {
+    "id": "混种撕咬 Hybrid Bite",
+    "name": "混种撕咬",
+    "nameEn": "Hybrid Bite",
+    "category": "power",
+    "tags": [
+      "威能"
+    ],
+    "source": "NCS",
+    "text": "混种撕咬 Hybrid Bite 威能 NCS 随意 次要动作 变形，原力 死鼠逃兵辅助 死鼠逃兵"
+  },
+  {
     "id": "活化蒺藜群 Living Caltrop Swarm",
     "name": "活化蒺藜群",
     "nameEn": "Living Caltrop Swarm",
@@ -105559,18 +106434,6 @@
     "text": "火焰王冠 Crown of Flames 威能 术士 AP 每日 次要动作 奥术，火焰 术士辅助 术士"
   },
   {
-    "id": "火焰旋涡 Flame Spiral",
-    "name": "火焰旋涡",
-    "nameEn": "Flame Spiral",
-    "category": "power",
-    "tags": [
-      "威能",
-      "术士"
-    ],
-    "source": "PH2",
-    "text": "火焰旋涡 Flame Spiral 威能 术士 PH2 遭遇 标准动作 奥术，法器，火焰 术士攻击 术士"
-  },
-  {
     "id": "火焰旋涡 Vortex of Fire",
     "name": "火焰旋涡",
     "nameEn": "Vortex of Fire",
@@ -105581,6 +106444,18 @@
     ],
     "source": "HoFK",
     "text": "火焰旋涡 Vortex of Fire 威能 邪术师 HoFK 每日 标准动作 奥术，火焰，法器，区域 邪术师攻击 邪术师"
+  },
+  {
+    "id": "火焰漩涡 Flame Spiral",
+    "name": "火焰漩涡",
+    "nameEn": "Flame Spiral",
+    "category": "power",
+    "tags": [
+      "威能",
+      "术士"
+    ],
+    "source": "PH2",
+    "text": "火焰漩涡 Flame Spiral 威能 术士 PH2 遭遇 标准动作 奥术，法器，火焰 术士攻击 术士"
   },
   {
     "id": "火焰印记 Fire Sigil",
@@ -105750,6 +106625,17 @@
     "text": "火种术 Flame Seed 威能 德鲁伊 PH2 随意 标准动作 火焰，法器，原力，区域 德鲁伊攻击 德鲁伊"
   },
   {
+    "id": "伙伴形态 Companion Form",
+    "name": "伙伴形态",
+    "nameEn": "Companion Form",
+    "category": "power",
+    "tags": [
+      "威能"
+    ],
+    "source": "HoF",
+    "text": "伙伴形态 Companion Form 威能 HoF 遭遇 次要动作 奥术，变形 精野驯兽师辅助 精野驯兽师"
+  },
+  {
     "id": "伙伴掩护 Companion Emplacement",
     "name": "伙伴掩护",
     "nameEn": "Companion Emplacement",
@@ -105760,6 +106646,18 @@
     ],
     "source": "MP",
     "text": "伙伴掩护 Companion Emplacement 威能 游侠 MP 遭遇 移动动作 野兽，武术 游侠辅助 游侠"
+  },
+  {
+    "id": "祸福打击 Strikes of Woe and Weal",
+    "name": "祸福打击",
+    "nameEn": "Strikes of Woe and Weal",
+    "category": "power",
+    "tags": [
+      "威能",
+      "牧师"
+    ],
+    "source": "NCS",
+    "text": "祸福打击 Strikes of Woe and Weal 威能 牧师 NCS 遭遇 标准动作 神术，力场，医疗，武器 牧师攻击 牧师"
   },
   {
     "id": "惑敌合唱 Confusing Chorus",
@@ -106568,18 +107466,6 @@
     ],
     "source": "MP",
     "text": "激情宣言 Stirring Declaration 威能 督军 MP 每日 次要动作 武术，架势 督军辅助 督军"
-  },
-  {
-    "id": "激情演说 Bolstering Speech",
-    "name": "激情演说",
-    "nameEn": "Bolstering Speech",
-    "category": "power",
-    "tags": [
-      "威能",
-      "诗人"
-    ],
-    "source": "HoF",
-    "text": "激情演说 Bolstering Speech 威能 诗人 HoF 随意 次要动作 武术 诗人攻击 诗人"
   },
   {
     "id": "激情演说 Stirring Speech",
@@ -108254,7 +109140,7 @@
       "威能"
     ],
     "source": "HoF",
-    "text": "坚实树体 Body of Solid Oak 威能 HoF 每日 次要动作 树精辅助 树精"
+    "text": "坚实树体 Body of Solid Oak 威能 HoF 每日 次要动作 橡树精辅助 橡树精"
   },
   {
     "id": "坚实意志 Harden Mind",
@@ -108565,6 +109451,18 @@
     "text": "剑法之召唤 Evoker's Summoning 威能 剑法师 Dragon 遭遇 标准动作 奥术，力场，法器，传送 剑法师攻击 剑法师"
   },
   {
+    "id": "剑歌 Bladesong",
+    "name": "剑歌",
+    "nameEn": "Bladesong",
+    "category": "power",
+    "tags": [
+      "威能",
+      "法师"
+    ],
+    "source": "NCS",
+    "text": "剑歌 Bladesong 威能 法师 NCS 遭遇 次要动作 奥术 法师辅助 法师"
+  },
+  {
     "id": "剑魂之舞 Weaponsoul Dance",
     "name": "剑魂之舞",
     "nameEn": "Weaponsoul Dance",
@@ -108728,6 +109626,18 @@
     "text": "剑刃干涉 Intervening Blades 威能 神罚使 DP 遭遇 标准动作 神术，武器 神罚使攻击 神罚使"
   },
   {
+    "id": "剑刃和鸣 Harmony of Blades",
+    "name": "剑刃和鸣",
+    "nameEn": "Harmony of Blades",
+    "category": "power",
+    "tags": [
+      "威能",
+      "牧师"
+    ],
+    "source": "NCS",
+    "text": "剑刃和鸣 Harmony of Blades 威能 牧师 NCS 遭遇 标准动作 神术，力场，武器 牧师攻击 牧师"
+  },
+  {
     "id": "剑刃记忆 Memory of Blades",
     "name": "剑刃记忆",
     "nameEn": "Memory of Blades",
@@ -108868,18 +109778,6 @@
     ],
     "source": "Dragon",
     "text": "剑影流光 Shimmering Blade 威能 游荡者 Dragon 遭遇 标准动作 武术，武器 游荡者攻击 游荡者"
-  },
-  {
-    "id": "剑咏 Bladesong",
-    "name": "剑咏",
-    "nameEn": "Bladesong",
-    "category": "power",
-    "tags": [
-      "威能",
-      "法师"
-    ],
-    "source": "NCS",
-    "text": "剑咏 Bladesong 威能 法师 NCS 遭遇 次要动作 奥术 法师辅助 法师"
   },
   {
     "id": "剑斩热拳 Slash and Burn",
@@ -111317,17 +112215,6 @@
     "text": "精炼次元劈砍 Master Dimensional Cleave 威能 剑法师 Dragon 遭遇 自由动作 奥术，武器 剑法师攻击 剑法师"
   },
   {
-    "id": "精灵调解 Genie's Intercession",
-    "name": "精灵调解",
-    "nameEn": "Genie's Intercession",
-    "category": "power",
-    "tags": [
-      "威能"
-    ],
-    "source": "HoEC",
-    "text": "精灵调解 Genie's Intercession 威能 HoEC 遭遇 即时反应 元素，传送 精灵之主攻击 精灵之主"
-  },
-  {
     "id": "精灵迷魂 Fey Beguiling",
     "name": "精灵迷魂",
     "nameEn": "Fey Beguiling",
@@ -111350,17 +112237,6 @@
     ],
     "source": "Dragon",
     "text": "精灵潜袭 Unseelie Sprites 威能 邪术师 Dragon 遭遇 标准动作 奥术，法器，毒素，影能 邪术师攻击 邪术师"
-  },
-  {
-    "id": "精灵赠礼 Genie's Gift",
-    "name": "精灵赠礼",
-    "nameEn": "Genie's Gift",
-    "category": "power",
-    "tags": [
-      "威能"
-    ],
-    "source": "HoEC",
-    "text": "精灵赠礼 Genie's Gift 威能 HoEC 每日 标准动作 魅惑，元素 精灵之主攻击 精灵之主"
   },
   {
     "id": "精灵之精准 Elven Accuracy",
@@ -113036,6 +113912,39 @@
     ],
     "source": "MP2",
     "text": "巨镰击 Scything Blow 威能 游侠 MP2 每日 标准动作 武术，武器 游侠攻击 游侠"
+  },
+  {
+    "id": "巨灵调解 Genie's Intercession",
+    "name": "巨灵调解",
+    "nameEn": "Genie's Intercession",
+    "category": "power",
+    "tags": [
+      "威能"
+    ],
+    "source": "HoEC",
+    "text": "巨灵调解 Genie's Intercession 威能 HoEC 遭遇 即时反应 元素，传送 巨灵亲王攻击 巨灵亲王"
+  },
+  {
+    "id": "巨灵赠礼 Genie's Gift",
+    "name": "巨灵赠礼",
+    "nameEn": "Genie's Gift",
+    "category": "power",
+    "tags": [
+      "威能"
+    ],
+    "source": "HoEC",
+    "text": "巨灵赠礼 Genie's Gift 威能 HoEC 每日 标准动作 魅惑，元素 巨灵亲王攻击 巨灵亲王"
+  },
+  {
+    "id": "巨灵之怒 Wrath of the Genies",
+    "name": "巨灵之怒",
+    "nameEn": "Wrath of the Genies",
+    "category": "power",
+    "tags": [
+      "威能"
+    ],
+    "source": "HoEC",
+    "text": "巨灵之怒 Wrath of the Genies 威能 HoEC 遭遇 标准动作 奥术，元素，法器；可变 天赋元素法师攻击 天赋元素法师"
   },
   {
     "id": "巨龙斥责 Dragon's Rebuke",
@@ -116614,18 +117523,6 @@
     "text": "快速窃取 Fast Filch 威能 DSH 随意 次要动作 地精辅助 地精"
   },
   {
-    "id": "快速射击 Quick Shot",
-    "name": "快速射击",
-    "nameEn": "Quick Shot",
-    "category": "power",
-    "tags": [
-      "威能",
-      "刺客"
-    ],
-    "source": "HoS",
-    "text": "快速射击 Quick Shot 威能 刺客 HoS 随意 标准动作 武术，武器 刺客攻击 刺客"
-  },
-  {
     "id": "快速射击 Rapid Shot",
     "name": "快速射击",
     "nameEn": "Rapid Shot",
@@ -117540,6 +118437,18 @@
     ],
     "source": "AP",
     "text": "窥探末来 Glimpse the Future 威能 诗人 AP 每日 次要动作 奥术 诗人辅助 诗人"
+  },
+  {
+    "id": "傀儡诱惑 Charm of Puppet Strings",
+    "name": "傀儡诱惑",
+    "nameEn": "Charm of Puppet Strings",
+    "category": "power",
+    "tags": [
+      "威能",
+      "法师"
+    ],
+    "source": "Dragon",
+    "text": "傀儡诱惑 Charm of Puppet Strings 威能 法师 Dragon 遭遇 标准动作 奥术，魅惑，惑控，法器 法师攻击 法师"
   },
   {
     "id": "溃败邀约 Invitation to Defeat",
@@ -119454,6 +120363,17 @@
     "text": "礼尚往来 Returning the Gift 威能 守望者 PrP 每日 即时中断 原力 守望者辅助 守望者"
   },
   {
+    "id": "理解语言 Understand Language",
+    "name": "理解语言",
+    "nameEn": "Understand Language",
+    "category": "power",
+    "tags": [
+      "威能"
+    ],
+    "source": "NCS",
+    "text": "理解语言 Understand Language 威能 NCS 遭遇 次要动作 神术 欧格玛虔信者辅助 欧格玛虔信者"
+  },
+  {
     "id": "理智破碎 Mind Break",
     "name": "理智破碎",
     "nameEn": "Mind Break",
@@ -120200,6 +121120,17 @@
     "text": "联合誓约 Bond of Censure 威能 神罚使 DP 随意 标准动作 魅惑，神术，法器，光耀 神罚使攻击 神罚使"
   },
   {
+    "id": "联合阵线 Unified Front",
+    "name": "联合阵线",
+    "nameEn": "Unified Front",
+    "category": "power",
+    "tags": [
+      "威能"
+    ],
+    "source": "HoF",
+    "text": "联合阵线 Unified Front 威能 HoF 遭遇 移动动作 奥术 仙宫贵族辅助 仙宫贵族"
+  },
+  {
     "id": "联结之魔杖 Wand Coupling",
     "name": "联结之魔杖",
     "nameEn": "Wand Coupling",
@@ -120329,18 +121260,6 @@
     "text": "良好时机 Good Timing 威能 术士 Dragon 每日 自由动作 奥术 术士辅助 术士"
   },
   {
-    "id": "踉跄击 Unbalancing Attack",
-    "name": "踉跄击",
-    "nameEn": "Unbalancing Attack",
-    "category": "power",
-    "tags": [
-      "威能",
-      "游荡者"
-    ],
-    "source": "PH",
-    "text": "踉跄击 Unbalancing Attack 威能 游荡者 PH 遭遇 标准动作 武术，武器 游荡者攻击 游荡者"
-  },
-  {
     "id": "两界瞬步 Step Between the Worlds",
     "name": "两界瞬步",
     "nameEn": "Step Between the Worlds",
@@ -120386,6 +121305,18 @@
     ],
     "source": "DP",
     "text": "亮银光幔 Argent Mantle 威能 神罚使 DP 每日 标准动作 神术，光耀，法器，雷鸣 神罚使攻击 神罚使"
+  },
+  {
+    "id": "踉跄击 Unbalancing Attack",
+    "name": "踉跄击",
+    "nameEn": "Unbalancing Attack",
+    "category": "power",
+    "tags": [
+      "威能",
+      "游荡者"
+    ],
+    "source": "PH",
+    "text": "踉跄击 Unbalancing Attack 威能 游荡者 PH 遭遇 标准动作 武术，武器 游荡者攻击 游荡者"
   },
   {
     "id": "獠牙坚韧 Tenacity of the Tusked",
@@ -121130,6 +122061,17 @@
     "text": "临近终点符文 Rune of the Penultimate Step 威能 符文牧师 PH3 每日 标准动作 神术，武器 符文牧师攻击 符文牧师"
   },
   {
+    "id": "临时精类契约 Temporary Fey Pact",
+    "name": "临时精类契约",
+    "nameEn": "Temporary Fey Pact",
+    "category": "power",
+    "tags": [
+      "威能"
+    ],
+    "source": "HoF",
+    "text": "临时精类契约 Temporary Fey Pact 威能 HoF 每日 次要动作 奥术 仙宫贵族辅助 仙宫贵族"
+  },
+  {
     "id": "临时入口 Improvised Portal",
     "name": "临时入口",
     "nameEn": "Improvised Portal",
@@ -121391,6 +122333,17 @@
     "text": "灵动挥击 Momentum Swing 威能 战魂 PsP 随意 标准动作 可强化，灵能，武器 战魂攻击 战魂"
   },
   {
+    "id": "灵光一现 Sudden Insight",
+    "name": "灵光一现",
+    "nameEn": "Sudden Insight",
+    "category": "power",
+    "tags": [
+      "威能"
+    ],
+    "source": "NCS",
+    "text": "灵光一现 Sudden Insight 威能 NCS 遭遇 无动作 神术 欧格玛虔信者辅助 欧格玛虔信者"
+  },
+  {
     "id": "灵魂捕食者 Soul Eater",
     "name": "灵魂捕食者",
     "nameEn": "Soul Eater",
@@ -121471,18 +122424,6 @@
     "text": "灵魂毒液 Soul Venom 威能 Dragon 每日 次要动作 毒素，影能 浸毒灵魂攻击 浸毒灵魂"
   },
   {
-    "id": "灵魂傀儡 Soul Puppets",
-    "name": "灵魂傀儡",
-    "nameEn": "Soul Puppets",
-    "category": "power",
-    "tags": [
-      "威能",
-      "法师"
-    ],
-    "source": "HoS",
-    "text": "灵魂傀儡 Soul Puppets 威能 法师 HoS 每日 标准动作 奥术，魅惑，法器，死灵，暗蚀，影能 法师攻击 法师"
-  },
-  {
     "id": "灵魂皇冠 Crown of Souls",
     "name": "灵魂皇冠",
     "nameEn": "Crown of Souls",
@@ -121538,6 +122479,18 @@
     ],
     "source": "HoS",
     "text": "灵魂枯萎 Soul Blight 威能 法师 HoS 遭遇 标准动作 奥术，火焰，法器，死灵，暗蚀，影能 法师攻击 法师"
+  },
+  {
+    "id": "灵魂傀儡 Soul Puppets",
+    "name": "灵魂傀儡",
+    "nameEn": "Soul Puppets",
+    "category": "power",
+    "tags": [
+      "威能",
+      "法师"
+    ],
+    "source": "HoS",
+    "text": "灵魂傀儡 Soul Puppets 威能 法师 HoS 每日 标准动作 奥术，魅惑，法器，死灵，暗蚀，影能 法师攻击 法师"
   },
   {
     "id": "灵魂牢笼 Soul Cage",
@@ -121738,7 +122691,7 @@
       "威能"
     ],
     "source": "HoF",
-    "text": "灵魂形态 Spirit Form 威能 HoF 遭遇 移动动作 树精辅助 树精"
+    "text": "灵魂形态 Spirit Form 威能 HoF 遭遇 移动动作 橡树精辅助 橡树精"
   },
   {
     "id": "灵魂迅捷 Swiftness of Spirit",
@@ -121985,17 +122938,6 @@
     ],
     "source": "Dragon",
     "text": "灵敏袭击（英雄级） Alacritous Assault (Heroic) 威能 神罚使 Dragon 遭遇 标准动作 神术，法器，光耀 神罚使攻击 神罚使"
-  },
-  {
-    "id": "灵魔之怒 Wrath of the Genies",
-    "name": "灵魔之怒",
-    "nameEn": "Wrath of the Genies",
-    "category": "power",
-    "tags": [
-      "威能"
-    ],
-    "source": "HoEC",
-    "text": "灵魔之怒 Wrath of the Genies 威能 HoEC 遭遇 标准动作 奥术，元素，法器；可变 天赋元素法师攻击 天赋元素法师"
   },
   {
     "id": "灵能捕获 Psionic Capture",
@@ -123981,30 +124923,6 @@
     ],
     "source": "PH",
     "text": "蛮斩 Brute Strike 威能 战士 PH 每日 标准动作 武术，可靠，武器 战士攻击 战士"
-  },
-  {
-    "id": "蹒跚猛袭 Staggering Assault",
-    "name": "蹒跚猛袭",
-    "nameEn": "Staggering Assault",
-    "category": "power",
-    "tags": [
-      "威能",
-      "游荡者"
-    ],
-    "source": "MP",
-    "text": "蹒跚猛袭 Staggering Assault 威能 游荡者 MP 每日 标准动作 武术，武器 游荡者攻击 游荡者"
-  },
-  {
-    "id": "蹒跚撕裂 Hobbling Rend",
-    "name": "蹒跚撕裂",
-    "nameEn": "Hobbling Rend",
-    "category": "power",
-    "tags": [
-      "威能",
-      "德鲁伊"
-    ],
-    "source": "PH2",
-    "text": "蹒跚撕裂 Hobbling Rend 威能 德鲁伊 PH2 每日 标准动作 野兽形态，法器，原力 德鲁伊攻击 德鲁伊"
   },
   {
     "id": "满溢灵魂 Overflowing Soul",
@@ -127095,7 +128013,7 @@
       "威能"
     ],
     "source": "HoF",
-    "text": "木质庇护所 Wooden Sanctuary 威能 HoF 每日 移动动作 医疗 树精辅助 树精"
+    "text": "木质庇护所 Wooden Sanctuary 威能 HoF 每日 移动动作 医疗 橡树精辅助 橡树精"
   },
   {
     "id": "目标校准 Back on Target",
@@ -127872,18 +128790,6 @@
     ],
     "source": "PH2",
     "text": "黏性龙息 Clinging Breath 威能 PH2 每日 标准动作 可变 阿克霍西亚后裔攻击 阿克霍西亚后裔"
-  },
-  {
-    "id": "辗转猛击 Hurling Pounce",
-    "name": "辗转猛击",
-    "nameEn": "Hurling Pounce",
-    "category": "power",
-    "tags": [
-      "威能",
-      "游荡者"
-    ],
-    "source": "MP",
-    "text": "辗转猛击 Hurling Pounce 威能 游荡者 MP 遭遇 标准动作 武术，武器 游荡者攻击 游荡者"
   },
   {
     "id": "碾压冲锋 Flattening Charge",
@@ -129000,6 +129906,30 @@
     ],
     "source": "Dragon",
     "text": "磐石战士训练 Stone Warrior Training 威能 武僧 Dragon 每日 标准动作 灵能 武僧攻击 武僧"
+  },
+  {
+    "id": "蹒跚猛袭 Staggering Assault",
+    "name": "蹒跚猛袭",
+    "nameEn": "Staggering Assault",
+    "category": "power",
+    "tags": [
+      "威能",
+      "游荡者"
+    ],
+    "source": "MP",
+    "text": "蹒跚猛袭 Staggering Assault 威能 游荡者 MP 每日 标准动作 武术，武器 游荡者攻击 游荡者"
+  },
+  {
+    "id": "蹒跚撕裂 Hobbling Rend",
+    "name": "蹒跚撕裂",
+    "nameEn": "Hobbling Rend",
+    "category": "power",
+    "tags": [
+      "威能",
+      "德鲁伊"
+    ],
+    "source": "PH2",
+    "text": "蹒跚撕裂 Hobbling Rend 威能 德鲁伊 PH2 每日 标准动作 野兽形态，法器，原力 德鲁伊攻击 德鲁伊"
   },
   {
     "id": "判官召唤符文 Rune of Judgment's Levy",
@@ -131108,6 +132038,17 @@
     "text": "潜在力量 Hidden Strength 威能 DP 每日 次要动作 神术，架势 不眠牧者辅助 不眠牧者"
   },
   {
+    "id": "潜踪隐迹 Resourceful Dastard",
+    "name": "潜踪隐迹",
+    "nameEn": "Resourceful Dastard",
+    "category": "power",
+    "tags": [
+      "威能"
+    ],
+    "source": "NCS",
+    "text": "潜踪隐迹 Resourceful Dastard 威能 NCS 每日 次要动作 武术，架势 竖琴手特工辅助 竖琴手特工"
+  },
+  {
     "id": "谴责暴力 Rebuke Violence",
     "name": "谴责暴力",
     "nameEn": "Rebuke Violence",
@@ -132451,48 +133392,48 @@
     "text": "窃取优雅 Stolen Grace 威能 战魂 PsP 每日 标准动作 灵能，心灵，架势，武器 战魂攻击 战魂"
   },
   {
-    "id": "亲信冲锋 Janissary Charge",
-    "name": "亲信冲锋",
+    "id": "亲兵冲锋 Janissary Charge",
+    "name": "亲兵冲锋",
     "nameEn": "Janissary Charge",
     "category": "power",
     "tags": [
       "威能"
     ],
     "source": "HoEC",
-    "text": "亲信冲锋 Janissary Charge 威能 HoEC 遭遇 标准动作 元素，武器 精怪亲信攻击 精怪亲信"
+    "text": "亲兵冲锋 Janissary Charge 威能 HoEC 遭遇 标准动作 元素，武器 巨灵亲兵攻击 巨灵亲兵"
   },
   {
-    "id": "亲信热忱 Janissary Zeal",
-    "name": "亲信热忱",
+    "id": "亲兵热忱 Janissary Zeal",
+    "name": "亲兵热忱",
     "nameEn": "Janissary Zeal",
     "category": "power",
     "tags": [
       "威能"
     ],
     "source": "HoEC",
-    "text": "亲信热忱 Janissary Zeal 威能 HoEC 遭遇 次要动作 元素，医疗 精怪亲信辅助 精怪亲信"
+    "text": "亲兵热忱 Janissary Zeal 威能 HoEC 遭遇 次要动作 元素，医疗 巨灵亲兵辅助 巨灵亲兵"
   },
   {
-    "id": "亲信雾态 Janissary's Mist Form",
-    "name": "亲信雾态",
+    "id": "亲兵雾态 Janissary's Mist Form",
+    "name": "亲兵雾态",
     "nameEn": "Janissary's Mist Form",
     "category": "power",
     "tags": [
       "威能"
     ],
     "source": "HoEC",
-    "text": "亲信雾态 Janissary's Mist Form 威能 HoEC 遭遇 标准动作 元素，变形 精怪亲信辅助 精怪亲信"
+    "text": "亲兵雾态 Janissary's Mist Form 威能 HoEC 遭遇 标准动作 元素，变形 巨灵亲兵辅助 巨灵亲兵"
   },
   {
-    "id": "亲信之盾 Janissary's Shield",
-    "name": "亲信之盾",
+    "id": "亲兵之盾 Janissary's Shield",
+    "name": "亲兵之盾",
     "nameEn": "Janissary's Shield",
     "category": "power",
     "tags": [
       "威能"
     ],
     "source": "HoEC",
-    "text": "亲信之盾 Janissary's Shield 威能 HoEC 遭遇 次要动作 灵气，元素 精怪亲信辅助 精怪亲信"
+    "text": "亲兵之盾 Janissary's Shield 威能 HoEC 遭遇 次要动作 灵气，元素 巨灵亲兵辅助 巨灵亲兵"
   },
   {
     "id": "亲自下令 Direct Order",
@@ -132574,6 +133515,18 @@
     ],
     "source": "Dragon",
     "text": "侵扰猎人势 Harrying Hunter Stance 威能 游侠 Dragon 每日 次要动作 野兽，武术 游侠辅助 游侠"
+  },
+  {
+    "id": "侵蚀武器 Scouring Weapon",
+    "name": "侵蚀武器",
+    "nameEn": "Scouring Weapon",
+    "category": "power",
+    "tags": [
+      "威能",
+      "机关术士"
+    ],
+    "source": "EPG",
+    "text": "侵蚀武器 Scouring Weapon 威能 机关术士 EPG 遭遇 标准动作 强酸，奥术，武器 机关术士攻击 机关术士"
   },
   {
     "id": "侵蚀印记 Corrosive Sigil",
@@ -134635,6 +135588,17 @@
     "text": "荣耀决斗 Honorable Challenge 威能 牧师 NCS 遭遇 标准动作 神术，光耀，武器 牧师攻击 牧师"
   },
   {
+    "id": "荣耀决斗灵气 Honorable Challenge",
+    "name": "荣耀决斗灵气",
+    "nameEn": "Honorable Challenge",
+    "category": "power",
+    "tags": [
+      "威能"
+    ],
+    "source": "NCS",
+    "text": "荣耀决斗灵气 Honorable Challenge 威能 NCS 遭遇 次要动作 灵气，武术 无冬皇族辅助 无冬皇族"
+  },
+  {
     "id": "荣耀时刻 Moment of Glory",
     "name": "荣耀时刻",
     "nameEn": "Moment of Glory",
@@ -135960,7 +136924,7 @@
       "威能"
     ],
     "source": "PH2",
-    "text": "山势打击 Mountain Stance Strike 威能 PH2 每日 标准动作 架势，武器 摩拉丁子嗣攻击 摩拉丁子嗣"
+    "text": "山势打击 Mountain Stance Strike 威能 PH2 每日 标准动作 架势，武器 摩拉丁长子攻击 摩拉丁长子"
   },
   {
     "id": "山雾之魂 Spirits of Mountain Mist",
@@ -136162,18 +137126,6 @@
     ],
     "source": "FRPG",
     "text": "闪电冲击 Lightning Clash 威能 剑法师 FRPG 遭遇 标准动作 奥术，闪电，武器 剑法师攻击 剑法师"
-  },
-  {
-    "id": "闪电冲击 Lightning Strike",
-    "name": "闪电冲击",
-    "nameEn": "Lightning Strike",
-    "category": "power",
-    "tags": [
-      "威能",
-      "术士"
-    ],
-    "source": "AP",
-    "text": "闪电冲击 Lightning Strike 威能 术士 AP 随意 标准动作 奥术，法器，闪电 术士攻击 术士"
   },
   {
     "id": "闪电法球 Shock Sphere",
@@ -137776,18 +138728,6 @@
     ],
     "source": "Dragon",
     "text": "神话宿命 Mythic Destiny 威能 Dragon 每日 次要动作 原力 神话之音辅助 神话之音"
-  },
-  {
-    "id": "神火风暴 Faerie-Flame Strike",
-    "name": "神火风暴",
-    "nameEn": "Faerie-Flame Strike",
-    "category": "power",
-    "tags": [
-      "威能",
-      "牧师"
-    ],
-    "source": "NCS",
-    "text": "神火风暴 Faerie-Flame Strike 威能 牧师 NCS 遭遇 标准动作 神术，火焰，光耀，武器 牧师攻击 牧师"
   },
   {
     "id": "神驹之魂 Spirit of the Virtuous Charger",
@@ -141818,6 +142758,17 @@
     "text": "释放地狱 Unleash Hell 威能 督军 MP 每日 标准动作 武术，武器 督军攻击 督军"
   },
   {
+    "id": "释放腐化 Unleash Corruption",
+    "name": "释放腐化",
+    "nameEn": "Unleash Corruption",
+    "category": "power",
+    "tags": [
+      "威能"
+    ],
+    "source": "HoF",
+    "text": "释放腐化 Unleash Corruption 威能 HoF 每日 无动作 奥术，寒冰，暗蚀，影能 恶精灵代理人攻击 恶精灵代理人"
+  },
+  {
     "id": "释放活力 Unleashed Vigor",
     "name": "释放活力",
     "nameEn": "Unleashed Vigor",
@@ -142082,6 +143033,18 @@
     ],
     "source": "PH2",
     "text": "誓约束缚 Oath Bond 威能 PH2 每日 标准动作 神术，武器 誓约者攻击 誓约者"
+  },
+  {
+    "id": "噬敌附影 Shadow Jack",
+    "name": "噬敌附影",
+    "nameEn": "Shadow Jack",
+    "category": "power",
+    "tags": [
+      "威能",
+      "刺客"
+    ],
+    "source": "Dragon",
+    "text": "噬敌附影 Shadow Jack 威能 刺客 Dragon 遭遇 标准动作 影能，武器 刺客攻击 刺客"
   },
   {
     "id": "收割成果 Reap the Harvest",
@@ -143214,6 +144177,17 @@
     "text": "鼠之灵巧 Rodent's Agility 威能 德鲁伊 PrP 遭遇 移动动作 原力 德鲁伊辅助 德鲁伊"
   },
   {
+    "id": "鼠之形态 Body of the Rat",
+    "name": "鼠之形态",
+    "nameEn": "Body of the Rat",
+    "category": "power",
+    "tags": [
+      "威能"
+    ],
+    "source": "NCS",
+    "text": "鼠之形态 Body of the Rat 威能 NCS 随意 次要动作 变形，原力 死鼠逃兵辅助 死鼠逃兵"
+  },
+  {
     "id": "术法脉冲 Sorcerous Pulse",
     "name": "术法脉冲",
     "nameEn": "Sorcerous Pulse",
@@ -143413,17 +144387,6 @@
     "text": "树根之门 Root Gate 威能 游侠 HoFK 每日 次要动作 原力，传送，区域 游侠辅助 游侠"
   },
   {
-    "id": "树精形态 Hamadryad Aspects",
-    "name": "树精形态",
-    "nameEn": "Hamadryad Aspects",
-    "category": "power",
-    "tags": [
-      "威能"
-    ],
-    "source": "HoF",
-    "text": "树精形态 Hamadryad Aspects 威能 HoF 遭遇 次要动作 树精种族威能 树精"
-  },
-  {
     "id": "树精之魂 Soul of the Treant",
     "name": "树精之魂",
     "nameEn": "Soul of the Treant",
@@ -143530,6 +144493,17 @@
     "text": "树蛛之肢 Limbs of the Tree Spider 威能 守望者 Dragon 遭遇 标准动作 原力，武器 守望者攻击 守望者"
   },
   {
+    "id": "竖琴手的治愈恩惠 Harper’s Healing Boon",
+    "name": "竖琴手的治愈恩惠",
+    "nameEn": "Harper’s Healing Boon",
+    "category": "power",
+    "tags": [
+      "威能"
+    ],
+    "source": "NCS",
+    "text": "竖琴手的治愈恩惠 Harper’s Healing Boon 威能 NCS 每日 即时中断 神术 竖琴手特工辅助 竖琴手特工"
+  },
+  {
     "id": "衰老术 Age's Infirmity",
     "name": "衰老术",
     "nameEn": "Age's Infirmity",
@@ -143540,18 +144514,6 @@
     ],
     "source": "Dragon",
     "text": "衰老术 Age's Infirmity 威能 神导士 Dragon 遭遇 标准动作 神术，法器，暗蚀 神导士攻击 神导士"
-  },
-  {
-    "id": "衰老术 Enervation",
-    "name": "衰老术",
-    "nameEn": "Enervation",
-    "category": "power",
-    "tags": [
-      "威能",
-      "法师"
-    ],
-    "source": "HoS",
-    "text": "衰老术 Enervation 威能 法师 HoS 每日 标准动作 奥术，法器，暗蚀，幽影，影能 法师攻击 法师"
   },
   {
     "id": "衰老诅咒 Curse of Age",
@@ -143589,6 +144551,17 @@
     "text": "衰弱护卫 Debilitating Ward 威能 守望者 PrP 遭遇 次要动作 原力 守望者辅助 守望者"
   },
   {
+    "id": "衰弱猛击 Debilitating Smite",
+    "name": "衰弱猛击",
+    "nameEn": "Debilitating Smite",
+    "category": "power",
+    "tags": [
+      "威能"
+    ],
+    "source": "DP",
+    "text": "衰弱猛击 Debilitating Smite 威能 DP 遭遇 标准动作 神术，武器 灰卫攻击 灰卫"
+  },
+  {
     "id": "衰弱射线 Ray of Enfeeblement",
     "name": "衰弱射线",
     "nameEn": "Ray of Enfeeblement",
@@ -143601,15 +144574,16 @@
     "text": "衰弱射线 Ray of Enfeeblement 威能 法师 PH 遭遇 标准动作 奥术，法器，死灵，暗蚀 法师攻击 法师"
   },
   {
-    "id": "衰弱斩 Debilitating Smite",
-    "name": "衰弱斩",
-    "nameEn": "Debilitating Smite",
+    "id": "衰弱术 Enervation",
+    "name": "衰弱术",
+    "nameEn": "Enervation",
     "category": "power",
     "tags": [
-      "威能"
+      "威能",
+      "法师"
     ],
-    "source": "DP",
-    "text": "衰弱斩 Debilitating Smite 威能 DP 遭遇 标准动作 神术，武器 灰卫攻击 灰卫"
+    "source": "HoS",
+    "text": "衰弱术 Enervation 威能 法师 HoS 每日 标准动作 奥术，法器，暗蚀，幽影，影能 法师攻击 法师"
   },
   {
     "id": "衰弱斩 Enervating Slash",
@@ -144991,17 +145965,6 @@
     ],
     "source": "HoS",
     "text": "死亡标记 Death Mark 威能 刺客 HoS 每日 次要动作 影能 刺客辅助 刺客"
-  },
-  {
-    "id": "死亡标记 Mark of Death",
-    "name": "死亡标记",
-    "nameEn": "Mark of Death",
-    "category": "power",
-    "tags": [
-      "威能"
-    ],
-    "source": "HoS",
-    "text": "死亡标记 Mark of Death 威能 HoS 每日 标准动作 神术，暗蚀，影能 虔诚战争祭司攻击 虔诚战争祭司"
   },
   {
     "id": "死亡波涛 Death Surge",
@@ -147234,7 +148197,7 @@
       "威能"
     ],
     "source": "PH3",
-    "text": "探寻机会 Trace Chance 威能 PH3 遭遇 标准动作 复仇武士攻击 复仇武士"
+    "text": "探寻机会 Trace Chance 威能 PH3 遭遇 标准动作 拉斯玛尔攻击 拉斯玛尔"
   },
   {
     "id": "探寻破绽 Ferret an Opening",
@@ -147436,18 +148399,6 @@
     "text": "特异瞄准 Uncanny Aim 威能 游荡者 MP2 遭遇 次要动作 武术 游荡者辅助 游荡者"
   },
   {
-    "id": "螣蛇狂暴 Flying Serpent Rage",
-    "name": "螣蛇狂暴",
-    "nameEn": "Flying Serpent Rage",
-    "category": "power",
-    "tags": [
-      "威能",
-      "野蛮人"
-    ],
-    "source": "PrP",
-    "text": "螣蛇狂暴 Flying Serpent Rage 威能 野蛮人 PrP 每日 即时反应 原力，狂暴，武器 野蛮人攻击 野蛮人"
-  },
-  {
     "id": "腾挪纵跃 Switching Leap",
     "name": "腾挪纵跃",
     "nameEn": "Switching Leap",
@@ -147480,6 +148431,18 @@
     ],
     "source": "PH3",
     "text": "腾云驾雾 Wind Walker 威能 武僧 PH3 随意 移动动作 灵能 武僧辅助 武僧"
+  },
+  {
+    "id": "螣蛇狂暴 Flying Serpent Rage",
+    "name": "螣蛇狂暴",
+    "nameEn": "Flying Serpent Rage",
+    "category": "power",
+    "tags": [
+      "威能",
+      "野蛮人"
+    ],
+    "source": "PrP",
+    "text": "螣蛇狂暴 Flying Serpent Rage 威能 野蛮人 PrP 每日 即时反应 原力，狂暴，武器 野蛮人攻击 野蛮人"
   },
   {
     "id": "藤缚射击 Binding Shot",
@@ -148557,6 +149520,18 @@
     ],
     "source": "MP2",
     "text": "挑战之吼 Shout of Challenge 威能 MP2 遭遇 标准动作 武术，武器 阿克霍西亚剑圣攻击 阿克霍西亚剑圣"
+  },
+  {
+    "id": "跳弹电击 Lightning Strike",
+    "name": "跳弹电击",
+    "nameEn": "Lightning Strike",
+    "category": "power",
+    "tags": [
+      "威能",
+      "术士"
+    ],
+    "source": "AP",
+    "text": "跳弹电击 Lightning Strike 威能 术士 AP 随意 标准动作 奥术，法器，闪电 术士攻击 术士"
   },
   {
     "id": "跳跃火焰 Leaping Flames",
@@ -149752,6 +150727,18 @@
     ],
     "source": "PH",
     "text": "突袭重击 Staggering Smite 威能 圣武士 PH 遭遇 标准动作 神术，武器 圣武士攻击 圣武士"
+  },
+  {
+    "id": "图安人动物形态 Tuathan Animal Shape",
+    "name": "图安人动物形态",
+    "nameEn": "Tuathan Animal Shape",
+    "category": "power",
+    "tags": [
+      "威能",
+      "德鲁伊"
+    ],
+    "source": "HoF",
+    "text": "图安人动物形态 Tuathan Animal Shape 威能 德鲁伊 HoF 随意 次要动作 奥术，变形 图安人辅助 图安人"
   },
   {
     "id": "图拉斯奴仆 Thrall of Turath",
@@ -151063,6 +152050,17 @@
     "text": "王牌间谍之风 Spymaster's Edge 威能 MP 每日 标准动作 武术，武器 间谍大师攻击 间谍大师"
   },
   {
+    "id": "王者砥柱 Pillar of Lordly Might",
+    "name": "王者砥柱",
+    "nameEn": "Pillar of Lordly Might",
+    "category": "power",
+    "tags": [
+      "威能"
+    ],
+    "source": "NCS",
+    "text": "王者砥柱 Pillar of Lordly Might 威能 NCS 每日 移动动作 武术 无冬皇族辅助 无冬皇族"
+  },
+  {
     "id": "王之步伐 King's Step",
     "name": "王之步伐",
     "nameEn": "King's Step",
@@ -151534,18 +152532,6 @@
     "text": "威严之环 Sacred Circle 威能 圣武士 PH 每日 标准动作 神术，法器，区域 圣武士辅助 圣武士"
   },
   {
-    "id": "萎靡挑战 Enervating Challenge",
-    "name": "萎靡挑战",
-    "nameEn": "Enervating Challenge",
-    "category": "power",
-    "tags": [
-      "威能",
-      "剑法师"
-    ],
-    "source": "Dragon",
-    "text": "萎靡挑战 Enervating Challenge 威能 剑法师 Dragon 遭遇 标准动作 奥术，寒冰，法器，传送 剑法师攻击 剑法师"
-  },
-  {
     "id": "微风携运 Zephyr Carry",
     "name": "微风携运",
     "nameEn": "Zephyr Carry",
@@ -151816,6 +152802,18 @@
     ],
     "source": "PH3",
     "text": "伪装形态 Aspect of Stolen Identity 威能 战魂 PH3 每日 标准动作 魅惑，变形，灵能，武器 战魂攻击 战魂"
+  },
+  {
+    "id": "萎靡挑战 Enervating Challenge",
+    "name": "萎靡挑战",
+    "nameEn": "Enervating Challenge",
+    "category": "power",
+    "tags": [
+      "威能",
+      "剑法师"
+    ],
+    "source": "Dragon",
+    "text": "萎靡挑战 Enervating Challenge 威能 剑法师 Dragon 遭遇 标准动作 奥术，寒冰，法器，传送 剑法师攻击 剑法师"
   },
   {
     "id": "卫道烈焰 Vindicating Flames",
@@ -153211,6 +154209,17 @@
     ],
     "source": "HoS",
     "text": "无声潜行者 Silent Stalker 威能 刺客 HoS 随意 移动动作 武术 刺客辅助 刺客"
+  },
+  {
+    "id": "无时步伐 Timeless Step",
+    "name": "无时步伐",
+    "nameEn": "Timeless Step",
+    "category": "power",
+    "tags": [
+      "威能"
+    ],
+    "source": "HoF",
+    "text": "无时步伐 Timeless Step 威能 HoF 每日 次要动作 奥术，灵气 图安人辅助 图安人"
   },
   {
     "id": "无视伤痛 Ignore Pain",
@@ -155102,6 +156111,17 @@
     "text": "戏剧性完结 Dramatic Finish 威能 MP 每日 标准动作 医疗，武术，武器 胆大杂耍师攻击 胆大杂耍师"
   },
   {
+    "id": "下定决心 Set Determination",
+    "name": "下定决心",
+    "nameEn": "Set Determination",
+    "category": "power",
+    "tags": [
+      "威能"
+    ],
+    "source": "HoF",
+    "text": "下定决心 Set Determination 威能 HoF 每日 次要动作 奥术 图安人辅助 图安人"
+  },
+  {
     "id": "下滑穿行 Down and Through",
     "name": "下滑穿行",
     "nameEn": "Down and Through",
@@ -155171,6 +156191,17 @@
     ],
     "source": "HoFK",
     "text": "夏日荣光护甲 Armor of Summer's Glory 威能 邪术师 HoFK 每日 次要动作 奥术 邪术师攻击 邪术师"
+  },
+  {
+    "id": "仙宫协定 Sidhe Bargain",
+    "name": "仙宫协定",
+    "nameEn": "Sidhe Bargain",
+    "category": "power",
+    "tags": [
+      "威能"
+    ],
+    "source": "HoF",
+    "text": "仙宫协定 Sidhe Bargain 威能 HoF 遭遇 标准动作 奥术 仙宫贵族辅助 仙宫贵族"
   },
   {
     "id": "仙人跳 Bait and Switch",
@@ -155972,6 +157003,17 @@
     "text": "橡树刺针 Oak Skewer 威能 德鲁伊 PrP 遭遇 标准动作 法器，原力 德鲁伊攻击 德鲁伊"
   },
   {
+    "id": "橡树精形态 Hamadryad Aspects",
+    "name": "橡树精形态",
+    "nameEn": "Hamadryad Aspects",
+    "category": "power",
+    "tags": [
+      "威能"
+    ],
+    "source": "HoF",
+    "text": "橡树精形态 Hamadryad Aspects 威能 HoF 遭遇 次要动作 橡树精种族威能 橡树精"
+  },
+  {
     "id": "橡树皮肤 Oak Skin",
     "name": "橡树皮肤",
     "nameEn": "Oak Skin",
@@ -156135,6 +157177,17 @@
     ],
     "source": "AP",
     "text": "消失之行 Vanishing Act 威能 AP 遭遇 标准动作 奥术，幻术，法器，心灵 无形法师攻击 无形法师"
+  },
+  {
+    "id": "消亡标记 Mark of Death",
+    "name": "消亡标记",
+    "nameEn": "Mark of Death",
+    "category": "power",
+    "tags": [
+      "威能"
+    ],
+    "source": "HoS",
+    "text": "消亡标记 Mark of Death 威能 HoS 每日 标准动作 神术，暗蚀，影能 虔诚战争祭司攻击 虔诚战争祭司"
   },
   {
     "id": "小飞弹 Striding Barrage",
@@ -156487,18 +157540,6 @@
     ],
     "source": "Dragon",
     "text": "邪秽瘟疫 Vile Plague 威能 神导士 Dragon 每日 标准动作 神术，法器，暗蚀，毒素 神导士攻击 神导士"
-  },
-  {
-    "id": "邪灵巨眼 Baleful Eye of Imix",
-    "name": "邪灵巨眼",
-    "nameEn": "Baleful Eye of Imix",
-    "category": "power",
-    "tags": [
-      "威能",
-      "邪术师"
-    ],
-    "source": "HoEC",
-    "text": "邪灵巨眼 Baleful Eye of Imix 威能 邪术师 HoEC 每日 次要动作 奥术，咒法，元素，火焰，传送 邪术师攻击 邪术师"
   },
   {
     "id": "邪术师契约 Warlock's Bargain",
@@ -158385,6 +159426,17 @@
     "text": "凶残之影 Murderous Shadow 威能 刺客 Dragon 每日 次要动作 恐惧，法器，心灵，影能，召唤 刺客攻击 刺客"
   },
   {
+    "id": "凶恶嘶鸣 Savage Hiss",
+    "name": "凶恶嘶鸣",
+    "nameEn": "Savage Hiss",
+    "category": "power",
+    "tags": [
+      "威能"
+    ],
+    "source": "NCS",
+    "text": "凶恶嘶鸣 Savage Hiss 威能 NCS 遭遇 无动作 恐惧，原力 死鼠逃兵辅助 死鼠逃兵"
+  },
+  {
     "id": "凶狠回敬 Fierce Reply",
     "name": "凶狠回敬",
     "nameEn": "Fierce Reply",
@@ -159957,6 +161009,17 @@
     "text": "学能爆发 Learned Boost 威能 Dragon 遭遇 标准动作 奥术，可靠；法器或武器 学院大师攻击 学院大师"
   },
   {
+    "id": "学识反射 Learned Response",
+    "name": "学识反射",
+    "nameEn": "Learned Response",
+    "category": "power",
+    "tags": [
+      "威能"
+    ],
+    "source": "NCS",
+    "text": "学识反射 Learned Response 威能 NCS 每日 自由动作 神术 欧格玛虔信者辅助 欧格玛虔信者"
+  },
+  {
     "id": "学识祝福 Blessing of Knowledge",
     "name": "学识祝福",
     "nameEn": "Blessing of Knowledge",
@@ -160808,6 +161871,18 @@
     "text": "迅疾步 Impetuous Stride 威能 PH2 遭遇 移动动作 原力 犄角勇士辅助 犄角勇士"
   },
   {
+    "id": "迅疾射击 Quick Shot",
+    "name": "迅疾射击",
+    "nameEn": "Quick Shot",
+    "category": "power",
+    "tags": [
+      "威能",
+      "刺客"
+    ],
+    "source": "HoS",
+    "text": "迅疾射击 Quick Shot 威能 刺客 HoS 随意 标准动作 武术，武器 刺客攻击 刺客"
+  },
+  {
     "id": "迅捷伙伴 Quickened Companion",
     "name": "迅捷伙伴",
     "nameEn": "Quickened Companion",
@@ -161461,7 +162536,7 @@
       "法师"
     ],
     "source": "HoFL",
-    "text": "延迟爆裂火球 Delayed Blast Fireball 威能 法师 HoFL 遭遇 次要动作 奥术，塑能 法师攻击 法师"
+    "text": "延迟爆裂火球 Delayed Blast Fireball 威能 法师 HoFL 每日 次要动作 奥术，塑能 法师攻击 法师"
   },
   {
     "id": "延迟切 Hesitation Slash",
@@ -161875,6 +162950,17 @@
     "text": "掩护火力 Covering Fire 威能 督军 MP2 遭遇 即时中断 武术 督军辅助 督军"
   },
   {
+    "id": "掩护盟友 Cover Your Ally",
+    "name": "掩护盟友",
+    "nameEn": "Cover Your Ally",
+    "category": "power",
+    "tags": [
+      "威能"
+    ],
+    "source": "NCS",
+    "text": "掩护盟友 Cover Your Ally 威能 NCS 遭遇 即时中断 武术 无冬皇族辅助 无冬皇族"
+  },
+  {
     "id": "掩护齐射 Covering Volley",
     "name": "掩护齐射",
     "nameEn": "Covering Volley",
@@ -162134,6 +163220,18 @@
     "text": "漾力之瀑 Cascade of Rippling Force 威能 战魂 DSCS 每日 标准动作 力场，灵能，架势，武器 战魂攻击 战魂"
   },
   {
+    "id": "妖火打击 Faerie-Flame Strike",
+    "name": "妖火打击",
+    "nameEn": "Faerie-Flame Strike",
+    "category": "power",
+    "tags": [
+      "威能",
+      "牧师"
+    ],
+    "source": "NCS",
+    "text": "妖火打击 Faerie-Flame Strike 威能 牧师 NCS 遭遇 标准动作 神术，火焰，光耀，武器 牧师攻击 牧师"
+  },
+  {
     "id": "妖火术 Faerie Fire",
     "name": "妖火术",
     "nameEn": "Faerie Fire",
@@ -162178,6 +163276,17 @@
     ],
     "source": "PH3",
     "text": "妖精虫洞 Fey Sinkhole 威能 巡者 PH3 每日 标准动作 原力，心灵，传送，武器，区域 巡者攻击 巡者"
+  },
+  {
+    "id": "妖精防护咒 Faerie Warding Charm",
+    "name": "妖精防护咒",
+    "nameEn": "Faerie Warding Charm",
+    "category": "power",
+    "tags": [
+      "威能"
+    ],
+    "source": "HoF",
+    "text": "妖精防护咒 Faerie Warding Charm 威能 HoF 遭遇 即时中断 奥术，魅惑 图安人辅助 图安人"
   },
   {
     "id": "妖精荒野之优雅 Feywild Grace",
@@ -162271,7 +163380,7 @@
       "威能"
     ],
     "source": "HoF",
-    "text": "妖精心镜 Fey Mind Mirror 威能 HoF 每日 即时中断 树精辅助 树精"
+    "text": "妖精心镜 Fey Mind Mirror 威能 HoF 每日 即时中断 橡树精辅助 橡树精"
   },
   {
     "id": "妖精之光 Feylights",
@@ -162305,7 +163414,7 @@
       "威能"
     ],
     "source": "HoF",
-    "text": "妖精之王 Feyborn Majesty 威能 HoF 遭遇 即时反应 树精辅助 树精"
+    "text": "妖精之王 Feyborn Majesty 威能 HoF 遭遇 即时反应 橡树精辅助 橡树精"
   },
   {
     "id": "妖精之舞 Fairy Dance",
@@ -162317,6 +163426,17 @@
     ],
     "source": "HoF",
     "text": "妖精之舞 Fairy Dance 威能 HoF 每日 次要动作 灵气，魅惑 皮克精辅助 皮克精"
+  },
+  {
+    "id": "妖精之幸 Faerie Fortune",
+    "name": "妖精之幸",
+    "nameEn": "Faerie Fortune",
+    "category": "power",
+    "tags": [
+      "威能"
+    ],
+    "source": "HoF",
+    "text": "妖精之幸 Faerie Fortune 威能 HoF 遭遇 无动作 奥术 图安人辅助 图安人"
   },
   {
     "id": "妖野逗留 Feywild Sojourn",
@@ -163557,6 +164677,18 @@
     "text": "伊拉西斯之协调（英雄级） Erathis's Coordination (Heroic) 威能 神罚使 Dragon 每日 标准动作 神术，法器 神罚使攻击 神罚使"
   },
   {
+    "id": "伊密克斯之邪眼 Baleful Eye of Imix",
+    "name": "伊密克斯之邪眼",
+    "nameEn": "Baleful Eye of Imix",
+    "category": "power",
+    "tags": [
+      "威能",
+      "邪术师"
+    ],
+    "source": "HoEC",
+    "text": "伊密克斯之邪眼 Baleful Eye of Imix 威能 邪术师 HoEC 每日 次要动作 奥术，咒法，元素，火焰，传送 邪术师攻击 邪术师"
+  },
+  {
     "id": "医护打击 Healing Strike",
     "name": "医护打击",
     "nameEn": "Healing Strike",
@@ -164791,6 +165923,17 @@
     "text": "意外袭击 Surprising Assault 威能 游荡者 MP2 遭遇 标准动作 武术，武器 游荡者攻击 游荡者"
   },
   {
+    "id": "意外之友 Unexpected Ally",
+    "name": "意外之友",
+    "nameEn": "Unexpected Ally",
+    "category": "power",
+    "tags": [
+      "威能"
+    ],
+    "source": "NCS",
+    "text": "意外之友 Unexpected Ally 威能 NCS 每日 次要动作 奥术，魅惑 竖琴手特工辅助 竖琴手特工"
+  },
+  {
     "id": "意志之力 Force of Will",
     "name": "意志之力",
     "nameEn": "Force of Will",
@@ -165071,18 +166214,6 @@
     ],
     "source": "Dragon",
     "text": "阴影交换 Shadow Swap 威能 刺客 Dragon 遭遇 标准动作 影能，武器 刺客攻击 刺客"
-  },
-  {
-    "id": "阴影杰克 Shadow Jack",
-    "name": "阴影杰克",
-    "nameEn": "Shadow Jack",
-    "category": "power",
-    "tags": [
-      "威能",
-      "刺客"
-    ],
-    "source": "Dragon",
-    "text": "阴影杰克 Shadow Jack 威能 刺客 Dragon 遭遇 标准动作 影能，武器 刺客攻击 刺客"
   },
   {
     "id": "阴影卷须符文 Runes of the Shadow Tendrils",
@@ -166650,6 +167781,18 @@
     "text": "影魔 Shadow Monsters 威能 HoS 每日 标准动作 咒法，暗蚀，影能 阴影裔辅助 阴影裔"
   },
   {
+    "id": "影幕军团 Shadowed Legion",
+    "name": "影幕军团",
+    "nameEn": "Shadowed Legion",
+    "category": "power",
+    "tags": [
+      "威能",
+      "刺客"
+    ],
+    "source": "Dragon",
+    "text": "影幕军团 Shadowed Legion 威能 刺客 Dragon 每日 次要动作 影能，架势 刺客辅助 刺客"
+  },
+  {
     "id": "影墙 Wall of Shadows",
     "name": "影墙",
     "nameEn": "Wall of Shadows",
@@ -167634,7 +168777,7 @@
       "威能"
     ],
     "source": "Dragon",
-    "text": "悠远回音 Distant Echo 威能 Dragon 每日 标准动作 原力，传送，武器 新月追踪者攻击 新月追踪者"
+    "text": "悠远回音 Distant Echo 威能 Dragon 每日 标准动作 原力，传送，武器 月锋追踪者攻击 月锋追踪者"
   },
   {
     "id": "尤里克战争宗师架势 Urikite Warmaster Stance",
@@ -167953,7 +169096,7 @@
       "威能"
     ],
     "source": "HoEC",
-    "text": "有限许愿 Limited Wish 威能 HoEC 每日 次要动作 元素 精灵之主辅助 精灵之主"
+    "text": "有限许愿 Limited Wish 威能 HoEC 每日 次要动作 元素 巨灵亲王辅助 巨灵亲王"
   },
   {
     "id": "有眼无珠 Blinding Glare",
@@ -170159,7 +171302,7 @@
       "威能"
     ],
     "source": "Dragon",
-    "text": "月光步伐 Moonbeam Step 威能 Dragon 遭遇 移动动作 灵气，原力，传送 新月追踪者辅助 新月追踪者"
+    "text": "月光步伐 Moonbeam Step 威能 Dragon 遭遇 移动动作 灵气，原力，传送 月锋追踪者辅助 月锋追踪者"
   },
   {
     "id": "月光恶作剧 Moonlight's Mischief",
@@ -170470,7 +171613,7 @@
       "威能"
     ],
     "source": "Dragon",
-    "text": "月之易位 Lunar Transposition 威能 Dragon 遭遇 标准动作 原力，传送，武器 新月追踪者攻击 新月追踪者"
+    "text": "月之易位 Lunar Transposition 威能 Dragon 遭遇 标准动作 原力，传送，武器 月锋追踪者攻击 月锋追踪者"
   },
   {
     "id": "跃动打击 Dancing Strike",
@@ -171153,6 +172296,17 @@
     "text": "责难挑战 Excoriating Challenge 威能 神罚使 DP 遭遇 标准动作 神术，法器，光耀，传送 神罚使攻击 神罚使"
   },
   {
+    "id": "贼头鼠脑 Dead Rat Stealth",
+    "name": "贼头鼠脑",
+    "nameEn": "Dead Rat Stealth",
+    "category": "power",
+    "tags": [
+      "威能"
+    ],
+    "source": "NCS",
+    "text": "贼头鼠脑 Dead Rat Stealth 威能 NCS 每日 次要动作 原力 死鼠逃兵辅助 死鼠逃兵"
+  },
+  {
     "id": "增速节拍 Increasing the Tempo",
     "name": "增速节拍",
     "nameEn": "Increasing the Tempo",
@@ -171280,6 +172434,18 @@
     ],
     "source": "FRPG",
     "text": "斩首末日 Vorpal Doom 威能 剑法师 FRPG 每日 标准动作 奥术，可靠，武器 剑法师攻击 剑法师"
+  },
+  {
+    "id": "辗转猛击 Hurling Pounce",
+    "name": "辗转猛击",
+    "nameEn": "Hurling Pounce",
+    "category": "power",
+    "tags": [
+      "威能",
+      "游荡者"
+    ],
+    "source": "MP",
+    "text": "辗转猛击 Hurling Pounce 威能 游荡者 MP 遭遇 标准动作 武术，武器 游荡者攻击 游荡者"
   },
   {
     "id": "占卜术 Augury",
@@ -172118,6 +173284,17 @@
     ],
     "source": "Dragon",
     "text": "战术家之引诱 Tactician's Invitation 威能 督军 Dragon 遭遇 标准动作 武术，武器 督军攻击 督军"
+  },
+  {
+    "id": "战术启迪 Tactical Inspiration",
+    "name": "战术启迪",
+    "nameEn": "Tactical Inspiration",
+    "category": "power",
+    "tags": [
+      "威能"
+    ],
+    "source": "NCS",
+    "text": "战术启迪 Tactical Inspiration 威能 NCS 遭遇 移动动作 神术 欧格玛虔信者辅助 欧格玛虔信者"
   },
   {
     "id": "战术扰乱 Tactical Failure",
@@ -173582,6 +174759,17 @@
     "text": "召唤铁卫 Summon Iron Cohort 威能 法师 AP 每日 次要动作 奥术，法器，召唤 法师辅助 法师"
   },
   {
+    "id": "召唤仙宫盟友 Summon Sidhe Ally",
+    "name": "召唤仙宫盟友",
+    "nameEn": "Summon Sidhe Ally",
+    "category": "power",
+    "tags": [
+      "威能"
+    ],
+    "source": "HoF",
+    "text": "召唤仙宫盟友 Summon Sidhe Ally 威能 HoF 每日 次要动作 奥术，召唤 仙宫贵族辅助 仙宫贵族"
+  },
+  {
     "id": "召唤小尘暴 Summon Dust Devil",
     "name": "召唤小尘暴",
     "nameEn": "Summon Dust Devil",
@@ -174254,6 +175442,17 @@
     "text": "真王审判 Judgment of the True King 威能 Dragon 每日 标准动作 神术，光耀，武器 不毁之环使者攻击 不毁之环使者"
   },
   {
+    "id": "真言协定 Bargain of Truth",
+    "name": "真言协定",
+    "nameEn": "Bargain of Truth",
+    "category": "power",
+    "tags": [
+      "威能"
+    ],
+    "source": "HoF",
+    "text": "真言协定 Bargain of Truth 威能 HoF 每日 次要动作 奥术 图安人辅助 图安人"
+  },
+  {
     "id": "真知灼见 Brilliant Idea",
     "name": "真知灼见",
     "nameEn": "Brilliant Idea",
@@ -174490,6 +175689,17 @@
     ],
     "source": "HoFK",
     "text": "振兴收获 Rejuvenating Harvest 威能 德鲁伊 HoFK 每日 标准动作 灵气，原力，武器 德鲁伊攻击 德鲁伊"
+  },
+  {
+    "id": "振作点，朋友！ Take Heart, Friend!",
+    "name": "振作点，朋友！",
+    "nameEn": "Take Heart, Friend!",
+    "category": "power",
+    "tags": [
+      "威能"
+    ],
+    "source": "NCS",
+    "text": "振作点，朋友！ Take Heart, Friend! 威能 NCS 遭遇 次要动作 武术 无冬皇族辅助 无冬皇族"
   },
   {
     "id": "振作起来 Snap out of It",
@@ -175627,6 +176837,17 @@
     "text": "直觉打击 Intuitive Strike 威能 督军 MP2 随意 标准动作 武术，武器 督军攻击 督军"
   },
   {
+    "id": "直觉飞跃 Intuitive Leap",
+    "name": "直觉飞跃",
+    "nameEn": "Intuitive Leap",
+    "category": "power",
+    "tags": [
+      "威能"
+    ],
+    "source": "NCS",
+    "text": "直觉飞跃 Intuitive Leap 威能 NCS 每日 自由动作 原力 死鼠逃兵辅助 死鼠逃兵"
+  },
+  {
     "id": "直面考验 Enter the Crucible",
     "name": "直面考验",
     "nameEn": "Enter the Crucible",
@@ -176013,6 +177234,17 @@
     ],
     "source": "PH2",
     "text": "治疗精魂 Healing Spirit 威能 萨满 PH2 遭遇 次要动作 医疗，原力 萨满特性 萨满"
+  },
+  {
+    "id": "治疗精野野兽伙伴 Heal Fey Beast Companion",
+    "name": "治疗精野野兽伙伴",
+    "nameEn": "Heal Fey Beast Companion",
+    "category": "power",
+    "tags": [
+      "威能"
+    ],
+    "source": "HoF",
+    "text": "治疗精野野兽伙伴 Heal Fey Beast Companion 威能 HoF 每日 次要动作 奥术，医疗 精野驯兽师辅助 精野驯兽师"
   },
   {
     "id": "治疗奴役 Restore Thrall",
@@ -177936,6 +179168,18 @@
     "text": "蛛网术 Web 威能 法师 PH 每日 标准动作 奥术，塑能，法器，区域 法师攻击 法师"
   },
   {
+    "id": "蛛行技巧 Spider Technique",
+    "name": "蛛行技巧",
+    "nameEn": "Spider Technique",
+    "category": "power",
+    "tags": [
+      "威能",
+      "武僧"
+    ],
+    "source": "PH3",
+    "text": "蛛行技巧 Spider Technique 威能 武僧 PH3 随意 移动动作 灵能 武僧辅助 武僧"
+  },
+  {
     "id": "蛛行术 Spider Climb",
     "name": "蛛行术",
     "nameEn": "Spider Climb",
@@ -178507,7 +179751,7 @@
       "威能"
     ],
     "source": "PH2",
-    "text": "准备战斗 Receive the Charge 威能 PH2 遭遇 即时反应 武器 摩拉丁子嗣攻击 摩拉丁子嗣"
+    "text": "准备战斗 Receive the Charge 威能 PH2 遭遇 即时反应 武器 摩拉丁长子攻击 摩拉丁长子"
   },
   {
     "id": "准确格挡 Unerring Parry",
@@ -178543,53 +179787,6 @@
     ],
     "source": "DP",
     "text": "准确预知 Unerring Foreknowledge 威能 DP 每日 次要动作 神术 艾恩神选者辅助 艾恩神选者"
-  },
-  {
-    "id": "卓尔影步 Drow Shadow Stride",
-    "name": "卓尔影步",
-    "nameEn": "Drow Shadow Stride",
-    "category": "power",
-    "tags": [
-      "威能"
-    ],
-    "source": "Dragon",
-    "text": "卓尔影步 Drow Shadow Stride 威能 Dragon 遭遇 移动动作 诅咒之子辅助 诅咒之子"
-  },
-  {
-    "id": "卓戈萨之怒 Fury of Dragotha",
-    "name": "卓戈萨之怒",
-    "nameEn": "Fury of Dragotha",
-    "category": "power",
-    "tags": [
-      "威能",
-      "术士"
-    ],
-    "source": "AP",
-    "text": "卓戈萨之怒 Fury of Dragotha 威能 术士 AP 每日 标准动作 奥术，法器，暗蚀 术士攻击 术士"
-  },
-  {
-    "id": "卓越射击 Singular Shot",
-    "name": "卓越射击",
-    "nameEn": "Singular Shot",
-    "category": "power",
-    "tags": [
-      "威能",
-      "游侠"
-    ],
-    "source": "MP",
-    "text": "卓越射击 Singular Shot 威能 游侠 MP 遭遇 标准动作 武术，武器 游侠攻击 游侠"
-  },
-  {
-    "id": "卓越武术 Martial Supremacy",
-    "name": "卓越武术",
-    "nameEn": "Martial Supremacy",
-    "category": "power",
-    "tags": [
-      "威能",
-      "战士"
-    ],
-    "source": "Dragon",
-    "text": "卓越武术 Martial Supremacy 威能 战士 Dragon 遭遇 次要动作 武术，架势 战士辅助 战士"
   },
   {
     "id": "灼敌之日 Solar Enemy",
@@ -178709,6 +179906,53 @@
     ],
     "source": "PH2",
     "text": "灼阳之球 Searing Orb 威能 神导士 PH2 每日 标准动作 神术，法器，光耀 神导士攻击 神导士"
+  },
+  {
+    "id": "卓尔影步 Drow Shadow Stride",
+    "name": "卓尔影步",
+    "nameEn": "Drow Shadow Stride",
+    "category": "power",
+    "tags": [
+      "威能"
+    ],
+    "source": "Dragon",
+    "text": "卓尔影步 Drow Shadow Stride 威能 Dragon 遭遇 移动动作 诅咒之子辅助 诅咒之子"
+  },
+  {
+    "id": "卓戈萨之怒 Fury of Dragotha",
+    "name": "卓戈萨之怒",
+    "nameEn": "Fury of Dragotha",
+    "category": "power",
+    "tags": [
+      "威能",
+      "术士"
+    ],
+    "source": "AP",
+    "text": "卓戈萨之怒 Fury of Dragotha 威能 术士 AP 每日 标准动作 奥术，法器，暗蚀 术士攻击 术士"
+  },
+  {
+    "id": "卓越射击 Singular Shot",
+    "name": "卓越射击",
+    "nameEn": "Singular Shot",
+    "category": "power",
+    "tags": [
+      "威能",
+      "游侠"
+    ],
+    "source": "MP",
+    "text": "卓越射击 Singular Shot 威能 游侠 MP 遭遇 标准动作 武术，武器 游侠攻击 游侠"
+  },
+  {
+    "id": "卓越武术 Martial Supremacy",
+    "name": "卓越武术",
+    "nameEn": "Martial Supremacy",
+    "category": "power",
+    "tags": [
+      "威能",
+      "战士"
+    ],
+    "source": "Dragon",
+    "text": "卓越武术 Martial Supremacy 威能 战士 Dragon 遭遇 次要动作 武术，架势 战士辅助 战士"
   },
   {
     "id": "浊浪排空 Hammer of the Grasping Tides",
@@ -180078,17 +181322,6 @@
     "text": "兽人 Orc 种族 MM 中型 6格 昏暗视觉"
   },
   {
-    "id": "树精 Hamadryad",
-    "name": "树精",
-    "nameEn": "Hamadryad",
-    "category": "race",
-    "tags": [
-      "种族"
-    ],
-    "source": "HoF",
-    "text": "树精 Hamadryad 种族 HoF 中型 6格 昏暗视觉"
-  },
-  {
     "id": "螳螂人 Thri-Kreen",
     "name": "螳螂人",
     "nameEn": "Thri-Kreen",
@@ -180131,6 +181364,17 @@
     ],
     "source": "PH2",
     "text": "天族 Deva 种族 PH2 中型 6格 普通视觉"
+  },
+  {
+    "id": "橡树精 Hamadryad",
+    "name": "橡树精",
+    "nameEn": "Hamadryad",
+    "category": "race",
+    "tags": [
+      "种族"
+    ],
+    "source": "HoF",
+    "text": "橡树精 Hamadryad 种族 HoF 中型 6格 昏暗视觉"
   },
   {
     "id": "熊地精 Bugbear",
@@ -180243,6 +181487,15 @@
     "text": "卓尔 Drow 种族 FRPG 中型 6格 黑暗视觉"
   },
   {
+    "id": "暗影种族",
+    "name": "暗影种族",
+    "category": "reference",
+    "tags": [
+      "文章"
+    ],
+    "text": "暗影种族 文章"
+  },
+  {
     "id": "败德",
     "name": "败德",
     "category": "reference",
@@ -180259,6 +181512,16 @@
     ],
     "source": "Dragon",
     "text": "背叛法典：狼头阿蒙 Codex of Betrayal: Amon the Wolf 文章 Dragon"
+  },
+  {
+    "id": "步入黑暗 Into the Dark",
+    "name": "步入黑暗",
+    "nameEn": "Into the Dark",
+    "category": "reference",
+    "tags": [
+      "文章"
+    ],
+    "text": "步入黑暗 Into the Dark 文章"
   },
   {
     "id": "步入明艳 Into the Bright",
@@ -180358,8 +181621,10 @@
     "id": "灵霜",
     "name": "灵霜",
     "category": "reference",
-    "tags": [],
-    "text": "灵霜"
+    "tags": [
+      "贡献者"
+    ],
+    "text": "灵霜 贡献者"
   },
   {
     "id": "另类奖励规则",
@@ -181411,6 +182676,17 @@
     "text": "忍受元素伤害 Endure Elements 仪式 PH 神秘或自然（无检定）"
   },
   {
+    "id": "忍受原初元素伤害 Endure Primordial Elements",
+    "name": "忍受原初元素伤害",
+    "nameEn": "Endure Primordial Elements",
+    "category": "ritual",
+    "tags": [
+      "仪式"
+    ],
+    "source": "TPB",
+    "text": "忍受原初元素伤害 Endure Primordial Elements 仪式 TPB 神秘（无检定）"
+  },
+  {
     "id": "神奇复原 Fantastic Recuperation",
     "name": "神奇复原",
     "nameEn": "Fantastic Recuperation",
@@ -181918,6 +183194,17 @@
     "text": "翼龙岗哨 Wyvern Watch 仪式 PH2 神秘"
   },
   {
+    "id": "阴影漫行 Shadow Walk",
+    "name": "阴影漫行",
+    "nameEn": "Shadow Walk",
+    "category": "ritual",
+    "tags": [
+      "仪式"
+    ],
+    "source": "PH",
+    "text": "阴影漫行 Shadow Walk 仪式 PH 神秘（无检定）"
+  },
+  {
     "id": "隐藏龙纹 Conceal Dragon mark",
     "name": "隐藏龙纹",
     "nameEn": "Conceal Dragon mark",
@@ -181971,17 +183258,6 @@
     ],
     "source": "PH2",
     "text": "影响凡火 Affect Normal Fire 仪式 PH2 神秘或自然（无检定）"
-  },
-  {
-    "id": "影行术 Shadow Walk",
-    "name": "影行术",
-    "nameEn": "Shadow Walk",
-    "category": "ritual",
-    "tags": [
-      "仪式"
-    ],
-    "source": "PH",
-    "text": "影行术 Shadow Walk 仪式 PH 神秘（无检定）"
   },
   {
     "id": "油嘴滑舌 Glib Limerick",
@@ -182116,6 +183392,17 @@
     ],
     "source": "Dragon",
     "text": "召风术 Summon Winds 仪式 Dragon 神秘或自然（无检定）"
+  },
+  {
+    "id": "召唤恶魔 Summon Demon",
+    "name": "召唤恶魔",
+    "nameEn": "Summon Demon",
+    "category": "ritual",
+    "tags": [
+      "仪式"
+    ],
+    "source": "Demonomicon",
+    "text": "召唤恶魔 Summon Demon 仪式 Demonomicon 神秘或宗教"
   },
   {
     "id": "召唤石像鬼 Summon Gargoyle",
@@ -182340,6 +183627,17 @@
     "text": "地底探索者 Deep Delver 主题 DSH"
   },
   {
+    "id": "恶精灵代理人 Unseelie Agent",
+    "name": "恶精灵代理人",
+    "nameEn": "Unseelie Agent",
+    "category": "theme",
+    "tags": [
+      "主题"
+    ],
+    "source": "HoF",
+    "text": "恶精灵代理人 Unseelie Agent 主题 HoF"
+  },
+  {
     "id": "恶魔后裔 Demon Spawn",
     "name": "恶魔后裔",
     "nameEn": "Demon Spawn",
@@ -182428,15 +183726,15 @@
     "text": "极道 Yakuza 主题 Dragon"
   },
   {
-    "id": "精怪亲信 Janissary",
-    "name": "精怪亲信",
-    "nameEn": "Janissary",
+    "id": "精野驯兽师 Fey Beast Tamer",
+    "name": "精野驯兽师",
+    "nameEn": "Fey Beast Tamer",
     "category": "theme",
     "tags": [
       "主题"
     ],
-    "source": "HoEC",
-    "text": "精怪亲信 Janissary 主题 HoEC"
+    "source": "HoF",
+    "text": "精野驯兽师 Fey Beast Tamer 主题 HoF"
   },
   {
     "id": "精铸钢铁 Ironwrought",
@@ -182448,6 +183746,17 @@
     ],
     "source": "HoEC",
     "text": "精铸钢铁 Ironwrought 主题 HoEC"
+  },
+  {
+    "id": "巨灵亲兵 Janissary",
+    "name": "巨灵亲兵",
+    "nameEn": "Janissary",
+    "category": "theme",
+    "tags": [
+      "主题"
+    ],
+    "source": "HoEC",
+    "text": "巨灵亲兵 Janissary 主题 HoEC"
   },
   {
     "id": "困扰之刃 Haunted Blade",
@@ -182483,6 +183792,17 @@
     "text": "面具领主 Masked Lord 主题 Dragon"
   },
   {
+    "id": "欧格玛虔信者 Oghma's Faithful",
+    "name": "欧格玛虔信者",
+    "nameEn": "Oghma's Faithful",
+    "category": "theme",
+    "tags": [
+      "主题"
+    ],
+    "source": "NCS",
+    "text": "欧格玛虔信者 Oghma's Faithful 主题 NCS"
+  },
+  {
     "id": "誓血仇敌 Bloodsworn",
     "name": "誓血仇敌",
     "nameEn": "Bloodsworn",
@@ -182503,6 +183823,28 @@
     ],
     "source": "Dragon",
     "text": "鼠人 Wererat 主题 Dragon"
+  },
+  {
+    "id": "竖琴手特工 Harper Agent",
+    "name": "竖琴手特工",
+    "nameEn": "Harper Agent",
+    "category": "theme",
+    "tags": [
+      "主题"
+    ],
+    "source": "NCS",
+    "text": "竖琴手特工 Harper Agent 主题 NCS"
+  },
+  {
+    "id": "死鼠逃兵 Dead Rat Deserter",
+    "name": "死鼠逃兵",
+    "nameEn": "Dead Rat Deserter",
+    "category": "theme",
+    "tags": [
+      "主题"
+    ],
+    "source": "NCS",
+    "text": "死鼠逃兵 Dead Rat Deserter 主题 NCS"
   },
   {
     "id": "塑水者 Watershaper",
@@ -182527,6 +183869,17 @@
     "text": "逃脱奴隶 Escaped Thrall 主题 DSH"
   },
   {
+    "id": "图安人 Tuathan",
+    "name": "图安人",
+    "nameEn": "Tuathan",
+    "category": "theme",
+    "tags": [
+      "主题"
+    ],
+    "source": "HoF",
+    "text": "图安人 Tuathan 主题 HoF"
+  },
+  {
     "id": "微尘凡体 Moteborn",
     "name": "微尘凡体",
     "nameEn": "Moteborn",
@@ -182538,6 +183891,17 @@
     "text": "微尘凡体 Moteborn 主题 HoEC"
   },
   {
+    "id": "无冬皇族 Neverwinter Noble",
+    "name": "无冬皇族",
+    "nameEn": "Neverwinter Noble",
+    "category": "theme",
+    "tags": [
+      "主题"
+    ],
+    "source": "NCS",
+    "text": "无冬皇族 Neverwinter Noble 主题 NCS"
+  },
+  {
     "id": "武士 Samurai",
     "name": "武士",
     "nameEn": "Samurai",
@@ -182547,6 +183911,17 @@
     ],
     "source": "Dragon",
     "text": "武士 Samurai 主题 Dragon"
+  },
+  {
+    "id": "仙宫贵族 Sidhe Lord",
+    "name": "仙宫贵族",
+    "nameEn": "Sidhe Lord",
+    "category": "theme",
+    "tags": [
+      "主题"
+    ],
+    "source": "HoF",
+    "text": "仙宫贵族 Sidhe Lord 主题 HoF"
   },
   {
     "id": "陷阱工匠 Trapsmith",

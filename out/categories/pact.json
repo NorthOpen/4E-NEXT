@@ -14,7 +14,9 @@
       "creator": "Leon",
       "modified": "20221116061625299",
       "modifier": "Leon",
-      "source": "HoFK"
+      "source": "HoFK",
+      "revision": "0",
+      "bag": "default"
     },
     "wiki": {
       "transclusions": [
@@ -113,7 +115,9 @@
       "creator": "Leon",
       "modified": "20221116080242103",
       "modifier": "Leon",
-      "source": "Dragon"
+      "source": "Dragon",
+      "revision": "0",
+      "bag": "default"
     },
     "wiki": {
       "transclusions": [
@@ -189,7 +193,9 @@
       "creator": "Leon",
       "modified": "20221116064140582",
       "modifier": "Leon",
-      "source": "HoFK"
+      "source": "HoFK",
+      "revision": "0",
+      "bag": "default"
     },
     "wiki": {
       "transclusions": [
@@ -258,10 +264,12 @@
     "fields": {
       "created": "20220824021926307",
       "creator": "Leon",
+      "magazine": "#393",
       "modified": "20221116064951275",
       "modifier": "Leon",
       "source": "Dragon",
-      "magazine": "#393"
+      "revision": "0",
+      "bag": "default"
     },
     "wiki": {
       "transclusions": [
@@ -331,7 +339,9 @@
       "creator": "Leon",
       "modified": "20221116080919422",
       "modifier": "Leon",
-      "source": "HoS"
+      "source": "HoS",
+      "revision": "0",
+      "bag": "default"
     },
     "wiki": {
       "transclusions": [
@@ -407,7 +417,9 @@
       "creator": "Leon",
       "modified": "20221116065759764",
       "modifier": "Leon",
-      "source": "HoS"
+      "source": "HoS",
+      "revision": "0",
+      "bag": "default"
     },
     "wiki": {
       "transclusions": [
@@ -483,7 +495,9 @@
       "creator": "Leon",
       "modified": "20221116082446100",
       "modifier": "Leon",
-      "source": "HoS"
+      "source": "HoS",
+      "revision": "0",
+      "bag": "default"
     },
     "wiki": {
       "transclusions": [
@@ -559,7 +573,9 @@
       "creator": "Leon",
       "modified": "20221116070412066",
       "modifier": "Leon",
-      "source": "HoEC"
+      "source": "HoEC",
+      "revision": "0",
+      "bag": "default"
     },
     "wiki": {
       "transclusions": [

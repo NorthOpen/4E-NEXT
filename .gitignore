@@ -15,11 +15,19 @@ out/monsters/audit/
 out/monsters/media/
 # 怪物手册源文件（42MB，非本项目版权、不随仓库分发；放回仓库根目录即可重新生成全部派生产物）
 /DnD4E-怪物手册*合订本*.xlsx
+# 万律书源文件（单文件 TW5，不随仓库分发；放回仓库根目录或 data/ 即可重新生成 out/rules/）
+# 旧名 4e-rules.html、新版下载名 4e Rules Compendium.htm 都在这条规则内
+4e-rules*.htm*
+4e Rules*.htm*
 # 取色模式对比探针（本机工具，含写死的绝对路径与派生产物，不入库）
 out/color-variant-probe/
 
 # DSH vision-router artifacts (local tooling output)
 .dsh-vision-router/
+# DSH 文件权限诊断报告与回滚脚本（本机工具产物，不入库）
+.dsh-acl-report/
+# 手机端弹窗版面的无头浏览器核查工具与截图（本机工具产物，不入库）
+.dsh-uicheck/
 # npm cache (local)
 .npm-cache/
 # pnpm 元数据缓存（本地）

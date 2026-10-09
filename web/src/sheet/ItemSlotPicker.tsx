@@ -4,6 +4,33 @@ import { createPortal } from "react-dom";
 import EntryCard from "./EntryCard";
 import type { Entry } from "../data/types";
 import { DeepSearchField, matchByName, matchDeep } from "./DeepSearch";
+import { itemLevels, enhancementBonusForLevel } from "../lib/levelprices";
+
+// 等级筛选模式（与 PowerSlotPicker / RitualPicker 同一套约定）：
+//   当前及以下 / 指定等级 / 全部等级；「指定等级」时用区间输入。
+const LEVEL_MODES = [
+  { key: "current", label: "当前及以下" },
+  { key: "range", label: "指定等级" },
+  { key: "all", label: "全部等级" },
+] as const;
+
+// 魔法物品增强加值筛选项（+1 ~ +6）。等级 → 加值由 levelprices 权威推导。
+const ENH_OPTIONS = [1, 2, 3, 4, 5, 6] as const;
+
+// 某件物品可能的增强加值集合：
+//   优先按等级列表推导（4E 一条魔法物品含多个等级版本，各版本对应不同加值）；
+//   对无等级列表但 enh 字段明确写了 +N（如「+2」或「+1/+2/+3」）的条目，直接解析 enh 文本兜底。
+function enhBonusesOf(e: Entry): Set<number> {
+  const out = new Set<number>();
+  for (const lv of itemLevels(e.itemLevel)) out.add(enhancementBonusForLevel(lv));
+  if (out.size === 0 && e.enh) {
+    for (const part of String(e.enh).split("/")) {
+      const m = part.match(/[+−-]?\s*(\d+)/);
+      if (m) out.add(parseInt(m[1], 10));
+    }
+  }
+  return out;
+}
 
 // 槽位 → 允许出现在该位置的物品种类（依据 4e 规则；空数组 = 不限即「其他」）。
 //   主手/副手 = 武器 + 法器（法器持握于手，盾牌独立走「臂部」槽）；
@@ -149,12 +176,13 @@ interface Props {
   loading?: boolean;
   slotName: string;
   currentId?: string;
+  currentLevel?: number; // 角色当前等级；供「当前及以下」等级筛选使用。缺省时不约束（如背包等通用用法）。
   onSelect: (id: string) => void;
   onClear?: () => void;
   onClose: () => void;
 }
 
-export default function ItemSlotPicker({ entries, loading, slotName, currentId, onSelect, onClear, onClose }: Props) {
+export default function ItemSlotPicker({ entries, loading, slotName, currentId, currentLevel, onSelect, onClear, onClose }: Props) {
   const allowed = useMemo(() => SLOT_CATEGORY[slotName] ?? [], [slotName]);
   const presentCats = useMemo(
     () => [...new Set(entries.map((e) => e.itemCategory).filter((v): v is string => !!v))].sort((a, b) => {
@@ -174,6 +202,12 @@ export default function ItemSlotPicker({ entries, loading, slotName, currentId, 
   const [sel, setSel] = useState<string[]>([]); // 当前层级多选叶子 label
   const [query, setQuery] = useState("");
   const [deep, setDeep] = useState(false); // 全文搜索开关
+  // 等级筛选：当前及以下 / 指定等级 / 全部等级（对齐 PowerSlotPicker / RitualPicker）
+  const [levelMode, setLevelMode] = useState<"current" | "range" | "all">("current");
+  const [minLevel, setMinLevel] = useState(currentLevel && currentLevel >= 1 ? currentLevel : 1);
+  const [maxLevel, setMaxLevel] = useState(currentLevel && currentLevel >= 1 ? currentLevel : 30);
+  // 增强加值筛选："" = 全部，否则为选中的 +N
+  const [enhSel, setEnhSel] = useState<number | null>(null);
 
   // 根据 path 定位当前节点；path 为空即虚拟根。
   const currentNode = useMemo(() => {
@@ -219,11 +253,19 @@ export default function ItemSlotPicker({ entries, loading, slotName, currentId, 
       if (sel.length) {
         if (!selLeaves.some((l) => matchLeaf(e, l))) return false;
       }
+      // 等级筛选：无等级条目（冒险装备/部分消耗品）不被等级筛选排除；有等级则任一等级落在筛选范围即命中
+      const levels = itemLevels(e.itemLevel);
+      if (levels.length) {
+        if (levelMode === "current" && currentLevel && !levels.some((lv) => lv <= currentLevel)) return false;
+        if (levelMode === "range" && !levels.some((lv) => lv >= minLevel && lv <= maxLevel)) return false;
+      }
+      // 增强加值筛选：物品任一增强加值命中选中值才保留
+      if (enhSel !== null && !enhBonusesOf(e).has(enhSel)) return false;
       if (q && !(deep ? matchDeep(e, q) : matchByName(e, q))) return false;
       return true;
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [entries, allowed, subtreeLeaves, sel, currentChildren, query, deep]);
+  }, [entries, allowed, subtreeLeaves, sel, currentChildren, query, deep, levelMode, minLevel, maxLevel, currentLevel, enhSel]);
   const { visible, sentinelRef, done } = useIncremental(filtered, 90);
 
   const showFilter = root.length > 0;
@@ -263,6 +305,28 @@ export default function ItemSlotPicker({ entries, loading, slotName, currentId, 
             </div>
           </>
         )}
+        {/* 等级筛选：当前及以下 / 指定等级 / 全部等级（对齐威能、仪式选择器） */}
+        <div className="slot-filter-row">
+          <span className="sf-label">等级</span>
+          {LEVEL_MODES.map((m) => (
+            <button key={m.key} type="button" className={levelMode === m.key ? "sf-chip active" : "sf-chip"} onClick={() => setLevelMode(m.key)}>{m.label}</button>
+          ))}
+          {levelMode === "range" && (
+            <span className="sf-range">
+              <input type="number" min={1} max={30} value={minLevel} onChange={(e) => setMinLevel(Math.max(1, Math.min(30, Number(e.target.value) || 1)))} />
+              <span>—</span>
+              <input type="number" min={1} max={30} value={maxLevel} onChange={(e) => setMaxLevel(Math.max(1, Math.min(30, Number(e.target.value) || 1)))} />
+            </span>
+          )}
+        </div>
+        {/* 增强加值筛选：+1 ~ +6（魔法物品各等级版本的增强加值） */}
+        <div className="slot-filter-row">
+          <span className="sf-label">增强</span>
+          <button type="button" className={enhSel === null ? "sf-chip active" : "sf-chip"} onClick={() => setEnhSel(null)}>全部</button>
+          {ENH_OPTIONS.map((b) => (
+            <button key={b} type="button" className={enhSel === b ? "sf-chip active" : "sf-chip"} onClick={() => setEnhSel(b)}>+{b}</button>
+          ))}
+        </div>
         <DeepSearchField value={query} deep={deep} onChange={setQuery} onToggleDeep={() => setDeep((d) => !d)} />
         <div className="meta">显示 {filtered.length} 条</div>
         <div className={slotName === "冒险装备" ? "picker-cards cols-3" : "picker-cards"}>

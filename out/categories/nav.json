@@ -6,23 +6,23 @@
     "tags": [
       "TableOfContents"
     ],
-    "source": "PH PH2 PH3 FRPG MP MP2 AP DP PrP PsP PHRD PHRT HoF HoS HoEC HoFL HoFK Dragon EPG DSCS NCS MotP BoVD",
-    "sourceText": "\\procedure uncheckAllSource() <$action-setfield $field=\"source\" $value=\"\"/>\n\n\\procedure checkAllSource() <$action-setfield $field=\"source\" $value={{!!allSource}}/>\n\n<p style=\"display:flex;column-gap:2em;flex-wrap:wrap;\">\n\t<div>\n\t\t<h2>前提搜索</h2>\n\t\t<$edit-text tiddler=\"$:/ParagonPrerequisiteSearching\" field=\"content\" placeholder=\"空格分隔条件\"/>\n\t</div>\n\t<div>\n\t\t<h2>前提排除</h2>\n\t\t<$edit-text tiddler=\"$:/ParagonPrerequisiteExcluding\" field=\"content\" placeholder=\"空格分隔条件\"/>\n\t</div>\n\t<div>\n\t\t<h2>内容搜索</h2>\n\t\t<$edit-text tiddler=\"$:/ParagonSearching\" field=\"content\" placeholder=\"空格分隔条件\"/>\n\t</div>\n</p>\n<p>\n  <$radio field=\"limit\" class=\"sizerRadio\" value={{!!classLimit}}>特定职业限定</$radio>\n  <$radio field=\"limit\" class=\"sizerRadio\" value={{!!anyclassLimit}}>非特定职业限定</$radio>\n  <$radio field=\"limit\" class=\"sizerRadio\" value={{!!raceLimit}}>种族限定</$radio>\n  <$radio field=\"limit\" class=\"sizerRadio\" value={{!!featLimit}}>龙纹/血统限定</$radio>\n  <$radio field=\"limit\" class=\"sizerRadio\" value=\"\">其他通用</$radio>\n</p>\n<p>\n\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t<h2>来源</h2>\n\t\t<span>\n\t\t<$button class=\"myButton\"><<checkAllSource>>全选</$button><$button class=\"myButton\"><<uncheckAllSource>>全不选</$button>\n\t\t</span>\n\t</div>\n\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t<$list filter=\"[enlist{!!allSource}]\">\n\t\t<$checkbox tiddler=\"典范速查\" listField=\"source\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t</$list>\n\t</div>\n</p>\n\n<$vars prerequisiteExclusion={{{ [{$:/ParagonPrerequisiteExcluding!!content}!is[blank]else[不存在]] }}} sourcefilter=\"[get[source]]:intersection[enlist{典范速查!!source}]\" prerequisitefilter1=\"[get[prerequisite]search:title:some{$:/ParagonPrerequisiteSearching!!content}!search:title:some<prerequisiteExclusion>search:title:some{典范速查!!limit}]\" prerequisitefilter2=\"[get[prerequisite]search:title:some{$:/ParagonPrerequisiteSearching!!content}!search:title:some<prerequisiteExclusion>!search:title:some{典范速查!!classLimit}!search:title:some{典范速查!!anyclassLimit}!search:title:some{典范速查!!raceLimit}!search:title:some{典范速查!!featLimit}]\">\n\n<%if [{典范速查!!limit}is[blank]] %>\n  <<tabs \"[tag[典范]filter<prerequisitefilter2>filter<sourcefilter>search:title,text{$:/ParagonSearching!!content}]\" \"\" \"\" \"mytab tc-vertical\" \"$:/myConfig/ui/ViewTemplate/tabs\">>\n  共<$count filter=\"[tag[典范]filter<prerequisitefilter2>filter<sourcefilter>search:title,text{$:/ParagonSearching!!content}]\"/>条记录\n<%else%>\n  <<tabs \"[tag[典范]filter<prerequisitefilter1>filter<sourcefilter>search:title,text{$:/ParagonSearching!!content}]\" \"\" \"\" \"mytab tc-vertical\" \"$:/myConfig/ui/ViewTemplate/tabs\">>\n共<$count filter=\"[tag[典范]filter<prerequisitefilter1>filter<sourcefilter>search:title,text{$:/ParagonSearching!!content}]\"/>条记录\n<%endif%>\n</$vars>",
+    "sourceText": "\\procedure uncheckAllSource() <$action-setfield $tiddler=\"$:/mystate/典范速查\" $field=\"source\" $value=\"\"/>\n\n\\procedure checkAllSource() <$action-setfield $tiddler=\"$:/mystate/典范速查\" $field=\"source\" $value={{$:/mystate/典范速查!!allSource}}/>\n\n<p style=\"display:flex;column-gap:2em;flex-wrap:wrap;\">\n\t<div>\n\t\t<h2>前提搜索</h2>\n\t\t<$edit-text tiddler=\"$:/ParagonPrerequisiteSearching\" field=\"content\" placeholder=\"空格分隔条件\"/>\n\t</div>\n\t<div>\n\t\t<h2>前提排除</h2>\n\t\t<$edit-text tiddler=\"$:/ParagonPrerequisiteExcluding\" field=\"content\" placeholder=\"空格分隔条件\"/>\n\t</div>\n\t<div>\n\t\t<h2>内容搜索</h2>\n\t\t<$edit-text tiddler=\"$:/ParagonSearching\" field=\"content\" placeholder=\"空格分隔条件\"/>\n\t</div>\n</p>\n<p>\n  <$radio tiddler=\"$:/mystate/典范速查\" field=\"limit\" class=\"sizerRadio\" value={{$:/mystate/典范速查!!classLimit}}>特定职业限定</$radio>\n  <$radio tiddler=\"$:/mystate/典范速查\" field=\"limit\" class=\"sizerRadio\" value={{$:/mystate/典范速查!!anyclassLimit}}>非特定职业限定</$radio>\n  <$radio tiddler=\"$:/mystate/典范速查\" field=\"limit\" class=\"sizerRadio\" value={{$:/mystate/典范速查!!raceLimit}}>种族限定</$radio>\n  <$radio tiddler=\"$:/mystate/典范速查\" field=\"limit\" class=\"sizerRadio\" value={{$:/mystate/典范速查!!featLimit}}>龙纹/血统限定</$radio>\n  <$radio tiddler=\"$:/mystate/典范速查\" field=\"limit\" class=\"sizerRadio\" value=\"\">其他通用</$radio>\n</p>\n<p>\n\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t<h2>来源</h2>\n\t\t<span>\n\t\t<$button class=\"myButton\"><<checkAllSource>>全选</$button><$button class=\"myButton\"><<uncheckAllSource>>全不选</$button>\n\t\t</span>\n\t</div>\n\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t<$list filter=\"[enlist{$:/mystate/典范速查!!allSource}]\">\n\t\t<$checkbox tiddler=\"$:/mystate/典范速查\" listField=\"source\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t</$list>\n\t</div>\n</p>\n\n<$vars prerequisiteExclusion={{{ [{$:/ParagonPrerequisiteExcluding!!content}!is[blank]else[不存在]] }}} sourcefilter=\"[get[source]]:intersection[enlist{$:/mystate/典范速查!!source}]\" prerequisitefilter1=\"[get[prerequisite]search:title:some{$:/ParagonPrerequisiteSearching!!content}!search:title:some<prerequisiteExclusion>search:title:some{$:/mystate/典范速查!!limit}]\" prerequisitefilter2=\"[get[prerequisite]search:title:some{$:/ParagonPrerequisiteSearching!!content}!search:title:some<prerequisiteExclusion>!search:title:some{$:/mystate/典范速查!!classLimit}!search:title:some{$:/mystate/典范速查!!anyclassLimit}!search:title:some{$:/mystate/典范速查!!raceLimit}!search:title:some{$:/mystate/典范速查!!featLimit}]\">\n\n<%if [{$:/mystate/典范速查!!limit}is[blank]] %>\n  <<tabs \"[tag[典范]filter<prerequisitefilter2>filter<sourcefilter>search:title,text{$:/ParagonSearching!!content}]\" \"\" \"\" \"mytab tc-vertical\" \"$:/myConfig/ui/ViewTemplate/tabs\">>\n  共<$count filter=\"[tag[典范]filter<prerequisitefilter2>filter<sourcefilter>search:title,text{$:/ParagonSearching!!content}]\"/>条记录\n<%else%>\n  <<tabs \"[tag[典范]filter<prerequisitefilter1>filter<sourcefilter>search:title,text{$:/ParagonSearching!!content}]\" \"\" \"\" \"mytab tc-vertical\" \"$:/myConfig/ui/ViewTemplate/tabs\">>\n共<$count filter=\"[tag[典范]filter<prerequisitefilter1>filter<sourcefilter>search:title,text{$:/ParagonSearching!!content}]\"/>条记录\n<%endif%>\n</$vars>",
     "fields": {
       "created": "20221103074905286",
       "creator": "Leon",
-      "modified": "20250514041300517",
+      "modified": "20260716094732013",
       "modifier": "Leon",
-      "classLimit": "炽念使 刺客 德鲁伊 督军 法师 符文牧师 机关术士 剑法师 牧师 萨满 神导士 神罚使 圣武士 诗人 守望者 术士 武僧 吸血鬼 邪术师 心灵术士 巡者 野蛮人 游荡者 游侠 战魂 战士",
-      "raceLimit": "矮人 半精灵 半梦灵 半身人 半兽化人 半兽人 半羊人 变化妖 变形裔 波扎克龙人 豺狼人 蟾蜍怪 大地精 刀锋怪 地底侏儒 地精 盾矮人 返世幽魂 歌利亚斯 工匠侏儒 狗头人 荒野精灵 灰矮人 机关人 吉斯洋基人 吉斯泽雷人 金矮人 精灵 卡帕克龙人 利维尔精灵 龙裔 魔晶人 木精灵 穆尔人 牛头人 皮克精 人类 日精灵 兽人 树精 螳螂人 提夫林 天狗 天族 熊地精 血族 雅灵 野精灵 阴影裔 影灵 元素裔 月精灵 侏儒 卓尔 种族",
-      "featLimit": "龙纹 血统",
-      "allSource": "PH PH2 PH3 FRPG MP MP2 AP DP PrP PsP PHRD PHRT HoF HoS HoEC HoFL HoFK Dragon EPG DSCS NCS MotP BoVD",
-      "source": "PH PH2 PH3 FRPG MP MP2 AP DP PrP PsP PHRD PHRT HoF HoS HoEC HoFL HoFK Dragon EPG DSCS NCS MotP BoVD",
-      "limit": "炽念使 刺客 德鲁伊 督军 法师 符文牧师 机关术士 剑法师 牧师 萨满 神导士 神罚使 圣武士 诗人 守望者 术士 武僧 吸血鬼 邪术师 心灵术士 巡者 野蛮人 游荡者 游侠 战魂 战士",
-      "anyclassLimit": "任意武术职业 任意奥术职业 任意神术职业 任意原力职业 任意影能职业 任意灵能职业"
+      "revision": "0",
+      "bag": "default"
     },
     "wiki": {
-      "transclusions": [],
+      "transclusions": [
+        "$:/mystate/典范速查",
+        "$:/mystate/典范速查",
+        "$:/mystate/典范速查",
+        "$:/mystate/典范速查",
+        "$:/mystate/典范速查"
+      ],
       "links": [],
       "macros": [
         "checkAllSource",
@@ -45,7 +45,9 @@
       "created": "20240930183010222",
       "creator": "Leon",
       "modified": "20240930190026159",
-      "modifier": "Leon"
+      "modifier": "Leon",
+      "revision": "0",
+      "bag": "default"
     },
     "wiki": {
       "transclusions": [],
@@ -63,241 +65,20 @@
     "tags": [
       "TableOfContents"
     ],
-    "sourceText": "从全书更新到选择创建wiki，整个过程还是比较累的，十分感谢以下诸位对本wiki的大力支持及指正帮助！鄙人不善言辞，千言万语，表达不了我的感激之情，我只能说，我已铭记在心。\n\n以下排名不分先后\n\n* [[鱼与大鱼是云与乌云]]\n* [[满小夏]]\n* [[瞳]]\n* [[宅爷]]\n* [[洛圣]]\n* [[龙王の啤酒]]\n* [[魔道]]\n* [[苍海觞田]]\n* [[莫妄忧]]\n* [[火树]]\n* [[昕次宣融]]\n* [[怀清灏影]]\n* [[灵霜]]\n* [[杂讯]]\n* [[仓鼠]]\n* [[免费的午餐]]\n* [[吼姆狸]]\n* [[塔尔]]\n* [[小傻]]\n* [[phinu]]\n* [[Omerta]]\n* [[晨曦]]\n* [[偏执の恋]]\n* [[木落子]]\n* [[北开]]",
+    "sourceText": "从全书更新到选择创建wiki，整个过程还是比较累的，十分感谢以下诸位对本wiki的大力支持及指正帮助！鄙人不善言辞，千言万语，表达不了我的感激之情，我只能说，我已铭记在心。\n\n以下排名不分先后\n\n<<list-links filter:\"[tag[贡献者]sort[title]]\">>\n",
     "fields": {
       "created": "20240422032700869",
       "creator": "Leon",
-      "modified": "20250304014254346",
-      "modifier": "Leon"
-    },
-    "wiki": {
-      "transclusions": [],
-      "links": [
-        {
-          "target": "鱼与大鱼是云与乌云"
-        },
-        {
-          "target": "满小夏"
-        },
-        {
-          "target": "瞳"
-        },
-        {
-          "target": "宅爷"
-        },
-        {
-          "target": "洛圣"
-        },
-        {
-          "target": "龙王の啤酒"
-        },
-        {
-          "target": "魔道"
-        },
-        {
-          "target": "苍海觞田"
-        },
-        {
-          "target": "莫妄忧"
-        },
-        {
-          "target": "火树"
-        },
-        {
-          "target": "昕次宣融"
-        },
-        {
-          "target": "怀清灏影"
-        },
-        {
-          "target": "灵霜"
-        },
-        {
-          "target": "杂讯"
-        },
-        {
-          "target": "仓鼠"
-        },
-        {
-          "target": "免费的午餐"
-        },
-        {
-          "target": "吼姆狸"
-        },
-        {
-          "target": "塔尔"
-        },
-        {
-          "target": "小傻"
-        },
-        {
-          "target": "phinu"
-        },
-        {
-          "target": "Omerta"
-        },
-        {
-          "target": "晨曦"
-        },
-        {
-          "target": "偏执の恋"
-        },
-        {
-          "target": "木落子"
-        },
-        {
-          "target": "北开"
-        }
-      ],
-      "macros": [],
-      "headings": []
-    }
-  },
-  {
-    "id": "技能威能速查",
-    "name": "技能威能速查",
-    "category": "nav",
-    "tags": [],
-    "source": "PH3 DSH Dragon",
-    "sourceText": "\\define alluncheck(n,m) <$action-setfield $field=\"$n$\" $value=\"\"/>\n\n\\define allcheck(n,m) <$action-setfield $field=\"$n$\" $value={{!!$m$}}/>\n\n<$vars compare-by-level=\"[get[level]]\" compare-by-usage=\"[get[usage]]\" skillfilter=\"[get[skill]]:intersection[enlist{技能威能速查!!skill}]\" levelfilter=\"[get[level]]:intersection[enlist{技能威能速查!!level}]\" usagefilter=\"[get[usage]]:intersection[enlist{技能威能速查!!usage}]\" actionTypefilter=\"[get[actionType]]:intersection[enlist{技能威能速查!!actionType}]\" sourcefilter=\"[get[source]]:intersection[enlist{技能威能速查!!source}]\">\n\n<div style=\"display:flex\">\n\t<div style=\"flex:4.5\">\n\t\t<p>\n\t\t\t<h2>内容搜索</h2>\n\t\t\t<$edit-text tiddler=\"$:/SkillPowerSearching\" field=\"content\" placeholder=\"空格分隔条件\"/>\n\t\t</p>\n\t\t<p>\n\t\t\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t\t\t<h2>技能</h2>\n\t\t\t\t<span>\n\t\t\t\t<$button class=\"myButton\"><<allcheck \"skill\" \"allSkill\">>全选</$button><$button class=\"myButton\"><<alluncheck \"skill\">>全不选</$button>\n\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t\t<$list filter=\"[enlist{!!allSkill}]\">\n\t\t\t\t<$checkbox tiddler=\"技能威能速查\" listField=\"skill\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t\t\t</$list>\n\t\t\t</div>\n\t\t</p>\n\t\t<p>\n\t\t\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t\t\t<h2>等级</h2>\n\t\t\t\t<span>\n\t\t\t\t<$button class=\"myButton\"><<allcheck \"level\" \"allLevel\">>全选</$button><$button class=\"myButton\"><<alluncheck \"level\">>全不选</$button>\n\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t\t<$list filter=\"[enlist{!!allLevel}]\">\n\t\t\t\t<$checkbox tiddler=\"技能威能速查\" listField=\"level\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t\t\t</$list>\n\t\t\t</div>\n\t\t</p>\n\t\t<p>\n\t\t\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t\t\t<h2>频率</h2>\n\t\t\t\t<span>\n\t\t\t\t<$button class=\"myButton\"><<allcheck \"usage\" \"allUsage\">>全选</$button><$button class=\"myButton\"><<alluncheck \"usage\">>全不选</$button>\n\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t\t<$list filter=\"[enlist{!!allUsage}]\">\n\t\t\t\t<$checkbox tiddler=\"技能威能速查\" listField=\"usage\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t\t\t</$list>\n\t\t\t</div>\n\t\t</p>\n\t\t<p>\n\t\t\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t\t\t<h2>动作类型</h2>\n\t\t\t\t<span>\n\t\t\t\t<$button class=\"myButton\"><<allcheck \"actionType\" \"allActionType\">>全选</$button><$button class=\"myButton\"><<alluncheck \"actionType\">>全不选</$button>\n\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t\t<$list filter=\"[enlist{!!allActionType}]\">\n\t\t\t\t<$checkbox tiddler=\"技能威能速查\" listField=\"actionType\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t\t\t</$list>\n\t\t\t</div>\n\t\t</p>\n\t\t<p>\n\t\t\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t\t\t<h2>来源</h2>\n\t\t\t\t<span>\n\t\t\t\t<$button class=\"myButton\"><<allcheck \"source\" \"allSource\">>全选</$button><$button class=\"myButton\"><<alluncheck \"source\">>全不选</$button>\n\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t\t<$list filter=\"[enlist{!!allSource}]\">\n\t\t\t\t<$checkbox tiddler=\"技能威能速查\" listField=\"source\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t\t\t</$list>\n\t\t\t</div>\n\t\t</p>\n\t\t<table class=\"dndTable\">\n\t\t<tr class=\"header\"><td style=\"width:45%\">威能</td><td>频率</td><td>类型</td><td>等级</td><td>动作类型</td><td>来源</td></tr>\n\t\t<$list filter=\"[tag[技能]filter<skillfilter>filter<levelfilter>filter<usagefilter>filter<actionTypefilter>filter<sourcefilter>search:title,details{$:/SkillPowerSearching!!content}!sortsub<compare-by-usage>sortsub:integer<compare-by-level>]\">\n\t\t<tr><td><$link><$text text=<<currentTiddler>>/></$link></td><td>{{!!usage}}</td><td>{{!!power-type}}</td><td>{{!!level}}</td><td>{{!!actionType}}</td><td>{{!!source}}</td></tr>\n\t\t</$list>\n\t\t</table>\n \t\t<p>共<$count filter=\"[tag[技能]filter<skillfilter>filter<levelfilter>filter<usagefilter>filter<actionTypefilter>filter<sourcefilter>search:title,details{$:/SkillPowerSearching!!content}]\"/>条记录</p>\n\t</div>\n\t<div style=\"flex:5.5;padding-left:10px\">\n\t\t<$list filter=\"[tag[技能]filter<skillfilter>filter<levelfilter>filter<usagefilter>filter<actionTypefilter>filter<sourcefilter>search:title,details{$:/SkillPowerSearching!!content}!sortsub<compare-by-usage>sortsub:integer<compare-by-level>]\">\n\t\t{{}}\n\t\t<br/>\n\t\t</$list>\n\t</div>\n</div>\n</$vars>",
-    "fields": {
-      "created": "20220804081107396",
-      "creator": "Leon",
-      "modified": "20241009011316581",
+      "modified": "20251201085535002",
       "modifier": "Leon",
-      "allSource": "PH3 DSH Dragon",
-      "allSkill": "杂技 神秘 运动 唬骗 交涉 地城 坚韧 医疗 历史 洞察 威吓 自然 侦查 宗教 隐秘 市井 贼活",
-      "allLevel": "2 6 10 16",
-      "allUsage": "随意 遭遇 每日",
-      "allActionType": "标准动作 移动动作 次要动作 自由动作 即时中断 即时反应 无动作",
-      "level": "2 6 10 16",
-      "skill": "杂技 神秘 运动 唬骗 交涉 地城 坚韧 医疗 历史 洞察 威吓 自然 侦查 宗教 隐秘 市井 贼活",
-      "usage": "随意 遭遇 每日",
-      "actionType": "标准动作 移动动作 次要动作 自由动作 即时中断 即时反应 无动作",
-      "source": "PH3 DSH Dragon"
+      "revision": "0",
+      "bag": "default"
     },
     "wiki": {
       "transclusions": [],
       "links": [],
       "macros": [
-        "allcheck",
-        "alluncheck",
-        "currentTiddler",
-        "currentTiddler",
-        "allcheck",
-        "alluncheck",
-        "currentTiddler",
-        "currentTiddler",
-        "allcheck",
-        "alluncheck",
-        "currentTiddler",
-        "currentTiddler",
-        "allcheck",
-        "alluncheck",
-        "currentTiddler",
-        "currentTiddler",
-        "allcheck",
-        "alluncheck",
-        "currentTiddler",
-        "currentTiddler",
-        "currentTiddler"
-      ],
-      "headings": []
-    }
-  },
-  {
-    "id": "炼金物品",
-    "name": "炼金物品",
-    "category": "nav",
-    "tags": [],
-    "sourceText": "\\define allsubcheck(n) <$action-setfield $field=\"selected-$n$\" $value={{!!$n$}}/>\n\n\\define allsubuncheck(n) <$action-setfield $field=\"selected-$n$\" $value=\"\"/>\n\n<$vars categoryfilter=\"[get[item-category]match[炼金物品]]\" sortfilter=\"[get[item-level]split[ ]first[]]\" alchemicalfilter=\"[get[item-suitable]]:intersection[list[炼金物品!!selected-alchemical-list]]\">\n\n<div style=\"display:flex\">\n\t<div style=\"flex:4.5\">\n\t\t<p>\n\t\t\t<h2>内容搜索</h2>\n\t\t\t<$edit-text field=\"searchContent\" placeholder=\"空格分隔条件\"/>\n\t\t</p>\n\t\t<p>\n\t\t\t<h2>分类</h2>\n\t\t\t<ul style=\"list-style: none;padding:0;\" class=\"nomarker\">\n\t\t\t\t<li><$checkbox indeterminate=\"yes\" class=\"sizerCheckbox\" filter=\"[list[!!selected-alchemical-list]count[]]\" checked={{{ [list[!!alchemical-list]count[]] }}} unchecked=\"0\" checkactions=<<allsubcheck \"alchemical-list\">> uncheckactions=<<allsubuncheck \"alchemical-list\">> >炼金物品</$checkbox>\n\t\t\t\t\t<ul style=\"list-style: none;padding-left:20px;display: flex;flex-wrap: wrap;\" class=\"nomarker\">\n\t\t\t\t\t\t<$list variable=\"alchemical\" filter=\"[list[!!alchemical-list]]\">\n\t\t\t\t\t\t<li><$checkbox class=\"sizerCheckbox\" listField=\"selected-alchemical-list\" checked=<<alchemical>> ><<alchemical>></$checkbox></li>\n\t\t\t\t\t\t</$list>\n\t\t\t\t\t</ul>\n\t\t\t\t</li>\n\t\t\t</ul>\n\t\t</p>\n\t\t<table class=\"dndTable\">\n\t\t<tr class=\"header\"><td>物品</td><td style=\"min-width:135px\">等级</td><td style=\"min-width:60px\">分类</td><td style=\"min-width:65px\">稀有度</td><td style=\"min-width:85px\">出处</td></tr>\n\t\t<$list filter=\"[tag[物品]filter<categoryfilter>filter<alchemicalfilter>search:title,details{!!searchContent}!sort[item-suitable]sortsub:number<sortfilter>]\">\n\t\t<tr><td><$link><$text text=<<currentTiddler>>/></$link></td><td>{{!!item-level}}</td><td><$text text=`${[<currentTiddler>get[item-suitable]!is[blank]else[其他]]}$`/></td><td>{{!!rarity}}</td><td>{{!!source}}</td></tr>\n\t\t</$list>\n\t\t</table>\n\t\t<p>共<$count filter=\"[tag[物品]filter<categoryfilter>filter<alchemicalfilter>search:title,details{!!searchContent}]\"/>条记录</p>\n\t</div>\n\n\t<div style=\"flex:5.5;padding-left:10px;\">\n\t\t<$list filter=\"[tag[物品]filter<categoryfilter>filter<alchemicalfilter>search:title,details{!!searchContent}!sort[item-suitable]sortsub:number<sortfilter>]\">\n\t\t{{}}\n\t\t<br>\n\t\t</$list>\n\t</div>\n</div>\n</$vars>",
-    "fields": {
-      "created": "20241010030809932",
-      "creator": "Leon",
-      "modified": "20241010052323701",
-      "modifier": "Leon",
-      "searchContent": "",
-      "alchemical-list": "油膏 爆弹 药物 毒药 其他",
-      "selected-alchemical-list": "油膏 爆弹 药物 毒药 其他"
-    },
-    "wiki": {
-      "transclusions": [
-        "[list["
-      ],
-      "links": [],
-      "macros": [
-        "allsubcheck",
-        "allsubuncheck",
-        "alchemical",
-        "alchemical",
-        "currentTiddler"
-      ],
-      "headings": []
-    }
-  },
-  {
-    "id": "另类奖励",
-    "name": "另类奖励",
-    "category": "nav",
-    "tags": [],
-    "source": "PH PH2 PH3 AP PsP AV AV2 MotP PHRD PHRT HoF HoS HoEC HoFL HoFK FRPG EPG DSCS MME BoVD DMG2 Dragon Dungeon Adventure",
-    "sourceText": "\\define allcheck(n,m) <$action-setfield $field=\"$n$\" $value={{!!$m$}}/>\n\n\\define alluncheck(n) <$action-setfield $field=\"$n$\" $value=\"\"/>\n\n\\define allsubcheck(n) <$action-setfield $field=\"selected-$n$\" $value={{!!$n$}}/>\n\n\\define allsubuncheck(n) <$action-setfield $field=\"selected-$n$\" $value=\"\"/>\n\n<$vars sourcefilter=\"[get[source]]:intersection[enlist{另类奖励!!source}]\" levelfilter=\"[get[item-level]enlist-input[]]:intersection[enlist{另类奖励!!levelRange}]\" categoryfilter=\"[get[item-category]match[另类奖励]]\" rarityfilter=\"[get[rarity]]:intersection[enlist{另类奖励!!rarity}]\" sortfilter=\"[get[item-level]split[ ]first[]]\" alternativefilter=\"[get[item-suitable]]:intersection[list[另类奖励!!selected-alternative-list]]\">\n\n<div style=\"display:flex\">\n\t<div style=\"flex:4.5\">\n\t\t<p>\n\t\t\t<h2>内容搜索</h2>\n\t\t\t<$edit-text field=\"searchContent\" placeholder=\"空格分隔条件\"/>\n\t\t</p>\n\t\t<p>\n\t\t\t<h2>等级区间</h2>\n\t\t\t<$radio class=\"sizerRadio\" field=\"levelRange\" value=`${[range[1],[10]join[ ]]}$`>英雄级</$radio><$radio class=\"sizerRadio\" field=\"levelRange\" value=`${[range[11],[20]join[ ]]}$`>典范级</$radio><$radio class=\"sizerRadio\" field=\"levelRange\" value=`${[range[21],[30]join[ ]]}$`>传奇级</$radio>\n\t\t</p>\n\t\t<p>\n\t\t\t<h2>分类</h2>\n\t\t\t<ul style=\"list-style: none;padding:0;\" class=\"nomarker\">\n\t\t\t\t<li><$checkbox indeterminate=\"yes\" class=\"sizerCheckbox\" filter=\"[list[!!selected-alternative-list]count[]]\" checked={{{ [list[!!alternative-list]count[]] }}} unchecked=\"0\" checkactions=<<allsubcheck \"alternative-list\">> uncheckactions=<<allsubuncheck \"alternative-list\">> >另类奖励</$checkbox>\n\t\t\t\t\t<ul style=\"list-style: none;padding-left:20px;display: flex;flex-wrap: wrap;\" class=\"nomarker\">\n\t\t\t\t\t\t<$list variable=\"alternative\" filter=\"[list[!!alternative-list]]\">\n\t\t\t\t\t\t<li><$checkbox class=\"sizerCheckbox\" listField=\"selected-alternative-list\" checked=<<alternative>> ><<alternative>></$checkbox></li>\n\t\t\t\t\t\t</$list>\n\t\t\t\t\t</ul>\n\t\t\t\t</li>\n\t\t\t</ul>\n\t\t</p>\n\t\t<p>\n\t\t\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t\t\t<h2>稀有度</h2>\n\t\t\t\t<span>\n\t\t\t\t<$button class=\"myButton\"><<allcheck \"rarity\" \"allRarity\">>全选</$button><$button class=\"myButton\"><<alluncheck \"rarity\">>全不选</$button>\n\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t\t<$list filter=\"[enlist{!!allRarity}]\">\n\t\t\t\t<$checkbox tiddler=\"另类奖励\" listField=\"rarity\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t\t\t</$list>\n\t\t\t</div>\n\t\t</p>\n\t\t<p>\n\t\t\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t\t\t<h2>出处</h2>\n\t\t\t\t<span>\n\t\t\t\t<$button class=\"myButton\"><<allcheck \"source\" \"allSource\">>全选</$button><$button class=\"myButton\"><<alluncheck \"source\">>全不选</$button>\n\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t\t<$list filter=\"[enlist{!!allSource}]\">\n\t\t\t\t<$checkbox tiddler=\"另类奖励\" listField=\"source\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t\t\t</$list>\n\t\t\t</div>\n\t\t</p>\n\t\t<table class=\"dndTable\">\n\t\t<tr class=\"header\"><td>物品</td><td style=\"min-width:135px\">等级</td><td style=\"min-width:115px\">分类</td><td style=\"min-width:65px\">稀有度</td><td style=\"min-width:80px\">出处</td></tr>\n\t\t<$list filter=\"[tag[物品]filter<categoryfilter>filter<alternativefilter>filter<levelfilter>filter<sourcefilter>filter<rarityfilter>search:title,details{!!searchContent}sort[item-suitable]sortsub:number<sortfilter>]\">\n\t\t<tr><td><$link><$text text=<<currentTiddler>>/></$link></td><td>{{!!item-level}}</td><td>{{!!item-suitable}}</td><td>{{!!rarity}}</td><td>{{!!source}}</td></tr>\n\t\t</$list>\n\t\t</table>\n\t\t<p>共<$count filter=\"[tag[物品]filter<categoryfilter>filter<alternativefilter>filter<levelfilter>filter<sourcefilter>filter<rarityfilter>search:title,details{!!searchContent}]\"/>条记录</p>\n\t</div>\n\n\t<div style=\"flex:5.5;padding-left:10px;\">\n\t\t<$list filter=\"[tag[物品]filter<categoryfilter>filter<alternativefilter>filter<levelfilter>filter<sourcefilter>filter<rarityfilter>search:title,details{!!searchContent}sort[item-suitable]sortsub:number<sortfilter>]\">\n\t\t{{}}\n\t\t<br>\n\t\t</$list>\n\t</div>\n</div>\n</$vars>",
-    "fields": {
-      "created": "20240930071149389",
-      "creator": "Leon",
-      "modified": "20241009013326766",
-      "modifier": "Leon",
-      "allRarity": "普通 非普通 稀有",
-      "allSource": "PH PH2 PH3 AP PsP AV AV2 MotP PHRD PHRT HoF HoS HoEC HoFL HoFK FRPG EPG DSCS MME BoVD DMG2 Dragon Dungeon Adventure",
-      "rarity": "普通 非普通 稀有",
-      "source": "PH PH2 PH3 AP PsP AV AV2 MotP PHRD PHRT HoF HoS HoEC HoFL HoFK FRPG EPG DSCS MME BoVD DMG2 Dragon Dungeon Adventure",
-      "searchContent": "",
-      "alternative-list": "神圣恩赐 传奇恩赐 大师特训 元素赠礼 失落符文 妖精魔法赠礼",
-      "selected-alternative-list": "传奇恩赐 大师特训 元素赠礼 失落符文 妖精魔法赠礼 神圣恩赐",
-      "levelRange": "1 2 3 4 5 6 7 8 9 10"
-    },
-    "wiki": {
-      "transclusions": [
-        "[list["
-      ],
-      "links": [],
-      "macros": [
-        "allsubcheck",
-        "allsubuncheck",
-        "alternative",
-        "alternative",
-        "allcheck",
-        "alluncheck",
-        "currentTiddler",
-        "currentTiddler",
-        "allcheck",
-        "alluncheck",
-        "currentTiddler",
-        "currentTiddler",
-        "currentTiddler"
-      ],
-      "headings": []
-    }
-  },
-  {
-    "id": "龙晶强化",
-    "name": "龙晶强化",
-    "category": "nav",
-    "tags": [],
-    "sourceText": "<$vars categoryfilter=\"[get[item-category]match[龙晶强化]]\" sortfilter=\"[get[item-level]split[ ]first[]]\">\n\n<div style=\"display:flex\">\n\t<div style=\"flex:4.5\">\n\n<<<\n这三种龙晶都是根据它们的起源来命名的： 西伯瑞斯龙晶，吉波尔龙晶，艾伯伦龙晶。西伯瑞斯龙晶里流转着金光纹理。吉波尔龙晶则是深蓝色带着黑色纹理。艾伯伦龙晶，通常在晶洞中发现，深红色带着暗色漩涡。\n\n任何角色都可以在短休息或长休息中，将龙晶附加在一件魔法武器上，或移除一个已经附加上的龙晶。大多数龙晶都提供一种特性，但也有一些给予你威能。一件魔法武器一次只能装上一个龙晶。\n<<<\n\t\t<p>\n\t\t\t<h2>内容搜索</h2>\n\t\t\t<$edit-text field=\"searchContent\" placeholder=\"空格分隔条件\"/>\n\t\t</p>\n\t\t<table class=\"dndTable\">\n\t\t<tr class=\"header\"><td>物品</td><td style=\"min-width:135px\">等级</td><td style=\"min-width:65px\">稀有度</td><td style=\"min-width:85px\">出处</td></tr>\n\t\t<$list filter=\"[tag[物品]filter<categoryfilter>search:title,details{!!searchContent}sortsub:number<sortfilter>]\">\n\t\t<tr><td><$link><$text text=<<currentTiddler>>/></$link></td><td>{{!!item-level}}</td><td>{{!!rarity}}</td><td>{{!!source}}</td></tr>\n\t\t</$list>\n\t\t</table>\n\t\t<p>共<$count filter=\"[tag[物品]filter<categoryfilter>search:title,details{!!searchContent}]\"/>条记录</p>\n\t</div>\n\n\t<div style=\"flex:5.5;padding-left:10px;\">\n\t\t<$list filter=\"[tag[物品]filter<categoryfilter>search:title,details{!!searchContent}sortsub:number<sortfilter>]\">\n\t\t{{}}\n\t\t<br>\n\t\t</$list>\n\t</div>\n</div>\n</$vars>",
-    "fields": {
-      "created": "20240930054648006",
-      "creator": "Leon",
-      "modified": "20241007033324520",
-      "modifier": "Leon",
-      "searchContent": "",
-      "caption": "龙晶"
-    },
-    "wiki": {
-      "transclusions": [],
-      "links": [],
-      "macros": [
-        "currentTiddler"
+        "list-links"
       ],
       "headings": []
     }
@@ -314,7 +95,9 @@
       "created": "20240930193526374",
       "creator": "Leon",
       "modified": "20240930193548693",
-      "modifier": "Leon"
+      "modifier": "Leon",
+      "revision": "0",
+      "bag": "default"
     },
     "wiki": {
       "transclusions": [],
@@ -326,598 +109,27 @@
     }
   },
   {
-    "id": "魔宠速查",
-    "name": "魔宠速查",
-    "category": "nav",
-    "tags": [],
-    "sourceText": "\\define allcheck(n,m) <$action-setfield $field=\"$n$\" $value={{!!$m$}}/>\n\n\\define alluncheck(n) <$action-setfield $field=\"$n$\" $value=\"\"/>\n\n\\procedure rangeLevelStop() <$action-setfield $field=\"min-level-confirmed\" $value=<<actionValue>>/>\n\n<$vars tierfilter=\"[get[tier]!is[blank]else[英雄]]:intersection[enlist{魔宠速查!!tier}]\" sortfilter=\"[get[tier]!is[blank]else[英雄]]\">\n\n<div style=\"display:flex\">\n\t<div style=\"flex:4.5\">\n\t\t<p>\n\t\t\t<h2>内容搜索</h2>\n\t\t\t<$edit-text field=\"searchContent\" placeholder=\"空格分隔条件\"/>\n\t\t</p>\n\t\t<p>\n\t\t\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t\t\t<h2>层级</h2>\n\t\t\t\t<span>\n\t\t\t\t<$button class=\"myButton\"><<allcheck \"tier\" \"allTier\">>全选</$button><$button class=\"myButton\"><<alluncheck \"tier\">>全不选</$button>\n\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t\t<$list filter=\"[enlist{!!allTier}]\">\n\t\t\t\t<$checkbox tiddler=\"魔宠速查\" listField=\"tier\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t\t\t</$list>\n\t\t\t</div>\n\t\t</p>\n\t\t<table class=\"dndTable\">\n\t\t<tr class=\"header\"><td>魔宠</td><td>层级</td><td>出处</td></tr>\n\t\t<$list filter=\"[tag[生物]search:text[魔宠]filter<tierfilter>search:title,text{!!searchContent}sort[source]!sortsub<sortfilter>]\">\n\t\t<tr><td><$link><$text text=<<currentTiddler>>/></$link></td><td><$text text=`${[<currentTiddler>get[tier]!is[blank]else[英雄]]}$`/></td><td>{{!!source}}</td></tr>\n\t\t</$list>\n\t\t</table>\n\t\t<p>共<$count filter=\"[tag[生物]search:text[魔宠]filter<tierfilter>search:title,text{!!searchContent}]\"/>条记录</p>\n\t</div>\n\n\t<div style=\"flex:5.5;padding-left:10px;\">\n\t\t<$list filter=\"[tag[生物]search:text[魔宠]filter<tierfilter>search:title,text{!!searchContent}sort[source]!sortsub<sortfilter>]\">\n\t\t{{}}\n\t\t<br>\n\t\t</$list>\n\t</div>\n</div>\n</$vars>",
-    "fields": {
-      "created": "20240930190456400",
-      "creator": "Leon",
-      "modified": "20241009011346166",
-      "modifier": "Leon",
-      "searchContent": "",
-      "allTier": "英雄 典范 传奇",
-      "tier": "英雄 典范 传奇"
-    },
-    "wiki": {
-      "transclusions": [],
-      "links": [],
-      "macros": [
-        "actionValue",
-        "allcheck",
-        "alluncheck",
-        "currentTiddler",
-        "currentTiddler",
-        "currentTiddler"
-      ],
-      "headings": []
-    }
-  },
-  {
-    "id": "魔法臂部物品",
-    "name": "魔法臂部物品",
-    "category": "nav",
-    "tags": [],
-    "source": "PH PH2 PH3 AP PsP AV AV2 MotP PHRD PHRT HoF HoS HoEC HoFL HoFK FRPG EPG DSCS MME BoVD DMG2 Dragon Dungeon Adventure",
-    "sourceText": "\\define allcheck(n,m) <$action-setfield $field=\"$n$\" $value={{!!$m$}}/>\n\n\\define alluncheck(n) <$action-setfield $field=\"$n$\" $value=\"\"/>\n\n\\define allsubcheck(n) <$action-setfield $field=\"selected-$n$\" $value={{!!$n$}}/>\n\n\\define allsubuncheck(n) <$action-setfield $field=\"selected-$n$\" $value=\"\"/>\n\n<$vars sourcefilter=\"[get[source]]:intersection[enlist{魔法臂部物品!!source}]\" levelfilter=\"[get[item-level]enlist-input[]]:intersection[enlist{魔法臂部物品!!levelRange}]\" categoryfilter=\"[get[item-category]match[臂部]]\" rarityfilter=\"[get[rarity]]:intersection[enlist{魔法臂部物品!!rarity}]\" sortfilter=\"[get[item-level]split[ ]first[]]\" armfilter=\"[get[item-suitable]]:intersection[list[魔法臂部物品!!selected-arm-list]]\">\n<div style=\"display:flex\">\n\t<div style=\"flex:4.5\">\n\n<<<\n即使角色物理上可以同时佩戴护腕和盾牌，他也只能从臂部的一件魔法物品上获得增益。\n\n角色从最先佩戴的物品上获益；任何放置在同一物品位置的其他物品都不会起作用，直到角色取下第一个物品。\n<<<\n\t\t<p>\n\t\t\t<h2>内容搜索</h2>\n\t\t\t<$edit-text field=\"searchContent\" placeholder=\"空格分隔条件\"/>\n\t\t</p>\n\t\t<p>\n\t\t\t<h2>等级区间</h2>\n\t\t\t<$radio class=\"sizerRadio\" field=\"levelRange\" value=`${[range[1],[10]join[ ]]}$`>英雄级</$radio><$radio class=\"sizerRadio\" field=\"levelRange\" value=`${[range[11],[20]join[ ]]}$`>典范级</$radio><$radio class=\"sizerRadio\" field=\"levelRange\" value=`${[range[21],[30]join[ ]]}$`>传奇级</$radio>\n\t\t</p>\n\t\t<p>\n\t\t\t<h2>分类</h2>\n\t\t\t<ul style=\"list-style: none;padding:0;\" class=\"nomarker\">\n\t\t\t\t<li><$checkbox indeterminate=\"yes\" class=\"sizerCheckbox\" filter=\"[list[!!selected-arm-list]count[]]\" checked={{{ [list[!!arm-list]count[]] }}} unchecked=\"0\" checkactions=<<allsubcheck \"arm-list\">> uncheckactions=<<allsubuncheck \"arm-list\">> >臂部</$checkbox>\n\t\t\t\t\t<ul style=\"list-style: none;padding-left:20px;display: flex;flex-wrap: wrap;\" class=\"nomarker\">\n\t\t\t\t\t\t<$list variable=\"arm\" filter=\"[list[!!arm-list]]\">\n\t\t\t\t\t\t<li><$checkbox class=\"sizerCheckbox\" listField=\"selected-arm-list\" checked=<<arm>> ><<arm>></$checkbox></li>\n\t\t\t\t\t\t</$list>\n\t\t\t\t\t</ul>\n\t\t\t\t</li>\n\t\t\t</ul>\n\t\t</p>\n\t\t<p>\n\t\t\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t\t\t<h2>稀有度</h2>\n\t\t\t\t<span>\n\t\t\t\t<$button class=\"myButton\"><<allcheck \"rarity\" \"allRarity\">>全选</$button><$button class=\"myButton\"><<alluncheck \"rarity\">>全不选</$button>\n\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t\t<$list filter=\"[enlist{!!allRarity}]\">\n\t\t\t\t<$checkbox tiddler=\"魔法臂部物品\" listField=\"rarity\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t\t\t</$list>\n\t\t\t</div>\n\t\t</p>\n\t\t<p>\n\t\t\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t\t\t<h2>出处</h2>\n\t\t\t\t<span>\n\t\t\t\t<$button class=\"myButton\"><<allcheck \"source\" \"allSource\">>全选</$button><$button class=\"myButton\"><<alluncheck \"source\">>全不选</$button>\n\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t\t<$list filter=\"[enlist{!!allSource}]\">\n\t\t\t\t<$checkbox tiddler=\"魔法臂部物品\" listField=\"source\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t\t\t</$list>\n\t\t\t</div>\n\t\t</p>\n\t\t<table class=\"dndTable\">\n\t\t<tr class=\"header\"><td>物品</td><td style=\"min-width:135px\">等级</td><td style=\"min-width:80px\">分类</td><td style=\"min-width:65px\">稀有度</td><td style=\"min-width:85px\">出处</td></tr>\n\t\t<$list filter=\"[tag[物品]filter<categoryfilter>filter<armfilter>filter<levelfilter>filter<sourcefilter>filter<rarityfilter>search:title,details{!!searchContent}sort[item-suitable]sortsub:number<sortfilter>]\">\n\t\t<tr><td><$link><$text text=<<currentTiddler>>/></$link></td><td>{{!!item-level}}</td><td>{{!!item-suitable}}</td><td>{{!!rarity}}</td><td>{{!!source}}</td></tr>\n\t\t</$list>\n\t\t</table>\n\t\t<p>共<$count filter=\"[tag[物品]filter<categoryfilter>filter<armfilter>filter<levelfilter>filter<sourcefilter>filter<rarityfilter>search:title,details{!!searchContent}]\"/>条记录</p>\n\t</div>\n\n\t<div style=\"flex:5.5;padding-left:10px;\">\n\t\t<$list filter=\"[tag[物品]filter<categoryfilter>filter<armfilter>filter<levelfilter>filter<sourcefilter>filter<rarityfilter>search:title,details{!!searchContent}sort[item-suitable]sortsub:number<sortfilter>]\">\n\t\t{{}}\n\t\t<br>\n\t\t</$list>\n\t</div>\n</div>\n</$vars>",
-    "fields": {
-      "created": "20240930035014130",
-      "creator": "Leon",
-      "modified": "20241009012336869",
-      "modifier": "Leon",
-      "allRarity": "普通 非普通 稀有",
-      "allSource": "PH PH2 PH3 AP PsP AV AV2 MotP PHRD PHRT HoF HoS HoEC HoFL HoFK FRPG EPG DSCS MME BoVD DMG2 Dragon Dungeon Adventure",
-      "rarity": "普通 非普通 稀有",
-      "source": "PH PH2 PH3 AP PsP AV AV2 MotP PHRD PHRT HoF HoS HoEC HoFL HoFK FRPG EPG DSCS MME BoVD DMG2 Dragon Dungeon Adventure",
-      "searchContent": "",
-      "arm-list": "轻盾 重盾 任意盾牌 护腕",
-      "selected-arm-list": "轻盾 重盾 任意盾牌 护腕",
-      "levelRange": "1 2 3 4 5 6 7 8 9 10"
-    },
-    "wiki": {
-      "transclusions": [
-        "[list["
-      ],
-      "links": [],
-      "macros": [
-        "allsubcheck",
-        "allsubuncheck",
-        "arm",
-        "arm",
-        "allcheck",
-        "alluncheck",
-        "currentTiddler",
-        "currentTiddler",
-        "allcheck",
-        "alluncheck",
-        "currentTiddler",
-        "currentTiddler",
-        "currentTiddler"
-      ],
-      "headings": []
-    }
-  },
-  {
-    "id": "魔法弹药",
-    "name": "魔法弹药",
-    "category": "nav",
-    "tags": [],
-    "sourceText": "<$vars categoryfilter=\"[get[item-category]match[弹药]]\" sortfilter=\"[get[item-level]split[ ]first[]]\">\n\n<div style=\"display:flex\">\n\t<div style=\"flex:4.5\">\n\t\t<p>\n\t\t\t<h2>内容搜索</h2>\n\t\t\t<$edit-text field=\"searchContent\" placeholder=\"空格分隔条件\"/>\n\t\t</p>\n\t\t<table class=\"dndTable\">\n\t\t\t<tr class=\"header\"><td>物品</td><td style=\"min-width:135px\">等级</td><td style=\"min-width:65px\">稀有度</td><td style=\"min-width:85px\">出处</td></tr>\n\t\t\t<$list filter=\"[tag[物品]filter<categoryfilter>search:title,details{!!searchContent}sortsub:number<sortfilter>]\">\n\t\t\t<tr><td><$link><$text text=<<currentTiddler>>/></$link></td><td>{{!!item-level}}</td><td>{{!!rarity}}</td><td>{{!!source}}</td></tr>\n\t\t\t</$list>\n\t\t</table>\n\t\t<p>共<$count filter=\"[tag[物品]filter<categoryfilter>search:title,details{!!searchContent}]\"/>条记录</p>\n\t</div>\n\t<div style=\"flex:5.5;padding-left:10px;\">\n\t\t<$list filter=\"[tag[物品]filter<categoryfilter>search:title,details{!!searchContent}sortsub:number<sortfilter>]\">\n\t\t{{}}\n\t\t<br>\n\t\t</$list>\n\t</div>\n</div>\n</$vars>",
-    "fields": {
-      "created": "20240930055504732",
-      "creator": "Leon",
-      "modified": "20241007043801993",
-      "modifier": "Leon",
-      "searchContent": ""
-    },
-    "wiki": {
-      "transclusions": [],
-      "links": [],
-      "macros": [
-        "currentTiddler"
-      ],
-      "headings": []
-    }
-  },
-  {
-    "id": "魔法法器",
-    "name": "魔法法器",
-    "category": "nav",
-    "tags": [],
-    "source": "PH PH2 PH3 AP PsP AV AV2 MotP PHRD PHRT HoF HoS HoEC HoFL HoFK FRPG EPG DSCS MME BoVD DMG2 Dragon Dungeon Adventure",
-    "sourceText": "\\define allcheck(n,m) <$action-setfield $field=\"$n$\" $value={{!!$m$}}/>\n\n\\define alluncheck(n) <$action-setfield $field=\"$n$\" $value=\"\"/>\n\n\\define allsubcheck(n) <$action-setfield $field=\"selected-$n$\" $value={{!!$n$}}/>\n\n\\define allsubuncheck(n) <$action-setfield $field=\"selected-$n$\" $value=\"\"/>\n\n<$vars minLevel=`${[{!!min-enhance}subtract[1]multiply[5]]}$` sourcefilter=\"[get[source]]:intersection[enlist{魔法法器!!source}]\" levelfilter=\"[get[item-level]split[ ]first[]compare::gt<minLevel>]\" rangefilter=\"[get[item-level]split[ ]first[]subtract<minLevel>]:intersection[enlist{魔法法器!!levelRange}]\" categoryfilter=\"[get[item-category]match[法器]]\" rarityfilter=\"[get[rarity]]:intersection[enlist{魔法法器!!rarity}]\" sortfilter=\"[get[item-level]split[ ]first[]]\" implementfilter=\"[get[item-suitable]]:intersection[list[魔法法器!!selected-implement-list]]\">\n\n<div style=\"display:flex\">\n\t<div style=\"flex:4.5\">\n\t\t<p>\n\t\t\t<h2>内容搜索</h2>\n\t\t\t<$edit-text field=\"searchContent\" placeholder=\"空格分隔条件\"/>\n\t\t</p>\n\t\t<p>\n\t\t\t<h2>最低增强加值</h2>\n\t\t\t<$radio class=\"sizerRadio\" field=\"min-enhance\" value=\"1\">+1</$radio><$radio class=\"sizerRadio\" field=\"min-enhance\" value=\"2\">+2</$radio><$radio class=\"sizerRadio\" field=\"min-enhance\" value=\"3\">+3</$radio><$radio class=\"sizerRadio\" field=\"min-enhance\" value=\"4\">+4</$radio><$radio class=\"sizerRadio\" field=\"min-enhance\" value=\"5\">+5</$radio><$radio class=\"sizerRadio\" field=\"min-enhance\" value=\"6\">+6</$radio>\n\t\t</p>\n\t\t<p>\n\t\t\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t\t\t<h2>等级区间</h2>\n\t\t\t\t<span>\n\t\t\t\t<$button class=\"myButton\"><<allcheck \"levelRange\" \"allLevelRange\">>全选</$button><$button class=\"myButton\"><<alluncheck \"levelRange\">>全不选</$button>\n\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t\t<$list filter=\"[enlist{!!allLevelRange}]\">\n\t\t\t\t<$set name=\"minRange\" filter=\"[<minLevel>add<currentTiddler>]\">\n\t\t\t\t<$checkbox tiddler=\"魔法法器\" listField=\"levelRange\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<minRange>>+</$checkbox>\n\t\t\t\t</$set>\n\t\t\t\t</$list>\n\t\t\t</div>\n\t\t</p>\n\t\t<p>\n\t\t\t<h2>分类</h2>\n\t\t\t<ul style=\"list-style: none;padding:0;\" class=\"nomarker\">\n\t\t\t\t<li><$checkbox indeterminate=\"yes\" class=\"sizerCheckbox\" filter=\"[list[!!selected-implement-list]count[]]\" checked={{{ [list[!!implement-list]count[]] }}} unchecked=\"0\" checkactions=<<allsubcheck \"implement-list\">> uncheckactions=<<allsubuncheck \"implement-list\">> >法器</$checkbox>\n\t\t\t\t\t<ul style=\"list-style: none;padding-left:20px;display: flex;flex-wrap: wrap;\" class=\"nomarker\">\n\t\t\t\t\t\t<$list variable=\"implement\" filter=\"[list[!!implement-list]]\">\n\t\t\t\t\t\t<li><$checkbox class=\"sizerCheckbox\" listField=\"selected-implement-list\" checked=<<implement>> ><<implement>></$checkbox></li>\n\t\t\t\t\t\t</$list>\n\t\t\t\t\t</ul>\n\t\t\t\t</li>\n\t\t\t</ul>\n\t\t</p>\n\t\t<p>\n\t\t\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t\t\t<h2>稀有度</h2>\n\t\t\t\t<span>\n\t\t\t\t<$button class=\"myButton\"><<allcheck \"rarity\" \"allRarity\">>全选</$button><$button class=\"myButton\"><<alluncheck \"rarity\">>全不选</$button>\n\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t\t<$list filter=\"[enlist{!!allRarity}]\">\n\t\t\t\t<$checkbox tiddler=\"魔法法器\" listField=\"rarity\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t\t\t</$list>\n\t\t\t</div>\n\t\t</p>\n\t\t<p>\n\t\t\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t\t\t<h2>出处</h2>\n\t\t\t\t<span>\n\t\t\t\t<$button class=\"myButton\"><<allcheck \"source\" \"allSource\">>全选</$button><$button class=\"myButton\"><<alluncheck \"source\">>全不选</$button>\n\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t\t<$list filter=\"[enlist{!!allSource}]\">\n\t\t\t\t<$checkbox tiddler=\"魔法法器\" listField=\"source\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t\t\t</$list>\n\t\t\t</div>\n\t\t</p>\n\t\t<table class=\"dndTable\">\n\t\t<tr class=\"header\"><td>物品</td><td style=\"min-width:135px\">等级</td><td style=\"min-width:80px\">分类</td><td style=\"min-width:65px\">稀有度</td><td style=\"min-width:85px\">出处</td></tr>\n\t\t<$list filter=\"[tag[物品]filter<categoryfilter>filter<implementfilter>filter<levelfilter>filter<rangefilter>filter<sourcefilter>filter<rarityfilter>search:title,details{!!searchContent}sort[item-suitable]sortsub:number<sortfilter>]\">\n\t\t<tr><td><$link><$text text=<<currentTiddler>>/></$link></td><td>{{!!item-level}}</td><td>{{!!item-suitable}}</td><td>{{!!rarity}}</td><td>{{!!source}}</td></tr>\n\t\t</$list>\n\t\t</table>\n\t\t<p>共<$count filter=\"[tag[物品]filter<categoryfilter>filter<implementfilter>filter<levelfilter>filter<rangefilter>filter<sourcefilter>filter<rarityfilter>search:title,details{!!searchContent}]\"/>条记录</p>\n\t</div>\n\n\t<div style=\"flex:5.5;padding-left:10px;\">\n\t\t<$list filter=\"[tag[物品]filter<categoryfilter>filter<implementfilter>filter<levelfilter>filter<rangefilter>filter<sourcefilter>filter<rarityfilter>search:title,details{!!searchContent}sort[item-suitable]sortsub:number<sortfilter>]\">\n\t\t{{}}\n\t\t<br>\n\t\t</$list>\n\t</div>\n</div>\n</$vars>",
-    "fields": {
-      "created": "20240930011534091",
-      "creator": "Leon",
-      "modified": "20250425050115121",
-      "modifier": "Leon",
-      "allRarity": "普通 非普通 稀有",
-      "allSource": "PH PH2 PH3 AP PsP AV AV2 MotP PHRD PHRT HoF HoS HoEC HoFL HoFK FRPG EPG DSCS MME BoVD DMG2 Dragon Dungeon Adventure",
-      "rarity": "普通 非普通 稀有",
-      "source": "PH PH2 PH3 AP PsP AV AV2 MotP PHRD PHRT HoF HoS HoEC HoFL HoFK FRPG EPG DSCS MME BoVD DMG2 Dragon Dungeon Adventure",
-      "searchContent": "",
-      "implement-list": "圣徽 气印 图腾 权杖 法珠 法杖 魔典 魔杖",
-      "selected-implement-list": "法杖",
-      "min-enhance": "1",
-      "allLevelRange": "1 2 3 4 5",
-      "levelRange": "2"
-    },
-    "wiki": {
-      "transclusions": [
-        "[list["
-      ],
-      "links": [],
-      "macros": [
-        "allcheck",
-        "alluncheck",
-        "currentTiddler",
-        "minRange",
-        "allsubcheck",
-        "allsubuncheck",
-        "implement",
-        "implement",
-        "allcheck",
-        "alluncheck",
-        "currentTiddler",
-        "currentTiddler",
-        "allcheck",
-        "alluncheck",
-        "currentTiddler",
-        "currentTiddler",
-        "currentTiddler"
-      ],
-      "headings": []
-    }
-  },
-  {
-    "id": "魔法护甲",
-    "name": "魔法护甲",
-    "category": "nav",
-    "tags": [],
-    "source": "PH PH2 PH3 AP PsP AV AV2 MotP PHRD PHRT HoF HoS HoEC HoFL HoFK FRPG EPG DSCS MME BoVD DMG2 Dragon Dungeon Adventure",
-    "sourceText": "\\define allcheck(n,m) <$action-setfield $field=\"$n$\" $value={{!!$m$}}/>\n\n\\define alluncheck(n) <$action-setfield $field=\"$n$\" $value=\"\"/>\n\n\\define allsubcheck(n) <$action-setfield $field=\"selected-$n$\" $value={{!!$n$}}/>\n\n\\define allsubuncheck(n) <$action-setfield $field=\"selected-$n$\" $value=\"\"/>\n\n<$vars minLevel=`${[{!!min-enhance}subtract[1]multiply[5]]}$` sourcefilter=\"[get[source]]:intersection[enlist{魔法护甲!!source}]\" levelfilter=\"[get[item-level]split[ ]first[]compare::gt<minLevel>]\" rangefilter=\"[get[item-level]split[ ]first[]subtract<minLevel>]:intersection[enlist{魔法护甲!!levelRange}]\" categoryfilter=\"[get[item-category]match[护甲]]\" rarityfilter=\"[get[rarity]]:intersection[enlist{魔法护甲!!rarity}]\" sortfilter=\"[get[item-level]split[ ]first[]]\" armorfilter=\"[get[item-suitable]split[，]]:intersection[enlist{魔法护甲!!selected-armor-list}]\">\n\n<div style=\"display:flex\">\n\t<div style=\"flex:4.5\">\n\t\t<p>\n\t\t\t<h2>内容搜索</h2>\n\t\t\t<$edit-text field=\"searchContent\" placeholder=\"空格分隔条件\"/>\n\t\t</p>\n\t\t<p>\n\t\t\t<h2>最低增强加值</h2>\n\t\t\t<$radio class=\"sizerRadio\" field=\"min-enhance\" value=\"1\">+1</$radio><$radio class=\"sizerRadio\" field=\"min-enhance\" value=\"2\">+2</$radio><$radio class=\"sizerRadio\" field=\"min-enhance\" value=\"3\">+3</$radio><$radio class=\"sizerRadio\" field=\"min-enhance\" value=\"4\">+4</$radio><$radio class=\"sizerRadio\" field=\"min-enhance\" value=\"5\">+5</$radio><$radio class=\"sizerRadio\" field=\"min-enhance\" value=\"6\">+6</$radio>\n\t\t</p>\n\t\t<p>\n\t\t\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t\t\t<h2>等级区间</h2>\n\t\t\t\t<span>\n\t\t\t\t<$button class=\"myButton\"><<allcheck \"levelRange\" \"allLevelRange\">>全选</$button><$button class=\"myButton\"><<alluncheck \"levelRange\">>全不选</$button>\n\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t\t<$list filter=\"[enlist{!!allLevelRange}]\">\n\t\t\t\t<$set name=\"minRange\" filter=\"[<minLevel>add<currentTiddler>]\">\n\t\t\t\t<$checkbox tiddler=\"魔法护甲\" listField=\"levelRange\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<minRange>>+</$checkbox>\n\t\t\t\t</$set>\n\t\t\t\t</$list>\n\t\t\t</div>\n\t\t</p>\n\t\t<p>\n\t\t\t<h2>分类</h2>\n\t\t\t<ul style=\"list-style: none;padding:0;\" class=\"nomarker\">\n\t\t\t\t<li><$checkbox indeterminate=\"yes\" class=\"sizerCheckbox\" filter=\"[list[!!selected-armor-list]count[]]\" checked={{{ [list[!!armor-list]count[]] }}} unchecked=\"0\" checkactions=<<allsubcheck \"armor-list\">> uncheckactions=<<allsubuncheck \"armor-list\">> >护甲</$checkbox>\n\t\t\t\t\t<ul style=\"list-style: none;padding-left:20px;display: flex;flex-wrap: wrap;\" class=\"nomarker\">\n\t\t\t\t\t\t<$list variable=\"armor\" filter=\"[list[!!armor-list]]\">\n\t\t\t\t\t\t<li><$checkbox class=\"sizerCheckbox\" listField=\"selected-armor-list\" checked=<<armor>> ><<armor>></$checkbox></li>\n\t\t\t\t\t\t</$list>\n\t\t\t\t\t</ul>\n\t\t\t\t</li>\n\t\t\t</ul>\n\t\t</p>\n\t\t<p>\n\t\t\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t\t\t<h2>稀有度</h2>\n\t\t\t\t<span>\n\t\t\t\t<$button class=\"myButton\"><<allcheck \"rarity\" \"allRarity\">>全选</$button><$button class=\"myButton\"><<alluncheck \"rarity\">>全不选</$button>\n\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t\t<$list filter=\"[enlist{!!allRarity}]\">\n\t\t\t\t<$checkbox tiddler=\"魔法护甲\" listField=\"rarity\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t\t\t</$list>\n\t\t\t</div>\n\t\t</p>\n\t\t<p>\n\t\t\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t\t\t<h2>出处</h2>\n\t\t\t\t<span>\n\t\t\t\t<$button class=\"myButton\"><<allcheck \"source\" \"allSource\">>全选</$button><$button class=\"myButton\"><<alluncheck \"source\">>全不选</$button>\n\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t\t<$list filter=\"[enlist{!!allSource}]\">\n\t\t\t\t<$checkbox tiddler=\"魔法护甲\" listField=\"source\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t\t\t</$list>\n\t\t\t</div>\n\t\t</p>\n\t\t<table class=\"dndTable\">\n\t\t<tr class=\"header\"><td>物品</td><td style=\"min-width:135px\">等级</td><td style=\"min-width:80px\">分类</td><td style=\"min-width:65px\">稀有度</td><td style=\"min-width:85px\">出处</td></tr>\n\t\t<$list filter=\"[tag[物品]filter<categoryfilter>filter<armorfilter>filter<levelfilter>filter<rangefilter>filter<sourcefilter>filter<rarityfilter>search:title,details{!!searchContent}sort[item-suitable]sortsub:number<sortfilter>]\">\n\t\t<tr><td><$link><$text text=<<currentTiddler>>/></$link></td><td>{{!!item-level}}</td><td>{{!!item-suitable}}</td><td>{{!!rarity}}</td><td>{{!!source}}</td></tr>\n\t\t</$list>\n\t\t</table>\n\t\t<p>共<$count filter=\"[tag[物品]filter<categoryfilter>filter<armorfilter>filter<levelfilter>filter<rangefilter>filter<sourcefilter>filter<rarityfilter>search:title,details{!!searchContent}]\"/>条记录</p>\n\t</div>\n\n\t<div style=\"flex:5.5;padding-left:10px;\">\n\t\t<$list filter=\"[tag[物品]filter<categoryfilter>filter<armorfilter>filter<levelfilter>filter<rangefilter>filter<sourcefilter>filter<rarityfilter>search:title,details{!!searchContent}sort[item-suitable]sortsub:number<sortfilter>]\">\n\t\t{{}}\n\t\t<br>\n\t\t</$list>\n\t</div>\n</div>\n</$vars>",
-    "fields": {
-      "created": "20240930030022841",
-      "creator": "Leon",
-      "modified": "20250425050147475",
-      "modifier": "Leon",
-      "allRarity": "普通 非普通 稀有",
-      "allSource": "PH PH2 PH3 AP PsP AV AV2 MotP PHRD PHRT HoF HoS HoEC HoFL HoFK FRPG EPG DSCS MME BoVD DMG2 Dragon Dungeon Adventure",
-      "rarity": "普通 非普通 稀有",
-      "source": "PH PH2 PH3 AP PsP AV AV2 MotP PHRD PHRT HoF HoS HoEC HoFL HoFK FRPG EPG DSCS MME BoVD DMG2 Dragon Dungeon Adventure",
-      "searchContent": "",
-      "armor-list": "布甲 皮甲 革甲 链甲 鳞甲 板甲 任意",
-      "selected-armor-list": "布甲",
-      "allLevelRange": "1 2 3 4 5",
-      "min-enhance": "3",
-      "levelRange": "2 3"
-    },
-    "wiki": {
-      "transclusions": [
-        "[list["
-      ],
-      "links": [],
-      "macros": [
-        "allcheck",
-        "alluncheck",
-        "currentTiddler",
-        "minRange",
-        "allsubcheck",
-        "allsubuncheck",
-        "armor",
-        "armor",
-        "allcheck",
-        "alluncheck",
-        "currentTiddler",
-        "currentTiddler",
-        "allcheck",
-        "alluncheck",
-        "currentTiddler",
-        "currentTiddler",
-        "currentTiddler"
-      ],
-      "headings": []
-    }
-  },
-  {
-    "id": "魔法机关附件",
-    "name": "魔法机关附件",
-    "category": "nav",
-    "tags": [],
-    "sourceText": "<$vars categoryfilter=\"[get[item-category]match[机关附件]]\" sortfilter=\"[get[item-level]split[ ]first[]]\">\n\n<div style=\"display:flex\">\n\t<div style=\"flex:4.5\">\n\t\t<p>\n\t\t\t<h2>内容搜索</h2>\n\t\t\t<$edit-text field=\"searchContent\" placeholder=\"空格分隔条件\"/>\n\t\t</p>\n\t\t<table class=\"dndTable\">\n\t\t<tr class=\"header\"><td>物品</td><td style=\"min-width:135px\">等级</td><td style=\"min-width:65px\">分类</td><td style=\"min-width:65px\">稀有度</td><td style=\"min-width:85px\">出处</td></tr>\n\t\t<$list filter=\"[tag[物品]filter<categoryfilter>search:title,details{!!searchContent}sort[item-suitable]sortsub:number<sortfilter>]\">\n\t\t<tr><td><$link><$text text=<<currentTiddler>>/></$link></td><td>{{!!item-level}}</td><td>{{!!component-category}}</td><td>{{!!rarity}}</td><td>{{!!source}}</td></tr>\n\t\t</$list>\n\t\t</table>\n\t\t<p>共<$count filter=\"[tag[物品]filter<categoryfilter>search:title,details{!!searchContent}]\"/>条记录</p>\n\t</div>\n\n\t<div style=\"flex:5.5;padding-left:10px;\">\n\t\t<$list filter=\"[tag[物品]filter<categoryfilter>search:title,details{!!searchContent}sort[item-suitable]sortsub:number<sortfilter>]\">\n\t\t{{}}\n\t\t<br>\n\t\t</$list>\n\t</div>\n</div>\n</$vars>",
-    "fields": {
-      "created": "20240930050140966",
-      "creator": "Leon",
-      "modified": "20241007033302381",
-      "modifier": "Leon",
-      "searchContent": ""
-    },
-    "wiki": {
-      "transclusions": [],
-      "links": [],
-      "macros": [
-        "currentTiddler"
-      ],
-      "headings": []
-    }
-  },
-  {
-    "id": "魔法戒指",
-    "name": "魔法戒指",
-    "category": "nav",
-    "tags": [],
-    "source": "PH PH2 PH3 AP PsP AV AV2 MotP PHRD PHRT HoF HoS HoEC HoFL HoFK FRPG EPG DSCS MME BoVD DMG2 Dragon Dungeon Adventure",
-    "sourceText": "\\define allcheck(n,m) <$action-setfield $field=\"$n$\" $value={{!!$m$}}/>\n\n\\define alluncheck(n) <$action-setfield $field=\"$n$\" $value=\"\"/>\n\n<$vars sourcefilter=\"[get[source]]:intersection[enlist{魔法戒指!!source}]\" levelfilter=\"[get[item-level]enlist-input[]]:intersection[enlist{魔法戒指!!levelRange}]\" categoryfilter=\"[get[item-category]match[戒指]]\" rarityfilter=\"[get[rarity]]:intersection[enlist{魔法戒指!!rarity}]\" sortfilter=\"[get[item-level]split[ ]first[]]\">\n\n<div style=\"display:flex\">\n\t<div style=\"flex:4.5\">\n\n<<<\n一个角色可以穿戴并获得最多2个魔法戒指的增益（每只手1个）。如果一个角色同时穿戴了超过2个魔法戒指，则它们全都不生效，直到该角色穿戴的魔法戒指不超过2个。\n<<<\n\t\t<p>\n\t\t\t<h2>内容搜索</h2>\n\t\t\t<$edit-text field=\"searchContent\" placeholder=\"空格分隔条件\"/>\n\t\t</p>\n\t\t<p>\n\t\t\t<h2>等级区间</h2>\n\t\t\t<$radio class=\"sizerRadio\" field=\"levelRange\" value=`${[range[11],[20]join[ ]]}$`>典范级</$radio><$radio class=\"sizerRadio\" field=\"levelRange\" value=`${[range[21],[30]join[ ]]}$`>传奇级</$radio>\n\t\t</p>\n\t\t<p>\n\t\t\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t\t\t<h2>稀有度</h2>\n\t\t\t\t<span>\n\t\t\t\t<$button class=\"myButton\"><<allcheck \"rarity\" \"allRarity\">>全选</$button><$button class=\"myButton\"><<alluncheck \"rarity\">>全不选</$button>\n\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t\t<$list filter=\"[enlist{!!allRarity}]\">\n\t\t\t\t<$checkbox tiddler=\"魔法戒指\" listField=\"rarity\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t\t\t</$list>\n\t\t\t</div>\n\t\t</p>\n\t\t<p>\n\t\t\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t\t\t<h2>出处</h2>\n\t\t\t\t<span>\n\t\t\t\t<$button class=\"myButton\"><<allcheck \"source\" \"allSource\">>全选</$button><$button class=\"myButton\"><<alluncheck \"source\">>全不选</$button>\n\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t\t<$list filter=\"[enlist{!!allSource}]\">\n\t\t\t\t<$checkbox tiddler=\"魔法戒指\" listField=\"source\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t\t\t</$list>\n\t\t\t</div>\n\t\t</p>\n\t\t<table class=\"dndTable\">\n\t\t<tr class=\"header\"><td>物品</td><td style=\"min-width:135px\">等级</td><td style=\"min-width:65px\">稀有度</td><td style=\"min-width:85px\">出处</td></tr>\n\t\t<$list filter=\"[tag[物品]filter<categoryfilter>filter<levelfilter>filter<sourcefilter>filter<rarityfilter>search:title,details{!!searchContent}sortsub:number<sortfilter>]\">\n\t\t<tr><td><$link><$text text=<<currentTiddler>>/></$link></td><td>{{!!item-level}}</td><td>{{!!rarity}}</td><td>{{!!source}}</td></tr>\n\t\t</$list>\n\t\t</table>\n\t\t<p>共<$count filter=\"[tag[物品]filter<categoryfilter>filter<levelfilter>filter<sourcefilter>filter<rarityfilter>search:title,details{!!searchContent}]\"/>条记录</p>\n\t</div>\n\n\t<div style=\"flex:5.5;padding-left:10px;\">\n\t\t<$list filter=\"[tag[物品]filter<categoryfilter>filter<levelfilter>filter<sourcefilter>filter<rarityfilter>search:title,details{!!searchContent}sortsub:number<sortfilter>]\">\n\t\t{{}}\n\t\t<br>\n\t\t</$list>\n\t</div>\n</div>\n</$vars>",
-    "fields": {
-      "created": "20240930044947444",
-      "creator": "Leon",
-      "modified": "20241009012244021",
-      "modifier": "Leon",
-      "allRarity": "普通 非普通 稀有",
-      "allSource": "PH PH2 PH3 AP PsP AV AV2 MotP PHRD PHRT HoF HoS HoEC HoFL HoFK FRPG EPG DSCS MME BoVD DMG2 Dragon Dungeon Adventure",
-      "rarity": "普通 非普通 稀有",
-      "source": "PH PH2 PH3 AP PsP AV AV2 MotP PHRD PHRT HoF HoS HoEC HoFL HoFK FRPG EPG DSCS MME BoVD DMG2 Dragon Dungeon Adventure",
-      "searchContent": "",
-      "caption": "戒指",
-      "levelRange": "11 12 13 14 15 16 17 18 19 20"
-    },
-    "wiki": {
-      "transclusions": [],
-      "links": [],
-      "macros": [
-        "allcheck",
-        "alluncheck",
-        "currentTiddler",
-        "currentTiddler",
-        "allcheck",
-        "alluncheck",
-        "currentTiddler",
-        "currentTiddler",
-        "currentTiddler"
-      ],
-      "headings": []
-    }
-  },
-  {
-    "id": "魔法颈部物品",
-    "name": "魔法颈部物品",
-    "category": "nav",
-    "tags": [],
-    "source": "PH PH2 PH3 AP PsP AV AV2 MotP PHRD PHRT HoF HoS HoEC HoFL HoFK FRPG EPG DSCS MME BoVD DMG2 Dragon Dungeon Adventure",
-    "sourceText": "\\define allcheck(n,m) <$action-setfield $field=\"$n$\" $value={{!!$m$}}/>\n\n\\define alluncheck(n) <$action-setfield $field=\"$n$\" $value=\"\"/>\n\n<$vars minLevel=`${[{!!min-enhance}subtract[1]multiply[5]]}$` sourcefilter=\"[get[source]]:intersection[enlist{魔法颈部物品!!source}]\" levelfilter=\"[get[item-level]split[ ]first[]compare::gt<minLevel>]\" rangefilter=\"[get[item-level]split[ ]first[]subtract<minLevel>]:intersection[enlist{魔法颈部物品!!levelRange}]\" categoryfilter=\"[get[item-category]match[颈部]]\" rarityfilter=\"[get[rarity]]:intersection[enlist{魔法颈部物品!!rarity}]\" sortfilter=\"[get[item-level]split[ ]first[]]\">\n\n<div style=\"display:flex\">\n\t<div style=\"flex:4.5\">\n\t\t<p>\n\t\t\t<h2>内容搜索</h2>\n\t\t\t<$edit-text field=\"searchContent\" placeholder=\"空格分隔条件\"/>\n\t\t</p>\n\t\t<p>\n\t\t\t<h2>最低增强加值</h2>\n\t\t\t<$radio class=\"sizerRadio\" field=\"min-enhance\" value=\"1\">+1</$radio><$radio class=\"sizerRadio\" field=\"min-enhance\" value=\"2\">+2</$radio><$radio class=\"sizerRadio\" field=\"min-enhance\" value=\"3\">+3</$radio><$radio class=\"sizerRadio\" field=\"min-enhance\" value=\"4\">+4</$radio><$radio class=\"sizerRadio\" field=\"min-enhance\" value=\"5\">+5</$radio><$radio class=\"sizerRadio\" field=\"min-enhance\" value=\"6\">+6</$radio>\n\t\t</p>\n\t\t<p>\n\t\t\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t\t\t<h2>等级区间</h2>\n\t\t\t\t<span>\n\t\t\t\t<$button class=\"myButton\"><<allcheck \"levelRange\" \"allLevelRange\">>全选</$button><$button class=\"myButton\"><<alluncheck \"levelRange\">>全不选</$button>\n\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t\t<$list filter=\"[enlist{!!allLevelRange}]\">\n\t\t\t\t<$set name=\"minRange\" filter=\"[<minLevel>add<currentTiddler>]\">\n\t\t\t\t<$checkbox tiddler=\"魔法颈部物品\" listField=\"levelRange\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<minRange>>+</$checkbox>\n\t\t\t\t</$set>\n\t\t\t\t</$list>\n\t\t\t</div>\n\t\t</p>\n\t\t<p>\n\t\t\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t\t\t<h2>稀有度</h2>\n\t\t\t\t<span>\n\t\t\t\t<$button class=\"myButton\"><<allcheck \"rarity\" \"allRarity\">>全选</$button><$button class=\"myButton\"><<alluncheck \"rarity\">>全不选</$button>\n\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t\t<$list filter=\"[enlist{!!allRarity}]\">\n\t\t\t\t<$checkbox tiddler=\"魔法颈部物品\" listField=\"rarity\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t\t\t</$list>\n\t\t\t</div>\n\t\t</p>\n\t\t<p>\n\t\t\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t\t\t<h2>出处</h2>\n\t\t\t\t<span>\n\t\t\t\t<$button class=\"myButton\"><<allcheck \"source\" \"allSource\">>全选</$button><$button class=\"myButton\"><<alluncheck \"source\">>全不选</$button>\n\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t\t<$list filter=\"[enlist{!!allSource}]\">\n\t\t\t\t<$checkbox tiddler=\"魔法颈部物品\" listField=\"source\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t\t\t</$list>\n\t\t\t</div>\n\t\t</p>\n\t\t<table class=\"dndTable\">\n\t\t<tr class=\"header\"><td>物品</td><td style=\"min-width:135px\">等级</td><td style=\"min-width:65px\">稀有度</td><td style=\"min-width:85px\">出处</td></tr>\n\t\t<$list filter=\"[tag[物品]filter<categoryfilter>filter<levelfilter>filter<rangefilter>filter<sourcefilter>filter<rarityfilter>search:title,details{!!searchContent}sortsub:number<sortfilter>]\">\n\t\t<tr><td><$link><$text text=<<currentTiddler>>/></$link></td><td>{{!!item-level}}</td><td>{{!!rarity}}</td><td>{{!!source}}</td></tr>\n\t\t</$list>\n\t\t</table>\n\t\t<p>共<$count filter=\"[tag[物品]filter<categoryfilter>filter<levelfilter>filter<rangefilter>filter<sourcefilter>filter<rarityfilter>search:title,details{!!searchContent}]\"/>条记录</p>\n\t</div>\n\n\t<div style=\"flex:5.5;padding-left:10px;\">\n\t\t<$list filter=\"[tag[物品]filter<categoryfilter>filter<levelfilter>filter<rangefilter>filter<sourcefilter>filter<rarityfilter>search:title,details{!!searchContent}sortsub:number<sortfilter>]\">\n\t\t{{}}\n\t\t<br>\n\t\t</$list>\n\t</div>\n</div>\n</$vars>",
-    "fields": {
-      "created": "20240930043213732",
-      "creator": "Leon",
-      "modified": "20250425050233236",
-      "modifier": "Leon",
-      "allRarity": "普通 非普通 稀有",
-      "allSource": "PH PH2 PH3 AP PsP AV AV2 MotP PHRD PHRT HoF HoS HoEC HoFL HoFK FRPG EPG DSCS MME BoVD DMG2 Dragon Dungeon Adventure",
-      "rarity": "普通 非普通 稀有",
-      "source": "PH PH2 PH3 AP PsP AV AV2 MotP PHRD PHRT HoF HoS HoEC HoFL HoFK FRPG EPG DSCS MME BoVD DMG2 Dragon Dungeon Adventure",
-      "searchContent": "",
-      "caption": "颈部物品",
-      "allLevelRange": "1 2 3 4 5",
-      "min-enhance": "1",
-      "levelRange": "1 2 3 4 5"
-    },
-    "wiki": {
-      "transclusions": [],
-      "links": [],
-      "macros": [
-        "allcheck",
-        "alluncheck",
-        "currentTiddler",
-        "minRange",
-        "allcheck",
-        "alluncheck",
-        "currentTiddler",
-        "currentTiddler",
-        "allcheck",
-        "alluncheck",
-        "currentTiddler",
-        "currentTiddler",
-        "currentTiddler"
-      ],
-      "headings": []
-    }
-  },
-  {
-    "id": "魔法手部物品",
-    "name": "魔法手部物品",
-    "category": "nav",
-    "tags": [],
-    "source": "PH PH2 PH3 AP PsP AV AV2 MotP PHRD PHRT HoF HoS HoEC HoFL HoFK FRPG EPG DSCS MME BoVD DMG2 Dragon Dungeon Adventure",
-    "sourceText": "\\define allcheck(n,m) <$action-setfield $field=\"$n$\" $value={{!!$m$}}/>\n\n\\define alluncheck(n) <$action-setfield $field=\"$n$\" $value=\"\"/>\n\n<$vars sourcefilter=\"[get[source]]:intersection[enlist{魔法手部物品!!source}]\" levelfilter=\"[get[item-level]enlist-input[]]:intersection[enlist{魔法手部物品!!levelRange}]\" categoryfilter=\"[get[item-category]match[手部]]\" rarityfilter=\"[get[rarity]]:intersection[enlist{魔法手部物品!!rarity}]\" sortfilter=\"[get[item-level]split[ ]first[]]\">\n\n<div style=\"display:flex\">\n\t<div style=\"flex:4.5\">\n\t\t<p>\n\t\t\t<h2>内容搜索</h2>\n\t\t\t<$edit-text field=\"searchContent\" placeholder=\"空格分隔条件\"/>\n\t\t</p>\n\t\t<p>\n\t\t\t<h2>等级区间</h2>\n\t\t\t<$radio class=\"sizerRadio\" field=\"levelRange\" value=`${[range[1],[10]join[ ]]}$`>英雄级</$radio><$radio class=\"sizerRadio\" field=\"levelRange\" value=`${[range[11],[20]join[ ]]}$`>典范级</$radio><$radio class=\"sizerRadio\" field=\"levelRange\" value=`${[range[21],[30]join[ ]]}$`>传奇级</$radio>\n\t\t</p>\n\t\t<p>\n\t\t\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t\t\t<h2>稀有度</h2>\n\t\t\t\t<span>\n\t\t\t\t<$button class=\"myButton\"><<allcheck \"rarity\" \"allRarity\">>全选</$button><$button class=\"myButton\"><<alluncheck \"rarity\">>全不选</$button>\n\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t\t<$list filter=\"[enlist{!!allRarity}]\">\n\t\t\t\t<$checkbox tiddler=\"魔法手部物品\" listField=\"rarity\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t\t\t</$list>\n\t\t\t</div>\n\t\t</p>\n\t\t<p>\n\t\t\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t\t\t<h2>出处</h2>\n\t\t\t\t<span>\n\t\t\t\t<$button class=\"myButton\"><<allcheck \"source\" \"allSource\">>全选</$button><$button class=\"myButton\"><<alluncheck \"source\">>全不选</$button>\n\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t\t<$list filter=\"[enlist{!!allSource}]\">\n\t\t\t\t<$checkbox tiddler=\"魔法手部物品\" listField=\"source\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t\t\t</$list>\n\t\t\t</div>\n\t\t</p>\n\t\t<table class=\"dndTable\">\n\t\t<tr class=\"header\"><td>物品</td><td style=\"min-width:135px\">等级</td><td style=\"min-width:65px\">稀有度</td><td style=\"min-width:85px\">出处</td></tr>\n\t\t<$list filter=\"[tag[物品]filter<categoryfilter>filter<levelfilter>filter<sourcefilter>filter<rarityfilter>search:title,details{!!searchContent}sortsub:number<sortfilter>]\">\n\t\t<tr><td><$link><$text text=<<currentTiddler>>/></$link></td><td>{{!!item-level}}</td><td>{{!!rarity}}</td><td>{{!!source}}</td></tr>\n\t\t</$list>\n\t\t</table>\n\t\t<p>共<$count filter=\"[tag[物品]filter<categoryfilter>filter<levelfilter>filter<sourcefilter>filter<rarityfilter>search:title,details{!!searchContent}]\"/>条记录</p>\n\t</div>\n\n\t<div style=\"flex:5.5;padding-left:10px;\">\n\t\t<$list filter=\"[tag[物品]filter<categoryfilter>filter<levelfilter>filter<sourcefilter>filter<rarityfilter>search:title,details{!!searchContent}sortsub:number<sortfilter>]\">\n\t\t{{}}\n\t\t<br>\n\t\t</$list>\n\t</div>\n</div>\n</$vars>",
-    "fields": {
-      "created": "20240930041756879",
-      "creator": "Leon",
-      "modified": "20241009012324288",
-      "modifier": "Leon",
-      "allRarity": "普通 非普通 稀有",
-      "allSource": "PH PH2 PH3 AP PsP AV AV2 MotP PHRD PHRT HoF HoS HoEC HoFL HoFK FRPG EPG DSCS MME BoVD DMG2 Dragon Dungeon Adventure",
-      "rarity": "普通 非普通 稀有",
-      "source": "PH PH2 PH3 AP PsP AV AV2 MotP PHRD PHRT HoF HoS HoEC HoFL HoFK FRPG EPG DSCS MME BoVD DMG2 Dragon Dungeon Adventure",
-      "searchContent": "",
-      "caption": "手部物品",
-      "levelRange": "1 2 3 4 5 6 7 8 9 10"
-    },
-    "wiki": {
-      "transclusions": [],
-      "links": [],
-      "macros": [
-        "allcheck",
-        "alluncheck",
-        "currentTiddler",
-        "currentTiddler",
-        "allcheck",
-        "alluncheck",
-        "currentTiddler",
-        "currentTiddler",
-        "currentTiddler"
-      ],
-      "headings": []
-    }
-  },
-  {
-    "id": "魔法头部物品",
-    "name": "魔法头部物品",
-    "category": "nav",
-    "tags": [],
-    "source": "PH PH2 PH3 AP PsP AV AV2 MotP PHRD PHRT HoF HoS HoEC HoFL HoFK FRPG EPG DSCS MME BoVD DMG2 Dragon Dungeon Adventure",
-    "sourceText": "\\define allcheck(n,m) <$action-setfield $field=\"$n$\" $value={{!!$m$}}/>\n\n\\define alluncheck(n) <$action-setfield $field=\"$n$\" $value=\"\"/>\n\n<$vars sourcefilter=\"[get[source]]:intersection[enlist{魔法头部物品!!source}]\" levelfilter=\"[get[item-level]enlist-input[]]:intersection[enlist{魔法头部物品!!levelRange}]\" categoryfilter=\"[get[item-category]match[头部]]\" rarityfilter=\"[get[rarity]]:intersection[enlist{魔法头部物品!!rarity}]\" sortfilter=\"[get[item-level]split[ ]first[]]\">\n\n<div style=\"display:flex\">\n\t<div style=\"flex:4.5\">\n\t\t<p>\n\t\t\t<h2>内容搜索</h2>\n\t\t\t<$edit-text field=\"searchContent\" placeholder=\"空格分隔条件\"/>\n\t\t</p>\n\t\t<p>\n\t\t\t<h2>等级区间</h2>\n\t\t\t<$radio class=\"sizerRadio\" field=\"levelRange\" value=`${[range[1],[10]join[ ]]}$`>英雄级</$radio><$radio class=\"sizerRadio\" field=\"levelRange\" value=`${[range[11],[20]join[ ]]}$`>典范级</$radio><$radio class=\"sizerRadio\" field=\"levelRange\" value=`${[range[21],[30]join[ ]]}$`>传奇级</$radio>\n\t\t</p>\n\t\t<p>\n\t\t\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t\t\t<h2>稀有度</h2>\n\t\t\t\t<span>\n\t\t\t\t<$button class=\"myButton\"><<allcheck \"rarity\" \"allRarity\">>全选</$button><$button class=\"myButton\"><<alluncheck \"rarity\">>全不选</$button>\n\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t\t<$list filter=\"[enlist{!!allRarity}]\">\n\t\t\t\t<$checkbox tiddler=\"魔法头部物品\" listField=\"rarity\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t\t\t</$list>\n\t\t\t</div>\n\t\t</p>\n\t\t<p>\n\t\t\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t\t\t<h2>出处</h2>\n\t\t\t\t<span>\n\t\t\t\t<$button class=\"myButton\"><<allcheck \"source\" \"allSource\">>全选</$button><$button class=\"myButton\"><<alluncheck \"source\">>全不选</$button>\n\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t\t<$list filter=\"[enlist{!!allSource}]\">\n\t\t\t\t<$checkbox tiddler=\"魔法头部物品\" listField=\"source\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t\t\t</$list>\n\t\t\t</div>\n\t\t</p>\n\t\t<table class=\"dndTable\">\n\t\t<tr class=\"header\"><td>物品</td><td style=\"min-width:135px\">等级</td><td style=\"min-width:65px\">稀有度</td><td style=\"min-width:85px\">出处</td></tr>\n\t\t<$list filter=\"[tag[物品]filter<categoryfilter>filter<levelfilter>filter<sourcefilter>filter<rarityfilter>search:title,details{!!searchContent}sortsub:number<sortfilter>]\">\n\t\t<tr><td><$link><$text text=<<currentTiddler>>/></$link></td><td>{{!!item-level}}</td><td>{{!!rarity}}</td><td>{{!!source}}</td></tr>\n\t\t</$list>\n\t\t</table>\n\t\t<p>共<$count filter=\"[tag[物品]filter<categoryfilter>filter<levelfilter>filter<sourcefilter>filter<rarityfilter>search:title,details{!!searchContent}]\"/>条记录</p>\n\t</div>\n\n\t<div style=\"flex:5.5;padding-left:10px;\">\n\t\t<$list filter=\"[tag[物品]filter<categoryfilter>filter<levelfilter>filter<sourcefilter>filter<rarityfilter>search:title,details{!!searchContent}sortsub:number<sortfilter>]\">\n\t\t{{}}\n\t\t<br>\n\t\t</$list>\n\t</div>\n</div>\n</$vars>",
-    "fields": {
-      "created": "20240930042937750",
-      "creator": "Leon",
-      "modified": "20241009012312422",
-      "modifier": "Leon",
-      "allRarity": "普通 非普通 稀有",
-      "allSource": "PH PH2 PH3 AP PsP AV AV2 MotP PHRD PHRT HoF HoS HoEC HoFL HoFK FRPG EPG DSCS MME BoVD DMG2 Dragon Dungeon Adventure",
-      "rarity": "普通 非普通 稀有",
-      "source": "PH PH2 PH3 AP PsP AV AV2 MotP PHRD PHRT HoF HoS HoEC HoFL HoFK FRPG EPG DSCS MME BoVD DMG2 Dragon Dungeon Adventure",
-      "searchContent": "",
-      "caption": "头部物品",
-      "levelRange": "1 2 3 4 5 6 7 8 9 10"
-    },
-    "wiki": {
-      "transclusions": [],
-      "links": [],
-      "macros": [
-        "allcheck",
-        "alluncheck",
-        "currentTiddler",
-        "currentTiddler",
-        "allcheck",
-        "alluncheck",
-        "currentTiddler",
-        "currentTiddler",
-        "currentTiddler"
-      ],
-      "headings": []
-    }
-  },
-  {
-    "id": "魔法武器",
-    "name": "魔法武器",
-    "category": "nav",
-    "tags": [],
-    "source": "PH PH2 PH3 AP PsP AV AV2 MotP PHRD PHRT HoF HoS HoEC HoFL HoFK FRPG EPG DSCS MME BoVD DMG2 Dragon Dungeon Adventure",
-    "sourceText": "\\define allcheck(n,m) <$action-setfield $field=\"$n$\" $value={{!!$m$}}/>\n\n\\define alluncheck(n) <$action-setfield $field=\"$n$\" $value=\"\"/>\n\n\\procedure anyweaponcheck() <$action-setfield $field=\"anyweapon\" $value=\"任意\"/>\n\n\\procedure anyweaponuncheck() <$action-setfield $field=\"anyweapon\" $value=\"\"/>\n\n\\define allsubcheck(n) <$action-setfield $field=\"selected-$n$\" $value={{!!$n$}}/>\n\n\\define allsubuncheck(n) <$action-setfield $field=\"selected-$n$\" $value=\"\"/>\n\n\\procedure allweaponcheck()\n<<allsubcheck \"weapon-list\">>\n<<allsubcheck \"melee-list\">>\n<<allsubcheck \"ranged-list\">>\n<<anyweaponcheck>>\n\\end\n\n\\procedure allweaponuncheck()\n<<allsubuncheck \"weapon-list\">>\n<<allsubuncheck \"melee-list\">>\n<<allsubuncheck \"ranged-list\">>\n<<anyweaponuncheck>>\n\\end\n\n\\define allweaponsubcheck(n,m)\n<<allsubcheck \"$n$\">>\n<$action-listops $field=\"selected-weapon-list\" $subfilter=\"[[$m$]]\"/>\n\\end\n\n\\define allweaponsubuncheck(n,m)\n<<allsubuncheck \"$n$\">>\n<$action-listops $field=\"selected-weapon-list\" $subfilter=\"-[[$m$]]\"/>\n\\end\n<$vars minLevel=`${[{!!min-enhance}subtract[1]multiply[5]]}$` sourcefilter=\"[get[source]]:intersection[enlist{魔法武器!!source}]\" levelfilter=\"[get[item-level]split[ ]first[]compare::gt<minLevel>]\" rangefilter=\"[get[item-level]split[ ]first[]subtract<minLevel>]:intersection[enlist{魔法武器!!levelRange}]\" categoryfilter=\"[get[item-category]match[武器]]\" rarityfilter=\"[get[rarity]]:intersection[enlist{魔法武器!!rarity}]\" sortfilter=\"[get[item-level]split[ ]first[]]\" weaponfilter=\"[!has[item-belongto]get[item-suitable]split[，]]:intersection[enlist{魔法武器!!selected-melee-list}append{魔法武器!!selected-ranged-list}append{魔法武器!!anyweapon}]\" belongtofilter=\"[has[item-belongto]get[item-belongto]split[，]]:intersection[enlist{魔法武器!!selected-melee-list}append{魔法武器!!selected-ranged-list}append{魔法武器!!anyweapon}]\">\n\n<div style=\"display:flex\">\n\t<div style=\"flex:4.5\">\n\t\t<p>\n\t\t\t<h2>内容搜索</h2>\n\t\t\t<$edit-text field=\"searchContent\" placeholder=\"空格分隔条件\"/>\n\t\t</p>\n\t\t<p>\n\t\t\t<h2>最低增强加值</h2>\n\t\t\t<$radio class=\"sizerRadio\" field=\"min-enhance\" value=\"1\">+1</$radio><$radio class=\"sizerRadio\" field=\"min-enhance\" value=\"2\">+2</$radio><$radio class=\"sizerRadio\" field=\"min-enhance\" value=\"3\">+3</$radio><$radio class=\"sizerRadio\" field=\"min-enhance\" value=\"4\">+4</$radio><$radio class=\"sizerRadio\" field=\"min-enhance\" value=\"5\">+5</$radio><$radio class=\"sizerRadio\" field=\"min-enhance\" value=\"6\">+6</$radio>\n\t\t</p>\n\t\t<p>\n\t\t\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t\t\t<h2>等级区间</h2>\n\t\t\t\t<span>\n\t\t\t\t<$button class=\"myButton\"><<allcheck \"levelRange\" \"allLevelRange\">>全选</$button><$button class=\"myButton\"><<alluncheck \"levelRange\">>全不选</$button>\n\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t\t<$list filter=\"[enlist{!!allLevelRange}]\">\n\t\t\t\t<$set name=\"minRange\" filter=\"[<minLevel>add<currentTiddler>]\">\n\t\t\t\t<$checkbox tiddler=\"魔法武器\" listField=\"levelRange\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<minRange>>+</$checkbox>\n\t\t\t\t</$set>\n\t\t\t\t</$list>\n\t\t\t</div>\n\t\t</p>\n\t\t<p>\n\t\t\t<h2>分类</h2>\n\t\t\t<ul style=\"list-style: none;padding:0;\" class=\"nomarker\">\n\t\t\t\t<li><$checkbox indeterminate=\"yes\" class=\"sizerCheckbox\" filter=\"[list[!!selected-weapon-list]count[]]\" checked={{{ [list[!!weapon-list]count[]] }}} unchecked=\"0\" checkactions=<<allweaponcheck>> uncheckactions=<<allweaponuncheck>> >武器</$checkbox>\n\t\t\t\t<ul style=\"list-style: none;padding-left:20px;\" class=\"nomarker\">\n\t\t\t\t\t<li><$checkbox indeterminate=\"yes\" class=\"sizerCheckbox\" filter=\"[list[!!selected-melee-list]count[]]\" checked={{{ [list[!!melee-list]count[]] }}} unchecked=\"0\" checkactions=<<allweaponsubcheck \"melee-list\" \"近战\">> uncheckactions=<<allweaponsubuncheck \"melee-list\" \"近战\">> >近战</$checkbox>\n\t\t\t\t\t\t<ul style=\"list-style: none;padding-left:20px;display: flex;flex-wrap: wrap;\" class=\"nomarker\">\n\t\t\t\t\t\t\t<$list variable=\"melee\" filter=\"[list[!!melee-list]]\">\n\t\t\t\t\t\t\t<li><$checkbox class=\"sizerCheckbox\" listField=\"selected-melee-list\" checked=<<melee>> ><<melee>></$checkbox></li>\n\t\t\t\t\t\t\t</$list>\n\t\t\t\t\t\t</ul>\n\t\t\t\t\t</li>\n\t\t\t\t\t<li><$checkbox indeterminate=\"yes\" class=\"sizerCheckbox\" filter=\"[list[!!selected-ranged-list]count[]]\" checked={{{ [list[!!ranged-list]count[]] }}} unchecked=\"0\" checkactions=<<allweaponsubcheck \"ranged-list\" \"远程\">> uncheckactions=<<allweaponsubuncheck \"ranged-list\" \"远程\">> >远程</$checkbox>\n\t\t\t\t\t\t<ul style=\"list-style: none;padding-left:20px;display: flex;flex-wrap: wrap;\" class=\"nomarker\">\n\t\t\t\t\t\t<$list variable=\"ranged\" filter=\"[list[!!ranged-list]]\">\n\t\t\t\t\t\t<li><$checkbox class=\"sizerCheckbox\" listField=\"selected-ranged-list\" checked=<<ranged>> ><<ranged>></$checkbox></li>\n\t\t\t\t\t\t</$list>\n\t\t\t\t\t\t</ul>\n\t\t\t\t\t</li>\n\t\t\t\t\t<li><$checkbox class=\"sizerCheckbox\" listField=\"selected-weapon-list\" checked=\"任意武器\" checkactions=<<anyweaponcheck>> uncheckactions=<<anyweaponuncheck>>>任意武器</$checkbox></li>\n\t\t\t\t</ul>\n\t\t\t\t</li>\n\t\t\t</ul>\n\t\t</p>\n\t\t<p>\n\t\t\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t\t\t<h2>稀有度</h2>\n\t\t\t\t<span>\n\t\t\t\t<$button class=\"myButton\"><<allcheck \"rarity\" \"allRarity\">>全选</$button><$button class=\"myButton\"><<alluncheck \"rarity\">>全不选</$button>\n\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t\t<$list filter=\"[enlist{!!allRarity}]\">\n\t\t\t\t<$checkbox tiddler=\"魔法武器\" listField=\"rarity\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t\t\t</$list>\n\t\t\t</div>\n\t\t</p>\n\t\t<p>\n\t\t\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t\t\t<h2>出处</h2>\n\t\t\t\t<span>\n\t\t\t\t<$button class=\"myButton\"><<allcheck \"source\" \"allSource\">>全选</$button><$button class=\"myButton\"><<alluncheck \"source\">>全不选</$button>\n\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t\t<$list filter=\"[enlist{!!allSource}]\">\n\t\t\t\t<$checkbox tiddler=\"魔法武器\" listField=\"source\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t\t\t</$list>\n\t\t\t</div>\n\t\t</p>\n\t\t<table class=\"dndTable\">\n\t\t<tr class=\"header\"><td>物品</td><td style=\"min-width:135px\">等级</td><td style=\"min-width:80px\">分类</td><td style=\"min-width:65px\">稀有度</td><td style=\"min-width:85px\">出处</td></tr>\n\t\t<$list filter=\"[tag[物品]filter<categoryfilter>filter<weaponfilter>filter<levelfilter>filter<rangefilter>filter<sourcefilter>filter<rarityfilter>] :or[tag[物品]filter<categoryfilter>filter<belongtofilter>filter<levelfilter>filter<rangefilter>filter<sourcefilter>filter<rarityfilter>] :and[search:title,details{!!searchContent}sort[item-suitable]sortsub:number<sortfilter>]\">\n\t\t<tr><td><$link><$text text=<<currentTiddler>>/></$link></td><td>{{!!item-level}}</td><td>{{!!item-suitable}}</td><td>{{!!rarity}}</td><td>{{!!source}}</td></tr>\n\t\t</$list>\n\t\t</table>\n\t\t<p>共<$count filter=\"[tag[物品]filter<categoryfilter>filter<weaponfilter>filter<levelfilter>filter<rangefilter>filter<sourcefilter>filter<rarityfilter>] :or[tag[物品]filter<categoryfilter>filter<belongtofilter>filter<levelfilter>filter<rangefilter>filter<sourcefilter>filter<rarityfilter>] :and[search:title,details{$:/ItemSearching!!content}]\"/>条记录</p>\n\t</div>\n\n\t<div style=\"flex:5.5;padding-left:10px;\">\n\t\t<$list filter=\"[tag[物品]filter<categoryfilter>filter<weaponfilter>filter<levelfilter>filter<rangefilter>filter<sourcefilter>filter<rarityfilter>] :or[tag[物品]filter<categoryfilter>filter<belongtofilter>filter<levelfilter>filter<rangefilter>filter<sourcefilter>filter<rarityfilter>] :and[search:title,details{!!searchContent}sort[item-suitable]sortsub:number<sortfilter>]\">\n\t\t{{}}\n\t\t<br>\n\t\t</$list>\n\t</div>\n</div>\n</$vars>",
-    "fields": {
-      "created": "20240929021325113",
-      "creator": "Leon",
-      "modified": "20250425050043258",
-      "modifier": "Leon",
-      "allRarity": "普通 非普通 稀有",
-      "allSource": "PH PH2 PH3 AP PsP AV AV2 MotP PHRD PHRT HoF HoS HoEC HoFL HoFK FRPG EPG DSCS MME BoVD DMG2 Dragon Dungeon Adventure",
-      "melee-list": "斧 连枷 锤 重刃 轻刃 硬头锤 镐 长武器 矛 杖 徒手 鞭 任意近战",
-      "ranged-list": "弓 弩 投石索 任意远程 任意投掷",
-      "selected-weapon-list": "近战",
-      "selected-melee-list": "斧 连枷 锤 重刃 轻刃 硬头锤 镐 长武器 矛 杖 徒手 鞭 任意近战",
-      "selected-ranged-list": "",
-      "anyweapon": "",
-      "rarity": "普通 非普通 稀有",
-      "source": "PH PH2 PH3 AP PsP AV AV2 MotP PHRD PHRT HoF HoS HoEC HoFL HoFK FRPG EPG DSCS MME BoVD DMG2 Dragon Dungeon Adventure",
-      "weapon-list": "近战 远程 任意武器",
-      "searchContent": "",
-      "min-enhance": "1",
-      "allLevelRange": "1 2 3 4 5",
-      "levelRange": "3 2"
-    },
-    "wiki": {
-      "transclusions": [
-        "[list[",
-        "[list[",
-        "[list["
-      ],
-      "links": [
-        {
-          "target": "$m$"
-        },
-        {
-          "target": "$m$"
-        }
-      ],
-      "macros": [
-        "allsubcheck",
-        "allsubcheck",
-        "allsubcheck",
-        "anyweaponcheck",
-        "allsubuncheck",
-        "allsubuncheck",
-        "allsubuncheck",
-        "anyweaponuncheck",
-        "allsubcheck",
-        "allsubuncheck",
-        "allcheck",
-        "alluncheck",
-        "currentTiddler",
-        "minRange",
-        "allweaponcheck",
-        "allweaponuncheck",
-        "allweaponsubcheck",
-        "allweaponsubuncheck",
-        "melee",
-        "melee",
-        "allweaponsubcheck",
-        "allweaponsubuncheck",
-        "ranged",
-        "ranged",
-        "anyweaponcheck",
-        "anyweaponuncheck",
-        "allcheck",
-        "alluncheck",
-        "currentTiddler",
-        "currentTiddler",
-        "allcheck",
-        "alluncheck",
-        "currentTiddler",
-        "currentTiddler",
-        "currentTiddler"
-      ],
-      "headings": []
-    }
-  },
-  {
-    "id": "魔法腰部物品",
-    "name": "魔法腰部物品",
-    "category": "nav",
-    "tags": [],
-    "source": "PH PH2 PH3 AP PsP AV AV2 MotP PHRD PHRT HoF HoS HoEC HoFL HoFK FRPG EPG DSCS MME BoVD DMG2 Dragon Dungeon Adventure",
-    "sourceText": "\\define allcheck(n,m) <$action-setfield $field=\"$n$\" $value={{!!$m$}}/>\n\n\\define alluncheck(n) <$action-setfield $field=\"$n$\" $value=\"\"/>\n\n<$vars sourcefilter=\"[get[source]]:intersection[enlist{魔法腰部物品!!source}]\" levelfilter=\"[get[item-level]enlist-input[]]:intersection[enlist{魔法腰部物品!!levelRange}]\" categoryfilter=\"[get[item-category]match[腰部]]\" rarityfilter=\"[get[rarity]]:intersection[enlist{魔法腰部物品!!rarity}]\" sortfilter=\"[get[item-level]split[ ]first[]]\">\n\n<div style=\"display:flex\">\n\t<div style=\"flex:4.5\">\n\t\t<p>\n\t\t\t<h2>内容搜索</h2>\n\t\t\t<$edit-text field=\"searchContent\" placeholder=\"空格分隔条件\"/>\n\t\t</p>\n\t\t<p>\n\t\t\t<h2>等级区间</h2>\n\t\t\t<$radio class=\"sizerRadio\" field=\"levelRange\" value=`${[range[1],[10]join[ ]]}$`>英雄级</$radio><$radio class=\"sizerRadio\" field=\"levelRange\" value=`${[range[11],[20]join[ ]]}$`>典范级</$radio><$radio class=\"sizerRadio\" field=\"levelRange\" value=`${[range[21],[30]join[ ]]}$`>传奇级</$radio>\n\t\t</p>\n\t\t<p>\n\t\t\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t\t\t<h2>稀有度</h2>\n\t\t\t\t<span>\n\t\t\t\t<$button class=\"myButton\"><<allcheck \"rarity\" \"allRarity\">>全选</$button><$button class=\"myButton\"><<alluncheck \"rarity\">>全不选</$button>\n\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t\t<$list filter=\"[enlist{!!allRarity}]\">\n\t\t\t\t<$checkbox tiddler=\"魔法腰部物品\" listField=\"rarity\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t\t\t</$list>\n\t\t\t</div>\n\t\t</p>\n\t\t<p>\n\t\t\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t\t\t<h2>出处</h2>\n\t\t\t\t<span>\n\t\t\t\t<$button class=\"myButton\"><<allcheck \"source\" \"allSource\">>全选</$button><$button class=\"myButton\"><<alluncheck \"source\">>全不选</$button>\n\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t\t<$list filter=\"[enlist{!!allSource}]\">\n\t\t\t\t<$checkbox tiddler=\"魔法腰部物品\" listField=\"source\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t\t\t</$list>\n\t\t\t</div>\n\t\t</p>\n\t\t<table class=\"dndTable\">\n\t\t<tr class=\"header\"><td>物品</td><td style=\"min-width:135px\">等级</td><td style=\"min-width:65px\">稀有度</td><td style=\"min-width:85px\">出处</td></tr>\n\t\t<$list filter=\"[tag[物品]filter<categoryfilter>filter<levelfilter>filter<sourcefilter>filter<rarityfilter>search:title,details{!!searchContent}sortsub:number<sortfilter>]\">\n\t\t<tr><td><$link><$text text=<<currentTiddler>>/></$link></td><td>{{!!item-level}}</td><td>{{!!rarity}}</td><td>{{!!source}}</td></tr>\n\t\t</$list>\n\t\t</table>\n\t\t<p>共<$count filter=\"[tag[物品]filter<categoryfilter>filter<levelfilter>filter<sourcefilter>filter<rarityfilter>search:title,details{!!searchContent}]\"/>条记录</p>\n\t</div>\n\n\t<div style=\"flex:5.5;padding-left:10px;\">\n\t\t<$list filter=\"[tag[物品]filter<categoryfilter>filter<levelfilter>filter<sourcefilter>filter<rarityfilter>search:title,details{!!searchContent}sortsub:number<sortfilter>]\">\n\t\t{{}}\n\t\t<br>\n\t\t</$list>\n\t</div>\n</div>\n</$vars>",
-    "fields": {
-      "created": "20240930045200588",
-      "creator": "Leon",
-      "modified": "20241009012827347",
-      "modifier": "Leon",
-      "allRarity": "普通 非普通 稀有",
-      "allSource": "PH PH2 PH3 AP PsP AV AV2 MotP PHRD PHRT HoF HoS HoEC HoFL HoFK FRPG EPG DSCS MME BoVD DMG2 Dragon Dungeon Adventure",
-      "rarity": "普通 非普通 稀有",
-      "source": "PH PH2 PH3 AP PsP AV AV2 MotP PHRD PHRT HoF HoS HoEC HoFL HoFK FRPG EPG DSCS MME BoVD DMG2 Dragon Dungeon Adventure",
-      "searchContent": "",
-      "caption": "腰部物品",
-      "levelRange": "1 2 3 4 5 6 7 8 9 10"
-    },
-    "wiki": {
-      "transclusions": [],
-      "links": [],
-      "macros": [
-        "allcheck",
-        "alluncheck",
-        "currentTiddler",
-        "currentTiddler",
-        "allcheck",
-        "alluncheck",
-        "currentTiddler",
-        "currentTiddler",
-        "currentTiddler"
-      ],
-      "headings": []
-    }
-  },
-  {
-    "id": "魔法足部物品",
-    "name": "魔法足部物品",
-    "category": "nav",
-    "tags": [],
-    "source": "PH PH2 PH3 AP PsP AV AV2 MotP PHRD PHRT HoF HoS HoEC HoFL HoFK FRPG EPG DSCS MME BoVD DMG2 Dragon Dungeon Adventure",
-    "sourceText": "\\define allcheck(n,m) <$action-setfield $field=\"$n$\" $value={{!!$m$}}/>\n\n\\define alluncheck(n) <$action-setfield $field=\"$n$\" $value=\"\"/>\n\n<$vars sourcefilter=\"[get[source]]:intersection[enlist{魔法足部物品!!source}]\" levelfilter=\"[get[item-level]enlist-input[]]:intersection[enlist{魔法足部物品!!levelRange}]\" categoryfilter=\"[get[item-category]match[足部]]\" rarityfilter=\"[get[rarity]]:intersection[enlist{魔法足部物品!!rarity}]\" sortfilter=\"[get[item-level]split[ ]first[]]\">\n\n<div style=\"display:flex\">\n\t<div style=\"flex:4.5\">\n\t\t<p>\n\t\t\t<h2>内容搜索</h2>\n\t\t\t<$edit-text field=\"searchContent\" placeholder=\"空格分隔条件\"/>\n\t\t</p>\n\t\t<p>\n\t\t\t<h2>等级区间</h2>\n\t\t\t<$radio class=\"sizerRadio\" field=\"levelRange\" value=`${[range[1],[10]join[ ]]}$`>英雄级</$radio><$radio class=\"sizerRadio\" field=\"levelRange\" value=`${[range[11],[20]join[ ]]}$`>典范级</$radio><$radio class=\"sizerRadio\" field=\"levelRange\" value=`${[range[21],[30]join[ ]]}$`>传奇级</$radio>\n\t\t</p>\n\t\t<p>\n\t\t\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t\t\t<h2>稀有度</h2>\n\t\t\t\t<span>\n\t\t\t\t<$button class=\"myButton\"><<allcheck \"rarity\" \"allRarity\">>全选</$button><$button class=\"myButton\"><<alluncheck \"rarity\">>全不选</$button>\n\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t\t<$list filter=\"[enlist{!!allRarity}]\">\n\t\t\t\t<$checkbox tiddler=\"魔法足部物品\" listField=\"rarity\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t\t\t</$list>\n\t\t\t</div>\n\t\t</p>\n\t\t<p>\n\t\t\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t\t\t<h2>出处</h2>\n\t\t\t\t<span>\n\t\t\t\t<$button class=\"myButton\"><<allcheck \"source\" \"allSource\">>全选</$button><$button class=\"myButton\"><<alluncheck \"source\">>全不选</$button>\n\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t\t<$list filter=\"[enlist{!!allSource}]\">\n\t\t\t\t<$checkbox tiddler=\"魔法足部物品\" listField=\"source\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t\t\t</$list>\n\t\t\t</div>\n\t\t</p>\n\t\t<table class=\"dndTable\">\n\t\t<tr class=\"header\"><td>物品</td><td style=\"min-width:135px\">等级</td><td style=\"min-width:65px\">稀有度</td><td style=\"min-width:85px\">出处</td></tr>\n\t\t<$list filter=\"[tag[物品]filter<categoryfilter>filter<levelfilter>filter<sourcefilter>filter<rarityfilter>search:title,details{!!searchContent}sortsub:number<sortfilter>]\">\n\t\t<tr><td><$link><$text text=<<currentTiddler>>/></$link></td><td>{{!!item-level}}</td><td>{{!!rarity}}</td><td>{{!!source}}</td></tr>\n\t\t</$list>\n\t\t</table>\n\t\t<p>共<$count filter=\"[tag[物品]filter<categoryfilter>filter<levelfilter>filter<sourcefilter>filter<rarityfilter>search:title,details{!!searchContent}]\"/>条记录</p>\n\t</div>\n\n\t<div style=\"flex:5.5;padding-left:10px;\">\n\t<$list filter=\"[tag[物品]filter<categoryfilter>filter<levelfilter>filter<sourcefilter>filter<rarityfilter>search:title,details{!!searchContent}sortsub:number<sortfilter>]\">\n\t{{}}\n\t<br>\n\t</$list>\n\t</div>\n</div>\n</$vars>",
-    "fields": {
-      "created": "20240930035828049",
-      "creator": "Leon",
-      "modified": "20241009012350203",
-      "modifier": "Leon",
-      "allRarity": "普通 非普通 稀有",
-      "allSource": "PH PH2 PH3 AP PsP AV AV2 MotP PHRD PHRT HoF HoS HoEC HoFL HoFK FRPG EPG DSCS MME BoVD DMG2 Dragon Dungeon Adventure",
-      "rarity": "普通 非普通 稀有",
-      "source": "PH PH2 PH3 AP PsP AV AV2 MotP PHRD PHRT HoF HoS HoEC HoFL HoFK FRPG EPG DSCS MME BoVD DMG2 Dragon Dungeon Adventure",
-      "searchContent": "",
-      "caption": "足部物品",
-      "levelRange": "1 2 3 4 5 6 7 8 9 10"
-    },
-    "wiki": {
-      "transclusions": [],
-      "links": [],
-      "macros": [
-        "allcheck",
-        "alluncheck",
-        "currentTiddler",
-        "currentTiddler",
-        "allcheck",
-        "alluncheck",
-        "currentTiddler",
-        "currentTiddler",
-        "currentTiddler"
-      ],
-      "headings": []
-    }
-  },
-  {
-    "id": "奇物",
-    "name": "奇物",
-    "category": "nav",
-    "tags": [],
-    "source": "PH PH2 PH3 AP PsP AV AV2 MotP PHRD PHRT HoF HoS HoEC HoFL HoFK FRPG EPG DSCS MME BoVD DMG2 Dragon Dungeon Adventure",
-    "sourceText": "\\define allcheck(n,m) <$action-setfield $field=\"$n$\" $value={{!!$m$}}/>\n\n\\define alluncheck(n) <$action-setfield $field=\"$n$\" $value=\"\"/>\n\n\\define allsubcheck(n) <$action-setfield $field=\"selected-$n$\" $value={{!!$n$}}/>\n\n\\define allsubuncheck(n) <$action-setfield $field=\"selected-$n$\" $value=\"\"/>\n\n<$vars sourcefilter=\"[get[source]]:intersection[enlist{奇物!!source}]\" levelfilter=\"[get[item-level]enlist-input[]]:intersection[enlist{奇物!!levelRange}]\" categoryfilter=\"[get[item-category]match[奇物]]\" rarityfilter=\"[get[rarity]]:intersection[enlist{奇物!!rarity}]\" wondrousfilter=\"[get[item-suitable]!is[blank]else[其他]]:intersection[list[奇物!!selected-wondrous-list]]\" sortfilter=\"[get[item-level]split[ ]first[]]\">\n\n<div style=\"display:flex\">\n\t<div style=\"flex:4.5\">\n\t\t<p>\n\t\t\t<h2>内容搜索</h2>\n\t\t\t<$edit-text field=\"searchContent\" placeholder=\"空格分隔条件\"/>\n\t\t</p>\n\t\t<p>\n\t\t\t<h2>等级区间</h2>\n\t\t\t<$radio class=\"sizerRadio\" field=\"levelRange\" value=`${[range[1],[10]join[ ]]}$`>英雄级</$radio><$radio class=\"sizerRadio\" field=\"levelRange\" value=`${[range[11],[20]join[ ]]}$`>典范级</$radio><$radio class=\"sizerRadio\" field=\"levelRange\" value=`${[range[21],[30]join[ ]]}$`>传奇级</$radio>\n\t\t</p>\n\t\t<p>\n\t\t\t<h2>分类</h2>\n\t\t\t<ul style=\"list-style: none;padding:0;\" class=\"nomarker\">\n\t\t\t\t<li><$checkbox indeterminate=\"yes\" class=\"sizerCheckbox\" filter=\"[list[!!selected-wondrous-list]count[]]\" checked={{{ [list[!!wondrous-list]count[]] }}} unchecked=\"0\" checkactions=<<allsubcheck \"wondrous-list\">> uncheckactions=<<allsubuncheck \"wondrous-list\">> >奇物</$checkbox>\n\t\t\t\t\t<ul style=\"list-style: none;padding-left:20px;display: flex;flex-wrap: wrap;\" class=\"nomarker\">\n\t\t\t\t\t\t<$list variable=\"wondrous\" filter=\"[list[!!wondrous-list]]\">\n\t\t\t\t\t\t<li><$checkbox class=\"sizerCheckbox\" listField=\"selected-wondrous-list\" checked=<<wondrous>> ><<wondrous>></$checkbox></li>\n\t\t\t\t\t\t</$list>\n\t\t\t\t\t</ul>\n\t\t\t\t</li>\n\t\t\t</ul>\n\t\t</p>\n\t\t<p>\n\t\t\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t\t\t<h2>稀有度</h2>\n\t\t\t\t<span>\n\t\t\t\t<$button class=\"myButton\"><<allcheck \"rarity\" \"allRarity\">>全选</$button><$button class=\"myButton\"><<alluncheck \"rarity\">>全不选</$button>\n\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t\t<$list filter=\"[enlist{!!allRarity}]\">\n\t\t\t\t<$checkbox tiddler=\"奇物\" listField=\"rarity\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t\t\t</$list>\n\t\t\t</div>\n\t\t</p>\n\t\t<p>\n\t\t\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t\t\t<h2>出处</h2>\n\t\t\t\t<span>\n\t\t\t\t<$button class=\"myButton\"><<allcheck \"source\" \"allSource\">>全选</$button><$button class=\"myButton\"><<alluncheck \"source\">>全不选</$button>\n\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t\t<$list filter=\"[enlist{!!allSource}]\">\n\t\t\t\t<$checkbox tiddler=\"奇物\" listField=\"source\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t\t\t</$list>\n\t\t\t</div>\n\t\t</p>\n\t\t<table class=\"dndTable\">\n\t\t<tr class=\"header\"><td>物品</td><td style=\"min-width:135px\">等级</td><td style=\"min-width:100px\">分类</td><td style=\"min-width:65px\">稀有度</td><td style=\"min-width:85px\">出处</td></tr>\n\t\t<$list filter=\"[tag[物品]filter<categoryfilter>filter<wondrousfilter>filter<levelfilter>filter<sourcefilter>filter<rarityfilter>search:title,details{!!searchContent}sort[item-suitable]sortsub:number<sortfilter>]\">\n\t\t<tr><td><$link><$text text=<<currentTiddler>>/></$link></td><td>{{!!item-level}}</td><td><$text text=`${[<currentTiddler>get[item-suitable]!is[blank]else[其他]]}$`/></td><td>{{!!rarity}}</td><td>{{!!source}}</td></tr>\n\t\t</$list>\n\t\t</table>\n\t\t<p>共<$count filter=\"[tag[物品]filter<categoryfilter>filter<wondrousfilter>filter<levelfilter>filter<sourcefilter>filter<rarityfilter>search:title,details{!!searchContent}]\"/>条记录</p>\n\t</div>\n\n\t<div style=\"flex:5.5;padding-left:10px;\">\n\t\t<$list filter=\"[tag[物品]filter<categoryfilter>filter<wondrousfilter>filter<levelfilter>filter<sourcefilter>filter<rarityfilter>search:title,details{!!searchContent}sort[item-suitable]sortsub:number<sortfilter>]\">\n\t\t{{}}\n\t\t<br>\n\t\t</$list>\n\t</div>\n</div>\n</$vars>",
-    "fields": {
-      "created": "20240930060823866",
-      "creator": "Leon",
-      "modified": "20241009012908302",
-      "modifier": "Leon",
-      "allRarity": "普通 非普通 稀有",
-      "allSource": "PH PH2 PH3 AP PsP AV AV2 MotP PHRD PHRT HoF HoS HoEC HoFL HoFK FRPG EPG DSCS MME BoVD DMG2 Dragon Dungeon Adventure",
-      "rarity": "普通 非普通 稀有",
-      "source": "PH PH2 PH3 AP PsP AV AV2 MotP PHRD PHRT HoF HoS HoEC HoFL HoFK FRPG EPG DSCS MME BoVD DMG2 Dragon Dungeon Adventure",
-      "searchContent": "",
-      "levelRange": "1 2 3 4 5 6 7 8 9 10",
-      "wondrous-list": "军旗 异能小雕像 魔术袋 纹身 基地物品 荒神碎片 其他",
-      "selected-wondrous-list": "军旗"
-    },
-    "wiki": {
-      "transclusions": [
-        "[list["
-      ],
-      "links": [],
-      "macros": [
-        "allsubcheck",
-        "allsubuncheck",
-        "wondrous",
-        "wondrous",
-        "allcheck",
-        "alluncheck",
-        "currentTiddler",
-        "currentTiddler",
-        "allcheck",
-        "alluncheck",
-        "currentTiddler",
-        "currentTiddler",
-        "currentTiddler"
-      ],
-      "headings": []
-    }
-  },
-  {
     "id": "天命速查",
     "name": "天命速查",
     "category": "nav",
     "tags": [
       "TableOfContents"
     ],
-    "source": "PH PH2 PH3 MP MP2 AP DP PrP PsP PHRD PHRT HoF HoS HoEC HoFL HoFK Dragon EPG DSCS BoVD",
-    "sourceText": "\\procedure uncheckAllSource() <$action-setfield $field=\"source\" $value=\"\"/>\n\n\\procedure checkAllSource() <$action-setfield $field=\"source\" $value={{!!allSource}}/>\n\n<p style=\"display:flex;column-gap:2em;\">\n\t<div>\n\t\t<h2>前提搜索</h2>\n\t\t<$edit-text tiddler=\"$:/EpicPrerequisiteSearching\" field=\"content\" placeholder=\"空格分隔条件\"/>\n\t</div>\n\t<div>\n\t\t<h2>内容搜索</h2>\n\t\t<$edit-text tiddler=\"$:/EpicSearching\" field=\"content\" placeholder=\"空格分隔条件\"/>\n\t</div>\n</p>\n<p>\n  <$radio field=\"limit\" class=\"sizerRadio\" value={{!!classLimit}}>职业限定</$radio>\n  <$radio field=\"limit\" class=\"sizerRadio\" value={{!!raceLimit}}>种族限定</$radio>\n  <$radio field=\"limit\" class=\"sizerRadio\" value=\"\">其他通用</$radio>\n</p>\n<p style=\"width:fit-content;\">\n\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t<h2>来源</h2>\n\t\t<span>\n\t\t<$button class=\"myButton\"><<checkAllSource>>全选</$button><$button class=\"myButton\"><<uncheckAllSource>>全不选</$button>\n\t\t</span>\n\t</div>\n\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t<$list filter=\"[enlist{!!allSource}]\">\n\t\t<$checkbox tiddler=\"天命速查\" listField=\"source\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t</$list>\n\t</div>\n</p>\n\n<$vars sourcefilter=\"[get[source]]:intersection[enlist{天命速查!!source}]\" prerequisitefilter1=\"[get[prerequisite]search:title:some{$:/EpicPrerequisiteSearching!!content}search:title:some{天命速查!!limit}]\" prerequisitefilter2=\"[get[prerequisite]search:title:some{$:/EpicPrerequisiteSearching!!content}!search:title:some{天命速查!!classLimit}!search:title:some{天命速查!!raceLimit}]\">\n<%if [{天命速查!!limit}is[blank]] %>\n  <<tabs \"[tag[天命]filter<prerequisitefilter2>filter<sourcefilter>search:title,text{$:/EpicSearching!!content}]\" \"\" \"\" \"mytab tc-vertical\" \"$:/myConfig/ui/ViewTemplate/tabs\">>\n  共<$count filter=\"[tag[天命]filter<prerequisitefilter2>filter<sourcefilter>search:title,text{$:/EpicSearching!!content}]\"/>条记录\n<%else%>\n  <<tabs \"[tag[天命]filter<prerequisitefilter1>filter<sourcefilter>search:title,text{$:/EpicSearching!!content}]\" \"\" \"\" \"mytab tc-vertical\" \"$:/myConfig/ui/ViewTemplate/tabs\">>\n共<$count filter=\"[tag[天命]filter<prerequisitefilter1>filter<sourcefilter>search:title,text{$:/EpicSearching!!content}]\"/>条记录\n<%endif%>\n</$vars>",
+    "sourceText": "\\procedure uncheckAllSource() <$action-setfield $tiddler=\"$:/mystate/天命速查\" $field=\"source\" $value=\"\"/>\n\n\\procedure checkAllSource() <$action-setfield $tiddler=\"$:/mystate/天命速查\" $field=\"source\" $value={{$:/mystate/天命速查!!allSource}}/>\n\n<p style=\"display:flex;column-gap:2em;\">\n\t<div>\n\t\t<h2>前提搜索</h2>\n\t\t<$edit-text tiddler=\"$:/EpicPrerequisiteSearching\" field=\"content\" placeholder=\"空格分隔条件\"/>\n\t</div>\n\t<div>\n\t\t<h2>内容搜索</h2>\n\t\t<$edit-text tiddler=\"$:/EpicSearching\" field=\"content\" placeholder=\"空格分隔条件\"/>\n\t</div>\n</p>\n<p>\n  <$radio tiddler=\"$:/mystate/天命速查\" field=\"limit\" class=\"sizerRadio\" value={{$:/mystate/天命速查!!classLimit}}>职业限定</$radio>\n  <$radio tiddler=\"$:/mystate/天命速查\" field=\"limit\" class=\"sizerRadio\" value={{$:/mystate/天命速查!!raceLimit}}>种族限定</$radio>\n  <$radio tiddler=\"$:/mystate/天命速查\" field=\"limit\" class=\"sizerRadio\" value=\"\">其他通用</$radio>\n</p>\n<p style=\"width:fit-content;\">\n\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t<h2>来源</h2>\n\t\t<span>\n\t\t<$button class=\"myButton\"><<checkAllSource>>全选</$button><$button class=\"myButton\"><<uncheckAllSource>>全不选</$button>\n\t\t</span>\n\t</div>\n\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t<$list filter=\"[enlist{$:/mystate/天命速查!!allSource}]\">\n\t\t<$checkbox tiddler=\"$:/mystate/天命速查\" listField=\"source\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t</$list>\n\t</div>\n</p>\n\n<$vars sourcefilter=\"[get[source]]:intersection[enlist{$:/mystate/天命速查!!source}]\" prerequisitefilter1=\"[get[prerequisite]search:title:some{$:/EpicPrerequisiteSearching!!content}search:title:some{$:/mystate/天命速查!!limit}]\" prerequisitefilter2=\"[get[prerequisite]search:title:some{$:/EpicPrerequisiteSearching!!content}!search:title:some{$:/mystate/天命速查!!classLimit}!search:title:some{$:/mystate/天命速查!!raceLimit}]\">\n<%if [{$:/mystate/天命速查!!limit}is[blank]] %>\n  <<tabs \"[tag[天命]filter<prerequisitefilter2>filter<sourcefilter>search:title,text{$:/EpicSearching!!content}]\" \"\" \"\" \"mytab tc-vertical\" \"$:/myConfig/ui/ViewTemplate/tabs\">>\n  共<$count filter=\"[tag[天命]filter<prerequisitefilter2>filter<sourcefilter>search:title,text{$:/EpicSearching!!content}]\"/>条记录\n<%else%>\n  <<tabs \"[tag[天命]filter<prerequisitefilter1>filter<sourcefilter>search:title,text{$:/EpicSearching!!content}]\" \"\" \"\" \"mytab tc-vertical\" \"$:/myConfig/ui/ViewTemplate/tabs\">>\n共<$count filter=\"[tag[天命]filter<prerequisitefilter1>filter<sourcefilter>search:title,text{$:/EpicSearching!!content}]\"/>条记录\n<%endif%>\n</$vars>",
     "fields": {
       "created": "20220805035550667",
       "creator": "Leon",
-      "modified": "20250708032101431",
+      "modified": "20260716095255813",
       "modifier": "Leon",
-      "allSource": "PH PH2 PH3 MP MP2 AP DP PrP PsP PHRD PHRT HoF HoS HoEC HoFL HoFK Dragon EPG DSCS BoVD",
-      "source": "PH PH2 PH3 MP MP2 AP DP PrP PsP PHRD PHRT HoF HoS HoEC HoFL HoFK Dragon EPG DSCS BoVD",
-      "classLimit": "炽念使 刺客 德鲁伊 督军 法师 符文牧师 机关术士 剑法师 牧师 萨满 神导士 神罚使 圣武士 诗人 守望者 术士 武僧 吸血鬼 邪术师 心灵术士 巡者 野蛮人 游荡者 游侠 战魂 战士 职业 <Divinity>",
-      "raceLimit": "矮人 半精灵 半梦灵 半身人 半兽化人 半兽人 半羊人 变化妖 变形裔 波扎克龙人 豺狼人 蟾蜍怪 大地精 刀锋怪 地底侏儒 地精 盾矮人 返世幽魂 歌利亚斯 工匠侏儒 狗头人 荒野精灵 灰矮人 机关人 吉斯洋基人 吉斯泽雷人 金矮人 精灵 卡帕克龙人 利维尔精灵 龙裔 魔晶人 木精灵 穆尔人 牛头人 皮克精 人类 日精灵 兽人 树精 螳螂人 提夫林 天狗 天族 熊地精 血族 雅灵 野精灵 阴影裔 影灵 元素裔 月精灵 侏儒 卓尔 种族",
-      "limit": "炽念使 刺客 德鲁伊 督军 法师 符文牧师 机关术士 剑法师 牧师 萨满 神导士 神罚使 圣武士 诗人 守望者 术士 武僧 吸血鬼 邪术师 心灵术士 巡者 野蛮人 游荡者 游侠 战魂 战士 职业 <Divinity>"
+      "revision": "0",
+      "bag": "default"
     },
     "wiki": {
-      "transclusions": [],
+      "transclusions": [
+        "$:/mystate/天命速查",
+        "$:/mystate/天命速查",
+        "$:/mystate/天命速查"
+      ],
       "links": [],
       "macros": [
         "checkAllSource",
@@ -940,7 +152,9 @@
       "created": "20240930172715444",
       "creator": "Leon",
       "modified": "20241010143324641",
-      "modifier": "Leon"
+      "modifier": "Leon",
+      "revision": "0",
+      "bag": "default"
     },
     "wiki": {
       "transclusions": [],
@@ -963,57 +177,15 @@
       "created": "20240930144825395",
       "creator": "Leon",
       "modified": "20241009060858491",
-      "modifier": "Leon"
+      "modifier": "Leon",
+      "revision": "0",
+      "bag": "default"
     },
     "wiki": {
       "transclusions": [],
       "links": [],
       "macros": [
         "tabs"
-      ],
-      "headings": []
-    }
-  },
-  {
-    "id": "消耗品",
-    "name": "消耗品",
-    "category": "nav",
-    "tags": [],
-    "source": "PH PH2 PH3 AP PsP AV AV2 MotP PHRD PHRT HoF HoS HoEC HoFL HoFK FRPG EPG DSCS MME BoVD DMG2 Dragon Dungeon Adventure",
-    "sourceText": "\\define allcheck(n,m) <$action-setfield $field=\"$n$\" $value={{!!$m$}}/>\n\n\\define alluncheck(n) <$action-setfield $field=\"$n$\" $value=\"\"/>\n\n\\define allsubcheck(n) <$action-setfield $field=\"selected-$n$\" $value={{!!$n$}}/>\n\n\\define allsubuncheck(n) <$action-setfield $field=\"selected-$n$\" $value=\"\"/>\n\n<$vars sourcefilter=\"[get[source]]:intersection[enlist{消耗品!!source}]\" levelfilter=\"[get[item-level]enlist-input[]]:intersection[enlist{消耗品!!levelRange}]\" categoryfilter=\"[get[item-category]match[消耗品]]\" rarityfilter=\"[get[rarity]]:intersection[enlist{消耗品!!rarity}]\" sortfilter=\"[get[item-level]split[ ]first[]]\" consumablefilter=\"[get[item-suitable]!is[blank]else[其他]]:intersection[list[消耗品!!selected-consumable-list]]\">\n\n<div style=\"display:flex\">\n\t<div style=\"flex:4.5\">\n\t\t<p>\n\t\t\t<h2>内容搜索</h2>\n\t\t\t<$edit-text field=\"searchContent\" placeholder=\"空格分隔条件\"/>\n\t\t</p>\n\t\t<p>\n\t\t\t<h2>等级区间</h2>\n\t\t\t<$radio class=\"sizerRadio\" field=\"levelRange\" value=`${[range[1],[10]join[ ]]}$`>英雄级</$radio><$radio class=\"sizerRadio\" field=\"levelRange\" value=`${[range[11],[20]join[ ]]}$`>典范级</$radio><$radio class=\"sizerRadio\" field=\"levelRange\" value=`${[range[21],[30]join[ ]]}$`>传奇级</$radio>\n\t\t</p>\n\t\t<p>\n\t\t\t<h2>分类</h2>\n\t\t\t<ul style=\"list-style: none;padding:0;\" class=\"nomarker\">\n\t\t\t\t<li><$checkbox indeterminate=\"yes\" class=\"sizerCheckbox\" filter=\"[list[!!selected-consumable-list]count[]]\" checked={{{ [list[!!consumable-list]count[]] }}} unchecked=\"0\" checkactions=<<allsubcheck \"consumable-list\">> uncheckactions=<<allsubuncheck \"consumable-list\">> >消耗品</$checkbox>\n\t\t\t\t\t<ul style=\"list-style: none;padding-left:20px;display: flex;flex-wrap: wrap;\" class=\"nomarker\">\n\t\t\t\t\t\t<$list variable=\"consumable\" filter=\"[list[!!consumable-list]]\">\n\t\t\t\t\t\t<li><$checkbox class=\"sizerCheckbox\" listField=\"selected-consumable-list\" checked=<<consumable>> ><<consumable>></$checkbox></li>\n\t\t\t\t\t\t</$list>\n\t\t\t\t\t</ul>\n\t\t\t\t</li>\n\t\t\t</ul>\n\t\t</p>\n\t\t<p>\n\t\t\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t\t\t<h2>稀有度</h2>\n\t\t\t\t<span>\n\t\t\t\t<$button class=\"myButton\"><<allcheck \"rarity\" \"allRarity\">>全选</$button><$button class=\"myButton\"><<alluncheck \"rarity\">>全不选</$button>\n\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t\t<$list filter=\"[enlist{!!allRarity}]\">\n\t\t\t\t<$checkbox tiddler=\"消耗品\" listField=\"rarity\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t\t\t</$list>\n\t\t\t</div>\n\t\t</p>\n\t\t<p>\n\t\t\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t\t\t<h2>出处</h2>\n\t\t\t\t<span>\n\t\t\t\t<$button class=\"myButton\"><<allcheck \"source\" \"allSource\">>全选</$button><$button class=\"myButton\"><<alluncheck \"source\">>全不选</$button>\n\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t\t<$list filter=\"[enlist{!!allSource}]\">\n\t\t\t\t<$checkbox tiddler=\"消耗品\" listField=\"source\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t\t\t</$list>\n\t\t\t</div>\n\t\t</p>\n\t\t<table class=\"dndTable\">\n\t\t<tr class=\"header\"><td>物品</td><td style=\"min-width:135px\">等级</td><td style=\"min-width:100px\">分类</td><td style=\"min-width:65px\">稀有度</td><td style=\"min-width:85px\">出处</td></tr>\n\t\t<$list filter=\"[tag[物品]filter<categoryfilter>filter<consumablefilter>filter<levelfilter>filter<sourcefilter>filter<rarityfilter>search:title,details{!!searchContent}!sort[item-suitable]sortsub:number<sortfilter>]\">\n\t\t<tr><td><$link><$text text=<<currentTiddler>>/></$link></td><td>{{!!item-level}}</td><td><$text text=`${[<currentTiddler>get[item-suitable]!is[blank]else[其他]]}$`/></td><td>{{!!rarity}}</td><td>{{!!source}}</td></tr>\n\t\t</$list>\n\t\t</table>\n\t\t<p>共<$count filter=\"[tag[物品]filter<categoryfilter>filter<consumablefilter>filter<levelfilter>filter<sourcefilter>filter<rarityfilter>search:title,details{!!searchContent}]\"/>条记录</p>\n\t</div>\n\n\t<div style=\"flex:5.5;padding-left:10px;\">\n\t\t<$list filter=\"[tag[物品]filter<categoryfilter>filter<consumablefilter>filter<levelfilter>filter<sourcefilter>filter<rarityfilter>search:title,details{!!searchContent}!sort[item-suitable]sortsub:number<sortfilter>]\">\n\t\t{{}}\n\t\t<br>\n\t\t</$list>\n\t</div>\n</div>\n</$vars>",
-    "fields": {
-      "created": "20240930080257393",
-      "creator": "Leon",
-      "modified": "20241010053052843",
-      "modifier": "Leon",
-      "allRarity": "普通 非普通 稀有",
-      "allSource": "PH PH2 PH3 AP PsP AV AV2 MotP PHRD PHRT HoF HoS HoEC HoFL HoFK FRPG EPG DSCS MME BoVD DMG2 Dragon Dungeon Adventure",
-      "rarity": "普通 非普通 稀有",
-      "source": "PH PH2 PH3 AP PsP AV AV2 MotP PHRD PHRT HoF HoS HoEC HoFL HoFK FRPG EPG DSCS MME BoVD DMG2 Dragon Dungeon Adventure",
-      "searchContent": "",
-      "consumable-list": "药剂及灵药 试剂 毒药 磨刀石 其他",
-      "selected-consumable-list": "其他",
-      "levelRange": "1 2 3 4 5 6 7 8 9 10"
-    },
-    "wiki": {
-      "transclusions": [
-        "[list["
-      ],
-      "links": [],
-      "macros": [
-        "allsubcheck",
-        "allsubuncheck",
-        "consumable",
-        "consumable",
-        "allcheck",
-        "alluncheck",
-        "currentTiddler",
-        "currentTiddler",
-        "allcheck",
-        "alluncheck",
-        "currentTiddler",
-        "currentTiddler",
-        "currentTiddler"
       ],
       "headings": []
     }
@@ -1025,58 +197,20 @@
     "tags": [
       "TableOfContents"
     ],
-    "sourceText": "<<tabs \"仪式说明 武术奥义说明 仪式速查\" \"仪式说明\" \"\" \"\" \"$:/myConfig/ui/ViewTemplate/tabs\">>",
+    "sourceText": "<<tabs \"仪式说明 武术奥义说明 仪式速查 武术奥义列表\" \"仪式说明\" \"\" \"\" \"$:/myConfig/ui/ViewTemplate/tabs\">>",
     "fields": {
       "created": "20240930144522506",
       "creator": "Leon",
-      "modified": "20240930180222881",
-      "modifier": "Leon"
+      "modified": "20260526074549272",
+      "modifier": "Leon",
+      "revision": "0",
+      "bag": "default"
     },
     "wiki": {
       "transclusions": [],
       "links": [],
       "macros": [
         "tabs"
-      ],
-      "headings": []
-    }
-  },
-  {
-    "id": "仪式速查",
-    "name": "仪式速查",
-    "category": "nav",
-    "tags": [],
-    "source": "PH PH2 PH3 MP MP2 AP DP PrP PsP PHRD PHRT HoF HoS HoEC Dragon EPG DSCS FRPG BoVD MotP AV OG",
-    "sourceText": "\\define alluncheck(n)\n<$action-setfield $field=\"$n$\" $value=\"\"/>\n\\end\n\n\\define allcheck(n,m)\n<$action-setfield $field=\"$n$\" $value={{!!$m$}}/>\n\\end\n\n<$vars levelfilter=\"[get[ritual-level]]:intersection[enlist{仪式速查!!level}]\" catagoryfilter=\"[get[ritual-catagory]]:intersection[enlist{仪式速查!!category}]\" sourcefilter=\"[get[source]]:intersection[enlist{仪式速查!!source}]\">\n\n<div style=\"display:flex\">\n\t<div style= \"flex:4.5\">\n\t\t<p>\n\t\t\t<h2>内容搜索</h2>\n\t\t\t<$edit-text tiddler=\"RitualSearching\" field=\"content\" placeholder=\"空格分隔条件\"/>\n\t\t</p>\n\t\t<p>\n\t\t\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t\t\t<h2>等级</h2>\n\t\t\t\t<span>\n\t\t\t\t<$button class=\"myButton\"><<allcheck \"level\" \"allLevel\">>全选</$button><$button class=\"myButton\"><<alluncheck \"level\">>全不选</$button>\n\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t\t<$list filter=\"[enlist{!!allLevel}]\">\n\t\t\t\t<$checkbox tiddler=\"仪式速查\" listField=\"level\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t\t\t</$list>\n\t\t\t</div>\n\t\t</p>\n\t\t<p>\n\t\t\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t\t\t<h2>类别</h2>\n\t\t\t\t<span>\n\t\t\t\t<$button class=\"myButton\"><<allcheck \"category\" \"allCategory\">>全选</$button><$button class=\"myButton\"><<alluncheck \"category\">>全不选</$button>\n\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t\t<$list filter=\"[enlist{!!allCategory}]\">\n\t\t\t\t<$checkbox tiddler=\"仪式速查\" listField=\"category\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t\t\t</$list>\n\t\t\t</div>\n\t\t</p>\n\t\t<p>\n\t\t\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t\t\t<h2>来源</h2>\n\t\t\t\t<span>\n\t\t\t\t<$button class=\"myButton\"><<allcheck \"source\" \"allSource\">>全选</$button><$button class=\"myButton\"><<alluncheck \"source\">>全不选</$button>\n\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t\t<$list filter=\"[enlist{!!allSource}]\">\n\t\t\t\t<$checkbox tiddler=\"仪式速查\" listField=\"source\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t\t\t</$list>\n\t\t\t</div>\n\t\t</p>\n\t\t<table class=\"dndTable\">\n\t\t<tr class=\"header\"><td style=\"width:45%\">仪式</td><td>等级</td><td>类别</td><td>关键技能</td><td>来源</td></tr>\n\t\t<$list filter=\"[tag[仪式]filter<levelfilter>filter<catagoryfilter>filter<sourcefilter>search:title,text{RitualSearching!!content}sort[ritual-catagory]nsort[ritual-level]]\">\n\t\t<tr><td><$link><$text text=<<currentTiddler>>/></$link></td><td>{{!!ritual-level}}</td><td>{{!!ritual-catagory}}</td><td>{{!!key-skill}}</td><td>{{!!source}}</td></tr>\n\t\t</$list>\n\t\t</table>\n\t\t<p>共<$count filter=\"[tag[仪式]filter<levelfilter>filter<catagoryfilter>filter<sourcefilter>search:title,text{RitualSearching!!content}]\"/>条记录</p>\n\t</div>\n\n\t<div style=\"flex:5.5;padding-left:10px\">\n\t\t<$list filter=\"[tag[仪式]filter<levelfilter>filter<catagoryfilter>filter<sourcefilter>search:title,text{RitualSearching!!content}sort[ritual-catagory]nsort[ritual-level]]\">\n\t\t{{}}\n\t\t<hr>\n\t\t</$list>\n\t</div>\n</div>\n</$vars>",
-    "fields": {
-      "created": "20220830022624568",
-      "creator": "Leon",
-      "modified": "20241009011416725",
-      "modifier": "Leon",
-      "allSource": "PH PH2 PH3 MP MP2 AP DP PrP PsP PHRD PHRT HoF HoS HoEC Dragon EPG DSCS FRPG BoVD MotP AV OG",
-      "allLevel": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30",
-      "allCategory": "束缚 创造 欺骗 预言 探险 复原 探知 旅行 防护",
-      "level": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30",
-      "category": "束缚 创造 欺骗 预言 探险 复原 探知 旅行 防护",
-      "source": "PH PH2 PH3 MP MP2 AP DP PrP PsP PHRD PHRT HoF HoS HoEC Dragon EPG DSCS FRPG BoVD MotP AV OG"
-    },
-    "wiki": {
-      "transclusions": [],
-      "links": [],
-      "macros": [
-        "allcheck",
-        "alluncheck",
-        "currentTiddler",
-        "currentTiddler",
-        "allcheck",
-        "alluncheck",
-        "currentTiddler",
-        "currentTiddler",
-        "allcheck",
-        "alluncheck",
-        "currentTiddler",
-        "currentTiddler",
-        "currentTiddler"
       ],
       "headings": []
     }
@@ -1093,120 +227,15 @@
       "created": "20241008012748425",
       "creator": "Leon",
       "modified": "20241008012807217",
-      "modifier": "Leon"
+      "modifier": "Leon",
+      "revision": "0",
+      "bag": "default"
     },
     "wiki": {
       "transclusions": [],
       "links": [],
       "macros": [
         "tabs"
-      ],
-      "headings": []
-    }
-  },
-  {
-    "id": "职业速查",
-    "name": "职业速查",
-    "category": "nav",
-    "tags": [],
-    "source": "PH3 HoF HoEC HoFL HoFK FRPG EPG NCS Dragon HoS PH PH2",
-    "sourceText": "\\define allcheck(n,m) <$action-setfield $field=\"$n$\" $value={{!!$m$}}/>\n\n\\define alluncheck(n) <$action-setfield $field=\"$n$\" $value=\"\"/>\n\n<div style=\"display:flex\">\n\t<div style=\"flex:4;flex-direction: column;\">\n\t\t<p style=\"width:fit-content\">\n\t\t\t<div style=\"display:flex;align-items:center;justify-content:space-between;\">\n\t\t\t\t<h2>职位</h2>\n\t\t\t\t<span>\n\t\t\t\t<$button class=\"myButton\"><<allcheck \"role\" \"allRole\">>全选</$button><$button class=\"myButton\"><<alluncheck \"role\">>全不选</$button>\n\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t\t<$list filter=\"[enlist{!!allRole}]\">\n\t\t\t\t<$checkbox tiddler=\"职业速查\" listField=\"role\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t\t\t</$list>\n\t\t\t</div>\n\t\t</p>\n\t\t<p style=\"width:fit-content\">\n\t\t\t<div style=\"display:flex;align-items:center;justify-content:space-between;\">\n\t\t\t\t<h2>威能来源</h2>\n\t\t\t\t<span>\n\t\t\t\t<$button class=\"myButton\"><<allcheck \"powerSource\" \"allPowerSource\">>全选</$button><$button class=\"myButton\"><<alluncheck \"powerSource\">>全不选</$button>\n\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t\t<$list filter=\"[enlist{!!allPowerSource}]\">\n\t\t\t\t<$checkbox tiddler=\"职业速查\" listField=\"powerSource\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t\t\t</$list>\n\t\t\t</div>\n\t\t</p>\n\t\t<p><h2><$checkbox class=\"sizerCheckbox\" field=\"hybrid\" checked=\"是\" unchecked=\"否\" default=\"否\">混职</$checkbox></h2></p>\n\t\t<p style=\"width:fit-content\">\n\t\t\t<div style=\"display:flex;align-items:center;justify-content:space-between;\">\n\t\t\t\t<h2>出处</h2>\n\t\t\t\t<span>\n\t\t\t\t<$button class=\"myButton\"><<allcheck \"source\" \"allSource\">>全选</$button><$button class=\"myButton\"><<alluncheck \"source\">>全不选</$button>\n\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t\t<$list filter=\"[enlist{!!allSource}]\">\n\t\t\t\t<$checkbox tiddler=\"职业速查\" listField=\"source\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t\t\t</$list>\n\t\t\t</div>\n\t\t</p>\n\t</div>\n\t<div style=\"flex:6\">\n\t\t<$vars sourcefilter=\"[get[source]]:intersection[enlist{职业速查!!source}]\" rolefilter=\"[get[role]splitregexp[，]]:intersection[enlist{职业速查!!role}]\" powersourcefilter=\"[get[power source]splitregexp[，]]:intersection[enlist{职业速查!!powerSource}]\" selectedRoleFilter=\"[get[role]splitregexp[，]search:title<selectedRole>]\" selectedSourceFilter=\"[get[source]match<selectedSource>]\">\n\t\t<table class=\"dndTable\">\n\t\t<tr class=\"header\"><td>出处</td><$list filter=\"[enlist{!!role}sortby{!!allRole}]\" variable=\"selectedRole\"><td><<selectedRole>></td></$list></tr>\n\t\t<$list filter=\"[enlist{!!source}sortby{!!allSource}]\" variable=\"selectedSource\"><tr><td><<selectedSource>></td><$list filter=\"[enlist{!!role}sortby{!!allRole}]\" variable=\"selectedRole\"><td><$list filter=\"[tag[职业]field:hybrid{!!hybrid}filter<selectedRoleFilter>filter<powersourcefilter>filter<selectedSourceFilter>]\"><$link><$text text={{{[<currentTiddler>split[ ]first[]]}}}/><br/></$link></$list></td></$list></tr></$list>\n\t\t</table>\n\t\t<p>共<$count filter=\"[tag[职业]field:hybrid{!!hybrid}filter<rolefilter>filter<powersourcefilter>filter<sourcefilter>]\"/>条记录</p>\n\t\t</$vars>\n\t</div>\n</div>",
-    "fields": {
-      "created": "20220808031336623",
-      "creator": "Leon",
-      "modified": "20250221054643414",
-      "modifier": "Leon",
-      "hybrid": "否",
-      "allRole": "防御者 打击者 控制者 领导者",
-      "role": "防御者 打击者 控制者 领导者",
-      "allSource": "PH PH2 PH3 FRPG EPG Dragon HoF HoS HoEC HoFL HoFK NCS",
-      "allPowerSource": "武术 奥术 神术 原力 灵能 影能",
-      "powerSource": "武术 奥术 神术 原力 灵能 影能",
-      "source": "PH3 HoF HoEC HoFL HoFK FRPG EPG NCS Dragon HoS PH PH2"
-    },
-    "wiki": {
-      "transclusions": [
-        "[<currentTiddler>split[ ]first[]]"
-      ],
-      "links": [],
-      "macros": [
-        "allcheck",
-        "alluncheck",
-        "currentTiddler",
-        "currentTiddler",
-        "allcheck",
-        "alluncheck",
-        "currentTiddler",
-        "currentTiddler",
-        "allcheck",
-        "alluncheck",
-        "currentTiddler",
-        "currentTiddler",
-        "selectedRole",
-        "selectedSource"
-      ],
-      "headings": []
-    }
-  },
-  {
-    "id": "职业威能速查",
-    "name": "职业威能速查",
-    "category": "nav",
-    "tags": [],
-    "source": "PH PH2 PH3 MP MP2 AP DP PrP PsP PHRD PHRT HoF HoS HoEC HoFL HoFK Dragon FRPG EPG DSCS NCS PHHS1 PHHS2 DSH",
-    "sourceText": "\\define alluncheck(n) <$action-setfield $field=\"$n$\" $value=\"\"/>\n\n\\define allcheck(n,m) <$action-setfield $field=\"$n$\" $value={{!!$m$}}/>\n\n\\procedure checkClass()\n<$action-setfield $tiddler=\"职业威能速查\" $field=\"allLevel\" $value=`${[tag<currentTiddler>get[level]unique[]nsort[]join[ ]addprefix[无等级 ]]}$`/>\n<$action-setfield $tiddler=\"职业威能速查\" $field=\"allSource\" $value=`${[tag<currentTiddler>get[source]unique[]sortby[PH PH2 PH3 MP MP2 AP DP PrP PsP PHRD PHRT HoF HoS HoEC HoFL HoFK Dragon FRPG EPG DSCS NCS PHHS1 PHHS2 DSH]join[ ]]}$`/>\n\\end\n\n<$set name=\"suffix\" value=\")[^<>]*vs\">\n<$set name=\"noability\" value=\"()[^<>]*vs\">\n<$vars checktype={{{ [{!!useType}!is[blank]else[无]] }}} checkability={{{ [{!!ability}search-replace:g[ ],[|]addsuffix<suffix>addprefix[(]search-replace<noability>,[]] }}} compare-by-level=\"[get[level]]\" compare-by-usage=\"[get[usage]]\" classfilter=\"[tags[]]:intersection[enlist{职业威能速查!!class}]\" levelfilter=\"[get[level]!is[blank]else[无等级]]:intersection[enlist{职业威能速查!!level}]\" usagefilter=\"[get[usage]]:intersection[enlist{职业威能速查!!usage}]\" actionTypefilter=\"[get[actionType]search-replace[攻击招数<br>&nbsp;&nbsp;],[]]:intersection[enlist{职业威能速查!!actionType}]\" typefilter=\"[get[range]search::some<checktype>]\" abilityfilter=\"[get[details]search::regexp<checkability>]\" keywordsfilter=\"[get[keywords]splitregexp[，|；]]:intersection[enlist{职业威能速查!!keywords}]\" sourcefilter=\"[get[source]]:intersection[enlist{职业威能速查!!source}]\">\n\n<div style=\"display:flex\">\n\t<div style=\"flex:4.5\">\n\t\t<p>\n     <h2>关键字搜索</h2>\n     <$edit-text tiddler=\"$:/PowerSearching\" field=\"keywords\" placeholder=\"空格分隔条件\"/>\n     <h2>内容搜索</h2>\n     <$edit-text tiddler=\"$:/PowerSearching\" field=\"content\" placeholder=\"空格分隔条件\"/>\n\t\t</p>\n\t\t<p>\n\t\t  <h2>职业</h2>\n\t\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t\t<$list filter=\"[enlist{!!allClass}]\">\n\t\t\t\t  <$list filter=\"[<currentTiddler>match[术士]] [<currentTiddler>match[战魂]] [<currentTiddler>match[剑法师]]\"><span style=\"width:100%\"></span></$list>\n       <$radio tiddler=\"职业威能速查\" field=\"class\" class=\"sizerRadio\" value=<<currentTiddler>> actions=<<checkClass>>><<currentTiddler>></$radio>\n\t\t\t\t</$list>\n\t\t\t</div>\n\t\t</p>\n\t\t<p>\n\t\t\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t\t  <h2>等级</h2>\n\t\t\t\t<span>\n\t\t\t\t<$button class=\"myButton\"><<allcheck \"level\" \"allLevel\">>全选</$button><$button class=\"myButton\"><<alluncheck \"level\">>全不选</$button>\n\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t\t<$list filter=\"[enlist{!!allLevel}]\">\n\t\t\t\t<$checkbox tiddler=\"职业威能速查\" listField=\"level\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t\t\t</$list>\n\t\t\t</div>\n\t\t</p>\n\t\t<p>\n\t\t\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t\t\t<h2>频率</h2>\n\t\t\t\t<span>\n\t\t\t\t<$button class=\"myButton\"><<allcheck \"usage\" \"allUsage\">>全选</$button><$button class=\"myButton\"><<alluncheck \"usage\">>全不选</$button>\n\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t\t<$list filter=\"[enlist{!!allUsage}]\">\n\t\t\t\t<$checkbox tiddler=\"职业威能速查\" listField=\"usage\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t\t\t</$list>\n\t\t\t</div>\n\t\t</p>\n\t\t<p>\n\t\t\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t\t\t<h2>动作</h2>\n\t\t\t\t<span>\n\t\t\t\t<$button class=\"myButton\"><<allcheck \"actionType\" \"allActionType\">>全选</$button><$button class=\"myButton\"><<alluncheck \"actionType\">>全不选</$button>\n\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t\t<$list filter=\"[enlist{!!allActionType}]\">\n\t\t\t\t<$checkbox tiddler=\"职业威能速查\" listField=\"actionType\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t\t\t</$list>\n\t\t\t</div>\n\t\t</p>\n\t\t<p>\n\t\t\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t\t\t<h2>类型</h2>\n\t\t\t\t<span>\n\t\t\t\t<$button class=\"myButton\"><<allcheck \"useType\" \"allUseType\">>全选</$button><$button class=\"myButton\"><<alluncheck \"useType\">>全不选</$button>\n\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t\t<$list filter=\"[enlist{!!allUseType}]\">\n\t\t\t\t<$checkbox tiddler=\"职业威能速查\" listField=\"useType\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t\t\t</$list>\n\t\t\t</div>\n\t\t</p>\n\t\t<p>\n\t\t\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t\t\t<h2>攻击属性</h2>\n\t\t\t\t<span>\n\t\t\t\t<$button class=\"myButton\"><<allcheck \"ability\" \"allAbility\">>全选</$button><$button class=\"myButton\"><<alluncheck \"ability\">>全不选</$button>\n\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t\t<$list filter=\"[enlist{!!allAbility}]\">\n\t\t\t\t<$checkbox tiddler=\"职业威能速查\" listField=\"ability\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t\t\t</$list>\n\t\t\t</div>\n\t\t</p>\n\t\t<p>\n\t\t\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t\t\t<h2>来源</h2>\n\t\t\t\t<span>\n\t\t\t\t<$button class=\"myButton\"><<allcheck \"source\" \"allSource\">>全选</$button><$button class=\"myButton\"><<alluncheck \"source\">>全不选</$button>\n\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t\t<$list filter=\"[enlist{!!allSource}]\">\n\t\t\t\t<$checkbox tiddler=\"职业威能速查\" listField=\"source\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t\t\t</$list>\n\t\t\t</div>\n\t\t</p>\n\t\t<table class=\"dndTable\">\n\t\t<tr class=\"header\"><td style=\"width:60%\">威能</td><td>等级</td><td>频率</td><td>动作类型</td><td>出处</td></tr>\n\t\t<$list filter=\"[tag[威能]filter<classfilter>filter<levelfilter>filter<usagefilter>filter<actionTypefilter>filter<typefilter>filter<abilityfilter>filter<sourcefilter>search:keywords{$:/PowerSearching!!keywords}search:title,details{$:/PowerSearching!!content}!sortsub<compare-by-usage>sortsub:integer<compare-by-level>]\">\n\t\t<tr><td><$link><$text text=<<currentTiddler>>/></$link></td><td>{{!!level}}</td><td>{{!!usage}}</td><td>{{!!actionType}}</td><td>{{!!source}}</td></tr>\n\t\t</$list>\n\t\t</table>\n\t\t<p>共<$count filter=\"[tag[威能]filter<classfilter>filter<levelfilter>filter<usagefilter>filter<actionTypefilter>filter<typefilter>filter<abilityfilter>filter<sourcefilter>search:keywords{$:/PowerSearching!!keywords}search:title,details{$:/PowerSearching!!content}]\"/>条记录</p>\n\t</div>\n\t<div style=\"flex:5.5;padding-left:10px\">\n\t\t<$list filter=\"[tag[威能]filter<classfilter>filter<levelfilter>filter<usagefilter>filter<actionTypefilter>filter<typefilter>filter<abilityfilter>filter<sourcefilter>search:keywords{$:/PowerSearching!!keywords}search:title,details{$:/PowerSearching!!content}!sortsub<compare-by-usage>sortsub:integer<compare-by-level>]\">\n\t\t{{}}\n\t\t<br/>\n\t\t</$list>\n\t</div>\n</div>\n</$vars>\n</$set>\n</$set>",
-    "fields": {
-      "created": "20220714031842457",
-      "creator": "Leon",
-      "modified": "20250425051931614",
-      "modifier": "Leon",
-      "allSource": "PH MP MP2 HoFL Dragon DSCS PHHS1 PHHS2 DSH",
-      "allClass": "战士 游侠 游荡者 督军 邪术师 法师 圣武士 牧师 术士 诗人 神罚使 神导士 守望者 野蛮人 德鲁伊 萨满 战魂 心灵术士 炽念使 武僧 符文牧师 巡者 剑法师 机关术士 刺客 吸血鬼",
-      "allLevel": "无等级 1 2 3 5 6 7 8 9 10 13 15 16 17 19 22 23 25 27 29",
-      "allActionType": "标准动作 移动动作 次要动作 自由动作 借机动作 即时中断 即时反应 无动作",
-      "allUsage": "随意 遭遇 每日",
-      "allAbility": "力量 体质 敏捷 智力 感知 魅力",
-      "class": "战士",
-      "level": "无等级",
-      "usage": "遭遇 每日 随意",
-      "actionType": "标准动作 移动动作 次要动作 自由动作 借机动作 即时中断 即时反应 无动作",
-      "source": "PH PH2 PH3 MP MP2 AP DP PrP PsP PHRD PHRT HoF HoS HoEC HoFL HoFK Dragon FRPG EPG DSCS NCS PHHS1 PHHS2 DSH",
-      "ability": "",
-      "allUseType": "自身 特殊 近战 远程 近程 区域",
-      "useType": "自身 特殊 近战 远程 近程 区域"
-    },
-    "wiki": {
-      "transclusions": [],
-      "links": [],
-      "macros": [
-        "currentTiddler",
-        "checkClass",
-        "currentTiddler",
-        "allcheck",
-        "alluncheck",
-        "currentTiddler",
-        "currentTiddler",
-        "allcheck",
-        "alluncheck",
-        "currentTiddler",
-        "currentTiddler",
-        "allcheck",
-        "alluncheck",
-        "currentTiddler",
-        "currentTiddler",
-        "allcheck",
-        "alluncheck",
-        "currentTiddler",
-        "currentTiddler",
-        "allcheck",
-        "alluncheck",
-        "currentTiddler",
-        "currentTiddler",
-        "allcheck",
-        "alluncheck",
-        "currentTiddler",
-        "currentTiddler",
-        "currentTiddler"
       ],
       "headings": []
     }
@@ -1223,7 +252,9 @@
       "created": "20240930101346626",
       "creator": "Leon",
       "modified": "20240930172532002",
-      "modifier": "Leon"
+      "modifier": "Leon",
+      "revision": "0",
+      "bag": "default"
     },
     "wiki": {
       "transclusions": [],
@@ -1241,23 +272,14 @@
     "tags": [
       "TableOfContents"
     ],
-    "source": "PH PH2 PH3 HoF HoS Dragon FRPG EPG DSCS NCS DSH MM MM2",
-    "sourceText": "\\define alluncheck(n)\n<$action-setfield $field=\"$n$\" $value=\"\"/>\n\\end\n\n\\define allcheck(n,m)\n<$action-setfield $field=\"$n$\" $value={{!!$m$}}/>\n\\end\n\n<$vars compare-by-abilityone=\"[get[race-abilityone]]\" ablilityfilterone=\"[get[race-abilityone]search:title:some{种族整合!!ability}]\" ablilityfiltertwo=\"[get[race-abilitytwo]search:title:some{种族整合!!ability}]\" titlefilter=\"[search:title:some{$:/RaceTitleSearching!!content}]\" sizefilter=\"[get[race-size]]:intersection[enlist{种族整合!!size}]\" speedfilter=\"[get[race-speed]]:intersection[enlist{种族整合!!speed}]\" visionfilter=\"[get[race-vision]]:intersection[enlist{种族整合!!vision}]\" sourcefilter=\"[get[source]]:intersection[enlist{种族整合!!source}]\">\n\n<p style=\"display:flex;column-gap:2em;\">\n\t<div>\n\t\t<h2>属性组合</h2>\n\t\t<$list filter=\"[enlist{!!allAbility}]\">\n\t\t<$checkbox tiddler=\"种族整合\" listField=\"ability\" class=\"sizerCheckbox\" checked=<<currentTiddler>> disabled=`${[[种族整合]get[ability]search:title<currentTiddler>then[no]else[yes]] :or[enlist{种族整合!!ability}count[]compare:integer:lt[2]then[no]else[yes]] :and[search:title[no]then[no]else[yes]]}$`><<currentTiddler>></$checkbox>\n\t\t</$list>\n\t</div>\n\t<div>\n\t\t<h2>种族名搜索</h2>\n\t\t<$edit-text tiddler=\"$:/RaceTitleSearching\" field=\"content\"/>\n\t</div>\n</p>\n<p style=\"display:flex;column-gap:2em;\">\n\t<div>\n\t\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t\t<h2>体型</h2>\n\t\t\t<span>\n\t\t\t<$button class=\"myButton\"><<allcheck \"size\" \"allSize\">>全选</$button><$button class=\"myButton\"><<alluncheck \"size\">>全不选</$button>\n\t\t\t</span>\n\t\t</div>\n\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t<$list filter=\"[enlist{!!allSize}]\">\n\t\t\t<$checkbox tiddler=\"种族整合\" listField=\"size\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t\t</$list>\n\t\t</div>\n\t</div>\n\t<div>\n\t\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t\t<h2>速度</h2>\n\t\t\t<span>\n\t\t\t<$button class=\"myButton\"><<allcheck \"speed\" \"allSpeed\">>全选</$button><$button class=\"myButton\"><<alluncheck \"speed\">>全不选</$button>\n\t\t\t</span>\n\t\t</div>\n\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t<$list filter=\"[enlist{!!allSpeed}]\">\n\t\t\t<$checkbox tiddler=\"种族整合\" listField=\"speed\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t\t</$list>\n\t\t</div>\n\t</div>\n\t<div>\n\t\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t<h2>视觉</h2>\n\t\t<span>\n\t\t<$button class=\"myButton\"><<allcheck \"vision\" \"allVision\">>全选</$button><$button class=\"myButton\"><<alluncheck \"vision\">>全不选</$button>\n\t\t</span>\n\t\t</div>\n\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t<$list filter=\"[enlist{!!allVision}]\">\n\t\t\t<$checkbox tiddler=\"种族整合\" listField=\"vision\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t\t</$list>\n\t\t</div>\n\t</div>\n</p>\n<p style=\"display:flex;\">\n\t<div>\n\t\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t<h2>来源</h2>\n\t\t<span>\n\t\t<$button class=\"myButton\"><<allcheck \"source\" \"allSource\">>全选</$button><$button class=\"myButton\"><<alluncheck \"source\">>全不选</$button>\n\t\t</span>\n\t\t</div>\n\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t<$list filter=\"[enlist{!!allSource}]\">\n\t\t\t<$checkbox tiddler=\"种族整合\" listField=\"source\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t\t</$list>\n\t\t</div>\n\t</div>\n</p>\n<p style=\"display:flex\">\n\t<div style=\"flex:4;padding-right:10px\">\n\t\t<table class=\"dndTable\">\n\t\t<tr class=\"header\"><td style=\"width:20%\">种族</td><td colspan=2 style=\"width:30%\">属性调整</td><td>体型</td><td>速度</td><td>视觉</td><td>来源</td></tr>\n\t\t<% if [enlist{!!ability}!is[blank]count[]match[0]] %>\n\t\t<$list filter=\"[tag[种族]filter<titlefilter>filter<sizefilter>filter<speedfilter>filter<visionfilter>filter<sourcefilter>sortsub<compare-by-abilityone>]\">\n\t\t<tr><td><$link><$text text=<<currentTiddler>>/></$link></td><td style=\"width:10%\">{{!!race-abilityone}}</td><td>{{!!race-abilitytwo}}</td><td>{{!!race-size}}</td><td>{{!!race-speed}}</td><td>{{!!race-vision}}</td><td>{{!!source}}</td></tr>\n\t\t</$list>\n\t\t<% elseif [enlist{!!ability}!is[blank]count[]match[1]] %>\n\t\t<$list filter=\"[tag[种族]filter<titlefilter>filter<ablilityfilterone>filter<sizefilter>filter<speedfilter>filter<visionfilter>filter<sourcefilter>] :or[tag[种族]filter<titlefilter>filter<ablilityfiltertwo>filter<sizefilter>filter<speedfilter>filter<visionfilter>filter<sourcefilter>] :and[sortsub<compare-by-abilityone>]\">\n\t\t<tr><td><$link><$text text=<<currentTiddler>>/></$link></td><td style=\"width:10%\">{{!!race-abilityone}}</td><td>{{!!race-abilitytwo}}</td><td>{{!!race-size}}</td><td>{{!!race-speed}}</td><td>{{!!race-vision}}</td><td>{{!!source}}</td></tr>\n\t\t</$list>\n\t\t<% else %>\n\t\t<$list filter=\"[tag[种族]filter<titlefilter>filter<ablilityfilterone>filter<ablilityfiltertwo>filter<sizefilter>filter<speedfilter>filter<visionfilter>filter<sourcefilter>sortsub<compare-by-abilityone>]\">\n\t\t<tr><td><$link><$text text=<<currentTiddler>>/></$link></td><td style=\"width:10%\">{{!!race-abilityone}}</td><td>{{!!race-abilitytwo}}</td><td>{{!!race-size}}</td><td>{{!!race-speed}}</td><td>{{!!race-vision}}</td><td>{{!!source}}</td></tr>\n\t\t</$list>\n\t\t<% endif %>\n\t\t</table>\n\t\t<p><% if [enlist{!!ability}!is[blank]count[]match[0]] %>\n\t\t共<$count filter=\"[tag[种族]filter<titlefilter>filter<sizefilter>filter<speedfilter>filter<visionfilter>filter<sourcefilter>sortsub<compare-by-abilityone>]\" />条记录\n\t\t<% elseif [enlist{!!ability}!is[blank]count[]match[1]] %>\n\t\t共<$count filter=\"[tag[种族]filter<titlefilter>filter<ablilityfilterone>filter<sizefilter>filter<speedfilter>filter<visionfilter>filter<sourcefilter>] :or[tag[种族]filter<titlefilter>filter<ablilityfiltertwo>filter<sizefilter>filter<speedfilter>filter<visionfilter>filter<sourcefilter>] :and[sortsub<compare-by-abilityone>]\" />条记录\n\t\t<% else %>\n\t\t共<$count filter=\"[tag[种族]filter<titlefilter>filter<ablilityfilterone>filter<ablilityfiltertwo>filter<sizefilter>filter<speedfilter>filter<visionfilter>filter<sourcefilter>sortsub<compare-by-abilityone>]\" />条记录\n\t\t<% endif %></p>\n\t</div>\n\t<div style=\"flex:6\">\n\t\t<% if [enlist{!!ability}!is[blank]count[]match[0]] %>\n\t\t<<tabs \"[tag[种族]filter<titlefilter>filter<sizefilter>filter<speedfilter>filter<visionfilter>filter<sourcefilter>sortsub<compare-by-abilityone>]\" \"\" \"\" \"\" \"$:/myConfig/ui/ViewTemplate/tabs\">>\n\t\t<% elseif [enlist{!!ability}!is[blank]count[]match[1]] %>\n\t\t<<tabs \"[tag[种族]filter<titlefilter>filter<ablilityfilterone>filter<sizefilter>filter<speedfilter>filter<visionfilter>filter<sourcefilter>] :or[tag[种族]filter<titlefilter>filter<ablilityfiltertwo>filter<sizefilter>filter<speedfilter>filter<visionfilter>filter<sourcefilter>] :and[sortsub<compare-by-abilityone>]\" \"\" \"\" \"\" \"$:/myConfig/ui/ViewTemplate/tabs\">>\n\t\t<% else %>\n\t\t<<tabs \"[tag[种族]filter<titlefilter>filter<ablilityfilterone>filter<ablilityfiltertwo>filter<sizefilter>filter<speedfilter>filter<visionfilter>filter<sourcefilter>sortsub<compare-by-abilityone>]\" \"\" \"\" \"\" \"$:/myConfig/ui/ViewTemplate/tabs\">>\n\t\t<% endif %>\n\t</div>\n</p>\n</$vars>",
+    "sourceText": "\\procedure allcheck(n,m) <$action-setfield $tiddler=\"$:/mystate/种族整合\" $field=`$(n)$` $value=`${[[$:/mystate/种族整合]get<m>]}$`/>\n\n\\procedure alluncheck(n) <$action-setfield $tiddler=\"$:/mystate/种族整合\" $field=`$(n)$` $value=\"\"/>\n\n<$vars compare-by-abilityone=\"[get[race-abilityone]]\" ablilityfilterone=\"[get[race-abilityone]search:title:some{$:/mystate/种族整合!!ability}]\" ablilityfiltertwo=\"[get[race-abilitytwo]search:title:some{$:/mystate/种族整合!!ability}]\" titlefilter=\"[search:title:some{$:/RaceTitleSearching!!content}]\" sizefilter=\"[get[race-size]]:intersection[enlist{$:/mystate/种族整合!!size}]\" speedfilter=\"[get[race-speed]]:intersection[enlist{$:/mystate/种族整合!!speed}]\" visionfilter=\"[get[race-vision]]:intersection[enlist{$:/mystate/种族整合!!vision}]\" sourcefilter=\"[get[source]]:intersection[enlist{$:/mystate/种族整合!!source}]\">\n\n<p style=\"display:flex;column-gap:2em;\">\n\t<div>\n\t\t<h2>属性组合</h2>\n\t\t<$list filter=\"[enlist{$:/mystate/种族整合!!allAbility}]\">\n\t\t<$checkbox tiddler=\"$:/mystate/种族整合\" listField=\"ability\" class=\"sizerCheckbox\" checked=<<currentTiddler>> disabled=`${[[$:/mystate/种族整合]get[ability]search:title<currentTiddler>then[no]else[yes]] :or[enlist{$:/mystate/种族整合!!ability}count[]compare:integer:lt[2]then[no]else[yes]] :and[search:title[no]then[no]else[yes]]}$`><<currentTiddler>></$checkbox>\n\t\t</$list>\n\t</div>\n\t<div>\n\t\t<h2>种族名搜索</h2>\n\t\t<$edit-text tiddler=\"$:/RaceTitleSearching\" field=\"content\"/>\n\t</div>\n</p>\n<p style=\"display:flex;column-gap:2em;\">\n\t<div>\n\t\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t\t<h2>体型</h2>\n\t\t\t<span>\n\t\t\t<$button class=\"myButton\"><<allcheck \"size\" \"allSize\">>全选</$button><$button class=\"myButton\"><<alluncheck \"size\">>全不选</$button>\n\t\t\t</span>\n\t\t</div>\n\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t<$list filter=\"[enlist{$:/mystate/种族整合!!allSize}]\">\n\t\t\t<$checkbox tiddler=\"$:/mystate/种族整合\" listField=\"size\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t\t</$list>\n\t\t</div>\n\t</div>\n\t<div>\n\t\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t\t<h2>速度</h2>\n\t\t\t<span>\n\t\t\t<$button class=\"myButton\"><<allcheck \"speed\" \"allSpeed\">>全选</$button><$button class=\"myButton\"><<alluncheck \"speed\">>全不选</$button>\n\t\t\t</span>\n\t\t</div>\n\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t<$list filter=\"[enlist{$:/mystate/种族整合!!allSpeed}]\">\n\t\t\t<$checkbox tiddler=\"$:/mystate/种族整合\" listField=\"speed\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t\t</$list>\n\t\t</div>\n\t</div>\n\t<div>\n\t\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t<h2>视觉</h2>\n\t\t<span>\n\t\t<$button class=\"myButton\"><<allcheck \"vision\" \"allVision\">>全选</$button><$button class=\"myButton\"><<alluncheck \"vision\">>全不选</$button>\n\t\t</span>\n\t\t</div>\n\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t<$list filter=\"[enlist{$:/mystate/种族整合!!allVision}]\">\n\t\t\t<$checkbox tiddler=\"$:/mystate/种族整合\" listField=\"vision\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t\t</$list>\n\t\t</div>\n\t</div>\n</p>\n<p style=\"display:flex;\">\n\t<div>\n\t\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t<h2>来源</h2>\n\t\t<span>\n\t\t<$button class=\"myButton\"><<allcheck \"source\" \"allSource\">>全选</$button><$button class=\"myButton\"><<alluncheck \"source\">>全不选</$button>\n\t\t</span>\n\t\t</div>\n\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t<$list filter=\"[enlist{$:/mystate/种族整合!!allSource}]\">\n\t\t\t<$checkbox tiddler=\"$:/mystate/种族整合\" listField=\"source\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t\t</$list>\n\t\t</div>\n\t</div>\n</p>\n<p style=\"display:flex\">\n\t<div style=\"flex:4;padding-right:10px\">\n\t\t<table class=\"dndTable\">\n\t\t<tr class=\"header\"><td style=\"width:20%\">种族</td><td colspan=2 style=\"width:30%\">属性调整</td><td>体型</td><td>速度</td><td>视觉</td><td>来源</td></tr>\n\t\t<% if [enlist{$:/mystate/种族整合!!ability}!is[blank]count[]match[0]] %>\n\t\t<$list filter=\"[tag[种族]filter<titlefilter>filter<sizefilter>filter<speedfilter>filter<visionfilter>filter<sourcefilter>sortsub<compare-by-abilityone>]\">\n\t\t<tr><td><$link><$text text=<<currentTiddler>>/></$link></td><td style=\"width:10%\">{{!!race-abilityone}}</td><td>{{!!race-abilitytwo}}</td><td>{{!!race-size}}</td><td>{{!!race-speed}}</td><td>{{!!race-vision}}</td><td>{{!!source}}</td></tr>\n\t\t</$list>\n\t\t<% elseif [enlist{$:/mystate/种族整合!!ability}!is[blank]count[]match[1]] %>\n\t\t<$list filter=\"[tag[种族]filter<titlefilter>filter<ablilityfilterone>filter<sizefilter>filter<speedfilter>filter<visionfilter>filter<sourcefilter>] :or[tag[种族]filter<titlefilter>filter<ablilityfiltertwo>filter<sizefilter>filter<speedfilter>filter<visionfilter>filter<sourcefilter>] :and[sortsub<compare-by-abilityone>]\">\n\t\t<tr><td><$link><$text text=<<currentTiddler>>/></$link></td><td style=\"width:10%\">{{!!race-abilityone}}</td><td>{{!!race-abilitytwo}}</td><td>{{!!race-size}}</td><td>{{!!race-speed}}</td><td>{{!!race-vision}}</td><td>{{!!source}}</td></tr>\n\t\t</$list>\n\t\t<% else %>\n\t\t<$list filter=\"[tag[种族]filter<titlefilter>filter<ablilityfilterone>filter<ablilityfiltertwo>filter<sizefilter>filter<speedfilter>filter<visionfilter>filter<sourcefilter>sortsub<compare-by-abilityone>]\">\n\t\t<tr><td><$link><$text text=<<currentTiddler>>/></$link></td><td style=\"width:10%\">{{!!race-abilityone}}</td><td>{{!!race-abilitytwo}}</td><td>{{!!race-size}}</td><td>{{!!race-speed}}</td><td>{{!!race-vision}}</td><td>{{!!source}}</td></tr>\n\t\t</$list>\n\t\t<% endif %>\n\t\t</table>\n\t\t<p><% if [enlist{$:/mystate/种族整合!!ability}!is[blank]count[]match[0]] %>\n\t\t共<$count filter=\"[tag[种族]filter<titlefilter>filter<sizefilter>filter<speedfilter>filter<visionfilter>filter<sourcefilter>sortsub<compare-by-abilityone>]\" />条记录\n\t\t<% elseif [enlist{$:/mystate/种族整合!!ability}!is[blank]count[]match[1]] %>\n\t\t共<$count filter=\"[tag[种族]filter<titlefilter>filter<ablilityfilterone>filter<sizefilter>filter<speedfilter>filter<visionfilter>filter<sourcefilter>] :or[tag[种族]filter<titlefilter>filter<ablilityfiltertwo>filter<sizefilter>filter<speedfilter>filter<visionfilter>filter<sourcefilter>] :and[sortsub<compare-by-abilityone>]\" />条记录\n\t\t<% else %>\n\t\t共<$count filter=\"[tag[种族]filter<titlefilter>filter<ablilityfilterone>filter<ablilityfiltertwo>filter<sizefilter>filter<speedfilter>filter<visionfilter>filter<sourcefilter>sortsub<compare-by-abilityone>]\" />条记录\n\t\t<% endif %></p>\n\t</div>\n\t<div style=\"flex:6\">\n\t\t<% if [enlist{$:/mystate/种族整合!!ability}!is[blank]count[]match[0]] %>\n\t\t<<tabs \"[tag[种族]filter<titlefilter>filter<sizefilter>filter<speedfilter>filter<visionfilter>filter<sourcefilter>sortsub<compare-by-abilityone>]\" \"\" \"\" \"\" \"$:/myConfig/ui/ViewTemplate/tabs\">>\n\t\t<% elseif [enlist{$:/mystate/种族整合!!ability}!is[blank]count[]match[1]] %>\n\t\t<<tabs \"[tag[种族]filter<titlefilter>filter<ablilityfilterone>filter<sizefilter>filter<speedfilter>filter<visionfilter>filter<sourcefilter>] :or[tag[种族]filter<titlefilter>filter<ablilityfiltertwo>filter<sizefilter>filter<speedfilter>filter<visionfilter>filter<sourcefilter>] :and[sortsub<compare-by-abilityone>]\" \"\" \"\" \"\" \"$:/myConfig/ui/ViewTemplate/tabs\">>\n\t\t<% else %>\n\t\t<<tabs \"[tag[种族]filter<titlefilter>filter<ablilityfilterone>filter<ablilityfiltertwo>filter<sizefilter>filter<speedfilter>filter<visionfilter>filter<sourcefilter>sortsub<compare-by-abilityone>]\" \"\" \"\" \"\" \"$:/myConfig/ui/ViewTemplate/tabs\">>\n\t\t<% endif %>\n\t</div>\n</p>\n</$vars>",
     "fields": {
       "created": "20220830091827299",
       "creator": "Leon",
-      "modified": "20250711022644085",
+      "modified": "20260716091653221",
       "modifier": "Leon",
-      "allSource": "PH PH2 PH3 HoF HoS Dragon FRPG EPG DSCS NCS DSH MM MM2",
-      "allAbility": "力量 体质 敏捷 智力 感知 魅力",
-      "allSpeed": "4格 5格 6格 7格",
-      "allSize": "超小型 小型 中型",
-      "allVision": "普通视觉 昏暗视觉 黑暗视觉",
-      "ability": "力量 敏捷",
-      "size": "超小型 小型 中型",
-      "speed": "4格 5格 6格 7格",
-      "vision": "普通视觉 昏暗视觉 黑暗视觉",
-      "source": "PH PH2 PH3 HoF HoS Dragon FRPG EPG DSCS NCS DSH MM MM2"
+      "revision": "0",
+      "bag": "default"
     },
     "wiki": {
       "transclusions": [],
@@ -1282,34 +304,6 @@
         "currentTiddler",
         "currentTiddler",
         "currentTiddler",
-        "currentTiddler",
-        "currentTiddler"
-      ],
-      "headings": []
-    }
-  },
-  {
-    "id": "主题速查",
-    "name": "主题速查",
-    "category": "nav",
-    "tags": [],
-    "source": "HoEC",
-    "sourceText": "\\procedure uncheckAllSource() <$action-setfield $field=\"source\" $value=\"\"/>\n\n\\procedure checkAllSource() <$action-setfield $field=\"source\" $value={{!!allSource}}/>\n\n<p>\n  <h2>内容搜索</h2>\n  <$edit-text field=\"searchContent\" placeholder=\"空格分隔条件\"/>\n</p>\n<p style=\"width:fit-content;\">\n\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t<h2>来源</h2>\n\t\t<span>\n\t\t<$button class=\"myButton\"><<checkAllSource>>全选</$button><$button class=\"myButton\"><<uncheckAllSource>>全不选</$button>\n\t\t</span>\n\t</div>\n\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t<$list filter=\"[enlist{!!allSource}]\">\n\t\t<$checkbox tiddler=\"主题速查\" listField=\"source\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t</$list>\n\t</div>\n</p>\n\n<$vars sourcefilter=\"[get[source]]:intersection[enlist{主题速查!!source}]\">\n<<tabs \"[tag[主题]filter<sourcefilter>search:title,text{!!searchContent}]\" \"\" \"\" \"mytab tc-vertical\" \"$:/myConfig/ui/ViewTemplate/tabs\">>\n共<$count filter=\"[tag[主题]filter<sourcefilter>search:title,text{!!searchContent}]\"/>条记录\n</$vars>",
-    "fields": {
-      "created": "20241012021747844",
-      "creator": "Leon",
-      "modified": "20250506043030390",
-      "modifier": "Leon",
-      "allSource": "HoF HoEC DSH DSCS BoVD NCS Dragon",
-      "source": "HoEC",
-      "searchContent": ""
-    },
-    "wiki": {
-      "transclusions": [],
-      "links": [],
-      "macros": [
-        "checkAllSource",
-        "uncheckAllSource",
         "currentTiddler",
         "currentTiddler"
       ],
@@ -1328,147 +322,15 @@
       "created": "20241010152013585",
       "creator": "Leon",
       "modified": "20241010152144567",
-      "modifier": "Leon"
+      "modifier": "Leon",
+      "revision": "0",
+      "bag": "default"
     },
     "wiki": {
       "transclusions": [],
       "links": [],
       "macros": [
         "tabs"
-      ],
-      "headings": []
-    }
-  },
-  {
-    "id": "专长速查",
-    "name": "专长速查",
-    "category": "nav",
-    "tags": [],
-    "source": "PH PH2 PH3 MP MP2 AP DP PrP PsP PHRD PHRT HoF HoS HoEC HoFL HoFK Dragon Dungeon FRPG EPG DSCS DSH BoVD MME",
-    "sourceText": "\\define alluncheck(n) <$action-setfield $field=\"$n$\" $value=\"\"/>\n\n\\define allcheck(n,m) <$action-setfield $field=\"$n$\" $value={{!!$m$}}/>\n\n\\procedure uncheckLimit() <$action-setfield $field=\"limit\" $value=\"\"/>\n\n\\procedure uncheckClassLimit() <$action-setfield $field=\"classLimit\" $value=\"\"/>\n\n\\procedure uncheckNormalLimit() <$action-setfield $field=\"normalLimit\" $value=\"\"/>\n\n\\procedure uncheckAllLimit()\n<<uncheckLimit>>\n<<uncheckClassLimit>>\n<<uncheckNormalLimit>>\n\\end\n\n\\procedure checkClassLimit()\n<$action-setfield $field=\"classLimit\" $value=<<class>>/>\n<<uncheckLimit>>\n<<uncheckNormalLimit>>\n\\end\n\n\\procedure checkFamiliarLimit()\n<$action-setfield $field=\"limit\" $value=\"<Familiar\"/>\n<<uncheckClassLimit>>\n<<uncheckNormalLimit>>\n\\end\n\n\\procedure checkDivinityLimit()\n<$action-setfield $field=\"limit\" $value=\"<Divinity\"/>\n<<uncheckClassLimit>>\n<<uncheckNormalLimit>>\n\\end\n\n\\procedure checkDomainLimit()\n<$action-setfield $field=\"limit\" $value=\"<Domain\"/>\n<<uncheckClassLimit>>\n<<uncheckNormalLimit>>\n\\end\n\n\\procedure checkBloodlineLimit()\n<$action-setfield $field=\"limit\" $value=\"Bloodline>\"/>\n<<uncheckClassLimit>>\n<<uncheckNormalLimit>>\n\\end\n\n\\procedure checkMulticlassLimit()\n<$action-setfield $field=\"limit\" $value=\"<Multiclass\"/>\n<<uncheckClassLimit>>\n<<uncheckNormalLimit>>\n\\end\n\n\\procedure checkStyleLimit()\n<$action-setfield $field=\"limit\" $value=\"Style>\"/>\n<<uncheckClassLimit>>\n<<uncheckNormalLimit>>\n\\end\n\n\\procedure checkDragonmarkLimit()\n<$action-setfield $field=\"limit\" $value=\"<Dragonmark\"/>\n<<uncheckClassLimit>>\n<<uncheckNormalLimit>>\n\\end\n\n\\procedure checkArenaFightingLimit()\n<$action-setfield $field=\"limit\" $value=\"Fighting>\"/>\n<<uncheckClassLimit>>\n<<uncheckNormalLimit>>\n\\end\n\n\\procedure checkPactLimit()\n<$action-setfield $field=\"limit\" $value=\"Pact>\"/>\n<<uncheckClassLimit>>\n<<uncheckNormalLimit>>\n\\end\n\n\\procedure checkAugmentLimit()\n<$action-setfield $field=\"limit\" $value=\"<Augment\"/>\n<<uncheckClassLimit>>\n<<uncheckNormalLimit>>\n\\end\n\n\\procedure checkRuneLimit()\n<$action-setfield $field=\"limit\" $value=\"<Rune\"/>\n<<uncheckClassLimit>>\n<<uncheckNormalLimit>>\n\\end\n\n\\procedure checkTribalLimit()\n<$action-setfield $field=\"limit\" $value=\"<Tribal\"/>\n<<uncheckClassLimit>>\n<<uncheckNormalLimit>>\n\\end\n\n\\procedure checkElementalCompanionLimit()\n<$action-setfield $field=\"limit\" $value=\"Companion>\"/>\n<<uncheckClassLimit>>\n<<uncheckNormalLimit>>\n\\end\n\n\\procedure checkGuildLimit()\n<$action-setfield $field=\"limit\" $value=\"<Guild\"/>\n<<uncheckClassLimit>>\n<<uncheckNormalLimit>>\n\\end\n\n\\procedure checkRaceLimit()\n<$action-setfield $field=\"classLimit\" $value=`${[tag[种族]splitbefore[ ]trim[]join[ ]]}$`/>\n<<uncheckLimit>>\n<<uncheckNormalLimit>>\n\\end\n\n\\procedure checkNormalLimit()\n<$action-setfield $field=\"normalLimit\" $value=\"normal\"/>\n<<uncheckLimit>>\n<<uncheckClassLimit>>\n\\end\n\n<$set name=\"allrace\" filter=\"[tag[种族]splitbefore[ ]trim[ ]]\">\n<$set name=\"allclass\" filter=\"[tag[职业]hybrid[否]splitbefore[ ]trim[]splitbefore[（]trim[（]unique[]append[武术职业 奥术职业 神术职业 原力职业 灵能职业 影能职业]]\">\n<$vars sortfilter=\"[get[prerequisite]!is[blank]else[黑]]\" titlefilter=\"[search:title:some{$:/FeatTitleSearching!!content}]\" tierfilter=\"[get[tier]]:intersection[enlist{专长速查!!tier}]\" sourcefilter=\"[get[source]]:intersection[enlist{专长速查!!source}]\" prerequisitefilter=\"[get[prerequisite]!is[blank]else[无]search:title:some{$:/FeatPrerequisiteSearching!!content}search:title:some{专长速查!!classLimit}]\" benefitfilter=\"[get[benefit]search{$:/FeatSearching!!content}]\" titlefilter1=\"[[专长速查]get[limit]] :else[!search:title:some[< >]]\" titlefilter2=\"[[专长速查]get[classLimit]] :else[search:title:some{专长速查!!limit}]\" prerequisitefilter1=\"[[专长速查]get[classLimit]!match[法师]] :else[get[prerequisite]!is[blank]else[无]!search:title:some[剑法师]]\" prerequisitefilter2=\"[[专长速查]get[classLimit]!match[术士]] :else[get[prerequisite]!is[blank]else[无]!search:title:some[机关术士 心灵术士]]\" prerequisitefilter3=\"[[专长速查]get[classLimit]!match[牧师]] :else[get[prerequisite]!is[blank]else[无]!search:title:some[符文牧师]]\" normalfilter=\"[get[prerequisite]!is[blank]else[无]!search:title:some<allrace>!search:title:some<allclass>]\">\n\n<div style=\"display:flex\">\n\t<div style=\"flex:2.5\">\n\t\t<p>\n\t\t\t<h2>专长名搜索</h2>\n\t\t\t<$edit-text tiddler=\"$:/FeatTitleSearching\" field=\"content\"/>\n\t\t</p>\n\t\t<p>\n\t\t\t<h2>前提搜索</h2>\n\t\t\t<$edit-text tiddler=\"$:/FeatPrerequisiteSearching\" field=\"content\" placeholder=\"空格分隔条件\"/>\n\t\t</p>\n\t\t<p>\n\t\t\t<h2>增益搜索</h2>\n\t\t\t<$edit-text tiddler=\"$:/FeatSearching\" field=\"content\" placeholder=\"空格分隔条件\"/>\n\t\t</p>\n\t\t<p style=\"display:flex;flex-wrap:wrap;justify-content:space-between\">\n\t\t\t<$checkbox filter=\"[list[!!normalLimit]]\" class=\"sizerCheckbox\" checked=\"normal\" checkactions=<<checkNormalLimit>> uncheckactions=<<uncheckAllLimit>> >通用专长</$checkbox>\n\t\t\t<$checkbox filter=\"[list[!!classLimit]]\" class=\"sizerCheckbox\" checked=\"矮人\" checkactions=<<checkRaceLimit>> uncheckactions=<<uncheckAllLimit>> >种族专长</$checkbox>\n\t\t\t<$checkbox filter=\"[list[!!limit]]\" class=\"sizerCheckbox\" checked=\"Bloodline>\" checkactions=<<checkBloodlineLimit>> uncheckactions=<<uncheckAllLimit>> >血统专长</$checkbox>\n\t\t\t<$checkbox filter=\"[list[!!limit]]\" class=\"sizerCheckbox\" checked=\"<Multiclass\" checkactions=<<checkMulticlassLimit>> uncheckactions=<<uncheckAllLimit>> >兼职专长</$checkbox>\n\t\t\t<$checkbox filter=\"[list[!!limit]]\" class=\"sizerCheckbox\" checked=\"<Dragonmark\" checkactions=<<checkDragonmarkLimit>> uncheckactions=<<uncheckAllLimit>> >龙纹专长</$checkbox>\n\t\t\t<$checkbox filter=\"[list[!!limit]]\" class=\"sizerCheckbox\" checked=\"<Tribal\" checkactions=<<checkTribalLimit>> uncheckactions=<<uncheckAllLimit>> >部落专长</$checkbox>\n\t\t\t<$checkbox filter=\"[list[!!limit]]\" class=\"sizerCheckbox\" checked=\"<Guild\" checkactions=<<checkGuildLimit>> uncheckactions=<<uncheckAllLimit>> >工会专长</$checkbox>\n\t\t\t<$checkbox filter=\"[list[!!limit]]\" class=\"sizerCheckbox\" checked=\"Companion>\" checkactions=<<checkElementalCompanionLimit>> uncheckactions=<<uncheckAllLimit>> >元素伙伴专长</$checkbox>\n\t\t</p>\n\t\t<p style=\"display:flex;flex-wrap:wrap;justify-content:space-between\">\n\t\t\t<ul style=\"list-style: none;padding:0;\" class=\"nomarker\">\n\t\t\t\t<li>武术职业\n\t\t\t\t\t<ul style=\"list-style: none;padding-left:20px;display: flex;flex-wrap: wrap;\" class=\"nomarker\">\n\t\t\t\t\t<$list filter=\"[tag[职业]hybrid[否]power source[武术]splitbefore[ ]trim[]splitbefore[（]trim[（]unique[]append[任意武术职业]]\" variable=\"class\"><li><$checkbox filter=\"[list[专长速查!!classLimit]]\" class=\"sizerCheckbox\" checked=<<class>> checkactions=<<checkClassLimit>> uncheckactions=<<uncheckAllLimit>> ><<class>></$checkbox></li></$list>\n\t\t\t\t\t<li><$checkbox filter=\"[list[!!limit]]\" class=\"sizerCheckbox\" checked=\"Style>\" checkactions=<<checkStyleLimit>> uncheckactions=<<uncheckAllLimit>> >流派专长</$checkbox></li>\n\t\t\t\t\t<li><$checkbox filter=\"[list[!!limit]]\" class=\"sizerCheckbox\" checked=\"Fighting>\" checkactions=<<checkArenaFightingLimit>> uncheckactions=<<uncheckAllLimit>> >竞技场战斗专长</$checkbox></li>\n\t\t\t\t\t</ul>\n\t\t\t\t</li>\n\t\t\t</ul>\n\t\t\t<ul style=\"list-style: none;padding:0;\" class=\"nomarker\">\n\t\t\t\t<li>奥术职业<ul style=\"list-style: none;padding-left:20px;display: flex;flex-wrap: wrap;\" class=\"nomarker\"><$list filter=\"[tag[职业]hybrid[否]power source[奥术]splitbefore[ ]trim[]splitbefore[（]trim[（]unique[]append[任意奥术职业]]\" variable=\"class\"><li><$checkbox filter=\"[list[专长速查!!classLimit]]\" class=\"sizerCheckbox\" checked=<<class>> checkactions=<<checkClassLimit>> uncheckactions=<<uncheckAllLimit>> ><<class>></$checkbox></li></$list><li><$checkbox filter=\"[list[!!limit]]\" class=\"sizerCheckbox\" checked=\"<Familiar\" checkactions=<<checkFamiliarLimit>> uncheckactions=<<uncheckAllLimit>> >魔宠专长</$checkbox></li><li><$checkbox filter=\"[list[!!limit]]\" class=\"sizerCheckbox\" checked=\"Pact>\" checkactions=<<checkPactLimit>> uncheckactions=<<uncheckAllLimit>> >契约专长</$checkbox></li></ul></li>\n\t\t\t</ul>\n\t\t\t<ul style=\"list-style: none;padding:0;\" class=\"nomarker\">\n\t\t\t\t<li>神术职业<ul style=\"list-style: none;padding-left:20px;display: flex;flex-wrap: wrap;\" class=\"nomarker\"><$list filter=\"[tag[职业]hybrid[否]power source[神术]splitbefore[ ]trim[]splitbefore[（]trim[（]unique[]append[任意神术职业]]\" variable=\"class\"><li><$checkbox filter=\"[list[专长速查!!classLimit]]\" class=\"sizerCheckbox\" checked=<<class>> checkactions=<<checkClassLimit>> uncheckactions=<<uncheckAllLimit>> ><<class>></$checkbox></li></$list><li><$checkbox filter=\"[list[!!limit]]\" class=\"sizerCheckbox\" checked=\"<Divinity\" checkactions=<<checkDivinityLimit>> uncheckactions=<<uncheckAllLimit>> >神力专长</$checkbox></li><li><$checkbox filter=\"[list[!!limit]]\" class=\"sizerCheckbox\" checked=\"<Domain\" checkactions=<<checkDomainLimit>> uncheckactions=<<uncheckAllLimit>> >领域专长</$checkbox></li><li><$checkbox filter=\"[list[!!limit]]\" class=\"sizerCheckbox\" checked=\"<Rune\" checkactions=<<checkRuneLimit>> uncheckactions=<<uncheckAllLimit>> >符文专长</$checkbox></li></ul></li>\n\t\t\t</ul>\n\t\t\t<ul style=\"list-style: none;padding:0;\" class=\"nomarker\">\n\t\t\t\t<li>原力职业<ul style=\"list-style: none;padding-left:20px;display: flex;flex-wrap: wrap;\" class=\"nomarker\"><$list filter=\"[tag[职业]hybrid[否]power source[原力]splitbefore[ ]trim[]splitbefore[（]trim[（]unique[]append[任意原力职业]]\" variable=\"class\"><li><$checkbox filter=\"[list[专长速查!!classLimit]]\" class=\"sizerCheckbox\" checked=<<class>> checkactions=<<checkClassLimit>> uncheckactions=<<uncheckAllLimit>> ><<class>></$checkbox></li></$list></ul></li>\n\t\t\t</ul>\n\t\t\t<ul style=\"list-style: none;padding:0;\" class=\"nomarker\">\n\t\t\t\t<li>灵能职业<ul style=\"list-style: none;padding-left:20px;display: flex;flex-wrap: wrap;\" class=\"nomarker\"><$list filter=\"[tag[职业]hybrid[否]power source[灵能]splitbefore[ ]trim[]splitbefore[（]trim[（]unique[]append[任意灵能职业]]\" variable=\"class\"><li><$checkbox filter=\"[list[专长速查!!classLimit]]\" class=\"sizerCheckbox\" checked=<<class>> checkactions=<<checkClassLimit>> uncheckactions=<<uncheckAllLimit>> ><<class>></$checkbox></li></$list><li><$checkbox filter=\"[list[!!limit]]\" class=\"sizerCheckbox\" checked=\"<Augment\" checkactions=<<checkAugmentLimit>> uncheckactions=<<uncheckAllLimit>> >增强专长</$checkbox></li></ul></li>\n\t\t\t</ul>\n\t\t\t<ul style=\"list-style: none;padding:0;\" class=\"nomarker\">\n\t\t\t\t<li>影能职业<ul style=\"list-style: none;padding-left:20px;display: flex;flex-wrap: wrap;\" class=\"nomarker\"><$list filter=\"[tag[职业]hybrid[否]power source[影能]splitbefore[ ]trim[]splitbefore[（]trim[（]unique[]]\" variable=\"class\"><li><$checkbox filter=\"[list[专长速查!!classLimit]]\" class=\"sizerCheckbox\" checked=<<class>> checkactions=<<checkClassLimit>> uncheckactions=<<uncheckAllLimit>> ><<class>></$checkbox></li></$list></ul></li>\n\t\t\t</ul>\n\t\t</p>\n\t\t<p>\n\t\t\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t\t\t<h2>层级</h2>\n\t\t\t\t<span>\n\t\t\t\t<$button class=\"myButton\"><<allcheck \"tier\" \"allTier\">>全选</$button><$button class=\"myButton\"><<alluncheck \"tier\">>全不选</$button>\n\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div style=\"display:flex;flex-wrap:wrap\">\n\t\t\t\t<$list filter=\"[enlist{!!allTier}]\">\n\t\t\t\t<$checkbox tiddler=\"专长速查\" listField=\"tier\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t\t\t</$list>\n\t\t\t</div>\n\t\t</p>\n\t\t<p>\n\t\t\t<div style=\"display:flex;align-items:center;justify-content:space-between\">\n\t\t\t\t<h2>来源</h2>\n\t\t\t\t<span>\n\t\t\t\t<$button class=\"myButton\"><<allcheck \"source\" \"allSource\">>全选</$button><$button class=\"myButton\"><<alluncheck \"source\">>全不选</$button>\n\t\t\t\t</span>\n\t\t\t</div>\n\t\t\t<div style=\"display:flex;flex-wrap:wrap;justify-content:space-between\">\n\t\t\t\t<$list filter=\"[enlist{!!allSource}]\">\n\t\t\t\t<$checkbox tiddler=\"专长速查\" listField=\"source\" class=\"sizerCheckbox\" checked=<<currentTiddler>>><<currentTiddler>></$checkbox>\n\t\t\t\t</$list>\n\t\t\t</div>\n\t\t</p>\n\t\t<p>\n\t\t\t<% if [[专长速查]get[normalLimit]] %>\n\t\t\t共<$count filter=\"[tag[专长]filter<titlefilter>filter<tierfilter>filter<sourcefilter>filter<prerequisitefilter>filter<benefitfilter>filter<normalfilter>filter<titlefilter1>]\"/>条记录\n\t\t\t<% elseif [[专长速查]get[limit]] %>\n\t\t\t共<$count filter=\"[tag[专长]filter<titlefilter>filter<tierfilter>filter<sourcefilter>filter<prerequisitefilter>filter<benefitfilter>filter<titlefilter2>]\"/>条记录\n\t\t\t<% elseif [[专长速查]get[classLimit]] %>\n\t\t\t共<$count filter=\"[tag[专长]filter<titlefilter>filter<tierfilter>filter<sourcefilter>filter<prerequisitefilter>filter<benefitfilter>filter<titlefilter1>filter<prerequisitefilter1>filter<prerequisitefilter2>filter<prerequisitefilter3>]\"/>条记录\n\t\t\t<% else %>\n\t\t\t共<$count filter=\"[tag[专长]filter<titlefilter>filter<tierfilter>filter<sourcefilter>filter<prerequisitefilter>filter<benefitfilter>]\"/>条记录\n\t\t\t<% endif %>\n\t\t</p>\n\t</div>\n\n\t<div style=\"flex:7.5\">\n\t\t<table class=\"dndTable\">\n\t\t<tr class=\"header\"><td>专长</td><td style=\"width:200px\">前提</td><td>增益</td><td style=\"width:70px\">来源</td></tr>\n\t\t<% if [[专长速查]get[normalLimit]] %>\n\t\t<$list filter=\"[tag[专长]filter<titlefilter>filter<tierfilter>filter<sourcefilter>filter<prerequisitefilter>filter<benefitfilter>filter<normalfilter>filter<titlefilter1>!sortsub<sortfilter>!sort[tier]]\">\n\t\t<tr><td><$link><$text text=<<currentTiddler>>/></$link></td><td>{{!!prerequisite}}</td><td>{{!!benefit}}</td><td>{{!!source}}</td></tr>\n\t\t</$list>\n\t\t<% elseif [[专长速查]get[limit]] %>\n\t\t<$list filter=\"[tag[专长]filter<titlefilter>filter<tierfilter>filter<sourcefilter>filter<prerequisitefilter>filter<benefitfilter>filter<titlefilter2>!sortsub<sortfilter>!sort[tier]]\">\n\t\t<tr><td><$link><$text text=<<currentTiddler>>/></$link></td><td>{{!!prerequisite}}</td><td>{{!!benefit}}</td><td>{{!!source}}</td></tr>\n\t\t</$list>\n\t\t<% elseif [[专长速查]get[classLimit]] %>\n\t\t<$list filter=\"[tag[专长]filter<titlefilter>filter<tierfilter>filter<sourcefilter>filter<prerequisitefilter>filter<benefitfilter>filter<titlefilter1>filter<prerequisitefilter1>filter<prerequisitefilter2>filter<prerequisitefilter3>!sortsub<sortfilter>!sort[tier]]\">\n\t\t<tr><td><$link><$text text=<<currentTiddler>>/></$link></td><td>{{!!prerequisite}}</td><td>{{!!benefit}}</td><td>{{!!source}}</td></tr>\n\t\t</$list>\n\t\t<% else %>\n\t\t<$list filter=\"[tag[专长]filter<titlefilter>filter<tierfilter>filter<sourcefilter>filter<prerequisitefilter>filter<benefitfilter>!sortsub<sortfilter>!sort[tier]]\">\n\t\t<tr><td><$link><$text text=<<currentTiddler>>/></$link></td><td>{{!!prerequisite}}</td><td>{{!!benefit}}</td><td>{{!!source}}</td></tr>\n\t\t</$list>\n\t\t<% endif %>\n\t\t</table>\n\t</div>\n</div>\n\n</$vars>\n</$set>\n</$set>",
-    "fields": {
-      "created": "20220901074932335",
-      "creator": "Leon",
-      "modified": "20250425045927029",
-      "modifier": "Leon",
-      "limit": "",
-      "classLimit": "战士",
-      "normalLimit": "",
-      "allSource": "PH PH2 PH3 MP MP2 AP DP PrP PsP PHRD PHRT HoF HoS HoEC HoFL HoFK Dragon Dungeon FRPG EPG DSCS DSH BoVD MME",
-      "allTier": "英雄 典范 传奇",
-      "tier": "典范 英雄 传奇",
-      "source": "PH PH2 PH3 MP MP2 AP DP PrP PsP PHRD PHRT HoF HoS HoEC HoFL HoFK Dragon Dungeon FRPG EPG DSCS DSH BoVD MME"
-    },
-    "wiki": {
-      "transclusions": [],
-      "links": [],
-      "macros": [
-        "uncheckLimit",
-        "uncheckClassLimit",
-        "uncheckNormalLimit",
-        "class",
-        "uncheckLimit",
-        "uncheckNormalLimit",
-        "uncheckClassLimit",
-        "uncheckNormalLimit",
-        "uncheckClassLimit",
-        "uncheckNormalLimit",
-        "uncheckClassLimit",
-        "uncheckNormalLimit",
-        "uncheckClassLimit",
-        "uncheckNormalLimit",
-        "uncheckClassLimit",
-        "uncheckNormalLimit",
-        "uncheckClassLimit",
-        "uncheckNormalLimit",
-        "uncheckClassLimit",
-        "uncheckNormalLimit",
-        "uncheckClassLimit",
-        "uncheckNormalLimit",
-        "uncheckClassLimit",
-        "uncheckNormalLimit",
-        "uncheckClassLimit",
-        "uncheckNormalLimit",
-        "uncheckClassLimit",
-        "uncheckNormalLimit",
-        "uncheckClassLimit",
-        "uncheckNormalLimit",
-        "uncheckClassLimit",
-        "uncheckNormalLimit",
-        "uncheckClassLimit",
-        "uncheckNormalLimit",
-        "uncheckLimit",
-        "uncheckNormalLimit",
-        "uncheckLimit",
-        "uncheckClassLimit",
-        "checkNormalLimit",
-        "uncheckAllLimit",
-        "checkRaceLimit",
-        "uncheckAllLimit",
-        "checkBloodlineLimit",
-        "uncheckAllLimit",
-        "checkMulticlassLimit",
-        "uncheckAllLimit",
-        "checkDragonmarkLimit",
-        "uncheckAllLimit",
-        "checkTribalLimit",
-        "uncheckAllLimit",
-        "checkGuildLimit",
-        "uncheckAllLimit",
-        "checkElementalCompanionLimit",
-        "uncheckAllLimit",
-        "class",
-        "checkClassLimit",
-        "uncheckAllLimit",
-        "class",
-        "checkStyleLimit",
-        "uncheckAllLimit",
-        "checkArenaFightingLimit",
-        "uncheckAllLimit",
-        "class",
-        "checkClassLimit",
-        "uncheckAllLimit",
-        "class",
-        "checkFamiliarLimit",
-        "uncheckAllLimit",
-        "checkPactLimit",
-        "uncheckAllLimit",
-        "class",
-        "checkClassLimit",
-        "uncheckAllLimit",
-        "class",
-        "checkDivinityLimit",
-        "uncheckAllLimit",
-        "checkDomainLimit",
-        "uncheckAllLimit",
-        "checkRuneLimit",
-        "uncheckAllLimit",
-        "class",
-        "checkClassLimit",
-        "uncheckAllLimit",
-        "class",
-        "class",
-        "checkClassLimit",
-        "uncheckAllLimit",
-        "class",
-        "checkAugmentLimit",
-        "uncheckAllLimit",
-        "class",
-        "checkClassLimit",
-        "uncheckAllLimit",
-        "class",
-        "allcheck",
-        "alluncheck",
-        "currentTiddler",
-        "currentTiddler",
-        "allcheck",
-        "alluncheck",
-        "currentTiddler",
-        "currentTiddler",
-        "currentTiddler",
-        "currentTiddler",
-        "currentTiddler",
-        "currentTiddler"
       ],
       "headings": []
     }
@@ -1485,7 +347,9 @@
       "created": "20240930172426795",
       "creator": "Leon",
       "modified": "20250105004934997",
-      "modifier": "Leon"
+      "modifier": "Leon",
+      "revision": "0",
+      "bag": "default"
     },
     "wiki": {
       "transclusions": [],
@@ -1505,13 +369,15 @@
     ],
     "sourceText": "<div class=\"tc-table-of-contents\">\n<<toc-selective-expandable 'TableOfContents'>>\n</div>",
     "fields": {
+      "caption": "目录",
       "created": "20220714012659048",
       "creator": "Leon",
+      "list": "种族整合 职业整合 威能整合 典范速查 天命速查 专长整合 物品整合 仪式及武术奥义 魔宠 元素伙伴 主题整合 附录 贡献者",
+      "list-after": "$:/core/ui/SideBar/Open",
       "modified": "20241010152010549",
       "modifier": "Leon",
-      "caption": "目录",
-      "list-after": "$:/core/ui/SideBar/Open",
-      "list": "种族整合 职业整合 威能整合 典范速查 天命速查 专长整合 物品整合 仪式及武术奥义 魔宠 元素伙伴 主题整合 附录 贡献者"
+      "revision": "0",
+      "bag": "default"
     },
     "wiki": {
       "transclusions": [],

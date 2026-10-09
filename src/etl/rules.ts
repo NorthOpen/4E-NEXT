@@ -1,4 +1,4 @@
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { join, relative, sep } from "node:path";
 import { writeJson, writeJsonCompact } from "../lib/io.js";
 import { extractStoreTiddlers } from "../lib/store.js";
@@ -395,14 +395,39 @@ function repoRelative(p: string): string {
   return relative(process.cwd(), p).split(sep).join("/");
 }
 
+/**
+ * 万律书源文件（单文件 TW5）定位：仓库根目录与 data/ 里文件名带「rule / 万律」的 HTML，
+ * 按修改时间取最新的一份——来源更新时直接放新文件即可，不需要改代码（与怪物手册同一约定）。
+ * 主维基文件名带「wiki」而不带「rule」，不会被这里误取；旧名 4e-rules.html、data/4e Rules.htm
+ * 以及新版下载名 4e Rules Compendium.htm 都命中该规则。
+ */
 export function findRulesSource(): string | undefined {
-  const candidates = [join(DATA_DIR, "4e-rules.html"), join(process.cwd(), "4e-rules.html"), join(DATA_DIR, "4e Rules.htm")];
-  return candidates.find((p) => existsSync(p));
+  const dirs = [process.cwd(), DATA_DIR];
+  const all: { path: string; mtime: number }[] = [];
+  for (const dir of dirs) {
+    if (!existsSync(dir)) continue;
+    for (const f of readdirSync(dir)) {
+      const n = f.toLowerCase();
+      if (!n.endsWith(".htm") && !n.endsWith(".html")) continue;
+      if (!(n.includes("rule") || f.includes("万律"))) continue;
+      if (n.includes("wiki") || f.includes("维基")) continue;
+      const p = join(dir, f);
+      let mtime = 0;
+      try {
+        mtime = statSync(p).mtimeMs;
+      } catch {
+        continue;
+      }
+      all.push({ path: p, mtime });
+    }
+  }
+  all.sort((a, b) => b.mtime - a.mtime);
+  return all[0]?.path;
 }
 
 export function runRules(): RulesSummary {
   const src = findRulesSource();
-  if (!src) throw new Error("未找到万律书源文件：请把 4e-rules.html 放在仓库根目录或 data/ 目录");
+  if (!src) throw new Error("未找到万律书源文件：请把文件名带 rule 的 4e Rules Compendium 单文件 HTML 放在仓库根目录或 data/ 目录");
   const payload = buildRules(src);
   const output = join(RULES_DIR, "rules.json");
   const metaPath = join(RULES_DIR, "_meta.json");
