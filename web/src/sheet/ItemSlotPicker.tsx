@@ -60,7 +60,9 @@ const CATEGORY_ORDER = [
 
 // —— 分级钻取树 ——
 // 节点：中间节点有 children（可下钻）；叶子用 tokens（itemSuitable 命中）或 cats（纯类别命中）作为过滤值。
-type DrillItem = { label: string; children?: DrillItem[]; tokens?: string[]; cats?: string[] };
+// fallback 叶子（「未分类」）：命中的是「整个槽位树里没有任何具名分类命中」的条目（如缺「适合」值的奇物），
+// 用于兜底，避免这类条目被「必须命中叶子」的规则静默滤掉。
+type DrillItem = { label: string; children?: DrillItem[]; tokens?: string[]; cats?: string[]; fallback?: true };
 
 // 次级分类按「类别」规范化：杂散 itemSuitable token → 全书规整分类。
 //   武器：巨剑/长剑/弯刀→重刃、匕首→轻刃、矮人重锤→锤、
@@ -95,6 +97,10 @@ function groupsOfSuitable(category: string | undefined, suitable: unknown): stri
 }
 
 const leaf = (label: string, tokens?: string[]): DrillItem => (tokens ? { label, tokens } : { label });
+
+// 「未分类」兜底叶子的统一 label（根层 chip 与「未分类」筛选共用）
+const FALLBACK_LABEL = "未分类";
+const fallbackLeaf = (): DrillItem => ({ label: FALLBACK_LABEL, fallback: true });
 
 // 各类别的子树配置（叶子 label == 匹配 token，作为「其他」等跨类槽的一级下钻内容）。
 const CAT_DRILL: Record<string, DrillItem[]> = {
@@ -163,8 +169,9 @@ function isDrillLeaf(node: DrillItem): boolean {
   return !node.children || node.children.length === 0;
 }
 
-// 叶子是否命中该物品。
-function matchLeaf(e: Entry, node: DrillItem): boolean {
+// 叶子是否命中该物品。named 传入「同槽位的全部具名叶子」，供 fallback 叶子判定「这些具名叶子全都没命中」。
+function matchLeaf(e: Entry, node: DrillItem, named: DrillItem[] = []): boolean {
+  if (node.fallback) return named.length > 0 && !named.some((l) => matchLeaf(e, l));
   if (node.tokens && node.tokens.length) {
     const gs = groupsOfSuitable(e.itemCategory, e.itemSuitable);
     return node.tokens.some((t) => gs.includes(t));
@@ -208,7 +215,18 @@ export default function ItemSlotPicker({ entries, loading, slotName, currentId, 
     [entries]
   );
   // 根子树（注意：依赖 presentCats 仅「其他」槽需要，其余槽用固定树）。
-  const root = useMemo(() => slotRoot(slotName, presentCats), [slotName, presentCats]);
+  // 若槽位内存在「任何具名分类都命中不上」的条目（如官方数据里缺「适合」值的奇物），在根层补一个「未分类」兜底叶子：
+  // 否则这些条目会被「必须命中叶子」的规则整条滤掉、在任何槽位都选不到（次元袋、便利袋即为此类）。
+  const root = useMemo(() => {
+    const base = slotRoot(slotName, presentCats);
+    const named = base.flatMap(collectLeaves).filter((l) => !l.fallback);
+    if (named.length === 0) return base; // 无分类树的槽位：不做兜底
+    const scoped = allowed.length ? entries.filter((e) => allowed.includes(e.itemCategory ?? "")) : entries;
+    return scoped.some((e) => !named.some((l) => matchLeaf(e, l))) ? [...base, fallbackLeaf()] : base;
+  }, [slotName, presentCats, entries, allowed]);
+  // 整个槽位树的叶子：具名叶子用于「未分类」判定（根层兜底）
+  const slotLeaves = useMemo(() => root.flatMap(collectLeaves), [root]);
+  const namedSlotLeaves = useMemo(() => slotLeaves.filter((l) => !l.fallback), [slotLeaves]);
 
   const [path, setPath] = useState<string[]>([]); // 下钻路径（中间节点 label）
   const [sel, setSel] = useState<string[]>([]); // 当前层级多选叶子 label
@@ -258,12 +276,15 @@ export default function ItemSlotPicker({ entries, loading, slotName, currentId, 
     const selLeaves = currentChildren.filter(isDrillLeaf).filter((it) => sel.includes(it.label));
     return entries.filter((e) => {
       if (allowed.length && !allowed.includes(e.itemCategory ?? "")) return false;
+      // 「未分类」条目：整个槽位树里没有任何具名分类命中（如缺「适合」值的奇物）——它们不属于任何具名分类，
+      // 故仅在根层保留在视野内（配合根层的「未分类」chip）；一旦下钻到具体分类，仍按该层具名分类收窄，避免污染无关分类。
+      const unclassified = path.length === 0 && namedSlotLeaves.length > 0 && !namedSlotLeaves.some((l) => matchLeaf(e, l));
       // 命中当前子树任一叶子（下钻即收窄视野）
-      const inView = subtreeLeaves.length === 0 || subtreeLeaves.some((l) => matchLeaf(e, l));
+      const inView = subtreeLeaves.length === 0 || unclassified || subtreeLeaves.some((l) => matchLeaf(e, l, namedSlotLeaves));
       if (!inView) return false;
       // 多选叶子：命中任一选中叶子
       if (sel.length) {
-        if (!selLeaves.some((l) => matchLeaf(e, l))) return false;
+        if (!selLeaves.some((l) => matchLeaf(e, l, namedSlotLeaves))) return false;
       }
       // 等级筛选：无等级条目（冒险装备/部分消耗品）不被等级筛选排除；有等级则任一等级落在筛选范围即命中
       const levels = itemLevels(e.itemLevel);
@@ -277,7 +298,7 @@ export default function ItemSlotPicker({ entries, loading, slotName, currentId, 
       return true;
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [entries, allowed, subtreeLeaves, sel, currentChildren, query, deep, levelMode, minLevel, maxLevel, currentLevel, enhSel]);
+  }, [entries, allowed, subtreeLeaves, namedSlotLeaves, sel, currentChildren, query, deep, levelMode, minLevel, maxLevel, currentLevel, enhSel]);
   const { visible, sentinelRef, done } = useIncremental(filtered, 90);
 
   const showFilter = root.length > 0;

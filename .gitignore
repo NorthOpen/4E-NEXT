@@ -74,3 +74,4 @@ keystore.properties
 # （android/README.md 是对外的技术说明，仍然入库）
 /android/VERIFICATION.md
 /android/SIGNING.md
+/威能关键词分析.md

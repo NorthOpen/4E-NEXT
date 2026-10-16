@@ -294,6 +294,12 @@ function classDefenseSources(char: Character, ctx: DefenseCtx): Record<DefenseKe
     return { ac: 0, fort: 0, ref: 0, will: 0, source: "" };
   })();
 
+  // 野精灵「野生构造」：在强韧/反射/意志中选择一项获得 +1 种族加值（选择存于 raceChoices）
+  const wild = char.raceChoices?.["野生构造"];
+  const wildFort = wild === "强韧" ? 1 : 0;
+  const wildRef = wild === "反射" ? 1 : 0;
+  const wildWill = wild === "意志" ? 1 : 0;
+
   return {
     ac: [
       { value: armorOfFaith, source: "信仰甲胄" },
@@ -304,14 +310,17 @@ function classDefenseSources(char: Character, ctx: DefenseCtx): Record<DefenseKe
     ].filter((s) => s.value !== 0),
     fort: [
       { value: monkFort, source: "修士宗派（凝息）" },
+      { value: wildFort, source: "野生构造" },
       { value: heart.fort, source: heart.source },
     ].filter((s) => s.value !== 0),
     ref: [
       { value: barbarianAgility, source: "蛮族机敏" },
+      { value: wildRef, source: "野生构造" },
       { value: heart.ref, source: heart.source },
     ].filter((s) => s.value !== 0),
     will: [
       { value: monkWill, source: "修士宗派（石拳）" },
+      { value: wildWill, source: "野生构造" },
       { value: heart.will, source: heart.source },
     ].filter((s) => s.value !== 0),
   };

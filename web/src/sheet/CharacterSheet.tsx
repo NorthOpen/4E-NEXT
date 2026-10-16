@@ -44,6 +44,26 @@ import { deriveDefenses, hybridTalentProf, resolvePrimalAspect, runicArtistry, s
 
 const ABILITIES: AbilityKey[] = ["str", "con", "dex", "int", "wis", "cha"];
 
+// 元素裔「元素显能」的 13 个可选之魂（单选互斥，仅授予所选之魂的遭遇威能）
+const GENASI_SOULS = ["大地之魂", "烈火之魂", "风暴之魂", "流水之魂", "狂风之魂", "腐蚀之魂", "焦炭之魂", "瘟疫之魂", "虚空之魂", "灰烬之魂", "岩浆之魂", "流砂之魂", "皓日之魂"];
+
+// 种族类型的「单选」特性（仅交互记录，不联动数值）：特性名 → 可选选项
+const RACE_SINGLE_CHOICE: Record<string, string[]> = {
+  "野生构造": ["强韧", "反射", "意志"], // 野精灵：所选项防御 +1（见 defense.ts）
+  "动物形态": ["獾", "鲤鱼", "猫", "螃蟹", "鹤", "狗", "狐狸", "兔子", "猴子", "貉", "老鼠", "麻雀"], // 变化妖：12 种形态
+};
+
+// 种族·威能单选互斥组（A 形：父 intro 行 + 子选项行，各子行正文含 [[威能]]）：父特性名 → 子选项行名
+const RACE_POWER_GROUP: Record<string, string[]> = {
+  "自然形态": ["先祖形态", "驱逐形态", "狩猎形态"], // 野精灵
+  "人类威能选择": ["奖励随意威能", "勇者之力"], // 人类
+  "半精灵威能选择": ["多才多艺", "成功诀窍"], // 半精灵
+};
+// 种族·威能单选互斥组（B 形：单行正文「获得[[A]]或[[B]]威能」，无子行）：特性名 → 选项（中文名）
+const RACE_POWER_GROUP_OR: Record<string, string[]> = {
+  "罗丝之民": ["黑暗之云", "黑暗之火"], // 卓尔
+};
+
 // 种族出处 → 系列分组排序：系列属主键，同一系列内按规则书优先级排序（仅用于种族选择弹窗展示顺序）。
 // [系列序, 书内序]；核心系列优先，其次精华、扩展、世设、补充，纯参考书垫底。未知出处归入末尾。
 const RACE_SERIES: Record<string, [number, number]> = {
@@ -4021,37 +4041,77 @@ function subraceProfLine(b: { title: string; body: string }): string | null {
 }
 
 // 种族威能授予所需上下文：基础内部替代(raceSwaps) + 亚种增益(subraceBenefits)
+// + 元素裔元素显能(raceElementalSoul) + 单选型威能组(raceChoices)
 interface RacePowerCtx {
   swaps?: Record<string, boolean>;
   subBenefits?: Record<string, boolean>;
   subByBase: Map<string, { title: string; body: string }>; // 被替代的基础特性名 → 亚种增益
+  soul?: string; // 元素裔「元素显能」所选之魂（如「大地之魂」）
+  choices?: Record<string, string>; // 单选型威能组的选择：键=父特性名（如「自然形态」「罗丝之民」），值=所选子选项名
+}
+
+// 解析种族 trait 正文中可能以「名称」而非 [[链路]] 引用的威能（如半精灵「成功诀窍」）：返回中文名候选
+function raceRefName(body: string): string[] {
+  return [...new Set([...body.matchAll(/「([^」]+)」/g)].map((m) => m[1]))];
 }
 
 // 计算种族应授予威能：基础种族内部的可替代特性（如「龙惧」替代「龙息」）互斥，
-// 且亚种增益（如「腐蚀传统」替代「龙息」并授予威能）优先于基础/替代，按对应选择取舍。
+// 且亚种增益（如「腐蚀传统」替代「龙息」并授予威能）优先于基础/替代，按对应选择取舍；
+// 元素裔「元素显能」的 13 个之魂单选互斥，仅授予当前选中之魂的遭遇威能。
+// 单选型威能组（A 形「自然形态/人类威能选择/半精灵威能选择」父行+子行、B 形「罗丝之民」单行或选）：
+//   均只授予 ctx.choices 中当前选中项对应的威能，未选则该组不授予任何威能。
 function raceGrantedPowerEntries(
   ct: string,
   ctx: RacePowerCtx,
-  lookup: (t: string) => Entry | undefined
+  lookup: (t: string) => Entry | undefined,
+  zhLookup?: (zh: string) => Entry | undefined // 按中文名查威能（半精灵「成功诀窍」等「」引用）
 ): Entry[] {
   const traits = parseRaceTraitLines(ct);
   const altForBase = new Map<string, (typeof traits)[number]>();
   for (const t of traits) if (t.replaces && t.replaces !== t.name) altForBase.set(t.replaces, t);
   const out: Entry[] = [];
   const seen = new Set<string>();
+  const push = (e?: Entry) => { if (e && e.category === "power" && !seen.has(e.id)) { seen.add(e.id); out.push(e); } };
   const addPowers = (body: string) => {
-    for (const n of wikiLinkTargets(body)) {
-      const e = lookup(n);
-      if (e && e.category === "power" && !seen.has(e.id)) { seen.add(e.id); out.push(e); }
-    }
+    for (const n of wikiLinkTargets(body)) push(lookup(n));
+    if (zhLookup) for (const zh of raceRefName(body)) push(zhLookup(zh)); // 兜底「」引用的威能
   };
+  // A 形威能互斥组的子选项行名：这些行不独立授予，由其父行按选择授予
+  const powerGroupChildren = new Set<string>();
+  for (const children of Object.values(RACE_POWER_GROUP)) children.forEach((c) => powerGroupChildren.add(c));
   for (const t of traits) {
     if (t.replaces) continue; // 可替代特性不独立授予，由其基础特性按选择授予
+    if (GENASI_SOULS.includes(t.name)) continue; // 元素裔之魂：不逐项授予，仅按选中之魂（下方）授予
+    if (powerGroupChildren.has(t.name)) continue; // A 形威能互斥组的子选项行：由其父行按选择授予
+    if (t.name in RACE_POWER_GROUP_OR) continue; // B 形威能互斥组（罗丝之民）：仅按选择授予，见下方
     const sub = ctx.subByBase.get(t.name);
     if (sub && ctx.subBenefits?.[sub.title]) { addPowers(sub.body); continue; } // 亚种增益已应用
     const alt = altForBase.get(t.name);
     if (alt && ctx.swaps?.[alt.name]) addPowers(alt.body);
     else addPowers(t.body);
+  }
+  // A 形威能互斥组：仅授予选中的子行威能（未选则不授予）
+  for (const [parent, children] of Object.entries(RACE_POWER_GROUP)) {
+    const chosen = ctx.choices?.[parent];
+    if (!chosen || !children.includes(chosen)) continue;
+    const t = traits.find((x) => x.name === chosen);
+    if (t) addPowers(t.body);
+  }
+  // B 形威能互斥组（罗丝之民）：仅授予选中的威能（未选则不授予）
+  for (const [parent, options] of Object.entries(RACE_POWER_GROUP_OR)) {
+    const chosen = ctx.choices?.[parent];
+    if (!chosen || !options.includes(chosen)) continue;
+    const t = traits.find((x) => x.name === parent);
+    if (!t) continue;
+    // 超链接文本中以选项中文名开头的那一项才授予（如「黑暗之云 Cloud of Darkness」）
+    for (const n of wikiLinkTargets(t.body)) if (n.split(" ")[0] === chosen) push(lookup(n));
+    // 「」引用的威能（若存在）也按选项授予
+    if (zhLookup && raceRefName(t.body).includes(chosen)) push(zhLookup(chosen));
+  }
+  // 元素裔「元素显能」：仅授予当前选中之魂的遭遇威能（未选则不授予）
+  if (ctx.soul) {
+    const soul = traits.find((t) => t.name === ctx.soul);
+    if (soul) addPowers(soul.body);
   }
   return out;
 }
@@ -5484,6 +5544,8 @@ export default function CharacterSheet({
     for (const t of raceTraits) if (t.replaces && t.replaces !== t.name) map.set(t.replaces, t);
     return map;
   }, [raceTraits]);
+  // 元素裔「元素显能」：classTrait 中是否含 13 个元素之魂选项（有则合并为单选互斥组）
+  const hasGenasiSouls = useMemo(() => raceTraits.some((t) => GENASI_SOULS.includes(t.name)), [raceTraits]);
   const slotCounts = levelInfo ? levelInfo.powers : { atWill: 0, encounter: 0, daily: 0, utility: 0 };
   const featSlotCount = levelInfo ? levelInfo.feats : 0;
   const effFeatCount = char.featSlotOverride ?? featSlotCount;
@@ -5633,8 +5695,9 @@ export default function CharacterSheet({
       const newIds = new Set<string>();
       if (raceEntry) {
         const ct = (raceEntry.sourceText.match(/@@\.classTrait\s+"""([\s\S]*?)"""/) || [])[1] ?? "";
-        // 综合基础内部替代(龙惧↔龙息)与亚种增益(腐蚀传统↔龙息等)后，计算应授予的威能集合
-        newRace = raceGrantedPowerEntries(ct, { swaps: p.raceSwaps, subBenefits: p.subraceBenefits, subByBase: subraceBenefitByBase }, (t) => wikiLookup(t));
+        // 综合基础内部替代(龙惧↔龙息)、亚种增益(腐蚀传统↔龙息等)、元素裔元素显能与单选威能组（自然形态/罗丝之民等）后，计算应授予的威能集合
+        // resolveThemeRef 已支持「纯中文名」前缀兜底查库，正好用于半精灵「成功诀窍」这类以「名称」而非 [[链路]] 引用的威能
+        newRace = raceGrantedPowerEntries(ct, { swaps: p.raceSwaps, subBenefits: p.subraceBenefits, subByBase: subraceBenefitByBase, soul: p.raceElementalSoul, choices: p.raceChoices }, (t) => wikiLookup(t), resolveThemeRef);
         for (const pw of newRace) newIds.add(pw.id);
       }
       // 旧的自动授予集合（切换特性时重算），与手动选择的辅助威能区分开
@@ -5672,7 +5735,7 @@ export default function CharacterSheet({
       return { ...p, powerSlots: slots, skillMods: sm, languages, raceAutoGrantedPowerIds: [...newIds], raceGrantedPowerIds: Array.from(new Set([...keepManual, ...newIds])) };
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [raceEntry, powerMap, char.raceSwaps, char.subraceBenefits, subraceBenefitByBase]);
+  }, [raceEntry, powerMap, resolveThemeRef, char.raceSwaps, char.subraceBenefits, subraceBenefitByBase, char.raceElementalSoul, char.raceChoices]);
 
   // 记录「职业赠送专长」id（不占用常规专长槽位）：展示与更换职业时据此清除
   const trackClassFeats = (feats: Entry[]) => {
@@ -6500,6 +6563,118 @@ export default function CharacterSheet({
               {raceTraits.length > 0 && (
                 <div className="race-trait">
                   {(raceDetail ? raceTraits : compactRaceTraits).map((t, i) => {
+                    // 元素裔「元素显能」：13 选 1 单选互斥（合并渲染：引言 + 按钮组 + 选中之魂正文；各选项不单独展示）
+                    if (hasGenasiSouls && (t.name === "元素显能" || GENASI_SOULS.includes(t.name))) {
+                      if (GENASI_SOULS.includes(t.name)) return null; // 各元素之魂并入「元素显能」组
+                      const souls = raceTraits.filter((s) => GENASI_SOULS.includes(s.name));
+                      const selected = char.raceElementalSoul;
+                      const activeSoul = souls.find((s) => s.name === selected);
+                      const pickSoul = (name: string) =>
+                        setChar({ ...char, raceElementalSoul: char.raceElementalSoul === name ? undefined : name });
+                      return (
+                        <div key={i} className="race-trait-line">
+                          <div className="race-trait-content">
+                            <WikiBody body={`''元素显能：''${t.body}`} fields={raceEntry.fields} lookup={wikiLookup} />
+                          </div>
+                          <div className="race-trait-opts">
+                            {souls.map((s) => (
+                              <button
+                                key={s.name}
+                                type="button"
+                                className={`sr-tag${s.name === selected ? " active" : ""}`}
+                                onClick={() => pickSoul(s.name)}
+                                title={s.name === selected ? `当前元素显能：${s.name}` : `选择${s.name}`}
+                              >
+                                <span className="material-symbols-outlined sr-ic">bolt</span>
+                                {s.name}
+                              </button>
+                            ))}
+                          </div>
+                          {activeSoul ? (
+                            <div className="race-trait-content">
+                              <WikiBody body={`''${activeSoul.name}：''${reorderBenefitBody(activeSoul.body, raceDetail)}`} fields={raceEntry.fields} lookup={wikiLookup} />
+                            </div>
+                          ) : (
+                            <div className="ac-companion-hint">请先在『元素显能』中选择一种元素显能</div>
+                          )}
+                        </div>
+                      );
+                    }
+                    // 威能互斥组（A 形：父 intro 行 + 子选项行；B 形：单行「获得[[A]]或[[B]]威能」）：
+                    // 子选项行不独立展示，仅授予选中项对应威能，未选则该组不授予任何威能
+                    if (Object.values(RACE_POWER_GROUP).some((children) => children.includes(t.name))) return null;
+                    const powerChildren = RACE_POWER_GROUP[t.name];
+                    const orOptions = RACE_POWER_GROUP_OR[t.name];
+                    if (powerChildren || orOptions) {
+                      const options = powerChildren ?? orOptions ?? [];
+                      const chosen = char.raceChoices?.[t.name];
+                      const pickPow = (opt: string) => {
+                        const rc = { ...(char.raceChoices ?? {}) };
+                        if (rc[t.name] === opt) delete rc[t.name]; // 再次点击取消选择
+                        else rc[t.name] = opt;
+                        setChar({ ...char, raceChoices: rc });
+                      };
+                      // A 形选中子行的正文；B 形选项即威能本身，正文已含链接，不另展示
+                      const chosenChild = powerChildren ? raceTraits.find((x) => x.name === chosen) : undefined;
+                      return (
+                        <div key={i} className="race-trait-line">
+                          <div className="race-trait-content">
+                            <WikiBody body={`''${t.name}：''${t.body}`} fields={raceEntry.fields} lookup={wikiLookup} />
+                          </div>
+                          <div className="race-trait-opts">
+                            {options.map((opt) => (
+                              <button
+                                key={opt}
+                                type="button"
+                                className={`sr-tag${chosen === opt ? " active" : ""}`}
+                                onClick={() => pickPow(opt)}
+                                title={chosen === opt ? `当前选择：${opt}` : `选择${opt}`}
+                              >
+                                <span className="material-symbols-outlined sr-ic">bolt</span>
+                                {opt}
+                              </button>
+                            ))}
+                          </div>
+                          {chosenChild && (
+                            <div className="race-trait-content">
+                              <WikiBody body={`''${chosenChild.name}：''${reorderBenefitBody(chosenChild.body, raceDetail)}`} fields={raceEntry.fields} lookup={wikiLookup} />
+                            </div>
+                          )}
+                        </div>
+                      );
+                    }
+                    // 种族「单选」特性（野生构造 / 动物形态）：sr-tag 互斥按钮，仅作交互记录
+                    const singleOpts = RACE_SINGLE_CHOICE[t.name];
+                    if (singleOpts) {
+                      const chosen = char.raceChoices?.[t.name];
+                      const pickSingle = (opt: string) => {
+                        const rc = { ...(char.raceChoices ?? {}) };
+                        if (rc[t.name] === opt) delete rc[t.name]; // 再次点击取消选择
+                        else rc[t.name] = opt;
+                        setChar({ ...char, raceChoices: rc });
+                      };
+                      return (
+                        <div key={i} className="race-trait-line">
+                          <div className="race-trait-content">
+                            <WikiBody body={`''${t.name}：''${t.body}`} fields={raceEntry.fields} lookup={wikiLookup} />
+                          </div>
+                          <div className="race-trait-opts">
+                            {singleOpts.map((opt) => (
+                              <button
+                                key={opt}
+                                type="button"
+                                className={`sr-tag${chosen === opt ? " active" : ""}`}
+                                onClick={() => pickSingle(opt)}
+                                title={chosen === opt ? `当前选择：${opt}` : `选择${opt}`}
+                              >
+                                <span className="material-symbols-outlined sr-ic">toggle_on</span>
+                                {opt}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      );
+                    }
                     // 三选一：同一基础特性同时被「基础内部替代」（龙惧替代龙息）与「亚种增益」（腐蚀传统/复仇震击替代龙息）替换时，
                     // 展示三个互斥选项（基础 / 替代 / 亚种），选中其一即自动停用其余，并同步到威能面板。
                     const multiSub = subraceBenefitByBase.get(t.name);
@@ -7660,9 +7835,9 @@ return (
             if (race && baseRace) {
               const applied: Record<string, boolean> = {};
               for (const b of subInfo!.benefits) applied[b.title] = true;
-              setChar({ ...char, raceId: baseRace.id, subraceId: race.id, subraceBenefits: applied, raceSwaps: {}, vision: baseRace?.vision, size: baseRace?.size ?? char.size });
+              setChar({ ...char, raceId: baseRace.id, subraceId: race.id, subraceBenefits: applied, raceSwaps: {}, raceElementalSoul: undefined, vision: baseRace?.vision, size: baseRace?.size ?? char.size });
             } else {
-              setChar({ ...char, raceId: id, subraceId: undefined, subraceBenefits: {}, raceSwaps: {}, vision: race?.vision, size: race?.size ?? char.size });
+              setChar({ ...char, raceId: id, subraceId: undefined, subraceBenefits: {}, raceSwaps: {}, raceElementalSoul: undefined, vision: race?.vision, size: race?.size ?? char.size });
             }
             setSubraceOpen(false);
           }}

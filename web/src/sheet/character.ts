@@ -240,6 +240,8 @@ export interface Character {
   subraceId?: string; // 所选亚种 id（如「金矮人」），无则为基础种族
   subraceBenefits?: Record<string, boolean>; // 已应用的亚种增益（键 = 增益名）
   raceSwaps?: Record<string, boolean>; // 基础种族内部可替代特性的选择（键 = 替代特性名，如「龙惧」）
+  raceElementalSoul?: string; // 元素裔「元素显能」所选之魂（如「大地之魂」），13 选 1 单选互斥
+  raceChoices?: Record<string, string>; // 种族单选型特性的选择，键=特性名，值=所选选项名（如野生构造→强韧；自然形态→狩猎形态）
   classId?: string;
   classId2?: string;
   hybrid?: boolean;
