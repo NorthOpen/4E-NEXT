@@ -59,26 +59,36 @@ export default function SearchView() {
   // 映射成 Entry 后 level/hp/bloodied 这些就丢了，「加入遭遇」要用原始块，所以另存一份
   const [blocks, setBlocks] = useState<Map<string, MonsterBlock>>(new Map());
   const [justAdded, setJustAdded] = useState("");
+  // 载入中：空态提示要等数据回来再判断，否则切分类的瞬间会闪一下「没有匹配的词条」
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // 快速切换分类时，上一类的请求可能更晚回来；用一个开关挡住它的 done()，
+    // 免得还没载完就把空态放出来
+    let alive = true;
     setDetail(null);
     setJustAdded("");
+    setLoading(true);
+    const done = () => { if (alive) setLoading(false); };
     if (cat === "all") {
       setEntries([]);
-      void loadSearchIndex().then(setIndex).catch(console.error);
+      void loadSearchIndex().then(setIndex).catch(console.error).finally(done);
     } else if (cat === MONSTER_CAT) {
       // 与主持页共用同一份缓存（data/monsters.ts 里做了单例），来回切不会重复下载
       setIndex([]);
       void loadMonsters()
         .then((list) => {
+          if (!alive) return;
           setBlocks(new Map(list.map((m) => [m.id, m])));
           setEntries(list.map(monsterToEntry));
         })
-        .catch(console.error);
+        .catch(console.error)
+        .finally(done);
     } else {
       setIndex([]);
-      void loadCategory(cat).then(setEntries).catch(console.error);
+      void loadCategory(cat).then((list) => { if (alive) setEntries(list); }).catch(console.error).finally(done);
     }
+    return () => { alive = false; };
   }, [cat]);
 
   const results = useMemo(() => {
@@ -124,6 +134,16 @@ export default function SearchView() {
       </div>
       <div className="split">
         <div className="result-list">
+          {!loading && results.length === 0 && (
+            <div className="empty-hint">
+              <span className="material-symbols-outlined">search_off</span>
+              <span>
+                {cat === "all" && !query.trim()
+                  ? "输入关键词开始全局搜索"
+                  : query.trim() ? "没有匹配的词条，换个关键词试试" : "这个类别下还没有词条"}
+              </span>
+            </div>
+          )}
           {results.map((r) => (
             <button key={r.id} type="button" className="result-item" onClick={() => open(r)}>
               <span className="result-name">{r.name}{r.nameEn ? " " + r.nameEn : ""}</span>
@@ -131,7 +151,16 @@ export default function SearchView() {
             </button>
           ))}
         </div>
-        <div className="entry-detail">
+        <div className={"entry-detail" + (detail ? "" : " is-empty")}>
+          {/* 空态：详情面板在没有选中词条时是一块大空框，补一句「从列表选」比纯底色清楚。
+              手机端单列时这块会一直垫在列表下面（见 styles.mobile.css 的 .entry-detail.is-empty），
+              没有内容就整块收起来，别占掉一屏。 */}
+          {!detail && (
+            <div className="empty-hint empty-hint-detail">
+              <span className="material-symbols-outlined">menu_book</span>
+              <span>从列表中选择一条词条查看详情</span>
+            </div>
+          )}
           {/* 怪物数据本身就是一张完整卡片，直接用 MonsterCard，不再套 GenericCard 外壳。
               详情上方给一个「加入遭遇」：检索与筛选在词条页做，选中后一步落到主持模式的遭遇面板。
               只在桌面显示 —— 见组件顶部 isMobile 的说明。 */}

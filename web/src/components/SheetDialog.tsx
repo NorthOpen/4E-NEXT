@@ -17,6 +17,8 @@ export default function SheetDialog(props: {
   headFg?: string;     // 卡头文字色；给了 headColor 时默认白色
   xwide?: boolean;     // 加宽变体（880px，供双栏内容如基础物品选择）
   extraClass?: string; // 追加到 md-dialog 上的自定义类（用于个别弹窗定制宽度等）
+  noCloseButton?: boolean;   // 不渲染默认「关闭」按钮（调用方自带完整操作，如升级属性弹窗）
+  preventScrimClose?: boolean; // 点遮罩 / 按 Esc 不关闭：给「必须先做一个明确选择」的对话框用
   onClose: () => void;
   children: ReactNode;   // slot="content"
   actions?: ReactNode;   // slot="actions"（额外的操作按钮，默认附带「关闭」）
@@ -42,6 +44,11 @@ export default function SheetDialog(props: {
       className={"sheet-dialog" + (props.xwide ? " sheet-dialog-xw" : "") + (props.extraClass ? " " + props.extraClass : "")}
       open={visible}
       onClose={close}
+      // 遮罩点击 / Esc 会先派发可取消的 cancel；preventDefault 即拦下这次关闭。
+      // md-dialog 内部只在没人 preventDefault 时才走关闭动画（见 @material/web dialog）。
+      onCancel={(e: Event) => {
+        if (props.preventScrimClose) e.preventDefault();
+      }}
       onClosed={() => {
         if (!visible && props.open) props.onClose();
       }}
@@ -53,7 +60,7 @@ export default function SheetDialog(props: {
       <div slot="content">{props.children}</div>
       <div slot="actions">
         {props.actions}
-        <TextButton onClick={close}>关闭</TextButton>
+        {!props.noCloseButton && <TextButton onClick={close}>关闭</TextButton>}
       </div>
     </Dialog>
   );

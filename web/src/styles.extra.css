@@ -1176,11 +1176,17 @@ md-dialog.sheet-dialog.sheet-dialog-store { max-width: min(520px, calc(100% - 48
    色板取该模式自身的角色色（surface 作底、primary 与容器色作色块、onSurface 写 Aa），
    四种模式在同一颗种子下并排对比即可分辨；换种子、跟随立绘/背景、切深浅模式时同步重算。
    四种并排展示而不是收进下拉，是为了让用户在切换之前就看到差别。 */
-.settings-row.variant-row { align-items: flex-start; }
+.settings-row.variant-row { align-items: flex-start; container-type: inline-size; }
+/* 四种模式按容器宽度排：窄（设置页双栏时约 610px）排 2×2，宽（单栏时约 750px）四张并排。
+   原先 auto-fit + minmax(148px) 在 613px 时差 3px 放不下第 4 张，会掉成 3+1 的孤卡；
+   auto-fit 又依赖视口而不是这块内容的实际宽度，900px 视口反而能四张并排。 */
 .variant-grid {
   flex: 1 1 100%;
   display: grid; gap: 8px;
-  grid-template-columns: repeat(auto-fit, minmax(148px, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+@container (min-width: 640px) {
+  .variant-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
 .variant-card {
   display: flex; flex-direction: column; gap: 3px;
@@ -1971,6 +1977,8 @@ md-dialog.sheet-dialog.sheet-dialog-store { max-width: min(520px, calc(100% - 48
 .ai-field { margin-bottom: 12px; }
 .ai-field md-filled-select, .ai-field md-filled-text-field { width: 100%; }
 .ai-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 12px; }
+/* 候选模型说明：紧贴 chips，别在「模型」与「API Key」两栏之间撑出一段空 */
+.ai-model-note { margin: -4px 0 12px; line-height: 1.5; }
 /* 连接配置展开后的内容区：与标题行拉开一点距离 */
 .ai-conn-body { margin-top: 4px; }
 /* 行内小图标（提示文字里的 info / hourglass 等）：跟文字基线对齐 */
@@ -2180,4 +2188,91 @@ md-dialog.sheet-dialog.sheet-dialog-store { max-width: min(520px, calc(100% - 48
   .rv-head .md3-seg { margin-left: 0; }
 }
 
+/* ===== ⑮ 等级提升 · 属性成长弹窗（AbilityBoostDialog） =====
+   两种形态：
+     · 11 / 21 级「全部 +1」——只是提示：静态卡片 + 我已知晓，点遮罩也能关；
+     · 4 / 8 / 14 / 18 / 24 / 28 级「两个 +1」——点选两项：遮罩不关，必须「确定」或「我已知晓，稍后手动添加」。
+   壳与按钮走 components/md 的 MD3 组件（md-dialog / md-filled-button / md-text-button）；
+   可选中卡片沿用 .ai-slot / .preset-item 的「surface-container-low + 描边 → secondary-container」语言，
+   数值一律等宽（tabular-nums），六项并排时数字不会左右跳。 */
+/* 宽度写死到 640px：md-dialog 默认是 width: fit-content，内容窄时（静态提示形态）
+   会缩成一条竖排，和两项选择形态的宽度对不上。显式 width 经内部 dialog 的
+   width: inherit 生效，六项在桌面端稳定排三列。 */
+md-dialog.sheet-dialog.sheet-dialog-boost {
+  width: min(640px, calc(100% - 48px));
+  max-width: min(640px, calc(100% - 48px));
+}
 
+.ab-msg { margin: 0 0 10px; font-size: 15px; line-height: 1.6; color: var(--md-sys-color-on-surface); }
+/* 操作按钮在窄屏允许换行：「我已知晓，稍后手动添加」+「确定」在 320px 视口下会顶到边 */
+md-dialog.sheet-dialog-boost [slot="actions"] { flex-wrap: wrap; }
+.ab-msg b { font-weight: var(--fw-subheading); color: var(--md-sys-color-primary); font-variant-numeric: tabular-nums; }
+.ab-status { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: 0 0 10px; }
+.ab-count { display: inline-flex; align-items: center; padding: 3px 12px; border-radius: var(--md-sys-shape-corner-full); background: var(--md-sys-color-surface-container-high); color: var(--md-sys-color-on-surface-variant); font-size: 12px; font-weight: var(--fw-label); font-variant-numeric: tabular-nums; }
+.ab-count.full { background: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); }
+.ab-status-hint { font-size: 12px; font-weight: var(--fw-caption); color: var(--md-sys-color-on-surface-variant); }
+
+.ab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px; }
+.ab-card {
+  -webkit-appearance: none; appearance: none;
+  position: relative; display: flex; flex-direction: column; gap: 3px; min-width: 0;
+  padding: 9px 12px 10px; text-align: left; font: inherit;
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: var(--md-sys-shape-corner-medium);
+  background: var(--md-sys-color-surface-container-low); color: var(--md-sys-color-on-surface);
+  cursor: pointer;
+}
+.ab-card:hover { background: var(--md-sys-color-surface-container); }
+.ab-card.on { border-color: transparent; background: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); }
+.ab-card.on:hover { background: color-mix(in srgb, var(--md-sys-color-on-secondary-container) 6%, var(--md-sys-color-secondary-container)); }
+/* 全部 +1 的提示形态：卡片只读，不出现按压/悬停反馈 */
+.ab-card.static { cursor: default; }
+.ab-card.static:hover { background: var(--md-sys-color-surface-container-low); }
+.ab-card.static.on:hover { background: var(--md-sys-color-secondary-container); }
+.ab-card.cap, .ab-card:disabled { cursor: not-allowed; opacity: .55; }
+.ab-card:focus-visible { outline: 2px solid var(--md-sys-color-primary); outline-offset: 2px; }
+
+.ab-card-top { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.ab-card-name { display: inline-flex; align-items: baseline; gap: 5px; min-width: 0; font-size: 13px; font-weight: var(--fw-subheading); }
+.ab-card-en { font-size: 10.5px; font-weight: var(--fw-caption); color: var(--md-sys-color-on-surface-variant); }
+.ab-card-score { display: inline-flex; align-items: baseline; gap: 4px; flex: none; font-variant-numeric: tabular-nums; }
+.ab-card-cur { font-size: 21px; line-height: 1.1; font-weight: var(--fw-display); }
+.ab-card-arrow { font-size: 12px; color: var(--md-sys-color-on-surface-variant); }
+.ab-card-next { font-size: 18px; font-weight: var(--fw-display); color: var(--md-sys-color-primary); }
+.ab-card.on .ab-card-next { color: inherit; }
+.ab-card.on .ab-card-en, .ab-card.on .ab-card-arrow, .ab-card.on .ab-card-mod, .ab-card.on .ab-card-cap { color: inherit; opacity: .82; }
+
+.ab-card-bottom { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+.ab-card-mod { font-size: 11.5px; color: var(--md-sys-color-on-surface-variant); font-variant-numeric: tabular-nums; }
+.ab-card-mod-from { font-weight: var(--fw-label); }
+.ab-card-mark { flex: none; font-size: 17px; line-height: 1; color: var(--md-sys-color-primary); font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 20; }
+.ab-card.on .ab-card-mark { color: inherit; }
+.ab-card-cap { font-size: 10.5px; font-weight: var(--fw-label); color: var(--md-sys-color-error); }
+
+@media (max-width: 560px) {
+  /* 手机上一律两列：六项分三行，弹窗不至于要滚很久 */
+  .ab-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+  .ab-card { padding: 8px 10px 9px; }
+  .ab-card-score { gap: 3px; }
+  .ab-card-cur { font-size: 19px; }
+  .ab-card-next { font-size: 16px; }
+}
+
+/* 等级框：数字可直接输入（0–30）。外观与 .level-value 一致 —— 透明底、无边框，
+   只有悬停/聚焦时才露出可编辑的暗示；这条路径只改等级，不触发属性提升弹窗。 */
+.stepper input.level-input {
+  -webkit-appearance: none; appearance: none;
+  width: 34px; min-width: 28px; margin: 0; padding: 1px 0; box-sizing: border-box;
+  border: 1px solid transparent; border-radius: var(--md-sys-shape-corner-extra-small);
+  background: transparent; color: var(--md-sys-color-on-surface);
+  font-family: inherit; font-size: 20px; font-weight: var(--fw-display); line-height: 1.2;
+  text-align: center; font-variant-numeric: tabular-nums;
+}
+/* styles.css 的 .portrait-col .field input 会把输入框拉成 100% 宽，这里必须压回去 */
+.portrait-col .stepper input.level-input { width: 40px; }
+.stepper input.level-input:hover { border-color: var(--md-sys-color-outline-variant); }
+.stepper input.level-input:focus { outline: none; border-color: var(--md-sys-color-primary); background: var(--md-sys-color-surface-container); }
+.layout-double .stepper input.level-input { width: 34px; font-size: 17px; }
+@media (max-width: 560px) {
+  .portrait-col .stepper input.level-input { width: 38px; }
+}

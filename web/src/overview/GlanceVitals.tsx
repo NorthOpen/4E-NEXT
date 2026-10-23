@@ -164,22 +164,28 @@ export default function GlanceVitals({ char, setChar, d }: Props) {
         <FilledButton className="gl-md-btn" disabled={surgesCur <= 0} onClick={() => spendSurge(false)} title={surgeTemp !== 0 ? "回复值 " + d.surgeValue + " ＋临时 " + fmtMod(surgeTemp) : "回复值 " + d.surgeValue}>
           使用回复力 ＋{healPerSurge}
         </FilledButton>
-        <span className="gl-line-label">临时回复值</span>
-        <div className="gl-stepper" title="每次花掉回复力时额外回复的生命值（治疗药水、督军激励等短时效果）；休整后清零">
-          <IconButton className="gl-icon-btn" aria-label="临时回复值 −1" onClick={() => setChar((p) => ({ ...p, glance: { ...p.glance, surgeTemp: Math.max(-50, p.glance.surgeTemp - 1) } }))}>
-            <span className="material-symbols-outlined">remove</span>
-          </IconButton>
-          <input
-            className="gl-plain-num"
-            type="number"
-            aria-label="临时回复值"
-            value={surgeTemp}
-            onChange={(e) => setChar((p) => ({ ...p, glance: { ...p.glance, surgeTemp: Math.max(-50, Math.min(50, Math.floor(Number(e.target.value) || 0))) } }))}
-          />
-          <IconButton className="gl-icon-btn" aria-label="临时回复值 +1" onClick={() => setChar((p) => ({ ...p, glance: { ...p.glance, surgeTemp: Math.min(50, p.glance.surgeTemp + 1) } }))}>
-            <span className="material-symbols-outlined">add</span>
-          </IconButton>
-        </div>
+        {/* 临时回复值自成一组：窄屏换行时标签必须跟步进器走，不能被拆到两行
+            （外层 .gl-line 是 flex-wrap，不包一层的话「− 0 ＋」会掉到下一行开头、
+            与上一行末尾的标签失去对应）。桌面端 .gl-line-group 是 display: contents，
+            排布与包这层之前完全一致。 */}
+        <span className="gl-line-group">
+          <span className="gl-line-label">临时回复值</span>
+          <div className="gl-stepper" title="每次花掉回复力时额外回复的生命值（治疗药水、督军激励等短时效果）；休整后清零">
+            <IconButton className="gl-icon-btn" aria-label="临时回复值 −1" onClick={() => setChar((p) => ({ ...p, glance: { ...p.glance, surgeTemp: Math.max(-50, p.glance.surgeTemp - 1) } }))}>
+              <span className="material-symbols-outlined">remove</span>
+            </IconButton>
+            <input
+              className="gl-plain-num"
+              type="number"
+              aria-label="临时回复值"
+              value={surgeTemp}
+              onChange={(e) => setChar((p) => ({ ...p, glance: { ...p.glance, surgeTemp: Math.max(-50, Math.min(50, Math.floor(Number(e.target.value) || 0))) } }))}
+            />
+            <IconButton className="gl-icon-btn" aria-label="临时回复值 +1" onClick={() => setChar((p) => ({ ...p, glance: { ...p.glance, surgeTemp: Math.min(50, p.glance.surgeTemp + 1) } }))}>
+              <span className="material-symbols-outlined">add</span>
+            </IconButton>
+          </div>
+        </span>
       </div>
 
       {dying && (

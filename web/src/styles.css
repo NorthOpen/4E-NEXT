@@ -200,7 +200,9 @@ body {
 .sg-title { font-size: 13px; font-weight: 600; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
 .sg-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 2px; }
 .sg-count { font-weight: var(--fw-label); color: var(--md-sys-color-on-surface-variant); }
-.sg-step { width: 22px; height: 22px; border-radius: var(--md-sys-shape-corner-full); border: none; background: var(--md-sys-color-surface-container-high); color: var(--md-sys-color-on-surface); cursor: pointer; font-size: 14px; line-height: 1; display: inline-flex; align-items: center; justify-content: center; padding: 0; }
+/* 槽位增减的 ± 圆钮：22px 在鼠标/拇指下都偏小（MD3 最小触控目标是 24dp，推荐 40dp 状态层）。
+   桌面抬到 28px 与资源面板的步进器一致；手机端由 styles.mobile.css 再抬到 34px。 */
+.sg-step { width: 28px; height: 28px; border-radius: var(--md-sys-shape-corner-full); border: none; background: var(--md-sys-color-surface-container-high); color: var(--md-sys-color-on-surface); cursor: pointer; font-size: 15px; line-height: 1; display: inline-flex; align-items: center; justify-content: center; padding: 0; }
 .sg-step:hover { background: var(--md-sys-color-surface-container-highest); }
 .sg-custom { font-size: 11px; color: var(--md-sys-color-on-primary-container); background: var(--md-sys-color-primary-container); padding: 1px 8px; border-radius: var(--md-sys-shape-corner-small); }
 /* 冒险装备的「＋自定义」：MD3 填充色调按钮（次级动作）。
@@ -256,8 +258,10 @@ body {
 .slot-filter { display: flex; flex-direction: column; gap: 8px; }
 .slot-filter-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .sf-label { font-size: 12px; color: var(--md-sys-color-on-surface-variant); flex-shrink: 0; }
-.sf-chip { border: none; padding: 5px 12px; border-radius: var(--md-sys-shape-corner-small); background: var(--md-sys-color-surface-container-high); cursor: pointer; color: var(--md-sys-color-on-surface); font: inherit; font-size: 13px; }
-.sf-chip.active { background: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary); }
+.sf-chip { border: none; min-height: 32px; padding: 5px 12px; border-radius: var(--md-sys-shape-corner-small); background: var(--md-sys-color-surface-container-high); cursor: pointer; color: var(--md-sys-color-on-surface); font: inherit; font-size: 13px; }
+/* MD3 选中筛选片用 secondary-container（与 .chip.active / .mode-chip.active 同一语义），
+   不使用 primary 填充——primary 是主操作色，选中态在全局只留给 secondary-container。 */
+.sf-chip.active { background: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); }
 .sf-drill { color: var(--md-sys-color-primary); background: transparent; outline: 1px solid color-mix(in srgb, var(--md-sys-color-primary) 45%, transparent); }
 .sf-crumb { border: none; background: none; padding: 2px 4px; cursor: pointer; color: var(--md-sys-color-primary); font: inherit; font-size: 12px; }
 .sf-crumb-chain { display: inline-flex; align-items: center; color: var(--md-sys-color-on-surface-variant); }
@@ -496,9 +500,9 @@ md-filled-text-field, md-filled-select { min-width: 0; }
 .layout-double .render-value { font-size: 13px; }
 .layout-double .render-name { font-size: 11px; }
 .layout-double .render-big .render-value { font-size: 20px; }
-.layout-double .pick-field { min-height: 44px; padding: 6px 10px; }
-.layout-double .pf-label { font-size: 10px; }
-.layout-double .pf-value { font-size: 13px; }
+.layout-double .pick-field { min-height: 56px; padding: 8px 36px 8px 14px; }
+.layout-double .pf-label { font-size: 12px; }
+.layout-double .pf-value { font-size: 14px; }
 .layout-double .level-value { font-size: 17px; }
 .layout-double .step { width: 26px; height: 26px; }
 
@@ -564,6 +568,10 @@ md-filled-text-field, md-filled-select { min-width: 0; }
 .lang-chip { padding: 4px 12px; border-radius: var(--md-sys-shape-corner-small); background: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); font-size: 13px; }
 .lang-chip.fixed { background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container); }
 .lang-input { width: 110px; padding: 6px 10px; border: 1px solid var(--md-sys-color-outline); border-radius: var(--md-sys-shape-corner-extra-small); background: var(--md-sys-color-surface-container); color: var(--md-sys-color-on-surface); font-size: 13px; }
+/* 语言槽：与角色信息里的 filled 字段同一族（容器色 + 底部指示线），不加浮动标签；
+   只改语言行里的输入框，冒险装备等其它用 .lang-input 的地方保持原样。 */
+.info-row.row-lang .lang-input { padding: 5px 8px; border: none; border-radius: var(--md-sys-shape-corner-extra-small) var(--md-sys-shape-corner-extra-small) 0 0; background: var(--md-sys-color-surface-container-highest); box-shadow: inset 0 -1px 0 0 var(--md-sys-color-on-surface-variant); }
+.info-row.row-lang .lang-input:focus { outline: none; box-shadow: inset 0 -2px 0 0 var(--md-sys-color-primary); }
 .ap-layout { display: flex; gap: 16px; align-items: center; }
 .ap-main { display: flex; flex-direction: column; gap: 6px; }
 .ap-value { font-size: 30px; font-weight: var(--fw-display); }
@@ -665,9 +673,11 @@ md-filled-text-field, md-filled-select { min-width: 0; }
 .resource-item { display: inline-flex; align-items: center; gap: 6px; }
 .resource-item .field-label { font-size: 12px; }
 .resource-item .stepper { display: flex; align-items: center; gap: 8px; }
-.resource-item .step { width: 26px; height: 26px; border: none; border-radius: var(--md-sys-shape-corner-full); background: var(--md-sys-color-surface-container-high); color: var(--md-sys-color-on-surface); font-size: 15px; cursor: pointer; font-family: inherit; }
+/* 行动资源面板：± 圆钮与等级步进器统一到 28px（原来是 26 / 24，低于 MD3 的 24dp 触控下限）；
+   重置钮保留虚线外观（它是「清零」而不是「加减」，需要一眼区分），只把尺寸对齐。 */
+.resource-item .step { width: 28px; height: 28px; border: none; border-radius: var(--md-sys-shape-corner-full); background: var(--md-sys-color-surface-container-high); color: var(--md-sys-color-on-surface); font-size: 15px; cursor: pointer; font-family: inherit; }
 .resource-item .step:hover { background: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); }
-.resource-item .step.reset { width: 24px; height: 24px; font-size: 13px; background: transparent; color: var(--md-sys-color-outline); border: 1px dashed var(--md-sys-color-outline-variant); }
+.resource-item .step.reset { width: 28px; height: 28px; font-size: 14px; background: transparent; color: var(--md-sys-color-outline); border: 1px dashed var(--md-sys-color-outline-variant); }
 .resource-item .step.reset:hover { background: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); border-style: solid; }
 .resource-item .level-value { font-size: 16px; min-width: 18px; }
 /* 双栏：位于经验下方，三行堆叠（上文字、下调整） */
@@ -950,12 +960,15 @@ md-filled-text-field, md-filled-select { min-width: 0; }
 .crop-btn.primary { background: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary); }
 
 /* 选择字段（替代下拉，点击弹窗） */
-.pick-field { display: flex; flex-direction: column; gap: 2px; width: 100%; min-height: 52px; padding: 8px 12px; border: none; border-radius: var(--md-sys-shape-corner-small); background: var(--md-sys-color-surface-container-high); cursor: pointer; text-align: left; color: var(--md-sys-color-on-surface); position: relative; font: inherit; }
+/* 「选择类」字段（种族 / 英雄职阶 / 典范之道 / 传奇天命）：外观与旁边的 md-filled-text-field 同一族——
+   surface-container-highest 容器、4px 顶圆角、底部指示线，标签/正文的字号也对齐 filled field。
+   控件本身仍是 button（要保留全局状态层、焦点环与 disabled 语义），所以只用 CSS 复刻外观。 */
+.pick-field { display: flex; flex-direction: column; justify-content: center; gap: 2px; width: 100%; min-height: 56px; padding: 8px 40px 8px 16px; box-sizing: border-box; border: none; border-radius: var(--md-sys-shape-corner-extra-small) var(--md-sys-shape-corner-extra-small) 0 0; background: var(--md-sys-color-surface-container-highest); box-shadow: inset 0 -1px 0 0 var(--md-sys-color-on-surface-variant); cursor: pointer; text-align: left; color: var(--md-sys-color-on-surface); position: relative; font: inherit; }
 .pick-field:disabled { opacity: 0.5; cursor: not-allowed; }
-.pf-label { font-size: 11px; color: var(--md-sys-color-on-surface-variant); }
+.pf-label { font-size: 12px; color: var(--md-sys-color-on-surface-variant); }
 .pf-value { font-size: 15px; font-weight: var(--fw-body); }
 .pf-placeholder { font-size: 15px; color: var(--md-sys-color-on-surface-variant); }
-.pf-icon { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); font-size: 18px; color: var(--md-sys-color-on-surface-variant); }
+.pf-icon { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); font-size: 20px; color: var(--md-sys-color-on-surface-variant); }
 .render-click { border: none; background: transparent; text-align: left; width: 100%; cursor: pointer; font: inherit; color: inherit; }
 .render-click:disabled { cursor: not-allowed; opacity: 0.6; }
 
@@ -1099,6 +1112,12 @@ md-filled-text-field, md-filled-select { min-width: 0; }
 .search-row { display: flex; gap: 12px; align-items: flex-end; margin-bottom: 8px; }
 .search-row md-filled-text-field { flex: 1; }
 .result-list { display: flex; flex-direction: column; gap: 4px; height: 70vh; overflow: auto; border: 1px solid var(--md-sys-color-outline-variant); border-radius: var(--md-sys-shape-corner-medium); padding: 4px; box-sizing: border-box; }
+/* 空态：MD3 的空态是「一枚弱化图标 + 一句说明」，不额外加卡片/描边。
+   列表里撑满剩余高度，详情面板里占满整块（两者父级的 70vh 是确定高度，百分比可用）。 */
+.empty-hint { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 24px; box-sizing: border-box; color: var(--md-sys-color-on-surface-variant); text-align: center; font-size: 13px; line-height: 1.6; }
+.empty-hint .material-symbols-outlined { font-size: 32px; opacity: 0.55; font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 32; }
+.result-list > .empty-hint { flex: 1 1 auto; }
+.empty-hint-detail { height: 100%; }
 .result-item { display: flex; flex-direction: column; gap: 2px; padding: 8px 10px; border: none; border-radius: var(--md-sys-shape-corner-small); background: transparent; cursor: pointer; text-align: left; color: var(--md-sys-color-on-surface); }
 .result-item:hover { background: var(--md-sys-color-surface-container-high); }
 .result-name { font-size: 14px; }
@@ -1257,7 +1276,10 @@ md-filled-text-field, md-filled-select { min-width: 0; }
 .level-notes { margin-top: 10px; font-size: 12.5px; color: var(--md-sys-color-on-surface-variant); display: flex; flex-direction: column; gap: 4px; }
 
 /* ---- 词条搜索 ---- */
-.cat-chips { display: flex; gap: 8px; overflow-x: auto; padding: 4px 0 8px; scrollbar-width: thin; }
+/* 分类条：横向滚动但隐藏原生滚动条（Windows 上那条带箭头的粗滚动条和 MD3 胶囊条不搭；
+   末项被裁切本身就提示还能往右滚）。 */
+.cat-chips { display: flex; gap: 8px; overflow-x: auto; padding: 4px 0 8px; scrollbar-width: none; }
+.cat-chips::-webkit-scrollbar { display: none; }
 .chip { flex: none; height: 32px; padding: 0 12px; border-radius: var(--md-sys-shape-corner-full); border: 1px solid var(--md-sys-color-outline-variant); background: transparent; color: var(--md-sys-color-on-surface-variant); font-size: 14px; letter-spacing: 0.1px; cursor: pointer; font-family: inherit; }
 .chip:hover { background: var(--md-sys-color-surface-container-high); }
 .chip.active { background: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); border-color: transparent; }
@@ -1271,11 +1293,44 @@ md-filled-text-field, md-filled-select { min-width: 0; }
 .ap-value { font-size: 24px; }
 .lang-ap-row { gap: 12px; }
 
-/* 装备左导航 */
+/* ===== 装备左导航：MD3 竖直分类导航（Navigation rail 的精简形态） =====
+   竖条只有 40px 宽，分类名压到两字（「魔宠与坐骑」→「魔宠」，全名在 title/aria-label 里）；
+   未选中透明、悬停有全局按钮状态层与提亮的字色、当前所在分类用 secondary-container 胶囊 +
+   加粗字重标出（与左侧主导航 .side-btn 的选中语言一致）。滚动联动见 CharacterSheet 的 equipSection。 */
 .equip-layout { display: flex; gap: 14px; align-items: flex-start; }
-.equip-nav { position: sticky; top: 12px; flex: none; width: 34px; display: flex; flex-direction: column; gap: 3px; max-height: 70vh; overflow: auto; padding: 2px; box-sizing: border-box; }
-.equip-nav-btn { display: flex; align-items: center; justify-content: center; width: 100%; padding: 5px 6px; border: none; border-radius: var(--md-sys-shape-corner-full); background: var(--md-sys-color-surface-container-high); color: var(--md-sys-color-on-surface); font-size: 12px; cursor: pointer; font-family: inherit; }
-.equip-nav-btn:hover { background: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); }
+.equip-nav {
+  position: sticky; top: 12px; flex: none; width: 40px;
+  display: flex; flex-direction: column; gap: 2px;
+  /* 15 颗合计约 490px，正常窗口一屏放得下；只有很矮的窗口才需要列内滚动。 */
+  max-height: calc(100dvh - 32px); overflow-y: auto; overflow-x: hidden;
+  padding: 2px; box-sizing: border-box;
+  /* 滚动条会再从 40px 里吃掉 6px，干脆藏掉 */
+  scrollbar-width: none;
+}
+.equip-nav::-webkit-scrollbar { display: none; }
+.equip-nav-btn {
+  flex: none; display: flex; align-items: center; justify-content: center;
+  width: 100%; min-height: 30px; padding: 0 3px;
+  border: none; border-radius: var(--md-sys-shape-corner-full);
+  background: transparent; color: var(--md-sys-color-on-surface-variant);
+  font-family: inherit; font-size: 12px; font-weight: var(--fw-body); letter-spacing: .02em;
+  white-space: nowrap; cursor: pointer;
+}
+/* 悬停/焦点/选中的过渡压到 short3：光标掠过一列按钮时不需要 300ms 的渐变 */
+.equip-nav .equip-nav-btn {
+  transition: background-color var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-standard),
+    color var(--md-sys-motion-duration-short3) var(--md-sys-motion-easing-standard);
+}
+/* 悬停/焦点反馈交给全局按钮状态层（styles.css 的 button::before，8% currentColor），
+   这里只把字色提亮一档；选中项靠 secondary-container 胶囊与字重区分。 */
+.equip-nav-btn:hover { color: var(--md-sys-color-on-surface); }
+.equip-nav-btn.on { background: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); font-weight: var(--fw-subheading); }
+/* 选中项的悬停状态层由全局 ::before 用 on-secondary-container 着色——正是 MD3 规范做法 */
+.equip-nav-btn.on:hover { color: var(--md-sys-color-on-secondary-container); }
+/* 描边画在按钮内侧：导航列 overflow-x 是 hidden，外描边会被裁掉一圈 */
+.equip-nav-btn:focus-visible { outline: 2px solid var(--md-sys-color-primary); outline-offset: -2px; }
+/* 分组分隔：前 10 项是穿戴部位，后面是其余类别 */
+.equip-nav-sep { flex: none; width: 18px; height: 1px; margin: 3px auto; background: var(--md-sys-color-outline-variant); }
 /* 弹窗内导航：全称显示，宽度自适应 */
 .base-dialog-layout .equip-nav { width: auto; min-width: 108px; }
 .base-dialog-layout .equip-nav-btn { justify-content: flex-start; padding: 5px 12px; font-size: 12.5px; white-space: nowrap; }
@@ -1836,7 +1891,7 @@ md-dialog.sheet-dialog-xw .picker-cards {
 .reserve-x { position: absolute; top: 6px; right: 6px; z-index: 3; background: var(--md-sys-color-surface-container-high); }
 /* 行动点并入语言行 */
 .info-row.row-lang .stepper { display: inline-flex; align-items: center; gap: 6px; }
-.info-row.row-lang .step { width: 26px; height: 26px; border: none; border-radius: var(--md-sys-shape-corner-full); background: var(--md-sys-color-surface-container-high); color: var(--md-sys-color-on-surface); font-size: 15px; cursor: pointer; font-family: inherit; }
+.info-row.row-lang .step { width: 28px; height: 28px; border: none; border-radius: var(--md-sys-shape-corner-full); background: var(--md-sys-color-surface-container-high); color: var(--md-sys-color-on-surface); font-size: 15px; cursor: pointer; font-family: inherit; }
 .info-row.row-lang .step:hover { background: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); }
 
 .reserve-loading { display: flex; align-items: center; justify-content: center; min-height: 100px; color: var(--md-sys-color-on-surface-variant); font-size: 13px; }
@@ -2424,9 +2479,10 @@ html[data-font="serif"] {
   .combat-table.damage .ct-head,
   .combat-table.damage .ct-row { min-width: 540px; }
 
-  /* 装备面板：保持左侧吸顶竖排小圆钮（手机端不改作顶部大横条） */
+  /* 装备面板：保持左侧吸顶竖排（手机端不改作顶部大横条）。宽度与桌面一致，
+     两字分类名在 40px 里还留得下左右呼吸，styles.mobile.css 再抬按钮高度。 */
   .equip-layout { flex-direction: row; align-items: flex-start; gap: 8px; }
-  .equip-nav { position: sticky; top: 8px; flex: none; width: 30px; flex-direction: column; flex-wrap: nowrap; gap: 3px; max-height: none; }
+  .equip-nav { position: sticky; top: 8px; flex: none; width: 40px; flex-direction: column; flex-wrap: nowrap; gap: 2px; max-height: calc(100dvh - 64px); }
   /* 装备选择弹窗内导航保持普通列表（不受上方竖排影响） */
   .base-dialog-layout .equip-nav { position: static; flex-direction: row; flex-wrap: wrap; width: 100%; min-width: 0; max-height: none; }
   .class-layout { grid-template-columns: minmax(0, 1fr); }

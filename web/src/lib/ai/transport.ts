@@ -16,6 +16,13 @@ export interface ChatOptions {
   maxTokens?: number;
   signal?: AbortSignal;
   timeoutMs?: number;
+  /**
+   * 只验证连通性时用：正文为空也不算错。
+   * 思考/推理模式的模型（DeepSeek V4、GLM-5.3、GPT-6 等）可能只回思维链、正文为空
+   * （额度先被思维链吃掉，或被内容过滤掐掉）。这时候「连不上」是假警报 ——
+   * HTTP 200 加一份合法的 completion，本身就说明地址、Key 与模型名都对。
+   */
+  allowEmptyText?: boolean;
 }
 
 /**
@@ -109,7 +116,7 @@ function asRecord(v: unknown): Record<string, unknown> | null {
 }
 
 /** 从两种协议的响应里取正文与用量。 */
-function parseReply(protocol: "openai" | "anthropic", json: unknown): ChatResult {
+function parseReply(protocol: "openai" | "anthropic", json: unknown, allowEmptyText = false): ChatResult {
   const root = asRecord(json);
   if (!root) throw new AiError("format", "服务端返回的不是 JSON 对象。");
 
@@ -125,7 +132,7 @@ function parseReply(protocol: "openai" | "anthropic", json: unknown): ChatResult
     const usage: ChatUsage | undefined = u
       ? { promptTokens: numOrUndef(u.input_tokens), completionTokens: numOrUndef(u.output_tokens) }
       : undefined;
-    if (!text.trim()) throw new AiError("format", "模型没有返回正文内容。原始返回：" + excerpt(JSON.stringify(json)));
+    if (!text.trim() && !allowEmptyText) throw new AiError("format", "模型没有返回正文内容。原始返回：" + excerpt(JSON.stringify(json)));
     return { text, usage };
   }
 
@@ -152,7 +159,7 @@ function parseReply(protocol: "openai" | "anthropic", json: unknown): ChatResult
         totalTokens: numOrUndef(u.total_tokens),
       }
     : undefined;
-  if (!text.trim()) throw new AiError("format", "模型没有返回正文内容。原始返回：" + excerpt(JSON.stringify(json)));
+  if (!text.trim() && !allowEmptyText) throw new AiError("format", "模型没有返回正文内容。原始返回：" + excerpt(JSON.stringify(json)));
   return { text, usage };
 }
 
@@ -196,22 +203,41 @@ export async function requestChat(cfg: AiConfig, messages: ChatMessage[], opts: 
   const timeoutMs = opts.timeoutMs ?? AI_TIMEOUT_MS;
   const sig = makeSignal(timeoutMs, opts.signal);
 
-  let res;
-  try {
-    res = await platform.http(url, {
+  async function send(payload: Record<string, unknown>) {
+    return platform.http(url, {
       method: "POST",
       headers,
-      body: JSON.stringify(body),
+      body: JSON.stringify(payload),
       signal: sig.signal,
       timeoutMs,
     });
+  }
+
+  let res;
+  try {
+    res = await send(body);
   } catch (e) {
     sig.done();
     throw networkError(e, timeoutMs, sig.timedOut());
   }
-  sig.done();
 
-  const text = await res.text().catch(() => "");
+  let text = await res.text().catch(() => "");
+
+  // 有的推理模型（OpenAI GPT-6 这类）只接受默认 temperature，传了别的值直接 400。
+  // 推理模式本来就不吃这个参数，去掉它重发一次，别让用户看到一条莫名其妙的 400。
+  if (!res.ok && res.status === 400 && "temperature" in body && /temperature/i.test(text)) {
+    const rest = { ...body };
+    delete rest.temperature;
+    try {
+      res = await send(rest);
+    } catch (e) {
+      sig.done();
+      throw networkError(e, timeoutMs, sig.timedOut());
+    }
+    text = await res.text().catch(() => "");
+  }
+
+  sig.done();
   if (!res.ok) throw statusError(res.status, text);
 
   let json: unknown;
@@ -220,5 +246,5 @@ export async function requestChat(cfg: AiConfig, messages: ChatMessage[], opts: 
   } catch {
     throw new AiError("format", "服务端返回的内容不是合法 JSON（原始返回：" + excerpt(text) + "）。");
   }
-  return parseReply(protocol, json);
+  return parseReply(protocol, json, opts.allowEmptyText === true);
 }

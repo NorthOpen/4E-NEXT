@@ -351,6 +351,11 @@ md-dialog.pop-sheet .base-pop { display: flex; flex-direction: column; gap: 4px;
   md-dialog.sheet-dialog,
   md-dialog.sheet-dialog-xw,
   md-dialog.sheet-dialog.sheet-dialog-save { max-width: calc(100% - 20px); }
+  /* 升级属性弹窗（styles.extra.css 的 ⑮）在桌面端写死了 640px 宽，手机端同样收到 20px 边距 */
+  md-dialog.sheet-dialog.sheet-dialog-boost {
+    width: calc(100% - 20px);
+    max-width: calc(100% - 20px);
+  }
 
   .card-row { flex-wrap: wrap; gap: 10px; }
   .card-row-main { flex: 1 1 100%; }
@@ -437,8 +442,8 @@ md-dialog.pop-sheet .base-pop { display: flex; flex-direction: column; gap: 4px;
   .gl-skill { min-height: 36px; }
   .gl-chip { min-height: 34px; }
 
-  /* 装备面板左侧竖排导航：宽 30px、每颗按钮约 26×22px。
-     放宽到 40px 并把按钮撑到 30px 高，仍然是一列窄条，不会挤占装备组。 */
+  /* 装备面板左侧竖排导航：现在每颗是两字分类名（见 styles.css 的 .equip-nav），
+     宽度已经由桌面规则定成 40px，这里只把高度撑到拇指按得准的档位。 */
   .equip-nav { width: 40px; }
   .equip-nav-btn { min-height: 30px; }
 
@@ -468,6 +473,8 @@ md-dialog.pop-sheet .base-pop { display: flex; flex-direction: column; gap: 4px;
   .result-list, .entry-detail { height: auto; max-height: none; overflow: visible; }
   /* 但结果列表本身很长，给一个下限免得整页被撑到几千像素 */
   .result-list { max-height: 52dvh; overflow: auto; }
+  /* 还没选词条时，详情面板（含它的空态）整块收起来：单列下它只会垫在列表下面白占一屏 */
+  .entry-detail.is-empty { display: none; }
 
   /* 种族/职业特性正文的 55vh 内滚动框：手机上正文很长，指头很容易滚进盒子里出不来。
      （只处理仍在用的 .feature-text 兜底块；.feature-html 目前已无引用。） */
@@ -639,4 +646,204 @@ md-dialog.pop-sheet .base-pop { display: flex; flex-direction: column; gap: 4px;
    而它是 fixed 定位、页面又滚不动 —— 按钮彻底够不着。改用 dvh 与可视视口对齐。 */
 .tour-card { max-height: calc(100dvh - 24px); }
 .tour-card.center { top: 50dvh; }
+
+/* ======================================================================
+   系统性审计第 4 轮：空白塌陷 / 信息分组 / 控件体量
+   ----------------------------------------------------------------------
+   前三轮解决的是「放不放得下」与「点不点得到」，这一轮的三类问题都来自
+   「桌面端的排版假设在窄屏上不再成立」：
+
+     A. 为并排对齐而写死的高度，塌成单列后只剩空白；
+     B. 一行里塞了两组互不相干的信息，换行后标签与控件分家；
+     C. 控件按鼠标的精度做（30px 出头），手指够不着；MD3 的触控目标下限是 48dp，
+        这里按各版面实际容得下的最大值取 40–44px。
+
+   仍只在 ≤768px 生效，桌面端一个像素都不动。
+   ====================================================================== */
+
+/* GlanceVitals 为「临时回复值」加的分组壳。桌面端不改变任何排布：display: contents
+   让标签与步进器继续直接参与外层 .gl-line 的 flex 排版，与包这一层之前完全一致。
+   这条必须写在下面的媒体查询之前 —— 同特异性的规则后写者胜，否则会把窄屏的 flex 盖掉。 */
+.gl-line-group { display: contents; }
+
+@media (max-width: 768px) {
+  /* ===== A. 空白塌陷 ===== */
+
+  /* 储备页：桌面端靠 .reserve-panel 的 62vh 让「法术书 / 背包」在双栏里等高。
+     手机端是单栏上下堆叠，等高没有任何意义 —— 两个空槽位面板各吃 62vh，
+     整页 1201px 里有近 1000px 是空白。改为按内容高，空态只留一行提示。 */
+  .reserve-panel { min-height: 0; }
+
+  /* 词条页：未选中条目时 .entry-detail 是个空 div（见 SearchView），
+     但它带着 16px 内边距与整圈描边，于是在结果列表下方多出一只 34px 的空盒子。
+     没有内容就不该画容器。 */
+  .entry-detail:empty { display: none; }
+
+  /* 装备面板：空槽位是 120px 高的虚线大框（双栏模式下 88px）。15 个分组里
+     大多数只有空槽位，仅这一项就要占去近 1800px 的滚动长度。降到 88px ——
+     仍高于 48dp 的触控下限，虚线框「点这里加一件」的暗示也还在。 */
+  .slot-empty { min-height: 88px; padding-top: 12px; }
+  .equip-layout:not(.base-dialog-layout) .slot-empty { min-height: 88px; }
+
+  /* ===== B. 信息分组 ===== */
+
+  /* 立绘列在 ≤560px 改成两格网格（规则见文件末尾那个媒体查询）；
+     这里先解决「经验」字段的宽度：它外面那层 div 没有类名，
+     而 .portrait-col 在手机端是 align-items: center 的纵向 flex ——
+     这一格按内容宽收缩成 266px，比「姓名」窄 78px 还整体右移。
+     让它铺满整列，与其它字段左对齐（立绘框 .portrait-frame 排除在外）。 */
+  .portrait-col > div:not(.portrait-frame) { width: 100%; min-width: 0; }
+
+  /* 速览「回复力」那一行里塞了两组信息：回复力本身（数值 / 圆点 / 使用按钮）
+     与临时回复值（标签 + 步进器）。窄屏换行时标签落在上一行末尾、步进器掉到
+     下一行开头，两者分家，读不出「− 0 ＋」是在调哪个数。
+     GlanceVitals 把后者包进 .gl-line-group：这里整组换行。桌面端该元素是
+     display: contents（见上方无断点规则），排布与改动前完全一致。 */
+  .gl-line-group { flex: 1 1 100%; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+
+  /* 技能面板：原来靠 flex-wrap 让加值输入框按剩余空间自动折行，
+     17 行里因此出现三种行高，扫读时眼睛没法顺着列往下走。
+     改成固定的两行网格：第一行「名称 + 总加值」（扫读只要这两列），
+     第二行「属性 + 加值构成」（编辑时才看）。行高由内容定，整表节奏一致。 */
+  .skill-item {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-areas:
+      "check name total"
+      "space abil mods";
+    align-items: center;
+    gap: 1px 8px;
+    padding: 6px 10px;
+  }
+  .skill-item .skill-check { grid-area: check; }
+  .skill-item .skill-name { grid-area: name; }
+  /* 总加值靠右：与下面一行的加值输入框共用同一条右边线，
+     扫读时右侧就是「这一列数字」，不必在行中间找 */
+  .skill-item .skill-total { grid-area: total; justify-self: end; font-size: 16px; }
+  .skill-item .skill-ability { grid-area: abil; margin: 0; }
+  .skill-item .skill-mods { grid-area: mods; margin-left: 0; justify-self: end; flex-wrap: nowrap; }
+  /* 加值构成的三个小标签在 10px 时几乎读不出来（MD3 的 label-small 是 11sp） */
+  .skill-item .skill-mod { font-size: 11px; line-height: 1.2; }
+  /* box-sizing 必须写死为 border-box：.skill-mod input 的基础规则带 2px/3px 内边距，
+     内容盒下 26px 会实际占 32px 高，把整行撑到 78px。 */
+  .skill-item .skill-mod input { width: 32px; height: 24px; font-size: 12px; box-sizing: border-box; }
+  .skill-item .skill-mod-armor { width: 32px; height: 24px; font-size: 12px; }
+
+  /* ===== C. 控件体量 ===== */
+
+  /* 命中 / 伤害：卡片本身已经有描边，里面每个数值格又各带一道，
+     屏上看到的是「框里套框」。窄屏改为纯色调分层（surface-container-high
+     盖在卡片的 container-low 上）去掉内部描边，视觉重心回到数字本身。 */
+  .combat-table.attack .ct-row > .ct-cell:nth-child(n+2),
+  .combat-table.damage .ct-row > .ct-cell:nth-child(n+2) {
+    border-color: transparent;
+    background: var(--md-sys-color-surface-container-high);
+  }
+
+  /* 板块标题行里的动作胶囊（标记使用 / 与储备交换 / 查看详情 / 简洁…）：
+     桌面端 32px 是给鼠标的，手指按不准。抬到 40px，同时把左右内边距收 2px。 */
+  .mode-chip { height: 40px; padding: 0 10px; font-size: 13px; }
+  .block-head .def-detail-btn { height: 40px; }
+  .head-actions .mode-chip { padding: 0 10px; }
+
+  /* 装备标题行的四颗动作胶囊：390px 下「装备」+ 四颗排不进一行，原来会折成 3+1，
+     末尾的「简洁」孤零零一行。改成标题一行、动作 2×2 网格一行，四颗等宽、都够按。 */
+  .equip-head-actions { flex: 1 1 100%; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; margin-left: 0; }
+  .equip-head-actions .mode-chip { width: 100%; justify-content: center; }
+
+  /* 「典范之道（11级解锁）」这类长字段标签在 165px 宽的格子里会折成两行，
+     该字段被撑到 76px、比同排的高一截。图标右移 2px、右侧留白收到 30px 就能放下，
+     四个字段回到同一高度（实测 58px）。 */
+  .pick-field { padding-right: 30px; }
+  .pf-icon { right: 10px; }
+
+  /* 别的板块（威能等）仍是 3 颗一波：末尾那颗要被推回右端，与上一行同侧的胶囊对齐。
+     只认直接子级里的末位胶囊：技能 / 出身等把动作包在 .block-head-actions 里，不受影响。 */
+  .block-head { row-gap: 8px; }
+  .block-head > .mode-chip:last-child { margin-left: auto; }
+
+  /* MD3 分段按钮的官方容器高度是 40dp，桌面端为省纵向空间压到了 34px。
+     手机上一屏只放得下一组，按规格放开。 */
+  .md3-seg { height: 40px; }
+  .md3-seg-btn { min-width: 0; padding: 0 12px; }
+
+  /* 筛选胶囊（词条页 / 私设页的类别条）：32px → 38px，横向滚动时更好按 */
+  .cat-chips .chip { height: 38px; }
+
+  /* 槽位增减的 ± 圆钮：30px 在拇指下经常点空，而点空的代价是多半步操作 */
+  .sg-step { width: 34px; height: 34px; }
+
+  /* 装备面板左侧的分类导航：整列只有 40px 宽，宽度不能再加，
+     把高度从 30px 抬到 34px（15 颗合计仍在视口高度内）。 */
+  .equip-nav-btn { min-height: 34px; }
+
+  /* 自定义板块编辑器：上下移 / 换栏 / 排序按钮 30px → 34px */
+  .ple-btn { width: 34px; height: 34px; }
+
+  /* 设置页的预设色板：34px 的圆点排在 8px 间距里，手指很容易点到隔壁 */
+  .swatch { width: 42px; height: 42px; }
+
+  /* 速览顶部的先攻 / 被动侦查速览胶囊：原本按内容高（21px），
+     改为最小 32px 并补齐内边距，仍是胶囊外观。 */
+  .gl-qs { min-height: 32px; padding: 2px 10px; }
+
+  /* 速览「防御 / 攻击」分区标题行的快捷加减（临时命中 / 临时伤害）：
+     外层 .gl-zone-head 能换行，内层的 .gl-zone-acts 却是不换行的 inline-flex，
+     360px 下这一组宽约 340px 顶出视口右缘，超过 .app 的 overflow-x: clip 之后
+     右边的 ＋ 就永久点不到了（实测 right=376 > 360）。允许它在组内换行。 */
+  .gl-zone-head { row-gap: 6px; }
+  .gl-zone-acts { flex-wrap: wrap; max-width: 100%; }
+  .gl-counter { max-width: 100%; }
+
+  /* 速览 HUD 的 ± 圆钮与图标钮：MD3 icon button 的容器是 40dp，
+     22px 的 ± 在拇指下几乎点不准（速览是跑团时全程要用的页）。 */
+  .gl-step, .gl-def-temp .gl-step { width: 34px; height: 34px; font-size: 15px; }
+  .gl-icon-btn { width: 40px; height: 40px; --md-icon-button-icon-size: 20px; }
+
+  /* 仪式面板的「仪式魔法 / 武术奥义」切换胶囊：26 → 32px */
+  .ritual-kind-toggle .kind-chip { height: 32px; padding: 0 12px; }
+
+  /* 金钱面板：币种数值是可点的按钮（点开调整），25px 高；
+     「＋ 确定」按钮 29px。一并抬到 32px 以上。 */
+  .money-value.money-click { min-height: 32px; padding: 2px 10px; }
+  .money-add .sf-chip { min-height: 32px; }
+
+  /* 空槽位的「＋ 选择…」条：33px，且它是整块可点区域，撑到 36px */
+  .compact-empty { min-height: 36px; }
+
+  /* 板块标题行的动作组（AI 页「连接配置」那一排）：320px 下会顶出视口，允许换行 */
+  .block-head-actions { flex-wrap: wrap; row-gap: 6px; }
+
+  /* 速览「数值追踪」右侧的「掷骰 / 指令」切换：.md3-seg.gl-mode 把它压到 30px
+     （比上面的 .md3-seg 更特异性），窄屏同样按 40dp 放开。 */
+  .md3-seg.gl-mode { height: 40px; }
+
+  /* 命中 / 伤害卡里的名称输入框与「其他 +0」入口：只有 22px 高，
+     点进编辑 / 点开加值明细时太难命中。卡内网格按内容高，撑到 32px 不影响列宽。 */
+  .ct-label-input { min-height: 32px; }
+  .ct-other-link { min-height: 32px; }
+}
+
+/* ===== 角色信息顶栏：立绘与「等级 / 经验」并排（≤560px）
+   ----------------------------------------------------------------------
+   只在手机竖屏生效。390px 下原来的竖排是「立绘 156 + 等级 51 + 经验 56」= 283px，
+   而这一列右侧还空着 218px —— 立绘本身只有 116px 宽，等于半屏只放了一张缩略图。
+   改成两格网格后整块压到 158px，首屏直接能看到种族 / 英雄职阶。
+   561–768px（横屏手机、平板竖屏）内容宽得多，右列会被拉成一整行空框，
+   那里保持原来的竖排，不套这个网格。 */
+@media (max-width: 560px) {
+  .portrait-col {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: start;
+    gap: 6px 12px;
+  }
+  /* 立绘占左列两行，右列依序放等级与经验 */
+  .portrait-col > .portrait-frame { grid-column: 1; grid-row: 1 / span 2; }
+  .portrait-col > :not(.portrait-frame) { grid-column: 2; width: 100%; }
+  /* 「等级」那一格原本靠 .portrait-col 的居中把步进器摆到中间；
+     并排后右列只有约 218px，恢复成左对齐的标签 + 步进器 */
+  .portrait-col > .field { align-items: flex-start; }
+  .portrait-col > .field .stepper { justify-content: flex-start; }
+}
 

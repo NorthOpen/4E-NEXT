@@ -58,6 +58,8 @@ export function loadAiConfig(): AiConfig {
     out.apiKey = out.apiKeys[out.providerId] ?? "";
     if (typeof s.temperature === "number" && Number.isFinite(s.temperature)) out.temperature = s.temperature;
     if (typeof s.maxTokens === "number" && Number.isFinite(s.maxTokens)) out.maxTokens = s.maxTokens;
+    // 老存档里可能存着官方已下线的模型名（如 DeepSeek 的 deepseek-chat），原样发出去只会一直 400
+    out.model = migrateModelName(out);
   } catch {
     /* 忽略：坏数据回落默认，别把设置页拖崩 */
   }
@@ -90,6 +92,29 @@ export function saveAiConfig(c: AiConfig): boolean {
 /** 切换供应商时要落进输入框的那把 Key（没有就是空）。 */
 export function apiKeyFor(c: AiConfig, providerId: string): string {
   return c.apiKeys[providerId] ?? "";
+}
+
+/** 地址是否仍指向该供应商的官方域名（没填 = 用预设，算「是」）。 */
+function sameHostAsPreset(url: string, preset: string): boolean {
+  const raw = url.trim();
+  if (!raw) return true;
+  try {
+    return new URL(raw).host === new URL(preset).host;
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * 旧模型名 → 现用模型名。
+ * 只在地址还是官方域名时改写：用户把地址换成自建反代或中转站后，那边的模型池与官方无关，
+ * 叫什么名字该由他自己说了算，不能替他改。
+ */
+function migrateModelName(c: AiConfig): string {
+  const p = providerById(c.providerId);
+  const to = p.legacyModels?.[c.model];
+  if (!to) return c.model;
+  return sameHostAsPreset(c.baseUrl, p.baseUrl) ? to : c.model;
 }
 
 export function activeProvider(c: AiConfig): AiProvider {

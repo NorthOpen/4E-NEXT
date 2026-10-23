@@ -23,6 +23,10 @@ export interface AiProvider {
   model: string;
   /** 常见模型候选（界面给下拉建议，仍可自由输入） */
   models: string[];
+  /** 候选模型的一句话说明（键 = models 里的模型 ID；界面用它告诉用户该怎么挑） */
+  modelNotes?: Record<string, string>;
+  /** 已停用的旧模型 ID → 现在该用的 ID（载入配置时改写，别让老存档一直撞 400） */
+  legacyModels?: Record<string, string>;
   /** 是否必须填 API Key（本地模型通常不需要） */
   requiresKey: boolean;
   /** 「Key 从哪来」的一句话说明 */

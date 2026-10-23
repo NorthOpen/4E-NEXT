@@ -11,6 +11,7 @@ import { featGrantedPowers, featReplacementInfo, featPrereqClassFeature } from "
 import PowerSlotPicker from "./PowerSlotPicker";
 import FeatSlotPicker from "./FeatSlotPicker";
 import FeatChoiceDialog from "./FeatChoiceDialog";
+import AbilityBoostDialog from "./AbilityBoostDialog";
 import PowerReplacementDialog, { type ReplSlotGroup } from "./PowerReplacementDialog";
 import WeaponPalette, { type WeapInfo, implGroup } from "./WeaponPalette";
 import ItemSlotPicker from "./ItemSlotPicker";
@@ -43,6 +44,16 @@ import { psionicPowerPoints, hybridPowerPoints } from "./powerpoints";
 import { deriveDefenses, hybridTalentProf, resolvePrimalAspect, runicArtistry, speedInfo } from "./defense";
 
 const ABILITIES: AbilityKey[] = ["str", "con", "dex", "int", "wis", "cha"];
+
+/**
+ * 给若干项**基础**属性各 +1（封顶 30），返回新对象、不改入参。
+ * 升级时的「两个 +1」与「全部 +1」共用（见 bumpLevel / confirmAbilityBoost）。
+ */
+function boostAbilities(base: Record<AbilityKey, number>, keys: AbilityKey[]): Record<AbilityKey, number> {
+  const out = { ...base };
+  for (const k of keys) out[k] = Math.min(30, out[k] + 1);
+  return out;
+}
 
 // 元素裔「元素显能」的 13 个可选之魂（单选互斥，仅授予所选之魂的遭遇威能）
 const GENASI_SOULS = ["大地之魂", "烈火之魂", "风暴之魂", "流水之魂", "狂风之魂", "腐蚀之魂", "焦炭之魂", "瘟疫之魂", "虚空之魂", "灰烬之魂", "岩浆之魂", "流砂之魂", "皓日之魂"];
@@ -365,6 +376,23 @@ const EQUIP_GROUPS: { label: string; kind?: "weapon" | "armor" | "shield"; slots
   { label: "手部", slots: [{ index: 8, name: "手部" }] },
   { label: "足部", slots: [{ index: 11, name: "足部" }] },
   { label: "戒指", slots: [{ index: 9, name: "戒指 1" }, { index: 10, name: "戒指 2" }] },
+];
+
+/**
+ * 装备面板左侧「分类快速抵达」导航的条目。
+ * 顺序必须与 equip-groups 里分组的 DOM 顺序一致（先 EQUIP_GROUPS，再可增减槽位的四组），
+ * 否则点击后的高亮会与页面上下顺序对不上。
+ * short：只给竖排窄条用的两字写法（「魔宠与坐骑」在 40px 宽的栏里放不下），
+ *        全名交给 title / aria-label，鼠标悬停与读屏都能拿到。
+ * sep：在该项之前画一条分组分隔线——前 10 项是穿戴部位，后面是其余类别。
+ */
+const EQUIP_NAV_TARGETS: { id: string; label: string; short: string; sep?: boolean }[] = [
+  ...EQUIP_GROUPS.map((g) => ({ id: "equip-g-" + g.label, label: g.label, short: g.label })),
+  { id: "equip-g-奇物", label: "奇物", short: "奇物", sep: true },
+  { id: "equip-g-其他", label: "其他", short: "其他" },
+  { id: "equip-g-消耗品", label: "消耗品", short: "消耗" },
+  { id: "equip-g-冒险装备", label: "冒险装备", short: "冒险" },
+  { id: "equip-g-魔宠与坐骑", label: "魔宠与坐骑", short: "魔宠" },
 ];
 
 // 槽位组标识 → 面板标题（固定 13 格用 EQUIPMENT_SLOTS 的部位名，其余用组名）
@@ -4818,9 +4846,162 @@ export default function CharacterSheet({
   // 魔宠与坐骑「本体」选择器：从生物库挑魔宠/坐骑/伙伴
   const [beastPicker, setBeastPicker] = useState<number | null>(null);
   const [blockDetail, setBlockDetail] = useState<{ powers: boolean; feats: boolean; equipment: boolean; rituals: boolean }>({ powers: true, feats: true, equipment: true, rituals: true });
+  // 装备分类快速导航：当前所在分组（由下面的滚动联动回写）。空串 = 还没滚到装备面板。
+  const [equipSection, setEquipSection] = useState("");
+  // 同步镜像：滚动联动要读「当前高亮」做同行去重，但不能把它放进 effect 依赖，
+  // 否则每次高亮变化都会拆掉重装一次滚动监听。
+  const equipSectionRef = useRef("");
+  const equipNavRef = useRef<HTMLElement>(null);
+  // 点击导航后有一段平滑滚动，这期间滚动监听读到的都是中间位置；
+  // 记住「目标滚动位置」，等真正滚到位再把高亮交回滚动联动
+  // （只靠固定时长不够：长距离跳转的动画比 650ms 更长，会停在路过的那一组上）。
+  const equipNavJumpRef = useRef<null | { id: string; top: number }>(null);
+  // 落点锁：滚动到位后先让点击项继续亮着。阅读线在内容顶部往下 96px，
+  // 而下一组往往只隔三四十像素，不锁一下会在落地瞬间被下一组顶掉。
+  // 用户自己再滚 24px 以上（或滚轮/触摸/键盘）就立即交回滚动联动。
+  const equipNavLandedRef = useRef<null | { id: string; top: number }>(null);
+
+  // 装备分类导航的滚动联动：以视口顶部往下 96px 当「阅读线」，点亮最后一个越过阅读线的分组。
+  // 依赖 layout / activeGroupId / mode：切单双栏、切手机端标签页、进出渲染态都会换掉装备板块的 DOM。
+  useEffect(() => {
+    let raf = 0;
+    const sync = () => {
+      raf = 0;
+      // 还在飞向点击目标的途中：保持点击项的高亮，别被路过的高亮抢走
+      const jump = equipNavJumpRef.current;
+      if (jump) {
+        if (Math.abs(window.scrollY - jump.top) > 2) return;
+        equipNavJumpRef.current = null;
+        equipNavLandedRef.current = { id: jump.id, top: jump.top };
+        return;
+      }
+      const landed = equipNavLandedRef.current;
+      if (landed) {
+        if (Math.abs(window.scrollY - landed.top) <= 24) return;
+        equipNavLandedRef.current = null;
+      }
+      // 手机上有一层吸顶标签页，阅读线要跟着往下让
+      const stickyH = document.querySelector(".mob-tabsbar")?.getBoundingClientRect().height ?? 0;
+      const line = stickyH + 96;
+      const crossed: { id: string; top: number }[] = [];
+      for (const t of EQUIP_NAV_TARGETS) {
+        const el = document.getElementById(t.id);
+        if (el) crossed.push({ id: t.id, top: el.getBoundingClientRect().top - line });
+      }
+      let current = "";
+      const above = crossed.filter((t) => t.top <= 0.5);
+      if (above.length > 0) {
+        // 只认「刚越过阅读线」的那一行，而不是所有越过阅读线的分组里最后一个
+        const rowTop = Math.max(...above.map((t) => t.top));
+        const row = above.filter((t) => Math.abs(t.top - rowTop) < 1);
+        // 双栏网格里同一行的两组顶边完全相同（护甲｜臂部、奇物｜其他 是并排的）：
+        // 同一行只亮一个——优先保留当前项（含刚点过的那组），否则取左边那组，
+        // 免得光标落在同一行的两组时高亮在左右之间来回跳。
+        const keep = row.find((t) => t.id === equipSectionRef.current);
+        current = (keep ?? row[0]).id;
+      } else {
+        // 还没滚到第一组：只要它已经出现在视口上半部分（用户确实在看装备面板），
+        // 就先点亮它。手机上切到「物品」标签页时装备板块就在第一屏，这里给的就是那条路径；
+        // 桌面端在页面顶部时装备面板还在视口外，不会误亮。
+        const first = crossed.find((t) => t.id === EQUIP_NAV_TARGETS[0].id);
+        if (first && first.top + line < window.innerHeight * 0.75) current = first.id;
+      }
+      // 滚到页面最底：最后一组通常很长，它的顶边可能永远到不了阅读线，直接点亮它
+      const doc = document.scrollingElement;
+      if (current && doc && window.scrollY + window.innerHeight >= doc.scrollHeight - 8) {
+        current = EQUIP_NAV_TARGETS[EQUIP_NAV_TARGETS.length - 1].id;
+      }
+      // 装备板块在视口下方（或手机上根本不在当前标签页）时清掉高亮，不留下过期状态
+      equipSectionRef.current = current;
+      setEquipSection((prev) => (prev === current ? prev : current));
+    };
+    // 用户自己开始滚动（滚轮 / 触摸 / 键盘）就放弃「飞向目标」与「落点锁」：
+    // 点击后的平滑滚动会被用户的滚动打断，此时按真实位置联动才是对的。
+    const dropJump = () => { equipNavJumpRef.current = null; equipNavLandedRef.current = null; };
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(sync); };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    window.addEventListener("wheel", dropJump, { passive: true });
+    window.addEventListener("touchstart", dropJump, { passive: true });
+    window.addEventListener("keydown", dropJump, { passive: true });
+    sync();
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      window.removeEventListener("wheel", dropJump);
+      window.removeEventListener("touchstart", dropJump);
+      window.removeEventListener("keydown", dropJump);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, [layout, activeGroupId, mode]);
+
+  // 视口很矮时导航列自身要滚：把当前项带进可视区，否则高亮落在看不见的地方
+  useEffect(() => {
+    const nav = equipNavRef.current;
+    if (!nav || !equipSection) return;
+    const btn = [...nav.querySelectorAll<HTMLButtonElement>(".equip-nav-btn")].find((b) => b.dataset.section === equipSection);
+    if (!btn) return;
+    const top = btn.offsetTop - (btn.offsetParent === nav ? 0 : nav.offsetTop);
+    const bottom = top + btn.offsetHeight;
+    const reduce = typeof window.matchMedia === "function" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (top < nav.scrollTop) nav.scrollTo({ top, behavior: reduce ? "auto" : "smooth" });
+    else if (bottom > nav.scrollTop + nav.clientHeight) nav.scrollTo({ top: bottom - nav.clientHeight, behavior: reduce ? "auto" : "smooth" });
+  }, [equipSection]);
+
+  /** 滚到某个装备分组：让出手机端吸顶标签页的高度，别让分组标题贴在视口最上沿 */
+  function jumpToEquipSection(id: string) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const stickyH = document.querySelector(".mob-tabsbar")?.getBoundingClientRect().height ?? 0;
+    const reduce = typeof window.matchMedia === "function" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    // 目标滚动位置按页面可滚动上限夹一次：底部几组本来就滚不到视口顶端，
+    // 不夹的话「飞向目标」的判定永远等不到落点，高亮会一直卡在点击项上。
+    const maxTop = Math.max(0, (document.scrollingElement?.scrollHeight ?? 0) - window.innerHeight);
+    const top = Math.max(0, Math.min(maxTop, el.getBoundingClientRect().top + window.scrollY - stickyH - 14));
+    equipSectionRef.current = id;
+    setEquipSection(id);
+    // 落点就在当前位置时不用等：直接挂上落点锁，避免下一次滚动把高亮交给相邻分组
+    if (Math.abs(top - window.scrollY) > 2) {
+      equipNavLandedRef.current = null;
+      equipNavJumpRef.current = { id, top };
+      // 兜底：万一浏览器没有按预期触发 scroll（或动画被中断却没有任何输入事件），1.6s 后放手
+      window.setTimeout(() => {
+        if (equipNavJumpRef.current?.id === id) equipNavJumpRef.current = null;
+      }, 1600);
+    } else {
+      equipNavJumpRef.current = null;
+      equipNavLandedRef.current = { id, top };
+    }
+    window.scrollTo({ top, behavior: reduce ? "auto" : "smooth" });
+  }
+
+  /** 导航内的方向键：↑/↓ 在这一列里移动焦点，Home/End 到首尾（MD3 navigation rail 的键盘模型） */
+  function onEquipNavKeyDown(e: React.KeyboardEvent<HTMLElement>) {
+    if (!["ArrowUp", "ArrowDown", "Home", "End"].includes(e.key)) return;
+    const btns = [...e.currentTarget.querySelectorAll<HTMLButtonElement>(".equip-nav-btn")];
+    const i = btns.indexOf(document.activeElement as HTMLButtonElement);
+    if (i < 0) return;
+    e.preventDefault();
+    const last = btns.length - 1;
+    const next = e.key === "Home" ? 0 : e.key === "End" ? last
+      : e.key === "ArrowDown" ? (i === last ? 0 : i + 1) : (i === 0 ? last : i - 1);
+    btns[next]?.focus();
+  }
 
   const [abilityMode, setAbilityMode] = useState<"free" | "buy">("free");
   const [boostUsed, setBoostUsed] = useState(0);
+  // 升级属性成长弹窗（见 AbilityBoostDialog）：只由等级「＋」触发。
+  // before/after 都是**基础值**（不含种族加值），加值在升级的同一次 setChar 里写入。
+  const [boostDialog, setBoostDialog] = useState<null | {
+    kind: "two" | "all";
+    level: number;
+    before: Record<AbilityKey, number>;
+    after: Record<AbilityKey, number>;
+  }>(null);
+  // 等级框的直接输入草稿：null 表示没有在编辑，显示当前等级
+  const [levelDraft, setLevelDraft] = useState<string | null>(null);
+  // Esc 放弃本次输入：blur 会同步跑提交逻辑，闭包里的 levelDraft 还是旧值，用 ref 明确拦一下
+  const levelEditCancelled = useRef(false);
   const [buyPresetOpen, setBuyPresetOpen] = useState(false);
   const [classFeatDetail, setClassFeatDetail] = useState(true);
   const [hybridDetailOpen, setHybridDetailOpen] = useState(false);
@@ -5876,17 +6057,64 @@ export default function CharacterSheet({
     setSpendInput("");
   }
 
-  function setLevel(v: number) {
+  /**
+   * 写等级（连同 XP、典范/传奇与灵能点）。
+   * abilities 只在「全部 +1」升级时传入 —— 加值必须和等级在同一次 setChar 里落，
+   * 拆成两次更新既多一次无谓重渲染，也容易在中间态里读到对不上的等级/属性。
+   */
+  function setLevel(v: number, abilities?: Record<AbilityKey, number>) {
     const lv = Math.max(0, Math.min(30, v));
     if (lv >= 1 && LEVELS[lv - 1].abilityBoost === "两个 +1") setBoostUsed(0);
     setChar((p) => ({
       ...p,
+      ...(abilities ? { abilities } : null),
       level: lv,
       xp: lv === 0 ? "0" : String(xpForLevel(lv)),
       paragonPathId: lv < 11 ? undefined : p.paragonPathId,
       epicDestinyId: lv < 21 ? undefined : p.epicDestinyId,
       powerPoints: hybridPowerPoints(p, resolveClassId, resolvePowerId) ?? psionicPowerPoints(p.classId, lv) ?? p.powerPoints,
     }));
+  }
+
+  /**
+   * 等级「＋」：升级到带属性成长的等级（4/8/11/14/18/21/24/28）时给出提示或选择弹窗。
+   * 需求：只有用加减按钮升级才触发；在等级框里直接输入、改经验、切卡/导入、AI 落子都不触发。
+   */
+  function bumpLevel() {
+    const next = Math.min(30, char.level + 1);
+    if (next === char.level) return;
+    const info = LEVELS[next - 1];
+    const before = { ...char.abilities };
+    if (info.abilityBoost === "全部 +1") {
+      // 六项无条件 +1：直接落进属性，弹窗只负责把结果摊给玩家看
+      const after = boostAbilities(before, ABILITIES);
+      setLevel(next, after);
+      setBoostDialog({ kind: "all", level: next, before, after });
+      return;
+    }
+    setLevel(next);
+    if (info.abilityBoost === "两个 +1") {
+      setBoostDialog({ kind: "two", level: next, before, after: before });
+    }
+  }
+
+  /** 两项 +1 弹窗的「确定」：选中的两项各 +1，并同步购点面板的「提升 x/2」计数 */
+  function confirmAbilityBoost(picks: AbilityKey[]) {
+    if (picks.length > 0) setChar((p) => ({ ...p, abilities: boostAbilities(p.abilities, picks) }));
+    if (picks.length === 2) setBoostUsed(2);
+    setBoostDialog(null);
+  }
+
+  /** 等级框直接输入：只改等级，不弹属性提升提示（需求里明确排除这条路径） */
+  function commitLevelDraft() {
+    if (levelDraft === null) return;
+    const cancelled = levelEditCancelled.current;
+    levelEditCancelled.current = false;
+    const n = parseInt(levelDraft, 10);
+    setLevelDraft(null);
+    if (cancelled || Number.isNaN(n)) return;
+    const lv = Math.max(0, Math.min(30, n));
+    if (lv !== char.level) setLevel(lv);
   }
 
   function onXpChange(v: string) {
@@ -6204,9 +6432,36 @@ export default function CharacterSheet({
               <div className="field" data-guide="level">
                 <span className="field-label">等级</span>
                 <div className="stepper">
-                  <button type="button" className="step" onClick={() => setLevel(char.level - 1)}>−</button>
-                  <span className="level-value">{char.level}</span>
-                  <button type="button" className="step" onClick={() => setLevel(char.level + 1)}>+</button>
+                  <button type="button" className="step" onClick={() => setLevel(char.level - 1)} title="降低一级">−</button>
+                  {/* 等级可直接输入：这条路径只改等级，不弹属性提升提示（需求明确排除） */}
+                  <input
+                    className="level-input"
+                    type="text"
+                    inputMode="numeric"
+                    aria-label="等级（可直接输入 0–30）"
+                    title="点击可直接输入等级；直接输入不会弹出属性提升提示"
+                    value={levelDraft ?? String(char.level)}
+                    onChange={(e) => {
+                      levelEditCancelled.current = false;
+                      setLevelDraft(e.target.value.replace(/\D/g, "").slice(0, 2));
+                    }}
+                    onFocus={(e) => {
+                      levelEditCancelled.current = false;
+                      e.currentTarget.select();
+                    }}
+                    onBlur={commitLevelDraft}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") { e.preventDefault(); e.currentTarget.blur(); }
+                      else if (e.key === "Escape") {
+                        // Esc = 放弃本次输入：标记一下，blur 里的提交逻辑会跳过
+                        e.preventDefault();
+                        levelEditCancelled.current = true;
+                        setLevelDraft(null);
+                        e.currentTarget.blur();
+                      }
+                    }}
+                  />
+                  <button type="button" className="step" onClick={bumpLevel} title="提升一级">+</button>
                 </div>
               </div>
             )}
@@ -7205,7 +7460,9 @@ export default function CharacterSheet({
 <section className="block" data-guide="equip-slots">
         <div className="block-head">
           <h3 className="block-title">装备</h3>
-                    <span className="head-actions">
+          {/* 四颗动作胶囊放在同一个容器里：桌面端它们本来就排成一行，
+              手机端则由 .equip-head-actions 排成 2×2，不会出现「简洁」单独掉一行的情况。 */}
+          <span className="head-actions equip-head-actions">
             <button type="button" className={"mode-chip" + (slotMode === "mark" ? " active" : "")} title="开启后点击有内容的槽位切换「已使用」遮罩（再次点击解除）" onClick={() => setSlotMode((m) => (m === "mark" ? null : "mark"))}>
               <span className="mode-chip-ic">−</span>
               标记使用
@@ -7214,26 +7471,36 @@ export default function CharacterSheet({
               <span className="mode-chip-ic">⇄</span>
               与储备交换
             </button>
+            <button type="button" className="mode-chip" title="查看职业、种族、专长提供的武器、法器、防具擅长" onClick={() => setProfOpen(true)}>
+              <span className="material-symbols-outlined mode-chip-ic">workspace_premium</span>
+              擅长
+            </button>
+            <button type="button" className="mode-chip" onClick={() => setBlockDetail((p) => ({ ...p, equipment: !p.equipment }))}>
+              <span className="material-symbols-outlined mode-chip-ic">{blockDetail.equipment ? "density_small" : "density_large"}</span>
+              {blockDetail.equipment ? "简洁" : "详细"}
+            </button>
           </span>
-          <button type="button" className="mode-chip" title="查看职业、种族、专长提供的武器、法器、防具擅长" onClick={() => setProfOpen(true)}>
-            <span className="material-symbols-outlined mode-chip-ic">workspace_premium</span>
-            擅长
-          </button>
-          <button type="button" className="mode-chip" onClick={() => setBlockDetail((p) => ({ ...p, equipment: !p.equipment }))}>
-            <span className="material-symbols-outlined mode-chip-ic">{blockDetail.equipment ? "density_small" : "density_large"}</span>
-            {blockDetail.equipment ? "简洁" : "详细"}
-          </button>
         </div>
         <div className="equip-layout">
-          <nav className="equip-nav">
-            {EQUIP_GROUPS.map((g) => (
-              <button key={g.label} type="button" className="equip-nav-btn" title={g.label} onClick={() => document.getElementById("equip-g-" + g.label)?.scrollIntoView({ behavior: "smooth", block: "start" })}>{g.label.slice(0, 1)}</button>
+          {/* 分类快速抵达：竖条只有 40px 宽，所以每个分类压成两字（全名在 title / aria-label 里）；
+              滚动时高亮当前所在分组，点击留出吸顶标签页的高度再滚过去（见 jumpToEquipSection）。 */}
+          <nav className="equip-nav" aria-label="装备分类快速抵达" ref={equipNavRef} onKeyDown={onEquipNavKeyDown}>
+            {EQUIP_NAV_TARGETS.map((t) => (
+              <Fragment key={t.id}>
+                {t.sep && <span className="equip-nav-sep" aria-hidden="true" />}
+                <button
+                  type="button"
+                  className={"equip-nav-btn" + (equipSection === t.id ? " on" : "")}
+                  data-section={t.id}
+                  title={"跳转到「" + t.label + "」"}
+                  aria-label={"跳转到装备分组：" + t.label}
+                  aria-current={equipSection === t.id ? "location" : undefined}
+                  onClick={() => jumpToEquipSection(t.id)}
+                >
+                  {t.short}
+                </button>
+              </Fragment>
             ))}
-            <button type="button" className="equip-nav-btn" onClick={() => document.getElementById("equip-g-其他")?.scrollIntoView({ behavior: "smooth", block: "start" })}>他</button>
-            <button type="button" className="equip-nav-btn" title="消耗品" onClick={() => document.getElementById("equip-g-消耗品")?.scrollIntoView({ behavior: "smooth", block: "start" })}>耗</button>
-            <button type="button" className="equip-nav-btn" title="冒险装备" onClick={() => document.getElementById("equip-g-冒险装备")?.scrollIntoView({ behavior: "smooth", block: "start" })}>冒</button>
-            <button type="button" className="equip-nav-btn" title="奇物" onClick={() => document.getElementById("equip-g-奇物")?.scrollIntoView({ behavior: "smooth", block: "start" })}>奇</button>
-            <button type="button" className="equip-nav-btn" title="魔宠与坐骑" onClick={() => document.getElementById("equip-g-魔宠与坐骑")?.scrollIntoView({ behavior: "smooth", block: "start" })}>宠</button>
           </nav>
           <div className="equip-groups">
         {EQUIP_GROUPS.map((g) => {
@@ -8116,6 +8383,17 @@ return (
           custom={char.customBonuses?.perception ?? { passivePerception: [], passiveInsight: [] }}
           onChangeCustom={setPerceptionCustom}
           onClose={() => setPerceptionDetailOpen(false)}
+        />
+      )}
+      {boostDialog && (
+        <AbilityBoostDialog
+          level={boostDialog.level}
+          kind={boostDialog.kind}
+          before={boostDialog.before}
+          after={boostDialog.after}
+          racial={bonus}
+          onConfirm={confirmAbilityBoost}
+          onDismiss={() => setBoostDialog(null)}
         />
       )}
       {alignmentOpen && (

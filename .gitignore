@@ -22,6 +22,8 @@ out/monsters/media/
 # 取色模式对比探针（本机工具，含写死的绝对路径与派生产物，不入库）
 out/color-variant-probe/
 
+# DSH harness/tooling workspace (local tooling output; must never be committed)
+.dsh/
 # DSH vision-router artifacts (local tooling output)
 .dsh-vision-router/
 # DSH 文件权限诊断报告与回滚脚本（本机工具产物，不入库）

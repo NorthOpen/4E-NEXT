@@ -93,6 +93,8 @@ export default function AiSetupBar({
 
   const provider = activeProvider(cur);
   const ready = isAiConfigured(cur);
+  /** 当前模型的一句说明（预设没写说明、或用户自己填了个别的名字时为空） */
+  const modelNote = provider.modelNotes?.[effectiveModel(cur)];
 
   function patch(p: Partial<AiConfig>) {
     const next = { ...cur, ...p };
@@ -112,8 +114,16 @@ export default function AiSetupBar({
     setMsg(null);
     try {
       const t0 = Date.now();
-      const reply = await chatText(cur, [{ role: "user", content: "只回复两个字：可用" }], { maxTokens: 32, temperature: 0 });
-      setMsg({ kind: "ok", text: "连接正常（" + (Date.now() - t0) + " 毫秒）。模型回复：" + reply.trim().slice(0, 60) });
+      // 故意不带 maxTokens：推理模型（DeepSeek V4 / GPT-6 / GLM-5.3）有的会先把额度花在思维链上，
+      // 给 32 这种小额度会得到「正文为空」的假失败；有的（OpenAI 推理模型）干脆不收 max_tokens。
+      // 这一句提示词本身就只要两个字的回答，不设上限也不会跑飞。
+      const reply = (
+        await chatText(cur, [{ role: "user", content: "只回复两个字：可用" }], { temperature: 0, allowEmptyText: true })
+      ).trim();
+      const tail = reply
+        ? "模型回复：" + reply.slice(0, 60)
+        : "模型这次没回正文（有的思考模式只回思维链），但地址、Key 与模型名都已验证通过。";
+      setMsg({ kind: "ok", text: "连接正常（" + (Date.now() - t0) + " 毫秒）。" + tail });
     } catch (e) {
       setMsg({ kind: "err", text: describeError(e) });
     } finally {
@@ -195,7 +205,7 @@ export default function AiSetupBar({
           <div className="ai-field">
             <FilledTextField
               label="模型"
-              placeholder={provider.model || "例如 deepseek-chat"}
+              placeholder={provider.model || provider.models[0] || "填服务商文档里的模型 ID"}
               value={cur.model}
               onInput={(e) => patch({ model: (e.target as HTMLInputElement).value ?? "" })}
             />
@@ -203,12 +213,21 @@ export default function AiSetupBar({
           {provider.models.length > 0 && (
             <div className="ai-chips">
               {provider.models.map((m) => (
-                <button key={m} type="button" className={"chip" + (effectiveModel(cur) === m ? " active" : "")} onClick={() => patch({ model: m })}>
+                <button
+                  key={m}
+                  type="button"
+                  className={"chip" + (effectiveModel(cur) === m ? " active" : "")}
+                  title={provider.modelNotes?.[m]}
+                  onClick={() => patch({ model: m })}
+                >
                   {m}
                 </button>
               ))}
             </div>
           )}
+          {/* 候选模型的一句话说明：模型名越来越像代号（deepseek-flash / deepseek-v4-pro），
+              只给 ID 用户没法选；说明跟着当前选中项走，不选中就不占版面 */}
+          {modelNote && <p className="hint ai-model-note">{modelNote}</p>}
 
           <div className="ai-field">
             <FilledTextField
