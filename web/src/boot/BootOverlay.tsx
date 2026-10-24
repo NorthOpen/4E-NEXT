@@ -17,8 +17,6 @@ import "./boot.css";
 
 /** 浮层延迟出现：低于这个时长用户感觉不到停顿，画出来反而是一次闪烁 */
 const SHOW_DELAY_MS = 400;
-/** 显示多久之后提示「网络较慢」 */
-const SLOW_AFTER_MS = 3_000;
 /** 显示多久之后给出「仅用缓存继续」这个出口 */
 const OFFLINE_AFTER_MS = 4_000;
 /** 淡出时长，与 --md-sys-motion-duration-medium2 对齐 */
@@ -35,7 +33,6 @@ type Phase = "idle" | "shown" | "leaving" | "gone";
 export default function BootOverlay() {
   const snap = useSyncExternalStore(subscribeBoot, getBootSnapshot, getBootSnapshot);
   const [phase, setPhase] = useState<Phase>("idle");
-  const [slow, setSlow] = useState(false);
   const [allowOffline, setAllowOffline] = useState(false);
   const timers = useRef<number[]>([]);
   /** 淡出后卸载的计时器单独放一个 ref：它不能被下面那个 effect 的 cleanup 清掉 */
@@ -85,15 +82,11 @@ export default function BootOverlay() {
     unmountTimer.current = window.setTimeout(() => setPhase("gone"), FADE_MS);
   }, [snap.ready, phase]);
 
-  // 慢网络提示与出口按钮的延时出现
+  // 出口按钮的延时出现
   useEffect(() => {
     if (phase !== "shown") return;
-    const t1 = window.setTimeout(() => setSlow(true), SLOW_AFTER_MS);
-    const t2 = window.setTimeout(() => setAllowOffline(true), OFFLINE_AFTER_MS);
-    return () => {
-      window.clearTimeout(t1);
-      window.clearTimeout(t2);
-    };
+    const t = window.setTimeout(() => setAllowOffline(true), OFFLINE_AFTER_MS);
+    return () => window.clearTimeout(t);
   }, [phase]);
 
   if (phase === "idle" || phase === "gone") return null;
@@ -112,12 +105,7 @@ export default function BootOverlay() {
       <div className="boot-panel">
         <div className="boot-brand">4E NEXT</div>
 
-        <p className="boot-headline">
-          {snap.failed ? "部分资源未能就绪" : "正在准备卡表"}
-        </p>
-        <p className="boot-caption">
-          {snap.failed ? "可以直接进入，数据会在需要时再取。" : "首次打开需要下载数据，之后就快了。"}
-        </p>
+        <p className="boot-headline">正在加载</p>
 
         <LinearProgress className="boot-progress" value={done} max={total} />
 
@@ -135,12 +123,6 @@ export default function BootOverlay() {
             </li>
           ))}
         </ul>
-
-        {slow && (
-          <p className="boot-note">
-            网络较慢（跨境链路），可以继续等待，或先用已缓存的数据进入。
-          </p>
-        )}
 
         <div className="boot-actions">
           <TextButton onClick={() => bypassBoot("已跳过")}>跳过</TextButton>

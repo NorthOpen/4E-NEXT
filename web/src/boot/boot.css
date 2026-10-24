@@ -51,14 +51,6 @@
   font-weight: var(--fw-subheading, 600);
 }
 
-.boot-caption {
-  margin: 0;
-  font-size: 14px;
-  line-height: 1.5;
-  font-weight: var(--fw-label, 420);
-  color: var(--md-sys-color-on-surface-variant, #49454f);
-}
-
 /* md-linear-progress 的默认高度是 4dp，这里只保证它有明确的宽度与圆角 */
 .boot-progress {
   width: 100%;
@@ -140,17 +132,6 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-
-.boot-note {
-  margin: 0;
-  padding: 10px 12px;
-  border-radius: var(--md-sys-shape-corner-small, 8px);
-  background: var(--md-sys-color-surface-container-high, #ece6f0);
-  color: var(--md-sys-color-on-surface-variant, #49454f);
-  font-size: 13px;
-  line-height: 1.5;
-  font-weight: var(--fw-caption, 350);
 }
 
 .boot-actions {

@@ -14,11 +14,11 @@
     <noscript><link rel="stylesheet" href="https://fontsapi.zeoseven.com/546/main/result.css" referrerpolicy="no-referrer" /></noscript>
     <title>4E NEXT</title>
     <!--
-      静态启动屏：JS 还没下载完的那段时间（跨境链路上可能是几十秒）原来是一张白页。
+      静态启动屏：JS 还没下载完的那段时间（慢网络上可能是几十秒）原来是一张白页。
       这段标记与样式内联在 HTML 里，随首个响应一起到达，不需要等 JS/CSS 包。
       之后由 src/boot/BootOverlay.tsx 接管或移除它。
-      约束：不能写内联 <script>（CSP 只有 script-src 'self'），所以「网络较慢」的提示
-      用 CSS animation-delay 实现 —— 纯样式也能表达「等了很久」。
+
+      文案只留一个「正在加载」：不需要解释网络、不需要承诺速度，说得多反而显得没底。
     -->
     <style>
       #4e-boot {
@@ -70,20 +70,6 @@
         background: #6750a4;
         animation: b-slide 1.6s cubic-bezier(0.2, 0, 0, 1) infinite;
       }
-      #4e-boot .b-caption {
-        margin: 0;
-        font-size: 14px;
-        line-height: 1.5;
-        color: #49454f;
-      }
-      #4e-boot .b-hint {
-        margin: 0;
-        font-size: 13px;
-        line-height: 1.5;
-        color: #49454f;
-        opacity: 0;
-        animation: b-fade 0.4s linear 10s forwards;
-      }
       @keyframes b-slide {
         0% {
           left: -40%;
@@ -92,37 +78,25 @@
           left: 100%;
         }
       }
-      @keyframes b-fade {
-        to {
-          opacity: 1;
-        }
-      }
       @media (prefers-color-scheme: dark) {
         #4e-boot {
           background: #141218;
           color: #e6e0e9;
         }
-        #4e-boot .b-brand,
-        #4e-boot .b-bar {
+        #4e-boot .b-brand {
           color: #d0bcff;
-          background-color: #d0bcff;
         }
         #4e-boot .b-track {
           background: rgba(208, 188, 255, 0.16);
         }
-        #4e-boot .b-caption,
-        #4e-boot .b-hint {
-          color: #cac4d0;
+        #4e-boot .b-bar {
+          background: #d0bcff;
         }
       }
       @media (prefers-reduced-motion: reduce) {
         #4e-boot .b-bar {
           animation: none;
           left: 30%;
-        }
-        #4e-boot .b-hint {
-          animation: none;
-          opacity: 1;
         }
       }
     </style>
@@ -132,10 +106,8 @@
     <div id="4e-boot" role="status" aria-live="polite">
       <div class="b-panel">
         <div class="b-brand">4E NEXT</div>
-        <p class="b-headline">正在打开车卡器</p>
+        <p class="b-headline">正在加载</p>
         <div class="b-track"><div class="b-bar"></div></div>
-        <p class="b-caption">首次打开需要下载卡表，之后就快了。</p>
-        <p class="b-hint">网络较慢，仍在下载，请稍候…</p>
       </div>
     </div>
     <script type="module" src="/src/main.tsx"></script>
