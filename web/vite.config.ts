@@ -1,6 +1,7 @@
 import { defineConfig, type Plugin } from "vite";
 import react from "@vitejs/plugin-react";
-import { cpSync, existsSync, readFileSync, rmSync } from "node:fs";
+import { cpSync, existsSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { createHash } from "node:crypto";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -158,6 +159,58 @@ function shellAssets(opts: { label: string; outDir: string; fetchFontsHint: stri
   };
 }
 
+/**
+ * 构建期给数据清单补上 dataVersion / sha256 / bytes（仅网页端）。
+ *
+ * 为什么放在构建期而不是改数据管线：
+ *   · 管线（根目录 dist/cli.js）产出的是「规范数据」，不该关心部署与缓存细节；
+ *   · 哈希只对**将要发出去的那份产物**负责，构建产物才是唯一真相。
+ *
+ * 前端对这几个字段全部按可选处理：dev 模式不挂这个插件，清单里没有哈希，
+ * 数据层据此降级为「不校验、直接联网取」，不会因为缺字段打不开站。
+ */
+function dataManifestHashes(): Plugin {
+  return {
+    name: "4enext-data-hashes",
+    apply: "build",
+    closeBundle() {
+      const dataDir = join(resolve(here, "dist"), "data");
+      const manifestPath = join(dataDir, "manifest.json");
+      if (!existsSync(manifestPath)) {
+        console.warn("[data-hashes] 未找到 " + manifestPath + "，跳过哈希注入");
+        return;
+      }
+      try {
+        const raw = JSON.parse(readFileSync(manifestPath, "utf8")) as {
+          generatedAt?: string;
+          categories?: Record<string, { file: string; [k: string]: unknown }>;
+        };
+        const categories = raw.categories ?? {};
+        let hashed = 0;
+        for (const key of Object.keys(categories)) {
+          const entry = categories[key];
+          const filePath = join(dataDir, entry.file);
+          if (!existsSync(filePath)) continue;
+          const buf = readFileSync(filePath);
+          categories[key] = {
+            ...entry,
+            bytes: buf.length,
+            sha256: createHash("sha256").update(buf).digest("hex"),
+          };
+          hashed++;
+        }
+        // 版本取管线的 generatedAt：数据没重跑就不变，用户不会因为「我重新部署了一次」而白下 48MB
+        const dataVersion = raw.generatedAt ?? new Date().toISOString();
+        writeFileSync(manifestPath, JSON.stringify({ ...raw, dataVersion, categories }));
+        console.log("[data-hashes] " + hashed + " 个分片已写入 sha256，dataVersion=" + dataVersion);
+      } catch (err) {
+        // 注入失败不影响产物可用：前端见不到哈希就跳过校验
+        console.warn("[data-hashes] 注入失败：" + (err instanceof Error ? err.message : String(err)));
+      }
+    },
+  };
+}
+
 const desktopAssets = () =>
   shellAssets({
     label: "desktop",
@@ -179,7 +232,7 @@ export default defineConfig(({ command }) => ({
     ? [react(), cspMeta(), desktopAssets()]
     : isAndroid
       ? [react(), cspMeta(), androidAssets()]
-      : [react(), cspMeta()],
+      : [react(), cspMeta(), dataManifestHashes()],
   server: { port: 5173 },
   // 仅构建产物使用相对路径（可双击打开 dist/index.html、兼容子路径部署）；dev 保持绝对路径避免白屏
   base: command === "build" ? "./" : "/",

@@ -19,3 +19,8 @@
 # 否则换数据后老用户会一直拿到旧卡表；用"一天新鲜 + 后台续期"折中
 /data/*
   Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+# 数据清单是「要不要重新拉卡表」的唯一依据，被缓存住就等于永远发现不了数据更新。
+# 它只有约 2KB，每次回源校验的代价可以忽略；fetch 侧另用 cache: "no-store" 双保险。
+/data/manifest.json
+  Cache-Control: no-cache

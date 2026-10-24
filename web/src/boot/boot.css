@@ -1,0 +1,180 @@
+/* 启动浮层（MD3）
+ *
+ * 颜色一律走 token，但都带字面量兜底：ThemeProvider 是在挂载后的 effect 里往 :root 写变量的，
+ * 而浮层可能比它先画出来一帧 —— 这一帧若取不到 token，背景会变成透明，底下的界面会透上来。
+ *
+ * 布局遵循 MD3：4dp 进度条、surface 背景、title 与 body 两级层级、按钮为 text button。 */
+
+.boot-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 5000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: var(--md-sys-color-surface, #fef7ff);
+  color: var(--md-sys-color-on-surface, #1d1b20);
+  font-family: var(--md-ref-typeface-plain, system-ui, sans-serif);
+  opacity: 1;
+  transition: opacity var(--md-sys-motion-duration-medium2, 300ms)
+    var(--md-sys-motion-easing-standard, cubic-bezier(0.2, 0, 0, 1));
+}
+
+/* 淡出期间不再拦截点击，让底下的界面立刻可用 */
+.boot-scrim.leaving {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.boot-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+  width: 100%;
+  max-width: 320px;
+}
+
+.boot-brand {
+  font-size: 12px;
+  font-weight: var(--fw-label, 420);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--md-sys-color-primary, #6750a4);
+}
+
+.boot-headline {
+  margin: 0;
+  font-size: 22px;
+  line-height: 1.3;
+  font-weight: var(--fw-subheading, 600);
+}
+
+.boot-caption {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: var(--fw-label, 420);
+  color: var(--md-sys-color-on-surface-variant, #49454f);
+}
+
+/* md-linear-progress 的默认高度是 4dp，这里只保证它有明确的宽度与圆角 */
+.boot-progress {
+  width: 100%;
+  margin: 4px 0 0;
+  border-radius: var(--md-sys-shape-corner-full, 9999px);
+}
+
+.boot-count {
+  font-size: 12px;
+  font-weight: var(--fw-caption, 350);
+  font-variant-numeric: tabular-nums;
+  color: var(--md-sys-color-on-surface-variant, #49454f);
+}
+
+.boot-version {
+  opacity: 0.75;
+}
+
+.boot-tasks {
+  list-style: none;
+  margin: 4px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.boot-task {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 13px;
+  line-height: 1.5;
+  font-weight: var(--fw-label, 420);
+  color: var(--md-sys-color-on-surface-variant, #49454f);
+}
+
+.boot-task.ok .boot-task-label {
+  color: var(--md-sys-color-on-surface, #1d1b20);
+}
+
+.boot-task.fail .boot-task-label {
+  color: var(--md-sys-color-error, #b3261e);
+}
+
+/* 状态点：不依赖图标字体 —— 启动时图标字体恰恰是最不可靠的那个资源 */
+.boot-task-dot {
+  flex: none;
+  width: 6px;
+  height: 6px;
+  margin-top: 1px;
+  border-radius: 50%;
+  background: var(--md-sys-color-outline-variant, #cac4d0);
+}
+
+.boot-task.running .boot-task-dot {
+  background: var(--md-sys-color-primary, #6750a4);
+  animation: boot-pulse 900ms var(--md-sys-motion-easing-standard, ease-in-out) infinite;
+}
+
+.boot-task.ok .boot-task-dot {
+  background: var(--md-sys-color-primary, #6750a4);
+}
+
+.boot-task.fail .boot-task-dot,
+.boot-task.skip .boot-task-dot {
+  background: var(--md-sys-color-error, #b3261e);
+}
+
+.boot-task.skip .boot-task-dot {
+  background: var(--md-sys-color-outline, #79747e);
+}
+
+.boot-task-detail {
+  flex: 1;
+  min-width: 0;
+  font-weight: var(--fw-caption, 350);
+  opacity: 0.8;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.boot-note {
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: var(--md-sys-shape-corner-small, 8px);
+  background: var(--md-sys-color-surface-container-high, #ece6f0);
+  color: var(--md-sys-color-on-surface-variant, #49454f);
+  font-size: 13px;
+  line-height: 1.5;
+  font-weight: var(--fw-caption, 350);
+}
+
+.boot-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+@keyframes boot-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .boot-scrim {
+    transition: none;
+  }
+  .boot-task.running .boot-task-dot {
+    animation: none;
+  }
+}

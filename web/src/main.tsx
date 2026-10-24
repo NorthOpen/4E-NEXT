@@ -1,6 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App";
+import BootOverlay from "./boot/BootOverlay";
 import { platform } from "@platform";
 import { initRipple } from "./lib/ripple";
 import { initOverlayLock } from "./lib/overlayLock";
@@ -68,8 +69,14 @@ if (platform.kind === "android" && typeof window !== "undefined") {
   };
 }
 
+// 启动分两段，各自覆盖一段「用户看不到东西」的时间：
+//   ① index.html 里的静态启动屏：HTML 到手 → JS 跑起来（这段时间 React 还画不了东西）；
+//   ② BootOverlay：JS 挂载 → 数据清单与缓存校验完成（慢网络下才出现，快网络一闪而过）。
+// BootOverlay 与 App 并列而不是包着 App：App 的挂载时机、组件树、状态初始化的行为
+// 一个字节都不变，浮层只是叠在上面的一层，随时可以整体拿掉。
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <App />
+    <BootOverlay />
   </StrictMode>
 );
