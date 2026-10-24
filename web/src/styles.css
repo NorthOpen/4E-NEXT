@@ -1,4 +1,9 @@
-/* ===== 图标字体：Material Symbols Outlined（完整变量字体，本地封装，避免依赖 Google Fonts CDN） ===== */
+/* ===== 图标字体：Material Symbols Outlined（本地封装，避免依赖 Google Fonts CDN） =====
+   这个 woff2 是**子集**，不是完整变量字体：只保留 src/assets/icon-names.json 里列出的字形，
+   约 49KB（完整版 3.9MB，首屏在跨境链路上根本传不完）。
+   变量轴只留 FILL 与 wght —— .ab-card-mark 要用 FILL 1 的填充图标，
+   .empty-hint 要用 wght 300；GRAD 与 opsz 已钉死在 0 / 24。
+   新增图标后需重跑 web/scripts/build-icon-font.py；构建时由 scripts/check-icons.mjs 校验名单。 */
 @font-face {
   font-family: "Material Symbols Outlined";
   font-style: normal;

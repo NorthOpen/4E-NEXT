@@ -384,7 +384,7 @@ export default function TutorialGuide(props: {
           )}
           {isMobile && step.mobileNote && (
             <p className="tour-note">
-              <span className="material-symbols-outlined">phone_iphone</span>
+              <span className="material-symbols-outlined">devices</span>
               <span>{step.mobileNote}</span>
             </p>
           )}
