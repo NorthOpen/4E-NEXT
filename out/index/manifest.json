@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-09T15:52:03.538Z",
-  "total": 16156,
+  "generatedAt": "2026-10-25T02:04:06.878Z",
+  "total": 16270,
   "categories": {
     "bloodline": {
       "count": 2,
@@ -34,6 +34,10 @@
     "feat": {
       "count": 3202,
       "file": "categories/feat.json"
+    },
+    "gear": {
+      "count": 114,
+      "file": "categories/gear.json"
     },
     "item-set": {
       "count": 38,

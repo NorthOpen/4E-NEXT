@@ -1,6 +1,6 @@
 {
   "name": "4enext",
-  "version": "0.3.8",
+  "version": "0.4.0",
   "private": true,
   "packageManager": "pnpm@11.21.0",
   "type": "module",
@@ -11,6 +11,7 @@
     "profile": "tsc && node dist/cli.js profile",
     "classify": "tsc && node dist/cli.js classify",
     "normalize": "tsc && node dist/cli.js normalize",
+    "gear": "tsc && node dist/cli.js gear",
     "index": "tsc && node dist/cli.js index",
     "rules": "tsc && node dist/cli.js rules",
     "monsters": "tsc && node dist/cli.js monsters",

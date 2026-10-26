@@ -17,7 +17,8 @@ import WeaponPalette, { type WeapInfo, implGroup } from "./WeaponPalette";
 import ItemSlotPicker from "./ItemSlotPicker";
 import CompanionBeastPicker from "./CompanionBeastPicker";
 import { companionBeastKind } from "./companionBeast";
-import EntryCard from "./EntryCard";
+import { standardWealthGp, STANDARD_SHOPPING_MIN_LEVEL, STANDARD_SHOPPING_MAX_LEVEL } from "./standardWealth";
+import EntryCard, { formatPriceCp } from "./EntryCard";
 import PortraitFrame from "./PortraitFrame";
 import CombatPanels from "./CombatPanel";
 import { collectProficiencyTokens, collectProficiencySources, isProficient, featChoiceInfo, collectArmorTokens, collectShieldTokens, collectImplementGroups, armorProficient, type FeatOption, type ProfGroup } from "./proficiency";
@@ -352,7 +353,13 @@ function compactFeatText(f: Entry): string {
 
 
 
-// 冒险装备价格解析：把「15gp」「2gp」「5sp」「可变」等文本压成 gp 数值
+// 冒险装备行内价格：优先用铜币精度字段（1cp 的蜡烛不会被显示成 0gp）
+function advCostText(a: { cost: number; costCp?: number }): string | undefined {
+  if (typeof a.costCp === "number") return formatPriceCp(a.costCp);
+  return a.cost > 0 ? a.cost + " gp" : undefined;
+}
+
+// 冒险装备价格解析：把「15gp」「2gp」「5sp」「可变」等文本压成 gp 数值（旧存档没有 costCp 时兜底）
 function parseGearCost(cost?: string): number {
   if (!cost) return 0;
   const m = cost.match(/([\d.]+)\s*(gp|sp|cp|银币|铜币)?/i);
@@ -5569,7 +5576,9 @@ export default function CharacterSheet({
       list.push({ label: e.name + " +" + enhancementBonusForLevel(lv), cost: priceForLevel(lv) });
     });
     for (const a of char.adventureItems) {
-      if (a.name && a.cost > 0) list.push({ label: a.name, cost: a.cost });
+      // 冒险装备按铜币精度计入（蜡烛 1cp 这类不足 1gp 的条目不再被抹成 0）
+      const gp = typeof a.costCp === "number" ? a.costCp / 100 : a.cost;
+      if (a.name && gp > 0) list.push({ label: a.name, cost: gp });
     }
     // 已学会的仪式按市场价格计入自动花销（含职业赠送的置顶仪式）
     const autoRitualIds = new Set<string>([...(char.ritualSlots ?? []).filter((x): x is string => !!x), ...(char.classGrantedRitualIds ?? [])]);
@@ -5583,7 +5592,12 @@ export default function CharacterSheet({
     return list;
   }, [char, itemMap, ritualMap]);
   const autoTotal = autoCosts.reduce((s, x) => s + x.cost, 0);
-  const moneyBalance = char.money.earned - char.money.spent - autoTotal;
+  // 标准购物：勾选后按「起始等级」查表，作为收入的一部分参与余额计算
+  //（不改写 money.earned，取消勾选即刻归零，可逆）
+  const standardIncome = char.standardShopping ? standardWealthGp(char.standardShopping.level) : 0;
+  const moneyBalance = char.money.earned + standardIncome - char.money.spent - autoTotal;
+  // 起始等级：勾选那一刻锁定的等级（undefined = 未勾选）
+  const shopLevel = char.standardShopping?.level;
   const trainedCount = useMemo(() => {
     if (!classEntry) return 0;
     const a = parseTrainedSkillCount(classEntry.sourceText);
@@ -6238,7 +6252,7 @@ export default function CharacterSheet({
     });
   }
 
-  function setAdvItem(i: number, patch: Partial<{ name: string; cost: number; id: string }>) {
+  function setAdvItem(i: number, patch: Partial<{ name: string; cost: number; id: string | undefined; costCp: number | undefined; weightLb: number | undefined }>) {
     setChar((p) => {
       const arr = [...p.adventureItems];
       while (arr.length <= i) arr.push({ name: "", cost: 0 });
@@ -6253,18 +6267,25 @@ export default function CharacterSheet({
     setAdvPicker(i);
   }
 
-  // 选中数据库冒险装备条目 → 回填名称 + 价格 + 来源 id
+  // 选中数据库冒险装备条目 → 回填名称 + 价格（铜币精度）+ 来源 id
   function pickAdvItem(id: string) {
     if (advPicker === null) return;
     const e = itemMap.get(id);
     if (e) {
-      setAdvItem(advPicker, { id, name: e.name, cost: parseGearCost(e.cost) });
+      const costCp = typeof e.costCp === "number" ? e.costCp : undefined;
+      setAdvItem(advPicker, {
+        id,
+        name: e.name,
+        cost: costCp !== undefined ? costCp / 100 : parseGearCost(e.cost),
+        costCp,
+        weightLb: typeof e.weightLb === "number" ? e.weightLb : undefined,
+      });
     }
     setAdvPicker(null);
   }
 
   function clearAdvItem(i: number) {
-    setAdvItem(i, { id: undefined, name: "", cost: 0 });
+    setAdvItem(i, { id: undefined, name: "", cost: 0, costCp: undefined, weightLb: undefined });
   }
 
   function setLang(i: number, v: string) {
@@ -7594,13 +7615,13 @@ export default function CharacterSheet({
                   {mode === "render" ? (
                     <>
                       {a.name && <span className="lang-chip">{a.name}</span>}
-                      {a.cost > 0 && <span className="adv-cost">{a.cost} gp</span>}
+                      {advCostText(a) && <span className="adv-cost">{advCostText(a)}</span>}
                     </>
                   ) : a.custom ? (
                     <>
                       <input className="lang-input adv-name-input" type="text" placeholder="自定义装备名" value={a.name} onChange={(e) => setAdvItem(i, { name: e.target.value })} />
                       <span className="slot-x" title="删除此自定义项" onClick={() => setChar((p) => ({ ...p, adventureItems: p.adventureItems.filter((_, k) => k !== i) }))}>✕</span>
-                      <input className="lang-input adv-cost-input" type="number" min={0} value={a.cost || ""} placeholder="gp" onChange={(e) => setAdvItem(i, { cost: parseInt(e.target.value, 10) || 0 })} />
+                      <input className="lang-input adv-cost-input" type="number" min={0} value={a.cost || ""} placeholder="gp" onChange={(e) => setAdvItem(i, { cost: parseInt(e.target.value, 10) || 0, costCp: (parseInt(e.target.value, 10) || 0) * 100 })} />
                     </>
                   ) : (
                     <>
@@ -7617,7 +7638,7 @@ export default function CharacterSheet({
                           <span className="slot-x" title="清空" onClick={(e) => { e.stopPropagation(); clearAdvItem(i); }}>✕</span>
                         )}
                       </SmartHover>
-                      <input className="lang-input adv-cost-input" type="number" min={0} value={a.cost || ""} placeholder="gp" onChange={(e) => setAdvItem(i, { cost: parseInt(e.target.value, 10) || 0 })} />
+                      <input className="lang-input adv-cost-input" type="number" min={0} value={a.cost || ""} placeholder="gp" onChange={(e) => setAdvItem(i, { cost: parseInt(e.target.value, 10) || 0, costCp: (parseInt(e.target.value, 10) || 0) * 100 })} />
                     </>
                   )}
                 </div>
@@ -7685,9 +7706,50 @@ export default function CharacterSheet({
           <h3 className="block-title">金钱</h3>
         </div>
         <div className="money-grid">
+          {/* 标准购物：始终横跨整行；未开启时只有「标题 + 开关」一行，开启后才展开金额与等级 */}
+          <div className={"money-block money-block-wide money-block-shop" + (shopLevel !== undefined ? " is-on" : "")}>
+            <div className="money-title money-title-switch">
+              标准购物
+              <Switch
+                selected={shopLevel !== undefined}
+                onChange={(e) => {
+                  const on = Boolean((e.target as unknown as { selected: boolean }).selected);
+                  setChar((c) => ({
+                    ...c,
+                    standardShopping: on
+                      ? { level: Math.max(STANDARD_SHOPPING_MIN_LEVEL, Math.min(STANDARD_SHOPPING_MAX_LEVEL, c.level)) }
+                      : undefined,
+                  }));
+                }}
+              />
+            </div>
+            {shopLevel !== undefined && (
+              <div className="shop-row">
+                <span className="shop-total">{standardIncome.toLocaleString("zh-CN")} gp</span>
+                <span className="shop-levels">
+                  <span className="shop-level-label">起始等级</span>
+                  <button
+                    type="button"
+                    className="sg-step"
+                    title="降低购物等级"
+                    disabled={shopLevel <= STANDARD_SHOPPING_MIN_LEVEL}
+                    onClick={() => setChar((c) => (c.standardShopping ? { ...c, standardShopping: { level: Math.max(STANDARD_SHOPPING_MIN_LEVEL, c.standardShopping.level - 1) } } : c))}
+                  >−</button>
+                  <b className="shop-level-num">{shopLevel}</b>
+                  <button
+                    type="button"
+                    className="sg-step"
+                    title="提高购物等级"
+                    disabled={shopLevel >= STANDARD_SHOPPING_MAX_LEVEL}
+                    onClick={() => setChar((c) => (c.standardShopping ? { ...c, standardShopping: { level: Math.min(STANDARD_SHOPPING_MAX_LEVEL, c.standardShopping.level + 1) } } : c))}
+                  >+</button>
+                </span>
+              </div>
+            )}
+          </div>
           <div className="money-block">
             <div className="money-title">收入（累计）</div>
-            <div className="money-value">{char.money.earned.toLocaleString("zh-CN")} gp</div>
+            <div className="money-value">{(char.money.earned + standardIncome).toLocaleString("zh-CN", { maximumFractionDigits: 2 })} gp</div>
             <div className="money-add">
               <input type="number" className="money-input" value={earnInput} placeholder="新增收入" onChange={(e) => setEarnInput(e.target.value)} />
               <button type="button" className="sf-chip" onClick={addEarn}>＋ 确定</button>
@@ -7703,11 +7765,11 @@ export default function CharacterSheet({
           </div>
           <div className="money-block">
             <div className="money-title">自动花销</div>
-            <button type="button" className="money-value money-click" title="点击查看各项累计明细" onClick={() => setAutoCostOpen(true)}>{autoTotal.toLocaleString("zh-CN")} gp</button>
+            <button type="button" className="money-value money-click" title="点击查看各项累计明细" onClick={() => setAutoCostOpen(true)}>{autoTotal.toLocaleString("zh-CN", { maximumFractionDigits: 2 })} gp</button>
           </div>
           <div className="money-block">
             <div className="money-title">余额</div>
-            <div className={"money-value" + (moneyBalance < 0 ? " negative" : "")}>{moneyBalance.toLocaleString("zh-CN")} gp</div>
+            <div className={"money-value" + (moneyBalance < 0 ? " negative" : "")}>{moneyBalance.toLocaleString("zh-CN", { maximumFractionDigits: 2 })} gp</div>
           </div>
         </div>
       </section>
@@ -7796,7 +7858,7 @@ export default function CharacterSheet({
                 );
               }
               return (
-                <button key={i} type="button" className="compact-empty" onClick={() => openRitualPicker(i)}>＋ {ritualKind === "practice" ? "选择武术奥义" : "选择仪式"}</button>
+                <button key={i} type="button" className="compact-empty ritual-add" onClick={() => openRitualPicker(i)}>＋ {ritualKind === "practice" ? "选择武术奥义" : "选择仪式"}</button>
               );
             })}
           </div>
@@ -8491,14 +8553,14 @@ return (
         />
       )}
       {autoCostOpen && (
-        <SheetDialog open headline="自动花销明细" sub={"合计 " + autoTotal.toLocaleString("zh-CN") + " gp"} onClose={() => setAutoCostOpen(false)}>
+        <SheetDialog open headline="自动花销明细" sub={"合计 " + autoTotal.toLocaleString("zh-CN", { maximumFractionDigits: 2 }) + " gp"} onClose={() => setAutoCostOpen(false)}>
           <div className="money-detail-list">
             {autoCosts.map((x) => (
-              <div key={x.label} className="money-row"><span>{x.label}</span><span>{x.cost.toLocaleString("zh-CN")} gp</span></div>
+              <div key={x.label} className="money-row"><span>{x.label}</span><span>{x.cost.toLocaleString("zh-CN", { maximumFractionDigits: 2 })} gp</span></div>
             ))}
             {autoCosts.length === 0 && <p className="hint">暂无自动花销</p>}
           </div>
-          <div className="money-detail-total">合计：{autoTotal.toLocaleString("zh-CN")} gp</div>
+          <div className="money-detail-total">合计：{autoTotal.toLocaleString("zh-CN", { maximumFractionDigits: 2 })} gp</div>
         </SheetDialog>
       )}
       {ritualPickerSlot !== null && (

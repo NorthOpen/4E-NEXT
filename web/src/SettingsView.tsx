@@ -1,9 +1,10 @@
-import { useEffect, useMemo, useRef, useState, type ChangeEvent } from "react";
+import { useEffect, useMemo, useRef, useState, type ChangeEvent, type CSSProperties } from "react";
 import { HexColorPicker } from "react-colorful";
 import { useTheme, type BgMode } from "./ThemeProvider";
-import { Switch, FilledButton, Slider } from "./components/md";
+import { Switch, FilledButton, Slider, FilledSelect, SelectOption } from "./components/md";
 import { readFileAsDataUrl } from "./lib/image";
 import { COLOR_VARIANTS, NORD_PRESETS, variantPreviews, type SeedMode } from "./theme";
+import { getSkin, SKINS, type Skin } from "./lab/skins";
 import { shouldWarnOversize, prepareImageForStore, IMAGE_SIZE_HINT } from "./lib/settings";
 import PanelLayoutEditor from "./components/PanelLayoutEditor";
 import SyncSettings from "./components/SyncSettings";
@@ -21,8 +22,39 @@ function fmtDataDate(iso: string): string {
   return d.getFullYear() + "-" + p(d.getMonth() + 1) + "-" + p(d.getDate());
 }
 
+/** 皮肤选项的迷你预览：用皮肤自己的配色画一屏终端或一块玻璃，不加载图片。 */
+function SkinPreview({ skin }: { skin: Skin }) {
+  const style = {
+    "--sk-base": skin.swatch.base,
+    "--sk-ink": skin.swatch.ink,
+    "--sk-accent": skin.swatch.accent,
+    "--sk-signal": skin.swatch.signal,
+  } as CSSProperties;
+  const glass = skin.preview === "glass";
+  return (
+    <span className={"lab-skin-preview" + (glass ? " is-glass" : "")} style={style} aria-hidden="true">
+      {glass ? (
+        <>
+          <span className="lsp-glass-orb" />
+          <span className="lsp-glass-sheen" />
+        </>
+      ) : (
+        <>
+          <span className="lsp-tape" />
+          <span className="lsp-dot" />
+          <span className="lsp-lines">
+            <i />
+            <i />
+          </span>
+        </>
+      )}
+    </span>
+  );
+}
+
 export default function SettingsView({ layout, onStartTutorial, onStartGuide }: { layout: "single" | "double"; onStartTutorial: () => void; onStartGuide: () => void }) {
-  const { seedMode, seedHex, presetHex, isDark, activeHex, variant, setSeedMode, setSeedHex, setPresetHex, setDark, setVariant, bgMode, setBgMode, setBgCustom, bgImage, bgBlur, bgFeather, setBgBlur, setBgFeather, fontMode, setFontMode } = useTheme();
+  const { seedMode, seedHex, presetHex, isDark, activeHex, variant, setSeedMode, setSeedHex, setPresetHex, setDark, setVariant, bgMode, setBgMode, setBgCustom, bgImage, bgBlur, bgFeather, setBgBlur, setBgFeather, fontMode, setFontMode, labFx, labSkin, skinId, skinMode, skinFontId, setLabFx, setLabSkin, setSkinId, setSkinMode, setSkinFont } = useTheme();
+  const activeSkin = getSkin(skinId);
   const bgFileRef = useRef<HTMLInputElement>(null);
   const [oversize, setOversize] = useState<File | null>(null);
   const [colorOpen, setColorOpen] = useState(false);
@@ -54,6 +86,8 @@ export default function SettingsView({ layout, onStartTutorial, onStartGuide }: 
   return (
     <div className={"settings" + (layout === "double" ? " double" : "")}>
       <div className="settings-col">
+      {!labSkin && (
+      <>
       <section className="block">
         <h3 className="block-title">外观设置</h3>
         <div className="settings-row">
@@ -201,6 +235,45 @@ export default function SettingsView({ layout, onStartTutorial, onStartGuide }: 
         )}
 
       </section>
+      </>
+      )}
+
+      {labSkin && (
+        <section className="block">
+          <h3 className="block-title">实验性外观设置</h3>
+          {activeSkin.appearance.modes.length > 1 && (
+            <div className="settings-row">
+              <span className="field-label">深浅模式</span>
+              <Switch selected={skinMode === "dark"} onChange={(e) => setSkinMode((e.target as any).selected ? "dark" : "light")} />
+              <span className="label">{skinMode === "dark" ? "深色" : "浅色"}</span>
+            </div>
+          )}
+          {activeSkin.appearance.fonts.length > 1 && (
+            <div className="settings-row">
+              <span className="field-label">字体</span>
+              {activeSkin.appearance.fonts.length <= 3 ? (
+                <div className="md3-seg" role="radiogroup" aria-label="皮肤字体">
+                  {activeSkin.appearance.fonts.map((f) => {
+                    const on = skinFontId === f.id;
+                    return (
+                      <button key={f.id} type="button" role="radio" aria-checked={on} className={"md3-seg-btn" + (on ? " on" : "")} onClick={() => setSkinFont(f.id)}>
+                        {on && <span className="material-symbols-outlined md3-seg-check">check</span>}
+                        {f.label}
+                      </button>
+                    );
+                  })}
+                </div>
+              ) : (
+                <FilledSelect className="lab-skin-font-select" label="皮肤字体" value={skinFontId} onChange={(e) => setSkinFont((e.target as any).value)}>
+                  {activeSkin.appearance.fonts.map((f) => (
+                    <SelectOption key={f.id} value={f.id}>{f.label}</SelectOption>
+                  ))}
+                </FilledSelect>
+              )}
+            </div>
+          )}
+        </section>
+      )}
 
       <section className="block">
         <h3 className="block-title">自定义人物板块</h3>
@@ -285,6 +358,47 @@ export default function SettingsView({ layout, onStartTutorial, onStartGuide }: 
         <p className="hint">
           4E NEXT Logo基于CC-BY-NC4.0协议提供，作者@KitaAkeru
         </p>
+      </section>
+
+      <section className="block">
+        <h3 className="block-title">实验室</h3>
+        <div className="settings-row">
+          <span className="field-label">实验性动效</span>
+          <Switch selected={labFx} onChange={(e) => setLabFx((e.target as any).selected)} />
+          <span className="label">{labFx ? "已开启" : "已关闭"}</span>
+        </div>
+        <div className="settings-row">
+          <span className="field-label">实验性全局皮肤</span>
+          <Switch selected={labSkin} onChange={(e) => setLabSkin((e.target as any).selected)} />
+          <span className="label">{labSkin ? "已开启" : "已关闭"}</span>
+        </div>
+        {labSkin && (
+          <>
+            <div className="lab-skin-group" role="radiogroup" aria-labelledby="lab-skin-label">
+              <span className="lab-skin-label" id="lab-skin-label">皮肤</span>
+              {SKINS.map((s) => {
+                const on = skinId === s.id;
+                return (
+                  <label key={s.id} className={"lab-skin-option" + (on ? " on" : "")}>
+                    <input
+                      className="lab-skin-input"
+                      type="radio"
+                      name="global-skin"
+                      value={s.id}
+                      checked={on}
+                      onChange={() => setSkinId(s.id)}
+                    />
+                    <SkinPreview skin={s} />
+                    <span className="lab-skin-text">
+                      <span className="lab-skin-name">{s.name}</span>
+                    </span>
+                    <span className="lab-skin-radio" aria-hidden="true" />
+                  </label>
+                );
+              })}
+            </div>
+          </>
+        )}
       </section>
       </div>
 

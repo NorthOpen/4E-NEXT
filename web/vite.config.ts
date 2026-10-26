@@ -233,7 +233,16 @@ export default defineConfig(({ command }) => ({
     : isAndroid
       ? [react(), cspMeta(), androidAssets()]
       : [react(), cspMeta(), dataManifestHashes()],
-  server: { port: 5173 },
+  server: {
+    port: 5173,
+    watch: {
+      // 编辑器/工具的原子写入会先在同目录建一个 .<name>.<pid>.<uuid>.tmpdir/ 再改名；
+      // Windows 上 Vite 的原生监听器撞到这类临时目录会抛 EBUSY，dev server 直接退出。
+      // public/data 会被 copy-data.mjs 整批重写，同样会撞锁；它只是静态数据，不需要 HMR。
+      // 这些都只是写入中间态/静态产物，不该参与 HMR。
+      ignored: ["**/.*.tmpdir/**", "**/.*.tmp", "**/public/data/**"],
+    },
+  },
   // 仅构建产物使用相对路径（可双击打开 dist/index.html、兼容子路径部署）；dev 保持绝对路径避免白屏
   base: command === "build" ? "./" : "/",
   resolve: {

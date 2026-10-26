@@ -77,6 +77,11 @@ export interface Entry {
   rarityEn?: string;
   // 私设「装备」统计字段（buildEntry 铺平到顶层）
   group?: string;
+  /** 冒险装备（gear）：价格原文、铜币整数、重量磅数、是否工具包、工具包内含（只读展示，不参与计价） */
+  costCp?: number;
+  weightLb?: number;
+  kit?: boolean;
+  contents?: string[];
   enh?: string;
   enhTarget?: string;
   cost?: string;

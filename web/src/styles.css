@@ -31,6 +31,12 @@
 }
 :root {
   color-scheme: light;
+  /* 原版两支字体 + 当前模式字体。皮肤可以直接引用 --app-font-sans / --app-font-serif，
+     也可以用 --app-font-plain 跟随原版的字体模式。 */
+  --app-font-serif: "Chiron Sung HK VF", system-ui, "Microsoft YaHei", sans-serif;
+  --app-font-sans: "Chiron Hei HK VF", system-ui, "Microsoft YaHei", sans-serif;
+  --app-font-plain: var(--app-font-serif);
+  --app-font-brand: var(--app-font-serif);
   --md-ref-typeface-plain: "Chiron Sung HK VF", system-ui, "Microsoft YaHei", sans-serif;
   --md-ref-typeface-brand: "Chiron Sung HK VF", system-ui, "Microsoft YaHei", sans-serif;
 
@@ -151,7 +157,8 @@ body {
 .skill-mod input { width: 30px; padding: 2px 3px; border: 1px solid var(--md-sys-color-outline-variant); border-radius: var(--md-sys-shape-corner-extra-small); background: var(--md-sys-color-surface-container); color: var(--md-sys-color-on-surface); font-size: 11px; text-align: center; font-family: inherit; -moz-appearance: textfield; }
 .skill-mod input::-webkit-outer-spin-button, .skill-mod input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
 .skill-mod-minus { color: var(--md-sys-color-on-surface-variant); }
-.skill-mod-armor { display: inline-flex; align-items: center; justify-content: center; width: 30px; padding: 2px 0; border: 1px dashed var(--md-sys-color-outline-variant); border-radius: var(--md-sys-shape-corner-extra-small); background: var(--md-sys-color-surface-container); color: var(--md-sys-color-on-surface); font-size: 11px; text-align: center; box-sizing: border-box; }
+/* 护甲减值：只读派生值用「填充容器」表达，与可编辑输入的描边样式区分开 */
+.skill-mod-armor { display: inline-flex; align-items: center; justify-content: center; width: 30px; padding: 2px 0; border: 1px solid transparent; border-radius: var(--md-sys-shape-corner-extra-small); background: var(--md-sys-color-surface-container-high); color: var(--md-sys-color-on-surface); font-size: 11px; text-align: center; box-sizing: border-box; }
 .skill-mod-armor.pen { color: var(--md-sys-color-error); border-color: var(--md-sys-color-error); }
 
 /* 技能简略模式：只显示技能名 + 数值；与详细表同采用按列排列（先填满第一列，再排第二列）*/
@@ -227,11 +234,12 @@ body {
 
 /* 基础物品模板（武器/护甲附魔载体） */
 .slot-col { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
-.base-item { position: relative; display: flex; flex-direction: column; align-items: center; gap: 1px; padding: 6px 8px; border: 1px dashed var(--md-sys-color-outline-variant); border-radius: var(--md-sys-shape-corner-small); background: var(--md-sys-color-surface-container-low); cursor: pointer; font-family: inherit; }
+/* 基础物品载体 = MD3 填充容器（filled card）：无可见描边，靠 surface-container-high 色阶表达"可点的实体"。
+   透明边框保留 1px 几何，皮肤模式只需覆盖 border-color 即可恢复皮肤线条。 */
+.base-item { position: relative; display: flex; flex-direction: column; align-items: center; gap: 1px; padding: 6px 8px; border: 1px solid transparent; border-radius: var(--md-sys-shape-corner-small); background: var(--md-sys-color-surface-container-high); cursor: pointer; font-family: inherit; }
 .base-pop { display: none; position: absolute; top: calc(100% + 6px); left: 0; width: 320px; max-width: calc(100vw - 120px); z-index: 60; padding: 10px 12px; border-radius: var(--md-sys-shape-corner-medium); background: var(--md-sys-color-surface-container); border: 1px solid var(--md-sys-color-outline-variant); box-shadow: var(--md-sys-elevation-shadow-level2); text-align: left; pointer-events: none; }
 .base-item:hover .base-pop { display: flex; flex-direction: column; gap: 4px; }
 .base-pop-line { font-size: 11.5px; line-height: 1.5; color: var(--md-sys-color-on-surface); }
-.base-item:hover { border-color: var(--md-sys-color-primary); }
 .bi-name { font-size: 12px; font-weight: normal; color: var(--md-sys-color-on-surface); font-family: inherit; }
 .bi-dice { font-size: 22px; font-weight: normal; color: var(--md-sys-color-primary); line-height: 1.1; font-family: inherit; }
 .bi-traits { font-size: 11px; color: var(--md-sys-color-on-surface-variant); }
@@ -255,9 +263,11 @@ body {
 .fm-feature-body { font-size: 12.5px; line-height: 1.7; color: var(--md-sys-color-on-surface-variant); }
 .fm-feature-body > h6, .fm-feature-body > h5, .fm-feature-body > h4 { margin: 4px 0 2px; font-size: 12.5px; }
 .slot-x .material-symbols-outlined { font-size: 18px; line-height: 1; font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 20; }
-.slot-empty { display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 6px; min-height: 120px; padding-top: 20px; box-sizing: border-box; border: 2px dashed var(--md-sys-color-outline-variant); border-radius: var(--md-sys-shape-corner-medium); background: transparent; color: var(--md-sys-color-on-surface-variant); cursor: pointer; font: inherit; }
-.slot-empty:hover { border-color: var(--md-sys-color-primary); color: var(--md-sys-color-primary); }
-.slot-empty .material-symbols-outlined { font-size: 28px; }
+/* 空槽位 = MD3 描边容器（outlined card）：1dp outline 边界 + surface-container-low 填充。
+   悬停/按压/聚焦交给全局状态层（本文件末尾 button::before 的 8%/12%/10% 与 2dp primary 环），
+   不再把边框刷成 primary —— primary 只留给聚焦环与选中态。 */
+.slot-empty { display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 6px; min-height: 120px; padding-top: 20px; box-sizing: border-box; border: 1px solid var(--md-sys-color-outline); border-radius: var(--md-sys-shape-corner-medium); background: var(--md-sys-color-surface-container-low); color: var(--md-sys-color-on-surface-variant); cursor: pointer; font: inherit; transition: background-color var(--md-sys-motion-duration-short2) var(--md-sys-motion-easing-standard), border-color var(--md-sys-motion-duration-short2) var(--md-sys-motion-easing-standard); }
+.slot-empty .material-symbols-outlined { font-size: 24px; color: var(--md-sys-color-primary); }
 
 /* 槽位选择弹窗筛选条 */
 .slot-filter { display: flex; flex-direction: column; gap: 8px; }
@@ -1014,9 +1024,11 @@ md-filled-text-field, md-filled-select { min-width: 0; }
 .picker-table { display: flex; flex-direction: column; gap: 4px; overflow: auto; flex: 1; min-height: 0; }
 .picker-cards { flex: 1; min-height: 0; overflow: auto; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: max-content; gap: 10px; align-items: start; align-content: start; padding: 2px; }
 .picker-cards.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.picker-card { border: none; background: transparent; padding: 0; cursor: pointer; text-align: left; border-radius: var(--md-sys-shape-corner-medium); }
+.picker-card { border: none; background: transparent; padding: 0; cursor: pointer; text-align: left; border-radius: var(--md-sys-shape-corner-medium); min-width: 0; }
 .picker-card:hover { opacity: 0.92; }
-.picker-card.selected { outline: 2px solid var(--md-sys-color-primary); outline-offset: 2px; border-radius: var(--md-sys-shape-corner-medium); }
+/* 选中卡片：outline 画在盒子内侧（offset -2px）。原来是 +2px 外扩，
+   在 overflow:auto 的列表里会被裁掉一半、贴边的卡片还会溢出容器。 */
+.picker-card.selected { outline: 2px solid var(--md-sys-color-primary); outline-offset: -2px; border-radius: var(--md-sys-shape-corner-medium); }
 .picker-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 8px 12px; border: none; border-radius: var(--md-sys-shape-corner-small); background: transparent; cursor: pointer; text-align: left; color: var(--md-sys-color-on-surface); font: inherit; }
 .picker-row:hover { background: var(--md-sys-color-surface-container-high); }
 .picker-row.selected { background: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); }
@@ -1147,6 +1159,59 @@ md-filled-text-field, md-filled-select { min-width: 0; }
 .gc-field { font-size: 13px; color: var(--md-sys-color-on-surface); }
 .gc-field b { color: var(--md-sys-color-on-surface-variant); font-weight: var(--fw-label); margin-right: 4px; }
 .gc-flavor { font-style: italic; color: var(--md-sys-color-on-surface-variant); padding: 8px 12px 0; font-size: 13px; }
+/* 冒险装备卡：日常物品用中性标题（不抢魔法物品的橙色头部），工具包带「工具包」角标 + 只读内含 */
+.gear-card { --gc: var(--md-sys-color-surface-container-high); }
+.gear-card .gc-head { color: var(--md-sys-color-on-surface); }
+.gear-card .gc-fields { border-bottom: none; }
+.gear-card .gc-meta { white-space: nowrap; }
+.gear-card .gc-left { display: flow-root; }
+.gear-badge { margin-left: 6px; padding: 1px 8px; border-radius: var(--md-sys-shape-corner-full); background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container); font-size: 10.5px; font-weight: var(--fw-label); vertical-align: 1px; white-space: nowrap; }
+.gear-contents { display: flex; flex-wrap: wrap; gap: 4px 8px; padding: 0 12px 10px; font-size: 12.5px; line-height: 1.55; color: var(--md-sys-color-on-surface-variant); }
+.gear-contents-title { color: var(--md-sys-color-primary); font-weight: var(--fw-label); }
+
+/* ---- 冒险装备名录：官方物品表的横向栏 + 双色隔行 ----
+   官方纸面用 #ebebe2 / #d2d1ba 交替；暗色模式与实验皮肤各取自己的同构配色，
+   避免把亮米色直接糊在深色背景上。 */
+:root {
+  --gear-row-a: #ebebe2;
+  --gear-row-b: #d2d1ba;
+  --gear-ink: #241f18;
+  --gear-ink-muted: #5b564a;
+}
+html[data-theme="dark"] {
+  /* 暗色下把官方双色按比例压进深色底，保留「暖纸感」的色相，同时保证两行肉眼可分的亮度差 */
+  --gear-row-a: color-mix(in srgb, #ebebe2 15%, #12141a);
+  --gear-row-b: color-mix(in srgb, #d2d1ba 28%, #12141a);
+  --gear-ink: var(--md-sys-color-on-surface);
+  --gear-ink-muted: var(--md-sys-color-on-surface-variant);
+}
+html[data-skin] {
+  --gear-row-a: var(--skin-panel-2);
+  --gear-row-b: var(--skin-panel-3);
+  --gear-ink: var(--skin-ink);
+  --gear-ink-muted: var(--skin-muted);
+}
+/* 滚动容器跟 .picker-cards 一致：占满对话框剩余高度并可滚动，否则列表翻不动 */
+.gear-table { display: flex; flex-direction: column; flex: 1; min-height: 0; overflow: auto; border: 1px solid var(--md-sys-color-outline-variant); border-radius: var(--md-sys-shape-corner-small); }
+/* 表头随滚动吸顶，价格/重量列始终可见 */
+.gear-thead { position: sticky; top: 0; z-index: 1; display: grid; grid-template-columns: minmax(0, 1fr) clamp(72px, 12vw, 110px) clamp(60px, 10vw, 92px); gap: 10px; padding: 6px 12px; font-size: 11.5px; font-weight: var(--fw-label); color: var(--md-sys-color-on-surface-variant); background: var(--md-sys-color-surface-container-high); }
+.gear-thead .gt-price, .gear-thead .gt-weight { text-align: right; }
+.gear-row { display: grid; grid-template-columns: minmax(0, 1fr) clamp(72px, 12vw, 110px) clamp(60px, 10vw, 92px); gap: 10px; align-items: center; padding: 6px 12px; border: none; background: var(--gear-row-a); color: var(--gear-ink); text-align: left; cursor: pointer; font: inherit; font-size: 13px; flex: none; }
+.gear-row:nth-of-type(even) { background: var(--gear-row-b); }
+.gear-row:hover { box-shadow: inset 0 0 0 9999px color-mix(in srgb, var(--gear-ink) 8%, transparent); }
+/* 选中行：MD3 列表选择态用 secondary-container 的色调填充（与筛选片、导航选中同一语言），
+   不再用主色描边——浅色纸面上那圈蓝边正是「不搭」的来源。 */
+.gear-row.selected { background: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); box-shadow: none; }
+.gear-row.selected:hover { box-shadow: inset 0 0 0 9999px color-mix(in srgb, var(--md-sys-color-on-secondary-container) 8%, transparent); }
+.gear-row.selected .gr-en, .gear-row.selected .gr-weight { color: color-mix(in srgb, var(--md-sys-color-on-secondary-container) 74%, transparent); }
+.gr-name { display: flex; align-items: baseline; gap: 6px; min-width: 0; flex-wrap: wrap; }
+.gr-zh { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.gr-en { font-size: 11.5px; color: var(--gear-ink-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.gr-price, .gr-weight { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.gr-weight { color: var(--gear-ink-muted); font-size: 12px; }
+/* 工具包悬停卡片：复用 GearCard（名称/价格/重量/包含），这里只负责定位与宽度 */
+.wiki-ref-pop.gear-kit-pop { width: 380px; max-width: calc(100vw - 120px); }
+.gear-kit-pop .generic-card { box-shadow: var(--md-sys-elevation-shadow-level3); }
 .gc-text { font-family: inherit; font-size: 13px; line-height: 1.55; margin: 0; padding: 8px 12px 12px; overflow-wrap: anywhere; }
 .gc-text table { width: auto; border-collapse: collapse; margin-top: 4px; max-width: 100%; }
 .gc-text th { text-align: left; font-weight: var(--fw-label); color: var(--md-sys-color-on-surface-variant); padding: 3px .5em; vertical-align: top; white-space: nowrap; font-size: 12px; width: 1%; }
@@ -1381,12 +1446,24 @@ md-filled-text-field, md-filled-select { min-width: 0; }
 .money-title { font-size: 12px; font-weight: var(--fw-label); color: var(--md-sys-color-on-surface-variant); }
 .money-value { font-size: 18px; font-weight: var(--fw-display); color: var(--md-sys-color-on-surface); }
 .money-value.negative { color: var(--md-sys-color-error); }
+/* 标准购物：始终横跨整行；关闭时就是一行「标题 + 开关」，打开后展开金额与等级。
+   开关固定贴右侧（开/关同一位置，勾一下不会跳动）。 */
+.money-block-wide { grid-column: 1 / -1; }
+.money-block-shop { align-self: start; }
+.money-block-shop md-switch { transform: scale(0.76); transform-origin: center; margin: -4px -6px -4px 0; }
+.money-title-switch { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.shop-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.shop-total { font-size: 18px; font-weight: var(--fw-display); color: var(--md-sys-color-on-surface); }
+.shop-levels { display: inline-flex; align-items: center; gap: 4px; }
+.shop-level-label { font-size: 12px; color: var(--md-sys-color-on-surface-variant); margin-right: 2px; }
+.shop-level-num { font-size: 14px; min-width: 18px; text-align: center; color: var(--md-sys-color-on-surface); }
 .money-add { display: flex; gap: 6px; align-items: center; }
 .money-input { width: 96px; padding: 5px 8px; border: 1px solid var(--md-sys-color-outline-variant); border-radius: var(--md-sys-shape-corner-extra-small); background: var(--md-sys-color-surface-container); color: var(--md-sys-color-on-surface); font: inherit; font-size: 13px; -moz-appearance: textfield; }
 .money-input::-webkit-outer-spin-button, .money-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
 .money-row { display: flex; justify-content: space-between; gap: 8px; font-size: 11.5px; color: var(--md-sys-color-on-surface-variant); }
 /* 增强步进 */
-.enhance-stepper { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 6px 8px; border: 1px dashed var(--md-sys-color-outline-variant); border-radius: var(--md-sys-shape-corner-small); background: var(--md-sys-color-surface-container-low); }
+/* 附魔调整步进条：同属「填充容器」，与基础物品块保持同一层级语言 */
+.enhance-stepper { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 6px 8px; border: 1px solid transparent; border-radius: var(--md-sys-shape-corner-small); background: var(--md-sys-color-surface-container-high); }
 .enhance-info { display: flex; flex-direction: column; align-items: center; gap: 1px; min-width: 0; }
 .enhance-sub { font-size: 11px; color: var(--md-sys-color-on-surface-variant); }
 .enhance-main { font-size: 16px; font-weight: var(--fw-display); color: var(--md-sys-color-primary); }
@@ -1404,13 +1481,13 @@ md-filled-text-field, md-filled-select { min-width: 0; }
 /* 冒险装备横条 */
 .adv-list { display: flex; flex-direction: column; gap: 6px; }
 .adv-line { display: flex; gap: 6px; align-items: center; }
-.adv-name-input { flex: 1; min-width: 0; width: auto; padding: 7px 10px; border: 1px dashed var(--md-sys-color-outline-variant); border-radius: var(--md-sys-shape-corner-small); background: var(--md-sys-color-surface-container-low); color: var(--md-sys-color-on-surface); font: inherit; }
-.adv-name-input:focus { border-style: solid; border-color: var(--md-sys-color-primary); outline: none; }
+.adv-name-input { flex: 1; min-width: 0; width: auto; padding: 7px 10px; border: 1px solid var(--md-sys-color-outline); border-radius: var(--md-sys-shape-corner-small); background: var(--md-sys-color-surface-container); color: var(--md-sys-color-on-surface); font: inherit; }
+.adv-name-input:focus { border-color: var(--md-sys-color-primary); box-shadow: 0 0 0 2px var(--md-sys-color-primary-container); outline: none; }
 .adv-name-input::placeholder { color: var(--md-sys-color-on-surface-variant); }
 .adv-cost-input { width: 90px; }
-/* 冒险装备→名录选择按钮（替代手动输入：点击弹选择器） */
-.adv-pick { display: flex; align-items: center; gap: 6px; flex: 1; min-width: 0; padding: 7px 10px; border: 1px dashed var(--md-sys-color-outline-variant); border-radius: var(--md-sys-shape-corner-small); background: var(--md-sys-color-surface-container-low); color: var(--md-sys-color-on-surface); cursor: pointer; font: inherit; text-align: left; }
-.adv-pick:hover { border-color: var(--md-sys-color-primary); }
+/* 冒险装备→名录选择按钮（方案 A 描边容器；trigger 是 span 而非 button，没有全局状态层，这里手写 8% 悬停层） */
+.adv-pick { display: flex; align-items: center; gap: 6px; flex: 1; min-width: 0; padding: 7px 10px; border: 1px solid var(--md-sys-color-outline); border-radius: var(--md-sys-shape-corner-small); background: var(--md-sys-color-surface-container-low); color: var(--md-sys-color-on-surface); cursor: pointer; font: inherit; text-align: left; }
+.adv-pick:hover { background: color-mix(in srgb, currentColor 8%, var(--md-sys-color-surface-container-low)); }
 .adv-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 13px; }
 .adv-placeholder { color: var(--md-sys-color-on-surface-variant); }
 .adv-pick .slot-x { color: var(--md-sys-color-on-surface-variant); font-size: 13px; padding: 0 2px; }
@@ -1427,9 +1504,11 @@ md-filled-text-field, md-filled-select { min-width: 0; }
 .ritual-remove:hover { background: var(--md-sys-color-error-container); color: var(--md-sys-color-on-error-container); }
 .ritual-detail-list { display: flex; flex-direction: column; gap: 12px; }
 .ritual-detail-item { position: relative; }
-.ritual-slot-empty { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; border: 2px dashed var(--md-sys-color-outline-variant); border-radius: var(--md-sys-shape-corner-medium); background: transparent; color: var(--md-sys-color-on-surface-variant); cursor: pointer; font: inherit; font-size: 13px; }
-.ritual-slot-empty:hover { border-color: var(--md-sys-color-primary); color: var(--md-sys-color-primary); }
-.ritual-slot-empty .material-symbols-outlined { font-size: 20px; }
+/* 仪式空槽 + 简洁模式的「＋ 选择仪式」：方案 A 描边容器（与威能/装备空槽同一语言）。
+   按钮默认 border-box，2px 虚线改 1px 实线不会改变外框高度。 */
+.ritual-slot-empty { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; border: 1px solid var(--md-sys-color-outline); border-radius: var(--md-sys-shape-corner-medium); background: var(--md-sys-color-surface-container-low); color: var(--md-sys-color-on-surface-variant); cursor: pointer; font: inherit; font-size: 13px; }
+.ritual-slot-empty .material-symbols-outlined { font-size: 20px; color: var(--md-sys-color-primary); }
+.ritual-add { border: 1px solid var(--md-sys-color-outline); border-radius: var(--md-sys-shape-corner-small); background: var(--md-sys-color-surface-container-low); color: var(--md-sys-color-on-surface-variant); min-height: 32px; padding: 5px 14px; }
 /* 职业赠送仪式（置顶展示，不占用仪式槽位；不加蓝底，与普通仪式外观一致） */
 .granted-rituals { display: flex; flex-direction: column; gap: 6px; margin-bottom: 6px; padding-bottom: 8px; border-bottom: 1px dashed var(--md-sys-color-outline-variant); }
 .ritual-detail-list .granted-rituals { gap: 12px; }
@@ -2335,6 +2414,8 @@ md-dialog .menu-position-anchor { position: relative; }
 /* ===== 字体切换：无衬线体（Chiron Hei HK VF，547 动态加载） ===== */
 /* ===== 字体切换：无衬线体（Chiron Hei HK VF，547 动态加载） ===== */
 html[data-font="sans"] {
+  --app-font-plain: var(--app-font-sans);
+  --app-font-brand: var(--app-font-sans);
   --md-ref-typeface-plain: "Chiron Hei HK VF", system-ui, "Microsoft YaHei", sans-serif;
   --md-ref-typeface-brand: "Chiron Hei HK VF", system-ui, "Microsoft YaHei", sans-serif;
 }

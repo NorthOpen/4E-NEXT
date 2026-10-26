@@ -51,6 +51,8 @@ desktop/smoke-report.txt
 # 安卓端派生产物
 android/app/src/main/assets/www/
 android/.gradle/
+# Kotlin 增量编译的会话缓存（构建时自动生成）
+android/.kotlin/
 android/build/
 android/app/build/
 # 打包产物（安装包由 GitHub Release 分发，不入库——与 desktop/release/ 同理）

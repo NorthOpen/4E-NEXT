@@ -1,0 +1,3237 @@
+[
+  {
+    "id": "标准的冒险者工具包 Standard adventurer's kit",
+    "category": "gear",
+    "name": "标准的冒险者工具包",
+    "nameEn": "Standard adventurer's kit",
+    "tags": [],
+    "sourceText": "标准的冒险者工具包 Standard adventurer's kit 15gp 33磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "15gp",
+      "weight": "33磅",
+      "page": "冒险装备1",
+      "kit": "true"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "15gp",
+    "costCp": 1500,
+    "weight": "33磅",
+    "weightLb": 33,
+    "kit": true,
+    "contents": [
+      "背包 ×1",
+      "睡袋 ×1",
+      "燧石与火镰 ×1",
+      "腰包 ×1",
+      "照明杖 ×2",
+      "口粮 ×10 天",
+      "麻绳 50 尺 ×1",
+      "水袋 ×1"
+    ]
+  },
+  {
+    "id": "背包（空） Backpack (empty)",
+    "category": "gear",
+    "name": "背包（空）",
+    "nameEn": "Backpack (empty)",
+    "tags": [],
+    "sourceText": "背包（空） Backpack (empty) 2gp 2磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "2gp",
+      "weight": "2磅",
+      "page": "冒险装备1"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "2gp",
+    "costCp": 200,
+    "weight": "2磅",
+    "weightLb": 2,
+    "kit": false
+  },
+  {
+    "id": "睡袋 Bedroll",
+    "category": "gear",
+    "name": "睡袋",
+    "nameEn": "Bedroll",
+    "tags": [],
+    "sourceText": "睡袋 Bedroll 1sp 5磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "1sp",
+      "weight": "5磅",
+      "page": "冒险装备1"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "1sp",
+    "costCp": 10,
+    "weight": "5磅",
+    "weightLb": 5,
+    "kit": false
+  },
+  {
+    "id": "燧石与火镰 Flint and steel",
+    "category": "gear",
+    "name": "燧石与火镰",
+    "nameEn": "Flint and steel",
+    "tags": [],
+    "sourceText": "燧石与火镰 Flint and steel 1gp —",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "1gp",
+      "weight": "—",
+      "page": "冒险装备1"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "1gp",
+    "costCp": 100,
+    "weight": "—",
+    "kit": false
+  },
+  {
+    "id": "腰包（空） Pouch, belt (empty)",
+    "category": "gear",
+    "name": "腰包（空）",
+    "nameEn": "Pouch, belt (empty)",
+    "tags": [],
+    "sourceText": "腰包（空） Pouch, belt (empty) 1gp 1/2磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "1gp",
+      "weight": "1/2磅",
+      "page": "冒险装备1"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "1gp",
+    "costCp": 100,
+    "weight": "1/2磅",
+    "weightLb": 0.5,
+    "kit": false
+  },
+  {
+    "id": "口粮（10天份） Rations, trail (10 days)",
+    "category": "gear",
+    "name": "口粮（10天份）",
+    "nameEn": "Rations, trail (10 days)",
+    "tags": [],
+    "sourceText": "口粮（10天份） Rations, trail (10 days) 5gp 10磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "5gp",
+      "weight": "10磅",
+      "page": "冒险装备1"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "5gp",
+    "costCp": 500,
+    "weight": "10磅",
+    "weightLb": 10,
+    "kit": false
+  },
+  {
+    "id": "麻绳（50英尺） Rope, hempen (50 ft.)",
+    "category": "gear",
+    "name": "麻绳（50英尺）",
+    "nameEn": "Rope, hempen (50 ft.)",
+    "tags": [],
+    "sourceText": "麻绳（50英尺） Rope, hempen (50 ft.) 1gp 10磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "1gp",
+      "weight": "10磅",
+      "page": "冒险装备1"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "1gp",
+    "costCp": 100,
+    "weight": "10磅",
+    "weightLb": 10,
+    "kit": false
+  },
+  {
+    "id": "照明杖（2支） Sunrods (2)",
+    "category": "gear",
+    "name": "照明杖（2支）",
+    "nameEn": "Sunrods (2)",
+    "tags": [],
+    "sourceText": "照明杖（2支） Sunrods (2) 4gp 2磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "4gp",
+      "weight": "2磅",
+      "page": "冒险装备1"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "4gp",
+    "costCp": 400,
+    "weight": "2磅",
+    "weightLb": 2,
+    "kit": false
+  },
+  {
+    "id": "水袋 Waterskin",
+    "category": "gear",
+    "name": "水袋",
+    "nameEn": "Waterskin",
+    "tags": [],
+    "sourceText": "水袋 Waterskin 1gp 4磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "1gp",
+      "weight": "4磅",
+      "page": "冒险装备1"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "1gp",
+    "costCp": 100,
+    "weight": "4磅",
+    "weightLb": 4,
+    "kit": false
+  },
+  {
+    "id": "箭（30支） Arrows (30)",
+    "category": "gear",
+    "name": "箭（30支）",
+    "nameEn": "Arrows (30)",
+    "tags": [],
+    "sourceText": "箭（30支） Arrows (30) 1gp 3磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "弹药",
+      "price": "1gp",
+      "weight": "3磅",
+      "page": "冒险装备1"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "弹药",
+    "cost": "1gp",
+    "costCp": 100,
+    "weight": "3磅",
+    "weightLb": 3,
+    "kit": false
+  },
+  {
+    "id": "矢（20支） Crossbow bolts (20)",
+    "category": "gear",
+    "name": "矢（20支）",
+    "nameEn": "Crossbow bolts (20)",
+    "tags": [],
+    "sourceText": "矢（20支） Crossbow bolts (20) 1gp 2磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "弹药",
+      "price": "1gp",
+      "weight": "2磅",
+      "page": "冒险装备1"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "弹药",
+    "cost": "1gp",
+    "costCp": 100,
+    "weight": "2磅",
+    "weightLb": 2,
+    "kit": false
+  },
+  {
+    "id": "弹丸（20颗） Sling bullets (20)",
+    "category": "gear",
+    "name": "弹丸（20颗）",
+    "nameEn": "Sling bullets (20)",
+    "tags": [],
+    "sourceText": "弹丸（20颗） Sling bullets (20) 1gp 5磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "弹药",
+      "price": "1gp",
+      "weight": "5磅",
+      "page": "冒险装备1"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "弹药",
+    "cost": "1gp",
+    "costCp": 100,
+    "weight": "5磅",
+    "weightLb": 5,
+    "kit": false
+  },
+  {
+    "id": "法珠 Orb",
+    "category": "gear",
+    "name": "法珠",
+    "nameEn": "Orb",
+    "tags": [],
+    "sourceText": "法珠 Orb 15gp 2磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "奥术法器",
+      "price": "15gp",
+      "weight": "2磅",
+      "page": "冒险装备1"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "奥术法器",
+    "cost": "15gp",
+    "costCp": 1500,
+    "weight": "2磅",
+    "weightLb": 2,
+    "kit": false
+  },
+  {
+    "id": "权杖 Rod",
+    "category": "gear",
+    "name": "权杖",
+    "nameEn": "Rod",
+    "tags": [],
+    "sourceText": "权杖 Rod 12gp 2磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "奥术法器",
+      "price": "12gp",
+      "weight": "2磅",
+      "page": "冒险装备1"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "奥术法器",
+    "cost": "12gp",
+    "costCp": 1200,
+    "weight": "2磅",
+    "weightLb": 2,
+    "kit": false
+  },
+  {
+    "id": "法杖 Staff",
+    "category": "gear",
+    "name": "法杖",
+    "nameEn": "Staff",
+    "tags": [],
+    "sourceText": "法杖 Staff 5gp 4磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "奥术法器",
+      "price": "5gp",
+      "weight": "4磅",
+      "page": "冒险装备1"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "奥术法器",
+    "cost": "5gp",
+    "costCp": 500,
+    "weight": "4磅",
+    "weightLb": 4,
+    "kit": false
+  },
+  {
+    "id": "魔典 Tome",
+    "category": "gear",
+    "name": "魔典",
+    "nameEn": "Tome",
+    "tags": [],
+    "sourceText": "魔典 Tome 7gp 1磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "奥术法器",
+      "price": "7gp",
+      "weight": "1磅",
+      "page": "冒险装备1"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "奥术法器",
+    "cost": "7gp",
+    "costCp": 700,
+    "weight": "1磅",
+    "weightLb": 1,
+    "kit": false
+  },
+  {
+    "id": "魔杖 Wand",
+    "category": "gear",
+    "name": "魔杖",
+    "nameEn": "Wand",
+    "tags": [],
+    "sourceText": "魔杖 Wand 7gp —",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "奥术法器",
+      "price": "7gp",
+      "weight": "—",
+      "page": "冒险装备1"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "奥术法器",
+    "cost": "7gp",
+    "costCp": 700,
+    "weight": "—",
+    "kit": false
+  },
+  {
+    "id": "蜡烛 Candle",
+    "category": "gear",
+    "name": "蜡烛",
+    "nameEn": "Candle",
+    "tags": [],
+    "sourceText": "蜡烛 Candle 1cp —",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "1cp",
+      "weight": "—",
+      "page": "冒险装备1"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "1cp",
+    "costCp": 1,
+    "weight": "—",
+    "kit": false
+  },
+  {
+    "id": "铁链（10英尺） Chain (10 ft.)",
+    "category": "gear",
+    "name": "铁链（10英尺）",
+    "nameEn": "Chain (10 ft.)",
+    "tags": [],
+    "sourceText": "铁链（10英尺） Chain (10 ft.) 30gp 2磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "30gp",
+      "weight": "2磅",
+      "page": "冒险装备1"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "30gp",
+    "costCp": 3000,
+    "weight": "2磅",
+    "weightLb": 2,
+    "kit": false
+  },
+  {
+    "id": "箱子（空） Chest (empty)",
+    "category": "gear",
+    "name": "箱子（空）",
+    "nameEn": "Chest (empty)",
+    "tags": [],
+    "sourceText": "箱子（空） Chest (empty) 2gp 25磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "2gp",
+      "weight": "25磅",
+      "page": "冒险装备1"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "2gp",
+    "costCp": 200,
+    "weight": "25磅",
+    "weightLb": 25,
+    "kit": false
+  },
+  {
+    "id": "攀爬者工具包 Climber's kit",
+    "category": "gear",
+    "name": "攀爬者工具包",
+    "nameEn": "Climber's kit",
+    "tags": [],
+    "sourceText": "攀爬者工具包 Climber's kit 2gp 11磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "2gp",
+      "weight": "11磅",
+      "page": "冒险装备1",
+      "kit": "true"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "2gp",
+    "costCp": 200,
+    "weight": "11磅",
+    "weightLb": 11,
+    "kit": true,
+    "contents": [
+      "爪钩 ×1",
+      "小锤 ×1",
+      "岩钉 ×10"
+    ]
+  },
+  {
+    "id": "爪钩 Grappling hook",
+    "category": "gear",
+    "name": "爪钩",
+    "nameEn": "Grappling hook",
+    "tags": [],
+    "sourceText": "爪钩 Grappling hook 1gp 4磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "1gp",
+      "weight": "4磅",
+      "page": "冒险装备1"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "1gp",
+    "costCp": 100,
+    "weight": "4磅",
+    "weightLb": 4,
+    "kit": false
+  },
+  {
+    "id": "小锤 Hammer",
+    "category": "gear",
+    "name": "小锤",
+    "nameEn": "Hammer",
+    "tags": [],
+    "sourceText": "小锤 Hammer 5sp 2磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "5sp",
+      "weight": "2磅",
+      "page": "冒险装备1"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "5sp",
+    "costCp": 50,
+    "weight": "2磅",
+    "weightLb": 2,
+    "kit": false
+  },
+  {
+    "id": "岩钉（10枚） Pitons (10)",
+    "category": "gear",
+    "name": "岩钉（10枚）",
+    "nameEn": "Pitons (10)",
+    "tags": [],
+    "sourceText": "岩钉（10枚） Pitons (10) 5sp 5磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "5sp",
+      "weight": "5磅",
+      "page": "冒险装备1"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "5sp",
+    "costCp": 50,
+    "weight": "5磅",
+    "weightLb": 5,
+    "kit": false
+  },
+  {
+    "id": "长明火把 Everburning torch",
+    "category": "gear",
+    "name": "长明火把",
+    "nameEn": "Everburning torch",
+    "tags": [],
+    "sourceText": "长明火把 Everburning torch 50gp 1磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "50gp",
+      "weight": "1磅",
+      "page": "冒险装备1"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "50gp",
+    "costCp": 5000,
+    "weight": "1磅",
+    "weightLb": 1,
+    "kit": false
+  },
+  {
+    "id": "精致衣物 Fine clothing",
+    "category": "gear",
+    "name": "精致衣物",
+    "nameEn": "Fine clothing",
+    "tags": [],
+    "sourceText": "精致衣物 Fine clothing 30gp 6磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "30gp",
+      "weight": "6磅",
+      "page": "冒险装备1"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "30gp",
+    "costCp": 3000,
+    "weight": "6磅",
+    "weightLb": 6,
+    "kit": false
+  },
+  {
+    "id": "扁瓶（空） Flask (empty)",
+    "category": "gear",
+    "name": "扁瓶（空）",
+    "nameEn": "Flask (empty)",
+    "tags": [],
+    "sourceText": "扁瓶（空） Flask (empty) 3cp 1磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "3cp",
+      "weight": "1磅",
+      "page": "冒险装备1"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "3cp",
+    "costCp": 3,
+    "weight": "1磅",
+    "weightLb": 1,
+    "kit": false
+  },
+  {
+    "id": "圣徽 Holy symbol",
+    "category": "gear",
+    "name": "圣徽",
+    "nameEn": "Holy symbol",
+    "tags": [],
+    "sourceText": "圣徽 Holy symbol 10gp 1磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "10gp",
+      "weight": "1磅",
+      "page": "冒险装备1"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "10gp",
+    "costCp": 1000,
+    "weight": "1磅",
+    "weightLb": 1,
+    "kit": false
+  },
+  {
+    "id": "旅行面包（10天份） Journey bread (10 days)",
+    "category": "gear",
+    "name": "旅行面包（10天份）",
+    "nameEn": "Journey bread (10 days)",
+    "tags": [],
+    "sourceText": "旅行面包（10天份） Journey bread (10 days) 50gp 1磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "50gp",
+      "weight": "1磅",
+      "page": "冒险装备1"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "50gp",
+    "costCp": 5000,
+    "weight": "1磅",
+    "weightLb": 1,
+    "kit": false
+  },
+  {
+    "id": "提灯 Lantern",
+    "category": "gear",
+    "name": "提灯",
+    "nameEn": "Lantern",
+    "tags": [],
+    "sourceText": "提灯 Lantern 7gp 2磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "7gp",
+      "weight": "2磅",
+      "page": "冒险装备1"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "7gp",
+    "costCp": 700,
+    "weight": "2磅",
+    "weightLb": 2,
+    "kit": false
+  },
+  {
+    "id": "鼓 Drum",
+    "category": "gear",
+    "name": "鼓",
+    "nameEn": "Drum",
+    "tags": [],
+    "sourceText": "鼓 Drum 3gp 1磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "乐器",
+      "price": "3gp",
+      "weight": "1磅",
+      "page": "冒险装备1"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "乐器",
+    "cost": "3gp",
+    "costCp": 300,
+    "weight": "1磅",
+    "weightLb": 1,
+    "kit": false
+  },
+  {
+    "id": "长笛 Flute",
+    "category": "gear",
+    "name": "长笛",
+    "nameEn": "Flute",
+    "tags": [],
+    "sourceText": "长笛 Flute 5gp 1磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "乐器",
+      "price": "5gp",
+      "weight": "1磅",
+      "page": "冒险装备1"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "乐器",
+    "cost": "5gp",
+    "costCp": 500,
+    "weight": "1磅",
+    "weightLb": 1,
+    "kit": false
+  },
+  {
+    "id": "竖琴 Harp",
+    "category": "gear",
+    "name": "竖琴",
+    "nameEn": "Harp",
+    "tags": [],
+    "sourceText": "竖琴 Harp 15gp 4磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "乐器",
+      "price": "15gp",
+      "weight": "4磅",
+      "page": "冒险装备1"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "乐器",
+    "cost": "15gp",
+    "costCp": 1500,
+    "weight": "4磅",
+    "weightLb": 4,
+    "kit": false
+  },
+  {
+    "id": "小号 Horn",
+    "category": "gear",
+    "name": "小号",
+    "nameEn": "Horn",
+    "tags": [],
+    "sourceText": "小号 Horn 7gp 3磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "乐器",
+      "price": "7gp",
+      "weight": "3磅",
+      "page": "冒险装备1"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "乐器",
+    "cost": "7gp",
+    "costCp": 700,
+    "weight": "3磅",
+    "weightLb": 3,
+    "kit": false
+  },
+  {
+    "id": "鲁特琴 Lute",
+    "category": "gear",
+    "name": "鲁特琴",
+    "nameEn": "Lute",
+    "tags": [],
+    "sourceText": "鲁特琴 Lute 12gp 2磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "乐器",
+      "price": "12gp",
+      "weight": "2磅",
+      "page": "冒险装备1"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "乐器",
+    "cost": "12gp",
+    "costCp": 1200,
+    "weight": "2磅",
+    "weightLb": 2,
+    "kit": false
+  },
+  {
+    "id": "七弦琴 Lyre",
+    "category": "gear",
+    "name": "七弦琴",
+    "nameEn": "Lyre",
+    "tags": [],
+    "sourceText": "七弦琴 Lyre 9gp 2磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "乐器",
+      "price": "9gp",
+      "weight": "2磅",
+      "page": "冒险装备1"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "乐器",
+    "cost": "9gp",
+    "costCp": 900,
+    "weight": "2磅",
+    "weightLb": 2,
+    "kit": false
+  },
+  {
+    "id": "木管 Woodwind",
+    "category": "gear",
+    "name": "木管",
+    "nameEn": "Woodwind",
+    "tags": [],
+    "sourceText": "木管 Woodwind 10gp 1磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "10gp",
+      "weight": "1磅",
+      "page": "冒险装备1"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "10gp",
+    "costCp": 1000,
+    "weight": "1磅",
+    "weightLb": 1,
+    "kit": false
+  },
+  {
+    "id": "油（1品脱） Oil (1 pint)",
+    "category": "gear",
+    "name": "油（1品脱）",
+    "nameEn": "Oil (1 pint)",
+    "tags": [],
+    "sourceText": "油（1品脱） Oil (1 pint) 1sp 1磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "1sp",
+      "weight": "1磅",
+      "page": "冒险装备1"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "1sp",
+    "costCp": 10,
+    "weight": "1磅",
+    "weightLb": 1,
+    "kit": false
+  },
+  {
+    "id": "仪式书 Ritual book",
+    "category": "gear",
+    "name": "仪式书",
+    "nameEn": "Ritual book",
+    "tags": [],
+    "sourceText": "仪式书 Ritual book 50gp 3磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "50gp",
+      "weight": "3磅",
+      "page": "冒险装备1"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "50gp",
+    "costCp": 5000,
+    "weight": "3磅",
+    "weightLb": 3,
+    "kit": false
+  },
+  {
+    "id": "仪式材料 Ritual components",
+    "category": "gear",
+    "name": "仪式材料",
+    "nameEn": "Ritual components",
+    "tags": [],
+    "sourceText": "仪式材料 Ritual components 可变 —",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "可变",
+      "weight": "—",
+      "page": "冒险装备1"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "可变",
+    "weight": "—",
+    "kit": false
+  },
+  {
+    "id": "丝绳（50 英尺） Rope, silk (50 ft.)",
+    "category": "gear",
+    "name": "丝绳（50 英尺）",
+    "nameEn": "Rope, silk (50 ft.)",
+    "tags": [],
+    "sourceText": "丝绳（50 英尺） Rope, silk (50 ft.) 10gp 5磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "10gp",
+      "weight": "5磅",
+      "page": "冒险装备1"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "10gp",
+    "costCp": 1000,
+    "weight": "5磅",
+    "weightLb": 5,
+    "kit": false
+  },
+  {
+    "id": "法术书 Spellbook",
+    "category": "gear",
+    "name": "法术书",
+    "nameEn": "Spellbook",
+    "tags": [],
+    "sourceText": "法术书 Spellbook 50gp 3磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "50gp",
+      "weight": "3磅",
+      "page": "冒险装备1"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "50gp",
+    "costCp": 5000,
+    "weight": "3磅",
+    "weightLb": 3,
+    "kit": false
+  },
+  {
+    "id": "帐篷 Tent",
+    "category": "gear",
+    "name": "帐篷",
+    "nameEn": "Tent",
+    "tags": [],
+    "sourceText": "帐篷 Tent 10gp 20磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "10gp",
+      "weight": "20磅",
+      "page": "冒险装备1"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "10gp",
+    "costCp": 1000,
+    "weight": "20磅",
+    "weightLb": 20,
+    "kit": false
+  },
+  {
+    "id": "盗贼工具 Thieves' tools",
+    "category": "gear",
+    "name": "盗贼工具",
+    "nameEn": "Thieves' tools",
+    "tags": [],
+    "sourceText": "盗贼工具 Thieves' tools 20gp 1磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "20gp",
+      "weight": "1磅",
+      "page": "冒险装备1"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "20gp",
+    "costCp": 2000,
+    "weight": "1磅",
+    "weightLb": 1,
+    "kit": false
+  },
+  {
+    "id": "火把 Torch",
+    "category": "gear",
+    "name": "火把",
+    "nameEn": "Torch",
+    "tags": [],
+    "sourceText": "火把 Torch 1sp 1磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "1sp",
+      "weight": "1磅",
+      "page": "冒险装备1"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "1sp",
+    "costCp": 10,
+    "weight": "1磅",
+    "weightLb": 1,
+    "kit": false
+  },
+  {
+    "id": "图腾 Totem",
+    "category": "gear",
+    "name": "图腾",
+    "nameEn": "Totem",
+    "tags": [],
+    "sourceText": "图腾 Totem 7gp 1磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "7gp",
+      "weight": "1磅",
+      "page": "冒险装备1"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "7gp",
+    "costCp": 700,
+    "weight": "1磅",
+    "weightLb": 1,
+    "kit": false
+  },
+  {
+    "id": "滚珠 Ball bearings",
+    "category": "gear",
+    "name": "滚珠",
+    "nameEn": "Ball bearings",
+    "tags": [],
+    "sourceText": "滚珠 Ball bearings 10gp 1磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "10gp",
+      "weight": "1磅",
+      "page": "冒险装备2"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "10gp",
+    "costCp": 1000,
+    "weight": "1磅",
+    "weightLb": 1,
+    "kit": false
+  },
+  {
+    "id": "铃铛和口哨 Bell and whistle",
+    "category": "gear",
+    "name": "铃铛和口哨",
+    "nameEn": "Bell and whistle",
+    "tags": [],
+    "sourceText": "铃铛和口哨 Bell and whistle 1gp —",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "1gp",
+      "weight": "—",
+      "page": "冒险装备2"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "1gp",
+    "costCp": 100,
+    "weight": "—",
+    "kit": false
+  },
+  {
+    "id": "滑轮组和摇柄 Block, tackle, and winch",
+    "category": "gear",
+    "name": "滑轮组和摇柄",
+    "nameEn": "Block, tackle, and winch",
+    "tags": [],
+    "sourceText": "滑轮组和摇柄 Block, tackle, and winch 10gp 10磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "10gp",
+      "weight": "10磅",
+      "page": "冒险装备2"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "10gp",
+    "costCp": 1000,
+    "weight": "10磅",
+    "weightLb": 10,
+    "kit": false
+  },
+  {
+    "id": "江湖骗子工具包 Charlatan's kit",
+    "category": "gear",
+    "name": "江湖骗子工具包",
+    "nameEn": "Charlatan's kit",
+    "tags": [],
+    "sourceText": "江湖骗子工具包 Charlatan's kit 136gp 13磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "136gp",
+      "weight": "13磅",
+      "page": "冒险装备2",
+      "kit": "true"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "136gp",
+    "costCp": 13600,
+    "weight": "13磅",
+    "weightLb": 13,
+    "kit": true,
+    "contents": [
+      "铁蒺藜 ×1",
+      "弯曲眼 ×1",
+      "伪装工具 ×1",
+      "赌博装备 ×1",
+      "诈赌工具 ×1",
+      "玻璃刀 ×1"
+    ]
+  },
+  {
+    "id": "铁蒺藜 Caltrops",
+    "category": "gear",
+    "name": "铁蒺藜",
+    "nameEn": "Caltrops",
+    "tags": [],
+    "sourceText": "铁蒺藜 Caltrops 10gp 1磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "10gp",
+      "weight": "1磅",
+      "page": "冒险装备2"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "10gp",
+    "costCp": 1000,
+    "weight": "1磅",
+    "weightLb": 1,
+    "kit": false
+  },
+  {
+    "id": "弯曲眼 Crook-eye",
+    "category": "gear",
+    "name": "弯曲眼",
+    "nameEn": "Crook-eye",
+    "tags": [],
+    "sourceText": "弯曲眼 Crook-eye 50gp 2磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "50gp",
+      "weight": "2磅",
+      "page": "冒险装备2"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "50gp",
+    "costCp": 5000,
+    "weight": "2磅",
+    "weightLb": 2,
+    "kit": false
+  },
+  {
+    "id": "伪装工具 Disguise kit",
+    "category": "gear",
+    "name": "伪装工具",
+    "nameEn": "Disguise kit",
+    "tags": [],
+    "sourceText": "伪装工具 Disguise kit 30gp 5磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "30gp",
+      "weight": "5磅",
+      "page": "冒险装备2"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "30gp",
+    "costCp": 3000,
+    "weight": "5磅",
+    "weightLb": 5,
+    "kit": false
+  },
+  {
+    "id": "赌博装备 Gambler's gear",
+    "category": "gear",
+    "name": "赌博装备",
+    "nameEn": "Gambler's gear",
+    "tags": [],
+    "sourceText": "赌博装备 Gambler's gear 1gp —",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "1gp",
+      "weight": "—",
+      "page": "冒险装备2"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "1gp",
+    "costCp": 100,
+    "weight": "—",
+    "kit": false
+  },
+  {
+    "id": "诈赌工具 Gambling cheats",
+    "category": "gear",
+    "name": "诈赌工具",
+    "nameEn": "Gambling cheats",
+    "tags": [],
+    "sourceText": "诈赌工具 Gambling cheats 20gp —",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "20gp",
+      "weight": "—",
+      "page": "冒险装备2"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "20gp",
+    "costCp": 2000,
+    "weight": "—",
+    "kit": false
+  },
+  {
+    "id": "玻璃刀 Glass cutter",
+    "category": "gear",
+    "name": "玻璃刀",
+    "nameEn": "Glass cutter",
+    "tags": [],
+    "sourceText": "玻璃刀 Glass cutter 25gp 5磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "25gp",
+      "weight": "5磅",
+      "page": "冒险装备2"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "25gp",
+    "costCp": 2500,
+    "weight": "5磅",
+    "weightLb": 5,
+    "kit": false
+  },
+  {
+    "id": "钉刺靴 Dagger boots",
+    "category": "gear",
+    "name": "钉刺靴",
+    "nameEn": "Dagger boots",
+    "tags": [],
+    "sourceText": "钉刺靴 Dagger boots 2gp 4磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "2gp",
+      "weight": "4磅",
+      "page": "冒险装备2"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "2gp",
+    "costCp": 200,
+    "weight": "4磅",
+    "weightLb": 4,
+    "kit": false
+  },
+  {
+    "id": "探索者工具包 Delver's kit",
+    "category": "gear",
+    "name": "探索者工具包",
+    "nameEn": "Delver's kit",
+    "tags": [],
+    "sourceText": "探索者工具包 Delver's kit 40gp 28磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "40gp",
+      "weight": "28磅",
+      "page": "冒险装备2",
+      "kit": "true"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "40gp",
+    "costCp": 4000,
+    "weight": "28磅",
+    "weightLb": 28,
+    "kit": true,
+    "contents": [
+      "撬棍 ×1",
+      "铁钉 ×10",
+      "铁镣铐 ×1",
+      "矿工安全帽 ×1",
+      "麻袋 ×2",
+      "测量员装备 ×1",
+      "十英尺长的杆子 ×1"
+    ]
+  },
+  {
+    "id": "撬棍 Crowbar",
+    "category": "gear",
+    "name": "撬棍",
+    "nameEn": "Crowbar",
+    "tags": [],
+    "sourceText": "撬棍 Crowbar 2gp 4磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "2gp",
+      "weight": "4磅",
+      "page": "冒险装备2"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "2gp",
+    "costCp": 200,
+    "weight": "4磅",
+    "weightLb": 4,
+    "kit": false
+  },
+  {
+    "id": "铁钉（10根） Iron spikes (10)",
+    "category": "gear",
+    "name": "铁钉（10根）",
+    "nameEn": "Iron spikes (10)",
+    "tags": [],
+    "sourceText": "铁钉（10根） Iron spikes (10) 1gp 5磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "1gp",
+      "weight": "5磅",
+      "page": "冒险装备2"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "1gp",
+    "costCp": 100,
+    "weight": "5磅",
+    "weightLb": 5,
+    "kit": false
+  },
+  {
+    "id": "铁镣铐 Manacles, iron",
+    "category": "gear",
+    "name": "铁镣铐",
+    "nameEn": "Manacles, iron",
+    "tags": [],
+    "sourceText": "铁镣铐 Manacles, iron 10gp 2磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "10gp",
+      "weight": "2磅",
+      "page": "冒险装备2"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "10gp",
+    "costCp": 1000,
+    "weight": "2磅",
+    "weightLb": 2,
+    "kit": false
+  },
+  {
+    "id": "矿工安全帽 Miner's helmet",
+    "category": "gear",
+    "name": "矿工安全帽",
+    "nameEn": "Miner's helmet",
+    "tags": [],
+    "sourceText": "矿工安全帽 Miner's helmet 10gp 3磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "10gp",
+      "weight": "3磅",
+      "page": "冒险装备2"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "10gp",
+    "costCp": 1000,
+    "weight": "3磅",
+    "weightLb": 3,
+    "kit": false
+  },
+  {
+    "id": "麻袋（2个） Sacks (2)",
+    "category": "gear",
+    "name": "麻袋（2个）",
+    "nameEn": "Sacks (2)",
+    "tags": [],
+    "sourceText": "麻袋（2个） Sacks (2) 1gp 1磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "1gp",
+      "weight": "1磅",
+      "page": "冒险装备2"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "1gp",
+    "costCp": 100,
+    "weight": "1磅",
+    "weightLb": 1,
+    "kit": false
+  },
+  {
+    "id": "测量员装备 Surveyor's gear",
+    "category": "gear",
+    "name": "测量员装备",
+    "nameEn": "Surveyor's gear",
+    "tags": [],
+    "sourceText": "测量员装备 Surveyor's gear 15gp 5磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "15gp",
+      "weight": "5磅",
+      "page": "冒险装备2"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "15gp",
+    "costCp": 1500,
+    "weight": "5磅",
+    "weightLb": 5,
+    "kit": false
+  },
+  {
+    "id": "十英尺长的杆子 Ten-foot pole",
+    "category": "gear",
+    "name": "十英尺长的杆子",
+    "nameEn": "Ten-foot pole",
+    "tags": [],
+    "sourceText": "十英尺长的杆子 Ten-foot pole 1gp 8磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "1gp",
+      "weight": "8磅",
+      "page": "冒险装备2"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "1gp",
+    "costCp": 100,
+    "weight": "8磅",
+    "weightLb": 8,
+    "kit": false
+  },
+  {
+    "id": "信徒工具包 Devotee's kit",
+    "category": "gear",
+    "name": "信徒工具包",
+    "nameEn": "Devotee's kit",
+    "tags": [],
+    "sourceText": "信徒工具包 Devotee's kit 146gp 14磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "146gp",
+      "weight": "14磅",
+      "page": "冒险装备2",
+      "kit": "true"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "146gp",
+    "costCp": 14600,
+    "weight": "14磅",
+    "weightLb": 14,
+    "kit": true,
+    "contents": [
+      "蜡烛钟 ×2",
+      "粉笔和石板 ×1",
+      "外科医生工具箱 ×1",
+      "教义书 ×1",
+      "华服 ×1"
+    ]
+  },
+  {
+    "id": "蜡烛钟（2根） Candle clocks (2)",
+    "category": "gear",
+    "name": "蜡烛钟（2根）",
+    "nameEn": "Candle clocks (2)",
+    "tags": [],
+    "sourceText": "蜡烛钟（2根） Candle clocks (2) 1gp 1磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "1gp",
+      "weight": "1磅",
+      "page": "冒险装备2"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "1gp",
+    "costCp": 100,
+    "weight": "1磅",
+    "weightLb": 1,
+    "kit": false
+  },
+  {
+    "id": "粉笔和石板 Chalk and slate",
+    "category": "gear",
+    "name": "粉笔和石板",
+    "nameEn": "Chalk and slate",
+    "tags": [],
+    "sourceText": "粉笔和石板 Chalk and slate 5sp —",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "5sp",
+      "weight": "—",
+      "page": "冒险装备2"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "5sp",
+    "costCp": 50,
+    "weight": "—",
+    "kit": false
+  },
+  {
+    "id": "外科医生工具箱 Chirurgeon's tools",
+    "category": "gear",
+    "name": "外科医生工具箱",
+    "nameEn": "Chirurgeon's tools",
+    "tags": [],
+    "sourceText": "外科医生工具箱 Chirurgeon's tools 20gp 4磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "20gp",
+      "weight": "4磅",
+      "page": "冒险装备2"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "20gp",
+    "costCp": 2000,
+    "weight": "4磅",
+    "weightLb": 4,
+    "kit": false
+  },
+  {
+    "id": "教义书 Doctrinal book",
+    "category": "gear",
+    "name": "教义书",
+    "nameEn": "Doctrinal book",
+    "tags": [],
+    "sourceText": "教义书 Doctrinal book 25gp 3磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "25gp",
+      "weight": "3磅",
+      "page": "冒险装备2"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "25gp",
+    "costCp": 2500,
+    "weight": "3磅",
+    "weightLb": 3,
+    "kit": false
+  },
+  {
+    "id": "华服 Regalia",
+    "category": "gear",
+    "name": "华服",
+    "nameEn": "Regalia",
+    "tags": [],
+    "sourceText": "华服 Regalia 100gp 6磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "100gp",
+      "weight": "6磅",
+      "page": "冒险装备2"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "100gp",
+    "costCp": 10000,
+    "weight": "6磅",
+    "weightLb": 6,
+    "kit": false
+  },
+  {
+    "id": "脚垫 Footpads",
+    "category": "gear",
+    "name": "脚垫",
+    "nameEn": "Footpads",
+    "tags": [],
+    "sourceText": "脚垫 Footpads 5gp —",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "5gp",
+      "weight": "—",
+      "page": "冒险装备2"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "5gp",
+    "costCp": 500,
+    "weight": "—",
+    "kit": false
+  },
+  {
+    "id": "系带 Harness",
+    "category": "gear",
+    "name": "系带",
+    "nameEn": "Harness",
+    "tags": [],
+    "sourceText": "系带 Harness 5gp 1磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "5gp",
+      "weight": "1磅",
+      "page": "冒险装备2"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "5gp",
+    "costCp": 500,
+    "weight": "1磅",
+    "weightLb": 1,
+    "kit": false
+  },
+  {
+    "id": "金刚合金镣铐 Manacles, adamantine",
+    "category": "gear",
+    "name": "金刚合金镣铐",
+    "nameEn": "Manacles, adamantine",
+    "tags": [],
+    "sourceText": "金刚合金镣铐 Manacles, adamantine 650gp 2磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "650gp",
+      "weight": "2磅",
+      "page": "冒险装备2"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "650gp",
+    "costCp": 65000,
+    "weight": "2磅",
+    "weightLb": 2,
+    "kit": false
+  },
+  {
+    "id": "贤者工具包 Sage's kit",
+    "category": "gear",
+    "name": "贤者工具包",
+    "nameEn": "Sage's kit",
+    "tags": [],
+    "sourceText": "贤者工具包 Sage's kit 135gp 12磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "135gp",
+      "weight": "12磅",
+      "page": "冒险装备2",
+      "kit": "true"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "135gp",
+    "costCp": 13500,
+    "weight": "12磅",
+    "weightLb": 12,
+    "kit": true,
+    "contents": [
+      "生物故事集 ×1",
+      "藏物服 ×1",
+      "调查装备 ×1",
+      "铁屑和磁石 ×1",
+      "萤火虫罐 ×1",
+      "文具盒 ×1"
+    ]
+  },
+  {
+    "id": "生物故事集 Bestiary",
+    "category": "gear",
+    "name": "生物故事集",
+    "nameEn": "Bestiary",
+    "tags": [],
+    "sourceText": "生物故事集 Bestiary 25gp 3磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "25gp",
+      "weight": "3磅",
+      "page": "冒险装备2"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "25gp",
+    "costCp": 2500,
+    "weight": "3磅",
+    "weightLb": 3,
+    "kit": false
+  },
+  {
+    "id": "藏物服 Hidden item compartment",
+    "category": "gear",
+    "name": "藏物服",
+    "nameEn": "Hidden item compartment",
+    "tags": [],
+    "sourceText": "藏物服 Hidden item compartment 40gp 2磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "40gp",
+      "weight": "2磅",
+      "page": "冒险装备2"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "40gp",
+    "costCp": 4000,
+    "weight": "2磅",
+    "weightLb": 2,
+    "kit": false
+  },
+  {
+    "id": "调查装备 Investigation gear",
+    "category": "gear",
+    "name": "调查装备",
+    "nameEn": "Investigation gear",
+    "tags": [],
+    "sourceText": "调查装备 Investigation gear 40gp 4磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "40gp",
+      "weight": "4磅",
+      "page": "冒险装备2"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "40gp",
+    "costCp": 4000,
+    "weight": "4磅",
+    "weightLb": 4,
+    "kit": false
+  },
+  {
+    "id": "铁屑和磁石 Iron filings and lodestone",
+    "category": "gear",
+    "name": "铁屑和磁石",
+    "nameEn": "Iron filings and lodestone",
+    "tags": [],
+    "sourceText": "铁屑和磁石 Iron filings and lodestone 15gp —",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "15gp",
+      "weight": "—",
+      "page": "冒险装备2"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "15gp",
+    "costCp": 1500,
+    "weight": "—",
+    "kit": false
+  },
+  {
+    "id": "萤火虫罐 Jar of glowworms",
+    "category": "gear",
+    "name": "萤火虫罐",
+    "nameEn": "Jar of glowworms",
+    "tags": [],
+    "sourceText": "萤火虫罐 Jar of glowworms 5gp 1磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "5gp",
+      "weight": "1磅",
+      "page": "冒险装备2"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "5gp",
+    "costCp": 500,
+    "weight": "1磅",
+    "weightLb": 1,
+    "kit": false
+  },
+  {
+    "id": "文具盒 Writing case",
+    "category": "gear",
+    "name": "文具盒",
+    "nameEn": "Writing case",
+    "tags": [],
+    "sourceText": "文具盒 Writing case 10gp 2磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "10gp",
+      "weight": "2磅",
+      "page": "冒险装备2"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "10gp",
+    "costCp": 1000,
+    "weight": "2磅",
+    "weightLb": 2,
+    "kit": false
+  },
+  {
+    "id": "旅行者工具包 Traveler's kit",
+    "category": "gear",
+    "name": "旅行者工具包",
+    "nameEn": "Traveler's kit",
+    "tags": [],
+    "sourceText": "旅行者工具包 Traveler's kit 80gp 31磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "80gp",
+      "weight": "31磅",
+      "page": "冒险装备2",
+      "kit": "true"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "80gp",
+    "costCp": 8000,
+    "weight": "31磅",
+    "weightLb": 31,
+    "kit": true,
+    "contents": [
+      "迷彩服 ×1",
+      "保暖衣物 ×1",
+      "沙漠衣物 ×1",
+      "地图袋 ×1",
+      "信号弹药 ×5",
+      "圈套 ×1"
+    ]
+  },
+  {
+    "id": "迷彩服 Camouflaged clothing",
+    "category": "gear",
+    "name": "迷彩服",
+    "nameEn": "Camouflaged clothing",
+    "tags": [],
+    "sourceText": "迷彩服 Camouflaged clothing 30gp 6磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "30gp",
+      "weight": "6磅",
+      "page": "冒险装备2"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "30gp",
+    "costCp": 3000,
+    "weight": "6磅",
+    "weightLb": 6,
+    "kit": false
+  },
+  {
+    "id": "保暖衣物 Cold-weather clothing",
+    "category": "gear",
+    "name": "保暖衣物",
+    "nameEn": "Cold-weather clothing",
+    "tags": [],
+    "sourceText": "保暖衣物 Cold-weather clothing 10gp 10磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "10gp",
+      "weight": "10磅",
+      "page": "冒险装备2"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "10gp",
+    "costCp": 1000,
+    "weight": "10磅",
+    "weightLb": 10,
+    "kit": false
+  },
+  {
+    "id": "沙漠衣物 Desert clothing",
+    "category": "gear",
+    "name": "沙漠衣物",
+    "nameEn": "Desert clothing",
+    "tags": [],
+    "sourceText": "沙漠衣物 Desert clothing 5gp 4磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "5gp",
+      "weight": "4磅",
+      "page": "冒险装备2"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "5gp",
+    "costCp": 500,
+    "weight": "4磅",
+    "weightLb": 4,
+    "kit": false
+  },
+  {
+    "id": "地图袋 Map case",
+    "category": "gear",
+    "name": "地图袋",
+    "nameEn": "Map case",
+    "tags": [],
+    "sourceText": "地图袋 Map case 15gp 2磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "15gp",
+      "weight": "2磅",
+      "page": "冒险装备2"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "15gp",
+    "costCp": 1500,
+    "weight": "2磅",
+    "weightLb": 2,
+    "kit": false
+  },
+  {
+    "id": "信号弹药（5枚） Signal ammunition (5)",
+    "category": "gear",
+    "name": "信号弹药（5枚）",
+    "nameEn": "Signal ammunition (5)",
+    "tags": [],
+    "sourceText": "信号弹药（5枚） Signal ammunition (5) 15gp 5磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "15gp",
+      "weight": "5磅",
+      "page": "冒险装备2"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "15gp",
+    "costCp": 1500,
+    "weight": "5磅",
+    "weightLb": 5,
+    "kit": false
+  },
+  {
+    "id": "觅食陷阱 Snares",
+    "category": "gear",
+    "name": "觅食陷阱",
+    "nameEn": "Snares",
+    "tags": [],
+    "sourceText": "觅食陷阱 Snares 5gp 4磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "5gp",
+      "weight": "4磅",
+      "page": "冒险装备2"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "5gp",
+    "costCp": 500,
+    "weight": "4磅",
+    "weightLb": 4,
+    "kit": false
+  },
+  {
+    "id": "祝福之土 Blessed soil",
+    "category": "gear",
+    "name": "祝福之土",
+    "nameEn": "Blessed soil",
+    "tags": [],
+    "sourceText": "祝福之土 Blessed soil 10gp 1磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "10gp",
+      "weight": "1磅",
+      "page": "冒险装备3"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "10gp",
+    "costCp": 1000,
+    "weight": "1磅",
+    "weightLb": 1,
+    "kit": false
+  },
+  {
+    "id": "食尸鬼蜡烛 Ghoul candle",
+    "category": "gear",
+    "name": "食尸鬼蜡烛",
+    "nameEn": "Ghoul candle",
+    "tags": [],
+    "sourceText": "食尸鬼蜡烛 Ghoul candle 10gp 1/10磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "10gp",
+      "weight": "1/10磅",
+      "page": "冒险装备3"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "10gp",
+    "costCp": 1000,
+    "weight": "1/10磅",
+    "weightLb": 0.1,
+    "kit": false
+  },
+  {
+    "id": "用毒者工具包 Poisoner's kit",
+    "category": "gear",
+    "name": "用毒者工具包",
+    "nameEn": "Poisoner's kit",
+    "tags": [],
+    "sourceText": "用毒者工具包 Poisoner's kit 25gp 5磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "25gp",
+      "weight": "5磅",
+      "page": "冒险装备3"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "25gp",
+    "costCp": 2500,
+    "weight": "5磅",
+    "weightLb": 5,
+    "kit": false
+  },
+  {
+    "id": "渡鸦羽毛 Raven's feather",
+    "category": "gear",
+    "name": "渡鸦羽毛",
+    "nameEn": "Raven's feather",
+    "tags": [],
+    "sourceText": "渡鸦羽毛 Raven's feather 25gp 1/10磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "25gp",
+      "weight": "1/10磅",
+      "page": "冒险装备3"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "25gp",
+    "costCp": 2500,
+    "weight": "1/10磅",
+    "weightLb": 0.1,
+    "kit": false
+  },
+  {
+    "id": "鸡蛇兽毒液 Cockatrice venom",
+    "category": "gear",
+    "name": "鸡蛇兽毒液",
+    "nameEn": "Cockatrice venom",
+    "tags": [],
+    "sourceText": "鸡蛇兽毒液 Cockatrice venom 100gp 1/10磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "100gp",
+      "weight": "1/10磅",
+      "page": "妖精荒野冒险装备"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "100gp",
+    "costCp": 10000,
+    "weight": "1/10磅",
+    "weightLb": 0.1,
+    "kit": false
+  },
+  {
+    "id": "寒铁镣铐 Cold iron shackles",
+    "category": "gear",
+    "name": "寒铁镣铐",
+    "nameEn": "Cold iron shackles",
+    "tags": [],
+    "sourceText": "寒铁镣铐 Cold iron shackles 30gp 10磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "30gp",
+      "weight": "10磅",
+      "page": "妖精荒野冒险装备"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "30gp",
+    "costCp": 3000,
+    "weight": "10磅",
+    "weightLb": 10,
+    "kit": false
+  },
+  {
+    "id": "一包寒铁屑 Cold iron shavings, 1 bag",
+    "category": "gear",
+    "name": "一包寒铁屑",
+    "nameEn": "Cold iron shavings, 1 bag",
+    "tags": [],
+    "sourceText": "一包寒铁屑 Cold iron shavings, 1 bag 50gp 1磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "50gp",
+      "weight": "1磅",
+      "page": "妖精荒野冒险装备"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "50gp",
+    "costCp": 5000,
+    "weight": "1磅",
+    "weightLb": 1,
+    "kit": false
+  },
+  {
+    "id": "变形怪面具 Doppelganger mask",
+    "category": "gear",
+    "name": "变形怪面具",
+    "nameEn": "Doppelganger mask",
+    "tags": [],
+    "sourceText": "变形怪面具 Doppelganger mask 250gp 1磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "250gp",
+      "weight": "1磅",
+      "page": "妖精荒野冒险装备"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "250gp",
+    "costCp": 25000,
+    "weight": "1磅",
+    "weightLb": 1,
+    "kit": false
+  },
+  {
+    "id": "妖精人偶 Faerie puppet",
+    "category": "gear",
+    "name": "妖精人偶",
+    "nameEn": "Faerie puppet",
+    "tags": [],
+    "sourceText": "妖精人偶 Faerie puppet 2gp 1/2磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "2gp",
+      "weight": "1/2磅",
+      "page": "妖精荒野冒险装备"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "2gp",
+    "costCp": 200,
+    "weight": "1/2磅",
+    "weightLb": 0.5,
+    "kit": false
+  },
+  {
+    "id": "一包假路石 False path stones, 1 bag",
+    "category": "gear",
+    "name": "一包假路石",
+    "nameEn": "False path stones, 1 bag",
+    "tags": [],
+    "sourceText": "一包假路石 False path stones, 1 bag 200gp 2磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "200gp",
+      "weight": "2磅",
+      "page": "妖精荒野冒险装备"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "200gp",
+    "costCp": 20000,
+    "weight": "2磅",
+    "weightLb": 2,
+    "kit": false
+  },
+  {
+    "id": "精界果酒葡萄干 Feywine raisin",
+    "category": "gear",
+    "name": "精界果酒葡萄干",
+    "nameEn": "Feywine raisin",
+    "tags": [],
+    "sourceText": "精界果酒葡萄干 Feywine raisin 15gp —",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "15gp",
+      "weight": "—",
+      "page": "妖精荒野冒险装备"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "15gp",
+    "costCp": 1500,
+    "weight": "—",
+    "kit": false
+  },
+  {
+    "id": "黎明之花 Flower of the dawn",
+    "category": "gear",
+    "name": "黎明之花",
+    "nameEn": "Flower of the dawn",
+    "tags": [],
+    "sourceText": "黎明之花 Flower of the dawn 25gp —",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "25gp",
+      "weight": "—",
+      "page": "妖精荒野冒险装备"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "25gp",
+    "costCp": 2500,
+    "weight": "—",
+    "kit": false
+  },
+  {
+    "id": "夏日女王长裙之花 Flowers of the Summer Queen's gown",
+    "category": "gear",
+    "name": "夏日女王长裙之花",
+    "nameEn": "Flowers of the Summer Queen's gown",
+    "tags": [],
+    "sourceText": "夏日女王长裙之花 Flowers of the Summer Queen's gown 65gp —",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "65gp",
+      "weight": "—",
+      "page": "妖精荒野冒险装备"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "65gp",
+    "costCp": 6500,
+    "weight": "—",
+    "kit": false
+  },
+  {
+    "id": "冰晶泪珠（1个） Frozen tears (1)",
+    "category": "gear",
+    "name": "冰晶泪珠（1个）",
+    "nameEn": "Frozen tears (1)",
+    "tags": [],
+    "sourceText": "冰晶泪珠（1个） Frozen tears (1) 25gp 1/2磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "25gp",
+      "weight": "1/2磅",
+      "page": "妖精荒野冒险装备"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "25gp",
+    "costCp": 2500,
+    "weight": "1/2磅",
+    "weightLb": 0.5,
+    "kit": false
+  },
+  {
+    "id": "灰雨袍 Gray rain cloak",
+    "category": "gear",
+    "name": "灰雨袍",
+    "nameEn": "Gray rain cloak",
+    "tags": [],
+    "sourceText": "灰雨袍 Gray rain cloak 20gp 3磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "20gp",
+      "weight": "3磅",
+      "page": "妖精荒野冒险装备"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "20gp",
+    "costCp": 2000,
+    "weight": "3磅",
+    "weightLb": 3,
+    "kit": false
+  },
+  {
+    "id": "妖精染发剂 Hair of fairy hues",
+    "category": "gear",
+    "name": "妖精染发剂",
+    "nameEn": "Hair of fairy hues",
+    "tags": [],
+    "sourceText": "妖精染发剂 Hair of fairy hues 5gp —",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "5gp",
+      "weight": "—",
+      "page": "妖精荒野冒险装备"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "5gp",
+    "costCp": 500,
+    "weight": "—",
+    "kit": false
+  },
+  {
+    "id": "夜之斗篷 Night's mantle",
+    "category": "gear",
+    "name": "夜之斗篷",
+    "nameEn": "Night's mantle",
+    "tags": [],
+    "sourceText": "夜之斗篷 Night's mantle 1,000gp 4磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "1,000gp",
+      "weight": "4磅",
+      "page": "妖精荒野冒险装备"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "1,000gp",
+    "costCp": 0,
+    "weight": "4磅",
+    "weightLb": 4,
+    "kit": false
+  },
+  {
+    "id": "皮克精音乐盒 Pixie music box",
+    "category": "gear",
+    "name": "皮克精音乐盒",
+    "nameEn": "Pixie music box",
+    "tags": [],
+    "sourceText": "皮克精音乐盒 Pixie music box 50gp —",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "50gp",
+      "weight": "—",
+      "page": "妖精荒野冒险装备"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "50gp",
+    "costCp": 5000,
+    "weight": "—",
+    "kit": false
+  },
+  {
+    "id": "雨棒 Rain stick",
+    "category": "gear",
+    "name": "雨棒",
+    "nameEn": "Rain stick",
+    "tags": [],
+    "sourceText": "雨棒 Rain stick 150gp 1磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "150gp",
+      "weight": "1磅",
+      "page": "妖精荒野冒险装备"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "150gp",
+    "costCp": 15000,
+    "weight": "1磅",
+    "weightLb": 1,
+    "kit": false
+  },
+  {
+    "id": "尖叫稻草人 Screaming scarecrow",
+    "category": "gear",
+    "name": "尖叫稻草人",
+    "nameEn": "Screaming scarecrow",
+    "tags": [],
+    "sourceText": "尖叫稻草人 Screaming scarecrow 50gp 15磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "50gp",
+      "weight": "15磅",
+      "page": "妖精荒野冒险装备"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "50gp",
+    "costCp": 5000,
+    "weight": "15磅",
+    "weightLb": 15,
+    "kit": false
+  },
+  {
+    "id": "塞纳丽斯菊花 Senaliesse chrysanthemum",
+    "category": "gear",
+    "name": "塞纳丽斯菊花",
+    "nameEn": "Senaliesse chrysanthemum",
+    "tags": [],
+    "sourceText": "塞纳丽斯菊花 Senaliesse chrysanthemum 10gp —",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "10gp",
+      "weight": "—",
+      "page": "妖精荒野冒险装备"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "10gp",
+    "costCp": 1000,
+    "weight": "—",
+    "kit": false
+  },
+  {
+    "id": "蛇油 Snake oil",
+    "category": "gear",
+    "name": "蛇油",
+    "nameEn": "Snake oil",
+    "tags": [],
+    "sourceText": "蛇油 Snake oil 500gp 1/10磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "500gp",
+      "weight": "1/10磅",
+      "page": "妖精荒野冒险装备"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "500gp",
+    "costCp": 50000,
+    "weight": "1/10磅",
+    "weightLb": 0.1,
+    "kit": false
+  },
+  {
+    "id": "蜘蛛网梦网 Spiderweb dream net",
+    "category": "gear",
+    "name": "蜘蛛网梦网",
+    "nameEn": "Spiderweb dream net",
+    "tags": [],
+    "sourceText": "蜘蛛网梦网 Spiderweb dream net 30gp —",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "30gp",
+      "weight": "—",
+      "page": "妖精荒野冒险装备"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "30gp",
+    "costCp": 3000,
+    "weight": "—",
+    "kit": false
+  },
+  {
+    "id": "一袋星靛种子 Star-indigo seeds, 1 pouch",
+    "category": "gear",
+    "name": "一袋星靛种子",
+    "nameEn": "Star-indigo seeds, 1 pouch",
+    "tags": [],
+    "sourceText": "一袋星靛种子 Star-indigo seeds, 1 pouch 5gp 1/10磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "5gp",
+      "weight": "1/10磅",
+      "page": "妖精荒野冒险装备"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "5gp",
+    "costCp": 500,
+    "weight": "1/10磅",
+    "weightLb": 0.1,
+    "kit": false
+  },
+  {
+    "id": "甜心糕点 Sweetheart's confection",
+    "category": "gear",
+    "name": "甜心糕点",
+    "nameEn": "Sweetheart's confection",
+    "tags": [],
+    "sourceText": "甜心糕点 Sweetheart's confection 10gp —",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "10gp",
+      "weight": "—",
+      "page": "妖精荒野冒险装备"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "10gp",
+    "costCp": 1000,
+    "weight": "—",
+    "kit": false
+  },
+  {
+    "id": "一捆狼毒草 Wolfsbane, 1 bundle",
+    "category": "gear",
+    "name": "一捆狼毒草",
+    "nameEn": "Wolfsbane, 1 bundle",
+    "tags": [],
+    "sourceText": "一捆狼毒草 Wolfsbane, 1 bundle 5gp 1/10磅",
+    "fields": {
+      "item-category": "冒险装备",
+      "item-group": "杂项",
+      "price": "5gp",
+      "weight": "1/10磅",
+      "page": "妖精荒野冒险装备"
+    },
+    "wiki": {
+      "transclusions": [],
+      "links": [],
+      "macros": [],
+      "headings": []
+    },
+    "itemCategory": "冒险装备",
+    "group": "杂项",
+    "cost": "5gp",
+    "costCp": 500,
+    "weight": "1/10磅",
+    "weightLb": 0.1,
+    "kit": false
+  }
+]

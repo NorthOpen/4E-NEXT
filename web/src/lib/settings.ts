@@ -1,12 +1,21 @@
 import { platform } from "@platform";
 import type { BgMode, FontMode } from "../ThemeProvider";
 import { COLOR_VARIANTS, DEFAULT_VARIANT, NORD_PRESETS, type SeedMode, type VariantKey } from "../theme";
+import { DEFAULT_SKIN, isSkinId, type SkinId, type SkinPrefs, type SkinPrefsMap } from "../lab/skins";
 import { dataUrlSizeBytes, compressDataUrlToBudget } from "./image";
 import { safeSetItem } from "./storage";
 
 // 单张图片的存储预算：localStorage 上限约 5MB，需为多张卡片数据留足余量
 export const IMAGE_BUDGET = 450 * 1024;    // 压缩后的单图目标（约 450KB）
 export const IMAGE_SIZE_HINT = 500 * 1024; // 触发「图片过大」提醒的阈值（约 500KB）
+
+/**
+ * 实验室模式：两项功能互斥，用单一枚举表达，避免出现「两个开关同时为真」的非法状态。
+ *   off  —— 原版外观；
+ *   fx   —— 实验性动效（MD3 动效增强）；
+ *   skin —— 实验性全局皮肤。
+ */
+export type LabMode = "off" | "fx" | "skin";
 
 export interface Settings {
   seedMode: SeedMode;
@@ -18,6 +27,10 @@ export interface Settings {
   bgBlur: number;
   bgFeather: number;
   fontMode: FontMode;
+  labMode: LabMode;
+  skinId: SkinId;
+  /** 每种皮肤各自的外观选择（深/浅、字体），切走再切回时恢复。 */
+  skinPrefs: SkinPrefsMap;
 }
 
 const SETTINGS_KEY = "4enext.settings.v1";
@@ -37,6 +50,9 @@ const SETTINGS_DEFAULTS: Settings = {
   bgBlur: 2,
   bgFeather: 55,
   fontMode: "serif",
+  labMode: "off",
+  skinId: DEFAULT_SKIN,
+  skinPrefs: {},
 };
 
 /** 读取设置（缺省字段回落默认值）。 */
@@ -57,6 +73,26 @@ export function loadSettings(): Settings {
       if (typeof s.bgBlur === "number") out.bgBlur = s.bgBlur;
       if (typeof s.bgFeather === "number") out.bgFeather = s.bgFeather;
       if (s.fontMode === "sans" || s.fontMode === "serif") out.fontMode = s.fontMode;
+      if (s.labMode === "off" || s.labMode === "fx" || s.labMode === "skin") out.labMode = s.labMode;
+      // 皮肤已下架（或旧存档没有该字段）时回落默认，避免指向不存在的样式。
+      // sheetSkin 是全局皮肤改名前的旧字段，保留一次迁移读取。
+      const legacySkin = (s as Partial<Settings> & { sheetSkin?: unknown }).sheetSkin;
+      if (isSkinId(s.skinId)) out.skinId = s.skinId;
+      else if (isSkinId(legacySkin)) out.skinId = legacySkin;
+      // 只保留结构正确的记录；具体 mode/font 是否仍被该皮肤支持，由 getSkin/resolveSkinPrefs 收敛。
+      if (s.skinPrefs && typeof s.skinPrefs === "object" && !Array.isArray(s.skinPrefs)) {
+        const clean: SkinPrefsMap = {};
+        for (const [id, raw] of Object.entries(s.skinPrefs)) {
+          if (!isSkinId(id) || !raw || typeof raw !== "object") continue;
+          const entry: Partial<SkinPrefs> = {};
+          const mode = (raw as { mode?: unknown }).mode;
+          const font = (raw as { font?: unknown }).font;
+          if (mode === "light" || mode === "dark") entry.mode = mode;
+          if (typeof font === "string") entry.font = font;
+          clean[id] = entry;
+        }
+        out.skinPrefs = clean;
+      }
     }
   } catch {
     /* 忽略 */

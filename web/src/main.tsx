@@ -22,6 +22,9 @@ import "./styles.mobile.css";
 // 安卓壳专属补偿（状态栏/手势条安全区）：整批规则带 html[data-shell="android"]，
 // 浏览器与桌面端一条都不匹配，版面不受影响。放在最后，以便必要时覆盖上面几份。
 import "./styles.android.css";
+// 实验室：实验性动效与全局皮肤。放在最后，皮肤选择器才能稳定压过各平台的补偿样式；
+// 不开启时只有 html 上不存在的属性选择器，对原版零影响。
+import "./styles.lab.css";
 
 // 正文字体（Chiron Sung）：index.html 里用 rel="preload" 提前取，这里切成真正的样式表。
 // 为什么不在标签上写 onload="this.rel='stylesheet'"：那属于内联事件处理器，会被 CSP 的

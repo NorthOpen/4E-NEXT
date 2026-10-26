@@ -169,6 +169,11 @@ export function migrateCharacter(c: Partial<Character>): Character {
     equipmentSlots: (base.equipmentSlots ?? []).slice(0, 12), // 原下标 12（奇物）已迁移至 wondrousSlots
     adventureItems: base.adventureItems && base.adventureItems.length ? base.adventureItems.map((x) => (typeof x === "string" ? { name: x, cost: 0 } : (x as { name: string; cost: number }))) : [{ name: "", cost: 0 }, { name: "", cost: 0 }],
     money: base.money ?? { earned: 0, spent: 0 },
+    // 标准购物：{ level } 表示已开启，level 是勾选那一刻锁定的「起始等级」；
+    // 缺字段表示未开启（旧存档保持原样，不凭空加钱）。
+    standardShopping: base.standardShopping && typeof base.standardShopping.level === "number"
+      ? { level: base.standardShopping.level }
+      : undefined,
     equipmentEnhance: base.equipmentEnhance ?? {},
     otherSlots: base.otherSlots ?? [],
     consumableSlots: base.consumableSlots ?? [],
@@ -178,10 +183,10 @@ export function migrateCharacter(c: Partial<Character>): Character {
       const old = (base.equipmentSlots ?? [])[12];
       return old ? [old] : [];
     })(),
-    // 魔宠与坐骑：新字段。只在旧存档完全没有该字段时给默认 2 格；
-    // 用户手动减到 0 格（[]）时保持为空，不顶回默认值（与奇物/其他/消耗品一致）。
-    companionBeastSlots: base.companionBeastSlots ?? [undefined, undefined],
-    companionSlots: base.companionSlots ?? [undefined, undefined],
+    // 魔宠与坐骑：新字段。只在旧存档完全没有该字段时给默认值（本体 1 格、装备 0 格）；
+    // 用户手动加减槽位后保持原样，不顶回默认值（与奇物/其他/消耗品一致）。
+    companionBeastSlots: base.companionBeastSlots ?? [undefined],
+    companionSlots: base.companionSlots ?? [],
     trainedSkills: base.trainedSkills ?? [],
   classTrainedSkills: (base as { classTrainedSkills?: string[] }).classTrainedSkills ?? [],
     // 职业特性授予、已加入威能面板的威能 id（更换职业时据此从威能面板移除）
@@ -264,8 +269,10 @@ export interface Character {
   featChoices: Record<number, string>; // 选择型专长的具体选择（键 = 专长槽位下标，值 = 所选内容如「长剑 Longsword」或「法珠」）
   classFeatureChoices: Record<string, string | string[]>; // 职业特性「选择一个」的选项（键 = "职业ID::特性标题"，值 = 所选选项名；多选型如戏法为字符串数组）
   equipmentSlots: (string | undefined)[];
-  adventureItems: { id?: string; name: string; cost: number; custom?: boolean }[];
+  adventureItems: { id?: string; name: string; cost: number; /** 铜币整数（gear 精确价）；缺省时按 cost×100 处理 */ costCp?: number; weightLb?: number; custom?: boolean }[];
   money: { earned: number; spent: number };
+  /** 标准购物开关：{ level } = 已开启并用该等级查「标准起始装备总值」；undefined = 未开启 */
+  standardShopping?: { level: number };
   equipmentEnhance: Record<number, number>;
   baseItems: Record<number, string>;
   otherSlots: (string | undefined)[];
@@ -397,8 +404,8 @@ export function defaultCharacter(): Character {
     otherSlots: [],
     consumableSlots: [],
     wondrousSlots: [],
-    companionBeastSlots: [undefined, undefined],
-    companionSlots: [undefined, undefined],
+    companionBeastSlots: [undefined],
+    companionSlots: [],
     trainedSkills: [],
     classTrainedSkills: [],
     classGrantedPowerIds: [],

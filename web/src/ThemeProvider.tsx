@@ -1,8 +1,9 @@
 import { platform } from "@platform";
-import { createContext, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { DEFAULT_VARIANT, applyCssVars, imageToSeedHex, schemeFromSeed, schemeToCssVars, type SeedMode, type VariantKey } from "./theme";
+import { DEFAULT_SKIN, getSkin, resolveSkinPrefs, type SkinId, type SkinMode, type SkinPrefsMap } from "./lab/skins";
 import { downscaleImage } from "./lib/image";
-import { loadSettings, saveSettings, prepareImageForStore, BG_CACHE_KEY, loadBgCacheMarker, saveBgCacheMarker } from "./lib/settings";
+import { loadSettings, saveSettings, prepareImageForStore, BG_CACHE_KEY, loadBgCacheMarker, saveBgCacheMarker, type LabMode } from "./lib/settings";
 import { cachePutImage, cacheGetImage, cacheDeleteImage } from "./lib/imageCache";
 
 export type BgMode = "off" | "portrait" | "custom";
@@ -39,6 +40,21 @@ interface ThemeContextValue {
   setBgFeather: (v: number) => void;
   fontMode: FontMode;
   setFontMode: (m: FontMode) => void;
+  /** 实验性动效（与实验性皮肤互斥） */
+  labFx: boolean;
+  /** 实验性全局皮肤（与实验性动效互斥） */
+  labSkin: boolean;
+  /** 当前选中的皮肤；关闭皮肤后仍记住，下次开启直接恢复 */
+  skinId: SkinId;
+  /** 当前皮肤实际生效的深浅模式与字体 */
+  skinMode: SkinMode;
+  skinFontId: string;
+  skinFontFamily: string;
+  setLabFx: (on: boolean) => void;
+  setLabSkin: (on: boolean) => void;
+  setSkinId: (id: SkinId) => void;
+  setSkinMode: (mode: SkinMode) => void;
+  setSkinFont: (fontId: string) => void;
 }
 
 const ThemeContext = createContext<ThemeContextValue | null>(null);
@@ -75,6 +91,11 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const [bgBlur, setBgBlur] = useState(INITIAL_SETTINGS?.bgBlur ?? 2);
   const [bgFeather, setBgFeather] = useState(INITIAL_SETTINGS?.bgFeather ?? 55);
   const [fontMode, setFontModeState] = useState<FontMode>(INITIAL_SETTINGS?.fontMode ?? "serif");
+  // 实验室两项功能共用一个模式：开关本身由 labFx / labSkin 派生，天然互斥
+  const [labMode, setLabMode] = useState<LabMode>(INITIAL_SETTINGS?.labMode ?? "off");
+  const [skinId, setSkinIdState] = useState<SkinId>(INITIAL_SETTINGS?.skinId ?? DEFAULT_SKIN);
+  // 每种皮肤各存一份外观选择；这里只存用户实际改过的字段，缺省值由注册表提供
+  const [skinPrefs, setSkinPrefs] = useState<SkinPrefsMap>(INITIAL_SETTINGS?.skinPrefs ?? {});
 
   const bgImage = useMemo(() => {
     if (bgMode === "portrait") return portraitOriginal;
@@ -104,6 +125,8 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     applyCssVars(schemeToCssVars(scheme));
     // 原生控件（color 选择器、滚动条等）随明暗切换
     document.documentElement.style.colorScheme = isDark ? "dark" : "light";
+    // 明暗标记：CSS 里据此切换少数「非 MD3 token」的官方配色（如冒险装备表格的双色隔行）
+    document.documentElement.dataset.theme = isDark ? "dark" : "light";
     // 安卓壳：系统栏图标的明暗只能由原生设置，把当前主题告诉它。
     // 网页端与桌面端没有这个对象，可选链直接跳过，行为一个字节都不变。
     window.__4ENEXT_ANDROID__?.setDarkTheme(isDark);
@@ -143,6 +166,45 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     setFontModeState(m);
   }
 
+  // 实验室：两个开关写入同一个模式，因此开启任一都会自动关闭另一个
+  const labFx = labMode === "fx";
+  const labSkin = labMode === "skin";
+  function setLabFx(on: boolean) {
+    setLabMode(on ? "fx" : "off");
+  }
+  function setLabSkin(on: boolean) {
+    setLabMode(on ? "skin" : "off");
+  }
+  function setSkinId(id: SkinId) {
+    setSkinIdState(id);
+  }
+
+  // 当前皮肤的可调项：持久化值可能过期（皮肤下架/改选项），这里统一收敛到合法值
+  const activeSkin = getSkin(skinId);
+  const skinChoice = resolveSkinPrefs(activeSkin, skinPrefs[skinId]);
+  const skinMode = skinChoice.mode;
+  const skinFontId = skinChoice.font;
+  const skinFont = activeSkin.appearance.fonts.find((f) => f.id === skinFontId) ?? activeSkin.appearance.fonts[0];
+  const skinFontFamily = skinFont.family;
+
+  function setSkinMode(mode: SkinMode) {
+    if (!activeSkin.appearance.modes.includes(mode)) return;
+    setSkinPrefs((p) => ({ ...p, [skinId]: { ...p[skinId], mode } }));
+  }
+
+  function setSkinFont(fontId: string) {
+    if (!activeSkin.appearance.fonts.some((f) => f.id === fontId)) return;
+    setSkinPrefs((p) => ({ ...p, [skinId]: { ...p[skinId], font: fontId } }));
+  }
+
+  // 动效只靠 html 属性驱动（styles.lab.css），不开动效时属性不存在，样式零影响。
+  // 放在 layout effect 里：首帧提交前就写好，避免页面先按原版绘制、下一帧才跳成动效版。
+  useLayoutEffect(() => {
+    const root = document.documentElement;
+    if (labMode === "fx") root.dataset.labFx = "on";
+    else delete root.dataset.labFx;
+  }, [labMode]);
+
   // 背景自定义图：压缩后写入 IndexedDB 缓存，localStorage 只存「读取路径」（缓存键）；
   // IndexedDB 不可用时回退为直接把 data URL 存进 localStorage（仍只存一份路径）
   function setBgCustomPersist(url: string | null) {
@@ -164,11 +226,27 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   // 网页端：无衬线体是第二张 CDN 样式表，它自带全局 body 字体规则，
   //   切回衬线体时必须移除，否则其规则会持续把 body/卡片字体覆盖为无衬线体。
   // 桌面端：两支字体都随产物内置，platform.fonts.sansStylesheet 为 null，这里什么也不插。
+  // 全局皮肤：字体选项可以直接引用原版无衬线体，即使原版正处于衬线模式，也要把这张
+  //   样式表补上，否则皮肤的「原版无衬线」会悄悄退化成系统字体。
   useEffect(() => {
-    document.documentElement.dataset.font = fontMode;
+    // 皮肤开启时字体由皮肤自己的外观设置决定；移除原版 data-font，避免
+    // html[data-font="sans"] 的按钮/输入框规则和皮肤的字体选择互相打架。
+    // --app-font-plain 仍然跟随用户原本选择的衬线/无衬线模式，供皮肤字体选项引用。
+    const root = document.documentElement;
+    if (labMode === "skin") {
+      delete root.dataset.font;
+      const follows = fontMode === "sans" ? "var(--app-font-sans)" : "var(--app-font-serif)";
+      root.style.setProperty("--app-font-plain", follows);
+      root.style.setProperty("--app-font-brand", follows);
+    } else {
+      root.dataset.font = fontMode;
+      root.style.removeProperty("--app-font-plain");
+      root.style.removeProperty("--app-font-brand");
+    }
     const existing = document.querySelector('link[data-4enext-font="sans"]');
     const extra = platform.fonts.sansStylesheet;
-    if (fontMode === "sans" && extra) {
+    const needsSans = fontMode === "sans" || (labMode === "skin" && skinFont.needsSansStylesheet === true);
+    if (needsSans && extra) {
       if (!existing) {
         const link = document.createElement("link");
         link.rel = "stylesheet";
@@ -180,12 +258,12 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     } else if (existing) {
       existing.remove();
     }
-  }, [fontMode]);
+  }, [fontMode, labMode, skinFont]);
 
   // 非图片设置变化时持久化
   useEffect(() => {
-    saveSettings({ seedMode, seedHex, presetHex, variant, isDark, bgMode, bgBlur, bgFeather, fontMode });
-  }, [seedMode, seedHex, presetHex, variant, isDark, bgMode, bgBlur, bgFeather, fontMode]);
+    saveSettings({ seedMode, seedHex, presetHex, variant, isDark, bgMode, bgBlur, bgFeather, fontMode, labMode, skinId, skinPrefs });
+  }, [seedMode, seedHex, presetHex, variant, isDark, bgMode, bgBlur, bgFeather, fontMode, labMode, skinId, skinPrefs]);
 
   // 挂载时从缓存恢复背景：localStorage 里只存路径（缓存键或回退 data URL）
   useEffect(() => {
@@ -226,6 +304,8 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     bgMode, bgCustom, setBgMode, setBgCustom: setBgCustomPersist, bgImage,
     bgBlur, bgFeather, setBgBlur, setBgFeather,
     fontMode, setFontMode,
+    labFx, labSkin, skinId, skinMode, skinFontId, skinFontFamily,
+    setLabFx, setLabSkin, setSkinId, setSkinMode, setSkinFont,
   };
 
   return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;

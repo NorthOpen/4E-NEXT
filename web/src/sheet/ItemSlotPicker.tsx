@@ -1,7 +1,8 @@
 import { useMemo, useState } from "react";
 import { useIncremental } from "../lib/incremental";
 import { createPortal } from "react-dom";
-import EntryCard from "./EntryCard";
+import EntryCard, { formatPriceCp, GearCard } from "./EntryCard";
+import { SmartHover } from "./SmartHover";
 import type { Entry } from "../data/types";
 import { DeepSearchField, matchByName, matchDeep } from "./DeepSearch";
 import { itemLevels, enhancementBonusForLevel } from "../lib/levelprices";
@@ -238,6 +239,9 @@ export default function ItemSlotPicker({ entries, loading, slotName, currentId, 
   const [maxLevel, setMaxLevel] = useState(currentLevel && currentLevel >= 1 ? currentLevel : 30);
   // 增强加值筛选："" = 全部，否则为选中的 +N
   const [enhSel, setEnhSel] = useState<number | null>(null);
+  // 冒险装备：等级/增强对日常物品无意义，改用「分组」筛选（工具包是原子商品，单独一档）
+  const isGear = slotName === "冒险装备";
+  const [gearGroup, setGearGroup] = useState<string>("全部");
 
   // 根据 path 定位当前节点；path 为空即虚拟根。
   const currentNode = useMemo(() => {
@@ -286,6 +290,11 @@ export default function ItemSlotPicker({ entries, loading, slotName, currentId, 
       if (sel.length) {
         if (!selLeaves.some((l) => matchLeaf(e, l, namedSlotLeaves))) return false;
       }
+      // 冒险装备分组筛选：工具包按 kit 判定，其余按 group
+      if (isGear && gearGroup !== "全部") {
+        if (gearGroup === "工具包") { if (e.kit !== true) return false; }
+        else if ((e.group ?? "杂项") !== gearGroup) return false;
+      }
       // 等级筛选：无等级条目（冒险装备/部分消耗品）不被等级筛选排除；有等级则任一等级落在筛选范围即命中
       const levels = itemLevels(e.itemLevel);
       if (levels.length) {
@@ -298,7 +307,7 @@ export default function ItemSlotPicker({ entries, loading, slotName, currentId, 
       return true;
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [entries, allowed, subtreeLeaves, namedSlotLeaves, sel, currentChildren, query, deep, levelMode, minLevel, maxLevel, currentLevel, enhSel]);
+  }, [entries, allowed, subtreeLeaves, namedSlotLeaves, sel, currentChildren, query, deep, levelMode, minLevel, maxLevel, currentLevel, enhSel, isGear, gearGroup]);
   const { visible, sentinelRef, done } = useIncremental(filtered, 90);
 
   const showFilter = root.length > 0;
@@ -307,7 +316,7 @@ export default function ItemSlotPicker({ entries, loading, slotName, currentId, 
     <div className="picker-overlay" onClick={onClose}>
       <div className="picker-dialog" onClick={(e) => e.stopPropagation()}>
         <div className="picker-head">
-          <span className="picker-title">选择{slotName}装备</span>
+          <span className="picker-title">选择{slotName.endsWith("装备") ? slotName : slotName + "装备"}</span>
           <div className="picker-head-btns">
             {currentId && onClear && <button type="button" className="crop-btn" onClick={() => { onClear(); onClose(); }}>清空槽位</button>}
             <button type="button" className="crop-btn" onClick={onClose}>关闭</button>
@@ -338,40 +347,89 @@ export default function ItemSlotPicker({ entries, loading, slotName, currentId, 
             </div>
           </>
         )}
+        {/* 冒险装备：按分组筛选（等级/增强对日常物品无意义，隐藏那两行） */}
+        {isGear && (
+          <div className="slot-filter-row">
+            <span className="sf-label">分组</span>
+            {["全部", "杂项", "弹药", "奥术法器", "乐器", "工具包"].map((g) => (
+              <button key={g} type="button" className={gearGroup === g ? "sf-chip active" : "sf-chip"} onClick={() => setGearGroup(g)}>{g}</button>
+            ))}
+          </div>
+        )}
         {/* 等级筛选：当前及以下 / 指定等级 / 全部等级（对齐威能、仪式选择器） */}
-        <div className="slot-filter-row">
-          <span className="sf-label">等级</span>
-          {LEVEL_MODES.map((m) => (
-            <button key={m.key} type="button" className={levelMode === m.key ? "sf-chip active" : "sf-chip"} onClick={() => setLevelMode(m.key)}>{m.label}</button>
-          ))}
-          {levelMode === "range" && (
-            <span className="sf-range">
-              <input type="number" min={1} max={30} value={minLevel} onChange={(e) => setMinLevel(Math.max(1, Math.min(30, Number(e.target.value) || 1)))} />
-              <span>—</span>
-              <input type="number" min={1} max={30} value={maxLevel} onChange={(e) => setMaxLevel(Math.max(1, Math.min(30, Number(e.target.value) || 1)))} />
-            </span>
-          )}
-        </div>
+        {!isGear && (
+          <div className="slot-filter-row">
+            <span className="sf-label">等级</span>
+            {LEVEL_MODES.map((m) => (
+              <button key={m.key} type="button" className={levelMode === m.key ? "sf-chip active" : "sf-chip"} onClick={() => setLevelMode(m.key)}>{m.label}</button>
+            ))}
+            {levelMode === "range" && (
+              <span className="sf-range">
+                <input type="number" min={1} max={30} value={minLevel} onChange={(e) => setMinLevel(Math.max(1, Math.min(30, Number(e.target.value) || 1)))} />
+                <span>—</span>
+                <input type="number" min={1} max={30} value={maxLevel} onChange={(e) => setMaxLevel(Math.max(1, Math.min(30, Number(e.target.value) || 1)))} />
+              </span>
+            )}
+          </div>
+        )}
         {/* 增强加值筛选：+1 ~ +6（魔法物品各等级版本的增强加值） */}
-        <div className="slot-filter-row">
-          <span className="sf-label">增强</span>
-          <button type="button" className={enhSel === null ? "sf-chip active" : "sf-chip"} onClick={() => setEnhSel(null)}>全部</button>
-          {ENH_OPTIONS.map((b) => (
-            <button key={b} type="button" className={enhSel === b ? "sf-chip active" : "sf-chip"} onClick={() => setEnhSel(b)}>+{b}</button>
-          ))}
-        </div>
+        {!isGear && (
+          <div className="slot-filter-row">
+            <span className="sf-label">增强</span>
+            <button type="button" className={enhSel === null ? "sf-chip active" : "sf-chip"} onClick={() => setEnhSel(null)}>全部</button>
+            {ENH_OPTIONS.map((b) => (
+              <button key={b} type="button" className={enhSel === b ? "sf-chip active" : "sf-chip"} onClick={() => setEnhSel(b)}>+{b}</button>
+            ))}
+          </div>
+        )}
         <DeepSearchField value={query} deep={deep} onChange={setQuery} onToggleDeep={() => setDeep((d) => !d)} />
         <div className="meta">显示 {filtered.length} 条</div>
-        <div className={slotName === "冒险装备" ? "picker-cards cols-3" : "picker-cards"}>
-          {loading && entries.length === 0 && <p className="hint">正在加载装备数据…</p>}
-          {!loading && visible.map((e) => (
-            <button key={e.id} type="button" className={e.id === currentId ? "picker-card selected" : "picker-card"} onClick={() => { onSelect(e.id); onClose(); }}>
-              <EntryCard entry={e} />
-            </button>
-          ))}
-          {!loading && filtered.length === 0 && <p className="hint">无匹配装备。</p>}
-          {!done && !loading && <div ref={sentinelRef} className="incremental-sentinel">滚动加载更多…</div>}
-        </div>
+        {isGear ? (
+          // 冒险装备：模仿官方物品表——横向栏 + 双色隔行（#ebebe2 / #d2d1ba，深色模式另取暗色对）
+          <div className="gear-table">
+            <div className="gear-thead">
+              <span>物品</span>
+              <span className="gt-price">价格</span>
+              <span className="gt-weight">重量</span>
+            </div>
+            {loading && entries.length === 0 && <p className="hint">正在加载装备数据…</p>}
+            {!loading && visible.map((e) => (
+              <SmartHover
+                key={e.id}
+                as="button"
+                className={"gear-row" + (e.id === currentId ? " selected" : "")}
+                popClass="wiki-ref-pop gear-kit-pop"
+                portal
+                // 工具包是原子商品：悬停才展开内含清单（价格/重量仍取包本身）。
+                // title 是兜底：窄窗口/触屏下 SmartHover 走长按卡片，原生提示仍能给出内容。
+                title={e.kit === true && Array.isArray(e.contents) ? "包含：" + e.contents.join("、") : undefined}
+                pop={e.kit === true ? <GearCard entry={e} /> : undefined}
+                onClick={() => { onSelect(e.id); onClose(); }}
+              >
+                <span className="gr-name">
+                  <span className="gr-zh">{e.name}</span>
+                  {e.nameEn && <span className="gr-en">{e.nameEn}</span>}
+                  {e.kit === true && <span className="gear-badge">工具包</span>}
+                </span>
+                <span className="gr-price">{formatPriceCp(e.costCp) ?? e.cost ?? "—"}</span>
+                <span className="gr-weight">{e.weight && e.weight !== "—" ? e.weight : "—"}</span>
+              </SmartHover>
+            ))}
+            {!loading && filtered.length === 0 && <p className="hint">无匹配装备。</p>}
+            {!done && !loading && <div ref={sentinelRef} className="incremental-sentinel">滚动加载更多…</div>}
+          </div>
+        ) : (
+          <div className="picker-cards">
+            {loading && entries.length === 0 && <p className="hint">正在加载装备数据…</p>}
+            {!loading && visible.map((e) => (
+              <button key={e.id} type="button" className={e.id === currentId ? "picker-card selected" : "picker-card"} onClick={() => { onSelect(e.id); onClose(); }}>
+                <EntryCard entry={e} />
+              </button>
+            ))}
+            {!loading && filtered.length === 0 && <p className="hint">无匹配装备。</p>}
+            {!done && !loading && <div ref={sentinelRef} className="incremental-sentinel">滚动加载更多…</div>}
+          </div>
+        )}
       </div>
     </div>,
     document.body

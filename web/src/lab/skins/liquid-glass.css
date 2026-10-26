@@ -1,0 +1,285 @@
+/* ============================================================================
+   全局皮肤 · LIQUIDGLASS
+   ----------------------------------------------------------------------------
+   独立皮肤：下面每一个 token 都是本皮肤自己的定义，不复用 MARATHON 的任何
+   色值或材质。视觉参考 Apple 的 Liquid Glass —— 半透明材质、镜面高光边、
+   内阴影厚度、大圆角、系统字体与紧凑字距。
+
+   它不靠彩色壁纸显形：环境层（ambient / canvas）保持无色，玻璃的「质感」
+   来自自身的渐变、高光边与投影，纯色背景上也应该像一块玻璃。
+   装饰层：没有条码、刻线、`//` 前缀，因此不写任何专属装饰选择器。
+   ============================================================================ */
+
+html[data-skin="liquid-glass"] {
+  /* ---- 调色板（深色：中性石墨 + iOS 系统蓝） ---- */
+  --skin-void: #08080a;
+  --skin-bg: #0b0b0d;
+  --skin-surface: #101012;
+  --skin-surface-variant: #1c1c1f;
+  --skin-on-surface-variant: #b8b8c0;
+  --skin-bright: #2a2a2e;
+  --skin-container-lowest: rgba(18, 18, 20, 0.55);
+  --skin-container-low: rgba(24, 24, 27, 0.62);
+  --skin-container: rgba(28, 28, 32, 0.62);
+  --skin-container-high: rgba(34, 34, 38, 0.68);
+  --skin-container-highest: rgba(40, 40, 45, 0.72);
+  --skin-outline: #6e6e78;
+  --skin-outline-variant: #2c2c31;
+  --skin-primary: #0a6fd8;
+  --skin-on-primary: #ffffff;
+  --skin-primary-container: #0d2a4d;
+  --skin-on-primary-container: #cfe4ff;
+  --skin-secondary: #5ac8fa;
+  --skin-on-secondary: #00212b;
+  --skin-secondary-container: #073344;
+  --skin-on-secondary-container: #c7f0ff;
+  --skin-tertiary: #bf5af2;
+  --skin-on-tertiary: #24003f;
+  --skin-tertiary-container: #3a1450;
+  --skin-on-tertiary-container: #ecd9ff;
+  --skin-error: #ff6b60;
+  --skin-on-error: #2b0500;
+  --skin-error-container: #4a0f0d;
+  --skin-on-error-container: #ffdad6;
+  --skin-inverse-primary: #9ad7ff;
+  --skin-panel: #101012;
+  --skin-panel-2: #141416;
+  --skin-panel-3: #1a1a1d;
+  --skin-line: rgba(255, 255, 255, 0.14);
+  --skin-line-soft: rgba(255, 255, 255, 0.07);
+  --skin-accent: #409cff;
+  --skin-accent-fill: #0a6fd8;
+  --skin-accent-dim: #2f8fff;
+  --skin-ink: #f5f5f7;
+  --skin-muted: #a1a1aa;
+  --skin-signal: #ff9f0a;
+  --skin-color-scheme: dark;
+  --skin-scrim: rgba(0, 0, 0, 0.5);
+  --skin-on-accent: #ffffff;
+  --skin-on-accent-muted: rgba(255, 255, 255, 0.88);
+
+  /* ---- 字体：系统字体（SF / PingFang / 雅黑回退） ---- */
+  --skin-font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display",
+    "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --skin-font-body: var(--skin-font-family);
+  --skin-font-display: var(--skin-font-family);
+  --skin-font-mono: var(--skin-font-family);
+
+  /* ---- 形状与排版：连续大圆角、胶囊、零额外字距 ---- */
+  --skin-corner-xs: 8px;
+  --skin-corner-s: 12px;
+  --skin-corner-m: 18px;
+  --skin-corner-l: 24px;
+  --skin-corner-xl: 32px;
+  --skin-corner-pill: 999px;
+  --skin-track-scale: 0;
+  --skin-title-weight: 600;
+
+  /* ---- 材质：自身渐变 + 镜面高光边 + 内阴影厚度 ---- */
+  --skin-mat-chrome: rgba(18, 18, 22, 0.66);
+  --skin-mat-chrome-filter: blur(30px) saturate(160%) brightness(1.03);
+  --skin-mat-fill: rgba(240, 248, 255, 0.14);
+  --skin-mat-fill-2: rgba(240, 248, 255, 0.1);
+  --skin-mat-fill-3: rgba(240, 248, 255, 0.18);
+  --skin-mat-filter: blur(24px) saturate(160%) brightness(1.04);
+  --skin-mat-float-fill: rgba(30, 33, 38, 0.86);
+  --skin-mat-float-filter: blur(36px) saturate(160%) brightness(1.04);
+  --skin-mat-field: linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.06));
+  --skin-mat-border: 1px solid rgba(220, 238, 255, 0.2);
+  --skin-mat-edge: 1px solid rgba(220, 238, 255, 0.2);
+  --skin-mat-topbar-edge: 1px solid rgba(220, 238, 255, 0.2);
+  --skin-mat-float-border-color: rgba(255, 255, 255, 0.34);
+  --skin-mat-divider: 1px solid rgba(255, 255, 255, 0.12);
+  --skin-mat-card-head-line: 1px solid rgba(255, 255, 255, 0.1);
+  --skin-mat-on-accent-line: rgba(255, 255, 255, 0.35);
+  --skin-mat-field-container: rgba(255, 255, 255, 0.12);
+  --skin-mat-field-outline: rgba(255, 255, 255, 0.22);
+  --skin-mat-mini-top: 1px solid var(--skin-line);
+  --skin-mat-ability-top: 1px solid var(--skin-line);
+  --skin-mat-render-edge: 1px solid var(--skin-line);
+  --skin-mat-wash: radial-gradient(130% 90% at 16% -20%, rgba(190, 225, 255, 0.24), transparent 58%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02) 42%, rgba(0, 0, 0, 0.12));
+  --skin-mat-wash-strong: radial-gradient(120% 80% at 20% -10%, rgba(255, 255, 255, 0.18), transparent 58%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent 70%);
+  --skin-mat-wash-dialog: radial-gradient(120% 80% at 18% -10%, rgba(255, 255, 255, 0.12), transparent 55%);
+  --skin-mat-wash-dialog-size: auto;
+
+  /* 环境层保持无色：玻璃靠自身立起来，纯色背景也是同一套观感 */
+  --skin-mat-ambient: none;
+  --skin-mat-canvas: none;
+  --skin-mat-canvas-size: auto;
+
+  --skin-mat-rim: inset 0 1px 0 rgba(255, 255, 255, 0.7), inset 0 2px 3px -1px rgba(255, 255, 255, 0.3),
+    inset 0 1px 14px -2px rgba(255, 255, 255, 0.3),
+    inset 1px 0 0 rgba(255, 255, 255, 0.18), inset -1px 0 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.55), inset 0 -2px 4px -1px rgba(0, 0, 0, 0.35),
+    inset 0 0 24px rgba(255, 255, 255, 0.05), 0 18px 44px -26px rgba(0, 0, 0, 0.9);
+  --skin-mat-pop-rim: inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 -1px 0 rgba(0, 0, 0, 0.35),
+    0 18px 40px -22px rgba(0, 0, 0, 0.85);
+  --skin-mat-float-rim: inset 0 1px 0 rgba(255, 255, 255, 0.6), inset 0 -1px 0 rgba(0, 0, 0, 0.4),
+    0 40px 100px -34px rgba(0, 0, 0, 0.9);
+  --skin-mat-portrait-rim: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 18px 40px -24px rgba(0, 0, 0, 0.85);
+  --skin-mat-glow-title: none;
+  --skin-mat-glow-value: none;
+  --skin-mat-glow-active: 0 8px 22px -10px rgba(10, 111, 216, 0.55);
+  --skin-mat-glow-rail: inset -1px 0 0 rgba(255, 255, 255, 0.18);
+  --skin-mat-title-color: var(--skin-ink);
+  --skin-mat-label-color: var(--skin-muted);
+  --skin-mat-value-color: var(--skin-ink);
+
+  /* 小卡片（统计块、技能、物品卡）的顶部高光与底部厚度 */
+  --glass-card-rim: inset 0 1px 0 rgba(255, 255, 255, 0.38), inset 0 -1px 0 rgba(0, 0, 0, 0.28);
+
+  /* 边缘镜面环：不依赖背景，纯色底上也能看出玻璃的厚度与光源方向 */
+  --glass-ring: conic-gradient(
+    from 210deg at 50% 50%,
+    rgba(255, 255, 255, 0.95),
+    rgba(255, 255, 255, 0.22) 18%,
+    rgba(255, 255, 255, 0.05) 38%,
+    rgba(255, 255, 255, 0.12) 58%,
+    rgba(255, 255, 255, 0.6) 82%,
+    rgba(255, 255, 255, 0.95)
+  );
+}
+
+/* LIQUIDGLASS 浅色：系统分组底色 + 冷白玻璃。 */
+html[data-skin="liquid-glass"][data-skin-mode="light"] {
+  --skin-void: #f2f2f7;
+  --skin-bg: #f7f7fa;
+  --skin-surface: #ffffff;
+  --skin-surface-variant: #e5e5ea;
+  --skin-on-surface-variant: #3c3c43;
+  --skin-bright: #ffffff;
+  --skin-container-lowest: rgba(255, 255, 255, 0.92);
+  --skin-container-low: rgba(255, 255, 255, 0.8);
+  --skin-container: rgba(255, 255, 255, 0.76);
+  --skin-container-high: rgba(255, 255, 255, 0.82);
+  --skin-container-highest: rgba(255, 255, 255, 0.88);
+  --skin-outline: #8e8e93;
+  --skin-outline-variant: #d1d1d6;
+  --skin-primary: #0071e3;
+  --skin-on-primary: #ffffff;
+  --skin-primary-container: #cfe4ff;
+  --skin-on-primary-container: #002a5c;
+  --skin-secondary: #007aff;
+  --skin-on-secondary: #ffffff;
+  --skin-secondary-container: #cfe8ff;
+  --skin-on-secondary-container: #00264d;
+  --skin-tertiary: #5856d6;
+  --skin-on-tertiary: #ffffff;
+  --skin-tertiary-container: #e5e4ff;
+  --skin-on-tertiary-container: #1e1b4b;
+  --skin-error: #d92d20;
+  --skin-on-error: #ffffff;
+  --skin-error-container: #ffdad6;
+  --skin-on-error-container: #410e0b;
+  --skin-inverse-primary: #409cff;
+  --skin-panel: #ffffff;
+  --skin-panel-2: #fafafa;
+  --skin-panel-3: #f2f2f5;
+  --skin-line: rgba(60, 60, 67, 0.16);
+  --skin-line-soft: rgba(60, 60, 67, 0.09);
+  --skin-accent: #0066cc;
+  --skin-accent-fill: #0071e3;
+  --skin-accent-dim: #004f9e;
+  --skin-ink: #1c1c1e;
+  --skin-muted: #6e6e73;
+  --skin-signal: #b45309;
+  --skin-color-scheme: light;
+  --skin-scrim: rgba(0, 0, 0, 0.22);
+  --skin-on-accent: #ffffff;
+  --skin-on-accent-muted: rgba(255, 255, 255, 0.9);
+
+  --skin-mat-chrome: rgba(255, 255, 255, 0.78);
+  --skin-mat-chrome-filter: blur(30px) saturate(170%) brightness(1.02);
+  --skin-mat-fill: rgba(247, 251, 255, 0.78);
+  --skin-mat-fill-2: rgba(247, 251, 255, 0.62);
+  --skin-mat-fill-3: rgba(250, 253, 255, 0.88);
+  --skin-mat-filter: blur(24px) saturate(170%) brightness(1.02);
+  --skin-mat-float-fill: rgba(255, 255, 255, 0.92);
+  --skin-mat-float-filter: blur(36px) saturate(170%) brightness(1.02);
+  --skin-mat-field: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.7));
+  --skin-mat-border: 1px solid rgba(60, 60, 67, 0.22);
+  --skin-mat-edge: 1px solid rgba(60, 60, 67, 0.22);
+  --skin-mat-topbar-edge: 1px solid rgba(60, 60, 67, 0.22);
+  --skin-mat-float-border-color: rgba(60, 60, 67, 0.14);
+  --skin-mat-divider: 1px solid rgba(60, 60, 67, 0.1);
+  --skin-mat-card-head-line: 1px solid rgba(60, 60, 67, 0.08);
+  --skin-mat-on-accent-line: rgba(0, 0, 0, 0.14);
+  --skin-mat-field-container: rgba(255, 255, 255, 0.88);
+  --skin-mat-field-outline: rgba(60, 60, 67, 0.18);
+  --skin-mat-mini-top: 1px solid var(--skin-line);
+  --skin-mat-ability-top: 1px solid var(--skin-line);
+  --skin-mat-render-edge: 1px solid var(--skin-line);
+  --skin-mat-wash: radial-gradient(130% 90% at 16% -20%, rgba(205, 232, 255, 0.9), transparent 58%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0.22) 46%, rgba(60, 60, 67, 0.1));
+  --skin-mat-wash-strong: radial-gradient(120% 80% at 20% -10%, rgba(255, 255, 255, 0.95), transparent 58%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.55), transparent 70%);
+  --skin-mat-wash-dialog: radial-gradient(120% 80% at 18% -10%, rgba(255, 255, 255, 0.9), transparent 58%);
+  --skin-mat-wash-dialog-size: auto;
+  --skin-mat-ambient: none;
+  --skin-mat-canvas: none;
+  --skin-mat-canvas-size: auto;
+  --skin-mat-rim: inset 0 1px 0 #ffffff, inset 0 2px 3px -1px rgba(255, 255, 255, 0.95),
+    inset 0 1px 12px -2px rgba(255, 255, 255, 0.8),
+    inset 1px 0 0 rgba(255, 255, 255, 0.95), inset -1px 0 0 rgba(255, 255, 255, 0.65),
+    inset 0 -1px 0 rgba(60, 60, 67, 0.16), inset 0 -2px 4px -1px rgba(60, 60, 67, 0.1),
+    inset 0 10px 24px -20px rgba(60, 60, 67, 0.5), inset 0 0 28px rgba(255, 255, 255, 0.5),
+    0 1px 2px rgba(60, 60, 67, 0.1), 0 14px 30px -14px rgba(60, 60, 67, 0.38);
+  --skin-mat-pop-rim: inset 0 1px 0 #ffffff, inset 0 -1px 0 rgba(60, 60, 67, 0.08),
+    0 16px 36px -20px rgba(60, 60, 67, 0.3);
+  --skin-mat-float-rim: inset 0 1px 0 #ffffff, inset 0 -1px 0 rgba(60, 60, 67, 0.08),
+    0 36px 90px -34px rgba(60, 60, 67, 0.36);
+  --skin-mat-portrait-rim: inset 0 1px 0 #ffffff, 0 16px 34px -22px rgba(60, 60, 67, 0.28);
+  --skin-mat-glow-title: none;
+  --skin-mat-glow-value: none;
+  --skin-mat-glow-active: 0 8px 22px -12px rgba(0, 113, 227, 0.45);
+  --skin-mat-glow-rail: inset -1px 0 0 rgba(60, 60, 67, 0.12);
+  --skin-mat-title-color: var(--skin-ink);
+  --skin-mat-label-color: var(--skin-muted);
+  --skin-mat-value-color: var(--skin-ink);
+  --glass-card-rim: inset 0 1px 0 #ffffff, inset 0 -1px 0 rgba(60, 60, 67, 0.08);
+  --glass-ring: conic-gradient(
+    from 210deg at 50% 50%,
+    #ffffff,
+    rgba(255, 255, 255, 0.75) 18%,
+    rgba(60, 60, 67, 0.4) 38%,
+    rgba(60, 60, 67, 0.28) 58%,
+    rgba(255, 255, 255, 0.9) 82%,
+    #ffffff
+  );
+}
+
+/* 连续圆角（iOS squircle）：Chromium 139+ 生效，旧内核自动回退圆弧。
+   对话框不在这里：Hyalite 的透镜图按 border-radius 生成，squircle 会让边缘对不齐。 */
+html[data-skin="liquid-glass"]
+  :is(.sheet .block, .mini-block, .ability-col, .combat-stat, .defense-item, .card, .slot-empty) {
+  corner-shape: squircle;
+}
+
+/* 小卡片和大面板共用同一套「顶部亮、底部厚」的玻璃边缘。 */
+html[data-skin="liquid-glass"]
+  .sheet
+  :is(.mini-block, .ability-col, .combat-stat, .defense-item, .stat, .summary, .card, .power-card, .item-card, .feat-card, .generic-card, .entry-detail, .slot-empty, .base-item, .resource-item, .health-main) {
+  box-shadow: var(--glass-card-rim);
+}
+
+/* 面板与浮层的 1px 镜面环：只在支持 mask-composite 的浏览器上生效，
+   旧 WebView 会退回上面的 inset 高光，不会把整块面板涂成渐变。 */
+@supports (mask-composite: exclude) {
+  html[data-skin="liquid-glass"] :is(.sheet .block, .picker-dialog, .crop-dialog, md-dialog.sheet-dialog)::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    border-radius: inherit;
+    corner-shape: inherit;
+    padding: 1px;
+    background: var(--glass-ring);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+}

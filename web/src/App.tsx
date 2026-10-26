@@ -1,5 +1,5 @@
 import { platform } from "@platform";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { ThemeProvider, useTheme } from "./ThemeProvider";
 import CharacterSheet from "./sheet/CharacterSheet";
 import { exportCharacterCard, type ExportFormat } from "./lib/exportImage";
@@ -83,7 +83,7 @@ function featherMask(feather: number): string {
 }
 
 function Shell() {
-  const { bgImage, bgBlur, bgFeather, portraitOriginal, portraitCropped, applyPortrait, clearPortrait } = useTheme();
+  const { bgImage, bgBlur, bgFeather, portraitOriginal, portraitCropped, applyPortrait, clearPortrait, labSkin, skinId, skinMode, skinFontFamily } = useTheme();
   const [view, setView] = useState<View>("sheet");
   // 应用级模式：player = 车卡器（现有全部功能），gm = 主持模式。
   // 主持模式刻意不复用 view —— 进主持后绝大部分玩家功能都不适用，
@@ -108,6 +108,50 @@ function Shell() {
       setGmAiOpen(false);
     }
   }, [isMobile, appMode]);
+
+  // 全局皮肤：启用后属性挂在 <html> 上，所有页面、导航壳以及 portal 到 body 的
+  // 对话框共享同一套颜色/形状/字体令牌；关闭立即摘除，原版外观完全不受影响。
+  // 深浅模式与字体由皮肤自己的外观设置决定，通过属性和内联变量下发给 CSS。
+  // 用 layout effect：首帧提交前就套好皮肤，不会闪一帧原版配色。
+  useLayoutEffect(() => {
+    const root = document.documentElement;
+    if (labSkin) {
+      root.dataset.skin = skinId;
+      root.dataset.skinMode = skinMode;
+      root.style.setProperty("--skin-font-family", skinFontFamily);
+    } else {
+      delete root.dataset.skin;
+      delete root.dataset.skinMode;
+      root.style.removeProperty("--skin-font-family");
+    }
+    return () => {
+      delete root.dataset.skin;
+      delete root.dataset.skinMode;
+      root.style.removeProperty("--skin-font-family");
+    };
+  }, [labSkin, skinId, skinMode, skinFontFamily]);
+
+  // LIQUIDGLASS：Hyalite 的真实透镜只在「内容从玻璃下经过」时才有意义，所以只挂到
+  // 移动底栏/顶栏和对话框；动态加载，别的皮肤/关闭皮肤时没有任何开销。
+  // 浏览器不支持 SVG backdrop filter 时 startGlassLens 直接返回空清理函数，
+  // CSS 里的 var(--hyalite, …) 会回落到皮肤自己的材质。
+  useEffect(() => {
+    if (!(labSkin && skinId === "liquid-glass")) return;
+    let stop: (() => void) | undefined;
+    let cancelled = false;
+    void import("./lab/glassLens")
+      .then((m) => m.startGlassLens(skinMode))
+      .then((fn) => {
+        if (cancelled) fn();
+        else stop = fn;
+      })
+      .catch((err) => console.error("[glassLens] 加载失败", err));
+    return () => {
+      cancelled = true;
+      stop?.();
+    };
+  }, [labSkin, skinId, skinMode]);
+
   const [mode, setMode] = useState<"edit" | "render">("edit");
   // 手机端「更多」底部面板（承载底栏放不下的入口）
   const [mobileMore, setMobileMore] = useState(false);

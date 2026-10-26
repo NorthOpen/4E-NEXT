@@ -5,6 +5,7 @@ import { DATA_DIR, RAW_FILE, CANONICAL_DIR, OUT_DIR } from "./lib/paths.js";
 import { runExtract } from "./etl/extract.js";
 import { runClassify } from "./etl/classify.js";
 import { runNormalize } from "./etl/normalize.js";
+import { runGear } from "./etl/gear.js";
 import { runIndex } from "./etl/index.js";
 import { runAudit } from "./etl/audit.js";
 import { findRulesSource, runRules } from "./etl/rules.js";
@@ -127,6 +128,20 @@ async function cmdProfile(): Promise<void> {
   console.log("[profile] 未映射 tier 值: " + (flags.tier.join(", ") || "无"));
 }
 
+async function cmdGear(): Promise<void> {
+  const r = runGear();
+  console.log("[gear] 冒险装备 " + r.total + " 条（其中工具包 " + r.kits + " 个）");
+  for (const [g, n] of Object.entries(r.groups).sort((a, b) => b[1] - a[1])) {
+    console.log("  " + n + "  " + g);
+  }
+  if (r.duplicates.length) console.warn("[gear] 重名跳过 " + r.duplicates.length + " 条: " + r.duplicates.join(" / "));
+  if (r.invalid.length) {
+    for (const e of r.invalid) console.error("[gear] 校验失败 " + e);
+    process.exitCode = 1;
+  }
+  console.log("[gear] 已写出: " + r.canonical + " / " + r.categories);
+}
+
 async function cmdIndex(): Promise<void> {
   const r = runIndex();
   console.log("[index] manifest: " + r.manifest);
@@ -201,6 +216,7 @@ async function cmdAll(): Promise<void> {
   await cmdExtract();
   await cmdClassify();
   await cmdNormalize();
+  await cmdGear();
   await cmdIndex();
   await cmdRules();
   await cmdMonsters();
@@ -213,6 +229,7 @@ async function main(): Promise<void> {
     profile: cmdProfile,
     classify: cmdClassify,
     normalize: cmdNormalize,
+    gear: cmdGear,
     index: cmdIndex,
     rules: cmdRules,
     monsters: cmdMonsters,
@@ -225,7 +242,7 @@ async function main(): Promise<void> {
   const h = handlers[cmd];
   if (!h) {
     console.error(
-      "未知命令: " + cmd + "。用法: pnpm <extract|profile|classify|normalize|index|rules|monsters|monsters:media|monsters:tiddler|sync|commit|all>"
+      "未知命令: " + cmd + "。用法: pnpm <extract|profile|classify|normalize|gear|index|rules|monsters|monsters:media|monsters:tiddler|sync|commit|all>"
     );
     process.exitCode = 1;
     return;

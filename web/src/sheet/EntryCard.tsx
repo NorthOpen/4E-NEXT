@@ -688,15 +688,57 @@ export function GenericCard({ entry, frame, jump, flavorTarget = "sourceText", f
   );
 }
 
+// 冒险装备：价格/重量按结构化字段展示；工具包是**原子商品**（价格/重量取包本身），
+// 内含清单只作说明，不展开、不参与计价。
+export function formatPriceCp(cp?: number): string | undefined {
+  if (cp === undefined || cp === null || !Number.isFinite(cp)) return undefined;
+  const gp = Math.floor(cp / 100);
+  const sp = Math.floor((cp % 100) / 10);
+  const c = cp % 10;
+  const parts: string[] = [];
+  if (gp) parts.push(gp + "gp");
+  if (sp) parts.push(sp + "sp");
+  if (c) parts.push(c + "cp");
+  return parts.length ? parts.join(" ") : "0gp";
+}
+
+export function GearCard({ entry }: { entry: Entry }) {
+  const kit = entry.kit === true;
+  const contents = Array.isArray(entry.contents) ? entry.contents : [];
+  const price = formatPriceCp(entry.costCp) ?? entry.cost ?? "—";
+  const weight = entry.weight && entry.weight !== "—" ? entry.weight : "—";
+  return (
+    <div className="generic-card gear-card">
+      <div className="gc-head">
+        <span className="gc-left">
+          <span className="gc-name">{entry.name}{entry.nameEn ? " " + entry.nameEn : ""}</span>
+          {kit && <span className="gear-badge">工具包</span>}
+          {entry.origin === "user" && <span className="origin-badge">自制</span>}
+        </span>
+        <span className="gc-meta">{entry.group ?? "杂项"}</span>
+      </div>
+      <div className="gc-fields">
+        <span className="gc-field"><b>价格</b>{price}</span>
+        <span className="gc-field"><b>重量</b>{weight}</span>
+      </div>
+      {kit && contents.length > 0 && (
+        <div className="gear-contents">
+          <span className="gear-contents-title">包含</span>
+          <span>{contents.join("、")}</span>
+        </div>
+      )}
+    </div>
+  );
+}
+
 // lookup 提供时，专长卡片正文中的 [[威能]] 等链接转为悬浮预览卡片（角色卡与选择专长界面共用）
 export default function EntryCard({ entry, lookup, frame, jump, optionalOn }: {
   entry: Entry; lookup?: (t: string) => Entry | undefined; frame?: boolean; jump?: (k: string) => void;
   optionalOn?: Partial<Record<string, boolean>>;
 }) {
   if (entry.category === "power") return <PowerCard entry={entry} frame={frame} jump={jump} />;
-  // 冒险装备与官方 gear 条目保持一致（generic-card + adv-line），无论私设(category=equipment)还是官方(category=gear)；
-  // 非战斗用条目无风味文本/特性，仅正文
-  if (entry.itemCategory === "冒险装备") return <GenericCard entry={entry} frame={frame} jump={jump} flavor={false} />;
+  // 冒险装备（gear）：价格/重量/工具包内含走专门卡片；私设条目(category=equipment + itemCategory=冒险装备)同一分支
+  if (entry.itemCategory === "冒险装备") return <GearCard entry={entry} />;
   if (entry.category === "equipment") return <ItemCard entry={entry} frame={frame} jump={jump} lookup={lookup} optionalOn={optionalOn} />;
   if (entry.category === "feat") return <FeatCard entry={entry} lookup={lookup} frame={frame} jump={jump} />;
   if (entry.category === "race") return <RaceCard entry={entry} lookup={lookup} frame={frame} jump={jump} />;

@@ -1,0 +1,165 @@
+/* 全局皮肤 · MARATHON —— 调色板与材质。
+   独立皮肤：只定义本皮肤自己的 token，不引用其它皮肤的值。 */
+
+html[data-skin="marathon"] {
+  --skin-void: #040603;
+  --skin-bg: #050704;
+  --skin-surface: #070a05;
+  --skin-surface-variant: #1a2210;
+  --skin-on-surface-variant: #a3b287;
+  --skin-bright: #1d2714;
+  --skin-container-lowest: #030502;
+  --skin-container-low: #090d07;
+  --skin-container: #0c1109;
+  --skin-container-high: #11180d;
+  --skin-container-highest: #171f11;
+  --skin-outline: #62734a;
+  --skin-outline-variant: #2b371b;
+  --skin-primary: #d9ff44;
+  --skin-on-primary: #0a0e02;
+  --skin-primary-container: #2b3507;
+  --skin-on-primary-container: #e7ffa1;
+  --skin-secondary: #a9bd7d;
+  --skin-on-secondary: #101605;
+  --skin-secondary-container: #222c11;
+  --skin-on-secondary-container: #dfecc1;
+  --skin-tertiary: #ff6a2a;
+  --skin-on-tertiary: #1a0a03;
+  --skin-tertiary-container: #3a1808;
+  --skin-on-tertiary-container: #ffd6c3;
+  --skin-error: #ff4d3d;
+  --skin-on-error: #1c0503;
+  --skin-error-container: #3b0c08;
+  --skin-on-error-container: #ffd9d3;
+  --skin-inverse-primary: #3d4a00;
+  --skin-panel: #0a0e07;
+  --skin-panel-2: #0d1209;
+  --skin-panel-3: #131a0d;
+  --skin-line: #2c3a18;
+  --skin-line-soft: #1c2611;
+  --skin-accent: var(--skin-primary);
+  --skin-accent-fill: var(--skin-accent);
+  --skin-accent-dim: #a8c62e;
+  --skin-ink: #e9f2d6;
+  --skin-muted: #98a97b;
+  --skin-signal: #ff5a1f;
+  --skin-color-scheme: dark;
+  --skin-scrim: rgba(2, 4, 1, 0.82);
+  --skin-on-accent: #060804;
+  --skin-on-accent-muted: #2a3008;
+  /* 默认字体由外观设置里的字体选项通过内联 --skin-font-family 覆盖。 */
+  --skin-font-family: var(--app-font-sans);
+  --skin-font-body: var(--skin-font-family);
+  --skin-font-display: var(--skin-font-family);
+  --skin-font-mono: var(--skin-font-family);
+  --skin-corner-xs: 0px;
+  --skin-corner-s: 0px;
+  --skin-corner-m: 0px;
+  --skin-corner-l: 0px;
+  --skin-corner-xl: 0px;
+  /* 胶囊圆角：按钮、标签、单选等。MARATHON 是硬切角；玻璃皮肤会改成全圆。 */
+  --skin-corner-pill: 0px;
+  /* 字距缩放：MARATHON 的终端感来自宽字距；非终端皮肤把它调到 0 就能整体收紧。 */
+  --skin-track-scale: 1;
+  --skin-title-weight: 700;
+
+  /* —— 材质层（共享结构层只消费这一组，不再写死色值和圆角）————————————
+     每一项都复刻 MARATHON 现有外观；新皮肤只改这一段就能换掉「表面质感」。
+     fill/filter 是主面板；chrome 是导航壳；float 是对话框与浮层。 */
+  --skin-mat-chrome: var(--skin-bg);
+  --skin-mat-chrome-filter: none;
+  --skin-mat-fill: var(--skin-panel);
+  --skin-mat-fill-2: var(--skin-panel-2);
+  --skin-mat-fill-3: var(--skin-panel-3);
+  --skin-mat-filter: none;
+  --skin-mat-float-fill: var(--skin-panel);
+  --skin-mat-float-filter: none;
+  --skin-mat-field: linear-gradient(180deg, var(--skin-panel-3), var(--skin-panel-2));
+  --skin-mat-border: 1px solid var(--skin-line);
+  --skin-mat-edge: 2px solid var(--skin-accent-dim);
+  --skin-mat-topbar-edge: 3px solid var(--skin-accent-dim);
+  --skin-mat-float-border-color: var(--skin-accent-dim);
+  --skin-mat-title-color: var(--skin-accent);
+  --skin-mat-label-color: var(--skin-accent);
+  --skin-mat-value-color: var(--skin-accent);
+  --skin-mat-divider: 1px dashed var(--skin-line);
+  --skin-mat-card-head-line: 1px solid rgba(0, 0, 0, 0.45);
+  --skin-mat-on-accent-line: rgba(0, 0, 0, 0.35);
+  --skin-mat-field-container: var(--skin-container-highest);
+  --skin-mat-field-outline: var(--skin-outline);
+  --skin-mat-mini-top: 2px solid var(--skin-accent-dim);
+  --skin-mat-ability-top: 2px solid var(--skin-line);
+  --skin-mat-render-edge: 2px solid var(--skin-line);
+  --skin-mat-wash: repeating-linear-gradient(0deg, transparent 0 3px, rgba(0, 0, 0, 0.1) 3px 4px),
+    linear-gradient(180deg, color-mix(in srgb, var(--skin-accent) 5.5%, transparent), transparent 120px);
+  --skin-mat-wash-strong: repeating-linear-gradient(90deg, transparent 0 72px, color-mix(in srgb, var(--skin-accent) 3.5%, transparent) 72px 73px),
+    radial-gradient(120% 90% at 100% 0%, color-mix(in srgb, var(--skin-accent) 8%, transparent), transparent 58%),
+    linear-gradient(180deg, color-mix(in srgb, var(--skin-accent) 5%, transparent), transparent 150px);
+  --skin-mat-wash-dialog: linear-gradient(color-mix(in srgb, var(--skin-accent) 2.2%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--skin-accent) 2.2%, transparent) 1px, transparent 1px);
+  --skin-mat-wash-dialog-size: 24px 24px;
+  /* 现有 body 背景层最后一层是颜色，整条声明本来就无效（计算值为 none）。
+     这里保留 none，确保重构不改变画面；玻璃皮肤再换成真正的环境渐变。 */
+  --skin-mat-ambient: none;
+  --skin-mat-canvas: linear-gradient(color-mix(in srgb, var(--skin-accent) 2.8%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--skin-accent) 2.8%, transparent) 1px, transparent 1px);
+  --skin-mat-canvas-size: 32px 32px;
+  --skin-mat-rim: inset 0 0 0 1px rgba(0, 0, 0, 0.55), 0 22px 44px -36px #000;
+  --skin-mat-pop-rim: 0 0 0 1px #000, 0 18px 40px -20px #000;
+  --skin-mat-float-rim: 0 0 0 1px #000, 0 30px 80px -24px #000,
+    0 0 60px color-mix(in srgb, var(--skin-accent) 10%, transparent);
+  --skin-mat-portrait-rim: 0 0 0 1px #000, 0 0 30px color-mix(in srgb, var(--skin-accent) 14%, transparent);
+  --skin-mat-glow-title: 0 0 14px color-mix(in srgb, var(--skin-accent) 28%, transparent);
+  --skin-mat-glow-value: 0 0 18px color-mix(in srgb, var(--skin-accent) 20%, transparent);
+  --skin-mat-glow-active: 0 0 22px color-mix(in srgb, var(--skin-accent) 18%, transparent);
+  --skin-mat-glow-rail: inset -1px 0 0 color-mix(in srgb, var(--skin-accent) 6%, transparent);
+}
+
+/* MARATHON 浅色：纸面终端。文字/描边用深橄榄保证对比度，填充块仍用亮酸绿。 */
+html[data-skin="marathon"][data-skin-mode="light"] {
+  --skin-void: #e8e5d8;
+  --skin-bg: #f3f1e7;
+  --skin-surface: #fbf9f0;
+  --skin-surface-variant: #d8d5c4;
+  --skin-on-surface-variant: #4d503e;
+  --skin-bright: #ffffff;
+  --skin-container-lowest: #fdfbf4;
+  --skin-container-low: #f6f4ea;
+  --skin-container: #efecdf;
+  --skin-container-high: #e7e4d5;
+  --skin-container-highest: #dedaca;
+  --skin-outline: #6d7059;
+  --skin-outline-variant: #c6c3b1;
+  --skin-primary: #4a5d00;
+  --skin-on-primary: #ffffff;
+  --skin-primary-container: #d6ee8c;
+  --skin-on-primary-container: #1b2400;
+  --skin-secondary: #5d6350;
+  --skin-on-secondary: #ffffff;
+  --skin-secondary-container: #e0e2cd;
+  --skin-on-secondary-container: #1c1f14;
+  --skin-tertiary: #a63b12;
+  --skin-on-tertiary: #ffffff;
+  --skin-tertiary-container: #ffdcc9;
+  --skin-on-tertiary-container: #3a0f00;
+  --skin-error: #b3261e;
+  --skin-on-error: #ffffff;
+  --skin-error-container: #ffdad6;
+  --skin-on-error-container: #410e0b;
+  --skin-inverse-primary: #d9ff44;
+  --skin-panel: #f7f4e9;
+  --skin-panel-2: #efece0;
+  --skin-panel-3: #e7e3d5;
+  --skin-line: #b0ad99;
+  --skin-line-soft: #d3d0c0;
+  --skin-accent: #4a5d00;
+  --skin-accent-fill: #d4f24a;
+  --skin-accent-dim: #6f8a12;
+  --skin-ink: #11150a;
+  --skin-muted: #5b6048;
+  --skin-signal: #c2410c;
+  --skin-color-scheme: light;
+  --skin-scrim: rgba(24, 22, 12, 0.45);
+  --skin-on-accent: #0a0d02;
+  --skin-on-accent-muted: #2a3300;
+}
