@@ -13,6 +13,9 @@ import { spawnSync } from "node:child_process";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
+// 便携版打完后顺手写 SHA256SUMS.txt：云端流水线只跑这一条命令就能拿到全部附件
+import { writeSums } from "./make-sums.mjs";
+
 const here = dirname(fileURLToPath(import.meta.url));
 const desktopDir = join(here, "..");
 const pkg = JSON.parse(readFileSync(join(desktopDir, "package.json"), "utf8"));
@@ -74,6 +77,9 @@ if (!keepStage) {
 }
 step("完成：" + (keepStage ? stage : zip + "（暂存目录已清理，加 --keep-stage 可保留）"));
 step("体积：解压后约 " + stageMb.toFixed(1) + " MB；zip " + (statSync(zip).size / 1048576).toFixed(1) + " MB");
+
+const sums = writeSums(releaseDir);
+step(sums ? "已写入 " + sums : "没有找到 *-setup.exe / *portable.zip，跳过 SHA256SUMS.txt");
 console.log(
   JSON.stringify({
     stage,

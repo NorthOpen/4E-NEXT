@@ -26,6 +26,8 @@
 
 如您希望在本地部署并开发，克隆本仓库至本地后使用 `pnpm --filter 4enext-web dev`，在本地浏览器构建即可。
 
+维护者发版流程（版本号同步、打 tag、云端自动出三端包）见 [RELEASING.md](RELEASING.md)。
+
 ## 独立应用
 
 除网页版外，项目提供封装后的Windows setup与portable两种桌面版本与Android apk版本。为在意缓存占用和希望使用独立应用的用户提供。

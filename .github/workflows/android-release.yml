@@ -3,11 +3,16 @@ name: Android Release
 # 安卓发布流水线。
 #
 # 与桌面版一致：**打 tag 才出包**，push 到 main 不触发。
-#   git tag -a "4E-NEXT-Android-V0.3.4" -m "4E NEXT 安卓版 0.3.4"
-#   git push origin "4E-NEXT-Android-V0.3.4"
+#   git tag -a "4E-NEXT-V0.4.2" -m "4E NEXT 0.4.2" && git push origin "4E-NEXT-V0.4.2"
+#     → 总 tag：本流水线与 Desktop Release 同时跑，三端一起出
+#   git tag -a "4E-NEXT-Android-V0.4.2" -m "..." && git push origin "4E-NEXT-Android-V0.4.2"
+#     → 只重出安卓端
 #
 # 也可以手动触发（workflow_dispatch），只出 artifact 不建 Release——
 # 用来在真机验证前先拿一个包。
+#
+# Release 约定：名称与介绍都只写 tag（4E-NEXT-Android-V0.4.2）；
+# 发布成功后自动删除同前缀的旧版本 Release（git tag 保留），Releases 页只留最新一版。
 #
 # 需要配置的 Secrets（Settings → Secrets and variables → Actions）：
 #   ANDROID_KEYSTORE_BASE64    keystore 文件的 base64
@@ -26,6 +31,7 @@ on:
   push:
     tags:
       - "4E-NEXT-Android-V*"
+      - "4E-NEXT-V*"
   workflow_dispatch:
 
 permissions:
@@ -69,6 +75,29 @@ jobs:
             echo "修法：git update-index --chmod=+x android/gradlew && git commit"
             exit 1
           fi
+
+      # tag 里的版本必须与仓库里的版本一致：否则会发出「tag 是 0.4.2、APK 是 0.4.1」的包。
+      # 总 tag（4E-NEXT-V0.4.2）与分 tag（4E-NEXT-Android-V0.4.2）都从最后一个 V 后面取版本。
+      - name: Resolve and verify version
+        run: |
+          if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
+            version="${GITHUB_REF_NAME##*V}"
+          else
+            version="$(node -p 'require("./web/package.json").version')"
+          fi
+          web="$(node -p 'require("./web/package.json").version')"
+          gradle="$(sed -n 's/^[[:space:]]*versionName = "\(.*\)"/\1/p' android/app/build.gradle.kts)"
+          echo "VERSION=$version" >> "$GITHUB_ENV"
+          echo "RELEASE_TAG=4E-NEXT-Android-V$version" >> "$GITHUB_ENV"
+          if [[ "$web" != "$gradle" ]]; then
+            echo "::error::web/package.json ($web) 与 android versionName ($gradle) 版本不一致"
+            exit 1
+          fi
+          if [[ "$version" != "$web" ]]; then
+            echo "::error::tag 里的版本 ($version) 与 web/package.json ($web) 不一致——先跑 scripts/bump-version.mjs 再打 tag"
+            exit 1
+          fi
+          echo "版本：$version（tag 将是 $RELEASE_TAG）"
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -136,14 +165,18 @@ jobs:
             android/release/SHA256SUMS.txt
 
       # 建 Release 并上传附件。复用桌面端那个脚本（--release-dir 换目录），
-      # 于是"复用已存在的 Release、跳过已传过的附件"这套续传逻辑两端共用。
+      # 于是"复用已存在的 Release、跳过已传过的附件、清理旧版本"这套逻辑三端共用。
+      # 名称与介绍都只写 tag（--notes "$RELEASE_TAG"），这是维护者定的发布格式。
       - name: Create GitHub Release
         if: startsWith(github.ref, 'refs/tags/')
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          target="$(git rev-parse HEAD)"
           node desktop/scripts/create-release.mjs \
             --release-dir android/release \
-            --tag "${GITHUB_REF_NAME}" \
-            --title "4E NEXT 安卓版（${GITHUB_REF_NAME}）" \
-            --notes-file android/RELEASE-NOTES.md
+            --tag "$RELEASE_TAG" \
+            --title "$RELEASE_TAG" \
+            --notes "$RELEASE_TAG" \
+            --target "$target" \
+            --prune "4E-NEXT-Android-V"

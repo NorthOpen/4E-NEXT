@@ -1,0 +1,151 @@
+name: Desktop Release
+
+# 桌面端（Windows）发布流水线：安装版 + 便携版。
+#
+# 触发方式：
+#   · 总 tag（推荐，三端一起出）：
+#       git tag 4E-NEXT-V0.4.2 && git push origin 4E-NEXT-V0.4.2
+#     → 本流水线与 Android Release 同时跑，各自创建「名称 = 介绍 = tag」的 Release
+#   · 只重出桌面端：
+#       git tag 4E-NEXT-Desktop-V0.4.2 && git push origin 4E-NEXT-Desktop-V0.4.2
+#   · 手动触发（workflow_dispatch）：只出 artifact，不建 Release，用来验证流水线
+#
+# 约定：
+#   · Release 名称与介绍**都只写 tag**（4E-NEXT-Desktop-V0.4.2），不加其他内容
+#   · 发布成功后自动删除同前缀的旧版本 Release（git tag 保留），Releases 页只留最新一版
+#   · tag 里的版本必须与 web/package.json、desktop/package.json 完全一致，否则直接失败
+#   · 不推 Android/Desktop 两个分 tag：总 tag 已经会把两端都拉起来，重复推会重复构建
+#     （发布脚本会复用已存在的 Release 并跳过已传附件，不会造成重复附件，但白等时间）
+
+on:
+  push:
+    tags:
+      - "4E-NEXT-Desktop-V*"
+      - "4E-NEXT-V*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: desktop-release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      # 与网页端部署同一条守卫：确认 desktop/ 没被误加进 pnpm workspace
+      - name: "Guard: desktop/android not in pnpm workspace"
+        run: node scripts/verify-workspace.mjs
+
+      - name: Install web dependencies
+        run: pnpm install --frozen-lockfile
+
+      # ELECTRON_SKIP_BINARY_DOWNLOAD：打包用的是 electronDist 指向的离线 zip（下一步取），
+      # npm postinstall 再下一份 158MB 的 Electron 纯属浪费，而且 CI 上更容易超时。
+      - name: Install desktop dependencies
+        env:
+          ELECTRON_SKIP_BINARY_DOWNLOAD: "1"
+        run: npm --prefix desktop ci
+
+      - name: Build data pipeline
+        run: pnpm pipeline
+
+      - name: Build desktop renderer
+        run: pnpm --filter 4enext-web build:desktop
+
+      # 内置字体 65MB / 1055 个分片，不入库。缓存策略与 Android Release 一致：
+      # 只有首次或 fetch-fonts.mjs 改动时才真正下载。
+      - name: Cache offline fonts
+        uses: actions/cache@v4
+        with:
+          path: desktop/assets/fonts
+          key: fonts-${{ hashFiles('desktop/scripts/fetch-fonts.mjs') }}
+
+      - name: Fetch offline fonts
+        run: node desktop/scripts/fetch-fonts.mjs
+
+      # Electron 运行时 158MB：electronDist 指向 .electron-cache 里的 zip，
+      # 缓存命中时整步秒过；未命中时从镜像下载并校验官方 sha256。
+      - name: Cache Electron runtime
+        uses: actions/cache@v4
+        with:
+          path: .electron-cache
+          key: electron-${{ hashFiles('desktop/package-lock.json') }}
+
+      - name: Fetch Electron runtime
+        run: node desktop/scripts/fetch-electron.mjs
+
+      # tag 里的版本必须与仓库里的版本一致：否则会发出「tag 是 0.4.2、安装包是 0.4.1」的包，
+      # 而且这种错误只有在用户下载后才会暴露。
+      - name: Resolve and verify version
+        run: |
+          if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
+            version="${GITHUB_REF_NAME##*V}"
+          else
+            version="$(node -p 'require("./desktop/package.json").version')"
+          fi
+          desktop="$(node -p 'require("./desktop/package.json").version')"
+          web="$(node -p 'require("./web/package.json").version')"
+          echo "VERSION=$version" >> "$GITHUB_ENV"
+          echo "RELEASE_TAG=4E-NEXT-Desktop-V$version" >> "$GITHUB_ENV"
+          if [[ "$desktop" != "$web" ]]; then
+            echo "::error::desktop/package.json ($desktop) 与 web/package.json ($web) 版本不一致"
+            exit 1
+          fi
+          if [[ "$version" != "$desktop" ]]; then
+            echo "::error::tag 里的版本 ($version) 与 package.json ($desktop) 不一致——先跑 scripts/bump-version.mjs 再打 tag"
+            exit 1
+          fi
+          echo "版本：$version（tag 将是 $RELEASE_TAG）"
+
+      - name: Build installer
+        run: npm --prefix desktop run dist
+
+      # 注意：不要用 `npm run pack:portable`——它会再跑一遍 electron-builder --dir，
+      # 而 dist 已经产出 win-unpacked，直接跑脚本能省掉几分钟的重复打包。
+      - name: Build portable zip
+        run: node desktop/scripts/pack-portable.mjs
+
+      - name: Write SHA256SUMS
+        run: node desktop/scripts/make-sums.mjs desktop/release
+
+      # 手动触发时把产物留在 artifact 里，方便真机验证；tag 触发时产物走 Release。
+      - name: Upload build artifact (manual runs only)
+        if: github.event_name == 'workflow_dispatch'
+        uses: actions/upload-artifact@v4
+        with:
+          name: 4e-next-desktop
+          if-no-files-found: error
+          path: |
+            desktop/release/*.exe
+            desktop/release/*.zip
+            desktop/release/SHA256SUMS.txt
+
+      - name: Create GitHub Release
+        if: startsWith(github.ref, 'refs/tags/')
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # tag 可能是轻量/附注两种；用 git rev-parse HEAD 拿到真实 commit，
+          # 避免把附注 tag 的对象 SHA 当成 target_commitish。
+          target="$(git rev-parse HEAD)"
+          node desktop/scripts/create-release.mjs \
+            --tag "$RELEASE_TAG" \
+            --title "$RELEASE_TAG" \
+            --notes "$RELEASE_TAG" \
+            --target "$target" \
+            --prune "4E-NEXT-Desktop-V"

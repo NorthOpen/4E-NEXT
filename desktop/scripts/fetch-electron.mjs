@@ -24,14 +24,39 @@ if (existsSync(zip) && statSync(zip).size > 1024 * 1024) {
 }
 
 mkdirSync(outDir, { recursive: true });
-const url = mirror + version + "/electron-v" + version + "-win32-x64.zip";
-console.log("[fetch-electron] 下载 " + url);
+const fileName = "electron-v" + version + "-win32-x64.zip";
 
-const res = await fetch(url);
-if (!res.ok) {
-  console.error("[fetch-electron] 下载失败：HTTP " + res.status);
+// 镜像地址有两种布局，CI 上主源不通时要能自动换源：
+//   · npmmirror：<base>/<version>/<file>        （不带 v）
+//   · GitHub 官方：<base>/v<version>/<file>     （带 v）
+// 国内本地开发用 npmmirror 快；GitHub 托管 runner 上官方源通常更稳。
+const bases = [mirror, "https://github.com/electron/electron/releases/download/"];
+function urlFor(base) {
+  const tag = base.includes("github.com") ? "v" + version : version;
+  return base.replace(/\/?$/, "/") + tag + "/" + fileName;
+}
+
+let res = null;
+let url = "";
+for (const base of bases) {
+  url = urlFor(base);
+  console.log("[fetch-electron] 尝试 " + url);
+  try {
+    const r = await fetch(url, { signal: AbortSignal.timeout(180000) });
+    if (r.ok) {
+      res = r;
+      break;
+    }
+    console.error("[fetch-electron] 该源不可用：HTTP " + r.status);
+  } catch (err) {
+    console.error("[fetch-electron] 该源不可用：" + (err instanceof Error ? err.message : String(err)));
+  }
+}
+if (!res) {
+  console.error("[fetch-electron] 所有下载源都失败了。");
   process.exit(1);
 }
+console.log("[fetch-electron] 使用 " + url);
 const total = Number(res.headers.get("content-length") || 0);
 const file = createWriteStream(zip);
 await new Promise((resolve, reject) => {

@@ -56,6 +56,14 @@ if (!tag) {
 }
 const title = flag("title", tag);
 const notesFile = flag("notes-file", null);
+// --notes：直接把一段文本当发布说明。三端发布要求「发布名称 = 发布介绍 = tag」，
+// 云端流水线用 --notes "$TAG" 一行就能满足，不必再生成临时文件。
+const notes = flag("notes", null);
+// --target：Release 要新建 tag 时，tag 指向哪个 commit。云端传 GITHUB_SHA，
+// 避免在推送 tag 之后 main 又前进时把新 tag 指到错的提交上。
+const target = flag("target", null);
+// --prune：上传完成后删掉同前缀的旧 Release（只删 Release，保留 git tag 历史）。
+const prunePrefix = flag("prune", null);
 const prerelease = has("prerelease");
 const draft = has("draft");
 const dryRun = has("dry-run");
@@ -101,13 +109,21 @@ if (!skipUpload && assets.length === 0) {
   process.exit(1);
 }
 
-const body = notesFile ? readFileSync(notesFile, "utf8") : "";
+const body = notes !== null ? notes : notesFile ? readFileSync(notesFile, "utf8") : "";
 
 console.log("[release] 仓库：" + repo);
 console.log("[release] tag：" + tag);
 console.log("[release] 标题：" + title);
 console.log("[release] 预发布：" + prerelease + "  草稿：" + draft);
-console.log("[release] 说明：" + (notesFile ? notesFile + "（" + body.length + " 字符）" : "（空）"));
+console.log(
+  "[release] 说明：" +
+    (notes !== null
+      ? "--notes 参数（" + body.length + " 字符）"
+      : notesFile
+        ? notesFile + "（" + body.length + " 字符）"
+        : "（空）"),
+);
+if (prunePrefix) console.log("[release] 发布后清理旧版本：tag 前缀 " + prunePrefix);
 for (const a of assets) {
   console.log("[release] 附件：" + a + (existsSync(a) ? "（" + (statSync(a).size / 1048576).toFixed(1) + " MB）" : "  ← 不存在！"));
 }
@@ -141,7 +157,14 @@ async function main() {
     const res = await fetch(api + "/repos/" + repo + "/releases", {
       method: "POST",
       headers: { ...headers, "Content-Type": "application/json" },
-      body: JSON.stringify({ tag_name: tag, name: title, body, prerelease, draft }),
+      body: JSON.stringify({
+        tag_name: tag,
+        target_commitish: target || undefined,
+        name: title,
+        body,
+        prerelease,
+        draft,
+      }),
     });
     if (!res.ok) {
       console.error("[release] 创建失败 HTTP " + res.status);
@@ -150,6 +173,24 @@ async function main() {
     }
     release = await res.json();
     console.log("[release] 已创建：" + release.html_url);
+  }
+
+  // 复用已有 Release 时也把名称/说明对齐到本次的值：
+  // 云端第一次发布若失败在半路，或者旧版本用的是别的标题格式，重跑一次就能修正，
+  // 不用手工去网页上改。
+  if (release && (release.name !== title || release.body !== body)) {
+    console.log("[release] 已有 Release 的名称/说明与本次不一致，更新为当前值。");
+    const patch = await fetch(api + "/repos/" + repo + "/releases/" + release.id, {
+      method: "PATCH",
+      headers: { ...headers, "Content-Type": "application/json" },
+      body: JSON.stringify({ name: title, body }),
+    });
+    if (!patch.ok) {
+      console.error("[release] 更新名称/说明失败 HTTP " + patch.status);
+      console.error((await patch.text()).slice(0, 400));
+      process.exit(1);
+    }
+    release = await patch.json();
   }
 
   const uploaded = new Set((release.assets || []).map((a) => a.name));
@@ -177,7 +218,40 @@ async function main() {
     console.log("[release]   ✓ " + asset.name + "  " + (asset.size / 1048576).toFixed(1) + " MB");
   }
 
+  if (prunePrefix) await pruneOlderReleases();
+
   console.log("\n[release] 完成：" + release.html_url);
+}
+
+/**
+ * 删除同前缀的旧 Release（**保留** git tag）。
+ *
+ * 三端的约定是「每端只留最新一版」：旧安装包/APK 留在 Releases 页会让人下到过期版本。
+ * 只删 Release 不删 tag —— 源码历史、提交引用都还在，想找回旧版源码随时可以。
+ */
+async function pruneOlderReleases() {
+  const res = await fetch(api + "/repos/" + repo + "/releases?per_page=100", { headers });
+  if (!res.ok) {
+    console.warn("[release] 读取 Release 列表失败 HTTP " + res.status + "，跳过旧版本清理。");
+    return;
+  }
+  const all = await res.json();
+  const older = all
+    .filter((r) => r.tag_name !== tag && r.tag_name.startsWith(prunePrefix))
+    .sort((a, b) => String(a.created_at).localeCompare(String(b.created_at)));
+  if (!older.length) {
+    console.log("[release] 没有需要清理的旧版本（前缀 " + prunePrefix + "）。");
+    return;
+  }
+  for (const r of older) {
+    console.log("[release] 删除旧版本 Release：" + r.tag_name + "（git tag 保留）");
+    const del = await fetch(api + "/repos/" + repo + "/releases/" + r.id, { method: "DELETE", headers });
+    if (!del.ok && del.status !== 404) {
+      console.warn("[release]   删除失败 HTTP " + del.status + "：" + (await del.text()).slice(0, 200));
+    } else {
+      console.log("[release]   ✓ 已删除");
+    }
+  }
 }
 
 await main();
