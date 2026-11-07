@@ -64,11 +64,9 @@ jobs:
       - name: Build data pipeline
         run: pnpm pipeline
 
-      - name: Build desktop renderer
-        run: pnpm --filter 4enext-web build:desktop
-
-      # 内置字体 65MB / 1055 个分片，不入库。缓存策略与 Android Release 一致：
-      # 只有首次或 fetch-fonts.mjs 改动时才真正下载。
+      # 内置字体必须在渲染构建**之前**抓好：vite 构建时检查 desktop/assets/fonts/chiron.css，
+      # 文件不存在就退回「保留字体 CDN 链接、跳过字体复制」的分支——产物能跑，但离线没字体。
+      # 0.4.1 的 Linux 首发就是栽在这（冒烟 14/16：外部字体 link = 2）。
       - name: Cache offline fonts
         uses: actions/cache@v4
         with:
@@ -77,6 +75,9 @@ jobs:
 
       - name: Fetch offline fonts
         run: node desktop/scripts/fetch-fonts.mjs
+
+      - name: Build desktop renderer
+        run: pnpm --filter 4enext-web build:desktop
 
       # Electron 运行时 158MB：electronDist 指向 .electron-cache 里的 zip，
       # 缓存命中时整步秒过；未命中时从镜像下载并校验官方 sha256。

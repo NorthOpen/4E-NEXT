@@ -59,10 +59,7 @@ jobs:
       - name: Build data pipeline
         run: pnpm pipeline
 
-      - name: Build desktop renderer
-        run: pnpm --filter 4enext-web build:desktop
-
-      # 内置字体 65MB / 1055 个分片，不入库；缓存策略与另两端一致
+      # 字体必须在渲染构建之前就位（原因见 desktop-release.yml 同一步骤的注释）
       - name: Cache offline fonts
         uses: actions/cache@v4
         with:
@@ -71,6 +68,9 @@ jobs:
 
       - name: Fetch offline fonts
         run: node desktop/scripts/fetch-fonts.mjs
+
+      - name: Build desktop renderer
+        run: pnpm --filter 4enext-web build:desktop
 
       # Linux 运行时 zip（约 110MB）。fetch-electron.mjs 按当前平台自动取 linux-x64。
       - name: Cache Electron runtime
@@ -112,15 +112,13 @@ jobs:
       - name: Write SHA256SUMS
         run: node desktop/scripts/make-sums.mjs desktop/release-linux
 
-      # 冒烟自检：在 xvfb 里真启动一次 Electron（存储/IndexedDB/菜单/数据加载）。
-      # 首次接入 Linux 时用 continue-on-error：无头环境的沙箱/GPU 偶发问题不该挡住发布；
-      # 结果看日志，真出问题再把它改成阻塞。
+      # 冒烟自检：在 xvfb 里真启动一次 Electron（存储/IndexedDB/数据加载/字体）。
+      # 阻塞式：0.4.1 首发就是靠它发现「字体没打进产物」的（14/16）。冒烟不过就不发版。
       - name: Smoke test (xvfb)
-        continue-on-error: true
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y -qq xvfb >/dev/null
-          xvfb-run -a npm --prefix desktop run smoke -- --no-sandbox
+          xvfb-run -a npm --prefix desktop run smoke -- --no-sandbox --disable-gpu
 
       - name: Upload build artifact (manual runs only)
         if: github.event_name == 'workflow_dispatch'
