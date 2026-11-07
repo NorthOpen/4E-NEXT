@@ -2,6 +2,11 @@
 export function wikiToHtml(text: string, fields: Record<string, string>): string {
   return text
     .replace(/<div class="sidebar">[\s\S]*?<\/div>/g, "") // 剥离词条侧边栏块（如守望者形态威能等补充说明），不混入角色卡正文
+    // `^^…^^` 是 TiddlyWiki 的注记标记：官方仪式/威能抬头用它夹来源与期号（`^^PH2^^`），
+    // 内容（书籍代号）由卡片抬头统一展示，正文里再出现就只剩一对没人读得懂的符号。
+    // 先整块删掉连标记带内容，再兜底清掉落单的 `^^`。
+    .replace(/\^\^[^\n]{0,140}?\^\^/g, "")
+    .replace(/\^\^/g, "")
     .replace(/<<[^>]+>>/g, "")
     .replace(/<\$[^>]*\/?>/g, "")
     .replace(/@@\.\w+\s*/g, "")

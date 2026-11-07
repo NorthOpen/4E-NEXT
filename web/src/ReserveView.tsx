@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { loadCategory, loadRelations } from "./data/loaders";
 import type { Entry } from "./data/types";
-import { setFeatSlot, clearFeatSlot, type Character } from "./sheet/character";
+import { setFeatSlot, clearFeatSlot, isItemFree, toggleItemFree, type Character } from "./sheet/character";
 import PowerSlotPicker from "./sheet/PowerSlotPicker";
 import ItemSlotPicker from "./sheet/ItemSlotPicker";
 import EntryCard from "./sheet/EntryCard";
+import { FreeMarkToggle } from "./sheet/FreeMarkToggle";
 
 interface Props {
   layout: "single" | "double";
@@ -73,7 +74,8 @@ export default function ReserveView({ layout, char, setChar }: Props) {
     const it = itemOf(id);
     return (
       <div key={i} className="slot-filled reserve-slot-card">
-        {it ? <EntryCard entry={it} /> : <div className="reserve-loading">装备数据加载中…</div>}
+        {/* 背包里的物品沿用同一枚标记：装备槽 ↔ 背包 是同一个物品 id，状态自然跟随 */}
+        {it ? <EntryCard entry={it} action={<FreeMarkToggle free={isItemFree(char, it.id)} onToggle={() => setChar(toggleItemFree(char, it.id))} />} /> : <div className="reserve-loading">装备数据加载中…</div>}
         <button type="button" className="crop-btn reserve-x" title="移出背包" onClick={(e) => { e.stopPropagation(); clear(); }}>✕</button>
       </div>
     );

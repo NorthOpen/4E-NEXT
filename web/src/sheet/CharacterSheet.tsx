@@ -4,7 +4,8 @@ import { createPortal } from "react-dom";
 import { FilledTextField, FilledSelect, SelectOption, TextButton, IconButton, FilledTonalButton, Switch, Tabs, PrimaryTab } from "../components/md";
 import { loadCategory, loadRelations } from "../data/loaders";
 import type { Entry } from "../data/types";
-import { type AbilityKey, type Character, ABILITY_LABELS, deriveStats, isHeavyArmor, parseClassStats, parseRaceAbilities, racialBonus, applyAbilityBonus, parseTrainedSkillCount, parseClassSkills, parseBuiltinTrainedSkills, cleanDisplayName, setPowerSlot, clearPowerSlot, setFeatSlot, clearFeatSlot, setEquipmentSlot, clearEquipmentSlot, EQUIPMENT_SLOTS, equipUsedKey, type EquipSlotKind, buyPointsUsed, BUY_POINTS, DEFENSE_BONUS_SOURCES, parseRaceDefenses, baseClassName, SKILL_TABLE, ARMOR_PENALTY_SKILLS, armorPenaltyFor, zhName, type DefenseKey, type DefenseBonusSource, type SpeedMods, type SkillMods, type PowerSlots, grantedPowerCategory, grantedPowerSlot, type SlotLevel, type ClassStats, type RaceDefenseBonus, type DerivedStats, setRitualSlot, clearRitualSlot, customSum, emptyCustomBonuses, type CustomBonuses, type CustomEntry } from "./character";
+import { FreeMarkToggle } from "./FreeMarkToggle";
+import { type AbilityKey, type Character, ABILITY_LABELS, deriveStats, isHeavyArmor, parseClassStats, parseRaceAbilities, racialBonus, applyAbilityBonus, parseTrainedSkillCount, parseClassSkills, parseBuiltinTrainedSkills, cleanDisplayName, setPowerSlot, clearPowerSlot, setFeatSlot, clearFeatSlot, setEquipmentSlot, clearEquipmentSlot, EQUIPMENT_SLOTS, equipUsedKey, type EquipSlotKind, buyPointsUsed, BUY_POINTS, DEFENSE_BONUS_SOURCES, parseRaceDefenses, baseClassName, SKILL_TABLE, ARMOR_PENALTY_SKILLS, armorPenaltyFor, zhName, type DefenseKey, type DefenseBonusSource, type SpeedMods, type SkillMods, type PowerSlots, grantedPowerCategory, grantedPowerSlot, type SlotLevel, type ClassStats, type RaceDefenseBonus, type DerivedStats, setRitualSlot, clearRitualSlot, customSum, emptyCustomBonuses, type CustomBonuses, type CustomEntry, isItemFree, toggleItemFree, isRitualFree, toggleRitualFreeId } from "./character";
 import { LEVELS, levelFromXp, xpForLevel } from "./leveling";
 import { powerSlotLevels } from "./candidates";
 import { featGrantedPowers, featReplacementInfo, featPrereqClassFeature } from "./featEffects";
@@ -418,6 +419,11 @@ function equipKindPatch(kind: EquipSlotKind, arr: (string | undefined)[]): Parti
   return kind === "fixed" ? { equipmentSlots: arr } : kind === "other" ? { otherSlots: arr } : kind === "consumable" ? { consumableSlots: arr } : kind === "wondrous" ? { wondrousSlots: arr } : { companionSlots: arr };
 }
 
+// 装备槽当前物品 id（魔法物品优先，基础件兜底）——「免费获得」标记就按这个 id 记
+function slotItemId(c: Character, index: number): string {
+  return c.equipmentSlots[index] ?? c.baseItems[index] ?? "";
+}
+
 // 基础物品块：名称 + 大字伤害骰/AC + 简名特性；特性完整定义悬浮显示（同威能简洁模式）。
 // 走 SmartHover：桌面上悬停出浮层，触屏上长按出底部卡片 —— 原来写死 :hover 的话，
 // 手机上不仅看不到完整特性，轻点还会直接跳去「更换基础物品」。
@@ -619,6 +625,9 @@ function EquipGroupSlots(props: {
   onEnhance?: (i: number, tier: number) => void;
   // 简洁模式下副标题的替代文案（物品默认显示稀有度+等级，生物没有这两项）
   subOf?: (i: number, item: Entry) => string;
+  // 花销标记（只给真正计入「自动花销」的槽位组传：穿戴部位 + 冒险装备）
+  freeOf?: (i: number) => boolean;
+  onToggleFree?: (i: number) => void;
 }) {
   if (!props.detail) {
     return (
@@ -638,6 +647,7 @@ function EquipGroupSlots(props: {
                 {baseName && <span className="compact-base" onClick={(e) => { e.stopPropagation(); props.onBaseClick?.(i); }}>{baseName}</span>}
                 <span className="cr-name">{item.name}{item.nameEn ? " " + item.nameEn : ""}</span>
                 <span className="cr-sub">{props.subOf ? props.subOf(i, item) : <>{item.rarity}{item.itemLevel ? " · L" + item.itemLevel : ""}</>}</span>
+                {props.freeOf && <FreeMarkToggle free={!!props.freeOf(i)} onToggle={() => props.onToggleFree?.(i)} />}
                 <IconButton className="slot-x" title={used ? "已标记使用（锁定）" : "清空槽位"} aria-label="清空槽位" onClick={(e) => { e.stopPropagation(); if (used) return; props.clear(i); }}><span className="material-symbols-outlined">close</span></IconButton>
               </SmartHover>
             );
@@ -680,7 +690,7 @@ function EquipGroupSlots(props: {
                 return null;
               })()}
               <div className={"slot-filled" + (props.usedOf?.(i) ? " slot-used" : "")} onClick={() => props.picker(i)} title={props.usedOf?.(i) ? "已标记使用（锁定）" : "点击更换"}>
-                <EntryCard entry={item} />
+                <EntryCard entry={item} action={props.freeOf ? <FreeMarkToggle free={!!props.freeOf(i)} onToggle={() => props.onToggleFree?.(i)} /> : undefined} />
               </div>
             </div>
           );
@@ -5556,8 +5566,10 @@ export default function CharacterSheet({
   // 自动花销：基础物品 + 魔法装备（增强档位对应等级价格）+ 冒险装备手动价格
   const autoCosts = useMemo(() => {
     const list: { label: string; cost: number }[] = [];
+    // 被标记为「免费获得」的装备槽：基础物品价与附魔价都不计入（DM 赠送的装备不该吃掉余额）
     for (const idxStr of Object.keys(char.baseItems)) {
       const idx = parseInt(idxStr, 10);
+      if (isItemFree(char, slotItemId(char, idx))) continue;
       // 已附魔（该槽位装备了有等级表的魔法物品）：基础武器/护甲价格不再计入（附魔价含基础物）
       const mag = char.equipmentSlots[idx];
       if (mag) {
@@ -5571,7 +5583,7 @@ export default function CharacterSheet({
       if (name) list.push({ label: "基础·" + name, cost: price });
     }
     char.equipmentSlots.forEach((id, idx) => {
-      if (!id) return;
+      if (!id || isItemFree(char, id)) return;
       const e = itemMap.get(id);
       if (!e) return;
       const levels = itemLevels(e.itemLevel);
@@ -5581,14 +5593,17 @@ export default function CharacterSheet({
       list.push({ label: e.name + " +" + enhancementBonusForLevel(lv), cost: priceForLevel(lv) });
     });
     for (const a of char.adventureItems) {
-      // 冒险装备按铜币精度计入（蜡烛 1cp 这类不足 1gp 的条目不再被抹成 0）
+      // 冒险装备按铜币精度计入（蜡烛 1cp 这类不足 1gp 的条目不再被抹成 0）；标记免费获得的不计入
+      if (a.free) continue;
       const gp = typeof a.costCp === "number" ? a.costCp / 100 : a.cost;
       if (a.name && gp > 0) list.push({ label: a.name, cost: gp });
     }
-    // 已学会的仪式按市场价格计入自动花销（含职业赠送的置顶仪式）
+    // 已学会的仪式按市场价格计入自动花销（含职业赠送的置顶仪式）；
+    // 被标记为「免费获得」的条目不计入——区分自行购买与背景/职业白得的仪式
+    const freeRituals = new Set(char.ritualFreeIds ?? []);
     const autoRitualIds = new Set<string>([...(char.ritualSlots ?? []).filter((x): x is string => !!x), ...(char.classGrantedRitualIds ?? [])]);
     for (const id of autoRitualIds) {
-      if (!id) continue;
+      if (!id || freeRituals.has(id)) continue;
       const r = ritualMap.get(id);
       if (!r) continue;
       const cost = ritualMarketPrice(r);
@@ -6335,6 +6350,15 @@ export default function CharacterSheet({
   }
   function restoreRitualOverride() {
     setChar((p) => ({ ...p, ritualSlotOverride: undefined, ritualSlots: trimTrailingEmpty(p.ritualSlots ?? [], p.level) }));
+  }
+  // 仪式花销标记：区分「自行购买」与「免费获得」——后者不参与「自动花销」与余额计算。
+  // 默认全部按购买计入（与旧行为一致），玩家逐条标记即可，标记随人物卡存档。
+  const ritualCostTitle = (id: string) =>
+    isRitualFree(char, id) ? "市场价格（已标记为免费获得，不计入自动花销）" : "市场价格（计入自动花销）";
+
+  // 冒险装备没有词条 id（自定义条目更没有），标记只能挂在条目自身
+  function toggleAdvItemFree(index: number) {
+    setChar((p) => ({ ...p, adventureItems: p.adventureItems.map((a, k) => (k === index ? { ...a, free: !a.free } : a)) }));
   }
 
   // 某类别威能的等级默认槽位数（含德鲁伊「自然平衡」对随意威能特判）
@@ -7473,6 +7497,8 @@ export default function CharacterSheet({
                 levelsOf={(i) => { const id = char.equipmentSlots[g.slots[i].index]; const e = id ? itemMap.get(id) : undefined; return e ? itemLevels(e.itemLevel) : []; }}
                 enhanceOf={(i) => char.equipmentEnhance[g.slots[i].index] ?? 1}
                 onEnhance={(i, tier) => setChar((c) => ({ ...c, equipmentEnhance: { ...c.equipmentEnhance, [g.slots[i].index]: tier } }))}
+                freeOf={(i) => isItemFree(char, slotItemId(char, g.slots[i].index))}
+                onToggleFree={(i) => setChar((p) => toggleItemFree(p, slotItemId(p, g.slots[i].index)))}
               />
             </div>
           );
@@ -7550,8 +7576,7 @@ export default function CharacterSheet({
                       <span className="slot-x" title="删除此自定义项" onClick={() => setChar((p) => ({ ...p, adventureItems: p.adventureItems.filter((_, k) => k !== i) }))}>✕</span>
                       <input className="lang-input adv-cost-input" type="number" min={0} value={a.cost || ""} placeholder="gp" onChange={(e) => setAdvItem(i, { cost: parseInt(e.target.value, 10) || 0, costCp: (parseInt(e.target.value, 10) || 0) * 100 })} />
                     </>
-                  ) : (
-                    <>
+                  ) : (                    <>
                       <SmartHover
                         className="adv-pick"
                         popClass="wiki-ref-pop"
@@ -7567,6 +7592,10 @@ export default function CharacterSheet({
                       </SmartHover>
                       <input className="lang-input adv-cost-input" type="number" min={0} value={a.cost || ""} placeholder="gp" onChange={(e) => setAdvItem(i, { cost: parseInt(e.target.value, 10) || 0, costCp: (parseInt(e.target.value, 10) || 0) * 100 })} />
                     </>
+                  )}
+                  {/* 有价格才有「计不计入自动花销」可言；无价条目不给标记，免得点出一个空开关 */}
+                  {a.name && (a.cost > 0 || (a.costCp ?? 0) > 0) && (
+                    <FreeMarkToggle free={!!a.free} onToggle={() => toggleAdvItemFree(i)} />
                   )}
                 </div>
               ))}
@@ -7729,7 +7758,9 @@ export default function CharacterSheet({
           </button>
         </div>
         {((char.ritualSlots ?? []).filter(Boolean).length === 0) && (char.classGrantedRitualIds ?? []).length === 0 && (
-          <p className="hint">{ritualKind === "practice" ? "尚未掌握任何武术奥义。掌握武术奥义需要「奥义学习」专长，且需满足等级与关键技能受训要求，成本按市场价格计入自动花销。" : "尚未学会任何仪式。学会仪式需要「仪式施法者」专长，学习成本按市场价格计入自动花销。"}</p>
+          <p className="hint">{ritualKind === "practice"
+            ? "尚未掌握任何武术奥义。掌握武术奥义需要「奥义学习」专长，且需满足等级与关键技能受训要求，成本按市场价格计入自动花销。"
+            : "尚未学会任何仪式。学会仪式需要「仪式施法者」专长，学习成本按市场价格计入自动花销。"}</p>
         )}
         {blockDetail.rituals ? (
           <div className="ritual-list">
@@ -7751,7 +7782,8 @@ export default function CharacterSheet({
                           {r.keySkill ? " · 关键技能 " + r.keySkill : ""}
                         </span>
                       </div>
-                      {price > 0 && <span className="ritual-cost" title="市场价格（计入自动花销）">{price.toLocaleString("zh-CN")} gp</span>}
+                      <FreeMarkToggle free={isRitualFree(char, r.id)} onToggle={() => setChar((p) => toggleRitualFreeId(p, r.id))} />
+                      {price > 0 && <span className="ritual-cost" title={ritualCostTitle(r.id)}>{price.toLocaleString("zh-CN")} gp</span>}
                       <span className="gr-badge" title="来源职业特性">{char.classGrantedRitualSources?.[r.id] ?? "赠送"}</span>
                     </div>
                   );
@@ -7777,7 +7809,8 @@ export default function CharacterSheet({
                         {r.keySkill ? " · 关键技能 " + r.keySkill : ""}
                       </span>
                     </div>
-                    {price > 0 && <span className="ritual-cost" title="市场价格（计入自动花销）">{price.toLocaleString("zh-CN")} gp</span>}
+                    <FreeMarkToggle free={isRitualFree(char, r.id)} onToggle={() => setChar((p) => toggleRitualFreeId(p, r.id))} />
+                    {price > 0 && <span className="ritual-cost" title={ritualCostTitle(r.id)}>{price.toLocaleString("zh-CN")} gp</span>}
                     {mode === "edit" && (
                       <button type="button" className="ritual-remove" title="清空槽位" onClick={(e) => { e.stopPropagation(); clearRitualSlotAt(i); }}>×</button>
                     )}
@@ -7795,7 +7828,7 @@ export default function CharacterSheet({
               <div className="granted-rituals">
                 {grantedRitualEntries.map((r) => (
                   <div key={r.id} className="ritual-detail-item gr-item" title={"职业特性「" + (char.classGrantedRitualSources?.[r.id] ?? "") + "」赠送（不占用仪式槽位）"}>
-                    <EntryCard entry={r} />
+                    <EntryCard entry={r} action={<FreeMarkToggle free={isRitualFree(char, r.id)} onToggle={() => setChar((p) => toggleRitualFreeId(p, r.id))} />} />
                     <span className="gr-badge" title="来源职业特性">{char.classGrantedRitualSources?.[r.id] ?? "赠送"}</span>
                   </div>
                 ))}
@@ -7807,7 +7840,7 @@ export default function CharacterSheet({
               if (r) {
                 return (
                   <div key={i} className="ritual-detail-item" onClick={() => mode === "edit" && openRitualPicker(i)} title={mode === "edit" ? "点击更换" : undefined}>
-                    <EntryCard entry={r} />
+                    <EntryCard entry={r} action={<FreeMarkToggle free={isRitualFree(char, r.id)} onToggle={() => setChar((p) => toggleRitualFreeId(p, r.id))} />} />
                   </div>
                 );
               }

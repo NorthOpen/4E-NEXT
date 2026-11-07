@@ -388,8 +388,31 @@ function renderSource(src: string, f: Frame, depth: number): string {
   return restore(renderLines(frame, extractRaw(frame, out)), frame.blocks);
 }
 
+/**
+ * 表格：原文写作 `<table class="dndTable" style="width:auto">`（687 条词条里有 256 张表，
+ * 其中 34 张带 width:auto），正文又是直接注入的 HTML，包不进滚动容器。
+ * 这里做两件事：
+ *   · 去掉表格上的内联宽度 —— 否则它永远按内容收缩，撑不满板块；
+ *   · 外面套一层 `.rules-table` —— 单元格的 min-width 让它放不下时由这一层横向滚动，
+ *     而不是把整张表挤出可视区（样式见 styles.rules.css）。
+ * 语料里没有嵌套表格（逐条校验过），所以按非贪婪配对即可。
+ */
+function wrapTables(html: string): string {
+  return html.replace(/<table\b([^>]*)>([\s\S]*?)<\/table>/gi, (_m, attrs: string, body: string) => {
+    const clean = attrs.replace(/(\s)style\s*=\s*(["'])([\s\S]*?)\2/gi, (_s, lead: string, quote: string, css: string) => {
+      const rest = css
+        .split(";")
+        .map((d) => d.trim())
+        .filter((d) => d && !/^width\s*:/i.test(d))
+        .join("; ");
+      return rest ? `${lead}style=${quote}${rest}${quote}` : "";
+    });
+    return '<div class="rules-table"><table' + clean + ">" + body + "</table></div>";
+  });
+}
+
 export function renderRule(entry: RuleEntry, ctx: RuleContext): string {
-  return renderSource(entry.text, { entry, ctx, depth: 0, blocks: [] }, 0);
+  return wrapTables(renderSource(entry.text, { entry, ctx, depth: 0, blocks: [] }, 0));
 }
 
 /** 检索用纯文本（不展开转写：父词条的转写目标本身就是独立词条） */

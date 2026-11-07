@@ -1217,9 +1217,56 @@ html[data-skin] {
 .gc-text th { text-align: left; font-weight: var(--fw-label); color: var(--md-sys-color-on-surface-variant); padding: 3px .5em; vertical-align: top; white-space: nowrap; font-size: 12px; width: 1%; }
 .gc-text td { padding: 3px .5em; vertical-align: top; }
 .gc-text tr + tr td, .gc-text tr + tr th { border-top: 1px solid var(--md-sys-color-outline-variant); }
-.gc-text .ritualinfo { display: flex; flex-direction: column; gap: 2px; margin-bottom: 6px; }
-.gc-text .ritualinfo span { display: block; }
-.gc-text .ritualinfo span:empty { display: none; }
+
+/* ---- 仪式卡片：识别层 / 数据层 / 条件层 ----
+   官方仪式卡把等级、类别、时间、材料花费、市场价格、关键技能、持续时间、前提全部塞在
+   <div class=ritualinfo> 的八个 span 里，原样渲染就是一片没有停顿的长句。这里按「读它要
+   先知道什么」分三层承载，再往下才是效果正文：
+     ① 识别层：等级/类别/关键技能 —— 胶囊，一眼判断这是什么仪式；
+     ② 数据层：时间/持续时间/材料花费/市场价格 —— 标签定宽、值左对齐成一条竖线，便于扫读；
+     ③ 条件层：前提/特殊要求 —— 「能不能用」的门槛，弱化为一行注记。 */
+.ritual-card .rt-flavor { padding-top: 8px; }
+.rt-identity { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; padding: 8px 12px 0; }
+.rt-level { display: inline-flex; align-items: center; padding: 1px 9px; border-radius: var(--md-sys-shape-corner-full); background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container); font-size: 11.5px; font-weight: var(--fw-label); white-space: nowrap; }
+.rt-chip { display: inline-flex; align-items: center; gap: 5px; padding: 1px 9px; border-radius: var(--md-sys-shape-corner-full); border: 1px solid var(--md-sys-color-outline-variant); color: var(--md-sys-color-on-surface); font-size: 11.5px; white-space: nowrap; }
+.rt-chip-k { font-size: 11px; color: var(--md-sys-color-on-surface-variant); }
+.rt-identity-ghost { margin: 8px 12px 0; }
+.rt-stats { display: flex; flex-direction: column; gap: 3px; margin: 8px 0 0; padding: 0 12px; }
+.rt-stat { display: grid; grid-template-columns: 4.5em minmax(0, 1fr); gap: 10px; align-items: baseline; }
+.rt-stat dt { font-size: 11.5px; line-height: 1.6; color: var(--md-sys-color-on-surface-variant); }
+.rt-stat dd { margin: 0; font-size: 12.5px; line-height: 1.6; color: var(--md-sys-color-on-surface); overflow-wrap: anywhere; }
+.rt-gate { display: flex; flex-wrap: wrap; gap: 2px 14px; margin: 8px 12px 0; padding: 5px 10px; border-radius: var(--md-sys-shape-corner-small); background: var(--md-sys-color-surface-container-high); font-size: 12px; line-height: 1.55; color: var(--md-sys-color-on-surface); }
+.rt-gate-item { display: inline-flex; align-items: baseline; gap: 4px; }
+.rt-gate-ic { font-size: 13px; color: var(--md-sys-color-on-surface-variant); align-self: center; }
+.rt-gate b { font-weight: var(--fw-label); color: var(--md-sys-color-on-surface-variant); }
+.rt-body { margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--md-sys-color-outline-variant); }
+/* 卡片内的附加操作（花销标记）靠右：仪式卡放在识别层行尾，装备/冒险装备卡放在卡片底部的独立一行
+   （槽位里的卡片很窄，塞进彩色抬头会把名称与类别挤成竖排） */
+.rt-action { margin-left: auto; display: inline-flex; align-items: center; }
+/* 卡片状态条：紧贴抬头的一行（目前只放「免费获得 / 计入花销」标记），
+   左对齐、与卡片正文同一起始边，读起来像这张卡的属性而不是卡片外的按钮 */
+.card-mark { display: flex; align-items: center; padding: 6px 12px 0; }
+
+/* 花销标记：区分「自行购买」与「免费获得」，被标记为后者的条目不计入自动花销 */
+.free-mark-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex: none;
+  height: 22px;
+  padding: 0 9px;
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: var(--md-sys-shape-corner-full);
+  background: transparent;
+  color: var(--md-sys-color-on-surface-variant);
+  font: inherit;
+  font-size: 11px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.free-mark-chip .material-symbols-outlined { font-size: 14px; }
+.free-mark-chip:hover { background: var(--md-sys-color-surface-container-high); color: var(--md-sys-color-on-surface); }
+.free-mark-chip.on { background: var(--md-sys-color-secondary-container); border-color: transparent; color: var(--md-sys-color-on-secondary-container); font-weight: var(--fw-label); }
 
 /* ---- 板块详细/简洁切换 ---- */
 .block-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
@@ -1338,10 +1385,17 @@ html[data-skin] {
 .formula-row { display: contents; }
 .formula-row dt { font-size: 13px; color: var(--md-sys-color-on-surface-variant); padding: 2px 0; font-weight: var(--fw-label); white-space: nowrap; }
 .formula-row dd { margin: 0; font-size: 13px; padding: 2px 0; }
-.level-table-wrap { overflow-x: auto; margin-top: 8px; }
-.level-table { width: fit-content; border-collapse: collapse; font-size: 12.5px; }
-.level-table th, .level-table td { padding: 2px 10px; text-align: left; border-bottom: 1px solid var(--md-sys-color-outline-variant); white-space: nowrap; line-height: 1.35; }
-.level-table th { color: var(--md-sys-color-on-surface-variant); font-weight: var(--fw-label); position: sticky; top: 0; background: var(--md-sys-color-surface-container-low); }
+/* 规则页的三张速查表（22buy 购点法 / 标准等级购物表 / 升级信息）：
+   原来 width: fit-content + 上下 2px 内边距，表格只占内容宽、右侧空一大片，
+   读起来又紧又碎。改为铺满板块：宽度跟着板块走，行高按正文给足。
+   表格不会窄于各列的最小内容宽（数字仍用 nowrap，不拆行），一屏放不下时
+   由 .level-table-wrap 横向滚动 —— 这比把数字挤成一字一行好读。 */
+.level-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-top: 8px; }
+.level-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.level-table th, .level-table td { padding: 6px 12px; text-align: left; border-bottom: 1px solid var(--md-sys-color-outline-variant); white-space: nowrap; line-height: 1.4; }
+/* 表头允许折行：「标准起始装备总值（装备+金币）」这种长标题原来靠 nowrap 把整张表撑宽 60px，
+   手机上必须横向滚动才能看全；折成两行后四列的购物表正好铺满板块。 */
+.level-table th { white-space: normal; color: var(--md-sys-color-on-surface-variant); font-weight: var(--fw-label); position: sticky; top: 0; background: var(--md-sys-color-surface-container-low); }
 .level-table tbody tr:nth-child(even) { background: var(--md-sys-color-surface-container-low); }
 .level-notes { margin-top: 10px; font-size: 12.5px; color: var(--md-sys-color-on-surface-variant); display: flex; flex-direction: column; gap: 4px; }
 
@@ -1601,6 +1655,11 @@ html[data-skin] {
    .settings-row 是 flex + wrap，直接平铺多个子项的话，折下来的那一项会顶到容器最左边、
    跟上面的字段名错开；套一层纵向 flex 才能让它们自己排齐。 */
 .settings-links { display: flex; flex-direction: column; align-items: flex-start; gap: 5px; min-width: 0; }
+/* 设置页·赞助入口：独占一行的胶囊按钮（整栏宽度），跟上面的 .settings-row 共用同一档间距 */
+.settings-sponsor { display: flex; align-items: center; justify-content: center; box-sizing: border-box; width: 100%; height: 44px; padding: 0 20px; border-radius: var(--md-sys-shape-corner-full); background: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary); font: inherit; font-size: 14px; font-weight: var(--fw-label); letter-spacing: 0.2px; text-align: center; text-decoration: none; transition: filter 0.15s ease, box-shadow 0.15s ease; }
+.settings-sponsor:hover { filter: brightness(1.08); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.18); text-decoration: none; }
+.settings-sponsor:active { filter: brightness(0.94); }
+.settings-sponsor:focus-visible { outline: 2px solid var(--md-sys-color-secondary); outline-offset: 2px; }
 
 /* 生命：当前值编辑 + 额外加值 */
 .hl-now { display: inline-flex; align-items: baseline; gap: 4px; }
@@ -2398,12 +2457,27 @@ md-dialog.sheet-dialog-xw .picker-cards {
   .settings.double { grid-template-columns: minmax(0, 1fr); }
 }
 
+/* 顶部区（角色信息 | 角色数值）在窗口不够宽时改为上下堆叠。
+   .layout-top-row 本来是左右各占一半，右半边里 .stat-layout 还要再切三列：
+   1280px 时每列只剩 ~180px，抵御的四格被压到 84px；到 900px 每列只有 126px，
+   抵御的加值行（标签 24 + 间距 6 + 输入框 44 = 74 起步）直接顶出格子、压在属性面板上。
+   1280px 以下不再并排，统计区吃满整行，三列各自的数值格回到 110–175px。
+   竖屏手机另由 768px 那条接管（全部塌成单列）。 */
+@media (max-width: 1280px) {
+  .layout-top-row { grid-template-columns: minmax(0, 1fr); }
+}
+
 /* 防御详情四栏：窄屏先收两栏（1100px 内），更窄（768px）再收单栏 */
 @media (max-width: 1100px) {
   .def-detail-cols > .def-detail-col { flex-basis: calc(50% - 6px); }
+  /* 上面这条对防御详情无效：桌面那条 `… .def-detail-cols > .def-detail-col { flex: 1 1 0 }`
+     （固定四栏）特异性更高，只写 flex-basis 压不住它 —— 手机上四栏就一直是每栏 83px：
+     标题竖排、数值被挤到右边。带 .def-detail-cols-dialog 前缀才是同一条选择器，
+     靠「后写者胜」改成两栏（与面板的 2×2 一致），320px 下每栏仍有 142px。 */
+  .def-detail-cols-dialog .def-detail-cols > .def-detail-col { flex: 0 0 calc(50% - 6px); width: calc(50% - 6px); }
   .def-detail-cols.def-detail-cols-1 > .def-detail-col { flex-basis: 100%; }
-  /* 技能详情：四栏 → 两栏（同款等高换行） */
-  .def-detail-cols-dialog .def-detail-cols.def-detail-cols-skill > .def-detail-col { flex: 0 1 calc(50% - 6px); }
+  /* 技能详情：五栏 → 两栏（同款等高换行） */
+  .def-detail-cols-dialog .def-detail-cols.def-detail-cols-skill > .def-detail-col { flex: 0 1 calc(50% - 6px); width: auto; }
 }
 
 /* 修复 SheetDialog 内 FilledSelect 下拉菜单被裁剪/错位（md-menu popover 定位） */
@@ -2551,7 +2625,8 @@ html[data-font="serif"] {
   .skill-compact .skill-compact-row:nth-child(n+9) { grid-column: auto; }
   .lang-ap-row { grid-template-columns: minmax(0, 1fr); }
   .split { grid-template-columns: minmax(0, 1fr); }
-  /* 详情弹窗双栏在窄屏改为上下堆叠；防御详情四栏同收单栏 */
+  /* 详情弹窗双栏在窄屏改为上下堆叠；防御详情的四栏在上面 1100px 那条已收成两栏
+     （手机上两栏与面板的 2×2 同构，比单栏更省纵向空间，所以这里不再继续收） */
   .def-detail-split { grid-template-columns: minmax(0, 1fr); }
   .def-detail-cols > .def-detail-col { width: 100%; }
   /* 技能详情：768px 内收单栏（覆盖 1100px 的两栏规则，避免列过窄） */

@@ -86,10 +86,13 @@
 .rules-body ul, .rules-body ol { margin: 0 0 10px; padding-left: 22px; }
 .rules-body li { margin: 2px 0; }
 .rules-body hr { border: none; border-top: 1px solid var(--md-sys-color-outline-variant); margin: 12px 0; }
-.rules-body table {
-  width: auto; max-width: 100%; border-collapse: collapse; margin: 6px 0 10px; font-size: 13px;
-}
-.rules-body th, .rules-body td { padding: 3px 8px; text-align: left; vertical-align: top; }
+/* 表格：撑满板块。原文多为 `style="width:auto"`（已在 rules/rulesWiki.ts 的 wrapTables 里去掉），
+   外面那层 .rules-table 负责窄屏横向滚动 —— 直接把 table 写成 display:block 会让它退回
+   「宽度收缩到内容宽」，既撑不满板块，单元格的折行也会跟着变怪。
+   单元格内边距按正文行高给足，原来 3px 的上下留白读起来太挤。 */
+.rules-table { width: 100%; max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 8px 0 12px; }
+.rules-body table { width: 100%; max-width: 100%; border-collapse: collapse; margin: 0; font-size: 13px; }
+.rules-body th, .rules-body td { padding: 6px 12px; text-align: left; vertical-align: top; }
 .rules-body tr + tr td, .rules-body tr + tr th { border-top: 1px solid var(--md-sys-color-outline-variant); }
 .rules-body table.dndTable tr.header td, .rules-body table.dndTable tr.header th {
   background: var(--md-sys-color-surface-container-high); font-weight: var(--fw-subheading);
@@ -142,4 +145,7 @@
   .rules-results { max-height: none; }
   .rules-sections { padding-left: 16px; }
   .rules-body { font-size: 13.5px; }
+  /* 手机上内边距再收一档；同时给每格一个最小宽度 —— 列被压到两个汉字宽时
+     会一字一行地竖排（「标准等级购物表」原来就是这样），放不下时宁可让外层滚动。 */
+  .rules-body th, .rules-body td { padding: 5px 9px; min-width: 4.2em; }
 }

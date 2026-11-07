@@ -295,8 +295,8 @@ export default function SettingsView({ layout, onStartTutorial, onStartGuide }: 
           {/* 两个来源各占一行、互相左对齐：并排时「（现任维护者：风之守护）」一长就会折行，
               而 .settings-row 是 flex + wrap，折下来的那一截会顶到最左边、跟字段名错开 */}
           <div className="settings-links">
-            <a className="settings-link" href="https://4e-wiki.netlify.app/" target="_blank" rel="noreferrer">4eWiki（现任维护者：风之守护）</a>
-            <a className="settings-link" href="https://4e-rules.netlify.app/" target="_blank" rel="noreferrer">4e万律（现任维护者：风之守护）</a>
+            <a className="settings-link" href="https://leonspace.site/" target="_blank" rel="noreferrer">4eWiki（现任维护者：风之守护）</a>
+            <a className="settings-link" href="https://leonspace.site/rules" target="_blank" rel="noreferrer">4e万律（现任维护者：风之守护）</a>
           </div>
         </div>
         <div className="settings-row settings-row-start">
@@ -320,7 +320,7 @@ export default function SettingsView({ layout, onStartTutorial, onStartGuide }: 
         </div>
         <div className="settings-row">
           <span className="field-label">作者</span>
-          <span className="label">北开 KitaAkeru</span>
+          <a className="settings-link" href="https://banque.ltd/" target="_blank" rel="noreferrer">北开 KitaAkeru</a>
         </div>
         <div className="settings-row">
           <span className="field-label">贡献者</span>
@@ -330,6 +330,8 @@ export default function SettingsView({ layout, onStartTutorial, onStartGuide }: 
           <span className="field-label">当前版本</span>
           <span className="label">{__APP_VERSION__}</span>
         </div>
+        {/* 赞助入口：整栏宽度的胶囊按钮，点开爱发电页面（新窗口） */}
+        <a className="settings-sponsor" href="https://afdian.com/a/banque" target="_blank" rel="noreferrer">赞助4E-Next的运转</a>
       </section>
 
       <section className="block">

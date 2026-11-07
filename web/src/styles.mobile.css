@@ -463,10 +463,10 @@ md-dialog.pop-sheet .base-pop { display: flex; flex-direction: column; gap: 4px;
      底下，被盖住且点不到。下移到标签页下沿。 */
   .equip-nav { top: calc(52px + env(safe-area-inset-top, 0px)); z-index: 1; }
 
-  /* 万律速查正文里的表格：HTML 是直接注入的，包不了一层滚动容器，
-     只能把表格自身变成横向滚动容器 —— 否则超出宽度的列会被 .app 的 overflow-x:clip
-     永久裁掉，且没有任何办法滚过去。 */
-  .rules-body table { display: block; overflow-x: auto; max-width: 100%; }
+  /* 万律速查正文里的表格：滚动容器改由 .rules-table 承担（见 rules/rulesWiki.ts 的
+     wrapTables），表格本身保持 display: table —— 这样它照旧撑满板块、单元格照旧折行，
+     只有列挤到 4 个汉字以下时才由外层滚动，而不是整张表被裁掉。 */
+  .rules-table { margin: 6px 0 10px; }
 
   /* 搜索页：双栏塌成单栏后，两个 70vh 的独立滚动框叠在一起（合计 140vh），
      页面本身几乎不滚，条目只能在盒子里看。手机端改成由页面统一滚动。 */
@@ -488,6 +488,12 @@ md-dialog.pop-sheet .base-pop { display: flex; flex-direction: column; gap: 4px;
   /* 防御加值行：label + 44px 输入框在 66px 宽的格子里必然溢出 7px，
      压到隔壁防御格上。允许换行，让输入框掉到标签下面。 */
   .def-bonus-item { flex-wrap: wrap; row-gap: 2px; }
+
+  /* 规则页速查表：桌面那档左右 12px 内边距在手机上要吃掉近 100px 行宽，
+     8 列的「升级信息」因此刚好溢出 35px（只能横向拖着看）。收到 8px 后 8 列正好铺满板块；
+     11 列的「22buy 购点法」本来放不下，仍由 .level-table-wrap 横向滚动。 */
+  .level-table { font-size: 12.5px; }
+  .level-table th, .level-table td { padding: 5px 8px; }
 
   /* 弹窗内的固定尺寸内容：.crop-area 写死 420px、.picker-dialog 用 84vh，
      两者都可能比可视高度还高，而外层遮罩不滚动 → 底部按钮永远够不到。

@@ -202,6 +202,10 @@ export function migrateCharacter(c: Partial<Character>): Character {
     ritualSlotOverride: (base as { ritualSlotOverride?: number }).ritualSlotOverride,
     classGrantedRitualIds: (base as { classGrantedRitualIds?: string[] }).classGrantedRitualIds ?? [],
     classGrantedRitualSources: (base as { classGrantedRitualSources?: Record<string, string> }).classGrantedRitualSources ?? {},
+    // 标记为免费获得的仪式：旧存档没有这个字段，视为全部按市场价格计入（保持原有余额不变）
+    ritualFreeIds: (base as { ritualFreeIds?: string[] }).ritualFreeIds ?? [],
+    // 标记为免费获得的装备：同样缺省为空（旧存档余额不变）
+    freeItemIds: (base as { freeItemIds?: string[] }).freeItemIds ?? [],
     // 专长赠送威能记录（旧存档缺省为空对象）
     featGrantedPowerIds: (base as { featGrantedPowerIds?: Record<number, string[]> }).featGrantedPowerIds ?? {},
     languages: base.languages && base.languages.length ? base.languages : [""],
@@ -269,7 +273,7 @@ export interface Character {
   featChoices: Record<number, string>; // 选择型专长的具体选择（键 = 专长槽位下标，值 = 所选内容如「长剑 Longsword」或「法珠」）
   classFeatureChoices: Record<string, string | string[]>; // 职业特性「选择一个」的选项（键 = "职业ID::特性标题"，值 = 所选选项名；多选型如戏法为字符串数组）
   equipmentSlots: (string | undefined)[];
-  adventureItems: { id?: string; name: string; cost: number; /** 铜币整数（gear 精确价）；缺省时按 cost×100 处理 */ costCp?: number; weightLb?: number; custom?: boolean }[];
+  adventureItems: { id?: string; name: string; cost: number; /** 铜币整数（gear 精确价）；缺省时按 cost×100 处理 */ costCp?: number; weightLb?: number; custom?: boolean; /** 免费获得：不计入「自动花销」 */ free?: boolean }[];
   money: { earned: number; spent: number };
   /** 标准购物开关：{ level } = 已开启并用该等级查「标准起始装备总值」；undefined = 未开启 */
   standardShopping?: { level: number };
@@ -297,6 +301,12 @@ export interface Character {
   ritualSlotOverride?: number; // 仪式槽位数覆盖（undefined = 随等级）
   classGrantedRitualIds: string[]; // 职业赠送仪式 id（不占用常规仪式槽位，更换职业时据此清除）
   classGrantedRitualSources: Record<string, string>; // 赠送仪式 id → 来源职业特性名
+  // 标记为「免费获得」的仪式/武术奥义 id：这些条目不计入「自动花销」（默认空 = 全部按市场价格计入）
+  ritualFreeIds?: string[];
+  // 标记为「免费获得」的装备 id（魔法物品或基础件的词条 id）：这些条目的价格不计入「自动花销」。
+  // 按物品记而不是按槽位记 —— 标记要跟着物品走：装备槽 → 储备页背包 → 再装回来都保持同一状态，
+  // 玩家在储备页里也能直接管理。代价是同一件物品的两份副本共享标记（4E 里同名魔法物品重复很少见）。
+  freeItemIds?: string[];
   // 主题（Theme）：所选主题 id 与已加入威能面板的威能 id（起始特性赠送 + 被点选的可选威能；更换/清除主题时据此移除）
   themeId?: string;
   themeGrantedPowerIds: string[];
@@ -564,6 +574,30 @@ export function clearRitualSlot(slots: (string | undefined)[], index: number): (
   const arr = [...slots];
   if (arr[index] !== undefined) arr[index] = undefined;
   return arr;
+}
+
+// —— 花销标记：哪些装备 / 仪式是「免费获得」的（不计入自动花销） ——
+// 装备按词条 id 记，因此标记天然跟着物品走：装备槽 → 储备页背包 → 再装回来都保持同一状态。
+export function isItemFree(c: Character, id: string | undefined): boolean {
+  return !!id && (c.freeItemIds ?? []).includes(id);
+}
+
+export function toggleItemFree(c: Character, id: string): Character {
+  const cur = new Set(c.freeItemIds ?? []);
+  if (cur.has(id)) cur.delete(id);
+  else cur.add(id);
+  return { ...c, freeItemIds: [...cur] };
+}
+
+export function isRitualFree(c: Character, id: string | undefined): boolean {
+  return !!id && (c.ritualFreeIds ?? []).includes(id);
+}
+
+export function toggleRitualFreeId(c: Character, id: string): Character {
+  const cur = new Set(c.ritualFreeIds ?? []);
+  if (cur.has(id)) cur.delete(id);
+  else cur.add(id);
+  return { ...c, ritualFreeIds: [...cur] };
 }
 
 // 职业变体名 → 基础职业名（去括号变体 + 「混职」前缀），用于匹配 powerByGrantedBy

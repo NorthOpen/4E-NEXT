@@ -4,6 +4,7 @@ import { POWER_COLORS, ITEM_COLOR, FEAT_COLOR } from "../lib/colors";
 import { CATEGORY_LABELS } from "../data/labels";
 import { tokenizeWikiBody, wikiToHtml, raceTraitHtml, raceBodyHtml, parseRaceTraitLines, splitRaceLore, splitAuxPowers, RACE_HEADER_NAMES } from "../lib/wikirender";
 import { safeHtml } from "../lib/sanitize";
+import { ritualParts, orderStats, gateRows } from "../lib/ritual";
 import MonsterCard from "../components/MonsterCard";
 import { SmartHover } from "./SmartHover";
 import { WikiBody } from "./WikiBody";
@@ -127,10 +128,12 @@ export function PowerCard({ entry, frame, jump }: { entry: Entry; frame?: boolea
 // 与左侧「统计数据」面板逐行对齐（单一权威：增强/重击/甲类 不再写入 details，此表为唯一展示位置）。
 type IcStatRow = { key: string; label: string };
 
-export function ItemCard({ entry, frame, jump, lookup, optionalOn }: {
+export function ItemCard({ entry, frame, jump, lookup, optionalOn, action }: {
   entry: Entry; frame?: boolean; jump?: (k: string) => void; lookup?: (t: string) => Entry | undefined;
   // 私设编辑：左栏可选区块（物品特性/物品威能/正文）的展开态；未添加的区块在预览中不显示空态框
   optionalOn?: Partial<Record<string, boolean>>;
+  // 卡片自带的附加操作（装备槽的「免费获得」标记）；只读预览不传
+  action?: ReactNode;
 }) {
   const mundane = isMundaneEntry(entry);
   const fam = equipFamilyOf(entry.itemCategory);
@@ -167,6 +170,9 @@ export function ItemCard({ entry, frame, jump, lookup, optionalOn }: {
       ) : entry.flavorText ? (
         <div className="ic-flavor">{entry.flavorText}</div>
       ) : null}
+      {/* 附加操作（「免费获得」标记）：风味引子之下、统计表之上的一条状态 —— 放在卡片底部像孤零零的脚注，
+          塞进抬头又会把窄卡里本就拥挤的名称与类别挤成竖排 */}
+      {action && <div className="card-mark">{action}</div>}
       {(anyStats || frame) && (
         <table className="ic-stats">
           <tbody>
@@ -741,6 +747,87 @@ export function GenericCard({ entry, frame, jump, flavorTarget = "sourceText", f
   );
 }
 
+// 仪式卡片：官方仪式卡的信息全都堆在头部 <div class=ritualinfo> 的八个 span 里，
+// 原样渲染会连成一句没有停顿的长句（「等级：3 材料花费：25gp… 前提：诗人」）。
+// 这里按阅读顺序拆成三层再排：
+//   ① 识别层：等级/类别/关键技能 —— 一眼判断「这是什么仪式」，用胶囊承载；
+//   ② 数据层：时间/持续时间/材料花费/市场价格 —— 标签定宽、值统一左对齐，便于逐行扫读；
+//   ③ 条件层：前提/特殊要求 —— 「能不能用」的门槛，弱化为一行注记；
+// 最后才是效果正文（表格等原始 HTML 原样保留，沿用 .pc-details 的既有排版）。
+export function RitualCard({ entry, frame, jump, action }: { entry: Entry; frame?: boolean; jump?: (k: string) => void; action?: ReactNode }) {
+  const f = entry.fields ?? {};
+  const parts = useMemo(() => ritualParts(entry), [entry]);
+
+  const rowOf = (label: string) => parts.data.find((d) => d.label === label)?.value ?? "";
+  const level = entry.ritualLevel || rowOf("等级");
+  const category = entry.ritualCategory || rowOf("类别");
+  const keySkill = entry.keySkill || rowOf("关键技能");
+
+  // 私设条目可能只填了结构化字段、没写进正文，缺的行用字段补上
+  const stats = orderStats(parts.data);
+  const FIELD_ROWS: [string, string][] = [["时间", "time"], ["材料花费", "cost"], ["市场价格", "marketPrice"]];
+  for (const [label, key] of FIELD_ROWS) {
+    const v = (entry as Record<string, unknown>)[key];
+    if (typeof v === "string" && v && !stats.some((s) => s.label === label)) stats.push({ label, value: v });
+  }
+
+  const gates = gateRows(parts.data);
+  if (entry.prerequisite && !gates.some((g) => g.label === "前提")) gates.unshift({ label: "前提", value: entry.prerequisite });
+
+  const flavor = parts.flavor || entry.flavorText || "";
+  const html = parts.body ? (parts.bodyIsWiki ? wikiToHtml(parts.body, f) : parts.body) : "";
+
+  return (
+    <div className="generic-card ritual-card" style={{ "--gc": (f.cardColor || "var(--md-sys-color-primary)") } as CSSProperties}>
+      <div className="gc-head">
+        <span className="gc-left">
+          {f.cardIcon && <span className="material-symbols-outlined head-icon">{f.cardIcon}</span>}
+          <span className="gc-name">{entry.name}{entry.nameEn ? " " + entry.nameEn : ""}</span>
+          {entry.origin === "user" && <span className="origin-badge">自制</span>}
+        </span>
+        <span className="gc-meta">{CATEGORY_LABELS[entry.category] ?? entry.category}{entry.source ? " · " + entry.source : ""}</span>
+      </div>
+      {flavor && <div className="gc-flavor rt-flavor">{flavor}</div>}
+      {(level || category || keySkill || action) ? (
+        <div className="rt-identity">
+          {level && <span className="rt-level" title="仪式等级">Lv {level}</span>}
+          {category && <span className="rt-chip">{category}</span>}
+          {keySkill && <span className="rt-chip"><span className="rt-chip-k">关键技能</span>{keySkill}</span>}
+          {action && <span className="rt-action">{action}</span>}
+        </div>
+      ) : frame ? (
+        <Ghost label="仪式数据（等级 / 类别 / 关键技能）" className="rt-identity-ghost" target="ritualLevel" jump={jump} />
+      ) : null}
+      {stats.length > 0 && (
+        <dl className="rt-stats">
+          {stats.map((s) => (
+            <div key={s.label} className="rt-stat">
+              <dt>{s.label}</dt>
+              <dd>{s.value}</dd>
+            </div>
+          ))}
+        </dl>
+      )}
+      {gates.length > 0 && (
+        <div className="rt-gate">
+          {gates.map((g) => (
+            <span key={g.label} className="rt-gate-item">
+              <span className="material-symbols-outlined rt-gate-ic">lock</span>
+              <b>{g.label}</b>{g.value}
+            </span>
+          ))}
+        </div>
+      )}
+      {html ? (
+        <div className="rt-body pc-details" dangerouslySetInnerHTML={safeHtml(html)} />
+      ) : frame ? (
+        <Ghost label="效果正文" className="pc-details" target="sourceText" jump={jump} />
+      ) : null}
+    </div>
+  );
+}
+
+
 // 冒险装备：价格/重量按结构化字段展示；工具包是**原子商品**（价格/重量取包本身），
 // 内含清单只作说明，不展开、不参与计价。
 export function formatPriceCp(cp?: number): string | undefined {
@@ -755,7 +842,7 @@ export function formatPriceCp(cp?: number): string | undefined {
   return parts.length ? parts.join(" ") : "0gp";
 }
 
-export function GearCard({ entry }: { entry: Entry }) {
+export function GearCard({ entry, action }: { entry: Entry; action?: ReactNode }) {
   const kit = entry.kit === true;
   const contents = Array.isArray(entry.contents) ? entry.contents : [];
   const price = formatPriceCp(entry.costCp) ?? entry.cost ?? "—";
@@ -770,6 +857,7 @@ export function GearCard({ entry }: { entry: Entry }) {
         </span>
         <span className="gc-meta">{entry.group ?? "杂项"}</span>
       </div>
+      {action && <div className="card-mark">{action}</div>}
       <div className="gc-fields">
         <span className="gc-field"><b>价格</b>{price}</span>
         <span className="gc-field"><b>重量</b>{weight}</span>
@@ -785,14 +873,19 @@ export function GearCard({ entry }: { entry: Entry }) {
 }
 
 // lookup 提供时，专长卡片正文中的 [[威能]] 等链接转为悬浮预览卡片（角色卡与选择专长界面共用）
-export default function EntryCard({ entry, lookup, frame, jump, optionalOn }: {
+// action：卡片自带的附加操作（当前只有仪式卡片用它挂「免费获得 / 计入花销」标记按钮，
+// 悬浮预览等只读场景不传）。
+export default function EntryCard({ entry, lookup, frame, jump, optionalOn, action }: {
   entry: Entry; lookup?: (t: string) => Entry | undefined; frame?: boolean; jump?: (k: string) => void;
   optionalOn?: Partial<Record<string, boolean>>;
+  action?: ReactNode;
 }) {
   if (entry.category === "power") return <PowerCard entry={entry} frame={frame} jump={jump} />;
+  // 仪式/武术奥义：头部八行数据按「识别 / 数据 / 条件」三层重排，不再交给通用卡片的流水式正文
+  if (entry.category === "ritual") return <RitualCard entry={entry} frame={frame} jump={jump} action={action} />;
   // 冒险装备（gear）：价格/重量/工具包内含走专门卡片；私设条目(category=equipment + itemCategory=冒险装备)同一分支
-  if (entry.itemCategory === "冒险装备") return <GearCard entry={entry} />;
-  if (entry.category === "equipment") return <ItemCard entry={entry} frame={frame} jump={jump} lookup={lookup} optionalOn={optionalOn} />;
+  if (entry.itemCategory === "冒险装备") return <GearCard entry={entry} action={action} />;
+  if (entry.category === "equipment") return <ItemCard entry={entry} frame={frame} jump={jump} lookup={lookup} optionalOn={optionalOn} action={action} />;
   if (entry.category === "feat") return <FeatCard entry={entry} lookup={lookup} frame={frame} jump={jump} />;
   if (entry.category === "race") return <RaceCard entry={entry} lookup={lookup} frame={frame} jump={jump} />;
   // 生物（词条页的怪物与生物库条目）：数据块本身就是一张完整卡片，与主持页的 MonsterCard 同一渲染，
