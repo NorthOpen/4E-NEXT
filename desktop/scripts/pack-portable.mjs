@@ -58,12 +58,33 @@ const zip = join(releaseDir, "4E-NEXT-" + version + "-win-x64-portable.zip");
 if (existsSync(zip)) rmSync(zip, { force: true });
 
 step("打包 zip（约 400MB，需要几分钟）");
-// stdio: ignore —— 受限沙箱下带管道 stdio 的 spawn 会被拒，这里也顺便避免管道
-const tar = spawnSync("tar", ["-a", "-c", "-f", zip, "-C", releaseDir, productName + "-win32-x64"], {
-  stdio: "ignore",
-});
-if (tar.status !== 0) {
-  console.error("[pack-portable] zip 打包失败（tar 退出码 " + tar.status + "）");
+// 为什么不用裸 `tar`：
+//   Windows 自带的 bsdtar（%SystemRoot%\System32\tar.exe）支持 `-a` 按扩展名选 zip，
+//   但 Git Bash 的 PATH 里 /usr/bin/tar 是 GNU tar，不认 .zip——GitHub Actions 的
+//   windows-latest 上就是这样，退出码 128。Linux runner 的 GNU tar 同样不行。
+//   所以这里按平台给「绝对路径 / 工具」：Windows 用系统 bsdtar，其他平台用 zip(1)。
+const stageName = productName + "-win32-x64";
+const attempts =
+  process.platform === "win32"
+    ? [
+        [join(process.env.SystemRoot || "C:\\Windows", "System32", "tar.exe"), ["-a", "-c", "-f", zip, "-C", releaseDir, stageName]],
+        ["tar.exe", ["-a", "-c", "-f", zip, "-C", releaseDir, stageName]],
+      ]
+    : [["zip", ["-r", "-q", zip, stageName]]];
+
+let packError = null;
+for (const [cmd, args] of attempts) {
+  // stdio: ignore —— 受限沙箱下带管道 stdio 的 spawn 会被拒，这里也顺便避免管道
+  const r = spawnSync(cmd, args, { stdio: "ignore", cwd: process.platform === "win32" ? undefined : releaseDir });
+  if (r.status === 0) {
+    packError = null;
+    break;
+  }
+  packError = cmd + "（退出码 " + r.status + "）";
+  rmSync(zip, { force: true });
+}
+if (packError) {
+  console.error("[pack-portable] zip 打包失败：" + packError);
   process.exit(1);
 }
 
