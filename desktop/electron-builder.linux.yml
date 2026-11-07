@@ -1,0 +1,45 @@
+# Linux 打包配置（AppImage）。
+#
+# 为什么不复用 electron-builder.yml：两份配置的差别不在窗口/文件列表，而在
+# **运行时 zip 是按平台分的**（electronDist 指向 .electron-cache 里对应平台的
+# Electron 发行包）。共用一份就得在 YAML 里写条件，不如按平台各放一份，读起来直白。
+#
+# 运行时 zip 由 desktop/scripts/fetch-electron.mjs 按当前平台抓取并校验官方 sha256，
+# 不入库（见 .gitignore 的 .electron-cache/）。
+#
+# 用法（在 Linux 上）：
+#   node desktop/scripts/fetch-electron.mjs
+#   npm --prefix desktop run dist:linux
+#   node desktop/scripts/pack-linux.mjs      # 便携 tar.gz + SHA256SUMS.txt
+
+appId: ltd.banque.4enext
+productName: 4E NEXT
+copyright: Copyright © 4E NEXT contributors · MPL-2.0
+
+directories:
+  output: release-linux
+  buildResources: build
+
+# 与 electron-builder.yml 中的 Windows 运行时同版本，只是平台换成 linux-x64
+electronDist: ../.electron-cache/electron-v44.4.1-linux-x64.zip
+
+files:
+  - main/**/*
+  - preload/**/*
+  - renderer/**/*
+  - package.json
+
+asar: true
+
+linux:
+  # 只出 AppImage：单文件、双击即用。再补一份解压即用的 tar.gz（pack-linux.mjs），
+  # 给没有 FUSE2 的发行版兜底。deb/rpm 等有真实需求再加。
+  target:
+    - target: AppImage
+      arch:
+        - x64
+  category: Utility
+  # 可执行文件名不能带空格（productName 有空格，AppImage 内部路径会出问题）
+  executableName: 4e-next
+  icon: build/icon.png
+  artifactName: 4E-NEXT-${version}-linux-x64.AppImage

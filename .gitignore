@@ -47,6 +47,8 @@ desktop/assets/fonts/
 # 桌面端派生产物（由 web 构建生成，不入库）
 desktop/renderer/
 desktop/release/
+# Linux 打包产物（AppImage 与便携 tar.gz）
+desktop/release-linux/
 # 冒烟自检报告（每次 `npm --prefix desktop run smoke` 都会重新生成）
 desktop/smoke-report.txt
 

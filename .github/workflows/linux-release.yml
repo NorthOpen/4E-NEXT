@@ -1,0 +1,148 @@
+name: Linux Release
+
+# Linux 发布流水线：AppImage（单文件）+ 便携 tar.gz。
+#
+# 触发方式与另两端一致：
+#   · 总 tag（推荐，四端一起出）：
+#       git tag 4E-NEXT-V0.4.2 && git push origin 4E-NEXT-V0.4.2
+#     → Android / Desktop / Linux 三条流水线同时跑
+#   · 只重出 Linux：
+#       git tag 4E-NEXT-Linux-V0.4.2 && git push origin 4E-NEXT-Linux-V0.4.2
+#   · 手动触发（workflow_dispatch）：只出 artifact，不建 Release
+#
+# 约定（与 Windows / 安卓一致）：
+#   · Release 名称与介绍**都只写 tag**（4E-NEXT-Linux-V0.4.2）
+#   · 发布成功后自动删除同前缀旧 Release（git tag 保留）
+#   · tag 里的版本必须与 web/package.json、desktop/package.json 一致，否则直接失败
+#
+# 构建机用 ubuntu-latest：AppImage 只能在 Linux 上出；Windows 宿主不支持该目标。
+
+on:
+  push:
+    tags:
+      - "4E-NEXT-Linux-V*"
+      - "4E-NEXT-V*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: linux-release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      # 与网页端部署同一条守卫：确认 desktop/ 没被误加进 pnpm workspace
+      - name: "Guard: desktop/android not in pnpm workspace"
+        run: node scripts/verify-workspace.mjs
+
+      - name: Install web dependencies
+        run: pnpm install --frozen-lockfile
+
+      # 这里**不**跳过 Electron 二进制下载：后面的冒烟自检要真正启动 Electron。
+      # 打包用的运行时仍走 electronDist 指向的离线 zip（下一步按 linux-x64 取）。
+      - name: Install desktop dependencies
+        run: npm --prefix desktop ci
+
+      - name: Build data pipeline
+        run: pnpm pipeline
+
+      - name: Build desktop renderer
+        run: pnpm --filter 4enext-web build:desktop
+
+      # 内置字体 65MB / 1055 个分片，不入库；缓存策略与另两端一致
+      - name: Cache offline fonts
+        uses: actions/cache@v4
+        with:
+          path: desktop/assets/fonts
+          key: fonts-${{ hashFiles('desktop/scripts/fetch-fonts.mjs') }}
+
+      - name: Fetch offline fonts
+        run: node desktop/scripts/fetch-fonts.mjs
+
+      # Linux 运行时 zip（约 110MB）。fetch-electron.mjs 按当前平台自动取 linux-x64。
+      - name: Cache Electron runtime
+        uses: actions/cache@v4
+        with:
+          path: .electron-cache
+          key: electron-linux-${{ hashFiles('desktop/package-lock.json') }}
+
+      - name: Fetch Electron runtime
+        run: node desktop/scripts/fetch-electron.mjs
+
+      - name: Resolve and verify version
+        run: |
+          if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
+            version="${GITHUB_REF_NAME##*V}"
+          else
+            version="$(node -p 'require("./desktop/package.json").version')"
+          fi
+          desktop="$(node -p 'require("./desktop/package.json").version')"
+          web="$(node -p 'require("./web/package.json").version')"
+          echo "VERSION=$version" >> "$GITHUB_ENV"
+          echo "RELEASE_TAG=4E-NEXT-Linux-V$version" >> "$GITHUB_ENV"
+          if [[ "$desktop" != "$web" ]]; then
+            echo "::error::desktop/package.json ($desktop) 与 web/package.json ($web) 版本不一致"
+            exit 1
+          fi
+          if [[ "$version" != "$desktop" ]]; then
+            echo "::error::tag 里的版本 ($version) 与 package.json ($desktop) 不一致——先跑 scripts/bump-version.mjs 再打 tag"
+            exit 1
+          fi
+          echo "版本：$version（tag 将是 $RELEASE_TAG）"
+
+      - name: Build AppImage
+        run: npm --prefix desktop run dist:linux
+
+      - name: Build portable tar.gz
+        run: node desktop/scripts/pack-linux.mjs
+
+      - name: Write SHA256SUMS
+        run: node desktop/scripts/make-sums.mjs desktop/release-linux
+
+      # 冒烟自检：在 xvfb 里真启动一次 Electron（存储/IndexedDB/菜单/数据加载）。
+      # 首次接入 Linux 时用 continue-on-error：无头环境的沙箱/GPU 偶发问题不该挡住发布；
+      # 结果看日志，真出问题再把它改成阻塞。
+      - name: Smoke test (xvfb)
+        continue-on-error: true
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq xvfb >/dev/null
+          xvfb-run -a npm --prefix desktop run smoke -- --no-sandbox
+
+      - name: Upload build artifact (manual runs only)
+        if: github.event_name == 'workflow_dispatch'
+        uses: actions/upload-artifact@v4
+        with:
+          name: 4e-next-linux
+          if-no-files-found: error
+          path: |
+            desktop/release-linux/*.AppImage
+            desktop/release-linux/*.tar.gz
+            desktop/release-linux/SHA256SUMS.txt
+
+      - name: Create GitHub Release
+        if: startsWith(github.ref, 'refs/tags/')
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          target="$(git rev-parse HEAD)"
+          node desktop/scripts/create-release.mjs \
+            --release-dir desktop/release-linux \
+            --tag "$RELEASE_TAG" \
+            --title "$RELEASE_TAG" \
+            --notes "$RELEASE_TAG" \
+            --target "$target" \
+            --prune "4E-NEXT-Linux-V"

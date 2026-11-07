@@ -86,7 +86,7 @@ edits.push([
 
 const readme = join(root, "README.md");
 const readmeText = read(readme);
-const bumpedReadme = readmeText.replace(/4E-NEXT-(Desktop|Android)-V[0-9A-Za-z.\-]+/g, "4E-NEXT-$1-V" + next);
+const bumpedReadme = readmeText.replace(/4E-NEXT-(Desktop|Android|Linux)-V[0-9A-Za-z.\-]+/g, "4E-NEXT-$1-V" + next);
 if (bumpedReadme === readmeText) {
   console.warn("[version] ⚠️ README.md 里没找到 4E-NEXT-Desktop-V… / 4E-NEXT-Android-V… 链接，已跳过。");
 } else {

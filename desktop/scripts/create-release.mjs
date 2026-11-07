@@ -82,11 +82,11 @@ const releaseDir = (() => {
   return custom ? resolve(repoRoot, custom) : join(repoRoot, "desktop", "release");
 })();
 
-/** 不同平台的附件扩展名不一样：桌面是 exe/zip，安卓是 apk。 */
+/** 平台附件扩展名不同：Windows 是 exe/zip，安卓是 apk，Linux 是 AppImage/tar.gz。 */
 function discoverAssets() {
   if (!existsSync(releaseDir)) return [];
   const out = readdirSync(releaseDir)
-    .filter((n) => /\.(exe|zip|apk)$/i.test(n) && !/blockmap/i.test(n))
+    .filter((n) => /\.(exe|zip|apk|appimage|tar\.gz)$/i.test(n) && !/blockmap/i.test(n))
     .sort()
     .map((n) => join(releaseDir, n));
   const sums = join(releaseDir, "SHA256SUMS.txt");

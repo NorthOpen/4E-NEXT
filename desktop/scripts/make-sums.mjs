@@ -12,10 +12,10 @@ import { readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
-/** 在 dir 里找安装版 / 便携版，写 SHA256SUMS.txt（按文件名排序，稳定输出）。返回文件路径，没找到附件时返回 null。 */
+/** 在 dir 里找安装版 / 便携版（Windows 与 Linux 两种命名），写 SHA256SUMS.txt（按文件名排序，稳定输出）。返回文件路径，没找到附件时返回 null。 */
 export function writeSums(dir) {
   const names = readdirSync(dir)
-    .filter((n) => /-setup\.exe$/i.test(n) || /portable\.zip$/i.test(n))
+    .filter((n) => /(-setup\.exe|portable\.zip|\.AppImage|portable\.tar\.gz)$/i.test(n))
     .sort();
   if (!names.length) return null;
 

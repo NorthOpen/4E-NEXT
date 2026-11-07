@@ -1,11 +1,12 @@
 // 清理桌面端的派生产物。
 //
 // 这些目录都很大且都能重新生成，出问题时的第一步就是清掉它们重来：
-//   release/   ~2.7GB  打包产物（安装包、便携版、win-unpacked）
-//   renderer/  ~110MB  渲染产物（需要重新 pnpm --filter 4enext-web build:desktop）
+//   release/        ~2.7GB  打包产物（安装包、便携版、win-unpacked）
+//   release-linux/  ~300MB  Linux 产物（AppImage、便携 tar.gz）
+//   renderer/       ~110MB  渲染产物（需要重新 pnpm --filter 4enext-web build:desktop）
 //
 // 用法：
-//   node desktop/scripts/clean.mjs          只清 release/（保留 renderer，省一次重编译）
+//   node desktop/scripts/clean.mjs          只清 release/ 与 release-linux/
 //   node desktop/scripts/clean.mjs --all    连 renderer/ 一起清
 //
 // 注意：不会碰 desktop/assets/fonts（字体，重抓要几分钟）与 node_modules。
@@ -18,7 +19,7 @@ const here = dirname(fileURLToPath(import.meta.url));
 const desktopDir = join(here, "..");
 const all = process.argv.includes("--all");
 
-const targets = [join(desktopDir, "release")];
+const targets = [join(desktopDir, "release"), join(desktopDir, "release-linux")];
 if (all) targets.push(join(desktopDir, "renderer"));
 
 let freed = 0;

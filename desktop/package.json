@@ -16,7 +16,9 @@
     "clean": "node scripts/clean.mjs",
     "pack:portable": "electron-builder --win --dir --config electron-builder.yml && node scripts/pack-portable.mjs",
     "pack": "electron-builder --win --dir --config electron-builder.yml",
-    "dist": "electron-builder --win --config electron-builder.yml"
+    "dist": "electron-builder --win --config electron-builder.yml",
+    "dist:linux": "electron-builder --linux --config electron-builder.linux.yml",
+    "pack:linux": "node scripts/pack-linux.mjs"
   },
   "devDependencies": {
     "electron": "^44.4.1",
