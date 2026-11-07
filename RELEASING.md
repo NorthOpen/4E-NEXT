@@ -35,6 +35,11 @@ git push origin 4E-NEXT-V0.4.2
 `4E-NEXT-Android-V0.4.2`、`4E-NEXT-Desktop-V0.4.2`；发布成功后自动删除同前缀的旧版本
 Release（git tag 保留，源码历史不丢），Releases 页始终只留最新一版。
 
+一条总 tag 从推上去到两个 Release 就绪约 **15–20 分钟**：云端字体缓存按 ref 隔离，
+tag 触发的运行读不到 main 的缓存，每次都要重下 1055 个分片（约 4–5 分钟）；其余是
+数据管线、渲染构建、Electron 安装包与便携版压缩。两条流水线并行跑，可以在 Actions
+页面同时看进度。
+
 ## 三、只重发某一端
 
 ```bash
