@@ -675,9 +675,10 @@
 }
 .hb-focus-flash { border-radius: var(--md-sys-shape-corner-small); animation: hb-focus-flash 1.6s var(--md-sys-motion-easing-emphasized) both; }
 
-/* 从模板新建：全屏遮罩 + 居中的搜索面板 */
+/* 从模板新建：全屏遮罩 + 居中的搜索面板（portal 到 body，避免落进 .view-anim 的
+   transform 包含块而相对整页高度居中） */
 .hb-tmpl-modal {
-  position: fixed; inset: 0; z-index: 20;
+  position: fixed; inset: 0; z-index: 130;
   display: grid; place-items: center; padding: 20px;
   background: color-mix(in srgb, var(--md-sys-color-scrim) 40%, transparent);
 }

@@ -481,6 +481,63 @@ function PreviewAuxPower({ title, body, fields, lookup }: {
   );
 }
 
+// 可替代种族特性：预览中「原始 / 替代」chips 做局部可切换态，切换后展示对应特性的正文
+// （视觉与车卡一致，点击不写入车卡数据）。
+function PreviewReplaceableTrait({ name, body, alts, showChips, fields, lookup }: {
+  name: string;
+  body: string;
+  alts: { name: string; body: string }[];
+  showChips: boolean;
+  fields: Record<string, string>;
+  lookup: (t: string) => Entry | undefined;
+}) {
+  const [picked, setPicked] = useState("");
+  const active = alts.find((a) => a.name === picked);
+  return (
+    <div className="race-trait-line sr-replaceable">
+      <div className="race-trait-row">
+        {showChips && (
+          <div className="race-trait-opts">
+            <button
+              type="button"
+              className={"sr-tag" + (active ? "" : " active")}
+              onClick={() => setPicked("")}
+              title={active ? `切回原始特性「${raceChipName(name)}」` : `当前为原始特性「${raceChipName(name)}」`}
+            >
+              <span className="material-symbols-outlined sr-ic">swap_horiz</span>
+              {raceChipName(name)}
+            </button>
+            {alts.map((alt) => {
+              const on = active?.name === alt.name;
+              return (
+                <button
+                  key={alt.name}
+                  type="button"
+                  className={"sr-tag" + (on ? " active" : "")}
+                  onClick={() => setPicked(on ? "" : alt.name)}
+                  title={on ? `取消替代，回到原始特性「${raceChipName(name)}」` : `切换到「${raceChipName(alt.name)}」替代（预览不写入车卡）`}
+                >
+                  <span className="material-symbols-outlined sr-ic">swap_horiz</span>
+                  {raceChipName(alt.name)}
+                </button>
+              );
+            })}
+          </div>
+        )}
+        <div className="race-trait-content">
+          <WikiBody
+            body={active ? `''${active.name}：''${active.body}` : `''${name}：''${body}`}
+            fields={fields}
+            lookup={lookup}
+            pop={(e) => <EntryCard entry={e} />}
+            portal
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function RaceCard({ entry, lookup, frame, jump }: { entry: Entry; lookup?: (t: string) => Entry | undefined; frame?: boolean; jump?: (k: string) => void }) {
   const src = entry.sourceText ?? "";
   const resolve = lookup ?? (() => undefined);
@@ -498,10 +555,16 @@ export function RaceCard({ entry, lookup, frame, jump }: { entry: Entry; lookup?
   }, [hasClassTrait, src]);
   // 旧存档（无 classTrait 块）回退：!! N级：分节
   const sections = useMemo(() => (hasClassTrait ? [] : splitRaceSections(src)), [hasClassTrait, src]);
-  // 基础种族内部的可替代特性：被替代特性名 → 替代特性行（车卡同规则：替代行并入基础行，展示为互斥 chip）
+  // 基础种族内部的可替代特性：被替代特性名 → 替代特性行数组（车卡同规则：替代行并入基础行，
+  // 展示为互斥 chip）。同一基础特性可被多条特性替代（如「A/B 二选一替代 C」），预览需全部列出。
   const altForBase = useMemo(() => {
-    const map = new Map<string, (typeof traitLines)[number]>();
-    for (const t of traitLines) if (t.replaces && t.replaces !== t.name) map.set(t.replaces, t);
+    const map = new Map<string, (typeof traitLines)[number][]>();
+    for (const t of traitLines) {
+      if (!t.replaces || t.replaces === t.name) continue;
+      const arr = map.get(t.replaces) ?? [];
+      arr.push(t);
+      map.set(t.replaces, arr);
+    }
     return map;
   }, [traitLines]);
   // 简洁模式：剔除 8 个自动头部槽行，仅保留实用特性（与车卡 compactRaceTraits 同规则）
@@ -529,10 +592,10 @@ export function RaceCard({ entry, lookup, frame, jump }: { entry: Entry; lookup?
             {shownTraits.length > 0 && (
               <div className="race-trait">
                 {shownTraits.map((t, i) => {
-                  const alt = altForBase.get(t.name);
+                  const alts = altForBase.get(t.name);
                   // 替代行本身不独立展示（并入其基础特性的互斥切换）
                   if (t.replaces && altForBase.has(t.replaces)) return null;
-                  if (!alt) {
+                  if (!alts?.length) {
                     return (
                       <div key={i} className="race-trait-line">
                         <WikiBody body={`''${t.name}：''${t.body}`} fields={entry.fields} lookup={resolve} pop={(e) => <EntryCard entry={e} />} portal />
@@ -540,25 +603,15 @@ export function RaceCard({ entry, lookup, frame, jump }: { entry: Entry; lookup?
                     );
                   }
                   return (
-                    <div key={i} className="race-trait-line sr-replaceable">
-                      <div className="race-trait-row">
-                        {detail && (
-                          <div className="race-trait-opts">
-                            <button type="button" className="sr-tag active" title={`当前为原始特性「${raceChipName(t.name)}」`}>
-                              <span className="material-symbols-outlined sr-ic">swap_horiz</span>
-                              {raceChipName(t.name)}
-                            </button>
-                            <button type="button" className="sr-tag" title={`车卡上可切换为「${raceChipName(alt.name)}」替代（预览为静态展示）`}>
-                              <span className="material-symbols-outlined sr-ic">swap_horiz</span>
-                              {raceChipName(alt.name)}
-                            </button>
-                          </div>
-                        )}
-                        <div className="race-trait-content">
-                          <WikiBody body={`''${t.name}：''${t.body}`} fields={entry.fields} lookup={resolve} pop={(e) => <EntryCard entry={e} />} portal />
-                        </div>
-                      </div>
-                    </div>
+                    <PreviewReplaceableTrait
+                      key={i}
+                      name={t.name}
+                      body={t.body}
+                      alts={alts.map((a) => ({ name: a.name, body: a.body }))}
+                      showChips={detail}
+                      fields={entry.fields}
+                      lookup={resolve}
+                    />
                   );
                 })}
               </div>

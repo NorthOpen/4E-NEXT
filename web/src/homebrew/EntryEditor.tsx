@@ -1,5 +1,6 @@
 import { platform } from "@platform";
 import { useEffect, useMemo, useRef, useState, type ChangeEvent } from "react";
+import { createPortal } from "react-dom";
 import type { CSSProperties, ReactNode } from "react";
 import { HexColorPicker } from "react-colorful";
 import type { Entry, PowerBlock } from "../data/types";
@@ -2471,7 +2472,7 @@ export default function EntryEditor({
         />
       </div>
 
-      {tmplOpen && (
+      {tmplOpen && createPortal((
         <div className="hb-tmpl-modal">
           <div className="hb-tmpl-modal-inner">
             <div className="hb-tmpl-modal-head">
@@ -2499,9 +2500,9 @@ export default function EntryEditor({
             )}
           </div>
         </div>
-      )}
+      ), document.body)}
 
-      {gearOpen && (
+      {gearOpen && createPortal((
         <div className="hb-tmpl-modal">
           <div className="hb-tmpl-modal-inner">
             <div className="hb-tmpl-modal-head">
@@ -2538,7 +2539,7 @@ export default function EntryEditor({
             )}
           </div>
         </div>
-      )}
+      ), document.body)}
 
       {err && <div className="hb-err">{err}</div>}
       {fieldErrs.length > 0 && (
