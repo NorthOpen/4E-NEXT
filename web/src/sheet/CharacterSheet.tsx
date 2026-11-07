@@ -4102,8 +4102,12 @@ function raceGrantedPowerEntries(
   zhLookup?: (zh: string) => Entry | undefined // 按中文名查威能（半精灵「成功诀窍」等「」引用）
 ): Entry[] {
   const traits = parseRaceTraitLines(ct);
-  const altForBase = new Map<string, (typeof traits)[number]>();
-  for (const t of traits) if (t.replaces && t.replaces !== t.name) altForBase.set(t.replaces, t);
+  const altForBase = new Map<string, (typeof traits)>();
+  for (const t of traits) if (t.replaces && t.replaces !== t.name) {
+    const arr = altForBase.get(t.replaces) ?? [];
+    arr.push(t);
+    altForBase.set(t.replaces, arr);
+  }
   const out: Entry[] = [];
   const seen = new Set<string>();
   const push = (e?: Entry) => { if (e && e.category === "power" && !seen.has(e.id)) { seen.add(e.id); out.push(e); } };
@@ -4121,8 +4125,9 @@ function raceGrantedPowerEntries(
     if (t.name in RACE_POWER_GROUP_OR) continue; // B 形威能互斥组（罗丝之民）：仅按选择授予，见下方
     const sub = ctx.subByBase.get(t.name);
     if (sub && ctx.subBenefits?.[sub.title]) { addPowers(sub.body); continue; } // 亚种增益已应用
-    const alt = altForBase.get(t.name);
-    if (alt && ctx.swaps?.[alt.name]) addPowers(alt.body);
+    const alts = altForBase.get(t.name);
+    const activeAlt = alts?.find((a) => ctx.swaps?.[a.name]);
+    if (activeAlt) addPowers(activeAlt.body);
     else addPowers(t.body);
   }
   // A 形威能互斥组：仅授予选中的子行威能（未选则不授予）
@@ -5733,10 +5738,14 @@ export default function CharacterSheet({
     () => raceTraits.filter((t) => !RACE_HEADER_NAMES.has(t.name.trim())),
     [raceTraits],
   );
-  // 基础种族内部的可替代特性：被替代特性名（如「龙息」）→ 替代特性行（如「龙惧」）
+  // 基础种族内部的可替代特性：被替代特性名（如「龙息」）→ 替代特性行数组（如「龙惧」，可有多条）
   const raceAltForBase = useMemo(() => {
-    const map = new Map<string, (typeof raceTraits)[number]>();
-    for (const t of raceTraits) if (t.replaces && t.replaces !== t.name) map.set(t.replaces, t);
+    const map = new Map<string, (typeof raceTraits)>();
+    for (const t of raceTraits) if (t.replaces && t.replaces !== t.name) {
+      const arr = map.get(t.replaces) ?? [];
+      arr.push(t);
+      map.set(t.replaces, arr);
+    }
     return map;
   }, [raceTraits]);
   // 元素裔「元素显能」：classTrait 中是否含 13 个元素之魂选项（有则合并为单选互斥组）
@@ -6951,28 +6960,31 @@ export default function CharacterSheet({
                         </div>
                       );
                     }
-                    // 三选一：同一基础特性同时被「基础内部替代」（龙惧替代龙息）与「亚种增益」（腐蚀传统/复仇震击替代龙息）替换时，
-                    // 展示三个互斥选项（基础 / 替代 / 亚种），选中其一即自动停用其余，并同步到威能面板。
+                    // 多选一：基础特性可被「基础内部替代」（如龙惧替代龙息，可有任意多条）与「亚种增益」
+                    // （腐蚀传统/复仇震击替代龙息）替换时，展示 base + 全部替代 + 亚种的互斥选项，
+                    // 选中其一即自动停用其余，并同步到威能面板。
+                    // 替代行本身不可独立展示，并入其基础特性的切换。
+                    if (t.replaces && raceAltForBase.has(t.replaces)) return null;
                     const multiSub = subraceBenefitByBase.get(t.name);
-                    const multiSwap = raceAltForBase.get(t.name);
-                    if (multiSub && multiSwap) {
-                      const subActive = char.subraceBenefits?.[multiSub.title] !== false;
-                      const swapActive = !!char.raceSwaps?.[multiSwap.name];
-                      const baseActive = !subActive && !swapActive;
-                      const pick = (kind: "base" | "swap" | "sub") => {
+                    const multiSwaps = raceAltForBase.get(t.name) ?? [];
+                    if (multiSub || multiSwaps.length) {
+                      const subActive = !!multiSub && char.subraceBenefits?.[multiSub.title] !== false;
+                      const activeSwap = multiSwaps.find((a) => char.raceSwaps?.[a.name]);
+                      const baseActive = !subActive && !activeSwap;
+                      const pick = (kind: string) => {
                         const rs = { ...(char.raceSwaps ?? {}) };
+                        for (const a of multiSwaps) rs[a.name] = kind === a.name;
                         const sb = { ...(char.subraceBenefits ?? {}) };
-                        rs[multiSwap.name] = kind === "swap";
-                        sb[multiSub.title] = kind === "sub";
+                        if (multiSub) sb[multiSub.title] = kind === "sub";
                         setChar({ ...char, raceSwaps: rs, subraceBenefits: sb });
                       };
-                      const activeBody = subActive
+                      const activeBody = subActive && multiSub
                         ? `''${chineseName(multiSub.title)}：''${reorderBenefitBody(multiSub.body, raceDetail)}`
-                        : swapActive
-                          ? `''${chineseName(multiSwap.name)}：''${reorderBenefitBody(multiSwap.body, raceDetail)}`
+                        : activeSwap
+                          ? `''${chineseName(activeSwap.name)}：''${reorderBenefitBody(activeSwap.body, raceDetail)}`
                           : `''${chineseName(t.name)}：''${t.body}`;
                       return (
-                        <div key={i} className={`race-trait-line sr-replaceable${subActive || swapActive ? " replaced" : ""}`}>
+                        <div key={i} className={`race-trait-line sr-replaceable${subActive || activeSwap ? " replaced" : ""}`}>
                           <div className="race-trait-row">
                             {raceDetail && (
                               <div className="race-trait-opts">
@@ -6985,24 +6997,29 @@ export default function CharacterSheet({
                                   <span className="material-symbols-outlined sr-ic">swap_horiz</span>
                                   {chineseName(t.name)}
                                 </button>
-                                <button
-                                  type="button"
-                                  className={`sr-tag${swapActive ? " active" : ""}`}
-                                  onClick={() => pick("swap")}
-                                  title={swapActive ? `当前已用「${chineseName(multiSwap.name)}」替代` : `改用「${chineseName(multiSwap.name)}」替代`}
-                                >
-                                  <span className="material-symbols-outlined sr-ic">swap_horiz</span>
-                                  {chineseName(multiSwap.name)}
-                                </button>
-                                <button
-                                  type="button"
-                                  className={`sr-tag${subActive ? " active" : ""}`}
-                                  onClick={() => pick("sub")}
-                                  title={subActive ? `当前已用亚种增益「${chineseName(multiSub.title)}」替代` : `改用亚种增益「${chineseName(multiSub.title)}」替代`}
-                                >
-                                  <span className="material-symbols-outlined sr-ic">swap_horiz</span>
-                                  {chineseName(multiSub.title)}
-                                </button>
+                                {multiSwaps.map((alt) => (
+                                  <button
+                                    key={alt.name}
+                                    type="button"
+                                    className={`sr-tag${activeSwap?.name === alt.name ? " active" : ""}`}
+                                    onClick={() => pick(alt.name)}
+                                    title={activeSwap?.name === alt.name ? `当前已用「${chineseName(alt.name)}」替代` : `改用「${chineseName(alt.name)}」替代`}
+                                  >
+                                    <span className="material-symbols-outlined sr-ic">swap_horiz</span>
+                                    {chineseName(alt.name)}
+                                  </button>
+                                ))}
+                                {multiSub && (
+                                  <button
+                                    type="button"
+                                    className={`sr-tag${subActive ? " active" : ""}`}
+                                    onClick={() => pick("sub")}
+                                    title={subActive ? `当前已用亚种增益「${chineseName(multiSub.title)}」替代` : `改用亚种增益「${chineseName(multiSub.title)}」替代`}
+                                  >
+                                    <span className="material-symbols-outlined sr-ic">swap_horiz</span>
+                                    {chineseName(multiSub.title)}
+                                  </button>
+                                )}
                               </div>
                             )}
                             <div className="race-trait-content">
@@ -7012,99 +7029,9 @@ export default function CharacterSheet({
                         </div>
                       );
                     }
-                    const repl = subraceBenefitByBase.get(t.name);
-                    if (!repl) {
-                      // 基础种族内部可替代特性（如 「龙惧」 替代 「龙息」）不可独立展示，并入其基础特性的切换
-                      const raceAlt = raceAltForBase.get(t.name);
-                      if (t.replaces && raceAltForBase.has(t.replaces)) return null;
-                      if (raceAlt) {
-                        const altName = raceAlt.name;
-                        const swapApplied = !!char.raceSwaps?.[altName];
-                        const pickAlt = (useAlt: boolean) => setChar({ ...char, raceSwaps: { ...(char.raceSwaps ?? {}), [altName]: useAlt } });
-                        const activeBody = swapApplied ? `''${altName}：''${reorderBenefitBody(raceAlt.body, raceDetail)}` : `''${t.name}：''${t.body}`;
-                        return (
-                          <div key={i} className={`race-trait-line sr-replaceable${swapApplied ? " replaced" : ""}`}>
-                            <div className="race-trait-row">
-                              {raceDetail && (
-                                <div className="race-trait-opts">
-                                  <button
-                                    type="button"
-                                    className={`sr-tag${!swapApplied ? " active" : ""}`}
-                                    onClick={() => pickAlt(false)}
-                                    title={!swapApplied ? `当前为原始特性` : `切回原始特性「${chineseName(t.name)}」`}
-                                  >
-                                    <span className="material-symbols-outlined sr-ic">swap_horiz</span>
-                                    {chineseName(t.name)}
-                                  </button>
-                                  <button
-                                    type="button"
-                                    className={`sr-tag${swapApplied ? " active" : ""}`}
-                                    onClick={() => pickAlt(true)}
-                                    title={swapApplied ? `当前已用「${chineseName(altName)}」替代` : `改用「${chineseName(altName)}」替代`}
-                                  >
-                                    <span className="material-symbols-outlined sr-ic">swap_horiz</span>
-                                    {chineseName(altName)}
-                                  </button>
-                                </div>
-                              )}
-                              <div className="race-trait-content">
-                                <WikiBody
-                                  body={activeBody}
-                                  fields={raceEntry.fields}
-                                  lookup={wikiLookup}
-                                />
-                              </div>
-                            </div>
-                          </div>
-                        );
-                      }
-                      return (
-                        <div key={i} className="race-trait-line">
-                          <WikiBody body={`''${t.name}：''${t.body}`} fields={raceEntry.fields} lookup={wikiLookup} />
-                        </div>
-                      );
-                    }
-                    // 可用亚种特性替换的基础特性：与三选一一致，提供「原始特性 / 亚种增益」两个按钮互斥选择
-                    const applied = char.subraceBenefits?.[repl.title] !== false;
-                    const pickSub = (useSub: boolean) => {
-                      const sb = { ...(char.subraceBenefits ?? {}) };
-                      sb[repl.title] = useSub;
-                      setChar({ ...char, subraceBenefits: sb });
-                    };
-                    const activeBody = applied ? `''${repl.title}：''${reorderBenefitBody(repl.body, raceDetail)}` : `''${t.name}：''${t.body}`;
                     return (
-                      <div key={i} className={`race-trait-line sr-replaceable${applied ? " replaced" : ""}`}>
-                        <div className="race-trait-row">
-                          {raceDetail && (
-                            <div className="race-trait-opts">
-                              <button
-                                type="button"
-                                className={`sr-tag${!applied ? " active" : ""}`}
-                                onClick={() => pickSub(false)}
-                                title={!applied ? `当前为原始特性` : `切回原始特性「${chineseName(t.name)}」`}
-                              >
-                                <span className="material-symbols-outlined sr-ic">swap_horiz</span>
-                                {chineseName(t.name)}
-                              </button>
-                              <button
-                                type="button"
-                                className={`sr-tag${applied ? " active" : ""}`}
-                                onClick={() => pickSub(true)}
-                                title={applied ? `当前已用亚种增益「${chineseName(repl.title)}」替代` : `改用亚种增益「${chineseName(repl.title)}」替代`}
-                              >
-                                <span className="material-symbols-outlined sr-ic">swap_horiz</span>
-                                {chineseName(repl.title)}
-                              </button>
-                            </div>
-                          )}
-                          <div className="race-trait-content">
-                            <WikiBody
-                              body={activeBody}
-                              fields={raceEntry.fields}
-                              lookup={wikiLookup}
-                            />
-                          </div>
-                        </div>
+                      <div key={i} className="race-trait-line">
+                        <WikiBody body={`''${t.name}：''${t.body}`} fields={raceEntry.fields} lookup={wikiLookup} />
                       </div>
                     );
                   })}

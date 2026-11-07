@@ -98,8 +98,10 @@ export function serializeRaceAux(g: RaceAuxGroup): string {
   // 只有标题而无引言/条目时不输出：编辑器未填写时默认标题是「辅助威能」，
   // 若按标题非空就输出，会给每个种族凭空加一个空的辅助威能小节。
   if (!intro && powers.length === 0) return "";
+  // 有内容时必须输出 `!!` 小节标题：车卡与编辑器回填都靠这个标题定位辅助威能小节，
+  // 标题留空会导致保存后威能条目被并进普通正文块（重开时出现在「正文」而不是「辅助威能」）。
   const out: string[] = [];
-  if (title) out.push(`!! ${title}`);
+  out.push(`!! ${title || "辅助威能"}`);
   if (intro) out.push(intro);
   for (const p of powers) {
     // 威能名是车卡识别悬浮卡/「选择此威能」的钥匙，缺名时该条无法渲染，故无名条目不输出
@@ -332,16 +334,39 @@ export const raceSpec: CategorySpec = {
     // 正文块里若含「XX辅助威能」小节，抽成独立的 raceAuxPowers（该小节在编辑器里有专属结构化编辑器，
     // 不再混在自由正文块里）；其余块按序留在 loreSections。
     const blocks = splitLoreBlocks(after);
+    let auxTitle = "";
+    let auxBody: string | null = null;
     const auxIdx = blocks.findIndex((b) => isAuxSectionTitle(b.title));
     if (auxIdx >= 0) {
-      const sec = blocks[auxIdx];
-      const parsed = splitAuxPowers(sec.body);
+      auxTitle = blocks[auxIdx].title;
+      auxBody = blocks[auxIdx].body;
+      blocks.splice(auxIdx, 1);
+    } else {
+      // 结构兜底：旧数据（辅助威能标题留空）保存后没有 `!!` 标题，威能条目会被并进普通正文块。
+      // 这里按结构识别「`!!! 威能名` + `{{威能名}}` 转clusion」的块，恢复成独立的辅助威能组，
+      // `!!!` 之前的文本仍留在原正文块（属于正文，不能吞进辅助威能）。
+      for (let i = blocks.length - 1; i >= 0; i--) {
+        const b = blocks[i];
+        const head = b.body.match(/^!!!\s/m);
+        if (!head || head.index === undefined) continue;
+        if (!/^[ \t]*\{\{[^}]+\}\}[ \t]*$/m.test(b.body)) continue;
+        const prefix = b.body.slice(0, head.index).trim();
+        // 整块都是威能条目时保留原小节标题（可能是「魂刃威能」这类不含关键词的写法）；
+        // 若标题原本属于正文块、威能条目只是被拼在末尾，则标题仍留在正文块上。
+        auxTitle = prefix ? "" : b.title;
+        auxBody = b.body.slice(head.index);
+        if (prefix) blocks[i] = { title: b.title, body: prefix };
+        else blocks.splice(i, 1);
+        break;
+      }
+    }
+    if (auxBody !== null) {
+      const parsed = splitAuxPowers(auxBody);
       form.raceAuxPowers = JSON.stringify({
-        title: sec.title,
+        title: auxTitle,
         intro: parsed.intro ?? "",
         powers: parsed.powers.map((p) => ({ name: p.title, body: p.body ?? "" })),
       });
-      blocks.splice(auxIdx, 1);
     }
     form.loreSections = JSON.stringify(blocks);
   },
