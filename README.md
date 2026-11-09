@@ -26,8 +26,6 @@
 
 如您希望在本地部署并开发，克隆本仓库至本地后使用 `pnpm --filter 4enext-web dev`，在本地浏览器构建即可。
 
-维护者发版流程（版本号同步、打 tag、云端自动出三端包）见 [RELEASING.md](RELEASING.md)。
-
 ## 独立应用
 
 除网页版外，项目提供封装后的 Windows setup 与 portable 两种桌面版本、Android apk 版本，以及 Linux AppImage。为在意缓存占用和希望使用独立应用的用户提供。
@@ -67,6 +65,8 @@
 ## 致谢
 
 项目数据来源：由现任维护者风之守护维护的[4e Wiki](https://4e-wiki.netlify.app/)、[4e 万律](https://4e-rules.netlify.app/)
+
+4E-NEXT的服务永久免费。但如果您希望支持开发与支援服务器运营， [可以请我喝杯啤酒](https://afdian.com/a/banque)。
 
 以及所有历代的4e全书维护者、所有的4e中文译者。
 
